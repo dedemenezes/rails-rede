@@ -25,13 +25,16 @@
     </div>
 
     <% @projects.each do |project| %>
-      <div class="list__card">
+      <div class="list__card py-3">
         <div class="row">
           <div class="col-1">
             <input type="checkbox" name="<%= dom_id(project) %>" id="<%= dom_id(project) %>">
           </div>
           <div class="col-7">
-            <%= project.name %>
+            <div class="d-flex align-items-center gap-2">
+              <%= image_tag project.banner, width: '40px', height: '40px', class: 'avatar' %>
+              <%= link_to project.name, dashboard_project_path(project) %>
+            </div>
           </div>
           <div class="col-4">
             <ul class="list-inline mb-0">
@@ -39,7 +42,6 @@
                 <%= link_to icon('fa-solid', 'book'), '#' %>
               </li>
               <li class="list-inline-item border-0">
-                <%= image_tag project.banner, width: '86px', height: '86px', class: 'border' %>
                 <%= link_to icon('fa-solid', 'pencil'), '#' %>
               </li>
               <li class="list-inline-item border-0">
