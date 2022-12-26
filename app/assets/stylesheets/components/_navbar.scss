@@ -1,5 +1,8 @@
 .navbar-lewagon {
   justify-content: space-between;
+}
+
+.navbar-lewagon--white {
   background: white;
 }
 
@@ -9,4 +12,8 @@
 
 .navbar-lewagon .navbar-brand img {
   width: 40px;
+}
+
+.navbar-lewagon--purple {
+  background-color: $purple;
 }
