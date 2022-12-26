@@ -1,0 +1,6 @@
+<%= simple_form_for [:dashboard, project] do |f| %>
+  <%= f.input :name, required: true %>
+  <%= f.rich_text_area :content %>
+  <%= f.input :banner, as: :file %>
+  <%= f.submit %>
+<% end %>

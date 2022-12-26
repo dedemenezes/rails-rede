@@ -1,4 +1,6 @@
 class Dashboard::ProjectsController < ApplicationController
+  before_action :set_project, only: %i[show edit update]
+
   layout 'dashboard'
 
   def index
@@ -7,8 +9,6 @@ class Dashboard::ProjectsController < ApplicationController
   end
 
   def show
-    @project = Project.find(params[:id])
-    authorize [:dashboard, @project]
   end
 
   def new
@@ -26,7 +26,23 @@ class Dashboard::ProjectsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @project.update(project_params)
+      redirect_to dashboard_projects_path
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   private
+
+  def set_project
+    @project = Project.find(params[:id])
+    authorize [:dashboard, @project]
+  end
 
   def project_params
     params.require(:project).permit(:name, :content, :banner)

@@ -7,14 +7,26 @@ class Dashboard::ProjectPolicy < ApplicationPolicy
   end
 
   def show?
-    user.admin?
+    admin?
   end
 
   def new?
     create?
   end
 
+  def edit?
+    update?
+  end
+
+  def update?
+    admin?
+  end
+
   def create?
+    admin?
+  end
+
+  def admin?
     user.admin?
   end
 end
