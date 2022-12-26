@@ -14,20 +14,11 @@
     <%= render "shared/navbar", background_color: 'navbar-lewagon--purple' %>
     <div class="container-fluid px-0">
       <div class="row">
-        <div class="col-sm-3">
+        <div class="col-12 col-md-3 col-xl-2">
           <%= render 'shared/dashboard/sidebar' %>
         </div>
-        <div class="col-sm-9">
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            <% real_path = '' %>
-            <% params[:controller].split('/').each do |path| %>
-              <% real_path += "/#{path}" %>
-              <li class="breadcrumb-item"><%= link_to path.capitalize, real_path %></li>
-            <% end %>
-            <%# <li class="breadcrumb-item active" aria-current="page">Library</li> %>
-          </ol>
-        </nav>
+        <div class="col-12 col-md-9 col-xl-10">
+          <%#= render 'shared/breadcrumb' %>
           <%= yield %>
         </div>
       </div>
