@@ -27,6 +27,7 @@ class Dashboard::ProjectsController < ApplicationController
   end
 
   def edit
+    @methodology = Methodology.new
     @image_attachments =  ActiveStorage::Attachment.where(record_id: Project.last.id, record_type: 'ActiveStorage::VariantRecord')
   end
 
