@@ -20,13 +20,14 @@ class Dashboard::ProjectsController < ApplicationController
     @project = Project.new(project_params)
     authorize [:dashboard, @project]
     if @project.save
-      redirect_to dashboard_path
+      redirect_to dashboard_projects_path
     else
       render :new, status: :unprocessable_entity
     end
   end
 
   def edit
+    @image_attachments =  ActiveStorage::Attachment.where(record_id: Project.last.id, record_type: 'ActiveStorage::VariantRecord')
   end
 
   def update
