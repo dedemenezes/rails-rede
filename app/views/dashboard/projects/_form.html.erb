@@ -8,10 +8,5 @@
       <%= link_to 'remove', destroy_attachment_path(project.banner.id), data: { turbo_method: 'delete' } %>
     <% end %>
   </div>
-  <div class="methodologies">
-    <%= simple_form_for [:dashboard, @project, @methodology] do |f| %>
-      <%= f.input :name %>
-    <% end %>
-  </div>
   <%= f.submit %>
 <% end %>
