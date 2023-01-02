@@ -9,5 +9,6 @@ Rails.application.routes.draw do
     resources :projects do
       resources :methodologies, only: %i[new create]
     end
+    resources :methodologies, except: %i[new create]
   end
 end

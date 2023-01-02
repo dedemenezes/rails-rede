@@ -1,4 +1,7 @@
-<h1>New Methodology</h1>
-<%= simple_form_for [:dashboard, @project, @methodology] do |f| %>
-  <%= f.input :name %>
-<% end %>
+<div class="container">
+  <h1>New Methodology</h1>
+  <%= simple_form_for [:dashboard, @project, @methodology] do |f| %>
+    <%= f.input :name %>
+    <%= f.submit %>
+  <% end %>
+</div>
