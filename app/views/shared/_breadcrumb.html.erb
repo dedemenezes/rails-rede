@@ -1,0 +1,10 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <% real_path = '' %>
+    <% params[:controller].split('/').each do |path| %>
+      <% real_path += "/#{path}" %>
+      <li class="breadcrumb-item"><%= link_to path.capitalize, real_path %></li>
+    <% end %>
+    <%# <li class="breadcrumb-item active" aria-current="page">Library</li> %>
+  </ol>
+</nav>

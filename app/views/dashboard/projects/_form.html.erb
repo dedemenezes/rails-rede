@@ -1,0 +1,12 @@
+<%= simple_form_for [:dashboard, project] do |f| %>
+  <%= f.input :name, required: true %>
+  <%= f.rich_text_area :content %>
+  <div class="d-flex alig-items-center justify-content-between">
+    <%= f.input :banner, as: :file, wrapper_html: { class: 'flex-grow-1' } %>
+    <% if project.banner.attached?  %>
+      <%= image_tag project.banner.blob.representation(resize_to_limit: [100, 100]), class: 'mx-2' %>
+      <%= link_to 'remove', destroy_attachment_path(project.banner.id), data: { turbo_method: 'delete' } %>
+    <% end %>
+  </div>
+  <%= f.submit %>
+<% end %>
