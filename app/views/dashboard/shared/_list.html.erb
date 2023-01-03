@@ -1,0 +1,26 @@
+<div class="list__card py-3">
+  <div class="row">
+    <div class="col-1">
+      <input type="checkbox" name="<%= dom_id(element) %>" id="<%= dom_id(element) %>">
+    </div>
+    <div class="col-9">
+      <div class="d-flex align-items-center gap-2">
+        <%= image_tag element.banner, width: '40px', height: '40px', class: 'avatar' if element.respond_to?(:banner) %>
+        <%= link_to element.name, link_to_show %>
+      </div>
+    </div>
+    <div class="col-2">
+      <ul class="list-inline mb-0">
+        <li class="list-inline-item border-0">
+          <%= link_to icon('fa-solid', 'book'), '#' %>
+        </li>
+        <li class="list-inline-item border-0">
+          <%= link_to icon('fa-solid', 'pencil'), link_to_edit %>
+        </li>
+        <li class="list-inline-item border-0">
+          <%= link_to icon('fa-solid', 'trash'), '#' %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,10 @@
 class Dashboard::CategoriesController < ApplicationController
   layout 'dashboard'
+
+  def index
+    @categories = policy_scope([:dashboard, Category])
+  end
+
   def new
     @category = Category.new
     authorize [:dashboard, @category]

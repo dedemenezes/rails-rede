@@ -1,0 +1,14 @@
+<div class="card__dashboard">
+  <%= render 'dashboard/shared/header', collection: @categories,
+                                        title: 'Categories',
+                                        header_path: new_dashboard_category_path,
+                                        link_text: 'category' %>
+  <div class="dashboard__list px-3">
+    <%= render 'dashboard/shared/list_header' %>
+    <% @categories.each do |category| %>
+      <%= render 'dashboard/shared/list', element: category,
+                                            link_to_edit: edit_dashboard_category_path(category),
+                                            link_to_show: dashboard_category_path(category) %>
+    <% end %>
+  </div>
+</div>
