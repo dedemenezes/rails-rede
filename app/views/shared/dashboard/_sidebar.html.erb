@@ -25,7 +25,27 @@
           </ul>
         </div>
       </div>
-
+    </li>
+    <li class="list-group-item border-0">
+      <p class="" data-bs-toggle="collapse" data-bs-target="#collapseCategory" aria-expanded="false" aria-controls="collapseExample">
+        <%= icon('fa-solid', 'diagram-project') %> Category
+      </p>
+      <div class="collapse" id="collapseCategory">
+        <div class="card card-body rounded">
+          <ul class="list-group border-0">
+            <li class='list-group-item border-0'>
+              <%= link_to dashboard_projects_path do %>
+                <%= icon('fa-solid', 'list') %> List
+              <% end %>
+            </li>
+            <li class='list-group-item border-0'>
+              <%= link_to new_dashboard_category_path do %>
+                <%= icon('fa-solid', 'plus') %> New
+              <% end %>
+            </li>
+          </ul>
+        </div>
+      </div>
     </li>
   </ul>
 </div>
