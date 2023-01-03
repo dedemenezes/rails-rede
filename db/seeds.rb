@@ -1,5 +1,5 @@
 User.destroy_all
-Project.destroy_all
+ConflictType.destroy_all
 
 puts 'DB cleaned!'
 
@@ -14,13 +14,25 @@ User.create(
   username: 'fcoppola'
 )
 
-project = Project.create!(
-  name: 'Rede Observacao'
-)
+puts "creating Conflicts Types"
+types = [
+  'Descaracterização e perda do território quilombola',
+  'Descaracterização do território rural',
+  'Regularização Fundiária',
+  'Manutenção da Atividade Pesqueira'
+]
+types.each { |type| ConflictType.create! name: type }
+puts "Conflict Type created: #{ConflictType.count}"
 
-Methodology.create!(
-  name: 'Metodologia Um',
-  project: project
-)
+# puts "creating Projects"
+# project = Project.create!(
+#   name: 'Rede Observacao'
+# )
+
+# puts "creating Methodologies"
+# Methodology.create!(
+#   name: 'Metodologia Um',
+#   project: project
+# )
 
 puts 'Finished zo/'
