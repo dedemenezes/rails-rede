@@ -1,0 +1,12 @@
+<div class="dashboard__header border-bottom">
+  <div class="d-flex justify-content-between align-items-center p-3">
+    <h1><%= title %> <small class='text-muted highlight'><%= pluralize(collection.size, title) %></small></h1>
+    <ul class="list-inline mb-0">
+      <li class="list-inline-item">
+        <%= link_to header_path, class: 'btn-base' do %>
+          <%= icon('fa-solid', 'plus') %> Add <%= link_text %>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</div>
