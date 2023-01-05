@@ -1,3 +1,3 @@
 class UnityType < ApplicationRecord
-  has_many :observatories
+  has_many :observatories, inverse_of: :unity_type
 end

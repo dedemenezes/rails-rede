@@ -1,6 +1,7 @@
 User.destroy_all
 ConflictType.destroy_all
 UnityType.destroy_all
+Category.destroy_all
 
 puts 'DB cleaned!'
 
@@ -35,6 +36,11 @@ puts "Conflict Type created: #{ConflictType.count}"
 #   name: 'Metodologia Um',
 #   project: project
 # )
+
+puts "creating Categories..."
+['Educação Ambiental', 'Comunicação Popular', 'Teatro do Oprimido'].each do |name|
+  Category.create! name: name
+end
 
 puts 'creating unity types'
 observatory_types = ['observatory', 'platform', 'fpso']
