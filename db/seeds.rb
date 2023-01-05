@@ -41,7 +41,7 @@ priorities.each do |priority|
 end
 
 puts "creating Categories..."
-['Educação Ambiental', 'Comunicação Popular', 'Teatro do Oprimido'].each do |name|
+['Teatro do Oprimido', 'Comunicação Popular', 'Educação Ambiental'].each do |name|
   Category.create! name: name
 end
 
@@ -52,7 +52,7 @@ observatory_types.each do |tipo|
 end
 
 puts 'Creating Observatory...'
-Observatory.create!(
+observatory = Observatory.create!(
   headline: 'PEA - Rede OBservacao',
   name: 'PEA - Rede OBservacao',
   description: 'PEA - Rede OBservacao',
@@ -61,7 +61,9 @@ Observatory.create!(
   address: 'Saquarema - Rio de Janeiro',
   unity_type: UnityType.last
 )
-
+observatory.conflict_type = ConflictType.last
+observatory.priority_type = PriorityType.last
+observatory.category = Category.last
 # puts "creating Projects"
 # project = Project.create!(
 #   name: 'Rede Observacao'
