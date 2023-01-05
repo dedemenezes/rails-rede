@@ -9,5 +9,6 @@ RSpec.describe Category, type: :model do
 
   describe 'Associations' do
     it { should have_many(:observatory_categories).dependent(:destroy)}
+    it { should have_many(:observatories)}
   end
 end
