@@ -36,8 +36,10 @@ RailsAdmin.config do |config|
     index                         # mandatory
     new do
       visible do
-        case bindings[:object]
-        when Project then Project.count.zero?
+        # binding.break
+        case bindings[:abstract_model].model_name
+        when "Project" then Project.count == 0
+        when "Observatory" then true
         else
           false
         end
@@ -50,7 +52,8 @@ RailsAdmin.config do |config|
     delete do
       visible do
         case bindings[:object]
-        when Project then Project.count > 1
+        when Project then Project.count > 0
+        when Observatory then true
         else
           false
         end
@@ -73,6 +76,7 @@ RailsAdmin.config do |config|
         associated_collection_cache_all true
       end
       field :banner
+      field :published
     end
     # configure :observatory_categories do
     #   collection Category.all
