@@ -51,9 +51,9 @@ RailsAdmin.config do |config|
     edit
     delete do
       visible do
-        case bindings[:object]
-        when Project then Project.count > 0
-        when Observatory then true
+        case bindings[:abstract_model].model_name
+        when 'Project' then Project.count > 0
+        when 'Observatory' then true
         else
           false
         end
