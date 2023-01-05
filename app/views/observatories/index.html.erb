@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="row">
+    <% @observatories.each do |observatory| %>
+      <div class="col-12 col-md-4">
+        <div class="observatory__card rounded">
+          <%= image_tag observatory.banner, width: '100%', class: 'rounded-top' %>
+          <div class="observatory__content px-2 py-1 bg-white">
+            <h3><%= observatory.name %></h3>
+            <p><%= observatory.address %></p>
+          </div>
+        </div>
+      </div class='col-12 col-md-4'>
+    <% end %>
+  </div>
+</div>
