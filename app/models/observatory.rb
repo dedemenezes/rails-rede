@@ -2,10 +2,12 @@ class Observatory < ApplicationRecord
   validates :name, :email, :phone_number, presence: true
 
   belongs_to :unity_type, inverse_of: :observatories
-  has_many :observatory_categories, dependent: :destroy
-  has_many :categories, through: :observatory_categories
-  has_many :observatory_conflicts, dependent: :destroy
-  has_many :observatory_priorities, dependent: :destroy
+  has_one :observatory_category, dependent: :destroy
+  has_one :category, through: :observatory_category
+  has_one :observatory_conflict, dependent: :destroy
+  has_one :conflict_type, through: :observatory_conflict
+  has_one :observatory_priority, dependent: :destroy
+  has_one :priority_type, through: :observatory_priority
 
   has_one_attached :banner
 end

@@ -72,8 +72,10 @@ RailsAdmin.config do |config|
     edit do
       %i[name email phone_number].each { |att| field att }
       field :unity_type
-      field :categories do
-        associated_collection_cache_all true
+      field :category
+      field :priority_type
+      field :conflict_type do
+        label 'Conflict'
       end
       field :banner
       field :published
