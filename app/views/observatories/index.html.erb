@@ -1,7 +1,7 @@
 <div class="cards-container">
   <div class="cards">
-    <% @observatories.each do |observatory| %>
-      <div class="card__observatory" style="background-image: url(<%= url_for(observatory.banner) %>)"><%= observatory.name %>
+    <% 100.times do %>
+      <div class="card__observatory" style="background-image: url(<%= url_for(@observatories.first.banner) %>)"><%= @observatories.first.name %>
       </div>
     <% end %>
   </div>
