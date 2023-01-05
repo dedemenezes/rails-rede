@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_03_195924) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_05_064126) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -85,6 +85,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_03_195924) do
     t.boolean "published", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "unity_type_id", null: false
+    t.index ["unity_type_id"], name: "index_observatories_on_unity_type_id"
   end
 
   create_table "observatory_categories", force: :cascade do |t|
@@ -126,6 +128,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_03_195924) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "unity_types", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -146,6 +154,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_03_195924) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "methodologies", "projects"
+  add_foreign_key "observatories", "unity_types"
   add_foreign_key "observatory_categories", "categories"
   add_foreign_key "observatory_categories", "observatories"
   add_foreign_key "observatory_conflicts", "conflict_types"

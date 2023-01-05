@@ -1,5 +1,6 @@
 User.destroy_all
 ConflictType.destroy_all
+UnityType.destroy_all
 
 puts 'DB cleaned!'
 
@@ -35,4 +36,9 @@ puts "Conflict Type created: #{ConflictType.count}"
 #   project: project
 # )
 
+puts 'creating unity types'
+observatory_types = ['observatory', 'platform', 'fpso']
+observatory_types.each do |tipo|
+  UnityType.create(name: tipo)
+end
 puts 'Finished zo/'

@@ -1,7 +1,7 @@
 class Observatory < ApplicationRecord
-  OBSERVATORY_TYPES = ['observatory', 'platform', 'fpso']
   validates :name, :email, :phone_number, :type, presence: true
-  validates :type, inclusion: { in: OBSERVATORY_TYPES}
+
+  belongs_to :unity_type
   has_many :observatory_categories, dependent: :destroy
   has_many :categories, through: :observatory_categories
   has_many :observatory_conflicts, dependent: :destroy
