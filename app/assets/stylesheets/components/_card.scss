@@ -3,3 +3,44 @@
   border-radius: 8px;
   // margin-top: 8px;
 }
+
+.cards-container {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+}
+
+.cards-container .cards {
+  padding: 16px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 16px;
+}
+
+.card__observatory {
+  background-size: cover;
+  background-position: center;
+  height: 150px;
+  border-radius: 1px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+  display: flex;
+  align-items: center;
+  // justify-content: space-around;
+  text-align: center;
+  font-size: 22px;
+  color: white;
+  font-weight: bolder;
+  text-shadow: 0 0 10px rgba(0, 0, 0, .7);
+  transition: transform .2s ease;
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.cards-container .card__map {
+  height: 100vh;
+  position: sticky;
+  top: 0;
+}

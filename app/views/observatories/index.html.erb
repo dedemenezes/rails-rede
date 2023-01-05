@@ -1,0 +1,13 @@
+<div class="cards-container">
+  <div class="cards">
+    <% 100.times do %>
+      <div class="card__observatory" style="background-image: url(<%= url_for(@observatories.first.banner) %>)"><%= @observatories.first.name %>
+      </div>
+    <% end %>
+  </div>
+  <div style="width: 100%"
+    class="card__map"
+    data-controller="map"
+    data-map-markers-value="<%= @markers.to_json %>"
+    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+</div>
