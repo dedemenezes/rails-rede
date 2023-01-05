@@ -46,4 +46,14 @@ RailsAdmin.config do |config|
     # history_index
     # history_show
   end
+
+  config.model "Observatory" do
+    %i[name email phone_number type].each { |att| field att }
+    field :categories do
+      associated_collection_cache_all true
+    end
+    # configure :observatory_categories do
+    #   collection Category.all
+    # end
+  end
 end
