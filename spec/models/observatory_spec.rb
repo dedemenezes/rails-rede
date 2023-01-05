@@ -5,13 +5,14 @@ RSpec.describe Observatory, type: :model do
     it { should validate_presence_of(:name)}
     it { should validate_presence_of(:email)}
     it { should validate_presence_of(:phone_number)}
-    it { should validate_presence_of(:type)}
-    it { should validate_inclusion_of(:type).in_array(['observatory', 'platform', 'fpso'])}
   end
 
   describe 'Associations' do
-    it { should have_many(:observatory_categories).dependent(:destroy)}
-    it { should have_many(:observatory_priorities).dependent(:destroy)}
-    it { should have_many(:observatory_conflicts).dependent(:destroy)}
+    it { should have_one(:observatory_category).dependent(:destroy)}
+    it { should have_one(:observatory_priority).dependent(:destroy)}
+    it { should have_one(:observatory_conflict).dependent(:destroy)}
+    it { should have_one(:category)}
+    it { should have_one(:priority_type)}
+    it { should have_one(:conflict_type)}
   end
 end
