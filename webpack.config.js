@@ -1,20 +1,29 @@
 const path    = require("path")
-const webpack = require("webpack")
+const webpack = require('webpack')
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
 module.exports = {
   mode: "production",
-  devtool: "source-map",
   entry: {
-    application: "./app/javascript/application.js"
+    application: "./app/javascript/application.js",
+    rails_admin: "./app/javascript/rails_admin.js",
   },
   output: {
     filename: "[name].js",
-    sourceMapFilename: "[file].map",
     path: path.resolve(__dirname, "app/assets/builds"),
+  },
+  module: {
+    rules: [
+      {
+        test: /.s?css$/,
+        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+      },
+    ],
   },
   plugins: [
     new webpack.optimize.LimitChunkCountPlugin({
       maxChunks: 1
-    })
+    }),
+    new MiniCssExtractPlugin(),
   ]
 }
