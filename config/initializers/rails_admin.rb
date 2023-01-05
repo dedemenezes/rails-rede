@@ -34,16 +34,54 @@ RailsAdmin.config do |config|
   config.actions do
     dashboard                     # mandatory
     index                         # mandatory
-    new
+    new do
+      visible do
+        # binding.break
+        case bindings[:abstract_model].model_name
+        when "Project" then Project.count == 0
+        when "Observatory" then true
+        else
+          false
+        end
+      end
+    end
     export
     bulk_delete
     show
     edit
-    delete
+    delete do
+      visible do
+        case bindings[:abstract_model].model_name
+        when 'Project' then Project.count > 0
+        when 'Observatory' then true
+        else
+          false
+        end
+      end
+    end
     show_in_app
 
     ## With an audit adapter, you can add:
     # history_index
     # history_show
+  end
+  config.included_models = [ 'Observatory', 'Project' ]
+
+  config.model "Observatory" do
+    weight 1
+    edit do
+      %i[name email phone_number address].each { |att| field att }
+      field :unity_type
+      field :category
+      field :priority_type
+      field :conflict_type do
+        label 'Conflict'
+      end
+      field :banner
+      field :published
+    end
+    # configure :observatory_categories do
+    #   collection Category.all
+    # end
   end
 end
