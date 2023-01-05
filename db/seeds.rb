@@ -3,6 +3,7 @@ UnityType.destroy_all
 User.destroy_all
 ConflictType.destroy_all
 Category.destroy_all
+PriorityType.destroy_all
 
 puts 'DB cleaned!'
 
@@ -50,6 +51,16 @@ observatory_types.each do |tipo|
   UnityType.create!(name: tipo)
 end
 
+puts 'Creating Observatory...'
+Observatory.create!(
+  headline: 'PEA - Rede OBservacao',
+  name: 'PEA - Rede OBservacao',
+  description: 'PEA - Rede OBservacao',
+  email: 'pea@obs.com',
+  phone_number: '232323232',
+  address: 'Saquarema - Rio de Janeiro',
+  unity_type: UnityType.last
+)
 
 # puts "creating Projects"
 # project = Project.create!(

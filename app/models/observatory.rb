@@ -10,4 +10,7 @@ class Observatory < ApplicationRecord
   has_one :priority_type, through: :observatory_priority
 
   has_one_attached :banner
+
+  geocoded_by :address
+  after_validation :geocode, if: :will_save_change_to_address?
 end

@@ -70,7 +70,7 @@ RailsAdmin.config do |config|
   config.model "Observatory" do
     weight 1
     edit do
-      %i[name email phone_number].each { |att| field att }
+      %i[name email phone_number address].each { |att| field att }
       field :unity_type
       field :category
       field :priority_type
