@@ -1,15 +1,13 @@
-<div class="container">
-  <div class="row">
+<div class="cards-container">
+  <div class="cards">
     <% @observatories.each do |observatory| %>
-      <div class="col-12 col-md-4">
-        <div class="observatory__card rounded">
-          <%= image_tag observatory.banner, width: '100%', class: 'rounded-top' %>
-          <div class="observatory__content px-2 py-1 bg-white">
-            <h3><%= observatory.name %></h3>
-            <p><%= observatory.address %></p>
-          </div>
-        </div>
-      </div class='col-12 col-md-4'>
+      <div class="card__observatory" style="background-image: url(<%= url_for(observatory.banner) %>)"><%= observatory.name %>
+      </div>
     <% end %>
   </div>
+  <div style="width: 100%"
+    class="card__map"
+    data-controller="map"
+    data-map-markers-value="<%= @markers.to_json %>"
+    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
 </div>
