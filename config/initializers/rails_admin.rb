@@ -37,10 +37,10 @@ RailsAdmin.config do |config|
     new do
       visible do
         # binding.break
-        if bindings[:abstract_model].model_name == 'Project' && Project.count == 0
-          true
-        else
+        if bindings[:abstract_model].model_name == 'Project' && Project.count > 0
           false
+        else
+          true
         end
       end
     end
@@ -67,6 +67,7 @@ RailsAdmin.config do |config|
     'Observatory',
     'Project',
     'Methodology',
+    'Member',
     'Category',
     'ConflictType',
     'PriorityType',
@@ -76,7 +77,7 @@ RailsAdmin.config do |config|
   config.model "Observatory" do
     weight 1
     edit do
-      %i[name email phone_number address].each { |att| field att }
+      %i[name email phone_number address rich_description].each { |att| field att }
       field :unity_type
       field :category
       field :priority_type
@@ -92,6 +93,10 @@ RailsAdmin.config do |config|
   end
 
   config.model "Methodology" do
+    parent "Project"
+  end
+
+  config.model "Member" do
     parent "Project"
   end
 
