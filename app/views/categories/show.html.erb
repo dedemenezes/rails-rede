@@ -1,0 +1,25 @@
+<div class="banner mb-3" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.1)), url('<%= url_for(@category.banner) %>');">
+  <div class="container">
+    <h1><%= @category.name %></h1>
+    <a class="btn btn-rede-primary" href="#">See observatories</a>
+  </div>
+</div>
+<div class="container">
+  <div class="px-3 py-2 bg-white rounded mb-3">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-3 border-end">
+        <h4>Observatories</h4>
+        <ul class="list-group">
+          <% @category_observatories.each do |observatory| %>
+            <li class="list-group-item">
+              <%= observatory.name %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+      <div class="col-12 col-md-9">
+        <%= @category.rich_body %>
+      </div>
+    </div>
+  </div>
+</div>

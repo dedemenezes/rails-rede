@@ -37,9 +37,8 @@ RailsAdmin.config do |config|
     new do
       visible do
         # binding.break
-        case bindings[:abstract_model].model_name
-        when "Project" then Project.count == 0
-        when "Observatory" then true
+        if bindings[:abstract_model].model_name == 'Project' && Project.count == 0
+          true
         else
           false
         end
@@ -51,11 +50,10 @@ RailsAdmin.config do |config|
     edit
     delete do
       visible do
-        case bindings[:abstract_model].model_name
-        when 'Project' then Project.count > 0
-        when 'Observatory' then true
-        else
+        if bindings[:abstract_model].model_name == 'Project'
           false
+        else
+          true
         end
       end
     end
@@ -86,6 +84,19 @@ RailsAdmin.config do |config|
   end
   config.model "Category" do
     parent "Observatory"
-
+    list do
+      field :id
+      field :name
+      field :updated_at
+    end
+  end
+  config.model "UnityType" do
+    parent "Observatory"
+  end
+  config.model "PriorityType" do
+    parent "Observatory"
+  end
+  config.model "ConflictType" do
+    parent "Observatory"
   end
 end
