@@ -63,7 +63,15 @@ RailsAdmin.config do |config|
     # history_index
     # history_show
   end
-  config.included_models = [ 'Observatory', 'Project', 'Category', 'ConflictType', 'PriorityType', 'UnityType' ]
+  config.included_models = [
+    'Observatory',
+    'Project',
+    'Methodology',
+    'Category',
+    'ConflictType',
+    'PriorityType',
+    'UnityType'
+  ]
 
   config.model "Observatory" do
     weight 1
@@ -82,6 +90,11 @@ RailsAdmin.config do |config|
     #   collection Category.all
     # end
   end
+
+  config.model "Methodology" do
+    parent "Project"
+  end
+
   config.model "Category" do
     parent "Observatory"
     list do
@@ -90,13 +103,13 @@ RailsAdmin.config do |config|
       field :updated_at
     end
   end
-  config.model "UnityType" do
+  config.model "ConflictType" do
     parent "Observatory"
   end
   config.model "PriorityType" do
     parent "Observatory"
   end
-  config.model "ConflictType" do
+  config.model "UnityType" do
     parent "Observatory"
   end
 end
