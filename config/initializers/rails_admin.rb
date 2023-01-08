@@ -65,7 +65,7 @@ RailsAdmin.config do |config|
     # history_index
     # history_show
   end
-  config.included_models = [ 'Observatory', 'Project' ]
+  config.included_models = [ 'Observatory', 'Project', 'Category', 'ConflictType', 'PriorityType', 'UnityType' ]
 
   config.model "Observatory" do
     weight 1
@@ -83,5 +83,9 @@ RailsAdmin.config do |config|
     # configure :observatory_categories do
     #   collection Category.all
     # end
+  end
+  config.model "Category" do
+    parent "Observatory"
+
   end
 end
