@@ -26,7 +26,8 @@ $border-radius-sm: 2px;
 // Override other variables below!
 
 $rede-colors: (
-  "main": $r-blue
+  "rede-primary": $r-blue,
+  "rede-secondary": $r-orange
 );
 
 // Merge this new map into the theme-colors map (set by default in Bootstrap) in config/custom_maps.scss
