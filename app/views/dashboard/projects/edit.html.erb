@@ -1,8 +1,9 @@
 <div class="card__dashboard border">
   <div class="dashboard__content p-3">
     <%= simple_form_for [:dashboard, @project], html: { class: 'px-3 py-2' } do |f| %>
+        <%= f.input :name, required: true, wrapper_html: { aria: { label: 'Project name' } } %>
+<%# , wrapper_html: { style: 'margin-bottom: 0 !important' }  %>
       <div class="d-flex align-items-end justify-content-between">
-        <%= f.input :name, required: true, wrapper_html: { style: 'margin-bottom: 0 !important' } %>
         <%= link_to 'Edit about', '#', class: 'btn-base' %>
       </div>
       <%#= f.rich_text_area :content %>
