@@ -1,10 +1,11 @@
-<div class="dashboard__header border-bottom">
+<% klass_name = klass.to_s.downcase %>
+<div class="dashboard__header border-bottom bg-white">
   <div class="d-flex justify-content-between align-items-center p-3">
-    <h1><%= title %> <small class='text-muted highlight'><%= pluralize(collection.size, title) %></small></h1>
+    <h1><%= klass_name.capitalize %> <small class='text-muted highlight'><%= pluralize(klass.count, klass_name) %></small></h1>
     <ul class="list-inline mb-0">
       <li class="list-inline-item">
-        <%= link_to header_path, class: 'btn-base' do %>
-          <%= icon('fa-solid', 'plus') %> Add <%= link_text %>
+        <%= link_to url_for(model: klass, action: :new), class: 'btn-base' do %>
+          <%= icon('fa-solid', 'plus') %> Add <%= klass_name %>
         <% end %>
       </li>
     </ul>

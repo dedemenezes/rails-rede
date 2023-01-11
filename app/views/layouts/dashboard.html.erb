@@ -18,6 +18,7 @@
           <%= render 'shared/dashboard/sidebar' %>
         </div>
         <div class="col-12 col-md-9 col-xl-10 ps-0">
+          <%= render 'dashboard/shared/header', klass: controller_name[0...-1].capitalize.constantize %>
           <%= render 'shared/breadcrumb' %>
           <%= yield %>
         </div>
