@@ -18,14 +18,16 @@
           <%= render 'dashboard/shared/sidebar' %>
         </div>
         <div class="col-12 col-md-9 col-xl-10 ps-0">
-          <% if controller_name != 'dashboard'  %>
-            <%= render 'dashboard/shared/header', klass: controller_name.singularize.capitalize.constantize %>
-            <%= render 'shared/breadcrumb' %>
-            <%= render 'dashboard/shared/content_menu' %>
-          <% else %>
-            <h1>Dashboard</h1>
-          <% end %>
-          <%= yield %>
+          <div class="container">
+            <% if controller_name != 'dashboard'  %>
+              <%= render 'dashboard/shared/header', klass: controller_name.singularize.capitalize.constantize %>
+              <%= render 'shared/breadcrumb' %>
+              <%= render 'dashboard/shared/content_menu' %>
+            <% else %>
+              <h1>Dashboard</h1>
+            <% end %>
+            <%= yield %>
+          </div>
         </div>
       </div>
     </div>
