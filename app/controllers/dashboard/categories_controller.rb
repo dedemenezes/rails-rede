@@ -3,7 +3,7 @@ class Dashboard::CategoriesController < ApplicationController
 
   def index
     @categories = policy_scope([:dashboard, Category])
-    add_breadcrumb 'Categories', dashboard_categories_path
+    add_breadcrumb 'Categories', dashboard_categories_path, true
   end
 
   def new

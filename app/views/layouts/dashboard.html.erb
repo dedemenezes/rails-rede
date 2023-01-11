@@ -19,7 +19,7 @@
         </div>
         <div class="col-12 col-md-9 col-xl-10 ps-0">
           <% if controller_name != 'dashboard'  %>
-            <%= render 'dashboard/shared/header', klass: controller_name[0...-1].capitalize.constantize %>
+            <%= render 'dashboard/shared/header', klass: controller_name.singularize.capitalize.constantize %>
             <%= render 'shared/breadcrumb' %>
             <%= render 'dashboard/shared/content_menu' %>
           <% else %>
