@@ -1,0 +1,10 @@
+<ul class="list-inline px-3 mb-0 mt-2 shadow-sm">
+  <% %w[index new].each do |action| %>
+    <li class="list-inline-item px-3 py-2 m-0 <%= 'border border-bottom-0 rounded-top' if params[:action] == action %>">
+      <%= link_to url_for(controller: controller_name, action: action), class: 'd-flex align-items-center'  do %>
+        <%= icon('fa-solid', 'list', class: 'me-2') %> <%= action.capitalize %>
+        <%#= icon('fa-solid', 'plus') New %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>

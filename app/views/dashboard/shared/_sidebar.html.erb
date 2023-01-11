@@ -6,25 +6,9 @@
       <% end %>
     </li>
     <li class="list-group-item border-0">
-      <p class="" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+      <%= link_to dashboard_projects_path do %>
         <%= icon('fa-solid', 'diagram-project') %> Project
-      </p>
-      <div class="collapse" id="collapseExample">
-        <div class="card card-body rounded">
-          <ul class="list-group border-0">
-            <li class='list-group-item border-0'>
-              <%= link_to dashboard_projects_path do %>
-                <%= icon('fa-solid', 'list') %> List
-              <% end %>
-            </li>
-            <li class='list-group-item border-0'>
-              <%= link_to new_dashboard_project_path do %>
-                <%= icon('fa-solid', 'plus') %> New
-              <% end %>
-            </li>
-          </ul>
-        </div>
-      </div>
+      <% end %>
     </li>
     <li class="list-group-item border-0">
       <p class="" data-bs-toggle="collapse" data-bs-target="#collapseCategory" aria-expanded="false" aria-controls="collapseExample">
@@ -46,6 +30,11 @@
           </ul>
         </div>
       </div>
+    </li>
+    <li class="list-group-item border-0">
+      <%= link_to '#' do %>
+        <%= icon 'fa-solid', 'table-columns' %> Observatories
+      <% end %>
     </li>
   </ul>
 </div>

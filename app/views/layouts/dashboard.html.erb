@@ -15,11 +15,16 @@
     <div class="container-fluid px-0">
       <div class="row">
         <div class="col-12 col-md-3 col-xl-2 pe-0">
-          <%= render 'shared/dashboard/sidebar' %>
+          <%= render 'dashboard/shared/sidebar' %>
         </div>
         <div class="col-12 col-md-9 col-xl-10 ps-0">
-          <%= render 'dashboard/shared/header', klass: controller_name[0...-1].capitalize.constantize %>
-          <%= render 'shared/breadcrumb' %>
+          <% if controller_name != 'dashboard'  %>
+            <%= render 'dashboard/shared/header', klass: controller_name[0...-1].capitalize.constantize %>
+            <%= render 'shared/breadcrumb' %>
+            <%= render 'dashboard/shared/content_menu' %>
+          <% else %>
+            <h1>Dashboard</h1>
+          <% end %>
           <%= yield %>
         </div>
       </div>
