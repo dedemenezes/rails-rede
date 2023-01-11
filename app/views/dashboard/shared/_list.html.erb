@@ -18,7 +18,7 @@
           <%= link_to icon('fa-solid', 'pencil'), link_to_edit %>
         </li>
         <li class="list-inline-item border-0">
-          <%= link_to icon('fa-solid', 'trash'), '#' %>
+          <%= link_to icon('fa-solid', 'trash'), url_for([:dashboard, element]), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
         </li>
       </ul>
     </div>

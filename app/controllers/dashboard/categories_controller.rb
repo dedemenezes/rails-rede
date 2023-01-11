@@ -28,6 +28,16 @@ class Dashboard::CategoriesController < ApplicationController
     end
   end
 
+  def destroy
+    @category = Category.find(params[:id])
+    authorize [:dashboard, @category]
+    if @category.destroy
+      redirect_to dashboard_categories_path, notice: "#{@category.name} was removed"
+    else
+      render :index, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def category_params
