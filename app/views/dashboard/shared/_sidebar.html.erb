@@ -2,34 +2,40 @@
   <ul class="list-group border-0">
     <li class="list-group-item border-0">
       <%= link_to dashboard_path do %>
-        <%= icon 'fa-solid', 'table-columns' %> Dashboard
+        <%= icon 'fa-solid', 'house-user' %> Dashboard
       <% end %>
     </li>
     <li class="list-group-item border-0">
       <%= link_to dashboard_projects_path do %>
-        <%= icon('fa-solid', 'diagram-project') %> Project
+        <%= icon('fa-solid', 'briefcase') %> Project
       <% end %>
     </li>
     <li class="list-group-item border-0">
-      <p class="" data-bs-toggle="collapse" data-bs-target="#collapseCategory" aria-expanded="false" aria-controls="collapseExample">
+      <%= link_to dashboard_categories_path do %>
         <%= icon('fa-solid', 'diagram-project') %> Category
-      </p>
-      <div class="collapse" id="collapseCategory">
-        <div class="card card-body rounded">
-          <ul class="list-group border-0">
-            <li class='list-group-item border-0'>
-              <%= link_to dashboard_categories_path do %>
-                <%= icon('fa-solid', 'list') %> List
-              <% end %>
-            </li>
-            <li class='list-group-item border-0'>
-              <%= link_to new_dashboard_category_path do %>
-                <%= icon('fa-solid', 'plus') %> New
-              <% end %>
-            </li>
-          </ul>
+      <% end %>
+      <% if false %>
+
+        <p class="" data-bs-toggle="collapse" data-bs-target="#collapseCategory" aria-expanded="false" aria-controls="collapseExample">
+          <%= icon('fa-solid', 'diagram-project') %> Category
+        </p>
+        <div class="collapse" id="collapseCategory">
+          <div class="card card-body rounded">
+            <ul class="list-group border-0">
+              <li class='list-group-item border-0'>
+                <%= link_to dashboard_categories_path do %>
+                  <%= icon('fa-solid', 'list') %> List
+                <% end %>
+              </li>
+              <li class='list-group-item border-0'>
+                <%= link_to new_dashboard_category_path do %>
+                  <%= icon('fa-solid', 'plus') %> New
+                <% end %>
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
+      <% end %>
     </li>
     <li class="list-group-item border-0">
       <%= link_to '#' do %>
