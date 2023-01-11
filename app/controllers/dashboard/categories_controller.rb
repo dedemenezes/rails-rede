@@ -15,9 +15,14 @@ class Dashboard::CategoriesController < ApplicationController
 
   def create
     @category = Category.new(category_params)
+    @observatories = Observatory.where(id: params[:category][:observatory_ids])
+    @observatories.each do |observatory|
+      @category.observatories << observatory
+    end
+    binding.break
     authorize [:dashboard, @category]
     if @category.save
-      redirect_to dashboard_path, notice: 'Category created successfully'
+      redirect_to dashboard_categories_path, notice: 'Category created successfully'
     else
       render :new, status: :unprocessable_entity
     end

@@ -1,56 +1,13 @@
-<style>
-
-
-*, *::before, *::after {
-  box-sizing: border-box;
-}
-
-.custom-field {
-  font-size: 14px;
-  position: relative;
-  --field-padding: 12px;
-}
-
-.custom-field input {
-  border: none;
-  -webkit-appearance: none;
-  -ms-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  background: #f2f2f2;
-  padding: var(--field-padding);
-  border-radius: 3px;
-  width: 250px;
-  font-size: 14px;
-  border-top: 20px solid transparent;
-}
-
-.custom-field .placeholder {
-  position: absolute;
-  left: var(--field-padding);
-  bottom: 50%;
-  top: 22px;
-  transform: translateY(-50%);
-  width: calc(100% - (var(--field-padding) * 2));
-  color: #aaa;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-.custom-field input:focus + .placeholder {
-  top: -10px;
-  font-size: 10px;
-  color: #222;
-}
-/* // create the placeholder element */
-.custom-field::after {
-  content: attr(aria-label);
-}
-</style>
 <%= simple_form_for([:dashboard, category]) do |f| %>
-    <%= f.label :name, class: "custom-field",  aria: { label: 'Enter name' } do %>
-      <%= f.text_field :name %>
-    <% end %>
+  <%= f.input :name, label: "What's the new category name?", placeholder: 'Comunicação popular' %>
+  <%= f.input :observatories,
+              label: 'Selecione os observatorios:',
+              collection: Observatory.all,
+              input_html: {
+                # multiple: true
+                data: { controller: 'tom-select' }
+              },
+              include_hidden: false %>
+  <%= link_to 'Add Observatories', '#', class: "btn btn-rede-primary" %>
   <%= f.submit %>
 <% end %>
