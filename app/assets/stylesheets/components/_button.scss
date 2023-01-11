@@ -1,7 +1,12 @@
 .btn-base {
   text-decoration: none;
-  background-color: $purple;
+  background-color: $r-blue;
   color: white;
   padding: 8px 12px;
   border-radius: 6px;
+  transition: color .2s ease;
+  &:hover {
+    color: white;
+    background-color: $r-blue-l;
+  }
 }

@@ -11,11 +11,21 @@ $font-size-base: 1rem;
 
 // Colors
 $body-color: $gray;
-$primary:    $blue;
+$primary:    $r-blue;
 $success:    $green;
 $info:       $yellow;
 $danger:     $red;
 $warning:    $orange;
+
+// Links
+//
+// Style anchor elements.
+
+$link-color: $primary !default;
+$link-decoration: none !default;
+$link-shade-percentage: 20% !default;
+$link-hover-color: $r-blue-l !default;
+$link-hover-decoration: underline !default;
 
 $border-radius: 2px;
 // Buttons & inputs' radius
