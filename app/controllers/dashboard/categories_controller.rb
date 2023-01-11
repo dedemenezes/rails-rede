@@ -3,11 +3,14 @@ class Dashboard::CategoriesController < ApplicationController
 
   def index
     @categories = policy_scope([:dashboard, Category])
+    add_breadcrumb 'Categories', dashboard_categories_path
   end
 
   def new
     @category = Category.new
     authorize [:dashboard, @category]
+    add_breadcrumb 'Categories', dashboard_categories_path
+    add_breadcrumb 'New category', new_dashboard_category_path, true
   end
 
   def create
