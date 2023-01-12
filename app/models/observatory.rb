@@ -1,5 +1,9 @@
 class Observatory < ApplicationRecord
-  validates :name, :email, :phone_number, presence: true
+  validates :name,
+            :email,
+            :phone_number,
+            :description,
+            :address, presence:true
 
   belongs_to :unity_type, inverse_of: :observatories
   has_one :observatory_category, dependent: :destroy

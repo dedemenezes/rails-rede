@@ -4,4 +4,8 @@ class Dashboard::ObservatoriesController < ApplicationController
   def index
     @observartories = Observatory.all
   end
+
+  def new
+    @observatory = Observatory.new
+  end
 end
