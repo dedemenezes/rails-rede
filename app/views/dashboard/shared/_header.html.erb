@@ -4,7 +4,7 @@
     <h1><%= klass_name.capitalize %> <small class='text-muted highlight'><%= pluralize(klass.count, klass_name) %></small></h1>
     <ul class="list-inline mb-0">
       <li class="list-inline-item">
-        <%= link_to url_for(controller: controller_name, action: :new), class: 'btn-base' do %>
+        <%= link_to url_for(controller: controller_name, action: :new), class: 'btn btn-rede-primary-l text-white' do %>
           <%= icon('fa-solid', 'plus') %> Add <%= klass_name %>
         <% end %>
       </li>
