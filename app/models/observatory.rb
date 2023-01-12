@@ -20,6 +20,20 @@ class Observatory < ApplicationRecord
   after_validation :geocode, if: :will_save_change_to_address?
 
   def self.dashboard_headers
-    ['id', 'name', 'address']
+    ['id', 'name', 'address', 'description', 'category name', 'is published', 'created at', 'updated_at']
+  end
+
+  def is_published
+    published ? '✅' : '❌'
+  end
+
+  def category_name
+    return '-' unless category?
+
+    category.name
+  end
+
+  def category?
+    category.present?
   end
 end
