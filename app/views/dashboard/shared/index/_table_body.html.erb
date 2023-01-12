@@ -2,10 +2,23 @@
   <tr>
     <% element.class.dashboard_headers.each do |header| %>
       <% if %w[updated\ at created\ at].include? header %>
-        <td><%= element.send(header.gsub(' ', '_').to_sym).in_time_zone.strftime('%c') %></td>
+        <td><%= element.send(header.gsub(' ', '_').to_sym).in_time_zone.strftime('%b %e, %Y - %H:%M:%S') %></td>
       <% else %>
         <td><%= element.send(header.gsub(' ', '_').to_sym) %></td>
       <% end %>
     <% end %>
+    <td>
+      <ul class="list-inline mb-0">
+        <li class="list-inline-item border-0">
+          <%= link_to icon('fa-solid', 'book'), '#' %>
+        </li>
+        <li class="list-inline-item border-0">
+          <%= link_to icon('fa-solid', 'pencil'), "#" %>
+        </li>
+        <li class="list-inline-item border-0">
+          <%= link_to icon('fa-solid', 'trash'), url_for([:dashboard, element]), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
+        </li>
+      </ul>
+    </td>
   </tr>
 <% end %>
