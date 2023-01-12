@@ -1,33 +1,21 @@
 <div class="card__dashboard border-start border-end border-bottom">
   <div class="dashboard__list px-3">
-    <%= render 'dashboard/shared/list_header' %>
-    <% @categories.each do |category| %>
-      <%= render 'dashboard/shared/list', element: category,
+    <table class='table'>
+      <thead>
+        <tr>
+          <%= render 'dashboard/shared/index/table_header' %>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render 'dashboard/shared/index/table_body', collection: @categories %>
+      </tbody>
+    </table>
+
+    <%#= render 'dashboard/shared/list_header' %>
+    <%# @categories.each do |category| %>
+      <%#= render 'dashboard/shared/list', element: category,
                                             link_to_edit: edit_dashboard_category_path(category),
                                             link_to_show: dashboard_category_path(category) %>
-    <% end %>
+    <%# end %>
   </div>
 </div>
-
-<table class='table'>
-  <thead>
-    <tr>
-      <% controller_name.singularize.capitalize.constantize.dashboard_headers.each do |header| %>
-        <th scope="col"><%= header %></th>
-      <% end %>
-    </tr>
-  </thead>
-  <tbody>
-    <% @categories.each do |category| %>
-      <tr>
-        <% category.class.dashboard_headers.each do |header| %>
-          <% if %w[updated\ at created\ at].include? header %>
-            <td><%= category.send(header.gsub(' ', '_').to_sym).in_time_zone.strftime('%c') %></td>
-          <% else %>
-            <td><%= category.send(header.gsub(' ', '_').to_sym) %></td>
-          <% end %>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
