@@ -21,7 +21,11 @@
     <% @categories.each do |category| %>
       <tr>
         <% category.class.dashboard_headers.each do |header| %>
-          <td><%= category.send(header.gsub(' ', '_').to_sym) %></td>
+          <% if %w[updated\ at created\ at].include? header %>
+            <td><%= category.send(header.gsub(' ', '_').to_sym).in_time_zone.strftime('%c') %></td>
+          <% else %>
+            <td><%= category.send(header.gsub(' ', '_').to_sym) %></td>
+          <% end %>
         <% end %>
       </tr>
     <% end %>
