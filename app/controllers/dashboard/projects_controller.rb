@@ -5,8 +5,7 @@ class Dashboard::ProjectsController < ApplicationController
   layout 'dashboard'
 
   def index
-    @projects = policy_scope([:dashboard, Project])
-    authorize [:dashboard, :projects, current_user]
+    @projects = Project.all
     add_breadcrumb 'Projects', dashboard_projects_path, true
   end
 
@@ -16,13 +15,11 @@ class Dashboard::ProjectsController < ApplicationController
 
   def new
     @project = Project.new
-    authorize [:dashboard, @project]
     add_breadcrumb 'New project', new_dashboard_project_path, true
   end
 
   def create
     @project = Project.new(project_params)
-    authorize [:dashboard, @project]
     if @project.save
       redirect_to dashboard_projects_path
     else
@@ -49,7 +46,6 @@ class Dashboard::ProjectsController < ApplicationController
 
   def set_project
     @project = Project.find(params[:id])
-    authorize [:dashboard, @project]
   end
 
   def project_params

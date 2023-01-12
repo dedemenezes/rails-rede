@@ -2,14 +2,13 @@ class Dashboard::CategoriesController < ApplicationController
   layout 'dashboard'
 
   def index
-    @categories = policy_scope([:dashboard, Category])
+    @categories = Category.all
     add_breadcrumb 'Observatories', '#'
     add_breadcrumb 'Categories', dashboard_categories_path, true
   end
 
   def new
     @category = Category.new
-    authorize [:dashboard, @category]
     add_breadcrumb 'Observatory', '#'
     add_breadcrumb 'Categories', dashboard_categories_path
     add_breadcrumb 'New category', new_dashboard_category_path, true
@@ -21,8 +20,6 @@ class Dashboard::CategoriesController < ApplicationController
     @observatories.each do |observatory|
       @category.observatories << observatory
     end
-    binding.break
-    authorize [:dashboard, @category]
     if @category.save
       redirect_to dashboard_categories_path, notice: 'Category created successfully'
     else
@@ -32,7 +29,6 @@ class Dashboard::CategoriesController < ApplicationController
 
   def destroy
     @category = Category.find(params[:id])
-    authorize [:dashboard, @category]
     if @category.destroy
       redirect_to dashboard_categories_path, notice: "#{@category.name} was removed"
     else

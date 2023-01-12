@@ -6,6 +6,22 @@ class Dashboard::UserPolicy < ApplicationPolicy
     # end
   end
 
+  def index?
+    home?
+  end
+
+  def new?
+    home?
+  end
+
+  def create?
+    home?
+  end
+
+  def destroy?
+    home?
+  end
+
   def home?
     user.admin?
   end
