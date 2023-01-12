@@ -83,6 +83,8 @@ RailsAdmin.config do |config|
       field :priority_type
       field :conflict_type do
         label 'Conflict'
+        inline_add false
+        inline_edit false
       end
       field :banner
       field :published
