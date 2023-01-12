@@ -13,7 +13,7 @@ $font-size-base: 1rem;
 $body-color: $gray;
 $primary:    $r-blue;
 $success:    $green;
-$info:       $yellow;
+$info:       $r-blue-d;
 $danger:     $red;
 $warning:    $orange;
 
@@ -44,7 +44,8 @@ $rede-colors: (
 // Merge this new map into the theme-colors map (set by default in Bootstrap) in config/custom_maps.scss
 $theme-colors: (
   "primary": $primary,
-  "success": $success
+  "success": $success,
+  "info": $info
 );
 
 $theme-colors: map-merge($theme-colors, $rede-colors);
