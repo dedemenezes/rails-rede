@@ -8,3 +8,22 @@
     <% end %>
   </div>
 </div>
+
+<table class='table'>
+  <thead>
+    <tr>
+      <% controller_name.singularize.capitalize.constantize.dashboard_headers.each do |header| %>
+        <th scope="col"><%= header %></th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% @categories.each do |category| %>
+      <tr>
+        <% category.class.dashboard_headers.each do |header| %>
+          <td><%= category.send(header.gsub(' ', '_').to_sym) %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

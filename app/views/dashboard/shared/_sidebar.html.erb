@@ -9,12 +9,16 @@
       <%= link_to dashboard_projects_path do %>
         <%= icon('fa-solid', 'briefcase') %> Project
       <% end %>
+      <ul class="list-group border-0">
+        <li class="list-group-item border-0">
+          <%= link_to dashboard_categories_path do %>
+            <%= icon('fa-solid', 'diagram-project') %> Category
+          <% end %>
+        </li>
+      </ul>
     </li>
-    <li class="list-group-item border-0">
-      <%= link_to dashboard_categories_path do %>
-        <%= icon('fa-solid', 'diagram-project') %> Category
-      <% end %>
-      <% if false %>
+    <% if false %>
+      <li class="list-group-item border-0">
 
         <p class="" data-bs-toggle="collapse" data-bs-target="#collapseCategory" aria-expanded="false" aria-controls="collapseExample">
           <%= icon('fa-solid', 'diagram-project') %> Category
@@ -35,8 +39,8 @@
             </ul>
           </div>
         </div>
-      <% end %>
-    </li>
+      </li>
+    <% end %>
     <li class="list-group-item border-0">
       <%= link_to '#' do %>
         <%= icon 'fa-solid', 'table-columns' %> Observatories
