@@ -1,5 +1,17 @@
 <div class="card__dashboard">
   <div class="dashboard__list px-3">
+    <% if false %>
+      <table class='table'>
+        <thead>
+          <tr>
+            <%= render 'dashboard/shared/index/table_header' %>
+          </tr>
+        </thead>
+        <tbody>
+          <%= render 'dashboard/shared/index/table_body', collection: @projects %>
+        </tbody>
+      </table>
+    <% end %>
     <%= render 'dashboard/shared/list_header' %>
     <% @projects.each do |project| %>
       <%= render 'dashboard/shared/list', element: project,
