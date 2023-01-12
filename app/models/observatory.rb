@@ -18,4 +18,8 @@ class Observatory < ApplicationRecord
   has_rich_text :rich_description
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
+
+  def self.dashboard_headers
+    ['id', 'name', 'address']
+  end
 end

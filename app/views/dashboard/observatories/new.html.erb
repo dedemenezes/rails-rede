@@ -1,26 +1,58 @@
 <div class="container">
-  <%= simple_form_for @observatory, html: { class: 'row my-3' } do |f| %>
-    <%= f.input :name, label: "Name", placeholder: 'PEA - Arraial do Cabo',
-                wrapper_html: { class: 'input-group mb-3 row ' }, label_html: { class: 'input-group-text mb-0 col-3 flex-end' }, input_html: { class: 'col-9 form-control' }  %>
+  <%= simple_form_for [:dashboard, @observatory], html: { class: 'row my-3' } do |f| %>
+    <%= f.input :name,
+                label: "Name",
+                placeholder: 'PEA - Arraial do Cabo',
+                wrapper_html: { class: 'input-group mb-3 row ' },
+                label_html: { class: 'input-group-text mb-0 col-3 flex-end' },
+                input_html: { class: 'col-9 form-control' }  %>
     <%= f.input :address,
-                wrapper_html: { class: 'input-group mb-3 row ' }, label_html: { class: 'input-group-text mb-0 col-3 flex-end' }, input_html: { class: 'col-9 form-control' }  %>
-    <%= f.input :email, label: '@', placeholder: 'email@example.tld',
-                wrapper_html: { class: 'input-group mb-3 row ' }, label_html: { class: 'input-group-text mb-0 col-3 flex-end' }, input_html: { class: 'col-9 form-control' }  %>
+                wrapper_html: { class: 'input-group mb-3 row ' },
+                label_html: { class: 'input-group-text mb-0 col-3 flex-end' },
+                input_html: { class: 'col-9 form-control' }  %>
+    <%= f.input :email,
+                label: '@',
+                placeholder: 'email@example.tld',
+                wrapper_html: { class: 'input-group mb-3 row ' },
+                label_html: { class: 'input-group-text mb-0 col-3 flex-end' },
+                input_html: { class: 'col-9 form-control' }  %>
     <%= f.input :phone_number,
-                wrapper_html: { class: 'input-group mb-3 row ' }, label_html: { class: 'input-group-text mb-0 col-3 flex-end' }, input_html: { class: 'col-9 form-control' }  %>
+                wrapper_html: { class: 'input-group mb-3 row ' },
+                label_html: { class: 'input-group-text mb-0 col-3 flex-end' },
+                input_html: { class: 'col-9 form-control' }  %>
     <%= f.input :description,
-                wrapper_html: { class: 'input-group mb-3 row ' }, label_html: { class: 'input-group-text mb-0 col-3 flex-end' }, input_html: { class: 'col-9 form-control' }  %>
+                wrapper_html: { class: 'input-group mb-3 row ' },
+                label_html: { class: 'input-group-text mb-0 col-3 flex-end' },
+                input_html: { class: 'col-9 form-control' }  %>
     <%= f.association :unity_type,
-                wrapper_html: { class: 'input-group mb-3 row ' }, label_html: { class: 'input-group-text mb-0 col-3 flex-end' }, input_html: { class: 'col-9 form-control' }  %>
-    <%= f.input :category, collection: Category.all,
-                wrapper_html: { class: 'input-group mb-3 row ' }, label_html: { class: 'input-group-text mb-0 col-3 flex-end' }, input_html: { class: 'col-9 form-control', data: { controller: 'tom-select' } }  %>
-    <%= f.input :priority_type, collection: PriorityType.all,
-                wrapper_html: { class: 'input-group mb-3 row ' }, label_html: { class: 'input-group-text mb-0 col-3 flex-end' }, input_html: { class: 'col-9 form-control', data: { controller: 'tom-select' } }  %>
-    <%= f.input :conflict_type, collection: ConflictType.all,
-                wrapper_html: { class: 'input-group mb-3 row ' }, label_html: { class: 'input-group-text mb-0 col-3 flex-end' }, input_html: { class: 'col-9 form-control', data: { controller: 'tom-select' } }  %>
-    <%= f.input :rich_description, as: :rich_text_area,
-                wrapper_html: { class: 'input-group mb-3 row ' }, label_html: { class: 'input-group-text mb-0 col-3 flex-end' }, input_html: { class: 'col-9 form-control' } %>
-    <%= f.input :banner, as: :file %>
+                wrapper_html: { class: 'input-group mb-3 row ' },
+                label_html: { class: 'input-group-text mb-0 col-3 flex-end' },
+                input_html: { class: 'col-9 form-control' }  %>
+    <%= f.input :category,
+                collection: Category.all,
+                wrapper_html: { class: 'input-group mb-3 row ' },
+                label_html: { class: 'input-group-text mb-0 col-3 flex-end' },
+                input_html: { class: 'col-9 form-control',
+                            data: { controller: 'tom-select' } }  %>
+    <%= f.input :priority_type,
+                collection: PriorityType.all,
+                wrapper_html: { class: 'input-group mb-3 row ' },
+                label_html: { class: 'input-group-text mb-0 col-3 flex-end' },
+                input_html: { class: 'col-9 form-control',
+                            data: { controller: 'tom-select' } }  %>
+    <%= f.input :conflict_type,
+                collection: ConflictType.all,
+                wrapper_html: { class: 'input-group mb-3 row ' },
+                label_html: { class: 'input-group-text mb-0 col-3 flex-end' },
+                input_html: { class: 'col-9 form-control',
+                            data: { controller: 'tom-select' } }  %>
+    <%= f.input :rich_description,
+                as: :rich_text_area,
+                wrapper_html: { class: 'input-group mb-3 row ' },
+                label_html: { class: 'input-group-text mb-0 col-3 flex-end' },
+                input_html: { class: 'col-9 form-control' } %>
+    <%= f.input :banner,
+                as: :file %>
     <%= f.submit 'Create Observatory', class: 'btn btn-rede-primary-l text-white' %>
   <% end %>
 </div>

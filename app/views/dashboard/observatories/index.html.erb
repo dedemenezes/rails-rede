@@ -1,1 +1,21 @@
-<h1>Observatories</h1>
+<div class="card__dashboard border-start border-end border-bottom">
+  <div class="dashboard__list px-3">
+    <table class='table'>
+      <thead>
+        <tr>
+          <%= render 'dashboard/shared/index/table_header' %>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render 'dashboard/shared/index/table_body', collection: @observatories %>
+      </tbody>
+    </table>
+
+    <%#= render 'dashboard/shared/list_header' %>
+    <%# @categories.each do |category| %>
+      <%#= render 'dashboard/shared/list', element: category,
+                                            link_to_edit: edit_dashboard_category_path(category),
+                                            link_to_show: dashboard_category_path(category) %>
+    <%# end %>
+  </div>
+</div>
