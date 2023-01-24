@@ -77,10 +77,25 @@ RailsAdmin.config do |config|
   config.model "Observatory" do
     weight 1
     edit do
-      %i[name email phone_number address rich_description].each { |att| field att }
-      field :unity_type
-      field :category
-      field :priority_type
+      %i[name email phone_number address].each { |att| field att }
+      field :rich_description do
+        label "Description"
+      end
+      field :unity_type do
+        label 'Type'
+        inline_add false
+        inline_edit false
+      end
+      field :category do
+        label 'Category'
+        inline_add false
+        inline_edit false
+      end
+      field :priority_type do
+        label 'Priority'
+        inline_add false
+        inline_edit false
+      end
       field :conflict_type do
         label 'Conflict'
         inline_add false
