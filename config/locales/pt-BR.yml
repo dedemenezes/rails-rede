@@ -33,7 +33,7 @@ pt-BR:
         email: "E-mail"
         phone_number: "Telefone"
         address: "Endereço"
-        description: "Descrição"
+        rich_description: "Descrição"
         unity_type: "Tipo"
         category: "Categoria"
         priority_type: "Prioridadde"

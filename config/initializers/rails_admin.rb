@@ -77,10 +77,7 @@ RailsAdmin.config do |config|
   config.model "Observatory" do
     weight 1
     edit do
-      %i[name email phone_number address].each { |att| field att }
-      field :rich_description do
-        label "Description"
-      end
+      %i[name email phone_number address rich_description].each { |att| field att }
       field :unity_type do
         # label UnityType.model_name.human
         inline_add false
