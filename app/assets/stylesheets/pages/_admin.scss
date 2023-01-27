@@ -1,0 +1,6 @@
+.rails_admin .last.links .nav-link {
+  color: $r-blue;
+  &:hover {
+    color: $r-blue-l;
+  }
+}

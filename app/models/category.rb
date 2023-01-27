@@ -4,4 +4,8 @@ class Category < ApplicationRecord
   has_many :observatories, through: :observatory_categories
   has_one_attached :banner
   has_rich_text :rich_body
+
+  def self.dashboard_headers
+    ['id', 'name', 'updated at', 'created at']
+  end
 end

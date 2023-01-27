@@ -3,13 +3,13 @@
     <div class="col-1">
       <input type="checkbox" name="<%= dom_id(element) %>" id="<%= dom_id(element) %>">
     </div>
-    <div class="col-9">
+    <div class="col-8 col-md-9">
       <div class="d-flex align-items-center gap-2">
-        <%= image_tag element.banner, width: '40px', height: '40px', class: 'avatar' if element.respond_to?(:banner) %>
+        <%= image_tag element.banner, width: '40px', height: '40px', class: 'avatar' if element.banner.attached? %>
         <%= link_to element.name, link_to_show %>
       </div>
     </div>
-    <div class="col-2">
+    <div class="col-3 col-md-2">
       <ul class="list-inline mb-0">
         <li class="list-inline-item border-0">
           <%= link_to icon('fa-solid', 'book'), '#' %>
@@ -18,7 +18,7 @@
           <%= link_to icon('fa-solid', 'pencil'), link_to_edit %>
         </li>
         <li class="list-inline-item border-0">
-          <%= link_to icon('fa-solid', 'trash'), '#' %>
+          <%= link_to icon('fa-solid', 'trash'), url_for([:dashboard, element]), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
         </li>
       </ul>
     </div>

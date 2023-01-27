@@ -37,10 +37,10 @@ RailsAdmin.config do |config|
     new do
       visible do
         # binding.break
-        if bindings[:abstract_model].model_name == 'Project' && Project.count == 0
-          true
-        else
+        if bindings[:abstract_model].model_name == 'Project' && Project.count > 0
           false
+        else
+          true
         end
       end
     end
@@ -63,17 +63,40 @@ RailsAdmin.config do |config|
     # history_index
     # history_show
   end
-  config.included_models = [ 'Observatory', 'Project', 'Category', 'ConflictType', 'PriorityType', 'UnityType' ]
+  config.included_models = [
+    'Observatory',
+    'Project',
+    'Methodology',
+    'Member',
+    'Category',
+    'ConflictType',
+    'PriorityType',
+    'UnityType'
+  ]
 
   config.model "Observatory" do
     weight 1
     edit do
-      %i[name email phone_number address].each { |att| field att }
-      field :unity_type
-      field :category
-      field :priority_type
+      %i[name email phone_number address rich_description].each { |att| field att }
+      field :unity_type do
+        # label UnityType.model_name.human
+        inline_add false
+        inline_edit false
+      end
+      field :category do
+        # label Category.model_name.human
+        inline_add false
+        inline_edit false
+      end
+      field :priority_type do
+        # label PriorityType.model_name.human
+        inline_add false
+        inline_edit false
+      end
       field :conflict_type do
-        label 'Conflict'
+        # label ConflictType.model_name.human
+        inline_add false
+        inline_edit false
       end
       field :banner
       field :published
@@ -82,6 +105,15 @@ RailsAdmin.config do |config|
     #   collection Category.all
     # end
   end
+
+  config.model "Methodology" do
+    parent "Project"
+  end
+
+  config.model "Member" do
+    parent "Project"
+  end
+
   config.model "Category" do
     parent "Observatory"
     list do
@@ -90,13 +122,13 @@ RailsAdmin.config do |config|
       field :updated_at
     end
   end
-  config.model "UnityType" do
+  config.model "ConflictType" do
     parent "Observatory"
   end
   config.model "PriorityType" do
     parent "Observatory"
   end
-  config.model "ConflictType" do
+  config.model "UnityType" do
     parent "Observatory"
   end
 end

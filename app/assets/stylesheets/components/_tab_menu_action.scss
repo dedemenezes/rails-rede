@@ -1,0 +1,16 @@
+.tab-shadow {
+  box-shadow: 0rem -0.15rem 0.25rem rgba(0, 0, 0, .08)
+}
+
+.tab-action {
+  color: $r-blue-d;
+  opacity: .9;
+  transition: color .2s ease;
+  &:hover {
+    color: $r-blue
+  }
+  &--active {
+    color: $r-blue-l;
+    opacity: 1;
+  }
+}

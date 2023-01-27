@@ -1,4 +1,13 @@
 <%= simple_form_for([:dashboard, category]) do |f| %>
-  <%= f.input :name %>
+  <%= f.input :name, label: "What's the new category name?", placeholder: 'Comunicação popular' %>
+  <%= f.input :observatories,
+              label: 'Selecione os observatorios:',
+              collection: Observatory.all,
+              input_html: {
+                # multiple: true
+                data: { controller: 'tom-select' }
+              },
+              include_hidden: false %>
+  <%= link_to 'Add Observatories', '#', class: "btn btn-rede-primary" %>
   <%= f.submit %>
 <% end %>
