@@ -97,7 +97,7 @@ RailsAdmin.config do |config|
         inline_edit false
       end
       field :conflict_type do
-        label 'Conflict'
+        label ConflictType.model_name.human
         inline_add false
         inline_edit false
       end
