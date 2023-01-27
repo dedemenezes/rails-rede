@@ -4,8 +4,40 @@ pt-BR:
   activerecord:
     models:
       observatory:
-        one: "Observatorio"
+        one: "Observatório"
         other: "Observatorios"
+      category:
+        one: "Categoria"
+        other: "Categorias"
+      conflict_type:
+        one: "Conflito"
+        other: "Conflitos"
+      member:
+        one: "Membro"
+        other: "Membros"
+      methodology:
+        one: "Metodologia"
+        other: "Metodologias"
+      observatory_category:
+        one: "Categoria"
+        other: "Categorias"
+      priority_type:
+        one: "Prioridadde"
+        other: "Prioridaddes"
+      unity_type:
+        one: "Tipo"
+        other: "Tipos"
+    attributes:
+      observatory:
+        name: "Nome"
+        email: "E-mail"
+        phone_number: "Telefone"
+        address: "Endereço"
+        description: "Descrição"
+        unity_type: "Tipo"
+        category: "Categoria"
+        priority_type: "Prioridadde"
+        conflict_type: "Conflito"
     errors:
       messages:
         record_invalid: 'A validação falhou: %{errors}'

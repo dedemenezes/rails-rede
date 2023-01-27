@@ -82,22 +82,22 @@ RailsAdmin.config do |config|
         label "Description"
       end
       field :unity_type do
-        label 'Type'
+        # label UnityType.model_name.human
         inline_add false
         inline_edit false
       end
       field :category do
-        label 'Category'
+        # label Category.model_name.human
         inline_add false
         inline_edit false
       end
       field :priority_type do
-        label 'Priority'
+        # label PriorityType.model_name.human
         inline_add false
         inline_edit false
       end
       field :conflict_type do
-        label ConflictType.model_name.human
+        # label ConflictType.model_name.human
         inline_add false
         inline_edit false
       end
