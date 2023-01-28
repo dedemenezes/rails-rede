@@ -3,7 +3,7 @@ class Observatory < ApplicationRecord
             :email,
             :phone_number,
             :description,
-            :address, presence:true
+            :address, presence: true
 
   belongs_to :unity_type, inverse_of: :observatories
   has_one :observatory_category, dependent: :destroy
@@ -20,10 +20,10 @@ class Observatory < ApplicationRecord
   after_validation :geocode, if: :will_save_change_to_address?
 
   def self.dashboard_headers
-    ['id', 'name', 'address', 'description', 'category name', 'is published', 'created at', 'updated_at']
+    ['id', 'name', 'address', 'description', 'category name', 'published?', 'created at', 'updated_at']
   end
 
-  def is_published
+  def published?
     published ? '✅' : '❌'
   end
 
