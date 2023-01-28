@@ -8,7 +8,7 @@ RSpec.describe ConflictType, type: :model do
   end
 
   describe 'Associations' do
-    it { should have_many(:observatory_conflicts).dependent(:destroy)}
-    it { should have_many(:observatories)}
+    it { should have_many(:observatory_conflicts).dependent(:destroy) }
+    it { should have_many(:observatories) }
   end
 end

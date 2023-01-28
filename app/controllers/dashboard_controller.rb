@@ -1,5 +1,4 @@
 class DashboardController < ApplicationController
-
   def home
     @project_count = Project.count
     @methodology_count = Methodology.count

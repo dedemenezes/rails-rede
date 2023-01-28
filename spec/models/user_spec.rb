@@ -7,7 +7,7 @@ RSpec.describe User, type: :model do
   end
 
   describe "Association" do
-    it { should have_one_attached(:avatar)}
+    it { should have_one_attached(:avatar) }
   end
 
   describe '#full_name' do
