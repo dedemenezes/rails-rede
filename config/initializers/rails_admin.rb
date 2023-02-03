@@ -71,7 +71,8 @@ RailsAdmin.config do |config|
     'Category',
     'ConflictType',
     'PriorityType',
-    'UnityType'
+    'UnityType',
+    'Article'
   ]
 
   config.model "Observatory" do
