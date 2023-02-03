@@ -10,5 +10,6 @@ FactoryBot.define do
     longitude { 1.5 }
     type { "" }
     published { false }
+    association :unity_type, factory: :unity_type
   end
 end
