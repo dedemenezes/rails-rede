@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   delete 'attachments/:id', to: 'attachments#destroy', as: :destroy_attachment
   resources :observatories, only: %i[index]
+  resources :articles, only: %i[show]
 
   get 'dashboard', to: 'dashboard#home', as: :dashboard
   namespace :dashboard do
