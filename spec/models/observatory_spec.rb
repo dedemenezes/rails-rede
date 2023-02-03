@@ -22,7 +22,7 @@ RSpec.describe Observatory, type: :model do
       expect(Tag.count).to eq(0)
       observatory = create(:observatory)
       expect(Tag.count).to eq(1)
-      expect(Tag.last.name).to eq(observatory.name)
+      expect(Tag.last.name).to eq(observatory.class.model_name)
     end
   end
 end
