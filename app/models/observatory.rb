@@ -37,8 +37,4 @@ class Observatory < ApplicationRecord
   def category?
     category.present?
   end
-
-  def create_tag
-    Tag.create name: self.name
-  end
 end

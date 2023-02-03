@@ -20,8 +20,9 @@ RSpec.describe Observatory, type: :model do
     context 'when creating an Observatory'
     it 'creates a Tag using Observatory name' do
       expect(Tag.count).to eq(0)
-      create(:observatory)
+      observatory = create(:observatory)
       expect(Tag.count).to eq(1)
+      expect(Tag.last.name).to eq(observatory.name)
     end
   end
 end

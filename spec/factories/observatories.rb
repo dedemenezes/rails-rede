@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :observatory do
     headline { "MyString" }
-    name { "MyString" }
+    name { "Observatory" }
     description { "MyString" }
     email { "MyString" }
     phone_number { "MyString" }
