@@ -83,7 +83,8 @@ RailsAdmin.config do |config|
       field :banner
       field :tags
       field :rich_body
-
+      field :highlight
+      field :highlight_image
       # field :tags
     end
   end
