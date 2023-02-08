@@ -12,4 +12,8 @@ class User < ApplicationRecord
   def full_name
     "#{first_name.capitalize} #{last_name.capitalize}"
   end
+
+  def admin?
+    admin
+  end
 end

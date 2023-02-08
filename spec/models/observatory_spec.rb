@@ -15,4 +15,14 @@ RSpec.describe Observatory, type: :model do
     it { should have_one(:priority_type) }
     it { should have_one(:conflict_type) }
   end
+
+  describe '#create_tag' do
+    context 'when creating an Observatory'
+    it 'creates a Tag using Observatory name' do
+      expect(Tag.count).to eq(0)
+      observatory = create(:observatory)
+      expect(Tag.count).to eq(1)
+      expect(Tag.last.name).to eq(observatory.class.model_name)
+    end
+  end
 end

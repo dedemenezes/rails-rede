@@ -71,8 +71,23 @@ RailsAdmin.config do |config|
     'Category',
     'ConflictType',
     'PriorityType',
-    'UnityType'
+    'UnityType',
+    'Article'
   ]
+
+  config.model 'Article' do
+    weight 2
+    edit do
+      field :header
+      field :sub_header
+      field :banner
+      field :tags
+      field :rich_body
+      field :highlight
+      field :highlight_image
+      # field :tags
+    end
+  end
 
   config.model "Observatory" do
     weight 1

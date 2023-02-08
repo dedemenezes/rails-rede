@@ -1,0 +1,21 @@
+<div class="banner banner--article mb-3" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('<%= url_for(@article.banner) %>');">
+  <div class="container flex-centered relativ-pos">
+    <h1><%= @article.header %></h1>
+    <p><%= @article.sub_header %></p>
+  </div>
+</div>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8">
+      <%= render 'shared/breadcrumb' %>
+      <div data-controller="article-highlight">
+        <%= content_tag :div, data: { article_highlight_target: 'news' } do %>
+          <%= @article.rich_body %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+Segundo a pesquisa do Atados e da Points of Light, as questões sociais mais comuns em diversos países são saúde, educação e meio ambiente.

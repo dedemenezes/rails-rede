@@ -4,12 +4,33 @@
   padding: 150px 0;
 }
 
+.banner--article {
+  padding: 0;
+  height: 370px;
+}
+
+.flex-centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%
+
+}
+
+.relativ-pos {
+  position: relative;
+}
+
+
+
 .banner h1 {
   margin: 0;
   color: white;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
   font-size: 32px;
   font-weight: bold;
+  text-align: center;
 }
 
 .banner p {
@@ -17,4 +38,11 @@
   color: white;
   opacity: .7;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.banner--article p {
+  opacity: 1 !important;
+  font-size: 16px;
+  position: absolute;
+  bottom: 23%;
 }

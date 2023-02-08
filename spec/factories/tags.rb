@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :unity_type do
+  factory :tag do
     name { "MyString" }
   end
 end
