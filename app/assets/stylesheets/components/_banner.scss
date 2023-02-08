@@ -26,7 +26,6 @@
 
 .banner h1 {
   margin: 0;
-  color: white;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
   font-size: 32px;
   font-weight: bold;
@@ -45,4 +44,40 @@
   font-size: 16px;
   position: absolute;
   bottom: 23%;
+}
+
+.banner--home {
+  height: 92vh;
+  display: grid;
+  grid-template-rows: 8fr 2fr;
+  text-align: center;
+  background-image: linear-gradient(rgba(199, 199, 199, 0.18),rgba(199, 199, 199, 0.1));
+}
+.home-action {
+  display: grid;
+  grid-template-rows: 1fr 2fr;
+
+  a {
+    margin: 0 auto;
+  }
+
+  .main {
+  color: black;
+  text-decoration: underline;
+  text-transform: uppercase;
+  text-underline-offset: .265rem;
+    &:hover {
+      text-decoration: none;
+      opacity: .8;
+    }
+  }
+
+  .optional {
+    font-size: 40px;
+    color: black;
+    font-weight: 100;
+    &:hover {
+      opacity: .5;
+    }
+  }
 }
