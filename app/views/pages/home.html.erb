@@ -28,8 +28,8 @@
 
 <div class="swiper mySwiper" data-controller='swiper'>
   <div class="container"><h2 class='mb-0'>Últimos eventos</h2></div>
-  <div class="container swiper-wrapper">
-    <% dates = Array.new(10) { |i| Date.new 2022, rand(1..12), rand(1..26) }.sort.reverse %>
+  <div class="container swiper-wrapper"  data-swiper-target='wrapper'>
+    <% dates = Array.new(rand(1..10)) { |i| Date.new 2022, rand(1..12), rand(1..26) }.sort.reverse %>
     <% dates.each do |date| %>
       <div class="swiper-slide">
         <div class="card-event border border-primary border-2" style="width: 286px; margin: 40px auto;">
