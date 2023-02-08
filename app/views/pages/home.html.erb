@@ -25,13 +25,39 @@
 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown</p>
 
 <h2>Últimos eventos</h2>
-<div class="card-event">
-  <%= image_tag 'capa.png' %>
-  <p>Teatro do Oprimido</p>
-  <small>ITAPEMIRIM</small>
-  <div class="event-date">
-    <p>13</p>
-    <p class="month">DEZ</p>
-    <p>23</p>
+<div class="container">
+  <div class="">
+    <% 10.times do %>
+      <div class="card-event border border-primary border-2" style="width: 286px; margin: 40px auto;">
+        <div class="event-image border-bottom position-relative" style="background-image: url(<%= asset_path 'capa.png' %>); height: 240px;">
+          <div class="event-date border d-flex flex-column align-items-center justify-content-center bg-white position-absolute top-100 start-0 translate-middle-y ms-3">
+            <p class="mb-0" style="font-size: 1.1rem;">13</p>
+            <p class="mb-0" style="font-size: 1.1rem;">DEZ</p>
+            <p class="mb-0" style="font-size: .8rem;">2023</p>
+          </div>
+
+        </div>
+        <%#= image_tag 'capa.png' %>
+        <div class="event-info mt-5 px-3 pb-3">
+          <p class="fw-bold fs-4 mb-2">Teatro do Oprimido</p>
+          <small class="mb-2" style="border: lightblue 1px solid; padding: 4px; border-radius: 4px;">ITAPEMIRIM</small>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>
+
+<style>
+.card-event .event-image {
+  background-size: cover;
+  background-position: center;
+  height: 260px;
+}
+.event-date {
+  height: 78px;
+  width: 78px;
+}
+.event-date p {
+    margin-bottom: 0;
+}
+</style>
