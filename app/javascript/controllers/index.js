@@ -13,5 +13,8 @@ application.register("hello", HelloController)
 import MapController from "./map_controller"
 application.register("map", MapController)
 
+import SwiperController from "./swiper_controller"
+application.register("swiper", SwiperController)
+
 import TomSelectController from "./tom_select_controller"
 application.register("tom-select", TomSelectController)
