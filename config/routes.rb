@@ -2,9 +2,9 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
   root to: "pages#home"
-  resources :categories, only: :show
+  # resources :categories, only: :show
 
-  delete 'attachments/:id', to: 'attachments#destroy', as: :destroy_attachment
+  # delete 'attachments/:id', to: 'attachments#destroy', as: :destroy_attachment
   resources :observatories, only: %i[index]
   resources :articles, only: %i[show]
 
