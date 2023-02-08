@@ -6,7 +6,7 @@
 // General style
 $font-family-sans-serif:  $body-font;
 $headings-font-family:    $headers-font;
-$body-bg:                 $light-gray;
+$body-bg:                 $white;
 $font-size-base: 1rem;
 
 // Colors
@@ -49,3 +49,12 @@ $theme-colors: (
 );
 
 $theme-colors: map-merge($theme-colors, $rede-colors);
+
+$position-values: (
+  0: 0,
+  12: 12%,
+  25: 25%,
+  50: 50%,
+  75: 75%,
+  100: 100%
+);
