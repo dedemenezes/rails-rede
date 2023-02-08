@@ -8,7 +8,7 @@ export default class extends Controller {
     this.swiper = new Swiper(this.element, {
       slidesPerView: 3,
       spaceBetween: 2,
-      centeredSlides: true,
+      centeredSlides: false,
       pagination: {
         el: ".swiper-pagination",
         clickable: true,
