@@ -1,7 +1,7 @@
 <div class="banner banner--article mb-3" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('<%= url_for(@article.banner) %>');">
   <div class="container flex-centered relativ-pos">
     <h1><%= @article.header %></h1>
-    <p><%= @article.created_at.strftime('%d de %B de %Y') %> em <strong><%= link_to t(@article.tags.first.name), observatories_path, class: 'text-white' %></strong></p>
+    <p><%= @article.sub_header %></p>
   </div>
 </div>
 <div class="container">
@@ -9,21 +9,6 @@
     <div class="col-12 col-md-8">
       <%= render 'shared/breadcrumb' %>
       <div data-controller="article-highlight">
-        <div class="row align-items-center px-3 py-4" data-article-highlight-target='text'>
-          <div class="col-12 col-md-6">
-            <div class="px-2">
-              <p style="
-                font-weight: 700;
-                letter-spacing: .5px;
-                line-height: 1.6;"><%= @article.highlight %></p>
-            </div>
-          </div>
-          <div class="col-12 col-md-6">
-            <div class="px-2">
-              <%= image_tag @article.highlight_image, class: 'rounded', width: '100%' %>
-            </div>
-          </div>
-        </div>
         <%= content_tag :div, data: { article_highlight_target: 'news' } do %>
           <%= @article.rich_body %>
         <% end %>
