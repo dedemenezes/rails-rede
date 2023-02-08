@@ -21,33 +21,39 @@
   </section>
 </div>
 
-<h2>Mapa de Atuação</h2>
-<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown</p>
-
-<h2>Últimos eventos</h2>
 <div class="container">
-  <div class="">
-    <% 10.times do %>
-      <div class="card-event border border-primary border-2" style="width: 286px; margin: 40px auto;">
-        <div class="event-image border-bottom position-relative" style="background-image: url(<%= asset_path 'capa.png' %>); height: 240px;">
-          <div class="event-date border d-flex flex-column align-items-center justify-content-center bg-white position-absolute top-100 start-0 translate-middle-y ms-3">
-            <p class="mb-0" style="font-size: 1.1rem;">13</p>
-            <p class="mb-0" style="font-size: 1.1rem;">DEZ</p>
-            <p class="mb-0" style="font-size: .8rem;">2023</p>
-          </div>
+  <h2>Mapa de Atuação</h2>
+  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown</p>
+</div>
 
-        </div>
-        <%#= image_tag 'capa.png' %>
-        <div class="event-info mt-5 px-3 pb-3">
-          <p class="fw-bold fs-4 mb-2">Teatro do Oprimido</p>
-          <small class="mb-2" style="border: lightblue 1px solid; padding: 4px; border-radius: 4px;">ITAPEMIRIM</small>
+<div class="swiper mySwiper" data-controller='swiper'>
+  <div class="container"><h2 class='mb-0'>Últimos eventos</h2></div>
+  <div class="container swiper-wrapper">
+    <% dates = Array.new(10) { |i| Date.new 2022, rand(1..12), rand(1..26) }.sort.reverse %>
+    <% dates.each do |date| %>
+      <div class="swiper-slide">
+        <div class="card-event border border-primary border-2" style="width: 286px; margin: 40px auto;">
+          <div class="event-image border-bottom position-relative" style="background-image: url(<%= asset_path 'capa.png' %>); height: 240px;">
+            <div class="event-date border d-flex flex-column align-items-center justify-content-center bg-white position-absolute top-100 start-0 translate-middle-y ms-3">
+              <p class="mb-0" style="font-size: 1.1rem;"><%= date.day %></p>
+              <p class="mb-0" style="font-size: 1.1rem;"><%= date.strftime('%^b') %></p>
+              <p class="mb-0" style="font-size: .8rem;"><%= date.year %></p>
+            </div>
+
+          </div>
+          <%#= image_tag 'capa.png' %>
+          <div class="event-info mt-5 px-3 pb-3">
+            <p class="fw-bold fs-4 mb-2">Teatro do Oprimido</p>
+            <small class="mb-2" style="border: lightblue 1px solid; padding: 4px; border-radius: 4px;">ITAPEMIRIM</small>
+          </div>
         </div>
       </div>
     <% end %>
   </div>
+  <div class="swiper-pagination"></div>
 </div>
-
 <style>
+
 .card-event .event-image {
   background-size: cover;
   background-position: center;
