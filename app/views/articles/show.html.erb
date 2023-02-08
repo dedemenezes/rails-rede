@@ -2,7 +2,7 @@
   <div class="row justify-content-center">
     <div class="col-12 col-md-8">
       <h1><%= @article.header %></h1>
-      <div class="banner banner--article mb-3" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('<%= url_for(@article.banner) %>');">
+      <div class="banner banner--article mb-3" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('<%= cl_image_path(@article.banner.key) %>');">
         <div class="container flex-centered relativ-pos">
         </div>
       </div>
