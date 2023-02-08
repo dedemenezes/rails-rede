@@ -325,6 +325,7 @@ DEPENDENCIES
   rails_admin (~> 3.0)
   redis (~> 4.0)
   rspec-rails (~> 6.0.0)
+  ruby-vips
   selenium-webdriver
   shoulda-matchers (~> 5.0)
   simple_form!
