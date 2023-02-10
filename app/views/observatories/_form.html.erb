@@ -11,6 +11,20 @@
               wrapper_html: { class: 'input-group mb-3 row ' },
               label_html: { class: 'input-group-text mb-0 col-3 flex-end' },
               input_html: { class: 'col-9 form-control' }  %>
+  <div class="row">
+    <div class="col-6">
+      <%= f.input :latitude,
+                  wrapper_html: { class: 'input-group mb-3 row ' },
+                  label_html: { class: 'input-group-text mb-0 col-3 flex-end' },
+                  input_html: { class: 'col-9 form-control' }  %>
+    </div>
+    <div class="col-6">
+      <%= f.input :longitude,
+                  wrapper_html: { class: 'input-group mb-3 row ' },
+                  label_html: { class: 'input-group-text mb-0 col-3 flex-end' },
+                  input_html: { class: 'col-9 form-control' }  %>
+    </div>
+  </div>
   <%= f.input :email,
               label: '@',
               placeholder: 'email@example.tld',

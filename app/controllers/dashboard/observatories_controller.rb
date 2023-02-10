@@ -36,7 +36,7 @@ module Dashboard
 
     def observatory_params
       params.require(:observatory).permit(:name, :address, :email, :phone_number, :description, :unity_type_id,
-                                          :rich_description, :banner)
+                                          :rich_description, :banner, :latitude, :longitude)
     end
 
     def set_observatory_category
