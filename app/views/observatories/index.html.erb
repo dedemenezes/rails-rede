@@ -2,7 +2,8 @@
 <div class="cards-container">
   <div class="cards">
     <% @observatories.each do |observatory| %>
-      <div class="card__observatory" style="background-image: url(<%= url_for(observatory.banner) if observatory.banner.attached? %>)"><%= observatory.name %>
+      <div class="card__observatory" style="background-image: url(<%= url_for(observatory.banner) if observatory.banner.attached? %>)">
+        <p><%= observatory.name %></p>
       </div>
     <% end %>
   </div>
@@ -10,5 +11,6 @@
     class="card__map"
     data-controller="map"
     data-map-markers-value="<%= @markers.to_json %>"
-    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+  </div>
 </div>
