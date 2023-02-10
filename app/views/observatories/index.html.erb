@@ -2,7 +2,7 @@
 <div class="cards-container">
   <div class="cards">
     <% @observatories.each do |observatory| %>
-      <div class="card__observatory" style="background-image: url(<%= url_for(observatory.banner) %>)"><%= observatory.name %>
+      <div class="card__observatory" style="background-image: url(<%= url_for(observatory.banner) if observatory.banner.attached? %>)"><%= observatory.name %>
       </div>
     <% end %>
   </div>
