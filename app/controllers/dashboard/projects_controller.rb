@@ -7,16 +7,16 @@ module Dashboard
 
     def index
       @projects = Project.all
-      add_breadcrumb 'Projects', dashboard_projects_path, true
+      add_breadcrumb 'Projects', dashboard_projects_path, current: true
     end
 
     def show
-      add_breadcrumb @project.name, nil, true
+      add_breadcrumb @project.name, nil, current: true
     end
 
     def new
       @project = Project.new
-      add_breadcrumb 'New project', new_dashboard_project_path, true
+      add_breadcrumb 'New project', new_dashboard_project_path, current: true
     end
 
     def create
@@ -32,8 +32,8 @@ module Dashboard
       @methodology = Methodology.new
       @image_attachments = ActiveStorage::Attachment.where(record_id: Project.last.id,
                                                            record_type: 'ActiveStorage::VariantRecord')
-      add_breadcrumb @project.name, dashboard_project_path(@project), false
-      add_breadcrumb "Edit", nil, true
+      add_breadcrumb @project.name, dashboard_project_path(@project), current: false
+      add_breadcrumb "Edit", nil, current: true
     end
 
     def update
@@ -55,7 +55,7 @@ module Dashboard
     end
 
     def set_breadcrumb_index
-      add_breadcrumb 'Projects', dashboard_projects_path, false
+      add_breadcrumb 'Projects', dashboard_projects_path, current: false
     end
   end
 end

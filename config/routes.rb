@@ -8,13 +8,13 @@ Rails.application.routes.draw do
   resources :observatories, only: %i[index]
   resources :articles, only: %i[show]
 
-  # get 'dashboard', to: 'dashboard#home', as: :dashboard
-  # namespace :dashboard do
-  #   resources :observatories
-  #   resources :categories
-  #   resources :projects do
-  #     resources :methodologies, only: %i[new create]
-  #   end
-  #   resources :methodologies, except: %i[new create]
-  # end
+  get 'dashboard', to: 'dashboard#home', as: :home
+  namespace :dashboard do
+    resources :observatories
+    resources :categories
+    resources :projects do
+      resources :methodologies, only: %i[new create]
+    end
+    resources :methodologies, except: %i[new create]
+  end
 end

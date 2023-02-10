@@ -5,14 +5,14 @@ module Dashboard
     def index
       @categories = Category.all
       add_breadcrumb 'Observatories', '#'
-      add_breadcrumb 'Categories', dashboard_categories_path, true
+      add_breadcrumb 'Categories', dashboard_categories_path, current: true
     end
 
     def new
       @category = Category.new
       add_breadcrumb 'Observatory', '#'
       add_breadcrumb 'Categories', dashboard_categories_path
-      add_breadcrumb 'New category', new_dashboard_category_path, true
+      add_breadcrumb 'New category', new_dashboard_category_path, current: true
     end
 
     def create
