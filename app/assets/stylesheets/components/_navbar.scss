@@ -11,7 +11,7 @@
 }
 
 .navbar-lewagon .navbar-brand img {
-  width: 40px;
+  // width: 40px;
 }
 
 .navbar-lewagon--purple {
@@ -39,6 +39,16 @@
     padding: 12px;
   }
 }
+
+.nav-link {
+  font-size: 14px;
+  letter-spacing: 1.25px;
+  color: $r-blue-d;
+}
+.nav-link.active {
+  font-weight: bold;
+}
+
 
 @media (max-width: 768px) {
   .nav__layout {
