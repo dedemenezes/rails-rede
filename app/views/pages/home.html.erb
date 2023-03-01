@@ -1,4 +1,4 @@
-<div class="banner--home" style='background-image: url(<%= asset_path 'hero-image.png' %>);'>
+<div class="banner--home mb-3" style='background-image: url(<%= asset_path 'hero-image.png' %>);'>
   <div class="banner__wrapper">
     <div class="row justify-content-center">
       <div class="col-8">
@@ -12,17 +12,17 @@
   </div>
 </div>
 
-<div class="container my-5 py-5">
-  <section class="row">
-    <% 3.times do %>
+<div class="container ">
+  <div class="row">
+    <% %w(binoculos lampada megafone).each do |item| %>
       <div class="col-12 col-sm-6 col-md-4">
         <div class="card__we">
-          <div class="circle--gray"></div>
+          <%= image_tag "#{item}.png" %>
           <p>11 observatorios na regiao bacia de campos</p>
         </div>
       </div>
     <% end %>
-  </section>
+  </div>
 </div>
 
 <div class="container">
