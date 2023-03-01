@@ -46,13 +46,32 @@
   bottom: 23%;
 }
 
+// HOME BANNER
+
 .banner--home {
-  height: 92vh;
-  display: grid;
-  grid-template-rows: 8fr 2fr;
-  text-align: center;
-  background-image: linear-gradient(rgba(199, 199, 199, 0.18),rgba(199, 199, 199, 0.1));
+  // padding: 196px 0;
+  background-size: cover;
+  background-position: center;
+  h1 {
+    font-weight: 600;
+    font-size: 68px;
+    line-height: 80px;
+    text-shadow: -10px 10px 35px rgba(82, 81, 81, 0.3);
+    color: white;
+    text-align: center;
+  }
 }
+
+.banner__wrapper {
+  height: 100%;
+  padding: 224px 0;
+  position: relative;
+  img {
+    position: absolute;
+    bottom: -1px;
+  }
+}
+
 .home-action {
   display: grid;
   grid-template-rows: 1fr 2fr;
