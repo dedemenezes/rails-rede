@@ -1,7 +1,7 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon <%= background_color %>">
+<div class="navbar navbar-expand-sm navbar-lewagon <%= background_color %>">
   <div class="container">
-    <%= link_to root_path, class: "navbar-brand btn", style: 'background-color: black;' do %>
-      <%= image_tag 'RO_simbolo-02.png' %>
+    <%= link_to root_path, class: "navbar-brand" do %>
+      <%= image_tag 'Logo_PEA.png', width: '224px' %>
     <% end %>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -10,20 +10,23 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav flex-grow-1 justify-content-center">
-        <li class="nav-item active">
-          <%= link_to "About us", "#", class: "nav-link" %>
+        <li class="nav-item">
+          <%= link_to "Home", "#", class: "nav-link active" %>
         </li>
         <li class="nav-item">
-          <%= link_to "Observatories", observatories_path, class: "nav-link" %>
+          <%= link_to "Sobre nós", "#", class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to "Galleries", '#', class: "nav-link" %>
+          <%= link_to "Observatórios", observatories_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to "News", article_path(Article.first), class: "nav-link" %>
+          <%= link_to "Acervo", '#', class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to "Contact us", '#', class: "nav-link" %>
+          <%= link_to "Notícias", article_path(Article.first), class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Contato", '#', class: "nav-link" %>
         </li>
         <% if user_signed_in? && current_user.admin? %>
           <li class="nav-item">
@@ -34,17 +37,17 @@
       <ul class="navbar-nav navbar-social">
         <li class="nav-item">
           <%= link_to '#', class: 'nav-link fs-5' do %>
-            <%= icon('fa-brands', 'square-facebook') %>
+            <%= icon('fa-brands', 'instagram') %>
           <% end %>
         </li>
         <li class="nav-item">
           <%= link_to '#', class: 'nav-link fs-5' do %>
-            <%= icon('fa-brands', 'square-instagram') %>
+            <%= icon('fa-brands', 'facebook') %>
           <% end %>
         </li>
         <li class="nav-item">
           <%= link_to '#', class: 'nav-link fs-5' do %>
-            <%= icon('fa-brands', 'square-youtube') %>
+            <%= icon('fa-brands', 'youtube') %>
           <% end %>
         </li>
       </ul>
