@@ -51,7 +51,7 @@
 .banner--home {
   // padding: 196px 0;
   background-size: cover;
-  background-position: center;
+  background-position: bottom;
   h1 {
     font-weight: 600;
     font-size: 68px;
@@ -64,7 +64,7 @@
 
 .banner__wrapper {
   height: 100%;
-  padding: 224px 0;
+  padding: 196px 0;
   position: relative;
   img {
     position: absolute;
