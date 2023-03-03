@@ -1,12 +1,53 @@
-<div class="footer">
-  <div class="footer-links">
-    <a href="#"><i class="fab fa-github"></i></a>
-    <a href="#"><i class="fab fa-instagram"></i></a>
-    <a href="#"><i class="fab fa-facebook"></i></a>
-    <a href="#"><i class="fab fa-twitter"></i></a>
-    <a href="#"><i class="fab fa-linkedin"></i></a>
+<div class="container">
+  <div class="row justify-content-center align-items-center mb-4">
+    <div class="col-12 col-sm-6">
+      <div class="row justify-content-center align-items-center">
+        <div class="col-3 text-center">
+          <%= image_tag 'ibama-logo.png', width: '82px' %>
+        </div>
+        <div class="col-3 text-center">
+          <%= image_tag 'prio-logo.png', width: '82px' %>
+        </div>
+        <div class="col-3 text-center">
+          <%= image_tag 'ambiental-logo.png', width: '82px' %>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="footer-copyright">
-    This footer is made with <i class="fas fa-heart"></i> at Le Wagon
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-5 text-center">
+    <p>A realização do PEA Rede Observação é uma medida de mitigação exigida pelo Licenciamento Ambiental Federal, conduzido pelo IBAMA.</p>
+    </div>
+  </div>
+</div>
+<div class="footer text-white">
+  <%= image_tag 'onda-footer.png', width: '100%' %>
+  <div class="container">
+    <div class="social-links d-flex justify-content-end w-100">
+      <ul class="list-inline-group">
+        <li class="list-inline-item">
+          <%= link_to '#', class: 'nav-link fs-5 text-reset' do %>
+            <%= icon('fa-brands', 'instagram') %>
+          <% end %>
+        </li>
+        <li class="list-inline-item">
+          <%= link_to '#', class: 'nav-link fs-5 text-reset' do %>
+            <%= icon('fa-brands', 'facebook') %>
+          <% end %>
+        </li>
+        <li class="list-inline-item">
+          <%= link_to '#', class: 'nav-link fs-5 text-reset' do %>
+            <%= icon('fa-brands', 'youtube') %>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <%= link_to "Home", "#", class: "link-light active" %>
+      <%= link_to "Sobre nós", "#", class: "link-light" %>
+      <%= link_to "Observatórios", observatories_path, class: "link-light" %>
+      <%= link_to "Notícias", article_path(Article.first), class: "link-light" %>
+      <%= link_to "Contato", '#', class: "link-light" %>
+    </div>
   </div>
 </div>
