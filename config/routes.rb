@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   get 'dashboard', to: 'dashboard#home', as: :home
   namespace :dashboard do
+    resources :articles
     resources :observatories
     resources :categories
     resources :projects do

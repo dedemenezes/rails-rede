@@ -6,4 +6,7 @@ class Article < ApplicationRecord
   has_one_attached :highlight_image
   has_rich_text :rich_body
 
+  def self.dashboard_headers
+    %w[id banner header sub\ header rich\ body]
+  end
 end

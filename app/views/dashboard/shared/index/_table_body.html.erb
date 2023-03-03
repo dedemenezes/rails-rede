@@ -3,6 +3,8 @@
     <% element.class.dashboard_headers.each do |header| %>
       <% if %w[updated\ at created\ at].include? header %>
         <td><%= element.send(header.gsub(' ', '_').to_sym).in_time_zone.strftime('%b %e, %Y - %H:%M:%S') %></td>
+      <% elsif header == 'banner' %>
+        <td><%= cl_image_tag element.send(header.gsub(' ', '_').to_sym).key, width: '62px' %></td>
       <% else %>
         <td><%= element.send(header.gsub(' ', '_').to_sym) %></td>
       <% end %>
