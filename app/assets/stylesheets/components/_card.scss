@@ -79,6 +79,12 @@
   padding: 13px 15px;
 }
 
+.card__content__header > small {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 small.tag {
   text-transform: uppercase;
   font-weight: 500;

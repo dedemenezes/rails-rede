@@ -3,7 +3,7 @@ class ArticlesController < ApplicationController
 
   def index
     @articles = policy_scope(Article).order(created_at: :desc)
-    @top_article = @articles.first
+    @top_article = Article.first
     @recent_articles = @articles.slice(1, 4)
   end
 
