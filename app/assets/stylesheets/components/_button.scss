@@ -38,3 +38,16 @@
     background-color: $r-light;
   }
 }
+
+
+.btn-icon {
+  background: #FFFFFF;
+  border: 2px solid rgba(8, 52, 97, 0.1);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 19px;
+  padding: 8px 32px;
+}
