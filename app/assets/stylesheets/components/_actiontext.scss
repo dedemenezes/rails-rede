@@ -31,7 +31,11 @@
 }
 
 .trix-content h1 {
+  color: $primary;
   font-size: 1.5rem;
-  font-weight: lighter;
-  font-style: italic;
+  font-weight: bold;
+  border-left: 6px solid $r-blue;
+  padding-left: 24px;
+  margin-left: 24px;
+  width: 75%;
 }

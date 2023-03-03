@@ -7,16 +7,15 @@ class Dashboard::ArticlesController < ApplicationController
 
   def new
     @article = Article.new
-    # authorize [:dashboard, current_user]
+    @article.tags.build
   end
 
   def create
     @article = Article.new(article_params)
-    binding.break
     if @article.save
       redirect_to dashboard_articles_path
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
