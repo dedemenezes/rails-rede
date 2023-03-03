@@ -14,7 +14,7 @@ $body-color: $gray;
 $primary:    $r-blue-d;
 $success:    $green;
 $info:       $r-blue;
-$danger:     $red;
+$danger:     $r-red-d;
 $warning:    $orange;
 
 // Links
@@ -38,7 +38,7 @@ $navbar-light-hover-color: rgba($r-blue-d, .55);
 $navbar-light-active-color: rgba($r-blue-d, 1);
 
 $rede-colors: (
-  "rede-primary": $r-blue,
+  "rede-primary": $r-blue-d,
   "rede-primary-l": $r-blue-l,
   "rede-secondary": $r-orange
 );
@@ -47,6 +47,7 @@ $rede-colors: (
 $theme-colors: (
   "primary": $primary,
   "success": $success,
+  'danger': $danger,
   "info": $info
 );
 
