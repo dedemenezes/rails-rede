@@ -16,7 +16,7 @@
         <% if @article.highlight? %>
           <div class="d-flex align-items-center justify-content-between my-4" data-article-highlight-target='text'>
             <p style="padding: 12px 24px; letter-spacing: 2.1px; font-weight: 700;">
-              <%= @article.highlight.truncate(99) %>
+              <%= @article.highlight %>
             </p>
             <%= image_tag @article.highlight_image, width: '50%' %>
           </div>

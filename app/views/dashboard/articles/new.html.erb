@@ -1,0 +1,9 @@
+<div class="container">
+  <%= simple_form_for([:dashboard, @article]) do |f| %>
+    <%= f.input :banner, as: :file %>
+    <%= f.input :header %>
+    <%= f.input :sub_header %>
+    <%= f.rich_text_area :rich_body %>
+    <%= f.submit %>
+  <% end %>
+</div>
