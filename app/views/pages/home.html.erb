@@ -1,29 +1,45 @@
-<div class="banner--home">
-  <div class="container align-self-center">
-    <h1>Trabalhamos para reduzir os impactos do petróleo e gás na Bacia de Campos</h1>
-  </div>
-  <div class='home-action'>
-    <a class='main' href="#">Saiba mais</a>
-    <a class='optional' href="#"><%= icon 'fa-solid', 'arrow-down' %></a>
+<div class="banner--home mb-5" style='background-image: url(<%= asset_path 'hero-image.png' %>);'>
+  <div class="banner__wrapper">
+    <div class="row justify-content-center">
+      <div class="col-12 col-sm-9">
+          <h1 class='mb-4'>Trabalhamos para reduzir os impactos do petróleo e gás na Bacia de Campos</h1>
+          <div class="d-grid col-8 col-sm-7 col-md-6 col-lg-5 col-xl-4 mx-auto">
+            <%= link_to 'Saiba mais', '#', class: ' btn-rede-light' %>
+          </div>
+      </div>
+    </div>
+    <%= image_tag 'hero-wave.png', width: '100%' %>
   </div>
 </div>
 
-<div class="container my-5 py-5">
-  <section class="row">
-    <% 3.times do %>
+<div class="container ">
+  <div class="row mb-5">
+    <% %w(binoculos lampada megafone).each do |item| %>
       <div class="col-12 col-sm-6 col-md-4">
         <div class="card__we">
-          <div class="circle--gray"></div>
+          <%= image_tag "#{item}.png" %>
           <p>11 observatorios na regiao bacia de campos</p>
         </div>
       </div>
     <% end %>
-  </section>
+  </div>
+
+  <div class="row mb-5">
+    <div class="col-12 border border-5 border-danger border-end-0 border-top-0 border-bottom-0 ">
+      <div class="container">
+        <h2>Mapa de conflitos</h2>
+      </div>
+    </div>
+    <div class="col-12 col-sm-6">
+      <div class="container">
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown</p>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="container">
-  <h2>Mapa de Atuação</h2>
-  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown</p>
+
 </div>
 
 <div class="swiper mySwiper" data-controller='swiper'>
