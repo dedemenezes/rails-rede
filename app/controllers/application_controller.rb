@@ -37,7 +37,7 @@ class ApplicationController < ActionController::Base
   end
 
   def add_default_dashboard_breadcrumb
-    return unless params[:controller].match? /dashboard/
+    return unless params[:controller].match?(/dashboard/)
 
     current_action = params[:action].match? 'home'
     add_breadcrumb('Dashboard', home_path, current: current_action)
