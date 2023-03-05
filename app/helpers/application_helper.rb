@@ -11,4 +11,8 @@ module ApplicationHelper
       image_path('default-banner.png')
     end
   end
+
+  def route_for_edit_dashboard(element)
+    "#{element.class.to_s.downcase}s/#{element.id}/edit"
+  end
 end

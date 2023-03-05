@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   # delete 'attachments/:id', to: 'attachments#destroy', as: :destroy_attachment
   resources :observatories, only: %i[index show]
-  resources :articles, only: %i[show index]
+  resources :articles, only: %i[show index edit update]
   resources :categories
 
 
