@@ -42,7 +42,8 @@ $navbar-light-active-color: rgba($r-blue-d, 1);
 $rede-colors: (
   "rede-primary": $r-blue-d,
   "rede-primary-l": $r-blue-l,
-  "rede-secondary": $r-orange
+  "rede-secondary": $r-orange,
+  "rede-white": $r-light
 );
 
 // Merge this new map into the theme-colors map (set by default in Bootstrap) in config/custom_maps.scss
