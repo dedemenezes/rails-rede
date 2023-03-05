@@ -18,3 +18,6 @@ application.register("swiper", SwiperController)
 
 import TomSelectController from "./tom_select_controller"
 application.register("tom-select", TomSelectController)
+
+import TooltipController from "./tooltip_controller"
+application.register("tooltip", TooltipController)
