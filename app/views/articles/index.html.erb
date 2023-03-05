@@ -16,7 +16,9 @@
       <div class="row mb-4">
         <div class="col-12 col-md-6 article--main">
           <%#= raise %>
+          <%= link_to article_path(@top_article), class: 'text-reset' do %>
             <%= render 'article_card', article: @top_article, highlight: true if @top_article %>
+          <% end %>
         </div>
         <div class="col-12 col-md-6">
           <div class="recents--layout">
