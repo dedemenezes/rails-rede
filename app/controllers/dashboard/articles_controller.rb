@@ -2,7 +2,7 @@ class Dashboard::ArticlesController < ApplicationController
   layout 'dashboard'
 
   def index
-    @articles = policy_scope(Article, policy_scope_class: Dashboard::UserPolicy::Scope)
+    @articles = policy_scope(Article, policy_scope_class: Dashboard::UserPolicy::Scope).order(id: :desc)
   end
 
   def new
