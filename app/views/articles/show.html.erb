@@ -1,8 +1,13 @@
 <div class="container my-5">
+
+  <%= link_to articles_path, class: "btn btn-rede-light" do %>
+    <%= image_tag 'arrow-down.svg', class: 'image--left', width: '16px', stlye: 'transform: rotate(90deg), margin-right: 16px' %>
+    voltar
+  <% end %>
   <div class="row justify-content-center">
     <div class="col-12 col-md-8">
       <h1><%= @article.header %></h1>
-      <div class="banner banner--article mb-3" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('<%= cl_image_path(@article.banner.key) %>');">
+      <div class="banner banner--article mb-3" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('<%= display_banner(@article) %>');">
         <div class="container flex-centered relativ-pos">
         </div>
       </div>

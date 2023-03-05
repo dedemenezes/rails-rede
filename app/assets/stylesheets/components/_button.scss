@@ -16,6 +16,7 @@
 .btn-rede-light {
   background-color: $white;
   padding: 10px;
+  border: 2px solid $r-light-gray;
   border-radius: 10px;
   color: $r-blue-d;
   font-weight: 600;
@@ -27,6 +28,7 @@
 
   &:hover {
     background-color: $white;
+    border: 2px solid $r-light-gray-d;
     color: $r-blue-d;
     font-weight: 800;
     text-decoration: none;
@@ -36,6 +38,11 @@
     color: $r-blue-d;
     font-weight: 800;
     background-color: $r-light;
+  }
+
+  .image--left {
+    margin-right: .725rem;
+    transform: rotate(90deg);
   }
 }
 
