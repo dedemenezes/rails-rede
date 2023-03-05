@@ -1,0 +1,21 @@
+.articles__recent {
+  h5 {
+    font-size: 1.125rem
+  }
+}
+
+.recents--layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem;
+  min-height: 100%;
+
+  .article__card {
+    height: 100%;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    .card__image {
+      height: 100% !important;
+    }
+  }
+}

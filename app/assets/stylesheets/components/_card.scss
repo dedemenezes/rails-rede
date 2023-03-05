@@ -98,11 +98,6 @@ small.tag {
   border-radius: 5px;
 }
 
-.article--main .article__card {
-  display: grid;
-  grid-template-rows: 2fr 1fr;
-}
-
 
 @media (min-width: 576px) {
   .cards-container {
