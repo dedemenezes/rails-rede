@@ -2,13 +2,13 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
   root to: "pages#home"
+  get '/contact', to: 'pages#contact'
   # resources :categories, only: :show
 
   # delete 'attachments/:id', to: 'attachments#destroy', as: :destroy_attachment
   resources :observatories, only: %i[index show]
   resources :articles, only: %i[show index edit update]
   resources :categories
-
 
   get 'dashboard', to: 'dashboard#home', as: :home
   namespace :dashboard do
