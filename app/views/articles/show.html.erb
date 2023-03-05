@@ -1,31 +1,26 @@
-<div class="container my-5">
-
-  <%= link_to articles_path, class: "btn btn-rede-light" do %>
-    <%= image_tag 'arrow-down.svg', class: 'image--left', width: '16px', stlye: 'transform: rotate(90deg), margin-right: 16px' %>
-    voltar
-  <% end %>
+<div class="container my-3">
   <div class="row justify-content-center">
-    <div class="col-12 col-md-8">
-      <h1><%= @article.header %></h1>
-      <div class="banner banner--article mb-3" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('<%= display_banner(@article) %>');">
-        <div class="container flex-centered relativ-pos">
+    <div class="col-12 col-md-9">
+      <div class="article__show">
+        <%= link_to articles_path, class: "btn btn-rede-light mb-3" do %>
+          <%= image_tag 'arrow-down.svg', class: 'image--left', width: '16px', stlye: 'transform: rotate(90deg), margin-right: 16px' %>
+          voltar
+        <% end %>
+
+        <div class="show__header">
+          <h1><%= @article.header %></h1>
+          <p><%= @article.sub_header %></p>
+          <small class='mb-1 text-muted'>Por <strong><%= @observatory.name.split.map{ _1.capitalize }.join(' ') %></strong> - <%= @observatory.address %></small>
+          <br>
+          <small class='text-muted'><%= @article.created_at.strftime('%d/%m/%y %Hh%M') %> - <%= time_ago_in_words(@article.updated_at) %></small>
         </div>
-      </div>
-      <p class='mb-1'>Por: <%= @observatory.name.split.map{ _1.capitalize }.join(' ') %> em <%= @observatory.address %></p>
-      <p class='text-muted' style='font-size: 14px;'><em><%= @article.created_at.strftime('%d/%m/%y %R') %></em></p>
-      <h3><%= @article.sub_header %></h3>
-      <div data-controller="article-highlight">
-        <%= content_tag :div, data: { article_highlight_target: 'news' } do %>
-          <%= @article.rich_body %>
-        <% end %>
-        <% if @article.highlight? %>
-          <div class="d-flex align-items-center justify-content-between my-4" data-article-highlight-target='text'>
-            <p style="padding: 12px 24px; letter-spacing: 2.1px; font-weight: 700;">
-              <%= @article.highlight %>
-            </p>
-            <%= image_tag @article.highlight_image, width: '50%' %>
+
+        <div class="banner banner--article mb-5" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('<%= display_banner(@article) %>');">
+          <div class="container flex-centered relativ-pos">
           </div>
-        <% end %>
+        </div>
+
+        <%= @article.rich_body %>
       </div>
     </div>
   </div>
