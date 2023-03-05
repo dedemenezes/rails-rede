@@ -19,10 +19,23 @@ class Dashboard::ArticlesController < ApplicationController
     end
   end
 
+  def edit
+    @article = Article.find(params[:id])
+  end
+
+  def update
+    @article = Article.find(params[:id])
+    if @article.update(article_params)
+      redirect_to dashboard_articles_path
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def article_params
-    params.require(:article).permit(:banner, :header, :sub_header, :rich_body)
+    params.require(:article).permit(:banner, :header, :sub_header, :rich_body, :featured, :published)
   end
 
 end
