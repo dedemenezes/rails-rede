@@ -11,7 +11,6 @@ class Dashboard::ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
-    raise
     @article.tag_list.add(params[:article][:tag_list])
     if @article.save
       redirect_to dashboard_articles_path
