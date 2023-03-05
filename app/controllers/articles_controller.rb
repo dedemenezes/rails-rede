@@ -2,10 +2,10 @@ class ArticlesController < ApplicationController
   skip_before_action :authenticate_user!
 
   def index
-    @has_article = policy_scope(Article)
-    @top_article = Article.main if @has_article
-    @articles = policy_scope(Article).all_but_featured if @has_article
-    @recent_articles = @articles.slice!(0, 4) if @has_article
+
+    @top_article = Article.featured
+    @articles = policy_scope(Article).all_but_featured
+    @recent_articles = @articles.slice!(0, 4)
   end
 
   def show

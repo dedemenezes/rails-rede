@@ -12,4 +12,12 @@ class Article < ApplicationRecord
   def self.dashboard_headers
     %w[id banner header sub\ header rich\ body]
   end
+
+  def self.featured
+    find_by_featured(true) || nil
+  end
+
+  def self.has_any_present?
+    count.positive?
+  end
 end
