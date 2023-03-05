@@ -23,6 +23,14 @@ module Dashboard
       home?
     end
 
+    def edit?
+      home?
+    end
+
+    def update?
+      home?
+    end
+
     def home?
       user.admin?
     end

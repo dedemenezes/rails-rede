@@ -11,12 +11,14 @@
     </div>
   </div>
 
-  <% if @has_articles %>
+  <% if Article.has_any_present? %>
     <div class="articles__recent">
       <div class="row mb-4">
         <div class="col-12 col-md-6 article--main">
           <%#= raise %>
-            <%= render 'article_card', article: @top_article, highlight: true %>
+          <%= link_to article_path(@top_article), class: 'text-reset' do %>
+            <%= render 'article_card', article: @top_article, highlight: true if @top_article %>
+          <% end %>
         </div>
         <div class="col-12 col-md-6">
           <div class="recents--layout">
