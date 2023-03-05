@@ -10,8 +10,9 @@
         <small><%= article.created_at.strftime('%d.%m.%Y') %></small>
       <% end %>
       <%# <small>= article.tags.first.name</small> %>
-      <small class="tag">São Francisco</small>
-      <small class="tag">Agricultores</small>
+      <% article.tag_list.each do |tag| %>
+        <small class="tag"><%= tag %></small>
+      <% end %>
     </div>
     <h5 class="mb-0"><%= article.header.truncate(highlight ? 45 : 21) %></h5>
     <% if highlight %>
