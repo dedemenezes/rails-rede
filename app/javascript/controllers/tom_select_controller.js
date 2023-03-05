@@ -5,8 +5,6 @@ import TomSelect from 'tom-select'
 export default class extends Controller {
   connect() {
     console.log('hi');
-    new TomSelect(this.element, {
-      maxItems: 2
-    })
+    new TomSelect(this.element, {})
   }
 }
