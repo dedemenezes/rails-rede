@@ -17,7 +17,6 @@ class Observatory < ApplicationRecord
   reverse_geocoded_by :latitude, :longitude
   after_validation :reverse_geocode
   after_validation :geocode, if: :will_save_change_to_address?
-  after_create :create_tags
 
   def self.dashboard_headers
     ['id', 'name', 'address', 'description', 'category name', 'published?', 'created at', 'updated_at']

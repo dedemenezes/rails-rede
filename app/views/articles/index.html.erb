@@ -11,25 +11,23 @@
     </div>
   </div>
   <div class="articles__recent">
-    <div class="row">
-      <div class="col-12 col-md-6">
+    <div class="row mb-4">
+      <div class="col-12 col-md-6 article--main">
           <%= render 'article_card', article: @top_article, highlight: true %>
       </div>
       <div class="col-12 col-md-6">
-        <div class="row">
+        <div class="recents--layout">
           <% @recent_articles.each do |article| %>
-            <div class="col-12 col-xl-6 mb-4">
               <%= link_to article_path(article), class: 'text-reset' do %>
                 <%= render 'article_card', article: article, highlight: false %>
               <% end %>
-            </div>
           <% end %>
         </div>
       </div>
     </div>
     <div class="row">
     <% @articles.each do |article| %>
-      <div class="col-12 col-sm-6 col-md-4 mb-4">
+      <div class="col-12 col-sm-6 col-md-4 article--list">
         <%= render 'article_card', article: article, highlight: false %>
       </div>
     <% end %>
