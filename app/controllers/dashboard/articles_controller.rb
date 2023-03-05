@@ -7,7 +7,6 @@ class Dashboard::ArticlesController < ApplicationController
 
   def new
     @article = Article.new
-    @article.tags.build
   end
 
   def create

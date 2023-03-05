@@ -7,6 +7,8 @@ class Article < ApplicationRecord
   scope :main, -> { find_by_featured(true) }
   scope :all_but_featured, -> { order(created_at: :desc).to_a.delete_if(&:featured) }
 
+  acts_as_taggable_on :tags
+
   def self.dashboard_headers
     %w[id banner header sub\ header rich\ body]
   end
