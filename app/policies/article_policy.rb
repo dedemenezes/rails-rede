@@ -2,7 +2,7 @@ class ArticlePolicy < ApplicationPolicy
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
     def resolve
-      scope.all
+      Article.count.positive? ? scope.all : false
     end
   end
 
