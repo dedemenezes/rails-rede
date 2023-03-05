@@ -9,7 +9,7 @@ class Article < ApplicationRecord
 
   acts_as_taggable_on :tags
 
-  after_create :verify_featured
+  after_validation :verify_featured
 
   def self.dashboard_headers
     %w[id banner header sub\ header rich\ body featured? published?]
@@ -30,6 +30,7 @@ class Article < ApplicationRecord
   def published?
     published ? '✅' : '❌'
   end
+
   def featured?
     featured ? '✅' : '❌'
   end
