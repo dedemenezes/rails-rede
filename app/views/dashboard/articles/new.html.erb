@@ -1,6 +1,6 @@
 <div class="container">
   <%= simple_form_for([:dashboard, @article]) do |f| %>
-    <%= f.input :tags, collection: Tag.all, multiple: true, input_html: { data: { controller: 'tom-select' } } %>
+    <%= f.input :tag_list, collection: PriorityType.pluck(:name), input_html: { multiple: true, data: { controller: 'tom-select' }, value: f.object.tag_list.join(",") } %>
     <%= f.input :banner, as: :file %>
     <%= f.input :header %>
     <%= f.input :sub_header %>

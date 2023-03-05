@@ -2,16 +2,16 @@ class Dashboard::ArticlesController < ApplicationController
   layout 'dashboard'
 
   def index
-    @articles = policy_scope(Article, policy_scope_class: Dashboard::UserPolicy::Scope)
+    @articles = policy_scope(Article, policy_scope_class: Dashboard::UserPolicy::Scope).order(id: :desc)
   end
 
   def new
     @article = Article.new
-    @article.tags.build
   end
 
   def create
     @article = Article.new(article_params)
+    @article.tag_list.add(params[:article][:tag_list])
     if @article.save
       redirect_to dashboard_articles_path
     else
