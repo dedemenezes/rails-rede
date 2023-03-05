@@ -4,7 +4,11 @@
       <% if %w[updated\ at created\ at].include? header %>
         <td><%= element.send(header.gsub(' ', '_').to_sym).in_time_zone.strftime('%b %e, %Y - %H:%M:%S') %></td>
       <% elsif header == 'banner' %>
-        <td><%= cl_image_tag element.send(header.gsub(' ', '_').to_sym).key, width: '62px' %></td>
+        <% if element.send(header.gsub(' ', '_').to_sym).attached? %>
+          <td><%= cl_image_tag element.send(header.gsub(' ', '_').to_sym).key, width: '62px' %></td>
+        <% else %>
+          <td><%= image_tag 'default-banner', width: '62px' %></td>
+        <% end %>
       <% else %>
         <td><%= element.send(header.gsub(' ', '_').to_sym) %></td>
       <% end %>
