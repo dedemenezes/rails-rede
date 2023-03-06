@@ -1,6 +1,10 @@
 class Dashboard::GalleriesController < ApplicationController
   layout 'dashboard'
 
+  def index
+    @galleries = Gallery.all
+  end
+
   def new
     @gallery = Gallery.new
   end
