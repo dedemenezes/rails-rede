@@ -7,5 +7,6 @@ class PagesController < ApplicationController
   end
 
   def about_us
+    @categories = Category.all
   end
 end

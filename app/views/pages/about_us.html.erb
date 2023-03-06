@@ -9,10 +9,10 @@
     </div>
   </div>
 
-  <div class="about_us">
-    <div class="row">
+  <div class="about_us my-5">
+    <div class="row align-items-center justify-content-center">
       <div class="col-12 col-sm-6">
-        <h1><span>Somos o</span> PEA Rede Observação</h1>
+        <h1><span>Somos o</span> <br>PEA Rede <br>Observação</h1>
       </div>
       <div class="col-12 col-sm-6">
         <p>O Projeto de Educação Ambiental (PEA) Rede Observação é constituído por 11 Observatórios, em formato de associações comunitárias, que têm como objetivo realizar organização social através de processos educativos que englobam formação, pesquisa, produção de conteúdos pedagógicos e intervenção social.</p>
@@ -23,15 +23,40 @@
   </div>
 
   <div class="about_us__gallery">
-    <div class="row">
+    <div class="row mb-3">
       <div class="col-12">
         <%= image_tag 'hero-image', width: '100%' %>
       </div>
     </div>
     <div class="row justify-content-center">
       <div class="col-12 text-center">
-        <%= link_to 'IR PARA O ACERVO', galleries_path, class: 'btn btn__secondary' %>
+        <%= link_to 'IR PARA O ACERVO', galleries_path, class: 'btn btn__secondary btn__secondary--blue' %>
       </div>
+    </div>
+  </div>
+
+  <div class="about_us__methodologies">
+    <div class="row justify-content-center mt-2 mb-5">
+      <div class="col-12 mt-5">
+        <div class="d-flex justify-content-between align-items-center border border-warning border-5 border-end-0 border-top-0 border-bottom-0 ps-4">
+          <h2>Metodologias</h2>
+        </div>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <% @categories.each_with_index do |category, index| %>
+        <% text_color = ['rede-dark-red', 'rede-primary', 'rede-primary-l'] %>
+        <div class="col-12 col-sm-4">
+          <div class="category__card">
+            <%= image_tag 'hero-image.png', width: '100%' %>
+            <div class="card__content">
+              <h6 class="text-<%= text_color[index] %>"><%= category.name %></h6>
+              <p class="text-primary">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.</p>
+              <%= link_to 'Ver mais', category_path(category), class: "text-#{text_color[index]} btn btn__secondary btn__secondary--#{text_color[index]}" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
