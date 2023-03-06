@@ -3,6 +3,8 @@ class Gallery < ApplicationRecord
   has_many :albums
   has_one_attached :banner
 
+  scope :published, -> { where(published: true) }
+
   def self.dashboard_headers
     %w[id banner name observatory\ name category published?]
   end

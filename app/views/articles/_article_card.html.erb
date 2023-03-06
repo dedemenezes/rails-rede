@@ -1,5 +1,5 @@
 <div class="article__card">
-  <div class="card__image" style='background-image:url(<%= display_banner(article) %>);height: <%= highlight ? "440px" : "147px" %>; background-size: cover; background-position: center;'></div>
+  <div class="card__image" style='background-image:url(<%= display_banner_as_background(article) %>);height: <%= highlight ? "440px" : "147px" %>; background-size: cover; background-position: center;'></div>
   <%#= cl_image_tag article.banner.key, height: '147px' %>
   <div class="article__card__content">
     <% unless highlight %>

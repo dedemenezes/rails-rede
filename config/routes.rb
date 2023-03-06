@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   # delete 'attachments/:id', to: 'attachments#destroy', as: :destroy_attachment
   resources :observatories, only: %i[index show]
   resources :articles, only: %i[show index edit update]
-  resources :galleries, only: :show
+  resources :galleries, only: %i[index show]
   resources :categories
 
   get 'dashboard', to: 'dashboard#home', as: :home
