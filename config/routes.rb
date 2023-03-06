@@ -22,6 +22,10 @@ Rails.application.routes.draw do
     end
     resources :methodologies, except: %i[new create]
     resources :galleries
-    resources :albums
+    resources :albums do
+      member do
+        patch 'update_banner'
+      end
+    end
   end
 end

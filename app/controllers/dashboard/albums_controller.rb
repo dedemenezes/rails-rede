@@ -37,6 +37,16 @@ class Dashboard::AlbumsController < ApplicationController
     end
   end
 
+  def update_banner
+    @album = Album.find(params[:id])
+    @photo = @album.photos.find{ _1.id == params[:photo_id].to_i }
+    @album.set_banner(@photo)
+    if @album.save
+      redirect_to dashboard_albums_path
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
   private
 
   def album_params

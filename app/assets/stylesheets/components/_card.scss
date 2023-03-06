@@ -129,6 +129,30 @@ small.tag {
   }
 }
 
+.album__card {
+  position: relative;
+  &:hover {
+    .card__link--hidden {
+        opacity: 1;
+      }
+  }
+}
+
+.album__card__link {
+  transition: opacity .5s ease;
+  position: absolute;
+  top: 8px;
+  left: 8px;
+}
+
+.card__link--hidden {
+  opacity: 0;
+}
+
+.card__link--hover {
+  opacity: 1;
+}
+
 
 @media (max-width: 576px) {
   .cards__index {

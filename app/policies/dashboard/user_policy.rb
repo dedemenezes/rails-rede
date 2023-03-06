@@ -31,6 +31,10 @@ module Dashboard
       home?
     end
 
+    def update_banner?
+      home?
+    end
+
     def home?
       user.admin?
     end
