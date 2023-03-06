@@ -39,12 +39,12 @@ class Dashboard::GalleriesController < ApplicationController
   private
 
   def gallery_params
-    params.require(:gallery).permit(:name, :category, :published)
+    params.require(:gallery).permit(:name, :category, :published, :banner)
   end
 
   def set_observatory
     begin
-      @observatory = Observatory.find(params[:gallery][:observatory])
+      @observatory = Observatory.find(params[:gallery][:observatory_id])
     rescue => exception
       @observatory = nil
     end
