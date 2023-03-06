@@ -1,46 +1,51 @@
 <nav class="navbar navbar-expand-lg navbar-light text-primary fixed-top">
-  <div class="container">
-    <div class="d-flex justify-content-between align-items-center w-100">
+  <div class="container-fluid">
       <%= link_to root_path do %>
         <%= image_tag 'Logo_PEA.png', class: 'navbar-brand', width: '186px' %>
       <% end %>
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <%= link_to "Home", "#", class: "nav-link #{tab_active?('pages')}" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Sobre nós", "#", class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Observatórios", observatories_path, class: "nav-link #{tab_active?('observatories')}" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Acervo", galleries_path, class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Notícias", articles_path, class: "nav-link #{tab_active?('articles')}" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Contato", contact_path, class: "nav-link" %>
-        </li>
-      </ul>
-      <ul class="navbar-nav navbar-social">
-        <li class="nav-item">
-          <%= link_to "https://www.instagram.com/pearedeobservacao/", class: 'nav-link fs-5', target: '_blank' do %>
-            <%= icon('fa-brands', 'instagram') %>
-          <% end %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "https://www.facebook.com/pearedeobservacao/", class: 'nav-link fs-5', target: '_blank' do %>
-            <%= icon('fa-brands', 'facebook') %>
-          <% end %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "https://www.youtube.com/", class: 'nav-link fs-5', target: '_blank' do %>
-            <%= icon('fa-brands', 'youtube') %>
-          <% end %>
-        </li>
-      </ul>
-    </div>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item">
+            <%= link_to "Home", root_path, class: "nav-link #{tab_active?('pages' , action: 'home')}" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Sobre nós", "#", class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Observatórios", observatories_path, class: "nav-link #{tab_active?('observatories')}" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Acervo", galleries_path, class: "nav-link #{tab_active?('galleries')}" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Notícias", articles_path, class: "nav-link #{tab_active?('articles')}" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Contato", contact_path, class: "nav-link #{tab_active?('pages', action: 'contact')}" %>
+          </li>
+        </ul>
+        <span class="navbar-text">
+          <ul class="navbar-nav navbar-social">
+            <li class="nav-item">
+              <%= link_to "https://www.instagram.com/pearedeobservacao/", class: 'nav-link fs-5', target: '_blank' do %>
+                <%= icon('fa-brands', 'instagram') %>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "https://www.facebook.com/pearedeobservacao/", class: 'nav-link fs-5', target: '_blank' do %>
+                <%= icon('fa-brands', 'facebook') %>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "https://www.youtube.com/", class: 'nav-link fs-5', target: '_blank' do %>
+                <%= icon('fa-brands', 'youtube') %>
+              <% end %>
+            </li>
+          </ul>
+        </span>
+      </div>
   </div>
 </nav>

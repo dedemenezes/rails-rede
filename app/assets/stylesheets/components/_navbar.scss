@@ -58,20 +58,27 @@
 }
 
 
+.navbar-nav.mx-auto .nav-item {
+  padding: .5rem;
+}
+
+.navbar-nav.navbar-social {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+
+  a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
 @media (max-width: 768px) {
   .nav__layout {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
   }
-  .navbar-nav.navbar-social {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    a {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-  }
+
 
 }

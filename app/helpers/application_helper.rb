@@ -1,7 +1,11 @@
 module ApplicationHelper
 
-  def tab_active?(expected)
-    params[:controller] == expected ? 'active' : ''
+  def tab_active?(expected, options = {})
+    condition = params[:controller] == expected
+    if params[:controller] == 'pages'
+      condition = params[:action] == options[:action] && params[:controller] == expected
+    end
+    condition ? 'active' : ''
   end
 
   def display_banner_as_background(article)
