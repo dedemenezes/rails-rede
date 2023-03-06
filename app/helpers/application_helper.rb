@@ -22,4 +22,8 @@ module ApplicationHelper
   def route_for_edit_dashboard(element)
     "#{element.class.to_s.humanize.downcase.pluralize}/#{element.id}/edit"
   end
+
+  def hide_nested_links(name_of_controller)
+    name_of_controller == 'albums'
+  end
 end

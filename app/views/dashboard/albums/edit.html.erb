@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="cards__index">
+    <% @album.photos.each do |photo| %>
+      <% case photo.blob.content_type %>
+      <% when "image/jpeg" %>
+        <%= cl_image_tag photo.key, width: '100%' %>
+      <% when "application/pdf" %>
+        <%= link_to photo.blob.filename.to_s, "#{cl_image_path(photo.key)}.pdf" %>
+        <%#= cl_image_tag photo.key, width: '100%', :transformation=>[ { :page=> 2 } ] %>
+      <% end %>
+    <% end %>
+    <%= simple_form_for([:dashboard, @album], html: {data:{controller: 'photo-preview'}}) do |f| %>
+      <%= f.association :gallery, value: @album.gallery, wrapper_html: { hidden: true } %>
+      <%= f.input :photos, as: :file, input_html: { multiple: true, class: 'd-none', data: { photo_preview_target: "photoInput", action: 'change->photo-preview#displayFilesCounter' } }, label_html: { class: 'upload-photo', data: { photo_preview_target: 'photoPreview' } }, label: '📷 Upload a photo' %>
+      <%= f.submit 'Add photos', class: 'btn btn-primary btn__album', data: { photo_preview_target: 'submit' } %>
+    <% end %>
+  </div>
+</div>

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :observatories, only: %i[index show]
   resources :articles, only: %i[show index edit update]
   resources :galleries, only: %i[index show]
+  resources :albums, only: %i[index show]
   resources :categories
 
   get 'dashboard', to: 'dashboard#home', as: :home
@@ -20,9 +21,7 @@ Rails.application.routes.draw do
       resources :methodologies, only: %i[new create]
     end
     resources :methodologies, except: %i[new create]
-    resources :galleries do
-      resources :albums, only: %i[new create]
-    end
-    resources :albums, except: %i[new create]
+    resources :galleries
+    resources :albums
   end
 end

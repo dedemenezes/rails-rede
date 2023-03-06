@@ -5,4 +5,8 @@ class GalleryPolicy < ApplicationPolicy
       scope.published
     end
   end
+
+  def show?
+    true
+  end
 end

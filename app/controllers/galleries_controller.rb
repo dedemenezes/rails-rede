@@ -4,5 +4,7 @@ class GalleriesController < ApplicationController
   end
 
   def show
+    @gallery = Gallery.find(params[:id])
+    authorize @gallery
   end
 end
