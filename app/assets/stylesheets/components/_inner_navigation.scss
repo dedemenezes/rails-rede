@@ -1,0 +1,19 @@
+.about__header {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  font-weight: 700;
+
+  .header__link {
+    width: 100%;
+    border-bottom: 1px solid rgba(8, 52, 97, 0.35);
+    font-weight: 400;
+    opacity: .8;
+    letter-spacing: 1.25px;
+  }
+
+  .header__link.active {
+    border-bottom: 3px solid #083461;
+    font-weight: 700;
+    }
+}
