@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_05_211130) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_06_002126) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -52,6 +52,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_05_211130) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "albums", force: :cascade do |t|
+    t.bigint "gallery_id", null: false
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["gallery_id"], name: "index_albums_on_gallery_id"
+  end
+
   create_table "articles", force: :cascade do |t|
     t.string "header"
     t.string "sub_header"
@@ -72,6 +80,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_05_211130) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "galleries", force: :cascade do |t|
+    t.string "name"
+    t.bigint "observatory_id"
+    t.string "category"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["observatory_id"], name: "index_galleries_on_observatory_id"
   end
 
   create_table "members", force: :cascade do |t|
@@ -214,6 +231,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_05_211130) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "albums", "galleries"
+  add_foreign_key "galleries", "observatories"
   add_foreign_key "members", "observatories"
   add_foreign_key "members", "projects"
   add_foreign_key "methodologies", "projects"

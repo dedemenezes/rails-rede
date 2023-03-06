@@ -10,6 +10,7 @@ class Observatory < ApplicationRecord
   has_one :observatory_priority, dependent: :destroy
   has_one :priority_type, through: :observatory_priority
   has_many :members
+  has_many :galleries
 
   has_one_attached :banner
   has_rich_text :rich_description
