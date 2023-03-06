@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import ActiveOnHeightController from "./active_on_height_controller"
+application.register("active-on-height", ActiveOnHeightController)
+
 import ArticleHighlightController from "./article_highlight_controller"
 application.register("article-highlight", ArticleHighlightController)
 

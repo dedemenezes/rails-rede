@@ -66,3 +66,30 @@
     opacity: 1;
   }
 }
+
+.btn__secondary {
+  border-radius: 0;
+  padding-bottom: 8px;
+  &:hover {
+    opacity: .7;
+  }
+}
+
+.btn__secondary--rede-primary {
+  border-bottom: 2px solid $primary;
+  &:hover {
+    border-bottom: 2px solid $primary;
+  }
+}
+.btn__secondary--rede-primary-l {
+  border-bottom: 2px solid $r-blue-l;
+  &:hover {
+        border-bottom: 2px solid $r-blue-l;
+    }
+}
+.btn__secondary--rede-dark-red {
+  border-bottom: 2px solid $r-red-d;
+  &:hover {
+      border-bottom: 2px solid $r-red-d;
+    }
+}
