@@ -1,6 +1,5 @@
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb px-3 py-2 mb-0">
-    <li class="breadcrumb-item"><a href="/dashboard"></a></li>
+<nav aria-label="breadcrumb" style="--bs-breadcrumb-divider: '>';">
+  <ol class="breadcrumb mb-3 text-reset">
     <% @breadcrumbs.each do |crumb| %>
       <% if crumb[:current] %>
         <li class="breadcrumb-item active" aria-current="page"><%= crumb[:name] %></li>
