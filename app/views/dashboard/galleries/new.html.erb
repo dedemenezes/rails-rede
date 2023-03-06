@@ -1,0 +1,8 @@
+<div class="container">
+  <%= simple_form_for([:dashboard, @gallery]) do |f| %>
+    <%= f.input :name %>
+    <%= f.input :observatory, collection: Observatory.all, input_html: { data: { controller: 'tom-select' } } %>
+    <%= f.input :category %>
+    <%= f.submit 'Criar galeria', class: 'btn btn-primary' %>
+  <% end %>
+</div>
