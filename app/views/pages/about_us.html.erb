@@ -1,15 +1,15 @@
-<div class="container mt-5">
+<div class="container mt-5" data-controller="active-on-height" data-action= "scroll@window->active-on-height#setClass">
   <div class="row mb-4">
     <div class="col-12 mt-5">
       <div class="about__header">
-        <%= link_to 'O Projeto', '#', class: 'header__link active' %>
-        <%= link_to 'Mapa', '#', class: 'header__link' %>
-        <%= link_to 'Metodologias', '#', class: 'header__link' %>
+        <%= link_to 'O Projeto', '#', class: 'header__link', data: {active_on_height_target: 'link' } %>
+        <%= link_to 'Mapa', '#', class: 'header__link', data: {active_on_height_target: 'link' } %>
+        <%= link_to 'Metodologias', about_us_path(anchor: 'methodologies'), class: 'header__link', data: {active_on_height_target: 'link' } %>
       </div>
     </div>
   </div>
 
-  <div class="about_us my-5">
+  <div class="about_us my-5" data-active-on-height-target='project'>
     <div class="row align-items-center justify-content-center">
       <div class="col-12 col-sm-6">
         <h1><span>Somos o</span> <br>PEA Rede <br>Observação</h1>
@@ -30,12 +30,12 @@
     </div>
     <div class="row justify-content-center">
       <div class="col-12 text-center">
-        <%= link_to 'IR PARA O ACERVO', galleries_path, class: 'btn btn__secondary btn__secondary--blue' %>
+        <%= link_to 'IR PARA O ACERVO', galleries_path, class: 'btn btn__secondary btn__secondary--rede-primary' %>
       </div>
     </div>
   </div>
 
-  <div class="about_us__methodologies">
+  <div class="about_us__methodologies" id="methodologies" data-active-on-height-target='methodologies'>
     <div class="row justify-content-center mt-2 mb-5">
       <div class="col-12 mt-5">
         <div class="d-flex justify-content-between align-items-center border border-warning border-5 border-end-0 border-top-0 border-bottom-0 ps-4">
