@@ -1,6 +1,6 @@
 class Gallery < ApplicationRecord
   belongs_to :observatory, optional: true
-  has_many :albums
+  has_many :albums, dependent: :destroy
   has_one_attached :banner
 
   scope :published, -> { where(published: true) }
