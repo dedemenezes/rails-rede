@@ -13,6 +13,6 @@ module ApplicationHelper
   end
 
   def route_for_edit_dashboard(element)
-    "#{element.class.to_s.downcase}s/#{element.id}/edit"
+    "#{element.class.to_s.humanize.downcase.pluralize}/#{element.id}/edit"
   end
 end

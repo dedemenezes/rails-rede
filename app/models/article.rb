@@ -23,10 +23,6 @@ class Article < ApplicationRecord
     count.positive?
   end
 
-  def published?
-    published ? '✅' : '❌'
-  end
-
   def featured?
     featured ? '✅' : '❌'
   end
