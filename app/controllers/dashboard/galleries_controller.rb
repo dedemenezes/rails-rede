@@ -11,8 +11,13 @@ class Dashboard::GalleriesController < ApplicationController
 
   def create
     @gallery = Gallery.new(gallery_params)
-    @observatory = Observatory.find(params[:gallery][:observatory])
-    @gallery.observatory = @observatory
+    begin
+      @observatory = Observatory.find(params[:gallery][:observatory])
+      @gallery.observatory = @observatory if @observatory
+    rescue => exception
+      @gallery.observatory = nil
+    end
+
     if @gallery.save
       redirect_to dashboard_galleries_path
     else

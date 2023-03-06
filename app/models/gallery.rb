@@ -7,6 +7,6 @@ class Gallery < ApplicationRecord
   end
 
   def observatory_name
-    observatory.name
+    observatory&.name
   end
 end
