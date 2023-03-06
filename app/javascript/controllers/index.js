@@ -13,6 +13,12 @@ application.register("hello", HelloController)
 import MapController from "./map_controller"
 application.register("map", MapController)
 
+import PhotoPreviewController from "./photo_preview_controller"
+application.register("photo-preview", PhotoPreviewController)
+
+import SubmitPhotorcController from "./submit_photorc_controller"
+application.register("submit-photorc", SubmitPhotorcController)
+
 import SwiperController from "./swiper_controller"
 application.register("swiper", SwiperController)
 

@@ -1,0 +1,8 @@
+<%= simple_form_for([:dashboard, gallery]) do |f| %>
+  <%= f.input :published %>
+  <%= f.input :name %>
+  <%= f.input :banner, as: :file %>
+  <%= f.association :observatory, input_html: { data: { controller: 'tom-select' } } %>
+  <%= f.input :category %>
+  <%= f.submit gallery.new_record? ? 'Criar galeria' : 'Atualizar galeria', class: 'btn btn-primary' %>
+<% end %>

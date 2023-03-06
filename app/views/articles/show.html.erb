@@ -15,7 +15,7 @@
           <small class='text-muted'><%= @article.created_at.strftime('%d/%m/%y %Hh%M') %> - <%= time_ago_in_words(@article.updated_at) %></small>
         </div>
 
-        <div class="banner banner--article mb-5" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('<%= display_banner(@article) %>');">
+        <div class="banner banner--article mb-5" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('<%= display_banner_as_background(@article) %>');">
           <div class="container flex-centered relativ-pos">
           </div>
         </div>

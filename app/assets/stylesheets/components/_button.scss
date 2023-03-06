@@ -58,3 +58,11 @@
   gap: 19px;
   padding: 8px 32px;
 }
+
+.btn__album {
+  opacity: 0;
+  transition: opacity .2s ease-in-out;
+  &.btn__album--active {
+    opacity: 1;
+  }
+}
