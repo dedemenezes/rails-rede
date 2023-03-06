@@ -1,6 +1,8 @@
 class Dashboard::GalleriesController < ApplicationController
   layout 'dashboard'
 
+  before_action :set_gallery, only: %i[edit update destroy]
+
   def index
     @galleries = Gallery.all
   end
@@ -21,12 +23,10 @@ class Dashboard::GalleriesController < ApplicationController
   end
 
   def edit
-    @gallery = Gallery.find(params[:id])
     @album = Album.new
   end
 
   def update
-    @gallery = Gallery.find(params[:id])
     set_observatory
 
     if @gallery.update(gallery_params)
@@ -36,7 +36,16 @@ class Dashboard::GalleriesController < ApplicationController
     end
   end
 
+  def destroy
+    @gallery.destroy
+    redirect_to dashboard_galleries_path, notice: 'Galeria destruída'
+  end
+
   private
+
+  def set_gallery
+    @gallery = Gallery.find(params[:id])
+  end
 
   def gallery_params
     params.require(:gallery).permit(:name, :category, :published, :banner)
