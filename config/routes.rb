@@ -19,5 +19,9 @@ Rails.application.routes.draw do
       resources :methodologies, only: %i[new create]
     end
     resources :methodologies, except: %i[new create]
+    resources :galleries do
+      resources :albums, only: %i[new create]
+    end
+    resources :albums, except: %i[new create]
   end
 end
