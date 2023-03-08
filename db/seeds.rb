@@ -55,17 +55,17 @@ observatory = Observatory.create!(
   email: 'pea.araruama@redeobservacao.com',
   phone_number: '21972614293',
   unity_type: UnityType.last,
-  neighborhood: 'Prainha',
-  city: 'Arraial do Cabo',
+  neighborhood: 'Laguna de Araruama',
+  city: 'Araruama',
   street: 'Rua Francis Barreto',
   number: '80',
   zip_code: '22358-756',
   state: 'Rio de Janeiro',
-  municipality: 'RJ'
+  municipality: 'RJ',
+  priority_type: PriorityType.first,
+  conflict_type: ConflictType.first
 )
-observatory.conflict_type = ConflictType.last
-observatory.priority_type = PriorityType.last
-observatory.category = Category.last
+
 # puts "creating Projects"
 # project = Project.create!(
 #   name: 'Rede Observacao'

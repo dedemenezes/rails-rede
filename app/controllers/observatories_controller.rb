@@ -8,4 +8,9 @@ class ObservatoriesController < ApplicationController
       }
     end
   end
+
+  def show
+    @observatory = Observatory.find(params[:id])
+    authorize @observatory
+  end
 end

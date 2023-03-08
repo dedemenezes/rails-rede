@@ -1,0 +1,20 @@
+<%= image_tag 'hero-observatory.png' %>
+<h3><%= @observatory.name %></h3>
+<p><%= @observatory.priority_type.name %></p>
+<%= image_tag 'icon-pin.png', width: '20px' %>
+<p><%= @observatory.location %></p>
+
+<br>
+
+<h3><%= @observatory.name %></h3>
+<p><%= @observatory.priority_type.name %></p>
+<%= image_tag 'icon-pin.png', width: '20px' %>
+<p><%= @observatory.location %></p>
+
+<%= @observatory.rich_description %>
+
+<% @observatory.galleries.each do |gallery| %>
+  <%= cl_image_tag gallery.banner.key %>
+<% end %>
+
+<%# ACOES %>

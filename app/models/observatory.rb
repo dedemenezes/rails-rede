@@ -19,8 +19,7 @@ class Observatory < ApplicationRecord
   has_one :category, through: :observatory_category
   has_one :observatory_conflict, dependent: :destroy
   has_one :conflict_type, through: :observatory_conflict
-  has_many :members
-  has_many :galleries
+  has_many :galleries, dependent: :destroy
 
   has_one_attached :banner
   has_rich_text :rich_description
@@ -35,6 +34,10 @@ class Observatory < ApplicationRecord
 
   def self.dashboard_headers
     ['id', 'name', 'address', 'description', 'category name', 'published?', 'created at', 'updated_at']
+  end
+
+  def location
+    "#{street}"
   end
 
   def published?
@@ -58,6 +61,7 @@ class Observatory < ApplicationRecord
   def strip_phone_number
     self.phone_number = phone_number.gsub(/\D/, '').remove(' ')
   end
+
   def strip_zip_code
     self.zip_code = zip_code.gsub(/\D/, '').remove(' ')
   end
