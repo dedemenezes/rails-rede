@@ -1,5 +1,5 @@
 <div class="banner__observatory"
-      style="background-image: radial-gradient(50% 50% at 50% 50%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.48) 100%), url(<%= cl_image_path @observatory.banner.key %>);">
+      style="background-image: radial-gradient(50% 50% at 50% 50%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.48) 100%), url(<%= display_banner_as_background @observatory %>);">
   <div class="banner__content">
     <h1><%= @observatory.name %></h1>
     <h6 class='text-white'><%= @observatory.priority_type.name %></h6>

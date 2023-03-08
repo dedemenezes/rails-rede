@@ -8,13 +8,14 @@ module ApplicationHelper
     condition ? 'active' : ''
   end
 
-  def display_banner_as_background(article)
-    if article.banner.attached?
-      cl_image_path(article.banner.key)
+  def display_banner_as_background(element)
+    if element.banner.attached?
+      cl_image_path(element.banner.key)
     else
       image_path('default-banner.png')
     end
   end
+
   def display_banner(article, options = {})
     if article.banner.attached?
       cl_image_tag(article.banner.key, options)
