@@ -1,20 +1,30 @@
-<%= image_tag 'hero-observatory.png' %>
-<h3><%= @observatory.name %></h3>
-<p><%= @observatory.priority_type.name %></p>
-<%= image_tag 'icon-pin.png', width: '20px' %>
-<p><%= @observatory.location %></p>
+<div class="banner__observatory"
+      style="">
+  <div class="banner__content">
+    <h1><%= @observatory.name %></h1>
+    <h6 class='text-white'><%= @observatory.priority_type.name %></h6>
+    <div class="d-flex align-items-center">
+      <%= image_tag 'icon-pin.png', class: 'me-2', width: '12px', height: '12.5px' %>
+      <p class='mb-0'><%= @observatory.neighborhood %></p>
+    </div>
+  </div>
+  <%#= image_tag 'ob-banner-wave.png', width: '100%' %>
+</div>
+<div class="container">
+  <div class="banner__content">
+      <h1 class="text-primary"><%= @observatory.name %></h1>
+      <h6 class='text-primary'><%= @observatory.priority_type.name %></h6>
+      <div class="d-flex align-items-center">
+        <%= image_tag 'icon-pin-blue.png', class: 'me-2', width: '12px', height: '12.5px' %>
+        <p class='mb-0'><%= @observatory.neighborhood %></p>
+      </div>
+    </div>
 
-<br>
+  <%= @observatory.rich_description %>
 
-<h3><%= @observatory.name %></h3>
-<p><%= @observatory.priority_type.name %></p>
-<%= image_tag 'icon-pin.png', width: '20px' %>
-<p><%= @observatory.location %></p>
-
-<%= @observatory.rich_description %>
-
-<% @observatory.galleries.each do |gallery| %>
-  <%= cl_image_tag gallery.banner.key %>
-<% end %>
+  <% @observatory.galleries.each do |gallery| %>
+    <%= cl_image_tag gallery.banner.key, width: '100%' %>
+  <% end %>
+</div>
 
 <%# ACOES %>
