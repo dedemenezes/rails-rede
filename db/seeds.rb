@@ -50,6 +50,9 @@ observatory_types.each do |tipo|
 end
 
 puts 'Creating Observatory...'
+description = "O Observatório Araruama é formado por voluntários da comunidade e pescadores artesanais da laguna de Araruama e tem como objetivo identificar e monitorar os impactos da cadeia produtiva de óleo e gás que inviabiliza a pesca artesanal na laguna de Araruama.
+Os pescadores artesanais retratam a dificuldade de acesso as politicas públicas em relação à precariedade na infraestrutura para o escoamento do pescado, no qual muitas vezes precisam repassar para atravessadores a preços baixos, desvalorizando o seu trabalho, além da poluição na Laguna de Araruama e o afastamento das suas residências próximas da laguna causadas pelo crescente aumento populacional na região, ocasionado pelo aumento de polos de extração de petróleo na região dos lagos.
+Outro problema relatado é a barreira encontrada pelos pescadores na ocupação de espaços de decisões, onde são debatidos assuntos que podem interferir na prática do seu trabalho como a implantação do transporte hidroviário, Ferry Boat, que atualmente ocupa um espaço considerado da laguna influenciando diretamente na dinâmica da pesca."
 observatory = Observatory.create!(
   name: 'Araruama',
   email: 'pea.araruama@redeobservacao.com',
@@ -63,7 +66,8 @@ observatory = Observatory.create!(
   state: 'Rio de Janeiro',
   municipality: 'RJ',
   priority_type: PriorityType.first,
-  conflict_type: ConflictType.first
+  conflict_type: ConflictType.first,
+  description: description
 )
 
 # puts "creating Projects"

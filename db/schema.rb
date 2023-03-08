@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_07_234608) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_08_020155) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -117,7 +117,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_07_234608) do
   create_table "observatories", force: :cascade do |t|
     t.string "headline"
     t.string "name"
-    t.string "description"
     t.string "email"
     t.string "phone_number"
     t.string "address"
@@ -136,6 +135,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_07_234608) do
     t.string "neighborhood"
     t.string "municipality"
     t.bigint "priority_type_id"
+    t.text "description"
     t.index ["priority_type_id"], name: "index_observatories_on_priority_type_id"
     t.index ["unity_type_id"], name: "index_observatories_on_unity_type_id"
   end
