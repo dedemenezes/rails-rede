@@ -31,6 +31,10 @@ module Dashboard
       end
     end
 
+    def edit
+      @observatory = Observatory.find(params[:id])
+    end
+
     private
 
     def observatory_params

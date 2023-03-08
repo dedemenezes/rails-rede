@@ -1,0 +1,111 @@
+<% form_path_ready =  params[:controller].match?(/dashboard/) ? [:dashboard, observatory] : observatory %>
+<%= simple_form_for form_path_ready,
+                    html: { class: 'row my-3' } do |f| %>
+  <%= f.input :published, label: 'Publicado' %>
+  <%= f.input :name,
+              label: "Name",
+              placeholder: 'PEA - Arraial do Cabo',
+              wrapper_html: { class: 'input-group mb-3 row ' },
+              label_html: { class: 'input-group-text mb-0 col-2 flex-end' },
+              input_html: { class: 'col-10 form-control' }  %>
+  <div class="row">
+    <div class="col-8">
+      <%= f.input :email,
+                  label: 'Email',
+                  placeholder: 'email@example.tld',
+                  wrapper_html: { class: 'input-group mb-3 row ' },
+                  label_html: { class: 'input-group-text mb-0 col-2 flex-end' },
+                  input_html: { class: 'col-10 form-control' }  %>
+    </div>
+    <div class="col-4">
+      <%= f.input :phone_number,
+                  label: 'Telefone',
+                  wrapper_html: { class: 'input-group mb-3 row ' },
+                  label_html: { class: 'input-group-text mb-0 col-4 flex-end' },
+                  input_html: { class: 'col-10 form-control' }  %>
+    </div>
+  </div>
+  <%= f.input :street,
+            wrapper_html: { class: 'input-group mb-3 row ' },
+            label_html: { class: 'input-group-text mb-0 col-2 flex-end' },
+            input_html: { class: 'col-10 form-control' }  %>
+  <div class="row">
+    <div class="col-5">
+      <%= f.input :number,
+                  wrapper_html: { class: 'input-group mb-3 row ' },
+                  label_html: { class: 'input-group-text mb-0 col-5 flex-end' },
+                  input_html: { class: 'col-7 form-control' }  %>
+    </div>
+    <div class="col-7">
+      <%= f.input :neighborhood,
+                  wrapper_html: { class: 'input-group mb-3 row ' },
+                  label_html: { class: 'input-group-text mb-0 col-3 flex-end' },
+                  input_html: { class: 'col-9 form-control' }  %>
+    </div>
+  </div>
+  <%= f.input :city,
+          wrapper_html: { class: 'input-group mb-3 row ' },
+          label_html: { class: 'input-group-text mb-0 col-2 flex-end' },
+          input_html: { class: 'col-10 form-control' }  %>
+  <div class="row">
+    <div class="col-8">
+      <%= f.input :state,
+                wrapper_html: { class: 'input-group mb-3 row ' },
+                label_html: { class: 'input-group-text mb-0 col-3 flex-end' },
+                input_html: { class: 'col-9 form-control' }  %>
+    </div>
+    <div class="col-4">
+      <%= f.input :zip_code,
+                  wrapper_html: { class: 'input-group mb-3 row ' },
+                  label_html: { class: 'input-group-text mb-0 col-3 flex-end' },
+                  input_html: { class: 'col-9 form-control' }  %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-6">
+      <%= f.input :latitude,
+                  wrapper_html: { class: 'input-group mb-3 row ' },
+                  label_html: { class: 'input-group-text mb-0 col-3 flex-end' },
+                  input_html: { class: 'col-9 form-control' }  %>
+    </div>
+    <div class="col-6">
+      <%= f.input :longitude,
+                  wrapper_html: { class: 'input-group mb-3 row ' },
+                  label_html: { class: 'input-group-text mb-0 col-3 flex-end' },
+                  input_html: { class: 'col-9 form-control' }  %>
+    </div>
+  </div>
+
+  <%= f.input :description,
+              wrapper_html: { class: 'input-group mb-3 row ' },
+              label_html: { class: 'input-group-text mb-0 col-3 flex-end' },
+              input_html: { class: 'col-9 form-control' }  %>
+  <%= f.association :unity_type,
+              wrapper_html: { class: 'input-group mb-3 row ' },
+              label_html: { class: 'input-group-text mb-0 col-3 flex-end' },
+              input_html: { class: 'col-9 form-control' }  %>
+  <%= f.input :category,
+              collection: Category.all,
+              wrapper_html: { class: 'input-group mb-3 row ' },
+              label_html: { class: 'input-group-text mb-0 col-3 flex-end' },
+              input_html: { class: 'col-9 form-control' }  %>
+  <%= f.input :priority_type,
+              collection: PriorityType.all,
+              wrapper_html: { class: 'input-group mb-3 row ' },
+              label_html: { class: 'input-group-text mb-0 col-3 flex-end' },
+              input_html: { class: 'col-9 form-control' }  %>
+  <%= f.input :conflict_type,
+              collection: ConflictType.all,
+              wrapper_html: { class: 'input-group mb-3 row ' },
+              label_html: { class: 'input-group-text mb-0 col-3 flex-end' },
+              input_html: { class: 'col-9 form-control' }  %>
+  <%= f.input :rich_description,
+              as: :rich_text_area,
+              wrapper_html: { class: 'input-group mb-3 row ' },
+              label_html: { class: 'input-group-text mb-0 col-3 flex-end' },
+              input_html: { class: 'col-9 form-control' } %>
+  <%= f.input :banner,
+              as: :file %>
+  <%= f.submit class: 'btn btn-rede-primary-l text-white' %>
+<% end %>
