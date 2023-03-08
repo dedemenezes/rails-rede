@@ -5,4 +5,8 @@ class ObservatoryPolicy < ApplicationPolicy
       scope.where(published: true)
     end
   end
+
+  def show?
+    true
+  end
 end

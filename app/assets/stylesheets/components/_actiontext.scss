@@ -39,3 +39,13 @@
   margin: auto;
   width: 75%;
 }
+
+.observatory__show .trix-content {
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 26px;
+  /* or 162% */
+
+  letter-spacing: 0.5px;
+  font-feature-settings: 'pnum' on, 'lnum' on;
+}

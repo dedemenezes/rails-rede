@@ -1,0 +1,49 @@
+.banner__observatory {
+  height: 92vh;
+  display: flex;
+  padding-bottom: 8vh;
+  color: white;
+  background-size: cover;
+  background-position: right;
+  margin-bottom: 2rem;
+  position: relative;
+  & > img {
+    position: absolute;
+    bottom: -4px;
+  }
+}
+
+.banner__content {
+  padding: 0 16px;
+  align-self: flex-end;
+  h1 {
+      font-size: 40px;
+      color: white;
+  }
+
+  h6 {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 45px;
+  }
+
+  p {
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 16px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-feature-settings: 'pnum' on, 'lnum' on;
+  }
+}
+
+
+@media (min-width: 576px) {
+  .banner__observatory {
+  // background-image: radial-gradient(50% 50% at 50% 50%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.48) 89.06%), url(asset-path('hero-observatory.png'));
+    // background-size: cover;
+    .banner__content {
+      display: none;
+    }
+  }
+}

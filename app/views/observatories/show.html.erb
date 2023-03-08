@@ -1,0 +1,75 @@
+<div class="banner__observatory"
+      style="background-image: radial-gradient(50% 50% at 50% 50%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.48) 100%), url(<%= cl_image_path @observatory.banner.key %>);">
+  <div class="banner__content">
+    <h1><%= @observatory.name %></h1>
+    <h6 class='text-white'><%= @observatory.priority_type.name %></h6>
+    <div class="d-flex align-items-center">
+      <%= image_tag 'icon-pin.png', class: 'me-2', width: '12px', height: '12.5px' %>
+      <p class='mb-0'><%= @observatory.neighborhood %></p>
+    </div>
+  </div>
+  <%#= image_tag 'ob-banner-wave.png', width: '100%' %>
+</div>
+<div class="container">
+  <div class="banner__content mb-5">
+      <h1 class="text-primary"><%= @observatory.name %></h1>
+      <h6 class='text-primary'><%= @observatory.priority_type.name %></h6>
+      <div class="d-flex align-items-center">
+        <%= image_tag 'icon-pin-blue.png', class: 'me-2', width: '12px', height: '12.5px' %>
+        <p class='mb-0'><%= @observatory.neighborhood %></p>
+      </div>
+    </div>
+
+  <div class="observatory__show mb-4">
+    <%= @observatory.rich_description %>
+  </div>
+
+  <%# <div class="cards__index cards__index--min-two mb-4"> %>
+    <div class="row mb-4">
+      <% @observatory.galleries.each do |gallery| %>
+        <div class="col-6 col-md-4 col-xl-3">
+          <%= cl_image_tag gallery.banner.key, width: '100%' %>
+        </div>
+      <% end %>
+    </div>
+
+  <%# ACOES %>
+  <section class="events mb-4">
+    <div class="events__header mb-3">
+      <div class="d-flex align-items-center px-3">
+        <div class="flex-grow-1">
+          <h5 class='mb-0'>Últimas ações</h5>
+        </div>
+        <div class="btn-icon btn-icon--square">
+          <%= image_tag 'Calendar.png' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-4">
+      <% 10.times do %>
+        <div class="col-12 col-md-6 col-xl-4">
+          <div class="card__event">
+            <div style='background-image: url(<%= image_path 'default-banner.png'%>);background-size: cover; background-position: center;'></div>
+            <div class="event__content">
+              <div class="h-100 px-3 pb-3 flex-grow-1 d-flex flex-column justify-content-between">
+                <h5 class='mb-0'>Nome da ação</h5>
+                <div class="event__tags d-flex justify-content-start align-items-center">
+                  <small class="tag">araruama</small>
+                  <small class="tag">pescadores</small>
+                </div>
+              </div>
+              <div class="event__date">
+                <p class="mb-0">13</p>
+                <p class="mb-0">DEZ</p>
+                <p class="mb-0 date__year">2023</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+  </section>
+
+</div>
