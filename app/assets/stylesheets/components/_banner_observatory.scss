@@ -39,11 +39,11 @@
 
 
 @media (min-width: 576px) {
-  // .banner__observatory {
+  .banner__observatory {
   // background-image: radial-gradient(50% 50% at 50% 50%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.48) 89.06%), url(asset-path('hero-observatory.png'));
-  //   background-size: cover;
-  //   .banner__content {
-  //     display: none;
-  //   }
-  // }
+    // background-size: cover;
+    .banner__content {
+      display: none;
+    }
+  }
 }

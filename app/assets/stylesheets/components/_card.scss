@@ -102,6 +102,16 @@ small.tag {
   grid-gap: 1rem;
 }
 
+.cards__index.cards__index--min-two {
+  grid-template-columns: 1fr 1fr;
+}
+
+.cards__index--min-two img {
+  box-shadow: -5px 5px 19px 3px rgba(82, 81, 81, 0.05);
+  border-radius: 5px;
+}
+
+
 .card__index {
   height: 100%;
   border-radius: 10px;
@@ -162,6 +172,55 @@ small.tag {
     background-color: white;
     border-radius: 0 0 10px 10px;
   }
+}
+
+// EVENT CARD
+
+.card__event {
+  /* width: 384px; */
+  height: 486px;
+  display: grid;
+  grid-template-rows: 3fr 1fr;
+  grid-gap: 1rem;
+  box-shadow: 4px 4px 20px rgba(0, 0, 0, .1);
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 10px;
+}
+
+.event__tags .tag:first-child {
+  margin-right: 1rem;
+}
+
+.event__content {
+  display: grid;
+  grid-template-columns: 9fr 4fr;
+  grid-gap: 1rem;
+}
+
+.event__date {
+  box-shadow: 4px 4px 12px rgba(82, 81, 81, .1);
+  background-color: rgba(255, 255, 255, 0.949999988079071);
+  margin: 0px 12px 1rem 1rem;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.event__date > p:not(.date__year) {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 26px;
+  /* identical to box height, or 130% */
+
+  text-align: center;
+  letter-spacing: 0.15px;
+  font-feature-settings: 'pnum' on, 'lnum' on;
+}
+
+.event__tags:first-child {
+  margin-right: 1rem;
 }
 
 
