@@ -14,7 +14,6 @@ module Dashboard
       @observatory = Observatory.new(observatory_params)
       if @observatory.save
         set_observatory_category
-        set_observatory_priority
         set_observatory_conflict
         flash[:notice] = "#{@observatory.name} created successfully"
         redirect_to dashboard_observatories_path
@@ -48,11 +47,5 @@ module Dashboard
       conflict_type = ConflictType.find(params[:observatory][:conflict_type])
       ObservatoryConflict.create(observatory: @observatory, conflict_type: conflict_type)
     end
-
-    def set_observatory_priority
-      priority_type = PriorityType.find(params[:observatory][:priority_type])
-      ObservatoryPriority.create(observatory: @observatory, priority_type: priority_type)
-    end
-
   end
 end

@@ -36,9 +36,7 @@ priorities = [
   "Agricultores Familiares",
   "Pescadores de Guaiamum"
 ]
-priorities.each do |priority|
-  PriorityType.create! name: priority
-end
+priorities.each { |priority| PriorityType.create! name: priority }
 
 puts "creating Categories..."
 ['Teatro do Oprimido', 'Comunicação Popular', 'Educação Ambiental'].each do |name|
@@ -53,13 +51,17 @@ end
 
 puts 'Creating Observatory...'
 observatory = Observatory.create!(
-  headline: 'PEA - Rede OBservacao',
-  name: 'PEA - Rede OBservacao',
-  description: 'PEA - Rede OBservacao',
-  email: 'pea@obs.com',
-  phone_number: '232323232',
-  address: 'Saquarema - Rio de Janeiro',
-  unity_type: UnityType.last
+  name: 'Araruama',
+  email: 'pea.araruama@redeobservacao.com',
+  phone_number: '21972614293',
+  unity_type: UnityType.last,
+  neighborhood: 'Prainha',
+  city: 'Arraial do Cabo',
+  street: 'Rua Francis Barreto',
+  number: '80',
+  zip_code: '22358-756',
+  state: 'Rio de Janeiro',
+  municipality: 'RJ'
 )
 observatory.conflict_type = ConflictType.last
 observatory.priority_type = PriorityType.last

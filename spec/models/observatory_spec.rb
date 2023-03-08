@@ -9,7 +9,6 @@ RSpec.describe Observatory, type: :model do
 
   describe 'Associations' do
     it { should have_one(:observatory_category).dependent(:destroy) }
-    it { should have_one(:observatory_priority).dependent(:destroy) }
     it { should have_one(:observatory_conflict).dependent(:destroy) }
     it { should have_one(:category) }
     it { should have_one(:priority_type) }
