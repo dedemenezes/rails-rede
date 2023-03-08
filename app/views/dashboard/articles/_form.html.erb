@@ -20,7 +20,7 @@
                     } %>
         </div>
         <div class="col-12">
-          <%= f.input :tags,
+          <%#= f.input :tags,
                       label: 'Tag de Localidade',
                       collection: Observatory.pluck(:address).uniq.map { _1.split(' ').first },
                       input_html: {
