@@ -13,7 +13,7 @@ class Observatory < ApplicationRecord
   validates :phone_number, format: { with: /\A(\+5521|0?21)?\d{9}\z/ }
 
   belongs_to :unity_type, inverse_of: :observatories
-  belongs_to :priority_type, optional: true
+  belongs_to :priority_type
 
   has_one :observatory_category, dependent: :destroy
   has_one :category, through: :observatory_category
