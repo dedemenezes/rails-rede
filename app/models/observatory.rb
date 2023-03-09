@@ -22,6 +22,7 @@ class Observatory < ApplicationRecord
   has_many :galleries, dependent: :destroy
   has_many :taggings, as: :taggable, dependent: :destroy
   has_many :tags, through: :taggings
+  has_many :articles
 
   has_one_attached :banner
   has_rich_text :rich_description

@@ -3,21 +3,32 @@
     <div class="col-6">
       <div class="row">
         <div class="col-12 col-sm-6">
-          <%= f.input :featured, hint: "#{Article.featured ? 'Substituirá a notícia em destaque' : ''}" %>
-          <%= f.input :published %>
+          <div class="row">
+            <div class="col-12">
+              <%= f.input :featured, hint: "#{Article.featured ? 'Substituirá a notícia em destaque' : ''}" %>
+            </div>
+            <div class="col-12">
+              <%= f.input :published %>
+            </div>
+          </div>
         </div>
       </div>
     </div>
     <div class="col-12 col-sm-6">
       <div class="row">
         <div class="col-12">
-        <%= f.input :tags,
-                    label: 'Tags',
-                    collection: Tag.all,
-                    input_html: {
-                      multiple: true,
-                      data: { controller: 'tom-select' }
-                    } %>
+          <%= f.association :tags,
+                      input_html: {
+                        multiple: true,
+                        data: { controller: 'tom-select', tom_select_max_item_value: 2 }
+                      } %>
+        </div>
+        <div class="col-12">
+          <%= f.association :observatory,
+                      label: 'Observatory',
+                      input_html: {
+                        data: { controller: 'tom-select' }
+                      } %>
         </div>
       </div>
     </div>

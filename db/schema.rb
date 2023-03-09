@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_09_021241) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_09_040042) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -68,6 +68,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_09_021241) do
     t.string "highlight"
     t.boolean "featured", default: false
     t.boolean "published", default: false
+    t.bigint "observatory_id"
+    t.index ["observatory_id"], name: "index_articles_on_observatory_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -212,6 +214,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_09_021241) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "albums", "galleries"
+  add_foreign_key "articles", "observatories"
   add_foreign_key "galleries", "observatories"
   add_foreign_key "members", "observatories"
   add_foreign_key "members", "projects"
