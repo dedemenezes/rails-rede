@@ -13,7 +13,10 @@ class Dashboard::ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
-    @article.tag_list.add(params[:article][:tag_list])
+    tags = Tag.where(id: params[:article][:tags])
+    tags.each do |tag|
+      Tagging.create tag: tag, taggable: @article
+    end
     if @article.save
       redirect_to dashboard_articles_path
     else
@@ -26,6 +29,12 @@ class Dashboard::ArticlesController < ApplicationController
 
   def update
     if @article.update(article_params)
+      if params[:article][:tags].present?
+        tags = Tag.where(id: params[:article][:tags])
+        tags.each do |tag|
+          Tagging.create tag: tag, taggable: @article
+        end
+      end
       redirect_to dashboard_articles_path
     else
       render :new, status: :unprocessable_entity
