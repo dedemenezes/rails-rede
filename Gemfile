@@ -60,7 +60,7 @@ gem "geocoder"
 
 gem "cloudinary"
 
-gem 'acts-as-taggable-on', '~> 9.0'
+# gem 'acts-as-taggable-on', '~> 9.0'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

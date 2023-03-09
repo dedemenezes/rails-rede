@@ -36,13 +36,18 @@
       <%= link_to dashboard_galleries_path do %>
         <%= icon 'fa-solid', 'table-columns' %> Galleries
       <% end %>
-      <ul class="list-group border-0">
+      <ul class="list-group border-0 mb-0">
         <li class="list-group-item border-0">
           <%= link_to dashboard_albums_path do %>
             <%= icon('fa-solid', 'briefcase') %> Albums
           <% end %>
         </li>
       </ul>
+    </li>
+    <li class="list-group-item border-0">
+      <%= link_to dashboard_tags_path do %>
+        <%= icon('fa-solid', 'check') %> Tags
+      <% end %>
     </li>
   </ul>
 </div>

@@ -11,29 +11,20 @@
     <div class="col-12 col-sm-6">
       <div class="row">
         <div class="col-12">
-        <%= f.input :tag_list,
-                    label: 'Tag de conflito',
-                    collection: ConflictType.pluck(:name),
+        <%= f.input :tags,
+                    label: 'Tags',
+                    collection: Tag.all,
                     input_html: {
-                      data: { controller: 'tom-select' },
-                      value: f.object.tag_list.join(",")
+                      multiple: true,
+                      data: { controller: 'tom-select' }
                     } %>
-        </div>
-        <div class="col-12">
-          <%#= f.input :tags,
-                      label: 'Tag de Localidade',
-                      collection: Observatory.pluck(:address).uniq.map { _1.split(' ').first },
-                      input_html: {
-                        data: { controller: 'tom-select' },
-                        value: f.object.tag_list.join(",")
-                      } %>
         </div>
       </div>
     </div>
   </div>
 
   <%= f.input :banner, as: :file %>
-  <%= f.input :header %>
+  <%= f.input :header, hint: 'Máximo de 37 caractéres' %>
   <%= f.input :sub_header %>
   <%= f.rich_text_area :rich_body %>
   <%= f.submit 'Update', class: 'btn btn-primary mt-3 mb-5 w-100' %>
