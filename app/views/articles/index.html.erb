@@ -1,9 +1,11 @@
 <div class="container">
   <div class="row justify-content-center mt-2 mb-5">
     <div class="col-12">
-      <div class="overlay__wrapper d-flex justify-content-between align-items-center border border-info border-5 border-end-0 border-top-0 border-bottom-0 ps-4">
+      <div class="overlay__wrapper d-flex justify-content-between align-items-center border border-info border-5 border-end-0 border-top-0 border-bottom-0 ps-4"
+           data-controller="overlay-menu"
+           data-action="mouseleave->overlay-menu#hide">
         <h1>Notícias</h1>
-        <ul class="overlay__content">
+        <ul class="overlay__content" data-overlay-menu-target='menu'>
           <div class="row">
             <div class="col-4"></div>
           </div>
@@ -12,7 +14,7 @@
           <li><a href="#">Clients</a></li>
           <li><a href="#">Contact</a></li>
         </ul>
-        <button class="btn-icon">
+        <button class="btn-icon" data-overlay-menu-target='btn' data-action="click->overlay-menu#toggle">
           Filtros
           <%= image_tag 'filter-icon-2.png', width: '12px' %>
         </button>

@@ -1,6 +1,11 @@
 .overlay__wrapper {
   position: relative;
 }
+
+.overlay__content--active {
+  border-color:  rgba(8, 52, 97, 0.2);
+}
+
 ul {
     &.overlay__content {
     visibility: hidden;
@@ -10,7 +15,7 @@ ul {
     margin-top: 1rem;
     display: none;
     right: 0px;
-    top: 27px;
+    top: 22px;
   }
   &.overlay__content.active {
     visibility: visible;
@@ -37,5 +42,5 @@ ul {
   border-right-color: rgba(8, 52, 97, 0.1);
   border-right-width: 2px;
   border-right-style: solid;
-  width: 145px;
+  width: 144px;
 }
