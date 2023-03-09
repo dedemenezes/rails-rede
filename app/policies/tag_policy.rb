@@ -6,6 +6,10 @@ class TagPolicy < ApplicationPolicy
     # end
   end
 
+  def desroy?
+    true
+  end
+
   def show?
     false
   end

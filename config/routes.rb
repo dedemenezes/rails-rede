@@ -14,6 +14,13 @@ Rails.application.routes.draw do
   resources :categories
   resources :tags, only: :show
 
+  namespace :articles do
+    namespace :index do
+      delete '/tag/:name', to: 'tags#destroy', as: :tag
+    end
+  end
+  # delete 'articles/index/tags', to: 'articles_index_tags#destroy', as: :remove_tag_from_filter
+
   get 'dashboard', to: 'dashboard#home', as: :home
   namespace :dashboard do
     resources :tags, except: :show

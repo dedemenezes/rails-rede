@@ -11,12 +11,14 @@
       <% end %>
       <%# <small>= article.tags.first.name</small> %>
       <% article.tags.each do |tag| %>
-        <small class="tag"><%= tag.name %></small>
+        <small class="tag"><%= link_to tag.name, articles_path(tags: [tag.name]) %></small>
       <% end %>
     </div>
-    <h5 class="mb-0"><%= article.header.truncate(highlight ? 45 : 37) %></h5>
-    <% if highlight %>
-      <p class="mb-0"><%= @featured_article.sub_header.truncate(120) %></p>
+    <%= link_to article_path(article) do %>
+      <h5 class="mb-0"><%= article.header.truncate(highlight ? 45 : 37) %></h5>
+      <% if highlight %>
+        <p class="mb-0"><%= @featured_article.sub_header.truncate(120) %></p>
+      <% end %>
     <% end %>
   </div>
 </div>
