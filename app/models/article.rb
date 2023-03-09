@@ -1,11 +1,11 @@
 class Article < ApplicationRecord
   validates :header, :sub_header, presence: true, uniqueness: true
-  validates :featured, uniqueness: true
   has_one_attached :banner
   has_one_attached :highlight_image
   has_rich_text :rich_body
 
-  scope :main, -> { find_by_featured(true) }
+  after_validation :ensure_one_featured_article
+
   scope :only_published, -> { where(published: true) }
   scope :all_but_featured, -> { order(created_at: :desc).to_a.delete_if(&:featured) }
 
@@ -19,11 +19,20 @@ class Article < ApplicationRecord
     find_by_featured(true) || nil
   end
 
-  def self.has_any_present?
+  def self.any_present?
     count.positive?
   end
 
   def featured?
     featured ? '✅' : '❌'
   end
+
+  def ensure_one_featured_article
+    return if Article.featured.nil?
+    return unless featured
+
+    Article.featured.update(featured: false)
+    self.featured = true
+  end
+
 end
