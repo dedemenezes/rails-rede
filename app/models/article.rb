@@ -3,16 +3,17 @@ class Article < ApplicationRecord
   has_one_attached :banner
   has_one_attached :highlight_image
   has_rich_text :rich_body
+  has_many :taggings, as: :taggable
 
   after_validation :ensure_one_featured_article
 
   scope :only_published, -> { where(published: true) }
   scope :all_but_featured, -> { order(created_at: :desc).to_a.delete_if(&:featured) }
 
-  acts_as_taggable_on :tags
+  # acts_as_taggable_on :tags
 
   def self.dashboard_headers
-    %w[id banner header sub\ header rich\ body featured? published?]
+    %w[id banner header featured? published?]
   end
 
   def self.featured
