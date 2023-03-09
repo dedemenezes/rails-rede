@@ -3,7 +3,7 @@ class Tag < ApplicationRecord
   validates :name, presence: true, uniqueness: true, length: { minimum: 2 }
 
   def self.dashboard_headers
-    %w[name total\ de\ tags]
+    %w[id name total\ de\ tags]
   end
 
   def total_de_tags
