@@ -12,9 +12,11 @@ Rails.application.routes.draw do
   resources :galleries, only: %i[index show]
   resources :albums, only: %i[index show]
   resources :categories
+  resources :tags, only: :show
 
   get 'dashboard', to: 'dashboard#home', as: :home
   namespace :dashboard do
+    resources :tags, except: :show
     resources :articles
     resources :observatories
     resources :categories

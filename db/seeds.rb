@@ -70,6 +70,10 @@ observatory = Observatory.create!(
   description: description
 )
 
+puts 'Creating tags...'
+
+%(Pescadores Araruama).each { Tag.create! name: _1 }
+
 # puts "creating Projects"
 # project = Project.create!(
 #   name: 'Rede Observacao'
