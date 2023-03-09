@@ -52,7 +52,8 @@ $theme-colors: (
   "primary": $primary,
   "success": $success,
   'danger': $danger,
-  "info": $info
+  "info": $info,
+  "warning": $warning,
 );
 
 $theme-colors: map-merge($theme-colors, $rede-colors);

@@ -15,7 +15,7 @@
       <%= form_with url: articles_path, method: :get, html: { class: 'row justify-content-center align-items-center mb-3' } do |f| %>
         <div class="col-7 col-sm-6 col-md-5">
           <div class="row">
-            <div class="col-12">
+            <div class="col-12 d-none" data-overlay-menu-target='inputWrapper'>
 
               <%= f.collection_select(:tags, Tag.all, :name, :name,
                                       {},
@@ -40,12 +40,12 @@
   <% if params[:tags] %>
     <div class="tags__searched mb-4">
       <%  params[:tags].reject(&:empty?).each do|tag_name| %>
-        <small class="tag">
-          <%= tag_name %>
-          <%= link_to articles_index_tag_path(name: tag_name, tags: params[:tags]), data: { turbo_method: :delete } do %>
-            <span class='remove_tag--icon'>+</span>
-          <% end %>
-        </small>
+        <%= link_to articles_index_tag_path(name: tag_name, tags: params[:tags]), data: { turbo_method: :delete }, style: 'z-index: 10' do %>
+          <small class="tag">
+            <%= tag_name %>
+            <span class='text-warning'>x</span>
+          </small>
+        <% end %>
       <% end %>
     </div>
   <% end %>

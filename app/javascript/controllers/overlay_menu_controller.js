@@ -2,15 +2,13 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="overlay-menu"
 export default class extends Controller {
-  static targets = ['menu', 'btn', 'formContainer', 'form', 'input']
+  static targets = ['menu', 'btn', 'formContainer', 'form', 'input', 'inputWrapper']
   connect() {
   }
 
   toggle() {
     this.formContainerTarget.classList.toggle('active')
-    if (!this.formContainerTarget.classList.includes('active')) {
-      this.inputTarget.focus()
-    }
+    this.inputWrapperTarget.classList.toggle('d-none')
     // this.formContainerTarget.classList.toggle('overlay__content--active')
   }
 
