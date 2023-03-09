@@ -40,17 +40,17 @@
 
 </div>
 
-<div class="swiper mySwiper" data-controller='swiper'>
-  <div class="container"><h2 class='mb-0'>Últimos eventos</h2></div>
-  <div class="container swiper-wrapper"  data-swiper-target='wrapper'>
+<div class="container"><h2 class='mb-0'>Últimos eventos</h2></div>
+<div class="swiper mySwiper" data-controller='swiper' data-swiper-slides-per-view-value="1">
+  <div class="swiper-wrapper"  data-swiper-target='wrapper'>
     <% dates = Array.new(rand(1..10)) { |i| Date.new 2022, rand(1..12), rand(1..26) }.sort.reverse %>
     <% dates.each do |date| %>
       <div class="swiper-slide">
-        <%= link_to '#' do %>
-          <div class="card__event">
-            <div style='background-image: url(<%= image_path 'default-banner.png'%>);background-size: cover; background-position: center;'></div>
+        <div class="card__event">
+          <div style='background-image: url(<%= image_path 'default-banner.png'%>);background-size: cover; background-position: center;'></div>
+          <%= link_to '#' do %>
             <div class="event__content">
-              <div class="h-100 px-3 pb-3 flex-grow-1 d-flex flex-column justify-content-between">
+              <div class="h-100 px-3 pb-3 flex-grow-1 d-flex flex-column justify-content-between align-items-start">
                 <h5 class='mb-0'>Nome da ação</h5>
                 <div class="event__tags d-flex justify-content-start align-items-center">
                   <small class="tag">araruama</small>
@@ -63,25 +63,9 @@
                 <p class="mb-0 date__year"><%= date.year %></p>
               </div>
             </div>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
       </div>
     <% end %>
   </div>
-  <div class="swiper-pagination"></div>
 </div>
-<style>
-
-.card-event .event-image {
-  background-size: cover;
-  background-position: center;
-  height: 260px;
-}
-.event-date {
-  height: 78px;
-  width: 78px;
-}
-.event-date p {
-    margin-bottom: 0;
-}
-</style>
