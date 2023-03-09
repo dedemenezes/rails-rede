@@ -1,0 +1,41 @@
+.overlay__wrapper {
+  position: relative;
+}
+ul {
+    &.overlay__content {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    transition: all .5s ease;
+    margin-top: 1rem;
+    display: none;
+    right: 0px;
+    top: 27px;
+  }
+  &.overlay__content.active {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+  }
+
+  &.overlay__content li {
+    clear: both;
+    width: 100%;
+  }
+}
+
+.overlay__content {
+  background-color: white;
+  padding: 16px 24px;
+  border-radius: 0 0 10px 10px;
+  border-left-color: rgba(8, 52, 97, 0.1);
+  border-left-width: 2px;
+  border-left-style: solid;
+  border-bottom-color: rgba(8, 52, 97, 0.1);
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+  border-right-color: rgba(8, 52, 97, 0.1);
+  border-right-width: 2px;
+  border-right-style: solid;
+  width: 145px;
+}
