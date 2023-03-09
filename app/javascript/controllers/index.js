@@ -16,6 +16,9 @@ application.register("hello", HelloController)
 import MapController from "./map_controller"
 application.register("map", MapController)
 
+import OverlayMenuController from "./overlay_menu_controller"
+application.register("overlay-menu", OverlayMenuController)
+
 import PhotoPreviewController from "./photo_preview_controller"
 application.register("photo-preview", PhotoPreviewController)
 

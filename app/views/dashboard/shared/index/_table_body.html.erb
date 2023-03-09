@@ -15,13 +15,15 @@
     <% end %>
     <td>
       <ul class="list-inline mb-0">
-        <li class="list-inline-item border-0"
-            data-controller='tooltip'
-            data-bs-toggle="tooltip"
-            data-bs-placement="left"
-            data-bs-title="Ver no site">
-          <%= link_to icon('fa-solid', 'book'), url_for(element) %>
-        </li>
+        <% if policy(element).show? %>
+          <li class="list-inline-item border-0"
+              data-controller='tooltip'
+              data-bs-toggle="tooltip"
+              data-bs-placement="left"
+              data-bs-title="Ver no site">
+            <%= link_to icon('fa-solid', 'book'), url_for(element) %>
+          </li>
+        <% end %>
         <li class="list-inline-item border-0"
             data-controller='tooltip'
             data-bs-toggle="tooltip"

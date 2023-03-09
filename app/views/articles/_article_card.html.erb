@@ -1,5 +1,5 @@
 <div class="article__card">
-  <div class="card__image" style='background-image:url(<%= display_banner_as_background(article) %>);height: <%= highlight ? "440px" : "147px" %>; background-size: cover; background-position: center;'></div>
+  <div class="card__image" style='background-image:url(<%= display_banner_as_background(article) %>);height: <%= highlight ? "448px" : "147px" %>; background-size: cover; background-position: center;'></div>
   <%#= cl_image_tag article.banner.key, height: '147px' %>
   <div class="article__card__content">
     <% unless highlight %>
@@ -10,13 +10,15 @@
         <small><%= article.created_at.strftime('%d.%m.%Y') %></small>
       <% end %>
       <%# <small>= article.tags.first.name</small> %>
-      <% article.tag_list.each do |tag| %>
-        <small class="tag"><%= tag %></small>
+      <% article.tags.each do |tag| %>
+        <small class="tag"><%= link_to tag.name, articles_path(tags: [tag.name]) %></small>
       <% end %>
     </div>
-    <h5 class="mb-0"><%= article.header.truncate(highlight ? 45 : 21) %></h5>
-    <% if highlight %>
-      <p class="mb-0"><%= @top_article.sub_header.truncate(120) %></p>
+    <%= link_to article_path(article) do %>
+      <h5 class="mb-0"><%= article.header.truncate(highlight ? 45 : 37) %></h5>
+      <% if highlight %>
+        <p class="mb-0"><%= @featured_article.sub_header.truncate(120) %></p>
+      <% end %>
     <% end %>
   </div>
 </div>
