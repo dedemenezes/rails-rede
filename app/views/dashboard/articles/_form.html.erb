@@ -24,7 +24,7 @@
   </div>
 
   <%= f.input :banner, as: :file %>
-  <%= f.input :header %>
+  <%= f.input :header, hint: 'Máximo de 37 caractéres' %>
   <%= f.input :sub_header %>
   <%= f.rich_text_area :rich_body %>
   <%= f.submit 'Update', class: 'btn btn-primary mt-3 mb-5 w-100' %>

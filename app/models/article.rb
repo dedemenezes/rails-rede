@@ -24,6 +24,9 @@ class Article < ApplicationRecord
   end
 
   def tags_name
+    return '' if tags.empty?
+    return tags[0].name unless tags.count > 1
+
     names = tags.map(&:name)
     "#{names[0...-1].join(', ')} e #{names[-1]}"
   end
