@@ -2,11 +2,12 @@ class Article < ApplicationRecord
   validates :header, :sub_header, presence: true, uniqueness: true
   validates_with OneFeaturedArticleValidator
 
+  belongs_to :observatory, optional: true
+  has_many :taggings, as: :taggable, dependent: :destroy
+  has_many :tags, through: :taggings
   has_one_attached :banner
   has_one_attached :highlight_image
   has_rich_text :rich_body
-  has_many :taggings, as: :taggable, dependent: :destroy
-  has_many :tags, through: :taggings
 
   after_validation :ensure_one_featured_article
 
@@ -16,11 +17,15 @@ class Article < ApplicationRecord
   # acts_as_taggable_on :tags
 
   def self.dashboard_headers
-    %w[id banner header tags\ name featured? published?]
+    %w[id banner header tags\ name featured? published? observatory\ name]
   end
 
   def self.featured
     find_by_featured(true) || nil
+  end
+
+  def observatory_name
+    observatory&.name
   end
 
   def tags_name

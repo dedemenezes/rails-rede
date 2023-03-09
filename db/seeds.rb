@@ -38,9 +38,9 @@ priorities = [
 ]
 priorities.each { |priority| PriorityType.create! name: priority }
 
-puts "creating Categories..."
+puts "creating Methodologies..."
 ['Teatro do Oprimido', 'Comunicação Popular', 'Educação Ambiental'].each do |name|
-  Category.create! name: name
+  Methodology.create! name: name
 end
 
 puts 'creating unity types'
