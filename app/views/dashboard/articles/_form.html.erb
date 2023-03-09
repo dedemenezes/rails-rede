@@ -1,9 +1,9 @@
-<%= simple_form_for([:dashboard, article], html: { class: 'row' }) do |f| %>
+<%= simple_form_for([:dashboard, article], html: { class: 'row mt-3' }) do |f| %>
   <div class="row">
     <div class="col-6">
       <div class="row">
         <div class="col-12 col-sm-6">
-          <%= f.input :featured %>
+          <%= f.input :featured, hint: "#{Article.featured ? 'Substituirá a notícia em destaque' : ''}" %>
           <%= f.input :published %>
         </div>
       </div>

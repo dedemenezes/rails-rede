@@ -2,9 +2,8 @@ class ArticlesController < ApplicationController
   skip_before_action :authenticate_user!
 
   def index
-
-    @top_article = Article.featured
     @articles = policy_scope(Article).all_but_featured
+    @featured_article = Article.featured
     @recent_articles = @articles.slice!(0, 4)
   end
 
