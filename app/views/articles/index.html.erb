@@ -15,13 +15,16 @@
       <%= form_with url: articles_path, method: :get, html: { class: 'row justify-content-center align-items-center mb-3' } do |f| %>
         <div class="col-8 col-sm-6 col-md-5">
           <div class="row">
-              <%= f.collection_select(:tags, Tag.all, :id, :name,
-                                      {:prompt => ''},
+              <%= f.collection_select(:tags, Tag.all, :name, :name,
+                                      {},
                                       multiple: true,
                                       class: "form-select",
                                       id: "Seleccione",
-                                      data: { controller: 'tom-select'},
-                                      value: params[:tags]) %>
+                                      data: {
+                                        controller: 'tom-select',
+                                        tom_select_options_value: {tags: true},
+                                        tom_select_max_item_value: 4
+                                      } ) %>
           </div>
         </div>
         <div class="col-2">
