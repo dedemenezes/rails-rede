@@ -82,27 +82,33 @@
 
 .btn__secondary {
   border-radius: 0;
-  padding-bottom: 8px;
+  // padding-bottom: 8px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  padding-right: 2px;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: $r-blue-d;
   &:hover {
     opacity: .7;
   }
 }
 
 .btn__secondary--rede-primary {
-  border-bottom: 2px solid $primary;
+  border-color: $primary;
   &:hover {
-    border-bottom: 2px solid $primary;
+    border-color: 2px solid $primary;
   }
 }
 .btn__secondary--rede-primary-l {
-  border-bottom: 2px solid $r-blue-l;
+  border-color: 2px solid $r-blue-l;
   &:hover {
-        border-bottom: 2px solid $r-blue-l;
+        border-color: 2px solid $r-blue-l;
     }
 }
 .btn__secondary--rede-dark-red {
-  border-bottom: 2px solid $r-red-d;
+  border-color: 2px solid $r-red-d;
   &:hover {
-      border-bottom: 2px solid $r-red-d;
+      border-color: 2px solid $r-red-d;
     }
 }

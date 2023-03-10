@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light text-primary">
-  <div class="container-fluid">
+  <div class="container">
       <%= link_to root_path, class: 'navbar-brand' do %>
         <%= image_tag 'Logo_PEA.png', width: '186px' %>
       <% end %>
@@ -12,7 +12,10 @@
             <%= link_to "Home", root_path, class: "nav-link #{tab_active?('pages' , action: 'home')}" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Sobre nós",about_us_path, class: "nav-link" %>
+            <%= link_to "Sobre nós",about_us_path, class: "nav-link #{tab_active?('pages' , action: 'about_us')}"%>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Mapa", about_us_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
             <%= link_to "Observatórios", observatories_path, class: "nav-link #{tab_active?('observatories')}" %>

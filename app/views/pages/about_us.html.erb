@@ -19,8 +19,8 @@
       </div>
     </div>
     <div class="row justify-content-center">
-      <div class="col-12 text-center">
-        <%= link_to 'IR PARA O ACERVO', galleries_path, class: 'btn btn__secondary btn__secondary--rede-primary' %>
+      <div class="col-12 text-center text-primary">
+        <%= link_to 'IR PARA O ACERVO', galleries_path, class: 'btn btn__secondary continuous-3' %>
       </div>
     </div>
   </div>
@@ -34,15 +34,15 @@
       </div>
     </div>
     <div class="row mb-3">
-      <% @categories.each_with_index do |category, index| %>
+      <% @methodologies.each_with_index do |methodology, index| %>
         <% text_color = ['rede-dark-red', 'rede-primary', 'rede-primary-l'] %>
         <div class="col-12 col-sm-4">
-          <div class="category__card">
+          <div class="methodology__card">
             <%= image_tag 'hero-image.png', width: '100%' %>
             <div class="card__content">
-              <h6 class="text-<%= text_color[index] %>"><%= category.name %></h6>
+              <h6 class="text-<%= text_color[index] %>"><%= methodology.name %></h6>
               <p class="text-primary">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.</p>
-              <%= link_to 'Ver mais', category_path(category), class: "text-#{text_color[index]} btn btn__secondary btn__secondary--#{text_color[index]}" %>
+              <%= link_to 'Ver mais', methodology_path(methodology), class: "text-#{text_color[index]} btn btn__secondary continuous-3" %>
             </div>
           </div>
         </div>

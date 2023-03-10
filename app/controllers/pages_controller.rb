@@ -7,6 +7,6 @@ class PagesController < ApplicationController
   end
 
   def about_us
-    @categories = Category.all
+    @methodologies = Methodology.all
   end
 end
