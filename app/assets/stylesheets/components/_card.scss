@@ -203,7 +203,10 @@ small.tag {
 .event__content {
   display: grid;
   grid-template-columns: 9fr 4fr;
-  grid-gap: 1rem;
+  // grid-gap: 1rem;
+  h5 {
+    font-size: 1.25em;
+  }
   &:hover {
     h5 {
       color: $r-blue-l !important;
