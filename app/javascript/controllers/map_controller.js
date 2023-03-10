@@ -14,8 +14,11 @@ export default class extends Controller {
       container: this.element,
       style: "mapbox://styles/mapbox/streets-v10"
     })
+
+
     this.#addMarkersToMap()
     this.#fitMapToMarkers()
+    this.#addNavigationtoMap()
   }
 
   #fitMapToMarkers() {
@@ -29,5 +32,13 @@ export default class extends Controller {
         .setLngLat([ marker.lng, marker.lat ])
         .addTo(this.map)
     })
+  }
+
+  #addNavigationtoMap() {
+    const nav = new mapboxgl.NavigationControl({
+      showCompass: true,
+      showZoom: true
+    })
+    this.map.addControl(nav, 'top-left');
   }
 }
