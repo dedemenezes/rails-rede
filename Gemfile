@@ -54,7 +54,7 @@ gem "simple_form", github: "heartcombo/simple_form"
 
 gem 'pundit'
 
-gem "rails_admin", "~> 3.0"
+# gem "rails_admin", "~> 3.0"
 
 gem "geocoder"
 

@@ -1,0 +1,8 @@
+<%= content_for :head do %>
+<% end %>
+  <div style="width: 100% height: 50vh;"
+    class="card__map"
+    data-controller="map"
+    data-map-markers-value="<%= @markers.to_json %>"
+    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+  </div>
