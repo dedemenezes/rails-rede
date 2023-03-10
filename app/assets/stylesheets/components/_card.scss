@@ -199,8 +199,8 @@ small.tag {
 
 // METHDO CARD
 .methodology__card {
-  border-radius: 10px;
-  box-shadow: 4px 4px 20px rgba(0, 0, 0, .1);
+  border-radius: 10px 10px 0 0;
+  height: 348px;
   img {
     border-radius: 10px 10px 0 0;
   }
@@ -212,6 +212,17 @@ small.tag {
   }
 }
 
+.new__card {
+  border-radius: 10px;
+  box-shadow: 4px 4px 20px rgba(0, 0, 0, .1);
+}
+
+.new__card .card__content {
+  text-align: center;
+  padding: 18px 28px;
+  background-color: white;
+  border-radius: 0 0 10px 10px;
+}
 // EVENT CARD
 
 .card__event {

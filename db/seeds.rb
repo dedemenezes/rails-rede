@@ -14,7 +14,7 @@ puts 'Creating Project...'
 rede_observacao = Project.create! name: 'Rede Observação'
 
 puts "creating Methodologies..."
-['Teatro do Oprimido', 'Comunicação Popular', 'Educação Ambiental'].each do |name|
+['Teatro do Oprimido', 'Comunicação Popular', 'Formação e Pesquisa'].each do |name|
   Methodology.create! name: name, project: rede_observacao
 end
 
