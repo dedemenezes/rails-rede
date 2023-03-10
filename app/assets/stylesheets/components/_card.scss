@@ -85,9 +85,14 @@
     margin-bottom: 2rem;
   }
   p {
-    width: 11em;
-    margin: 0px auto;
+    color: $primary;
+    width: 14rem;
     text-align: center;
+    margin-top: 1rem;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 24px;
+    letter-spacing: 0.15px;
   }
 }
 
