@@ -38,7 +38,7 @@ class Observatory < ApplicationRecord
   end
 
   def location
-    "#{street}"
+    neighborhood
   end
 
   def published?
