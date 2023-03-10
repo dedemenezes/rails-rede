@@ -28,8 +28,9 @@
     <div class="row mb-4">
       <% @observatory.galleries.each do |gallery| %>
         <div class="col-6 col-md-4 col-xl-3">
-          <%= cl_image_tag gallery.banner.key, width: '100%' %>
+          <%= display_banner(gallery, width: '100%') %>
         </div>
+        <%# cl_image_tag gallery.banner.key %>
       <% end %>
     </div>
 
