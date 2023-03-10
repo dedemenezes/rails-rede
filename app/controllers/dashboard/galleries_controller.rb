@@ -52,6 +52,8 @@ class Dashboard::GalleriesController < ApplicationController
   end
 
   def set_observatory
+    return if @gallery.observatory
+
     begin
       @observatory = Observatory.find(params[:gallery][:observatory_id])
     rescue => exception

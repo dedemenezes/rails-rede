@@ -56,6 +56,8 @@ class Observatory < ApplicationRecord
   end
 
   def set_gallery
+    return unless galleries.empty?
+
     Gallery.create observatory: self, name: name
   end
 
