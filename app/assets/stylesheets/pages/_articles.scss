@@ -6,17 +6,27 @@
 
 .recents--layout {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   grid-template-rows: 1fr 1fr;
   grid-gap: 1rem;
   min-height: 100%;
 
   .article__card {
     height: 100%;
+    margin-bottom: 1rem;
     // display: grid;
     // grid-template-rows: 3fr 2fr;
     // .card__image {
     //   height: 100% !important;
     // }
+  }
+}
+
+@media (min-width: 768px) {
+  .recents--layout {
+    grid-template-columns: 1fr 1fr;
+  }
+  .article__card {
+    margin-bottom: 0;
   }
 }
