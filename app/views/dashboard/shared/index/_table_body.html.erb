@@ -17,7 +17,6 @@
             <% end %>
         </td>
       <% else %>
-      <%= header %>
         <td><%= element.send(header.gsub(' ', '_').to_sym) %></td>
       <% end %>
     <% end %>
