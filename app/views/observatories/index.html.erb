@@ -7,13 +7,16 @@
     </div>
   </div>
 </div>
-<div class="cards-container">
-  <div class="cards__observatories">
-    <% @observatories.each do |observatory| %>
-      <div class="observatory__card">
-        <%= display_banner(observatory) %>
-        <p><%= observatory.name %></p>
-      </div>
-    <% end %>
+<div class="container">
+  <div class="cards-container">
+    <div class="cards__observatories">
+      <% @observatories.each do |observatory| %>
+        <div class="observatory__card">
+          <%= display_banner(observatory) %>
+          <p><%= link_to observatory.name, observatory_path(observatory) %></p>
+        </div>
+      <% end %>
+    </div>
   </div>
+
 </div>

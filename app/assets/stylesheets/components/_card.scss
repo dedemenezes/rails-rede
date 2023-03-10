@@ -291,7 +291,7 @@ small.tag {
   .cards {
     grid-template-columns: 1fr 1fr;
   }
-  .cards__index {
+  .cards__index, .cards__observatories {
     grid-template-columns: 1fr 1fr 1fr;
   }
 }
@@ -306,7 +306,7 @@ small.tag {
 //   }
 // }
 @media (min-width: 992px) {
-  .cards__index {
+  .cards__index, .cards__observatories {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }
