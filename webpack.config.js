@@ -6,7 +6,6 @@ module.exports = {
   mode: "production",
   entry: {
     application: "./app/javascript/application.js",
-    rails_admin: "./app/javascript/rails_admin.js",
   },
   output: {
     filename: "[name].js",

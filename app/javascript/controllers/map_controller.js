@@ -14,8 +14,11 @@ export default class extends Controller {
       container: this.element,
       style: "mapbox://styles/mapbox/streets-v10"
     })
+
+
     this.#addMarkersToMap()
     this.#fitMapToMarkers()
+    this.#addNavigationtoMap()
   }
 
   #fitMapToMarkers() {
@@ -25,9 +28,25 @@ export default class extends Controller {
   }
   #addMarkersToMap() {
     this.markersValue.forEach((marker) => {
-      new mapboxgl.Marker()
+      const popup = new mapboxgl.Popup().setHTML(marker.info_window)
+      const element = document.createElement('div');
+      element.className = 'marker';
+      element.style.backgroundImage = `url('${marker.image_url}')`;
+      element.style.backgroundSize = 'contain';
+      element.style.width = '19px';
+      element.style.height = '25px';
+      new mapboxgl.Marker(element)
         .setLngLat([ marker.lng, marker.lat ])
+        .setPopup(popup)
         .addTo(this.map)
     })
+  }
+
+  #addNavigationtoMap() {
+    const nav = new mapboxgl.NavigationControl({
+      showCompass: true,
+      showZoom: true
+    })
+    this.map.addControl(nav, 'bottom-right');
   }
 }

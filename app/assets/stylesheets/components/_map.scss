@@ -1,0 +1,10 @@
+.map__container {
+  width: 100%;
+  height: 72vh;
+  box-shadow: 1px 1px 7px rgba(0, 0, 0, .1);
+  border-radius: 10px;
+}
+
+.mapboxgl-popup .mapboxgl-popup-content {
+  border-radius: 10px;
+}
