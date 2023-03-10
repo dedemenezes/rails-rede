@@ -12,7 +12,8 @@
     <div class="cards__observatories mb-4">
       <% @observatories.each do |observatory| %>
         <div class="observatory__card">
-          <%= display_banner(observatory) %>
+          <%#= display_banner(observatory) %>
+          <div style="background-image: url('<%= display_banner_as_background(observatory) %>'); height: 240px; background-size: cover; border-radius: 10px 10px 0 0; background-position: center;"></div>
           <p><%= link_to observatory.name, observatory_path(observatory) %></p>
         </div>
       <% end %>
