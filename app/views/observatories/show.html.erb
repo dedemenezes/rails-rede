@@ -37,6 +37,11 @@
         <%# cl_image_tag gallery.banner.key %>
       <% end %>
     </div>
+    <div class="row justify-content-center">
+      <div class="col-12 text-center text-primary">
+        <%= link_to 'VER GALERIAS', gallery_path(@observatory.galleries.first), class: 'btn btn__secondary continuous-3' %>
+      </div>
+    </div>
 
   <%# ACOES %>
   <section class="events mb-4">
