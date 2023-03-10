@@ -1,13 +1,12 @@
 <div class="container">
-  <div class="about_us mt-4 mb-4">
+  <div class="about_us mt-5 mb-4">
     <div class="row align-items-center justify-content-center">
       <div class="col-12 col-lg-6 mb-4">
         <h1><span>Somos o</span> <br>PEA Rede <br>Observação</h1>
       </div>
       <div class="col-12  col-lg-6">
-        <p>O Projeto de Educação Ambiental (PEA) Rede Observação é constituído por 11 Observatórios, em formato de associações comunitárias, que têm como objetivo realizar organização social através de processos educativos que englobam formação, pesquisa, produção de conteúdos pedagógicos e intervenção social.</p>
-        <p>Cada Observatório, em conjunto com os grupos sociais mais vulneráveis presentes nos municípios da área de influência do projeto, realizam a gestão de conflitos territoriais relacionados à cadeia produtiva do petróleo e gás.</p>
-        <p>Este trabalho é realizado através de um acompanhamento técnico, pedagógico, administrativo e logístico que tem por objetivo a construção de um processo educativo crítico que visa monitorar e avaliar os conflitos vivenciados pelas comunidades através de ferramentas da educação popular como a Comunicação Popular e o Teatro do Oprimido, utilizados como meios para qualificar as comunidades de modo a atuarem de forma qualificada na gestão ambiental pública.</p>
+        <p>O Projeto de Educação Ambiental (PEA) Rede Observação é uma medida de mitigação exigida pelo licenciamento ambiental federal, conduzido pelo IBAMA. Tem como objetivo realizar a organização social através de processos educativos que englobam formação, pesquisa e intervenção social.</p>
+        <p>O trabalho é realizado através de um acompanhamento técnico, pedagógico e administrativo e busca monitorar e avaliar os conflitos vivenciados pelas comunidades nos municípios da área de influência que estão relacionados à cadeia produtiva de óleo e gás.</p>
       </div>
     </div>
   </div>
@@ -25,20 +24,20 @@
     </div>
   </div>
 
-  <div class="about_us__methodologies" id="methodologies">
-    <div class="row justify-content-center mt-2 mb-5">
-      <div class="col-12 mt-5">
-        <div class="d-flex justify-content-between align-items-center border border-warning border-5 border-end-0 border-top-0 border-bottom-0 ps-4">
-          <h2>Metodologias</h2>
-        </div>
-      </div>
+  <div class="about_us__methodologies mt-4" id="methodologies">
+    <div class="d-flex justify-content-between align-items-center border border-warning border-info border-5 border-end-0 border-top-0 border-bottom-0 ps-2 ps-md-3 ps-lg-4 mb-3">
+      <h1 class='mb-0 fs-3 fs-md-2'>Metodologias</h1>
+    </div>
+    <div class="col-12 col-sm-10 col-md-8 col-lg-6">
+      <p>O PEA Rede Observação opera suas atividades a partir da execução de três eixos metodológicos presentes na sua estrutura central: Formação e Pesquisa, Comunicação Popular e Teatro do Oprimido. Estes eixos são disparadores de reflexões e buscam promover um ambiente educativo propício à produção de conhecimentos e o estímulo à intervenção social qualificada nos territórios impactados.</p>
     </div>
     <div class="row mb-3">
       <% @methodologies.each_with_index do |methodology, index| %>
         <% text_color = ['rede-dark-red', 'rede-primary', 'rede-primary-l'] %>
-        <div class="col-12 col-sm-4 mb-3">
-          <div class="methodology__card">
-            <%= image_tag 'hero-image.png', width: '100%' %>
+        <div class="col-12 col-sm-4 mb-2 mb-md-4 pt-3">
+          <div class="new__card">
+            <div class="methodology__card"  style='background-image:url(<%= asset_path("#{methodology.name.downcase.parameterize}-banner.jpg") %>); background-size: cover; background-position: center;'></div>
+              <%#= image_tag "#{methodology.name.downcase.parameterize}-banner.jpg", width: '100%' %>
             <div class="card__content">
               <h6 class="text-<%= text_color[index] %>"><%= methodology.name %></h6>
               <p class="text-primary">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.</p>

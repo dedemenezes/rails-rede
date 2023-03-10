@@ -15,10 +15,10 @@
             <%= link_to "Sobre nós", about_us_path, class: "nav-link #{tab_active?('pages' , action: 'about_us')}"%>
           </li>
           <li class="nav-item">
-            <%= link_to "Mapa", mapa_observatories_path, class: "nav-link" %>
+            <%= link_to "Mapa", mapa_observatories_path, class: "nav-link #{tab_active?('observatories' , action: 'mapa')}" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Observatórios", observatories_path, class: "nav-link #{tab_active?('observatories')}" %>
+            <%= link_to "Observatórios", observatories_path, class: "nav-link #{tab_active?('observatories', action: 'index')}" %>
           </li>
           <li class="nav-item">
             <%= link_to "Acervo", galleries_path, class: "nav-link #{tab_active?('galleries')}" %>

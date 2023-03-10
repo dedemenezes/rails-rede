@@ -9,7 +9,7 @@ class Observatory < ApplicationRecord
             :zip_code,
             :neighborhood, presence: true
   validates :municipality, length: { in: 2..3 }
-  validates :zip_code, length: { is: 8 }
+  # validates :zip_code, length: { is: 8 }
   validates :phone_number, format: { with: /\A(\+5521|0?21)?\d{9}\z/ }
 
   belongs_to :unity_type, inverse_of: :observatories
