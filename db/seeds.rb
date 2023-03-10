@@ -37,7 +37,7 @@ types = [
   'Regularização Fundiária',
   'Manutenção da Atividade Pesqueira'
 ]
-types.each { |type| ConflictType.create! name: type }
+pesca_laguna, perda_quilombola, territorio_rural, fundiaria, pesqueira = types.map { |type| ConflictType.create! name: type }
 
 puts 'Creating Priority Types...'
 priorities = [
@@ -94,8 +94,44 @@ arraial = Observatory.create!(
   description: arraial_desc
 )
 
-p arraial.inspect
-p arraial.priority_type
+buzios_desc = "O Observatório de Armação dos Búzios é formado por quilombolas do Quilombo de Baía Formosa. O grupo enfrenta impactos como a especulação imobiliária, descaracterização e perda do território quilombola, dificuldade de acesso a políticas públicas específicas, e vem se organizando e se posicionando na gestão ambiental pública local frente aos conflitos ambientais. Para tanto, o processo educativo e as ações com esse grupo são pautadas no tema gerador definido coletivamente: \"Descaracterização e perda do território quilombola\"."
+
+buzios = Observatory.create!(
+  name: 'Armação dos Búzios',
+  email: 'pea.buzios@redeobservacao.com',
+  phone_number: '21972614293',
+  unity_type: type_observatory,
+  neighborhood: 'Quilombo de Baía Formosa',
+  city: 'Armação dos Búzios',
+  street: 'Estrada da rasa',
+  number: '0',
+  zip_code: '28950-000',
+  state: 'Rio de Janeiro',
+  municipality: 'RJ',
+  priority_type: quilombolas,
+  conflict_type: perda_quilombola,
+  description: buzios_desc
+)
+
+campos_desc = "O Observatório de Campos dos Goytacazes é formado por remanescentes quilombolas do Quilombo de Lagoa Fea. O grupo enfrenta impactos como a descaracterização e perda do território quilombola, falta de acesso e existência de políticas públicas, conflitos relacionados à falta de reconhecimento da identidade quilombola por parte da comunidade e do poder público, e vem se organizando e se posicionando na gestão ambiental pública local frente aos conflitos ambientais. Para tanto, o processo educativo e as ações com esse grupo são pautadas no tema gerador definido coletivamente: Reconhecimento da comunidade quilombola para o acesso à políticas públicas"
+
+campos = Observatory.create!(
+  name: 'Campos dos Goytacazes',
+  email: 'pea.campos@redeobservacao.com',
+  phone_number: '21972614293',
+  unity_type: type_observatory,
+  neighborhood: 'Quilombo de Lagoa FEA',
+  city: 'Campos dos Goytacazes',
+  street: 'Quilombo de Lagoa FEA',
+  number: '0',
+  zip_code: '28950-000',
+  state: 'Rio de Janeiro',
+  municipality: 'RJ',
+  priority_type: quilombolas,
+  conflict_type: perda_quilombola,
+  description: campos_desc
+)
+
 
 
 
