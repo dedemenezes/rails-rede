@@ -51,11 +51,11 @@
 .banner--home {
   // padding: 196px 0;
   background-size: cover;
-  background-position: bottom;
+  background-position: center;
   h1 {
     font-weight: 600;
-    font-size: 72px;
-    line-height: 80px;
+    font-size: 2rem;
+    line-height: 40px;
     text-shadow: -10px 10px 35px rgba(82, 81, 81, 0.3);
     color: white;
     text-align: center;
@@ -64,9 +64,11 @@
 }
 
 .banner__wrapper {
-  height: 100%;
-  padding: 196px 0;
+  height: 85vh;
+  display: flex;
   position: relative;
+  justify-content: start;
+  align-items: center;
   img {
     position: absolute;
     bottom: -1px;
@@ -98,6 +100,24 @@
     font-weight: 100;
     &:hover {
       opacity: .5;
+    }
+  }
+}
+
+
+@media (min-width: 768px) {
+  .banner__wrapper {
+    h1 {
+      font-size: 2.5rem;
+      line-height: 50px;
+    }
+  }
+}
+@media (min-width: 1024px) {
+  .banner__wrapper {
+    h1 {
+      font-size: 3.325rem;
+      line-height: 60px;
     }
   }
 }

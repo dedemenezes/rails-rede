@@ -1,20 +1,10 @@
-<div class="container mt-5" data-controller="active-on-height" data-action= "scroll@window->active-on-height#setClass">
-  <div class="row mb-4">
-    <div class="col-12 mt-5">
-      <div class="about__header">
-        <%= link_to 'O Projeto', '#', class: 'header__link', data: {active_on_height_target: 'link' } %>
-        <%= link_to 'Mapa', '#', class: 'header__link', data: {active_on_height_target: 'link' } %>
-        <%= link_to 'Metodologias', about_us_path(anchor: 'methodologies'), class: 'header__link', data: {active_on_height_target: 'link' } %>
-      </div>
-    </div>
-  </div>
-
-  <div class="about_us my-5" data-active-on-height-target='project'>
+<div class="container" data-controller="active-on-height" data-action= "scroll@window->active-on-height#setClass">
+  <div class="about_us mt-4 mb-4" data-active-on-height-target='project'>
     <div class="row align-items-center justify-content-center">
-      <div class="col-12 col-sm-6">
+      <div class="col-12 col-lg-6 mb-4">
         <h1><span>Somos o</span> <br>PEA Rede <br>Observação</h1>
       </div>
-      <div class="col-12 col-sm-6">
+      <div class="col-12  col-lg-6">
         <p>O Projeto de Educação Ambiental (PEA) Rede Observação é constituído por 11 Observatórios, em formato de associações comunitárias, que têm como objetivo realizar organização social através de processos educativos que englobam formação, pesquisa, produção de conteúdos pedagógicos e intervenção social.</p>
         <p>Cada Observatório, em conjunto com os grupos sociais mais vulneráveis presentes nos municípios da área de influência do projeto, realizam a gestão de conflitos territoriais relacionados à cadeia produtiva do petróleo e gás.</p>
         <p>Este trabalho é realizado através de um acompanhamento técnico, pedagógico, administrativo e logístico que tem por objetivo a construção de um processo educativo crítico que visa monitorar e avaliar os conflitos vivenciados pelas comunidades através de ferramentas da educação popular como a Comunicação Popular e o Teatro do Oprimido, utilizados como meios para qualificar as comunidades de modo a atuarem de forma qualificada na gestão ambiental pública.</p>
@@ -23,7 +13,7 @@
   </div>
 
   <div class="about_us__gallery">
-    <div class="row mb-3">
+    <div class="row mb-3 30vh">
       <div class="col-12">
         <%= image_tag 'hero-image.png', width: '100%' %>
       </div>
