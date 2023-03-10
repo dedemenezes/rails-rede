@@ -19,7 +19,8 @@ class ObservatoriesController < ApplicationController
     @markers = @observatories.geocoded.map do |observatory|
       {
         lat: observatory.latitude,
-        lng: observatory.longitude
+        lng: observatory.longitude,
+        info_window: render_to_string(partial: 'info_window', locals: { element: observatory })
       }
     end
   end
