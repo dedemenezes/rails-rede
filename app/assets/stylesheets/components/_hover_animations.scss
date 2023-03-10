@@ -1,0 +1,8 @@
+.continuous-3 {
+  background:
+    linear-gradient(90deg, currentColor calc(100%/3), transparent 0 calc(200%/3), currentColor 0) var(--d, 0%) 100% /300% 1px no-repeat;
+  transition: 0.5s;
+}
+.continuous-3:hover {
+  --d: 100%;
+}

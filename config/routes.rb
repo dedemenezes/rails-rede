@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :articles, only: %i[show index edit update]
   resources :galleries, only: %i[index show]
   resources :albums, only: %i[index show]
-  resources :categories
+  resources :methodologies
   resources :tags, only: :show
 
   namespace :articles do
