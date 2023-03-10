@@ -27,10 +27,8 @@ class Observatory < ApplicationRecord
   has_one_attached :banner
   has_rich_text :rich_description
   geocoded_by :address
-  reverse_geocoded_by :latitude, :longitude
 
-  before_validation :strip_phone_number, :strip_zip_code
-  after_validation :reverse_geocode
+  before_validation :strip_phone_number, :strip_zip_code, :set_address
   after_validation :geocode, if: :will_save_change_to_address?
 
   after_create :set_gallery
@@ -58,14 +56,22 @@ class Observatory < ApplicationRecord
   end
 
   def set_gallery
-    Gallery.create observatory: self, name: self.name
+    Gallery.create observatory: self, name: name
   end
 
   def strip_phone_number
+    return unless phone_number
+
     self.phone_number = phone_number.gsub(/\D/, '').remove(' ')
   end
 
   def strip_zip_code
+    return unless zip_code
+
     self.zip_code = zip_code.gsub(/\D/, '').remove(' ')
+  end
+
+  def set_address
+    self.address = [street, number, city, state].compact.join(', ')
   end
 end
