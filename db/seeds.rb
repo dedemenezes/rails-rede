@@ -42,18 +42,17 @@ types.each { |type| ConflictType.create! name: type }
 puts 'Creating Priority Types...'
 priorities = [
   "Pescadores Artesanais",
+  "beneficiadoras de pescado".capitalize,
   "Quilombolas",
   "Marisqueiras",
   "Agricultores Familiares",
   "Pescadores de Guaiamum"
 ]
-priorities.each { |priority| PriorityType.create! name: priority }
+pescadores_artesanais, beneficadoras, quilombolas, mariqueiras, agricultores = priorities.map { |priority| PriorityType.create! name: priority }
 
 puts 'creating unity types'
 observatory_types = ['observatory', 'platform', 'fpso']
-observatory_types.each do |tipo|
-  UnityType.create!(name: tipo)
-end
+type_observatory, platform, fpso = observatory_types.map { |tipo| UnityType.create!(name: tipo) }
 
 puts 'Creating Observatory...'
 description = "O Observatório Araruama é formado por voluntários da comunidade e pescadores artesanais da laguna de Araruama e tem como objetivo identificar e monitorar os impactos da cadeia produtiva de óleo e gás que inviabiliza a pesca artesanal na laguna de Araruama.
@@ -63,7 +62,7 @@ Observatory.create!(
   name: 'Araruama',
   email: 'pea.araruama@redeobservacao.com',
   phone_number: '21972614293',
-  unity_type: UnityType.last,
+  unity_type: type_observatory,
   neighborhood: 'Laguna de Araruama',
   city: 'Araruama',
   street: 'Av. Brasil',
@@ -75,6 +74,31 @@ Observatory.create!(
   conflict_type: ConflictType.first,
   description: description
 )
+
+arraial_desc = "O Observatório de Arraial do Cabo é formado por marisqueiras, beneficiadoras de pescado e pescadores artesanais da Prainha. O grupo enfrenta impactos relacionados à dinâmica demográfica, perda de território e maretório,  conflitos com Unidade de Conservação e vem se organizando e se posicionando na gestão ambiental pública local frente aos conflitos ambientais. Para tanto, o processo educativo e as ações com esse grupo são pautadas no tema gerador definido coletivamente: Viabilização da gestão pesqueira da Reserva Extrativista Marinha (Resex-Mar) de Arraial do Cabo."
+
+arraial = Observatory.create!(
+  name: 'Arraial do Cabo',
+  email: 'pea.arraial-do-cabo@redeobservacao.com',
+  phone_number: '21972614293',
+  unity_type: type_observatory,
+  neighborhood: 'Prainha',
+  city: 'Arraial do Cabo',
+  street: 'Prainha',
+  number: '100',
+  zip_code: '22358-756',
+  state: 'Rio de Janeiro',
+  municipality: 'RJ',
+  priority_type: mariqueiras,
+  conflict_type: ConflictType.first,
+  description: arraial_desc
+)
+
+p arraial.inspect
+p arraial.priority_type
+
+
+
 
 puts 'Creating tags...'
 
