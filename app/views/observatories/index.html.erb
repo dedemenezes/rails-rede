@@ -1,16 +1,19 @@
-<h1 class="text-center"><%= Observatory.model_name.human count: 2 %></h1>
+<div class="container">
+  <div class="row justify-content-center mt-2 mb-5">
+    <div class="col-12 mt-3">
+      <div class="d-flex justify-content-between align-items-center border border-rede-primary border-info border-5 border-end-0 border-top-0 border-bottom-0 ps-4">
+        <h1>Observatórios</h1>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="cards-container">
-  <div class="cards">
+  <div class="cards__observatories">
     <% @observatories.each do |observatory| %>
-      <div class="card__observatory" style="background-image: url(<%= url_for(observatory.banner) if observatory.banner.attached? %>)">
+      <div class="observatory__card">
+        <%= display_banner(observatory) %>
         <p><%= observatory.name %></p>
       </div>
     <% end %>
-  </div>
-  <div style="width: 100%"
-    class="card__map"
-    data-controller="map"
-    data-map-markers-value="<%= @markers.to_json %>"
-    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
   </div>
 </div>
