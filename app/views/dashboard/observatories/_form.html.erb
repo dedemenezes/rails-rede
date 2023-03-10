@@ -82,19 +82,13 @@
               label_html: { class: 'input-group-text mb-0 col-3 flex-end' },
               input_html: { class: 'col-9 form-control' }  %>
   <%= f.association :unity_type,
-              wrapper_html: { class: 'input-group mb-3 row ' },
-              label_html: { class: 'input-group-text mb-0 col-3 flex-end' },
-              input_html: { class: 'col-9 form-control' }  %>
-  <%= f.input :category,
-              collection: Category.all,
-              wrapper_html: { class: 'input-group mb-3 row ' },
-              label_html: { class: 'input-group-text mb-0 col-3 flex-end' },
-              input_html: { class: 'col-9 form-control' }  %>
-  <%= f.input :priority_type,
-              collection: PriorityType.all,
-              wrapper_html: { class: 'input-group mb-3 row ' },
-              label_html: { class: 'input-group-text mb-0 col-3 flex-end' },
-              input_html: { class: 'col-9 form-control' }  %>
+                    wrapper_html: { class: 'input-group mb-3 row ' },
+                    label_html: { class: 'input-group-text mb-0 col-3 flex-end' },
+                    input_html: { class: 'col-9 form-control' }  %>
+  <%= f.association :priority_type,
+                    wrapper_html: { class: 'input-group mb-3 row ' },
+                    label_html: { class: 'input-group-text mb-0 col-3 flex-end' },
+                    input_html: { class: 'col-9 form-control' }  %>
   <%= f.input :conflict_type,
               collection: ConflictType.all,
               wrapper_html: { class: 'input-group mb-3 row ' },
