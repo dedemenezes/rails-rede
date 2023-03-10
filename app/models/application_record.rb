@@ -4,4 +4,8 @@ class ApplicationRecord < ActiveRecord::Base
   def published?
     self.published ? '✅' : '❌'
   end
+
+  def not_published?
+    published == false
+  end
 end

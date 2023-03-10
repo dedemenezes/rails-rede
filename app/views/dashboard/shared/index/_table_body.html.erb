@@ -9,7 +9,15 @@
         <% else %>
           <td><%= image_tag 'default-banner.png', width: '62px' %></td>
         <% end %>
+      <% elsif header == 'published?' %>
+        <td>
+            <%= simple_form_for [:dashboard, element] do |f| %>
+              <%= f.input :published, input_html: { checked: element.not_published? }, wrapper_html: { hidden: true } %>
+              <%= f.submit element.published ? 'Despublicar' : 'Publicar', class: "btn btn-rede-#{element.published ? 'secondary' : 'primary-l'} text-white" %>
+            <% end %>
+        </td>
       <% else %>
+      <%= header %>
         <td><%= element.send(header.gsub(' ', '_').to_sym) %></td>
       <% end %>
     <% end %>
