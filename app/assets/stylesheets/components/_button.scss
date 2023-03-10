@@ -94,6 +94,10 @@
   }
 }
 
+.btn__secondary--small {
+  font-size: .8rem !important;
+}
+
 .btn__secondary--rede-primary {
   border-color: $primary;
   &:hover {

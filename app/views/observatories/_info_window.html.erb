@@ -1,1 +1,14 @@
-<h1><%= element.name %></h1>
+<div class="popup__map">
+  <h6><%= observatory.name %></h6>
+  <div class="d-flex justify-content-between align-items-center gap-2 mb-3">
+    <%= image_tag 'icon-pin--blue.svg', width: '10px' %>
+    <p class="popup__location flex-grow-1"><%= observatory.neighborhood %></p>
+  </div>
+  <p class="popup__header mb-1">Sujeito prioritário</p>
+  <p class="popup__info mb-3"><%= observatory.priority_type.name %></p>
+  <p class="popup__header mb-1">tema gerador</p>
+  <p class="popup__info"><%= observatory.conflict_type.name %></p>
+  <div class="col-12 text-center text-primary">
+    <%= link_to 'ver mais', observatory_path(observatory), class: 'btn btn__secondary continuous-3 btn__secondary--small' %>
+  </div>
+</div>

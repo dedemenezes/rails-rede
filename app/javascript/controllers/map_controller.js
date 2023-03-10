@@ -29,7 +29,13 @@ export default class extends Controller {
   #addMarkersToMap() {
     this.markersValue.forEach((marker) => {
       const popup = new mapboxgl.Popup().setHTML(marker.info_window)
-      new mapboxgl.Marker()
+      const element = document.createElement('div');
+      element.className = 'marker';
+      element.style.backgroundImage = `url('${marker.image_url}')`;
+      element.style.backgroundSize = 'contain';
+      element.style.width = '19px';
+      element.style.height = '25px';
+      new mapboxgl.Marker(element)
         .setLngLat([ marker.lng, marker.lat ])
         .setPopup(popup)
         .addTo(this.map)
@@ -41,6 +47,6 @@ export default class extends Controller {
       showCompass: true,
       showZoom: true
     })
-    this.map.addControl(nav, 'top-left');
+    this.map.addControl(nav, 'bottom-right');
   }
 }
