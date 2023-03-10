@@ -15,7 +15,7 @@
 
 .btn-rede-light {
   background-color: $white;
-  padding: 10px;
+  padding: 14px 118px;
   border: 2px solid $r-light-gray;
   border-radius: 10px;
   color: $r-blue-d;
@@ -24,6 +24,7 @@
   letter-spacing: 1.25px;
   text-transform: uppercase;
   text-align: center;
+  display: inline-block;
   transition: font-weight .15s ease;
 
   &:hover {
