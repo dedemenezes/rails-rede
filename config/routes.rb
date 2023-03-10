@@ -2,12 +2,15 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
   root to: "pages#home"
-  get '/contact', to: 'pages#contact'
-  get '/about_us', to: 'pages#about_us'
-  # resources :categories, only: :show
+  get '/contact', to: 'pages#contact', as: :contact
+  get '/about_us', to: 'pages#about_us', as: :about_us
 
   # delete 'attachments/:id', to: 'attachments#destroy', as: :destroy_attachment
-  resources :observatories, only: %i[index show]
+  resources :observatories, only: %i[index show] do
+    collection do
+      get :mapa
+    end
+  end
   resources :articles, only: %i[show index edit update]
   resources :galleries, only: %i[index show]
   resources :albums, only: %i[index show]
