@@ -19,7 +19,7 @@ class Observatory < ApplicationRecord
   has_one :category, through: :observatory_category
   has_one :observatory_conflict, dependent: :destroy
   has_one :conflict_type, through: :observatory_conflict
-  has_many :galleries, dependent: :destroy
+  has_one :gallery, dependent: :destroy
   has_many :taggings, as: :taggable, dependent: :destroy
   has_many :tags, through: :taggings
   has_many :articles
@@ -53,12 +53,6 @@ class Observatory < ApplicationRecord
 
   def category?
     category.present?
-  end
-
-  def set_gallery
-    return unless galleries.empty?
-
-    Gallery.create observatory: self, name: name
   end
 
   def strip_phone_number

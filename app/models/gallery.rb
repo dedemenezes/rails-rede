@@ -1,6 +1,7 @@
 class Gallery < ApplicationRecord
   validates :name, presence: true
   belongs_to :observatory, optional: true
+  belongs_to :methodology, optional: true
   has_many :albums, dependent: :destroy
   has_one_attached :banner
 
