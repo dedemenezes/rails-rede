@@ -13,9 +13,13 @@
   </div>
   <div class="cards__index">
     <% @album.photos.each do |photo| %>
+    <% if @album.pdf?(photo) %>
+      <%= link_to photo.filename.to_s, photo.url %>
+    <% else %>
       <div class="card__index text-primary">
-        <div style="background: url(<%= cl_image_path(photo.key) %>);background-size: cover;background-position: center; border-radius: 10px;"></div>
+        <div style="background: url(<%= photo.url %>);background-size: cover;background-position: center; border-radius: 10px;"></div>
       </div>
+    <% end %>
     <% end %>
   </div>
 </div>

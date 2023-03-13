@@ -19,4 +19,8 @@ class Album < ApplicationRecord
   def gallery_name
     gallery.name
   end
+
+  def pdf?(attachment)
+    attachment.blob.content_type =~ /pdf/ && attachment.blob.filename.to_s =~ /.pdf/
+  end
 end
