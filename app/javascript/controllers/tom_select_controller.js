@@ -14,7 +14,8 @@ export default class extends Controller {
       hideSelected: true,
       loadingClass: 'tag__select',
       maxItems: this.maxItemValue,
-      valueField: 'value'
+      valueField: 'value',
+      allowEmptyOption: true
     })
   }
 }

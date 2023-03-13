@@ -2,7 +2,7 @@
   <%= f.input :published %>
   <%= f.input :name %>
   <%= f.input :banner, as: :file %>
-  <%= f.association :observatory, input_html: { data: { controller: 'tom-select' } } %>
+  <%= f.association :observatory, collection: Observatory.all, input_html: { data: { controller: 'tom-select', tom_select_max_item_value: '1' } } %>
   <%= f.input :category %>
   <%= f.submit gallery.new_record? ? 'Criar galeria' : 'Atualizar galeria', class: 'btn btn-primary' %>
 <% end %>
