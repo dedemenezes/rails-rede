@@ -31,7 +31,7 @@ class Dashboard::AlbumsController < ApplicationController
 
   def update
     if @album.update(album_params)
-      redirect_to dashboard_edit_album_path(@album)
+      redirect_to edit_dashboard_album_path(@album)
     else
       render :edit, status: :unprocessable_entity
     end

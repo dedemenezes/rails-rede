@@ -11,7 +11,7 @@ module ApplicationHelper
 
   def display_banner_as_background(element)
     if element.banner.attached?
-      cl_image_path(element.banner.key)
+      element.banner.url
     else
       image_path('default-banner.png')
     end
@@ -19,10 +19,11 @@ module ApplicationHelper
 
   def display_banner(article, options = {})
     if article.banner.attached?
-      cl_image_tag(article.banner.key, options)
+      url = article.banner.url
     else
-      image_tag('default-banner.png', options)
+      url = 'default-banner.png'
     end
+    image_tag(url, options)
   end
 
   def route_for_edit_dashboard(element)
