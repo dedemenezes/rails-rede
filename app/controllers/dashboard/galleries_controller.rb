@@ -13,8 +13,6 @@ class Dashboard::GalleriesController < ApplicationController
 
   def create
     @gallery = Gallery.new(gallery_params)
-    set_observatory
-
     if @gallery.save
       redirect_to dashboard_galleries_path
     else
@@ -48,17 +46,5 @@ class Dashboard::GalleriesController < ApplicationController
 
   def gallery_params
     params.require(:gallery).permit(:name, :category, :published, :banner)
-  end
-
-  def set_observatory
-    return if @gallery.observatory
-
-    begin
-      @observatory = Observatory.find(params[:gallery][:observatory_id])
-    rescue => exception
-      @observatory = nil
-    end
-
-    @gallery.observatory = @observatory
   end
 end
