@@ -51,7 +51,7 @@ module Dashboard
     end
 
     def project_params
-      params.require(:project).permit(:name, :content, :banner)
+      params.require(:project).permit(:name, :content, :banner, :banner_text)
     end
 
     def set_breadcrumb_index

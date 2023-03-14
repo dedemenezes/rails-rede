@@ -1,11 +1,11 @@
 class Project < ApplicationRecord
-  has_many :methodologies, dependent: :destroy
+  has_many :methodologies
   has_many :members
   has_one_attached :banner
   has_rich_text :content
   validates :banner_text, presence: true, length: { minimum: 53, maximum: 100 }
 
   def self.dashboard_headers
-    ['id', 'name', 'created at', 'updated at']
+    ['id', 'banner', 'name', 'updated at']
   end
 end
