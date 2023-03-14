@@ -6,15 +6,50 @@
       <%= display_banner(gallery, width: '100%') %>
     </div>
     <div class="col-10">
-      <div data-controller="display-photo-input">
-        <%= f.input :banner, as: :file, input_html: { class: 'box--anim box--hidden', data: { display_photo_input_target: 'input' } } %>
-        <button class="btn btn-primary" data-display-photo-input-target="button" data-action="click->display-photo-input#display">Atualizar o banner</button>
-        <button class="btn btn-rede-secondary box--hidden" data-display-photo-input-target="reset" data-action="click->display-photo-input#reset">Cancelar</button>
-      </div>
+      <% if !gallery.banner.attached? %>
+        <%= f.input :banner,
+                    as: :file,
+                    input_html: {
+                      class: 'd-none',
+                      data: {
+                        photo_preview_target: "photoInput",
+                        action: 'change->photo-preview#displayFilesCounter'
+                      }
+                    },
+                    label_html: {
+                      class: 'upload-photo',
+                      data: { photo_preview_target: 'photoPreview' }
+                    },
+                    wrapper_html: { data: { controller: 'photo-preview', photo_preview_target: 'submit' } },
+                    label: '📷 Upload a photo' %>
+      <% else %>
+        <div data-controller="display-photo-input">
+        <%= f.input :banner,
+                    as: :file,
+                    input_html: {
+                      class: 'd-none',
+                      data: {
+                        photo_preview_target: "photoInput",
+                        action: 'change->photo-preview#displayFilesCounter'
+                      }
+                    },
+                    label_html: {
+                      class: 'upload-photo',
+                      data: { photo_preview_target: 'photoPreview' }
+                    },
+                    wrapper_html: { class: 'box--anim box--hidden', data: { controller: 'photo-preview', photo_preview_target: 'submit', display_photo_input_target: 'input' } },
+                    label: '📷 Upload a photo' %>
+          <%#= f.input :banner, as: :file, input_html: { class: 'box--anim box--hidden', data: { display_photo_input_target: 'input' } } %>
+          <button class="btn btn-primary" data-display-photo-input-target="button" data-action="click->display-photo-input#display">Atualizar o banner</button>
+        </div>
+      <% end %>
     </div>
   </div>
   <%#= f.association :observatory, input_html: { data: { controller: 'tom-select', tom_select_max_item_value: '1' } } %>
   <%#= f.association :methodology, input_html: { data: { controller: 'tom-select', tom_select_max_item_value: '1' } } %>
   <%= f.input :category, input_html: { data: { controller: "tom-select-create-option" } } %>
-  <%= f.submit gallery.new_record? ? 'Criar galeria' : 'Atualizar galeria', class: 'btn btn-primary' %>
+  <div class="d-flex justify-content-between">
+    <%= f.submit gallery.new_record? ? 'Criar galeria' : 'Atualizar galeria', class: 'btn btn-primary' %>
+    <%= link_to 'Cancelar', dashboard_galleries_path, class: 'btn btn-rede-light btn-rede-light--small' %>
+  </div>
 <% end %>

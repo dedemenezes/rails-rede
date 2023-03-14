@@ -14,7 +14,9 @@ export default class extends Controller {
     if (this.photoInputTarget.files.length > 0) {
       this.photoPreviewTarget.style.borderColor = '#083461'
       this.photoPreviewTarget.style.boxShadow = '4px 4px 20px rgba(0, 0, 0, .1)'
-      this.submitTarget.classList.add('btn__album--active')
+      if (this.submitTarget) {
+        this.submitTarget.classList.add('btn__album--active')
+      }
       this.photoPreviewTarget.innerText = `${this.photoInputTarget.files.length} file${this.photoInputTarget.files.length > 1 ? 's' : ''} selected`
     }
   }
