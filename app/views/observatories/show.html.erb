@@ -30,15 +30,13 @@
 
   <%# <div class="cards__index cards__index--min-two mb-4"> %>
     <div class="row mb-4">
-      <% @observatory.galleries.each do |gallery| %>
-        <div class="col-6 col-md-4 col-xl-3">
-          <%= display_banner(gallery, width: '100%') %>
-        </div>
-      <% end %>
+      <div class="col-6 col-md-4 col-xl-3">
+        <%= display_banner(@observatory, width: '100%') %>
+      </div>
     </div>
     <div class="row justify-content-center">
       <div class="col-12 text-center text-primary">
-        <%= link_to 'VER GALERIAS', gallery_path(@observatory.galleries.first), class: 'btn btn__secondary continuous-3' %>
+        <%= link_to 'VER GALERIAS', gallery_path(@observatory.gallery), class: 'btn btn__secondary continuous-3' %>
       </div>
     </div>
 

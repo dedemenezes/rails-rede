@@ -1,5 +1,9 @@
-<div class="container">
-  <div class="cards__index">
+<div class="container py-4">
+  <% unless @album.banner.attached? %>
+    <h6>Selecione uma foto de banner passando o mouse sobre a imagem e clicando em 'Usar como banner':</h6>
+    <% flash[:alert] = "Selecione uma foto de banner passando o mouse sobre a imagem e clicando em 'Usar como banner':" %>
+  <% end %>
+  <div class="cards__index mt-3 mb-4">
     <% @album.photos.each do |photo| %>
       <div class="album__card">
         <% case photo.blob.content_type %>
@@ -11,6 +15,6 @@
         <% end %>
       </div>
     <% end %>
-    <%= render 'form', album: @album %>
   </div>
+  <%= render 'form', album: @album %>
 </div>

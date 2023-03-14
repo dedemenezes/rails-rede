@@ -27,6 +27,15 @@ class Dashboard::GalleriesController < ApplicationController
   def update
     if @gallery.update(gallery_params)
       redirect_to dashboard_galleries_path
+      if params[:gallery].keys.all? 'published'
+        if @gallery.published
+          flash[:notice] = 'Acervo publicado'
+        else
+          flash[:alert] = 'Acervo despublicado'
+        end
+      else
+        flash[:notice] = 'Acervo atualizado'
+      end
     else
       render :new, status: :unprocessable_entity
     end

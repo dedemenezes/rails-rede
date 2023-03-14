@@ -17,10 +17,9 @@ class Dashboard::AlbumsController < ApplicationController
       @gallery = Gallery.find(params[:album][:gallery_id])
       @album.gallery = @gallery
     rescue => exception
-
     end
     if @album.save
-      redirect_to dashboard_albums_path
+      redirect_to edit_dashboard_album_path(@album), notice: 'Novo albúm criado'
     else
       render :new, status: :unprocessable_entity
     end
@@ -30,8 +29,8 @@ class Dashboard::AlbumsController < ApplicationController
   end
 
   def update
-    if @album.update(album_params)
-      redirect_to edit_dashboard_album_path(@album)
+    if @album.update(album_params) && @album.banner.attached?
+      redirect_to edit_dashboard_album_path(@album), notice: 'Album atualizado'
     else
       render :edit, status: :unprocessable_entity
     end
@@ -41,7 +40,7 @@ class Dashboard::AlbumsController < ApplicationController
     @photo = @album.photos.find{ _1.id == params[:photo_id].to_i }
     @album.set_banner(@photo)
     if @album.save
-      redirect_to dashboard_albums_path
+      redirect_to dashboard_albums_path, notice: 'Banner atualizado'
     else
       render :edit, status: :unprocessable_entity
     end

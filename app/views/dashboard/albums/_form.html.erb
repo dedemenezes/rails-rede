@@ -17,6 +17,9 @@
                   photo_preview_target: 'photoPreview'
                 }
               },
-              label: '📷 Upload a photo' %>
-  <%= f.submit 'Add photos', class: 'btn btn-primary', data: { photo_preview_target: 'submit' } %>
+              label: '🖇️ Selecione os arquivos' %>
+  <div class="d-flex justify-content-between">
+    <%= f.submit class: 'btn btn-primary', data: { photo_preview_target: 'submit' } %>
+    <%= link_to 'Cancelar', dashboard_albums_path, class: 'btn btn-rede-light btn-rede-light--small' %>
+  </div>
 <% end %>

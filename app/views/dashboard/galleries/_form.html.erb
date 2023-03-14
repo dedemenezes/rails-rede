@@ -21,7 +21,7 @@
                       data: { photo_preview_target: 'photoPreview' }
                     },
                     wrapper_html: { data: { controller: 'photo-preview', photo_preview_target: 'submit' } },
-                    label: '📷 Upload a photo' %>
+                    label: '📷 Selecione uma foto como banner' %>
       <% else %>
         <div data-controller="display-photo-input">
         <%= f.input :banner,
@@ -38,7 +38,7 @@
                       data: { photo_preview_target: 'photoPreview' }
                     },
                     wrapper_html: { class: 'box--anim box--hidden', data: { controller: 'photo-preview', photo_preview_target: 'submit', display_photo_input_target: 'input' } },
-                    label: '📷 Upload a photo' %>
+                    label: '📷 Selecione uma foto como banner' %>
           <%#= f.input :banner, as: :file, input_html: { class: 'box--anim box--hidden', data: { display_photo_input_target: 'input' } } %>
           <button class="btn btn-primary" data-display-photo-input-target="button" data-action="click->display-photo-input#display">Atualizar o banner</button>
         </div>
@@ -47,7 +47,7 @@
   </div>
   <%#= f.association :observatory, input_html: { data: { controller: 'tom-select', tom_select_max_item_value: '1' } } %>
   <%#= f.association :methodology, input_html: { data: { controller: 'tom-select', tom_select_max_item_value: '1' } } %>
-  <div class="d-flex justify-content-between">
+  <div class="d-flex justify-content-between mt-5">
     <%= f.submit gallery.new_record? ? 'Criar galeria' : 'Atualizar galeria', class: 'btn btn-primary' %>
     <%= link_to 'Cancelar', dashboard_galleries_path, class: 'btn btn-rede-light btn-rede-light--small' %>
   </div>

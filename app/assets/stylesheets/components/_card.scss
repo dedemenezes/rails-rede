@@ -186,6 +186,7 @@ small.tag {
     font-weight: 600;
     letter-spacing: .15px;
     margin-bottom: 0;
+
   }
 
   &:hover {
@@ -194,6 +195,27 @@ small.tag {
   }
 }
 
+.cards__index.cards__index--grid {
+  display: grid;
+  grid-template-rows: 4fr 1fr;
+  align-items: center;
+  grid-gap: 0;
+
+  p {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &:hover {
+    text-decoration: none;
+    box-shadow: 0;
+    img {
+      box-shadow: 1px 1px 7px rgba(0,0,0,0.1);
+    }
+  }
+}
 .album__card {
   position: relative;
   &:hover {
