@@ -16,6 +16,7 @@ rede_observacao = Project.create! name: 'Rede Observação'
 puts "creating Methodologies..."
 methodologies = [
   {
+    published: true,
     name: 'Teatro do Oprimido',
     description: 'O eixo de Teatro do Oprimido (TO) busca, através da utilização de exercícios, jogos e técnicas teatrais participativas, desenvolver a autonomia dos sujeitos e o fortalecimento dos grupos para a reflexão crítica sobre a realidade. Por meio da criação de cenas teatrais baseadas em situações reais de injustiça social, o TO estimula a investigação e a compreensão de suas estruturas, buscando o planejamento de ações de organização social para o seu enfrentamento.',
     header_one: 'E nos PEAs?',
@@ -25,6 +26,7 @@ methodologies = [
     project: rede_observacao
   },
   {
+    published: true,
     name: 'Comunicação Popular',
     description: '',
     header_one: 'História',
@@ -34,6 +36,7 @@ methodologies = [
     project: rede_observacao
   },
   {
+    published: true,
     name: 'Formação e Pesquisa',
     description: '',
     header_one: 'Formação',
