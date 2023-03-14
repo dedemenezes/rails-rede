@@ -4,7 +4,7 @@ class Dashboard::AlbumsController < ApplicationController
   before_action :set_album, only: %i[edit update update_banner destroy]
 
   def index
-    @albums = Album.joins(:gallery).all
+    @albums = Album.includes(:gallery, photos_attachments: :blob).all
   end
 
   def new
