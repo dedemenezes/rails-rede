@@ -38,13 +38,15 @@
             data-bs-title="Editar">
           <%= link_to icon('fa-solid', 'pencil'), route_for_edit_dashboard(element) %>
         </li>
-        <li class="list-inline-item border-0"
-            data-controller='tooltip'
-            data-bs-toggle="tooltip"
-            data-bs-placement="left"
-            data-bs-title="Remover">
-          <%= link_to icon('fa-solid', 'trash'), url_for([:dashboard, element]), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
-        </li>
+        <% if policy(element).destroy? %>
+          <li class="list-inline-item border-0"
+              data-controller='tooltip'
+              data-bs-toggle="tooltip"
+              data-bs-placement="left"
+              data-bs-title="Remover">
+            <%= link_to icon('fa-solid', 'trash'), url_for([:dashboard, element]), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
+          </li>
+        <% end %>
       </ul>
     </td>
   </tr>

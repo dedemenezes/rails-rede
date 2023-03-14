@@ -6,11 +6,12 @@ class TagPolicy < ApplicationPolicy
     # end
   end
 
-  def desroy?
-    true
+  def destroy?
+    user.admin?
   end
 
   def show?
     false
   end
+
 end

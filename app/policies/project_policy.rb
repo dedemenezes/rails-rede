@@ -1,16 +1,16 @@
-class ArticlePolicy < ApplicationPolicy
+class ProjectPolicy < ApplicationPolicy
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
-    def resolve
-      scope.only_published
-    end
+    # def resolve
+    #   scope.all
+    # end
   end
 
   def show?
-    record.published
+    false
   end
 
   def destroy?
-    user.admin?
+    false
   end
 end

@@ -1,4 +1,4 @@
 <%= simple_form_for([:dashboard, tag]) do |f| %>
   <%= f.input :name %>
-  <%= f.submit class: 'btn btn-primary' %>
+  <%= render 'dashboard/shared/form/submit_cancel', element: tag, form: f %>
 <% end %>

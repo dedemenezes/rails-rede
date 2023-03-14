@@ -9,4 +9,8 @@ class AlbumPolicy < ApplicationPolicy
   def show?
     true
   end
+
+  def destroy?
+    user.admin?
+  end
 end

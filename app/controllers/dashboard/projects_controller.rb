@@ -1,22 +1,18 @@
 module Dashboard
   class ProjectsController < ApplicationController
     before_action :set_project, only: %i[show edit update]
-    before_action :set_breadcrumb_index, except: %i[index]
 
     layout 'dashboard'
 
     def index
       @projects = Project.all
-      add_breadcrumb 'Projects', dashboard_projects_path, current: true
     end
 
     def show
-      add_breadcrumb @project.name, nil, current: true
     end
 
     def new
       @project = Project.new
-      add_breadcrumb 'New project', new_dashboard_project_path, current: true
     end
 
     def create
@@ -32,8 +28,6 @@ module Dashboard
       @methodology = Methodology.new
       @image_attachments = ActiveStorage::Attachment.where(record_id: Project.last.id,
                                                            record_type: 'ActiveStorage::VariantRecord')
-      add_breadcrumb @project.name, dashboard_project_path(@project), current: false
-      add_breadcrumb "Edit", nil, current: true
     end
 
     def update
@@ -51,11 +45,7 @@ module Dashboard
     end
 
     def project_params
-      params.require(:project).permit(:name, :content, :banner)
-    end
-
-    def set_breadcrumb_index
-      add_breadcrumb 'Projects', dashboard_projects_path, current: false
+      params.require(:project).permit(:name, :content, :banner, :banner_text)
     end
   end
 end

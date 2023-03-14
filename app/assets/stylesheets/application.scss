@@ -9,11 +9,9 @@
 @import "trix/dist/trix";
 @import 'components/actiontext.scss';
 @import "tom-select/dist/css/tom-select.css";
+@import "mapbox-gl/dist/mapbox-gl.css";
 
 // Your CSS partials
 @import "components/index";
 @import "utilities/index";
 @import "pages/index";
-
-// $fa-font-path: ".";
-// @import "rails_admin/src/rails_admin/styles/base";

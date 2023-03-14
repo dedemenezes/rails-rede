@@ -9,4 +9,8 @@ class GalleryPolicy < ApplicationPolicy
   def show?
     record.published
   end
+
+  def destroy?
+    user.admin?
+  end
 end

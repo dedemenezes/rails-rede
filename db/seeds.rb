@@ -11,7 +11,7 @@ Article.destroy_all
 puts 'DB cleaned!'
 
 puts 'Creating Project...'
-rede_observacao = Project.create! name: 'Rede Observação'
+rede_observacao = Project.create! name: 'Rede Observação', banner_text: 'Trabalhamos na construção de um processo educativo crítico para fortalecer grupos locais'
 
 puts "creating Methodologies..."
 methodologies = [
