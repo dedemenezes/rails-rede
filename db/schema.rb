@@ -117,9 +117,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_14_010455) do
     t.datetime "updated_at", null: false
     t.text "description"
     t.string "header_one"
-    t.string "description_one"
+    t.text "description_one"
     t.string "header_two"
-    t.string "description_two"
+    t.text "description_two"
     t.index ["project_id"], name: "index_methodologies_on_project_id"
   end
 

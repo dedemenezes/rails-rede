@@ -14,18 +14,11 @@
       <%= link_to dashboard_observatories_path do %>
         <%= icon 'fa-solid', 'table-columns' %> Observatories
       <% end %>
-      <ul class="list-group border-0">
-        <li class="list-group-item border-0">
-          <%= link_to dashboard_categories_path do %>
-            <%= icon('fa-solid', 'diagram-project') %> Categories
-          <% end %>
-        </li>
-        <li class="list-group-item border-0">
-          <%= link_to '#' do %>
-            <%= icon('fa-solid', 'diagram-project') %> UnityFIX Types
-          <% end %>
-        </li>
-      </ul>
+    </li>
+    <li class="list-group-item border-0">
+      <%= link_to dashboard_methodologies_path do %>
+        <%= icon 'fa-solid', 'table-columns' %> Metodologies
+      <% end %>
     </li>
     <li class="list-group-item border-0">
       <%= link_to dashboard_articles_path do %>

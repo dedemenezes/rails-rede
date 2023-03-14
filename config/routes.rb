@@ -29,10 +29,8 @@ Rails.application.routes.draw do
     resources :articles
     resources :observatories
     resources :categories
-    resources :projects do
-      resources :methodologies, only: %i[new create]
-    end
-    resources :methodologies, except: %i[new create]
+    resources :methodologies
+    resources :projects
     resources :galleries
     resources :albums do
       member do
