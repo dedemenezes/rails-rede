@@ -7,6 +7,7 @@ class PagesController < ApplicationController
       { img_name: 'megafone', text: "Trabalhamos para mitigar os impactos da cadeia produtiva de petróleo e gás na Bacia de Campos" }
     ]
     @observatories = policy_scope(Observatory)
+    @project = Project.first
     @markers = @observatories.geocoded.map do |observatory|
       {
         lat: observatory.latitude,
