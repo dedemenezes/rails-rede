@@ -1,6 +1,5 @@
 const path    = require("path")
 const webpack = require('webpack')
-const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
 module.exports = {
   mode: "production",
@@ -11,18 +10,10 @@ module.exports = {
     filename: "[name].js",
     path: path.resolve(__dirname, "app/assets/builds"),
   },
-  module: {
-    rules: [
-      {
-        test: /.s?css$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
-      },
-    ],
-  },
+  module: {},
   plugins: [
     new webpack.optimize.LimitChunkCountPlugin({
       maxChunks: 1
     }),
-    new MiniCssExtractPlugin(),
   ]
 }
