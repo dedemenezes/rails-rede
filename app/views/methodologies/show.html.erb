@@ -1,6 +1,6 @@
 <div class="container">
-  <div class="about_us my-5">
-    <div class="row align-items-center justify-content-center mb-4">
+  <div class="about_us mt-5 mb-2">
+    <div class="row align-items-center justify-content-center">
       <div class="col-12 col-lg-7 mb-4">
         <h1><span>Metodologia</span> <br><%= @methodology.name %></h1>
       </div>
@@ -18,7 +18,7 @@
     <div class="row mb-0 py-4">
       <div class="col-12 col-lg-6">
         <div class="methodology__content pe-md-5">
-          <h5 class="mb-3"><%= @methodology.header_one %></h5>
+          <h5 class="mb-4"><%= @methodology.header_one %></h5>
           <p><%= @methodology.description_one %></p>
         </div>
           <%#= image_tag @methodology.banner.url, width: '100px' %>
@@ -36,22 +36,24 @@
 <%= image_tag 'methodology-bottom-wave.svg', width: '100%', style: ""  %>
 
 
-<%# BANNER_TWO %>
-<div class="row flex-row-reverse mb-4">
-  <div class="col-12 col-lg-6">
-    <div class="methodology__content pe-md-5">
-      <h5 class="mb-3"><%= @methodology.header_two %></h5>
-      <p><%= @methodology.description_two %></p>
-    </div>
-      <%#= image_tag @methodology.banner.url, width: '100px' %>
-  </div>
-  <% if @methodology.banner_two.attached? %>
+<div class="container">
+  <%# BANNER_TWO %>
+  <div class="row flex-row-reverse mb-4">
     <div class="col-12 col-lg-6">
-      <div class="methodology__image">
-        <div class="card__image-bg h-100"
-            style="background-image: url(<%= @methodology.banner_two.url %>);">
+      <div class="methodology__content pe-md-5">
+        <h5 class="mb-4"><%= @methodology.header_two %></h5>
+        <p><%= @methodology.description_two %></p>
+      </div>
+        <%#= image_tag @methodology.banner.url, width: '100px' %>
+    </div>
+    <% if @methodology.banner_two.attached? %>
+      <div class="col-12 col-lg-6">
+        <div class="methodology__image">
+          <div class="card__image-bg h-100"
+              style="background-image: url(<%= @methodology.banner_two.url %>);">
+          </div>
         </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>
