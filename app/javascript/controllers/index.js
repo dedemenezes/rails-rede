@@ -10,6 +10,9 @@ application.register("active-on-height", ActiveOnHeightController)
 import ArticleHighlightController from "./article_highlight_controller"
 application.register("article-highlight", ArticleHighlightController)
 
+import DisplayPhotoInputController from "./display_photo_input_controller"
+application.register("display-photo-input", DisplayPhotoInputController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 

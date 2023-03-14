@@ -1,0 +1,15 @@
+.box--anim {
+  transition: .3s ease;
+}
+
+.box--hidden {
+  height: 0;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.box--show {
+  height: 1;
+  visibility: visible;
+  opacity: 1;
+}
