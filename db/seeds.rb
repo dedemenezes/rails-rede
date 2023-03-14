@@ -12,6 +12,8 @@ puts 'DB cleaned!'
 
 puts 'Creating Project...'
 rede_observacao = Project.create! name: 'Rede Observação', banner_text: 'Trabalhamos na construção de um processo educativo crítico para fortalecer grupos locais'
+image_path = Rails.root.join('app', 'assets', 'images', "hero-image.png")
+rede_observacao.banner.attach(io: File.open(image_path), filename: "hero-image.png", content_type: 'image/png')
 
 puts "creating Methodologies..."
 methodologies = [
