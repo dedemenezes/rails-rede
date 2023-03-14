@@ -7,7 +7,7 @@ class PagesController < ApplicationController
       { img_name: 'megafone', text: "Trabalhamos para mitigar os impactos da cadeia produtiva de petróleo e gás na Bacia de Campos" }
     ]
     @observatories = policy_scope(Observatory)
-    @project = Project.first
+    @project = Project.includes(banner_attachment: :blob).first
     @markers = @observatories.geocoded.map do |observatory|
       {
         lat: observatory.latitude,
@@ -22,6 +22,6 @@ class PagesController < ApplicationController
   end
 
   def about_us
-    @methodologies = Methodology.all
+    @methodologies = Methodology.with_attached_banner.all
   end
 end
