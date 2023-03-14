@@ -8,6 +8,7 @@
     "@rails/actiontext": "^7.0.4",
     "bootstrap": "^5.2.3",
     "css-loader": "^6.7.3",
+    "mapbox-gl": "^2.13.0",
     "mini-css-extract-plugin": "^2.7.2",
     "rails_admin": "3.0.0",
     "sass": "^1.57.1",
