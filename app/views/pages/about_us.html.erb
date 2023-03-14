@@ -36,7 +36,7 @@
         <% text_color = ['rede-dark-red', 'rede-primary', 'rede-primary-l'] %>
         <div class="col-12 col-sm-4 mb-2 mb-md-4 pt-3">
           <div class="new__card">
-            <div class="methodology__card"  style='background-image:url(<%= methodology.banner.url %>); background-size: cover; background-position: center;'></div>
+            <div class="methodology__card"  style='background-image:url(<%= display_banner_as_background(methodology) %>); background-size: cover; background-position: center;'></div>
               <%#= image_tag "#{methodology.name.downcase.parameterize}-banner.jpg", width: '100%' %>
             <div class="card__content">
               <h6 class="text-<%= text_color[index] %>"><%= methodology.name %></h6>

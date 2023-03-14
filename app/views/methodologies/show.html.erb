@@ -21,12 +21,11 @@
           <h5 class="mb-4"><%= @methodology.header_one %></h5>
           <p><%= @methodology.description_one %></p>
         </div>
-          <%#= image_tag @methodology.banner.url, width: '100px' %>
       </div>
       <div class="col-12 col-lg-6">
         <div class="methodology__image">
           <div class="card__image-bg h-100"
-              style="background-image: url(<%= @methodology.banner.url %>);">
+              style="background-image: url(<%= display_banner_as_background(@methodology) %>);">
           </div>
         </div>
       </div>
