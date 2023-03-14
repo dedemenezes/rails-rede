@@ -1,6 +1,6 @@
 class ObservatoriesController < ApplicationController
   def index
-    @observatories = policy_scope(Observatory).includes(:banner_attachment)
+    @observatories = policy_scope(Observatory)
     @markers = @observatories.geocoded.map do |observatory|
       {
         lat: observatory.latitude,
@@ -10,7 +10,7 @@ class ObservatoriesController < ApplicationController
   end
 
   def show
-    @observatory = Observatory.find(params[:id])
+    @observatory = Observatory.includes(:priority_type, :conflict_type, :gallery, :articles, banner_attachment: :blob).find(params[:id])
     authorize @observatory
   end
 
