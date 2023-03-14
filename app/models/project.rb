@@ -8,4 +8,8 @@ class Project < ApplicationRecord
   def self.dashboard_headers
     ['id', 'banner', 'name', 'updated at']
   end
+
+  def to_s
+    'projects'
+  end
 end

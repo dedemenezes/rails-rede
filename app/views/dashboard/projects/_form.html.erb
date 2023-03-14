@@ -2,42 +2,7 @@
   <%= f.input :name, required: true %>
   <%= f.input :banner_text %>
 
-    <% if !project.banner.attached? %>
-      <%= f.input :banner,
-                  as: :file,
-                  input_html: {
-                    class: 'd-none',
-                    data: {
-                      photo_preview_target: "photoInput",
-                      action: 'change->photo-preview#displayFilesCounter'
-                    }
-                  },
-                  label_html: {
-                    class: 'upload-photo',
-                    data: { photo_preview_target: 'photoPreview' }
-                  },
-                  wrapper_html: { data: { controller: 'photo-preview', photo_preview_target: 'submit' } },
-                  label: '📷 Selecione uma foto como banner' %>
-    <% else %>
-      <div data-controller="display-photo-input">
-        <%= f.input :banner,
-                    as: :file,
-                    input_html: {
-                      class: 'd-none',
-                      data: {
-                        photo_preview_target: "photoInput",
-                        action: 'change->photo-preview#displayFilesCounter'
-                      }
-                    },
-                    label_html: {
-                      class: 'upload-photo',
-                      data: { photo_preview_target: 'photoPreview' }
-                    },
-                    wrapper_html: { class: 'box--anim box--hidden', data: { controller: 'photo-preview', photo_preview_target: 'submit', display_photo_input_target: 'input' } },
-                    label: '📷 Selecione uma foto como banner' %>
-        <button class="btn btn-primary" data-display-photo-input-target="button" data-action="click->display-photo-input#display">Atualizar o banner</button>
-      </div>
-    <% end %>
+  <%= render 'dashboard/shared/form/banner_input', element: project, form: f %>
       <div class="d-flex justify-content-between mt-5">
         <%= f.submit project.new_record? ? 'Criar projeto' : 'Atualizar projeto', class: 'btn btn-primary' %>
         <%= link_to 'Cancelar', dashboard_projects_path, class: 'btn btn-rede-light btn-rede-light--small' %>

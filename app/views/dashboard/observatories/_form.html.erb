@@ -94,7 +94,6 @@
               wrapper_html: { class: 'input-group mb-3 row ' },
               label_html: { class: 'input-group-text mb-0 col-3 flex-end' },
               input_html: { class: 'col-9 form-control' }  %>
-  <%= f.input :banner,
-              as: :file %>
-  <%= f.submit class: 'btn btn-rede-primary-l text-white' %>
+  <%= render 'dashboard/shared/form/banner_input', element: observatory, form: f %>
+  <%= render 'dashboard/shared/form/submit_cancel', element: observatory, form: f %>
 <% end %>
