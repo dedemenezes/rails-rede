@@ -1,13 +1,13 @@
 module Dashboard
   class MethodologiesController < ApplicationController
+    layout 'dashboard'
     def new
       @methodology = Methodology.new
-      @project = Project.find(params[:project_id])
       authorize @methodology
     end
 
     def create
-      @project = Project.find(params[:project_id])
+      @project = Project.first
       @methodology = Methodology.create(methodology_params)
       @methodology.project = @project
       authorize @methodology
@@ -21,7 +21,7 @@ module Dashboard
     private
 
     def methodology_params
-      params.require(:methodology).permit(:name)
+      params.require(:methodology).permit(:name, :description, :banner, :header_one, :description_one, :header_two, :description_two, :banner_two, :content)
     end
   end
 end
