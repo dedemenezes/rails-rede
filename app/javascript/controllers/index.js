@@ -28,5 +28,8 @@ application.register("swiper", SwiperController)
 import TomSelectController from "./tom_select_controller"
 application.register("tom-select", TomSelectController)
 
+import TomSelectCreateOptionController from "./tom_select_create_option_controller"
+application.register("tom-select-create-option", TomSelectCreateOptionController)
+
 import TooltipController from "./tooltip_controller"
 application.register("tooltip", TooltipController)

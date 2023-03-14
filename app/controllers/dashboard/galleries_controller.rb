@@ -25,7 +25,6 @@ class Dashboard::GalleriesController < ApplicationController
   end
 
   def update
-    set_observatory
     if @gallery.update(gallery_params)
       redirect_to dashboard_galleries_path
     else

@@ -4,6 +4,6 @@
   <%= f.input :banner, as: :file %>
   <%#= f.association :observatory, input_html: { data: { controller: 'tom-select', tom_select_max_item_value: '1' } } %>
   <%#= f.association :methodology, input_html: { data: { controller: 'tom-select', tom_select_max_item_value: '1' } } %>
-  <%= f.input :category %>
+  <%= f.input :category, input_html: { data: { controller: "tom-select-create-option" } } %>
   <%= f.submit gallery.new_record? ? 'Criar galeria' : 'Atualizar galeria', class: 'btn btn-primary' %>
 <% end %>

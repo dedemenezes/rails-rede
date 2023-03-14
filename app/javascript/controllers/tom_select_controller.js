@@ -9,7 +9,7 @@ export default class extends Controller {
   }
 
   connect() {
-    console.log('hi');
+    // console.log('hi');
     new TomSelect(this.element, {
       hideSelected: true,
       loadingClass: 'tag__select',

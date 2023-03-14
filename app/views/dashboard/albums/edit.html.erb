@@ -11,10 +11,6 @@
         <% end %>
       </div>
     <% end %>
-    <%= simple_form_for([:dashboard, @album], html: {data:{controller: 'photo-preview'}}) do |f| %>
-      <%= f.association :gallery, value: @album.gallery, wrapper_html: { hidden: true } %>
-      <%= f.input :photos, as: :file, input_html: { multiple: true, class: 'd-none', data: { photo_preview_target: "photoInput", action: 'change->photo-preview#displayFilesCounter' } }, label_html: { class: 'upload-photo', data: { photo_preview_target: 'photoPreview' } }, label: '📷 Upload a photo' %>
-      <%= f.submit 'Add photos', class: 'btn btn-primary btn__album', data: { photo_preview_target: 'submit' } %>
-    <% end %>
+    <%= render 'form', album: @album %>
   </div>
 </div>
