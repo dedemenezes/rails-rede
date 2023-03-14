@@ -7,6 +7,6 @@ class ObservatoryPolicy < ApplicationPolicy
   end
 
   def show?
-    true
+    record.published
   end
 end

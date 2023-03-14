@@ -7,6 +7,6 @@ class GalleryPolicy < ApplicationPolicy
   end
 
   def show?
-    true
+    record.published
   end
 end
