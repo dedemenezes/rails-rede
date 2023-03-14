@@ -8,7 +8,7 @@ class Gallery < ApplicationRecord
   scope :published, -> { where(published: true) }
 
   def self.dashboard_headers
-    %w[id banner name observatory\ name category published?]
+    %w[id banner name observatory\ name published?]
   end
 
   def observatory_name
