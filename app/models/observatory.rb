@@ -34,7 +34,7 @@ class Observatory < ApplicationRecord
   after_create :set_gallery
 
   def self.dashboard_headers
-    ['id', 'name', 'address', 'description', 'category name', 'published?', 'created at', 'updated_at']
+    ['id', 'name', 'address', 'description', 'published?', 'created at', 'updated_at']
   end
 
   def location
@@ -43,16 +43,6 @@ class Observatory < ApplicationRecord
 
   def published?
     published ? '✅' : '❌'
-  end
-
-  def category_name
-    return '-' unless category?
-
-    category.name
-  end
-
-  def category?
-    category.present?
   end
 
   def strip_phone_number
