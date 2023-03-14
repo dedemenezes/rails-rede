@@ -1,6 +1,6 @@
 puts 'Cleaning DB...'
-Project.destroy_all
 Methodology.destroy_all
+Project.destroy_all
 Observatory.destroy_all
 UnityType.destroy_all
 User.destroy_all
