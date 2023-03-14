@@ -1,6 +1,6 @@
 <%= link_to gallery_path(gallery), class: 'text-reset text-decoration-none mb-3' do %>
   <div class="card__index text-primary">
-    <div style="background: url('https://rails-rede-demo-dev-2.s3.us-east-2.amazonaws.com/<%= gallery.banner.key %>');background-size: cover;background-position: center;">
+    <div style="background: url(<%= gallery.banner.url %>);background-size: cover;background-position: center;">
     </div>
     <p><%= gallery.name %></p>
   </div>
