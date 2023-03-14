@@ -1,4 +1,4 @@
 <div class="d-flex justify-content-between mt-5">
-  <%= form.submit element.new_record? ? 'Criar galeria' : 'Atualizar galeria', class: 'btn btn-primary' %>
+  <%= form.submit element.new_record? ? "Criar #{element.model_name}" : "Atualizar #{element.model_name}", class: 'btn btn-primary' %>
   <%= link_to 'Cancelar', "/dashboard/#{element.class.model_name.plural}", class: 'btn btn-rede-light btn-rede-light--small' %>
 </div>

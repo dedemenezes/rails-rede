@@ -3,8 +3,5 @@
   <%= f.input :banner_text %>
 
   <%= render 'dashboard/shared/form/banner_input', element: project, form: f %>
-      <div class="d-flex justify-content-between mt-5">
-        <%= f.submit project.new_record? ? 'Criar projeto' : 'Atualizar projeto', class: 'btn btn-primary' %>
-        <%= link_to 'Cancelar', dashboard_projects_path, class: 'btn btn-rede-light btn-rede-light--small' %>
-      </div>
+  <%= render 'dashboard/shared/form/submit_cancel', element: project, form: f %>
 <% end %>

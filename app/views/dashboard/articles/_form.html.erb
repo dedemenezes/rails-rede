@@ -34,9 +34,9 @@
     </div>
   </div>
 
-  <%= f.input :banner, as: :file %>
+  <%= render 'dashboard/shared/form/banner_input', element: article, form: f %>
   <%= f.input :header, hint: 'Máximo de 37 caractéres' %>
   <%= f.input :sub_header %>
   <%= f.rich_text_area :rich_body %>
-  <%= f.submit 'Update', class: 'btn btn-primary mt-3 mb-5 w-100' %>
+  <%= render 'dashboard/shared/form/submit_cancel', element: article, form: f %>
 <% end %>

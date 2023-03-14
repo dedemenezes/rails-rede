@@ -1,6 +1,7 @@
 <%= simple_form_for([:dashboard, album], html: {data:{controller: 'photo-preview'}}) do |f| %>
   <%= f.input :name %>
   <%= f.association :gallery, value: album.gallery %>
+    <%= render 'dashboard/shared/form/banner_input', element: album, form: f %>
   <%= f.input :photos,
               as: :file,
               input_html: {
@@ -18,8 +19,5 @@
                 }
               },
               label: '🖇️ Selecione os arquivos' %>
-  <div class="d-flex justify-content-between">
-    <%= f.submit class: 'btn btn-primary', data: { photo_preview_target: 'submit' } %>
-    <%= link_to 'Cancelar', dashboard_albums_path, class: 'btn btn-rede-light btn-rede-light--small' %>
-  </div>
+    <%= render 'dashboard/shared/form/submit_cancel', element: album, form: f %>
 <% end %>
