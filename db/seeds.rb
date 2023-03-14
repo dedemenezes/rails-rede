@@ -45,13 +45,15 @@ methodologies = [
 ]
 Methodology.create! methodologies
 Methodology.all.each do |m|
-  %w[jpg jpeg png HEIC].each_with_index do |extension, index|
-    index += 1
-    number = index.odd? ? 'one' : 'two'
-    image_path = Rails.root.join('app', 'assets', 'images', 'methodologies', "#{m.name.parameterize}-banner-#{n}.#{extension}")
-    next unless File.exist?(image_path)
+  2.times do |index|
+    %w[jpg jpeg png].each do |extension|
+      index += 1
+      number = index.odd? ? 'one' : 'two'
+      image_path = Rails.root.join('app', 'assets', 'images', 'methodologies', "#{m.name.parameterize}-banner-#{number}.#{extension}")
+      next unless File.exist?(image_path)
 
-    m.banner.attach(io: File.open(image_path), filename: "#{m.name.parameterize}-banner-#{number}.jpg", content_type: 'image/png')
+      m.banner.attach(io: File.open(image_path), filename: "#{m.name.parameterize}-banner-#{number}.jpg", content_type: 'image/png')
+    end
   end
 end
 
