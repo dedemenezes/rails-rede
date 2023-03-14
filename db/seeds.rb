@@ -14,9 +14,36 @@ puts 'Creating Project...'
 rede_observacao = Project.create! name: 'Rede Observação'
 
 puts "creating Methodologies..."
-['Teatro do Oprimido', 'Comunicação Popular', 'Formação e Pesquisa'].each do |name|
-  Methodology.create! name: name, project: rede_observacao
-end
+methodologies = [
+  {
+    name: 'Teatro do Oprimido',
+    description: 'O eixo de Teatro do Oprimido (TO) busca, através da utilização de exercícios, jogos e técnicas teatrais participativas, desenvolver a autonomia dos sujeitos e o fortalecimento dos grupos para a reflexão crítica sobre a realidade. Por meio da criação de cenas teatrais baseadas em situações reais de injustiça social, o TO estimula a investigação e a compreensão de suas estruturas, buscando o planejamento de ações de organização social para o seu enfrentamento.',
+    header_one: 'E nos PEAs?',
+    description_one: 'O TO foi incorporado como eixo pedagógico em 2017 no PEA Observação, e segue como uma das metodologias utilizadas no PEA Rede Observação. É empregado como um método de estudo e compreensão de conflitos ambientais vividos pelas comunidades com as quais o projeto trabalha.',
+    header_two: '',
+    description_two: 'Além disso, no decorrer dos últimos cinco anos, a partir do emprego de técnicas como o Teatro Fórum e Teatro Imagem, o eixo tem se mostrado um potente instrumento de mobilização, fortalecimento dos sujeitos e dos grupos no processo de participação na gestão ambiental pública.',
+    project: rede_observacao
+  },
+  {
+    name: 'Comunicação Popular',
+    description: '',
+    header_one: 'História',
+    description_one: 'Inspirada na Teologia da Libertação e nos movimentos sociais, operários e sindical, a Comunicação Popular (CP) se caracteriza por ser um conjunto de processos comunicativos feitos a partir dos grupos vulneráveis. No licenciamento ambiental, ela tem como ponto de partida a compreensão das comunidades tradicionais sobre os conflitos ambientais em diálogo com outros saberes e conhecimentos construídos pelos grupos. ',
+    header_two: 'Instrumento de valorização',
+    description_two: 'Com o objetivo de munir estes grupos de ferramentas para enfrentar os conflitos que aparecem com a chegada da cadeia produtiva de óleo e gás, mas também para criar espaços de valorização da cultura e da identidade, o eixo apresenta técnicas como redação, fotografia e produção audiovisual. Desta forma, as comunidades podem expor suas ideias, sua história e seu cotidiano de forma autônoma.',
+    project: rede_observacao
+  },
+  {
+    name: 'Formação e Pesquisa',
+    description: '',
+    header_one: 'Formação',
+    description_one: 'O eixo metodológico de Formação e Pesquisa (FP) tem como objetivo geral promover, junto às comunidades tradicionais impactadas, a organização comunitária e a discussão pública, contribuindo na produção de estratégias de articulação e de intervenção na gestão ambiental, tais como em conselhos, comitês e audiências públicas. Além disso, realiza o planejamento e a execução de atividades voltadas ao aprimoramento da participação popular e auxilia nos processos educativos dos outros dois eixos: Comunicação Popular e Teatro do Oprimido.',
+    header_two: 'Pesquisa',
+    description_two: 'No que diz respeito à pesquisa, o eixo está voltado ao acompanhamento das transformações e conflitos ambientais relacionados à cadeia produtiva de óleo e gás nos territórios. Com os elementos investigados nos municípios da área de abrangência, o PEA está produzindo um mapa para identificar os conflitos territoriais que impactam as comunidades tradicionais prioritárias da ação educativa. O mapa é mais um elemento para traçar estratégias de intervenção dos grupos sociais envolvidos.',
+    project: rede_observacao
+  }
+]
+Methodology.create! methodologies
 
 puts 'testing user REMOVE!'
 User.create!(
