@@ -80,7 +80,7 @@
   <%= f.input :description,
               wrapper_html: { class: 'input-group mb-3 row ' },
               label_html: { class: 'input-group-text mb-0 col-3 flex-end' },
-              input_html: { class: 'col-9 form-control' }  %>
+              input_html: { class: 'col-9 form-control', style: 'min-height: 168px' }  %>
   <%= f.association :unity_type,
                     wrapper_html: { class: 'input-group mb-3 row ' },
                     label_html: { class: 'input-group-text mb-0 col-3 flex-end' },
@@ -94,11 +94,6 @@
               wrapper_html: { class: 'input-group mb-3 row ' },
               label_html: { class: 'input-group-text mb-0 col-3 flex-end' },
               input_html: { class: 'col-9 form-control' }  %>
-  <%= f.input :rich_description,
-              as: :rich_text_area,
-              wrapper_html: { class: 'input-group mb-3 row ' },
-              label_html: { class: 'input-group-text mb-0 col-3 flex-end' },
-              input_html: { class: 'col-9 form-control' } %>
   <%= f.input :banner,
               as: :file %>
   <%= f.submit class: 'btn btn-rede-primary-l text-white' %>
