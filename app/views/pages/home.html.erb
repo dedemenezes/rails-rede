@@ -31,35 +31,30 @@
   </div>
 </div>
 
-<div class="container">
 
-</div>
-
-<div class="container"><h2 class='mb-0'>Últimos eventos</h2></div>
-<div class="swiper mySwiper" data-controller='swiper' data-swiper-slides-per-view-value="1">
-  <div class="swiper-wrapper"  data-swiper-target='wrapper'>
-    <% dates = Array.new(rand(1..10)) { |i| Date.new 2022, rand(1..12), rand(1..26) }.sort.reverse %>
+<div class="ms-4 ms-lg-5 me-3 me-lg-0">
+  <div class="events__carousel styled-scrollbars" data-controller="events-scroll" data-action="scroll->events-scroll#toggleScroll">
+    <% dates = Array.new(rand(7..13)) { |i| Date.new 2022, rand(1..12), rand(1..26) }.sort.reverse %>
+        <!-- Slides -->
     <% dates.each do |date| %>
-      <div class="swiper-slide">
-        <div class="card__event">
-          <div style='background-image: url(<%= image_path 'default-banner.png'%>);background-size: cover; background-position: center;'></div>
-          <%= link_to '#' do %>
-            <div class="event__content">
-              <div class="h-100 ps-2 pb-3 flex-grow-1 d-flex flex-column justify-content-between align-items-start text-start">
-                <h5 class='mb-3'>Nome da ação</h5>
-                <div class="event__tags d-flex justify-content-start align-items-center">
-                  <small class="tag">araruama</small>
-                  <small class="tag">pescadores</small>
-                </div>
-              </div>
-              <div class="event__date">
-                <p class="mb-0"><%= date.day %></p>
-                <p class="mb-0"><%= date.strftime('%b') %></p>
-                <p class="mb-0 date__year"><%= date.year %></p>
+      <div class="card__event">
+        <div class="card__event__image" style='background-image: url(<%= image_path 'default-banner.png'%>);background-size: cover; background-position: center;'></div>
+        <%= link_to '#' do %>
+          <div class="event__content">
+            <div class="h-100 ps-2 pb-3 flex-grow-1 d-flex flex-column justify-content-between align-items-start text-start">
+              <h5 class='mb-3'>Nome da ação</h5>
+              <div class="event__tags d-flex justify-content-start align-items-center">
+                <small class="tag">araruama</small>
+                <small class="tag">pescadores</small>
               </div>
             </div>
-          <% end %>
-        </div>
+            <div class="event__date">
+              <p class="mb-0"><%= date.day %></p>
+              <p class="mb-0"><%= date.strftime('%b') %></p>
+              <p class="mb-0 date__year"><%= date.year %></p>
+            </div>
+          </div>
+        <% end %>
       </div>
     <% end %>
   </div>

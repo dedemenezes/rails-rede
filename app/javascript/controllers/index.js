@@ -13,6 +13,9 @@ application.register("article-highlight", ArticleHighlightController)
 import DisplayPhotoInputController from "./display_photo_input_controller"
 application.register("display-photo-input", DisplayPhotoInputController)
 
+import EventsScrollController from "./events_scroll_controller"
+application.register("events-scroll", EventsScrollController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
