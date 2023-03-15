@@ -12,9 +12,14 @@
   </div>
 
   <div class="about_us__gallery">
-    <div class="row mb-3 30vh">
-      <div class="col-12">
-        <%= image_tag 'hero-image.png', width: '100%' %>
+    <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <% 3.times do |index| %>
+          <div class="carousel-item active" data-bs-interval="5000">
+            <%= image_tag 'hero-image.png', class: 'd-block w-100' %>
+            <%#= image_tag photo.url, class: 'd-block w-100', alt: photo.filename.filename %>
+          </div>
+        <% end %>
       </div>
     </div>
     <div class="row justify-content-center">

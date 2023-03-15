@@ -25,5 +25,6 @@ class PagesController < ApplicationController
 
   def about_us
     @methodologies = Methodology.with_attached_banner.all
+    @photos = Project.includes(photos_attachments: :blob).first.photos
   end
 end
