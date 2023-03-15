@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
-  get '/contact', to: 'pages#contact', as: :contact
+  get '/contacts/new', to: 'contacts#new', as: :new_contact
+  post '/contacts', to: 'contacts#create', as: :contacts
   get '/about_us', to: 'pages#about_us', as: :about_us
-
   # delete 'attachments/:id', to: 'attachments#destroy', as: :destroy_attachment
   resources :observatories, only: %i[index show] do
     collection do

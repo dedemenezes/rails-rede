@@ -4,7 +4,7 @@
     <div class="row justify-content-center">
       <div class="col-12 col-sm-8">
         <h3 class='text-center mb-5'>Entre em contato!</h3>
-        <%= form_with url: '#', html: { class: '' } do |f| %>
+        <%= form_with url: contacts_path, method: 'POST', html: { class: '' } do |f| %>
         <div class="mb-3">
           <div class="row">
             <div class="col-6">
