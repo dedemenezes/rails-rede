@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_14_153900) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_15_012829) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -92,6 +92,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_14_153900) do
     t.boolean "published", default: false
     t.bigint "observatory_id"
     t.bigint "methodology_id"
+    t.boolean "is_event", default: false
+    t.date "event_date"
     t.index ["methodology_id"], name: "index_galleries_on_methodology_id"
     t.index ["observatory_id"], name: "index_galleries_on_observatory_id"
   end

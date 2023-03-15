@@ -53,6 +53,6 @@ class Dashboard::GalleriesController < ApplicationController
   end
 
   def gallery_params
-    params.require(:gallery).permit(:name, :category, :published, :banner)
+    params.require(:gallery).permit(:name, :category, :published, :banner, :is_event, :event_date)
   end
 end
