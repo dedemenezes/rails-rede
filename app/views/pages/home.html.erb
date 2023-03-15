@@ -33,7 +33,7 @@
 
 
 <div class="ms-4 ms-lg-5 me-3 me-lg-0">
-  <div class="events__carousel styled-scrollbars">
+  <div class="events__carousel styled-scrollbars" data-controller="events-scroll" data-action="scroll->events-scroll#toggleScroll">
     <% dates = Array.new(rand(7..13)) { |i| Date.new 2022, rand(1..12), rand(1..26) }.sort.reverse %>
         <!-- Slides -->
     <% dates.each do |date| %>
