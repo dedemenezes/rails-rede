@@ -16,6 +16,9 @@ application.register("display-photo-input", DisplayPhotoInputController)
 import EventsScrollController from "./events_scroll_controller"
 application.register("events-scroll", EventsScrollController)
 
+import FlatpickrController from "./flatpickr_controller"
+application.register("flatpickr", FlatpickrController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
