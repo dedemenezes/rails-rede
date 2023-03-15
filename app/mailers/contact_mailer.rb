@@ -1,6 +1,5 @@
 class ContactMailer < ApplicationMailer
-  US = 'rede@dev.env'
-  default from: 'rede@dev.env'
+  US = 'dev.andremenezes@gmail.com'
 
   def form_reply_mail
     @first_name = params[:first_name]
