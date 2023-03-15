@@ -8,6 +8,7 @@ class Gallery < ApplicationRecord
   has_many :tags, through: :taggings
 
   scope :published, -> { where(published: true) }
+  scope :only_events, -> { where(is_event: true) }
 
   def self.dashboard_headers
     %w[id banner name category total\ de\ albuns published?]

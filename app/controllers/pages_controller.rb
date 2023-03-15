@@ -12,10 +12,11 @@ class PagesController < ApplicationController
       {
         lat: observatory.latitude,
         lng: observatory.longitude,
-        info_window: render_to_string(partial: 'observatories/info_window', locals: { observatory: observatory }),
+        info_window: render_to_string(partial: 'observatories/info_window', locals: { observatory: }),
         image_url: helpers.asset_path('icon-pin--blue.svg')
       }
     end
+    @galleries = Gallery.only_events
   end
 
   def contact

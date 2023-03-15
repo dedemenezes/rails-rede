@@ -34,7 +34,7 @@ class Dashboard::GalleriesController < ApplicationController
         if @gallery.published
           flash[:notice] = 'Acervo publicado'
         else
-          flash[:alert] = 'Acervo despublicado'
+          flash[:notice] = 'Acervo despublicado'
         end
       else
         flash[:notice] = 'Acervo atualizado'
@@ -52,6 +52,8 @@ class Dashboard::GalleriesController < ApplicationController
   private
 
   def set_tags
+    return unless params[:gallery][:tag_ids].present?
+
     ids = params[:gallery][:tag_ids].reject { |id| id.match?(/[a-zA-Z]/) }
     tag_names = params[:gallery][:tag_ids].select { |id| id.match?(/[a-zA-Z]/) }
 
