@@ -13,7 +13,7 @@ export default class extends Controller {
     this.swiper = new Swiper(this.element, {
       breakpoints: {
         // when window width is >= 320px
-        320: {
+        300: {
           slidesPerView: 1,
           spaceBetween: 5
         },
@@ -26,7 +26,6 @@ export default class extends Controller {
           slidesPerView: 3,
         }
       },
-      slideActiveClass: 'card__event--active'
     })
     // this.swiper.on('slideChange', (event) => {
     //   if (this.wrapperTarget.classList.contains('container')) {
@@ -37,13 +36,13 @@ export default class extends Controller {
     //   console.log('DOIS CLICKS');
     //   this.swiper.navigation.nextEl
     // })
-    this.swiper.on('doubleClick', (event) => {
-      // console.log(event);
-      if (event.touches.currentX < window.innerWidth / 2) {
-        this.swiper.slidePrev()
-      } else{
-        this.swiper.slideNext()
-      }
-    })
+    // this.swiper.on('doubleClick', (event) => {
+    //   // console.log(event);
+    //   if (event.touches.currentX < window.innerWidth / 2) {
+    //     this.swiper.slidePrev()
+    //   } else{
+    //     this.swiper.slideNext()
+    //   }
+    // })
   }
 }
