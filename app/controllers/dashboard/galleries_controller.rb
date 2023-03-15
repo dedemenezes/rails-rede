@@ -12,7 +12,6 @@ class Dashboard::GalleriesController < ApplicationController
   end
 
   def create
-    binding.break
     @gallery = Gallery.new(gallery_params)
     if @gallery.save
       set_tags
