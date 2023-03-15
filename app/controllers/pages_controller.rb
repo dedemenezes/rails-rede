@@ -16,10 +16,11 @@ class PagesController < ApplicationController
         image_url: helpers.asset_path('icon-pin--blue.svg')
       }
     end
-    @galleries = Gallery.only_events
+    @galleries = Gallery.includes(:tags, banner_attachment: :blob).only_events
   end
 
-  def contact
+  def create
+
   end
 
   def about_us

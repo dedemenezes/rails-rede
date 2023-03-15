@@ -3,7 +3,7 @@ module ApplicationHelper
   def tab_active?(expected, options = {})
     # raise
     condition = params[:controller] == expected
-    if params[:controller] == 'pages' || params[:controller] == 'observatories'
+    if params[:controller] == 'pages' || params[:controller] == 'observatories' || params[:controller] == 'contacts'
       condition = params[:action] == options[:action] && params[:controller] == expected
     end
     condition ? 'active' : ''

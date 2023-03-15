@@ -27,7 +27,7 @@
             <%= link_to "Notícias", articles_path, class: "nav-link #{tab_active?('articles')}" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Contato", contact_path, class: "nav-link #{tab_active?('pages', action: 'contact')}" %>
+            <%= link_to "Contato", new_contact_path, class: "nav-link #{tab_active?('contacts', action: 'new')}" %>
           </li>
         </ul>
         <% if user_signed_in? && current_user.admin && params[:controller] == 'dashboard' %>
