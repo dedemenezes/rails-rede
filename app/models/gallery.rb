@@ -4,6 +4,8 @@ class Gallery < ApplicationRecord
   belongs_to :methodology, optional: true
   has_many :albums, dependent: :destroy
   has_one_attached :banner
+  has_many :taggings, as: :taggable, dependent: :destroy
+  has_many :tags, through: :taggings
 
   scope :published, -> { where(published: true) }
 

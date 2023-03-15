@@ -5,6 +5,7 @@ export default class extends Controller {
   static targets = ['input', 'button', 'checkbox']
   connect() {
     console.log(this.inputTarget);
+    this.displayInput()
   }
 
   display(event) {
@@ -16,11 +17,11 @@ export default class extends Controller {
 
   displayInput() {
     if (this.checkboxTarget.checked) {
-      this.inputTarget.classList.add('box--show')
-      this.inputTarget.classList.remove('box--hidden')
+      this.inputTargets.forEach(target => target.classList.add('box--show'))
+      this.inputTargets.forEach(target => target.classList.remove('box--hidden'))
     } else {
-      this.inputTarget.classList.remove('box--show')
-      this.inputTarget.classList.add('box--hidden')
+      this.inputTargets.forEach(target => target.classList.remove('box--show'))
+      this.inputTargets.forEach(target => target.classList.add('box--hidden'))
     }
   }
 }

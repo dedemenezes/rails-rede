@@ -1,9 +1,12 @@
 <%= simple_form_for([:dashboard, gallery]) do |f| %>
   <%= f.input :name %>
-  <div data-controller="display-photo-input">
-    <%= f.input :is_event, label: 'Foi uma ação', input_html: { data: { display_photo_input_target: 'checkbox', action: 'change->display-photo-input#displayInput' } } %>
-    <%= f.input :event_date, as: :string, input_html: { data: { controller: 'flatpickr' } },  wrapper_html: { class: 'box--anim box--hidden', data: { display_photo_input_target: 'input' } } %>
-  </div>
+  <% if gallery.observatory.nil? && gallery.methodology.nil? %>
+    <div data-controller="display-photo-input">
+      <%= f.input :is_event, label: 'Foi uma ação', input_html: { data: { display_photo_input_target: 'checkbox', action: 'change->display-photo-input#displayInput' } } %>
+      <%= f.input :event_date, as: :string, input_html: { data: { controller: 'flatpickr' } },  wrapper_html: { class: 'box--anim box--hidden', data: { display_photo_input_target: 'input' } } %>
+      <%= f.association :tags, input_html: { data: { controller: 'tom-select-create-option' } },  wrapper_html: { class: 'box--anim box--hidden', data: { display_photo_input_target: 'input' } } %>
+    </div>
+  <% end %>
   <%# TAGS! %>
   <%#= f.association :observatory, input_html: { data: { controller: 'tom-select', tom_select_max_item_value: '1' } } %>
   <%#= f.association :methodology, input_html: { data: { controller: 'tom-select', tom_select_max_item_value: '1' } } %>
