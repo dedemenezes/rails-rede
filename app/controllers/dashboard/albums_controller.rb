@@ -13,6 +13,7 @@ class Dashboard::AlbumsController < ApplicationController
 
   def create
     @album = Album.new(album_params)
+    @tags = SetTags.tagging(@album, params)
     begin
       @gallery = Gallery.find(params[:album][:gallery_id])
       @album.gallery = @gallery
@@ -30,7 +31,8 @@ class Dashboard::AlbumsController < ApplicationController
 
   def update
     if @album.update(album_params) && @album.banner.attached?
-      redirect_to edit_dashboard_album_path(@album), notice: 'Album atualizado'
+      @tags = SetTags.tagging(@album, params)
+      redirect_to dashboard_albums_path, notice: 'Album atualizado'
     else
       render :edit, status: :unprocessable_entity
     end
@@ -39,6 +41,7 @@ class Dashboard::AlbumsController < ApplicationController
   def update_banner
     @photo = @album.photos.find{ _1.id == params[:photo_id].to_i }
     @album.set_banner(@photo)
+
     if @album.save
       redirect_to dashboard_albums_path, notice: 'Banner atualizado'
     else
@@ -58,6 +61,6 @@ class Dashboard::AlbumsController < ApplicationController
   end
 
   def album_params
-    params.require(:album).permit(:name, photos: [])
+    params.require(:album).permit(:name, :is_event, :event_date, :published, :banner, photos: [])
   end
 end

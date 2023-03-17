@@ -2,7 +2,7 @@ class ApplicationRecord < ActiveRecord::Base
   primary_abstract_class
 
   def published?
-    self.published ? '✅' : '❌'
+    published ? '✅' : '❌'
   end
 
   def not_published?

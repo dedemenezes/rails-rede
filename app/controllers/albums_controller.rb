@@ -1,6 +1,6 @@
 class AlbumsController < ApplicationController
   def show
-    @album = Album.includes(photos_attachments: :blob).find(params[:id])
+    @album = Album.includes(photos_attachments: :blob).find_by(name: params[:name])
     authorize @album
     add_breadcrumb 'Galleries', galleries_path
     add_breadcrumb @album.gallery.name, gallery_path(@album.gallery)

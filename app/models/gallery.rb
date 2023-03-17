@@ -41,4 +41,8 @@ class Gallery < ApplicationRecord
   def observatory?
     observatory.present?
   end
+
+  def to_param
+    name
+  end
 end

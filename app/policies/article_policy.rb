@@ -7,7 +7,7 @@ class ArticlePolicy < ApplicationPolicy
   end
 
   def show?
-    record.published
+    record.published || user.admin?
   end
 
   def destroy?

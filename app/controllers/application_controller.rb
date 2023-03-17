@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   include Pundit::Authorization
+  include SetTags
 
   before_action :authenticate_user!, if: :dashboard_controller?
   before_action :configure_permitted_parameters, if: :devise_controller?

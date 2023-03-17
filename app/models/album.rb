@@ -2,6 +2,8 @@ class Album < ApplicationRecord
   belongs_to :gallery
   has_many_attached :photos
   has_one_attached :banner
+  has_many :taggings, as: :taggable
+  has_many :tags, through: :taggings
 
 
   def set_banner(attach)
@@ -9,7 +11,7 @@ class Album < ApplicationRecord
   end
 
   def self.dashboard_headers
-    %w[id number\ of\ photos gallery\ name]
+    %w[id banner name number\ of\ photos gallery\ name published?]
   end
 
   def number_of_photos
@@ -22,5 +24,9 @@ class Album < ApplicationRecord
 
   def pdf?(attachment)
     attachment.blob.content_type =~ /pdf/ && attachment.blob.filename.to_s =~ /.pdf/
+  end
+
+  def to_param
+    name
   end
 end

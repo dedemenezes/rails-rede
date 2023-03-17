@@ -7,7 +7,7 @@ class AlbumPolicy < ApplicationPolicy
   end
 
   def show?
-    true
+    record.published || user.admin?
   end
 
   def destroy?
