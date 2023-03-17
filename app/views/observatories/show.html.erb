@@ -74,25 +74,27 @@
           <!-- Additional required wrapper -->
           <div class="swiper-wrapper">
             <!-- Slides -->
-             <% 10.times do %>
+            <% @observatory.albums.each do %>
               <div class="swiper-slide">
-                <div class="card__event mb-3">
-                  <div class="card__event__image" style='background-image: url(<%= image_path 'default-banner.png'%>);background-size: cover; background-position: center;'></div>
-                  <div class="event__content">
-                    <div class="h-100 px-3 pb-3 flex-grow-1 d-flex flex-column justify-content-between">
-                      <h5 class='mb-0'>Nome da ação</h5>
-                      <div class="event__tags d-flex justify-content-start align-items-center">
-                        <small class="tag">araruama</small>
-                        <small class="tag">pescadores</small>
+                <%= link_to album_path do %>
+                  <div class="card__event mb-3">
+                    <div class="card__event__image" style='background-image: url(<%= image_path 'default-banner.png'%>);background-size: cover; background-position: center;'></div>
+                    <div class="event__content">
+                      <div class="h-100 px-3 pb-3 flex-grow-1 d-flex flex-column justify-content-between">
+                        <h5 class='mb-0'>Nome da ação</h5>
+                        <div class="event__tags d-flex justify-content-start align-items-center">
+                          <small class="tag">araruama</small>
+                          <small class="tag">pescadores</small>
+                        </div>
+                      </div>
+                      <div class="event__date ms-0 me-2 ms-md-3 me-md-2 mb-md-3">
+                        <p class="mb-0">13</p>
+                        <p class="mb-0">DEZ</p>
+                        <p class="mb-0 date__year">2023</p>
                       </div>
                     </div>
-                    <div class="event__date ms-0 me-2 ms-md-3 me-md-2 mb-md-3">
-                      <p class="mb-0">13</p>
-                      <p class="mb-0">DEZ</p>
-                      <p class="mb-0 date__year">2023</p>
-                    </div>
                   </div>
-                </div>
+                <% end %>
               </div>
             <% end %>
           </div>
@@ -100,8 +102,8 @@
           <div class="swiper-pagination"></div>
 
           <!-- If we need navigation buttons -->
-          <div class="swiper-button-prev"></div>
-          <div class="swiper-button-next"></div>
+          <%# <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div> %>
 
           <!-- If we need scrollbar -->
           <%# <div class="swiper-scrollbar"></div> %>

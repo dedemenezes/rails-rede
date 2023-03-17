@@ -35,8 +35,10 @@ export default class extends Controller {
         },
         1200: {
           slidesPerView: 3,
-          centeredSlides: false,
-          spaceBetween: 10,
+          centeredSlides: true,
+          // spaceBetween: 10,
+          spaceBetween: 30,
+          grabCursor: true,
 
         },
       },
