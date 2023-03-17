@@ -9,17 +9,17 @@ module ApplicationHelper
     condition ? 'active' : ''
   end
 
-  def display_banner_as_background(element)
-    if element.banner.attached?
-      element.banner.url
+  def display_banner_as_background(instance)
+    if instance.banner.attached?
+      "https://rails-rede-demo-dev-2.s3.us-east-2.amazonaws.com/#{instance.banner.key}"
     else
       image_path('default-banner.png')
     end
   end
 
-  def display_banner(article, options = {})
-    if article.banner.attached?
-      url = article.banner.url
+  def display_banner(instance, options = {})
+    if instance.banner.attached?
+      url = "https://rails-rede-demo-dev-2.s3.us-east-2.amazonaws.com/#{instance.banner.key}"
     else
       url = 'default-banner.png'
     end
