@@ -298,12 +298,11 @@ puts 'Attaching banners and rich text'
 Observatory.all.each do |obs|
   # ATTACH BANNER
   image_path = Rails.root.join('app', 'assets', 'images', 'observatorios-banners', "#{obs.name.parameterize}.jpg")
-  begin
-    obs.banner.attach(io: File.open(image_path), filename: "#{obs.name.parameterize}-banner.jpg", content_type: 'image/png')
-  rescue => e
+  unless File.exist?(image_path)
     image_path = Rails.root.join('app', 'assets', 'images', 'observatorios-banners', "#{obs.name.parameterize}.png")
-    obs.banner.attach(io: File.open(image_path), filename: "#{obs.name.parameterize}-banner.png", content_type: 'image/png')
   end
+  filename = obs.name.parameterize
+  obs.banner.attach(io: File.open(image_path), filename: "#{filename}-banner.png", content_type: 'image/png')
 
   # ADD DESCRIPTION
   ActionText::RichText.create!(record_type: 'Observatory', record_id: obs.id, name: 'rich_description', body: obs.description)
@@ -311,6 +310,11 @@ Observatory.all.each do |obs|
   # CREATE ALBUMS
 
   3.times do |i|
+    sample = Observatory.all.sample
+    image_path = Rails.root.join('app', 'assets', 'images', 'observatorios-banners', "#{sample.name.parameterize}.jpg")
+    unless File.exist?(image_path)
+      image_path = Rails.root.join('app', 'assets', 'images', 'observatorios-banners', "#{sample  .name.parameterize}.png")
+    end
     album = Album.create! name: "Conselho Regional #{i}", gallery: obs.gallery
     album.banner.attach(io: File.open(image_path), filename: "#{obs.name.parameterize}-album-banner.png", content_type: 'image/png')
   end

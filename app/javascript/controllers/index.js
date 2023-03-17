@@ -4,9 +4,6 @@
 
 import { application } from "./application"
 
-import CharacterCounter from 'stimulus-character-counter'
-application.register('character-counter', CharacterCounter)
-
 import ActiveOnHeightController from "./active_on_height_controller"
 application.register("active-on-height", ActiveOnHeightController)
 
@@ -33,6 +30,12 @@ application.register("overlay-menu", OverlayMenuController)
 
 import PhotoPreviewController from "./photo_preview_controller"
 application.register("photo-preview", PhotoPreviewController)
+
+import SlideNFadeLController from "./slide_n_fade_l_controller"
+application.register("slide-n-fade-l", SlideNFadeLController)
+
+import SlideNFadeRController from "./slide_n_fade_r_controller"
+application.register("slide-n-fade-r", SlideNFadeRController)
 
 import SwiperController from "./swiper_controller"
 application.register("swiper", SwiperController)

@@ -20,6 +20,7 @@ class Observatory < ApplicationRecord
   has_one :observatory_conflict, dependent: :destroy
   has_one :conflict_type, through: :observatory_conflict
   has_one :gallery, dependent: :destroy
+  has_many :albums, through: :gallery
   has_many :taggings, as: :taggable, dependent: :destroy
   has_many :tags, through: :taggings
   has_many :articles

@@ -1,0 +1,28 @@
+.slide-n-fade-r {
+  animation-name: slide-n-fade-r;
+  animation-duration: 2s;
+  animation-timing-function: ease;
+  animation-iteration-count: 1;
+}
+
+@keyframes rgt-slide-n-fade {
+  0% {
+    transform: tanslateX(0%);
+    opacity: 1;
+  }
+
+  20% {
+    transform: tanslateX(23%);
+      opacity: .77;
+  }
+
+  70% {
+    transform: tanslateX(70%);
+      opacity: .3;
+  }
+
+  100% {
+    transform: translateX(105%);
+    opacity: 0;
+  }
+}
