@@ -120,9 +120,6 @@ araruama = Observatory.create!(
   description: description
 )
 
-
-
-
 arraial_desc = "O Observatório de Arraial do Cabo é formado por marisqueiras, beneficiadoras de pescado e pescadores artesanais da Prainha. O grupo enfrenta impactos relacionados à dinâmica demográfica, perda de território e maretório,  conflitos com Unidade de Conservação e vem se organizando e se posicionando na gestão ambiental pública local frente aos conflitos ambientais. Para tanto, o processo educativo e as ações com esse grupo são pautadas no tema gerador definido coletivamente: Viabilização da gestão pesqueira da Reserva Extrativista Marinha (Resex-Mar) de Arraial do Cabo."
 
 arraial = Observatory.create!(
@@ -142,8 +139,6 @@ arraial = Observatory.create!(
   conflict_type: ConflictType.first,
   description: arraial_desc
 )
-
-
 buzios_desc = "O Observatório de Armação dos Búzios é formado por quilombolas do Quilombo de Baía Formosa. O grupo enfrenta impactos como a especulação imobiliária, descaracterização e perda do território quilombola, dificuldade de acesso a políticas públicas específicas, e vem se organizando e se posicionando na gestão ambiental pública local frente aos conflitos ambientais. Para tanto, o processo educativo e as ações com esse grupo são pautadas no tema gerador definido coletivamente: \"Descaracterização e perda do território quilombola\"."
 
 buzios = Observatory.create!(
@@ -203,8 +198,6 @@ cabo_frio = Observatory.create!(
   description: cabo_frio_desc
 )
 # CHAVAO =>  22°35'19"S   42°1'22"W
-
-
 itapemirim_desc = "O Observatório Itapemirim é formado por marisqueiras das localidades de Itaipava e Itaoca. O grupo enfrenta impactos como crescimento populacional, criminalização da atividade tradicional e falta de acesso a políticas públicas. No momento vem entendendo o conflito que está inserido e se organizando em busca de estratégias de enfrentamento. Para tanto, o processo educativo e as ações com esse grupo são pautadas no tema gerador definido coletivamente: Reconhecimento e estruturação da atividade das marisqueiras."
 
 itapemirim = Observatory.create!(
@@ -224,9 +217,6 @@ itapemirim = Observatory.create!(
   conflict_type: pesqueira,
   description: itapemirim_desc
 )
-
-
-
 macae_desc = "O Observatório de Macaé tem focado suas ações na mobilização dos agricultores familiares do Imburo e na consolidação de um grupo. Após a conclusão do levantamento dos principais impactos relacionados à cadeia produtiva de petróleo e gás que afetam esses agricultores, será definido coletivamente o tema gerador municipal, que vai pautar o processo educativo com o grupo bem como monitoramento."
 
 macae = Observatory.create!(
@@ -246,8 +236,6 @@ macae = Observatory.create!(
   conflict_type: territorio_rural,
   description: macae_desc
 )
-
-
 rio_das_ostras_desc = "O Observatório de Rio das Ostras é formado por agricultores familiares de Cantagalo. O grupo enfrenta impactos como crescimento populacional desordenado, especulação imobiliária, dificuldade de acesso a políticas públicas de incentivo à agricultura familiar, implementação e expansão da Zona Especial de Negócios, e vem se organizando e se posicionando na gestão ambiental pública local frente aos conflitos ambientais. Para tanto, o processo educativo e as ações com esse grupo são pautadas no tema gerador definido coletivamente: Acesso a políticas públicas no enfrentamento à descaracterização do território rural."
 
 rio_das_ostras = Observatory.create!(
@@ -267,8 +255,6 @@ rio_das_ostras = Observatory.create!(
   conflict_type: territorio_rural,
   description: rio_das_ostras_desc
 )
-
-
 itabapoana_desc = "O Observatório São Francisco de Itabapoana é formado por agricultores da comunidade de Carrapato / Nova Belém. O grupo enfrenta impactos como êxodo rural, falta de acesso a políticas públicas de incentivo à agricultura familiar, conflitos com Unidade de Conservação e processos de regularização fundiária, e vem se organizando e se posicionando na gestão ambiental pública local frente aos conflitos ambientais. Para tanto, o processo educativo e as ações com esse grupo são pautadas no tema gerador definido coletivamente: Manutenção da integridade do território agrícola."
 itabapoana = Observatory.create!(
   published: true,
@@ -310,6 +296,7 @@ sjbarra = Observatory.create!(
 puts 'Attaching banners and rich text'
 
 Observatory.all.each do |obs|
+  # ATTACH BANNER
   image_path = Rails.root.join('app', 'assets', 'images', 'observatorios-banners', "#{obs.name.parameterize}.jpg")
   begin
     obs.banner.attach(io: File.open(image_path), filename: "#{obs.name.parameterize}-banner.jpg", content_type: 'image/png')
@@ -317,7 +304,16 @@ Observatory.all.each do |obs|
     image_path = Rails.root.join('app', 'assets', 'images', 'observatorios-banners', "#{obs.name.parameterize}.png")
     obs.banner.attach(io: File.open(image_path), filename: "#{obs.name.parameterize}-banner.png", content_type: 'image/png')
   end
+
+  # ADD DESCRIPTION
   ActionText::RichText.create!(record_type: 'Observatory', record_id: obs.id, name: 'rich_description', body: obs.description)
+
+  # CREATE ALBUMS
+
+  3.times do |i|
+    album = Album.create! name: "Conselho Regional #{i}", gallery: obs.gallery
+    album.banner.attach(io: File.open(image_path), filename: "#{obs.name.parameterize}-album-banner.png", content_type: 'image/png')
+  end
 end
 
 puts 'Creating tags...'
@@ -334,6 +330,4 @@ puts 'Creating tags...'
 #   name: 'Metodologia Um',
 #   project: project
 # )
-
-
 puts 'Finished zo/'
