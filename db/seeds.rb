@@ -320,7 +320,8 @@ Observatory.all.each do |obs|
     if i == 2
       album.is_event = true
       album.event_date
-    album.banner.attach(io: File.open(image_path), filename: "#{obs.name.parameterize}-album-banner.png", content_type: 'image/png')
+      album.banner.attach(io: File.open(image_path), filename: "#{obs.name.parameterize}-album-banner.png", content_type: 'image/png')
+    end
   end
 end
 

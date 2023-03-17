@@ -2,6 +2,7 @@ module Dashboard
   class MethodologiesController < ApplicationController
     layout 'dashboard'
 
+    before_action :set_methodology, only: :destroy
     def index
       @methodologies = Methodology.all
     end
@@ -23,7 +24,21 @@ module Dashboard
       end
     end
 
+    def destroy
+      @methodology.destroy
+      redirect_to dashboard_methodologies_path
+      flash[:notice] = 'Metodologia destruída'
+    end
+
     private
+
+    def set_methodology
+      begin
+        @methodology = Methodology.find_by(name: params[:id])
+      rescue => exception
+        @methodology = Methodology.find(params[:id])
+      end
+    end
 
     def methodology_params
       params.require(:methodology).permit(:name, :description, :banner, :header_one, :description_one, :header_two, :description_two, :banner_two, :content)
