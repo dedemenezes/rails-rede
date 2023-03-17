@@ -51,4 +51,8 @@ class Article < ApplicationRecord
     Article.featured.update(featured: false)
     self.featured = true
   end
+
+  def to_param
+    header
+  end
 end

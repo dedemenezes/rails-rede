@@ -2,15 +2,15 @@
   <div class="row justify-content-center">
     <div class="col-12 col-md-9 mt-4">
       <div class="article__show">
-        <%= link_to articles_path, class: "btn btn-rede-light mb-4" do %>
-          <%= image_tag 'arrow-down.svg', class: 'image--left', width: '16px', style: 'transform: rotate(90deg), margin-right: 16px' %>
+        <%= link_to articles_path, class: "btn btn-figma-light mb-4" do %>
+          <%= image_tag 'arrow-down.svg', class: 'image--left', width: '16px', style: 'transform: rotate(90deg); margin-right: 16px;' %>
           voltar
         <% end %>
 
         <div class="show__header">
           <h1><%= @article.header %></h1>
           <p><%= @article.sub_header %></p>
-          <small class='mb-1 text-muted'>Por <strong><%= @observatory.name.split.map{ _1.capitalize }.join(' ') %></strong> - <%= @observatory.address %></small>
+          <small class='mb-1 text-muted'>Por <strong><%= @observatory.name.split.map{ _1.capitalize }.join(' ') %></strong> - <%= Project.first.name %></small>
           <br>
           <small class='text-muted'><%= @article.created_at.strftime('%d/%m/%y %Hh%M') %> - <%= time_ago_in_words(@article.updated_at) %></small>
         </div>
