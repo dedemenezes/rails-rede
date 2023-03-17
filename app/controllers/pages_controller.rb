@@ -19,12 +19,9 @@ class PagesController < ApplicationController
     @galleries = Gallery.includes(:tags, banner_attachment: :blob).only_events
   end
 
-  def create
-
-  end
-
   def about_us
     @methodologies = Methodology.with_attached_banner.all
     @photos = Project.includes(photos_attachments: :blob).first.photos
+    @text_colors = ['rede-primary', 'rede-dark-red', 'rede-primary-l']
   end
 end

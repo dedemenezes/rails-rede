@@ -1,0 +1,13 @@
+.location__icon {
+  position: unset;
+  display: flex;
+  align-items: center;
+  .pin__icon {
+    margin-right: .5rem;
+    width: 12px;
+    height: 13px;
+  }
+  p {
+    margin-bottom: 0;
+  }
+}
