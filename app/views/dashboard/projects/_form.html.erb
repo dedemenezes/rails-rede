@@ -2,7 +2,7 @@
   <%= f.input :name, required: true %>
 
   <div data-controller="character-counter" data-character-counter-countdown-value="true">
-    <%= f.input :banner_text, hint: 'Máximo de 73 caractéres', input_html: { maxlength: "73", data: { character_counter_target: 'input' } } %>
+    <%= f.input :banner_text, hint: 'Máximo de 100 caractéres', input_html: { maxlength: "100", data: { character_counter_target: 'input' } } %>
     <p>
       Restam
       <strong data-character-counter-target="counter"></strong> caracteres nesse campo.
