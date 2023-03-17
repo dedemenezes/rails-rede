@@ -7,7 +7,7 @@ class ObservatoryPolicy < ApplicationPolicy
   end
 
   def show?
-    record.published || user.admin?
+    true
   end
 
   def destroy?
