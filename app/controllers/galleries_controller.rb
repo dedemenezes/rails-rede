@@ -5,7 +5,8 @@ class GalleriesController < ApplicationController
   end
 
   def show
-    @gallery = Gallery.includes(albums: { banner_attachment: :blob}).find_by(name: params[:name])
+    @gallery = Gallery.includes(albums: { banner_attachment: :blob}).find_by(name: params[:name]) || Gallery.find(params[:id])
+    @albums = @gallery.published_albums
     authorize @gallery
     add_breadcrumb 'Acervo', galleries_path
     add_breadcrumb @gallery.name, gallery_path(@gallery), current: true

@@ -1,6 +1,6 @@
 <ul class="list-inline mb-0 mt-2">
   <% %w[index new].each do |action| %>
-    <% next if params[:controller] == "dashboard/projects" && action == 'new' %>
+  <% next if skip_new_action_tab?('dashboard/projects', action) || skip_new_action_tab?('dashboard/methodologies', action) %>
     <% active = params[:action] == action %>
     <li class="list-inline-item px-3 py-2 m-0 <%= 'border border-bottom-0 rounded-top tab-shadow' if active %>">
       <%= link_to url_for(controller: controller_name, action: action), class: "d-flex align-items-center text-decoration-none tab-action #{'tab-action--active' if active}"  do %>

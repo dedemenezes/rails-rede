@@ -10,7 +10,7 @@ class ObservatoriesController < ApplicationController
   end
 
   def show
-    @observatory = Observatory.includes(:priority_type, :conflict_type, :gallery, :articles, :albums, banner_attachment: :blob, albums: { banner_attachment: :blob }).find_by(name: params[:name])
+    @observatory = Observatory.includes(:priority_type, :conflict_type, :gallery, :articles, :albums, banner_attachment: :blob, albums: { banner_attachment: :blob }).find_by(name: params[:name]) || Observatory.find(params[:id])
     @albums = @observatory.albums
     authorize @observatory
   end

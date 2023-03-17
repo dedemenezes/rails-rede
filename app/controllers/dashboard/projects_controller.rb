@@ -41,7 +41,11 @@ module Dashboard
     private
 
     def set_project
-      @project = Project.find(params[:id])
+      begin
+        @project = Project.find(params[:id])
+      rescue => exception
+        @project = Project.find_by(name: params[:id])
+      end
     end
 
     def project_params

@@ -3,7 +3,6 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="display-button-on-hover"
 export default class extends Controller {
   connect() {
-    console.log('HI');
   }
 
   display() {

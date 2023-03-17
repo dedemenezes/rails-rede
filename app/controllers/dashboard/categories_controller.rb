@@ -29,7 +29,7 @@ module Dashboard
     end
 
     def destroy
-      @category = Category.find(params[:id])
+      @category = Category.find(params[:id]) || Category.find_by(name: params[:name])
       if @category.destroy
         redirect_to dashboard_categories_path, notice: "#{@category.name} was removed"
       else

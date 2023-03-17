@@ -1,7 +1,7 @@
 class Dashboard::ArticlesController < ApplicationController
   layout 'dashboard'
 
-  before_action :set_article, only: %i[edit update destroy]
+  before_action :set_article, only: %i[edit destroy]
 
   def index
     @articles = policy_scope(Article, policy_scope_class: Dashboard::UserPolicy::Scope).order(id: :desc)
@@ -25,6 +25,8 @@ class Dashboard::ArticlesController < ApplicationController
   end
 
   def update
+    # MUDAR URGENTE
+    @article = Article.find_by(header: params[:id])
     destroy_taggings
     create_taggings
     if @article.update(article_params)
@@ -51,6 +53,7 @@ class Dashboard::ArticlesController < ApplicationController
   end
 
   def destroy_taggings
+    return unless params[:article][:tag_ids]
     return unless params[:article][:tag_ids].count - 1 < @article.taggings.count
 
     @article.taggings.each do |tagging|
@@ -59,7 +62,11 @@ class Dashboard::ArticlesController < ApplicationController
   end
 
   def set_article
-    @article = Article.find(params[:id])
+    begin
+      @article = Article.find(params[:id])
+    rescue => exception
+      @article = Article.find_by(header: params[:id])
+    end
   end
 
   def article_params

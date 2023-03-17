@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import CharacterCounter from 'stimulus-character-counter'
+application.register('character-counter', CharacterCounter)
+
 import ActiveOnHeightController from "./active_on_height_controller"
 application.register("active-on-height", ActiveOnHeightController)
 
@@ -18,6 +21,9 @@ application.register("display-photo-input", DisplayPhotoInputController)
 
 import EventsScrollController from "./events_scroll_controller"
 application.register("events-scroll", EventsScrollController)
+
+import FilterCalendarController from "./filter_calendar_controller"
+application.register("filter-calendar", FilterCalendarController)
 
 import FlatpickrController from "./flatpickr_controller"
 application.register("flatpickr", FlatpickrController)

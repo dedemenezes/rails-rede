@@ -33,4 +33,8 @@ module ApplicationHelper
   def hide_nested_links(name_of_controller)
     name_of_controller == 'albums'
   end
+
+  def skip_new_action_tab?(controller_name, action)
+    params[:controller] == controller_name && action == 'new'
+  end
 end

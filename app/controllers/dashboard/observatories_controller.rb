@@ -45,7 +45,11 @@ module Dashboard
     private
 
     def set_observatory
-      @observatory = Observatory.find(params[:id])
+      begin
+        @observatory = Observatory.find(params[:id])
+      rescue => exception
+        @observatory = Observatory.find_by(name: params[:id])
+      end
     end
 
     def observatory_params

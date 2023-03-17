@@ -13,7 +13,7 @@ module SetTags
     tags << Tag.where(id: ids)
     tags = tags.flatten
     tags.map do |tag|
-      Tagging.create! tag:, taggable: instance
+      Tagging.create tag:, taggable: instance
     end
   end
 end

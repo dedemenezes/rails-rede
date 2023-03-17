@@ -17,7 +17,8 @@ $primary:    $r-blue-d;
 $success:   #198754;
 $info:       $r-blue;
 $danger:     $r-red-d;
-$warning:    $orange;
+$warning:    $r-orange;
+$news:       $r-yellow;
 
 // Links
 // Style anchor elements.
@@ -44,7 +45,8 @@ $rede-colors: (
   "rede-primary-l": $r-blue-l,
   "rede-secondary": $r-orange,
   "rede-dark-red": $r-red-d,
-  "rede-white": $r-light
+  "rede-white": $r-light,
+  "rede-news": $r-yellow
 );
 
 // Merge this new map into the theme-colors map (set by default in Bootstrap) in config/custom_maps.scss
@@ -54,6 +56,7 @@ $theme-colors: (
   'danger': $danger,
   "info": $info,
   "warning": $warning,
+  'news': $yellow,
 );
 
 $theme-colors: map-merge($theme-colors, $rede-colors);

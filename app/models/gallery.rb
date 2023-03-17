@@ -14,6 +14,10 @@ class Gallery < ApplicationRecord
     %w[id banner name category total\ de\ albuns published?]
   end
 
+  def published_albums
+    albums.select { |album| album.published }
+  end
+
   def observatory_name
     observatory&.name
   end

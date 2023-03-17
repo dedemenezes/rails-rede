@@ -1,6 +1,13 @@
 <%= simple_form_for [:dashboard, project] do |f| %>
   <%= f.input :name, required: true %>
-  <%= f.input :banner_text %>
+
+  <div data-controller="character-counter" data-character-counter-countdown-value="true">
+    <%= f.input :banner_text, hint: 'Máximo de 73 caractéres', input_html: { maxlength: "73", data: { character_counter_target: 'input' } } %>
+    <p>
+      Restam
+      <strong data-character-counter-target="counter"></strong> caracteres nesse campo.
+    </p>
+  </div>
 
   <%= render 'dashboard/shared/form/banner_input', element: project, form: f %>
   <%= render 'dashboard/shared/form/submit_cancel', element: project, form: f %>

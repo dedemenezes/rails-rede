@@ -19,9 +19,19 @@ class ArticlesController < ApplicationController
 
   def show
     @observatory = Observatory.first
-    @article = Article.find_by(header: params[:header])
+    set_article
     authorize @article
     add_breadcrumb @article.model_name.collection.capitalize, '#'
     add_breadcrumb "article_#{@article.id}", '#'
+  end
+
+  private
+
+  def set_article
+    begin
+      @article =  Article.find_by(header: params[:header])
+    rescue => exception
+      @article = Article.find(params[:id])
+    end
   end
 end

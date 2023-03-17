@@ -51,7 +51,11 @@ class Dashboard::GalleriesController < ApplicationController
   private
 
   def set_gallery
-    @gallery = Gallery.find(params[:id])
+    begin
+      @gallery = Gallery.find(params[:id])
+    rescue => exception
+      @gallery = Gallery.find_by(name: params[:id])
+    end
   end
 
   def gallery_params

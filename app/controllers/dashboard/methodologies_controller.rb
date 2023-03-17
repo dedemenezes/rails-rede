@@ -1,6 +1,11 @@
 module Dashboard
   class MethodologiesController < ApplicationController
     layout 'dashboard'
+
+    def index
+      @methodologies = Methodology.all
+    end
+
     def new
       @methodology = Methodology.new
       authorize @methodology

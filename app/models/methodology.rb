@@ -8,4 +8,12 @@ class Methodology < ApplicationRecord
   validates :name, presence: true, length: { minimum: 3 }
 
   after_create :set_gallery
+
+  def self.dashboard_headers
+    %w[id banner name created\ at updated\ at]
+  end
+
+  def to_param
+    name
+  end
 end
