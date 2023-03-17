@@ -1,5 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
-import Swiper from 'swiper';
+import Swiper, { Navigation, Pagination, Scrollbar } from 'swiper';
 
 // Connects to data-controller="swiper"
 export default class extends Controller {
@@ -11,20 +11,34 @@ export default class extends Controller {
   connect() {
     // console.log(this.wrapperTarget)
     this.swiper = new Swiper(this.element, {
+      modules: [Navigation, Pagination, Scrollbar],
+      centeredSlides: true,
+      pagination: {
+        el: '.swiper-pagination',
+        type: 'bullets',
+        clickable: true,
+      },
+
       breakpoints: {
         // when window width is >= 320px
         300: {
+          centeredSlides: false,
           slidesPerView: 1,
-          spaceBetween: 5
+          spaceBetween: 0,
         },
-        // when window width is >= 480px
+        // when window width is >= 768
         768: {
           slidesPerView: 2,
+          centeredSlides: false,
+          spaceBetween: 10,
+
         },
-        // when window width is >= 640px
-        1024: {
+        1200: {
           slidesPerView: 3,
-        }
+          centeredSlides: false,
+          spaceBetween: 10,
+
+        },
       },
     })
     // this.swiper.on('slideChange', (event) => {
