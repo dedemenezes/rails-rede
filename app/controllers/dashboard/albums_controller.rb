@@ -57,11 +57,8 @@ class Dashboard::AlbumsController < ApplicationController
   private
 
   def set_album
-    begin
-      @album = Album.find_by(name: params[:id])
-    rescue => exception
-      @album = Album.find(params[:id])
-    end
+    @album = Album.find_by(name: params[:id])
+    @album = Album.find(params[:id]) if @album.nil?
   end
 
   def album_params
