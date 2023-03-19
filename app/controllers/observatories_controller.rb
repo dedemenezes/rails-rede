@@ -1,7 +1,7 @@
 class ObservatoriesController < ApplicationController
   def index
     @observatories = policy_scope(Observatory)
-    @markers = @observatories.geocoded.map do |observatory|
+    @markers = @observatories.map do |observatory|
       {
         lat: observatory.latitude,
         lng: observatory.longitude
@@ -17,7 +17,7 @@ class ObservatoriesController < ApplicationController
 
   def mapa
     @observatories = policy_scope(Observatory)
-    @markers = @observatories.geocoded.map do |observatory|
+    @markers = @observatories.map do |observatory|
       {
         lat: observatory.latitude,
         lng: observatory.longitude,

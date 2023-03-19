@@ -1,16 +1,11 @@
 class Observatory < ApplicationRecord
   validates :name,
             :email,
-            :phone_number,
-            :street,
-            :number,
-            :city,
             :state,
-            :zip_code,
-            :neighborhood, presence: true
+            :municipality, presence: true
   validates :municipality, length: { in: 2..3 }
   # validates :zip_code, length: { is: 8 }
-  validates :phone_number, format: { with: /\A(\+5521|0?21)?\d{9}\z/ }
+  # validates :phone_number, format: { with: /\A(\+5521|0?\d{2})?(\d{8}|\d{9})\z/ }
 
   belongs_to :unity_type, inverse_of: :observatories
   belongs_to :priority_type
@@ -27,10 +22,19 @@ class Observatory < ApplicationRecord
 
   has_one_attached :banner
   has_rich_text :rich_description
-  geocoded_by :address
+  # geocoded_by :address
+
+  # reverse_geocoded_by :latitude, :longitude do |obj,results|
+  #   if geo = results.first
+  #     obj.city    = geo.city
+  #     obj.zipcode = geo.postal_code
+  #     obj.country = geo.country_code
+  #   end
+  # end
 
   before_validation :strip_phone_number, :strip_zip_code, :set_address
-  after_validation :geocode, if: :will_save_change_to_address?
+  # after_validation :geocode
+  # after_validation :reverse_geocode
 
   after_create :set_gallery
 
