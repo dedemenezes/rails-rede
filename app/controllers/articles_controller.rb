@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   skip_before_action :authenticate_user!
+  before_action :set_article, only: %i[show]
 
   def index
     if params[:tags].present?
@@ -18,7 +19,9 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @observatory = Observatory.first
+    observatory = @article.observatory
+    methodology = @article.methodology
+    @writer = observatory || methodology
     set_article
     authorize @article
     add_breadcrumb @article.model_name.collection.capitalize, '#'
@@ -28,10 +31,7 @@ class ArticlesController < ApplicationController
   private
 
   def set_article
-    begin
-      @article =  Article.find_by(header: params[:header])
-    rescue => exception
-      @article = Article.find(params[:id])
-    end
+    @article = Article.find_by(header: params[:header])
+    @article ||= Article.find(params[:id])
   end
 end

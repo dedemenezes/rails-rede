@@ -13,12 +13,10 @@ class Dashboard::ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
-    binding.break
     if params[:article][:observatory_id].present?
       @observatory = Observatory.find(params[:article][:observatory_id])
       @article.observatory = @observatory
     end
-
     if params[:article][:methodology_id].present?
       @methodology = Methodology.find(params[:article][:methodology_id])
       @article.methodology = @methodology
