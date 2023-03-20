@@ -1,4 +1,5 @@
 puts 'Cleaning DB...'
+Article.destroy_all
 Methodology.destroy_all
 Project.destroy_all
 Observatory.destroy_all
@@ -92,7 +93,7 @@ priorities = [
   "Agricultores Familiares",
   "Pescadores de Guaiamum"
 ]
-pescadores_artesanais, beneficadoras, quilombolas, mariqueiras, agricultores = priorities.map { |priority| PriorityType.create! name: priority }
+pescadores_artesanais, beneficiadoras, quilombolas, mariqueiras, agricultores = priorities.map { |priority| PriorityType.create! name: priority }
 
 puts 'creating unity types'
 observatory_types = ['observatory', 'platform', 'fpso']
@@ -119,10 +120,10 @@ araruama = Observatory.create!(
   municipality: 'RJ',
   latitude: -22.872485564827493,
   longitude: -42.33547534557519,
-  priority_type: PriorityType.first,
   conflict_type: ConflictType.first,
   description: description
 )
+ObservatoryPrioritySubject.create! priority_type: pescadores_artesanais, observatory: araruama
 
 arraial_desc = "O Observatório de Arraial do Cabo é formado por marisqueiras, beneficiadoras de pescado e pescadores artesanais da Prainha. O grupo enfrenta impactos relacionados à dinâmica demográfica, perda de território e maretório,  conflitos com Unidade de Conservação e vem se organizando e se posicionando na gestão ambiental pública local frente aos conflitos ambientais. Para tanto, o processo educativo e as ações com esse grupo são pautadas no tema gerador definido coletivamente: Viabilização da gestão pesqueira da Reserva Extrativista Marinha (Resex-Mar) de Arraial do Cabo."
 
@@ -141,10 +142,12 @@ arraial = Observatory.create!(
   municipality: 'RJ',
   latitude: -22.963868106076266,
   longitude: -42.02533391947336,
-  priority_type: mariqueiras,
   conflict_type: ConflictType.first,
   description: arraial_desc
 )
+ObservatoryPrioritySubject.create! priority_type: mariqueiras, observatory: arraial
+ObservatoryPrioritySubject.create! priority_type: beneficiadoras, observatory: arraial
+ObservatoryPrioritySubject.create! priority_type: pescadores_artesanais, observatory: arraial
 
 buzios_desc = "O Observatório de Armação dos Búzios é formado por quilombolas do Quilombo de Baía Formosa. O grupo enfrenta impactos como a especulação imobiliária, descaracterização e perda do território quilombola, dificuldade de acesso a políticas públicas específicas, e vem se organizando e se posicionando na gestão ambiental pública local frente aos conflitos ambientais. Para tanto, o processo educativo e as ações com esse grupo são pautadas no tema gerador definido coletivamente: \"Descaracterização e perda do território quilombola\"."
 buzios = Observatory.create!(
@@ -162,10 +165,10 @@ buzios = Observatory.create!(
   latitude: -22.79925249532444,
   longitude: -41.96957568375965,
   municipality: 'RJ',
-  priority_type: quilombolas,
   conflict_type: perda_quilombola,
   description: buzios_desc
 )
+ObservatoryPrioritySubject.create! priority_type: quilombolas, observatory: buzios
 
 campos_desc = "O Observatório de Campos dos Goytacazes é formado por remanescentes quilombolas do Quilombo de Lagoa Fea. O grupo enfrenta impactos como a descaracterização e perda do território quilombola, falta de acesso e existência de políticas públicas, conflitos relacionados à falta de reconhecimento da identidade quilombola por parte da comunidade e do poder público, e vem se organizando e se posicionando na gestão ambiental pública local frente aos conflitos ambientais. Para tanto, o processo educativo e as ações com esse grupo são pautadas no tema gerador definido coletivamente: Reconhecimento da comunidade quilombola para o acesso à políticas públicas"
 # cgoytacazes.redeobservacao@ambiental.rio
@@ -184,12 +187,13 @@ campos = Observatory.create!(
   zip_code: '28950-000',
   state: 'Rio de Janeiro',
   municipality: 'RJ',
-  latitude: -21.959826465013396,
-  longitude: -41.45871068161169,
-  priority_type: quilombolas,
+  latitude: -21.8444477,
+  longitude: -41.4311549,
+
   conflict_type: perda_quilombola,
   description: campos_desc
 )
+ObservatoryPrioritySubject.create! priority_type: quilombolas, observatory: campos
 
 cabo_frio_desc = "O Observatório de Cabo Frio é formado por pescadores artesanais de guaiamum do Chavão. O grupo enfrenta impactos como crescimento populacional desordenado, perda de território pesqueiro, especulação imobiliária, falta de acesso e de existência de políticas públicas para manutenção da atividade pesqueira, conflitos com Unidade de Conservação, e vem se organizando e se posicionando na gestão ambiental pública local frente aos conflitos ambientais. Para tanto, o processo educativo e as ações com esse grupo são pautadas no tema gerador definido coletivamente: Manutenção do território pesqueiro."
 cabo_frio = Observatory.create!(
@@ -207,10 +211,10 @@ cabo_frio = Observatory.create!(
   municipality: 'RJ',
   latitude: -22.59086326033604,
   longitude: -42.02271354306846,
-  priority_type: pescadores_artesanais,
   conflict_type: pesqueira,
   description: cabo_frio_desc
 )
+ObservatoryPrioritySubject.create! priority_type: pescadores_artesanais, observatory: cabo_frio
 # CHAVAO =>  22°35'19"S   42°1'22"W
 itapemirim_desc = "O Observatório Itapemirim é formado por marisqueiras das localidades de Itaipava e Itaoca. O grupo enfrenta impactos como crescimento populacional, criminalização da atividade tradicional e falta de acesso a políticas públicas. No momento vem entendendo o conflito que está inserido e se organizando em busca de estratégias de enfrentamento. Para tanto, o processo educativo e as ações com esse grupo são pautadas no tema gerador definido coletivamente: Reconhecimento e estruturação da atividade das marisqueiras."
 
@@ -229,10 +233,10 @@ itapemirim = Observatory.create!(
   municipality: 'RJ',
   latitude: -20.88840589846213,
   longitude: -40.77419706071976,
-  priority_type: mariqueiras,
   conflict_type: pesqueira,
   description: itapemirim_desc
 )
+ObservatoryPrioritySubject.create! priority_type: mariqueiras, observatory: itapemirim
 macae_desc = "O Observatório de Macaé tem focado suas ações na mobilização dos agricultores familiares do Imburo e na consolidação de um grupo. Após a conclusão do levantamento dos principais impactos relacionados à cadeia produtiva de petróleo e gás que afetam esses agricultores, será definido coletivamente o tema gerador municipal, que vai pautar o processo educativo com o grupo bem como monitoramento."
 
 macae = Observatory.create!(
@@ -250,10 +254,10 @@ macae = Observatory.create!(
   municipality: 'RJ',
   latitude: -22.377997212357936,
   longitude: -41.77510307662048,
-  priority_type: agricultores,
   conflict_type: territorio_rural,
   description: macae_desc
 )
+ObservatoryPrioritySubject.create! priority_type: agricultores, observatory: macae
 rio_das_ostras_desc = "O Observatório de Rio das Ostras é formado por agricultores familiares de Cantagalo. O grupo enfrenta impactos como crescimento populacional desordenado, especulação imobiliária, dificuldade de acesso a políticas públicas de incentivo à agricultura familiar, implementação e expansão da Zona Especial de Negócios, e vem se organizando e se posicionando na gestão ambiental pública local frente aos conflitos ambientais. Para tanto, o processo educativo e as ações com esse grupo são pautadas no tema gerador definido coletivamente: Acesso a políticas públicas no enfrentamento à descaracterização do território rural."
 
 rio_das_ostras = Observatory.create!(
@@ -271,10 +275,11 @@ rio_das_ostras = Observatory.create!(
   municipality: 'RJ',
   latitude: -22.42278840417887,
   longitude: -41.93859410216907,
-  priority_type: agricultores,
   conflict_type: territorio_rural,
   description: rio_das_ostras_desc
 )
+ObservatoryPrioritySubject.create! priority_type: agricultores, observatory: rio_das_ostras
+
 itabapoana_desc = "O Observatório São Francisco de Itabapoana é formado por agricultores da comunidade de Carrapato / Nova Belém. O grupo enfrenta impactos como êxodo rural, falta de acesso a políticas públicas de incentivo à agricultura familiar, conflitos com Unidade de Conservação e processos de regularização fundiária, e vem se organizando e se posicionando na gestão ambiental pública local frente aos conflitos ambientais. Para tanto, o processo educativo e as ações com esse grupo são pautadas no tema gerador definido coletivamente: Manutenção da integridade do território agrícola."
 itabapoana = Observatory.create!(
   published: true,
@@ -289,12 +294,12 @@ itabapoana = Observatory.create!(
   zip_code: '28230-000',
   state: 'Rio de Janeiro',
   municipality: 'RJ',
-  latitude: -21.298523131587253,
-  longitude: -40.9699898754778,
-  priority_type: agricultores,
+  latitude: -21.4988412,
+  longitude: -41.0717608,
   conflict_type: territorio_rural,
   description: itabapoana_desc
 )
+ObservatoryPrioritySubject.create! priority_type: agricultores, observatory: itabapoana
 
 sao_joao_desc = "O Observatório São Francisco de Itabapoana é formado por agricultores da comunidade de Carrapato / Nova Belém. O grupo enfrenta impactos como êxodo rural, falta de acesso a políticas públicas de incentivo à agricultura familiar, conflitos com Unidade de Conservação e processos de regularização fundiária, e vem se organizando e se posicionando na gestão ambiental pública local frente aos conflitos ambientais. Para tanto, o processo educativo e as ações com esse grupo são pautadas no tema gerador definido coletivamente: Manutenção da integridade do território agrícola."
 sjbarra = Observatory.create!(
@@ -312,10 +317,10 @@ sjbarra = Observatory.create!(
   municipality: 'RJ',
   latitude: -21.631087756083133,
   longitude: -41.03993937012111,
-  priority_type: beneficadoras,
   conflict_type: pesca_laguna,
   description: sao_joao_desc
 )
+ObservatoryPrioritySubject.create! priority_type: beneficiadoras, observatory: sjbarra
 
 kennedy_desc = "O processo de mobilização e consolidação de um grupo se mostrou desafiador ao longo do ano de 2022, no Observatório de Presidente Kennedy. Por isso, neste ano encontra-se em processo de reestruturação e, portanto, não tem um grupo consolidado. Após as tentativas de sensibilização e mobilização de pescadores e pescadoras da localidade de Marobá, o Observatório tem focado suas ações na identificação e mobilização de outro grupo prioritário. Durante esse período, identificou um grupo de agricultores familiares e atualmente está em processo de aproximação para entender os problemas enfrentados, a dimensão do conflito que estão inseridos."
 kennedy = Observatory.create!(

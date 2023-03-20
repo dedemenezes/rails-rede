@@ -8,7 +8,6 @@ class Observatory < ApplicationRecord
   # validates :phone_number, format: { with: /\A(\+5521|0?\d{2})?(\d{8}|\d{9})\z/ }
 
   belongs_to :unity_type, inverse_of: :observatories
-  belongs_to :priority_type
 
   has_one :observatory_category, dependent: :destroy
   has_one :category, through: :observatory_category
@@ -19,6 +18,8 @@ class Observatory < ApplicationRecord
   has_many :taggings, as: :taggable, dependent: :destroy
   has_many :tags, through: :taggings
   has_many :articles
+  has_many :observatory_priority_subjects, dependent: :destroy
+  has_many :priority_subjects, through: :observatory_priority_subjects, source: :priority_type
 
   has_one_attached :banner
   has_rich_text :rich_description

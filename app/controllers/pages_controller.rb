@@ -6,7 +6,7 @@ class PagesController < ApplicationController
       { img_name: 'lampada', text: "Monitoramos os conflitos vivenciados pelas comunidades para elaborar estratégias de intervenção" },
       { img_name: 'megafone', text: "Trabalhamos para mitigar os impactos da cadeia produtiva de petróleo e gás na Bacia de Campos" }
     ]
-    @observatories = policy_scope(Observatory)
+    @observatories = policy_scope(Observatory).where.not(latitude: nil, longitude: nil)
     @project = Project.includes(banner_attachment: :blob).first
     @markers = @observatories.map do |observatory|
       {

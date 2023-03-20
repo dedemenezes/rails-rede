@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_20_010401) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_20_051203) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -151,9 +151,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_20_010401) do
     t.string "zip_code"
     t.string "neighborhood"
     t.string "municipality"
-    t.bigint "priority_type_id"
     t.text "description"
-    t.index ["priority_type_id"], name: "index_observatories_on_priority_type_id"
     t.index ["unity_type_id"], name: "index_observatories_on_unity_type_id"
   end
 
@@ -173,6 +171,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_20_010401) do
     t.datetime "updated_at", null: false
     t.index ["conflict_type_id"], name: "index_observatory_conflicts_on_conflict_type_id"
     t.index ["observatory_id"], name: "index_observatory_conflicts_on_observatory_id"
+  end
+
+  create_table "observatory_priority_subjects", force: :cascade do |t|
+    t.bigint "priority_type_id", null: false
+    t.bigint "observatory_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["observatory_id"], name: "index_observatory_priority_subjects_on_observatory_id"
+    t.index ["priority_type_id"], name: "index_observatory_priority_subjects_on_priority_type_id"
   end
 
   create_table "priority_types", force: :cascade do |t|
@@ -237,11 +244,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_20_010401) do
   add_foreign_key "members", "observatories"
   add_foreign_key "members", "projects"
   add_foreign_key "methodologies", "projects"
-  add_foreign_key "observatories", "priority_types"
   add_foreign_key "observatories", "unity_types"
   add_foreign_key "observatory_categories", "categories"
   add_foreign_key "observatory_categories", "observatories"
   add_foreign_key "observatory_conflicts", "conflict_types"
   add_foreign_key "observatory_conflicts", "observatories"
+  add_foreign_key "observatory_priority_subjects", "observatories"
+  add_foreign_key "observatory_priority_subjects", "priority_types"
   add_foreign_key "taggings", "tags"
 end

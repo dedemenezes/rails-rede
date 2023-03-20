@@ -134,26 +134,40 @@
       </div>
     </div>
   </div>
-
-
-
-  <%= f.input :description,
-              wrapper_html: { class: 'input-group mb-3 row ' },
-              label_html: { class: 'input-group-text mb-0 col-3 flex-end' },
-              input_html: { class: 'col-9 form-control', style: 'min-height: 168px' }  %>
-  <%= f.association :unity_type,
-                    wrapper_html: { class: 'input-group mb-3 row ' },
-                    label_html: { class: 'input-group-text mb-0 col-3 flex-end' },
-                    input_html: { class: 'col-9 form-control' }  %>
-  <%= f.association :priority_type,
-                    wrapper_html: { class: 'input-group mb-3 row ' },
-                    label_html: { class: 'input-group-text mb-0 col-3 flex-end' },
-                    input_html: { class: 'col-9 form-control' }  %>
-  <%= f.input :conflict_type,
-              collection: ConflictType.all,
-              wrapper_html: { class: 'input-group mb-3 row ' },
-              label_html: { class: 'input-group-text mb-0 col-3 flex-end' },
-              input_html: { class: 'col-9 form-control' }  %>
+  <div class="col-12">
+    <%= f.input :description,
+                wrapper_html: { class: 'input-group mb-3 row ' },
+                label_html: { class: 'input-group-text mb-0 col-3 flex-end' },
+                input_html: { class: 'col-9 form-control', style: 'min-height: 168px' }  %>
+  </div>
+  <div class="col-12">
+    <%= f.association :priority_subjects,
+                      wrapper_html: { class: 'input-group mb-3 row ' },
+                      label_html: { class: 'input-group-text mb-0 col-3 flex-end' },
+                      input_html: {
+                        multiple: true, class: 'col-9 form-control',
+                        data: { controller: 'tom-select', tom_select_max_item_value: 10 }
+                      }  %>
+  </div>
+  <div class="col-12">
+    <%= f.input :conflict_type,
+                collection: ConflictType.all,
+                wrapper_html: { class: 'input-group mb-3 row ' },
+                label_html: { class: 'input-group-text mb-0 col-3 flex-end' },
+                input_html: {
+                  class: 'col-9 form-control',
+                  data: { controller: 'tom-select', tom_select_max_item_value: 1 }
+                }  %>
+  </div>
+  <div class="col-12">
+    <%= f.association :unity_type,
+                      wrapper_html: { class: 'input-group mb-3 row ' },
+                      label_html: { class: 'input-group-text mb-0 col-3 flex-end' },
+                      input_html: {
+                        class: 'col-9 form-control',
+                        data: { controller: 'tom-select', tom_select_max_item_value: 1 }
+                      }  %>
+  </div>
   <%= render 'dashboard/shared/form/banner_input', element: observatory, form: f %>
   <%= render 'dashboard/shared/form/submit_cancel', element: observatory, form: f %>
 <% end %>
