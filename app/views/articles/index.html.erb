@@ -53,19 +53,17 @@
   <% if Article.any_present? %>
     <div class="articles__recent">
       <div class="row mb-4">
-        <div class="col-12 col-lg-6 article--main mb-3 mb-lg-0">
+        <div class="col-12 col-xl-6 article--main mb-3 mb-xl-0">
           <%#= raise %>
           <%#= link_to article_path(@featured_article), class: 'text-reset' do %>
             <%= render 'article_card', article: @featured_article, highlight: true if @featured_article %>
           <%# end %>
         </div>
 
-        <div class="col-12 col-lg-6">
+        <div class="col-12 col-xl-6">
           <div class="recents--layout">
             <% @recent_articles.each do |article| %>
-              <% 4.times do  %>
-                <%= render 'article_card', article: article, highlight: false %>
-              <% end %>
+              <%= render 'article_card', article: article, highlight: false %>
                 <%#= link_to article_path(article), class: 'text-reset' do %>
                 <%# end %>
             <% end %>
@@ -73,23 +71,13 @@
         </div>
       </div>
       <div class="row">
-
-        <% @recent_articles.each do |article| %>
-          <% 4.times do  %>
-            <div class="col-12 col-sm-6 col-md-4 article--list mb-4">
-              <%= render 'article_card', article: article, highlight: false %>
-            </div>
-          <% end %>
+        <% @articles.each do |article| %>
+          <div class="col-12 col-sm-6 col-md-4 article--list mb-4">
             <%#= link_to article_path(article), class: 'text-reset' do %>
+              <%= render 'article_card', article: article, highlight: false %>
             <%# end %>
+          </div>
         <% end %>
-      <% @articles.each do |article| %>
-        <div class="col-12 col-sm-6 col-md-4 article--list">
-          <%#= link_to article_path(article), class: 'text-reset' do %>
-            <%= render 'article_card', article: article, highlight: false %>
-          <%# end %>
-        </div>
-      <% end %>
       </div>
     </div>
   <% end %>

@@ -10,11 +10,13 @@
       <% end %>
       <%# <small>= article.tags.first.name</small> %>
       <% article.tags.each do |tag| %>
-        <small class="tag"><%= link_to tag.name, articles_path(tags: [tag.name]) %></small>
+        <%= link_to articles_path(tags: [tag.name]) do %>
+        <small class="tag"><%= tag.name %></small>
+        <% end %>
       <% end %>
     </div>
     <%= link_to article_path(article) do %>
-      <h5 class=""><%= article.header.truncate(100) %></h5>
+      <h5 class="text-reset mb-lg-0"><%= article.header.truncate(100) %></h5>
       <% if highlight %>
         <p class="mb-0"><%= @featured_article.sub_header.truncate(120) %></p>
       <% end %>
