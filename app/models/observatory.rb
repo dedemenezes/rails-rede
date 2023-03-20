@@ -1,9 +1,9 @@
 class Observatory < ApplicationRecord
   validates :name,
             :email,
-            :state,
-            :municipality, presence: true
-  validates :municipality, length: { in: 2..3 }
+            :state, presence: true
+            # :municipality,
+  validates :municipality, length: { in: 0..3 }
   # validates :zip_code, length: { is: 8 }
   # validates :phone_number, format: { with: /\A(\+5521|0?\d{2})?(\d{8}|\d{9})\z/ }
 

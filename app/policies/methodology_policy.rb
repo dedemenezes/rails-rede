@@ -15,7 +15,7 @@ class MethodologyPolicy < ApplicationPolicy
   end
 
   def create?
-    user.admin?
+    false
   end
 
   def destroy?
