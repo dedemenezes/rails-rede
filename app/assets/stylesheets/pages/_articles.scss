@@ -13,13 +13,16 @@
 
   .article__card {
     height: 100%;
-    margin-bottom: 1rem;
     // display: grid;
     // grid-template-rows: 3fr 2fr;
     // .card__image {
     //   height: 100% !important;
     // }
   }
+}
+
+.article--list {
+
 }
 
 @media (min-width: 768px) {

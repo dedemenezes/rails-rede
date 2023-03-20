@@ -125,7 +125,12 @@
   .card__image {
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
+    height: 144px;
   }
+}
+
+.card__image--highlight {
+  height: 196px !important;
 }
 
 .article__card__content {
@@ -133,7 +138,7 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 8px;
-  padding: 13px 15px;
+  padding: 18px 15px;
 }
 
 .card__content__header > small {
@@ -151,6 +156,32 @@ small.tag {
   padding: 5px 7px;
   border: 2px solid rgba(8, 52, 97, 0.1);
   border-radius: 5px;
+}
+
+@media (min-width: 768px) {
+  .card__image--highlight {
+    height: 324px !important;
+  }
+  .article__card .card__image {
+    height: 178px;
+  }
+}
+
+@media (min-width: 992px) {
+  .card__image--highlight {
+    height: 634px !important;
+  }
+  .article__card .card__image {
+    height: 144px;
+  }
+}
+@media (min-width: 1200px) {
+  .card__image--highlight {
+    height: 514px !important;
+  }
+  .article__card .card__image {
+    height: 144px;
+  }
 }
 
 // CARD INDEX

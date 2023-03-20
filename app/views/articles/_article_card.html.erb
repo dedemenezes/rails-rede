@@ -1,5 +1,5 @@
 <div class="article__card">
-  <div class="card__image" style='background-image:url(<%= display_banner_as_background(article) %>);height: <%= highlight ? "448px" : "147px" %>; background-size: cover; background-position: center;'></div>
+  <div class="card__image <%= highlight ? "card__image--highlight" : "" %>" style='background-image:url(<%= display_banner_as_background(article) %>); background-size: cover; background-position: center;'></div>
   <div class="article__card__content">
     <% unless highlight %>
       <small><%= article.created_at.strftime('%d.%m.%Y') %></small>
@@ -14,7 +14,7 @@
       <% end %>
     </div>
     <%= link_to article_path(article) do %>
-      <h5 class="mb-0"><%= article.header.truncate(highlight ? 45 : 37) %></h5>
+      <h5 class=""><%= article.header.truncate(100) %></h5>
       <% if highlight %>
         <p class="mb-0"><%= @featured_article.sub_header.truncate(120) %></p>
       <% end %>
