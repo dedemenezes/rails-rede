@@ -70,11 +70,8 @@ class Dashboard::ArticlesController < ApplicationController
   end
 
   def set_article
-    begin
       @article = Article.find(params[:id])
-    rescue => exception
-      @article = Article.find_by(header: params[:id])
-    end
+      @article = Article.find_by(header: params[:id]) if @article.nil?
   end
 
   def article_params
