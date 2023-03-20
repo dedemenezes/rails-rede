@@ -11,6 +11,7 @@ export default class extends Controller {
   connect() {
     // console.log('hi');
     new TomSelect(this.element, {
+      plugins: ['remove_button'],
       hideSelected: true,
       loadingClass: 'tag__select',
       maxItems: this.maxItemValue,

@@ -3,13 +3,15 @@ class Article < ApplicationRecord
   validates_with OneFeaturedArticleValidator
 
   belongs_to :observatory, optional: true
+  belongs_to :methodology, optional: true
   has_many :taggings, as: :taggable, dependent: :destroy
   has_many :tags, through: :taggings
   has_one_attached :banner
   has_one_attached :highlight_image
   has_rich_text :rich_body
 
-  after_validation :ensure_one_featured_article
+  before_validation :clean_header
+  before_validation :ensure_one_featured_article
 
   scope :only_published, -> { where(published: true) }
   scope :all_but_featured, -> { order(created_at: :desc).to_a.delete_if(&:featured) }
@@ -24,6 +26,10 @@ class Article < ApplicationRecord
     find_by_featured(true) || nil
   end
 
+  def self.any_present?
+    count.positive?
+  end
+
   def observatory_name
     observatory&.name
   end
@@ -36,8 +42,10 @@ class Article < ApplicationRecord
     "#{names[0...-1].join(', ')} e #{names[-1]}"
   end
 
-  def self.any_present?
-    count.positive?
+  def clean_header
+    return unless header.ends_with?('.')
+
+    self.header = header[...-1]
   end
 
   def featured?
@@ -45,10 +53,9 @@ class Article < ApplicationRecord
   end
 
   def ensure_one_featured_article
-    return if Article.featured.nil?
-    return unless featured
+    return if featured
+    return unless Article.featured.nil?
 
-    Article.featured.update(featured: false)
     self.featured = true
   end
 
