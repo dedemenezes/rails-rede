@@ -10,13 +10,13 @@ class ObservatoriesController < ApplicationController
   end
 
   def show
-    @observatory = Observatory.includes(:priority_type, :conflict_type, :gallery, :articles, :albums, banner_attachment: :blob, albums: { banner_attachment: :blob }).find_by(name: params[:name]) || Observatory.find(params[:id])
+    @observatory = Observatory.includes(:priority_subjects, :conflict_type, :gallery, :articles, :albums, banner_attachment: :blob, albums: { banner_attachment: :blob }).find_by(name: params[:name]) || Observatory.find(params[:id])
     @albums = @observatory.albums
     authorize @observatory
   end
 
   def mapa
-    @observatories = policy_scope(Observatory)
+    @observatories = policy_scope(Observatory).where.not(latitude: nil, longitude: nil)
     @markers = @observatories.map do |observatory|
       {
         lat: observatory.latitude,

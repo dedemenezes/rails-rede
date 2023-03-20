@@ -5,7 +5,7 @@
     <p class="popup__location flex-grow-1"><%= observatory.neighborhood %></p>
   </div>
   <p class="popup__header mb-1">Sujeito prioritário</p>
-  <p class="popup__info mb-3"><%= observatory.priority_type.name %></p>
+  <p class="popup__info mb-3"><%= observatory.priority_subjects.map(&:name).join(', ') %></p>
   <p class="popup__header mb-1">tema gerador</p>
   <p class="popup__info"><%= observatory.conflict_type.name %></p>
   <div class="col-12 text-center text-primary">
