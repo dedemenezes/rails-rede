@@ -102,6 +102,8 @@ puts 'Creating Observatory...'
 description = "O Observatório Araruama é formado por voluntários da comunidade e pescadores artesanais da laguna de Araruama e tem como objetivo identificar e monitorar os impactos da cadeia produtiva de óleo e gás que inviabiliza a pesca artesanal na laguna de Araruama.
 Os pescadores artesanais retratam a dificuldade de acesso as politicas públicas em relação à precariedade na infraestrutura para o escoamento do pescado, no qual muitas vezes precisam repassar para atravessadores a preços baixos, desvalorizando o seu trabalho, além da poluição na Laguna de Araruama e o afastamento das suas residências próximas da laguna causadas pelo crescente aumento populacional na região, ocasionado pelo aumento de polos de extração de petróleo na região dos lagos.
 Outro problema relatado é a barreira encontrada pelos pescadores na ocupação de espaços de decisões, onde são debatidos assuntos que podem interferir na prática do seu trabalho como a implantação do transporte hidroviário, Ferry Boat, que atualmente ocupa um espaço considerado da laguna influenciando diretamente na dinâmica da pesca."
+# araruama.redeobservacao@ambiental.rio
+# redeobservacao.araruama@gmail.com
 araruama = Observatory.create!(
   published: true,
   name: 'Araruama',
@@ -111,10 +113,12 @@ araruama = Observatory.create!(
   neighborhood: 'Laguna de Araruama',
   city: 'Araruama',
   street: 'Av. Brasil',
-  number: '10',
-  zip_code: '22358-756',
+  number: '10/809',
+  zip_code: '28970-000',
   state: 'Rio de Janeiro',
   municipality: 'RJ',
+  latitude: -22.872485564827493,
+  longitude: -42.33547534557519,
   priority_type: PriorityType.first,
   conflict_type: ConflictType.first,
   description: description
@@ -130,17 +134,19 @@ arraial = Observatory.create!(
   unity_type: type_observatory,
   neighborhood: 'Prainha',
   city: 'Arraial do Cabo',
-  street: 'Prainha',
-  number: '100',
-  zip_code: '22358-756',
+  street: 'R. José Pinto de Macedo',
+  number: 's/n',
+  zip_code: '28930-000',
   state: 'Rio de Janeiro',
   municipality: 'RJ',
+  latitude: -22.963868106076266,
+  longitude: -42.02533391947336,
   priority_type: mariqueiras,
   conflict_type: ConflictType.first,
   description: arraial_desc
 )
-buzios_desc = "O Observatório de Armação dos Búzios é formado por quilombolas do Quilombo de Baía Formosa. O grupo enfrenta impactos como a especulação imobiliária, descaracterização e perda do território quilombola, dificuldade de acesso a políticas públicas específicas, e vem se organizando e se posicionando na gestão ambiental pública local frente aos conflitos ambientais. Para tanto, o processo educativo e as ações com esse grupo são pautadas no tema gerador definido coletivamente: \"Descaracterização e perda do território quilombola\"."
 
+buzios_desc = "O Observatório de Armação dos Búzios é formado por quilombolas do Quilombo de Baía Formosa. O grupo enfrenta impactos como a especulação imobiliária, descaracterização e perda do território quilombola, dificuldade de acesso a políticas públicas específicas, e vem se organizando e se posicionando na gestão ambiental pública local frente aos conflitos ambientais. Para tanto, o processo educativo e as ações com esse grupo são pautadas no tema gerador definido coletivamente: \"Descaracterização e perda do território quilombola\"."
 buzios = Observatory.create!(
   published: true,
   name: 'Armação dos Búzios',
@@ -149,10 +155,12 @@ buzios = Observatory.create!(
   unity_type: type_observatory,
   neighborhood: 'Quilombo de Baía Formosa',
   city: 'Armação dos Búzios',
-  street: 'Estrada dos Buzios',
-  number: '275',
+  street: 'Av. Doze de Novembro',
+  number: '12740/A',
   zip_code: '28950-000',
   state: 'Rio de Janeiro',
+  latitude: -22.79925249532444,
+  longitude: -41.96957568375965,
   municipality: 'RJ',
   priority_type: quilombolas,
   conflict_type: perda_quilombola,
@@ -160,7 +168,9 @@ buzios = Observatory.create!(
 )
 
 campos_desc = "O Observatório de Campos dos Goytacazes é formado por remanescentes quilombolas do Quilombo de Lagoa Fea. O grupo enfrenta impactos como a descaracterização e perda do território quilombola, falta de acesso e existência de políticas públicas, conflitos relacionados à falta de reconhecimento da identidade quilombola por parte da comunidade e do poder público, e vem se organizando e se posicionando na gestão ambiental pública local frente aos conflitos ambientais. Para tanto, o processo educativo e as ações com esse grupo são pautadas no tema gerador definido coletivamente: Reconhecimento da comunidade quilombola para o acesso à políticas públicas"
-
+# cgoytacazes.redeobservacao@ambiental.rio
+# davi.pea.redeobservacao@gmail.com
+# rafaelapearedeobservacao@gmail.com
 campos = Observatory.create!(
   published: true,
   name: 'Campos dos Goytacazes',
@@ -169,11 +179,13 @@ campos = Observatory.create!(
   unity_type: type_observatory,
   neighborhood: 'Quilombo de Lagoa FEA',
   city: 'Campos dos Goytacazes',
-  street: 'Quilombo de Lagoa FEA',
-  number: '0',
+  street: 'União Futebol Clube - RJ 180 - Quilombo',
+  number: 's/n',
   zip_code: '28950-000',
   state: 'Rio de Janeiro',
   municipality: 'RJ',
+  latitude: -21.959826465013396,
+  longitude: -41.45871068161169,
   priority_type: quilombolas,
   conflict_type: perda_quilombola,
   description: campos_desc
@@ -183,16 +195,18 @@ cabo_frio_desc = "O Observatório de Cabo Frio é formado por pescadores artesan
 cabo_frio = Observatory.create!(
   published: true,
   name: 'Cabo Frio',
-  email: 'pea.cabo-frio@redeobservacao.com',
+  email: 'cabo-friense.redeobservacao@ambiental.rio',
   phone_number: '21972614293',
   unity_type: type_observatory,
   neighborhood: 'Chavão',
   city: 'Cabo Frio',
-  street: 'Chavao, Parque Veneza',
-  number: '0',
+  street: 'Rua B- Parque Veneza',
+  number: 'quadra 53, lote 03',
   zip_code: '28925-834',
   state: 'Rio de Janeiro',
   municipality: 'RJ',
+  latitude: -22.59086326033604,
+  longitude: -42.02271354306846,
   priority_type: pescadores_artesanais,
   conflict_type: pesqueira,
   description: cabo_frio_desc
@@ -203,16 +217,18 @@ itapemirim_desc = "O Observatório Itapemirim é formado por marisqueiras das lo
 itapemirim = Observatory.create!(
   published: true,
   name: 'Itapemirim',
-  email: 'pea.itapemirimo@redeobservacao.com',
+  email: 'itapemirim.redeobservacao@ambiental.rio',
   phone_number: '21972614293',
   unity_type: type_observatory,
   neighborhood: 'Itaipava e Itaoca',
   city: 'Itaoca',
-  street: 'Av. Marataizes',
-  number: '32',
+  street: 'Av. Itapemirim',
+  number: '440/sala 105',
   zip_code: '29330-000',
   state: 'Rio de Janeiro',
   municipality: 'RJ',
+  latitude: -20.88840589846213,
+  longitude: -40.77419706071976,
   priority_type: mariqueiras,
   conflict_type: pesqueira,
   description: itapemirim_desc
@@ -223,15 +239,17 @@ macae = Observatory.create!(
   published: true,
   name: 'Macaé',
   email: 'pea.macae@redeobservacao.com',
-  phone_number: '21972614293',
+  phone_number: '2214200992',
   unity_type: type_observatory,
-  neighborhood: 'Imburo',
+  neighborhood: 'Centro',
   city: 'Macaé',
-  street: 'Estrada do Imburo',
-  number: '0',
-  zip_code: '27979-000',
+  street: 'R. Dr. Bueno',
+  number: '131/301',
+  zip_code: '27913-190',
   state: 'Rio de Janeiro',
   municipality: 'RJ',
+  latitude: -22.377997212357936,
+  longitude: -41.77510307662048,
   priority_type: agricultores,
   conflict_type: territorio_rural,
   description: macae_desc
@@ -246,11 +264,13 @@ rio_das_ostras = Observatory.create!(
   unity_type: type_observatory,
   neighborhood: 'Cantagalo',
   city: 'Rio das Ostras',
-  street: 'Av. Petróleo e Gás',
-  number: '3',
+  street: 'Estr. Prof. Leandro Faria Sarzedas',
+  number: '1/01',
   zip_code: '28890-000',
   state: 'Rio de Janeiro',
   municipality: 'RJ',
+  latitude: -22.42278840417887,
+  longitude: -41.93859410216907,
   priority_type: agricultores,
   conflict_type: territorio_rural,
   description: rio_das_ostras_desc
@@ -259,16 +279,18 @@ itabapoana_desc = "O Observatório São Francisco de Itabapoana é formado por a
 itabapoana = Observatory.create!(
   published: true,
   name: 'São Francisco de Itabapoana',
-  email: 'pea.itabapoana@redeobservacao.com',
-  phone_number: '21972614293',
+  email: 'sfitabapoana.redeobservacao@ambiental.rio',
+  phone_number: '2227896147',
   unity_type: type_observatory,
-  neighborhood: 'Carrapato / Nova Belém',
+  neighborhood: 'Barra do Itabapoana',
   city: 'São Francisco de Itabapoana',
-  street: 'Estrada Barra Seca',
-  number: '3',
+  street: 'R. Antonio da Silva Ferreira',
+  number: '61',
   zip_code: '28230-000',
   state: 'Rio de Janeiro',
   municipality: 'RJ',
+  latitude: -21.298523131587253,
+  longitude: -40.9699898754778,
   priority_type: agricultores,
   conflict_type: territorio_rural,
   description: itabapoana_desc
@@ -283,19 +305,38 @@ sjbarra = Observatory.create!(
   unity_type: type_observatory,
   neighborhood: 'Atafona',
   city: 'São João da Barra',
-  street: 'R. Felicíssimo Alves',
-  number: '780',
+  street: 'Avenida Hormes Maia',
+  number: '148',
   zip_code: '28200-000',
   state: 'Rio de Janeiro',
   municipality: 'RJ',
+  latitude: -21.631087756083133,
+  longitude: -41.03993937012111,
   priority_type: beneficadoras,
   conflict_type: pesca_laguna,
   description: sao_joao_desc
 )
 
+kennedy_desc = "O processo de mobilização e consolidação de um grupo se mostrou desafiador ao longo do ano de 2022, no Observatório de Presidente Kennedy. Por isso, neste ano encontra-se em processo de reestruturação e, portanto, não tem um grupo consolidado. Após as tentativas de sensibilização e mobilização de pescadores e pescadoras da localidade de Marobá, o Observatório tem focado suas ações na identificação e mobilização de outro grupo prioritário. Durante esse período, identificou um grupo de agricultores familiares e atualmente está em processo de aproximação para entender os problemas enfrentados, a dimensão do conflito que estão inseridos."
+kennedy = Observatory.create!(
+  published: false,
+  name: 'Presidente Kennedy',
+  email: 'pkennedy.redeobservacao@ambiental.rio',
+  phone_number: 's/n',
+  unity_type: type_observatory,
+  neighborhood: '',
+  city: '',
+  street: '',
+  number: '',
+  zip_code: '',
+  state: 'Rio de Janeiro',
+  municipality: 'RJ',
+  description: kennedy_desc
+)
+
 puts 'Attaching banners and rich text'
 
-Observatory.all.each do |obs|
+Observatory.where(published: true).each do |obs|
   # ATTACH BANNER
   image_path = Rails.root.join('app', 'assets', 'images', 'observatorios-banners', "#{obs.name.parameterize}.jpg")
   unless File.exist?(image_path)

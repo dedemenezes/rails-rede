@@ -14,6 +14,7 @@ module Dashboard
 
     def create
       @observatory = Observatory.new(observatory_params)
+      binding.break
       if @observatory.save
         set_observatory_conflict
         flash[:notice] = "#{@observatory.name} created successfully"
@@ -55,7 +56,7 @@ module Dashboard
     def observatory_params
       params.require(:observatory).permit(:name, :address, :email, :phone_number, :description, :unity_type_id,
                                           :rich_description, :banner, :latitude, :longitude, :street, :number,
-                                          :city, :state, :zip_code, :neighborhood, :published, :priority_type_id)
+                                          :city, :state, :zip_code, :neighborhood, :municipality, :published, :priority_type_id)
     end
 
     def set_observatory_conflict

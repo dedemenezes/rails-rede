@@ -10,7 +10,7 @@
         <div class="show__header">
           <h1><%= @article.header %></h1>
           <p><%= @article.sub_header %></p>
-          <small class='mb-1 text-muted'>Por <strong><%= @observatory.name.split.map{ _1.capitalize }.join(' ') %></strong> - <%= Project.first.name %></small>
+          <small class='mb-1 text-muted'>Por <strong><%= @writer.name %></strong> - <%= Project.first.name %></small>
           <br>
           <small class='text-muted'><%= @article.created_at.strftime('%d/%m/%y %Hh%M') %> - <%= time_ago_in_words(@article.updated_at) %></small>
         </div>

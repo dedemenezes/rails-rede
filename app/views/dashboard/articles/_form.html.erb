@@ -23,12 +23,50 @@
                         data: { controller: 'tom-select', tom_select_max_item_value: 2 }
                       } %>
         </div>
-        <div class="col-12">
-          <%= f.association :observatory,
-                      label: 'Observatory',
-                      input_html: {
-                        data: { controller: 'tom-select' }
-                      } %>
+        <div class="col-12" data-controller="display-button-on-hover">
+          <div class="row">
+            <div class="col-12">
+              <p class="mb-2">Pertence a:</p>
+              <div class="d-flex justify-content-between align-items-center w-100 mb-3">
+                <button class="btn btn-primary" data-action='click->display-button-on-hover#display' data-display-button-on-hover-target='observatoryBtn'>
+                  Observatório
+                </button>
+                <button class="btn btn-primary" data-action='click->display-button-on-hover#methodology'  data-display-button-on-hover-target='methodologyBtn'>
+                  Metodologia
+                </button>
+              </div>
+            </div>
+            <div class="col-12">
+              <%= f.association :observatory,
+                          label: 'Observatory',
+                          wrapper_html: {
+                            class: 'box--anim box--hidden w-100',
+                            data: { display_button_on_hover_target: 'observatory' }
+                          },
+                          input_html: {
+                            data: {
+                              controller: 'tom-select',
+                              tom_select_max_item_value: 1,
+                              display_button_on_hover_target: 'observatoryInput'
+                             }
+                          } %>
+            </div>
+            <div class="col-12">
+              <%= f.association :methodology,
+                          label: 'Metodologia',
+                          wrapper_html: {
+                            class: 'box--anim box--hidden w-100',
+                            data: { display_button_on_hover_target: 'methodology' }
+                          },
+                          input_html: {
+                            data: {
+                              controller: 'tom-select',
+                              tom_select_max_item_value: 1,
+                              display_button_on_hover_target: 'methodologyInput'
+                             }
+                          } %>
+            </div>
+          </div>
         </div>
       </div>
     </div>

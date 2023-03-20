@@ -6,6 +6,10 @@ class ObservatoryPolicy < ApplicationPolicy
     end
   end
 
+  def new?
+    user&.admin?
+  end
+
   def show?
     true
   end

@@ -13,6 +13,14 @@ class Dashboard::ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
+    if params[:article][:observatory_id].present?
+      @observatory = Observatory.find(params[:article][:observatory_id])
+      @article.observatory = @observatory
+    end
+    if params[:article][:methodology_id].present?
+      @methodology = Methodology.find(params[:article][:methodology_id])
+      @article.methodology = @methodology
+    end
     create_taggings
     if @article.save
       redirect_to dashboard_articles_path

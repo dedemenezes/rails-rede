@@ -53,32 +53,32 @@
   <% if Article.any_present? %>
     <div class="articles__recent">
       <div class="row mb-4">
-        <div class="col-12 col-md-6 article--main">
+        <div class="col-12 col-xl-6 article--main mb-3 mb-xl-0">
           <%#= raise %>
           <%#= link_to article_path(@featured_article), class: 'text-reset' do %>
             <%= render 'article_card', article: @featured_article, highlight: true if @featured_article %>
           <%# end %>
         </div>
-        <div class="col-12 col-md-6">
+
+        <div class="col-12 col-xl-6">
           <div class="recents--layout">
             <% @recent_articles.each do |article| %>
+              <%= render 'article_card', article: article, highlight: false %>
                 <%#= link_to article_path(article), class: 'text-reset' do %>
-                  <%= render 'article_card', article: article, highlight: false %>
                 <%# end %>
             <% end %>
           </div>
         </div>
       </div>
       <div class="row">
-      <% @articles.each do |article| %>
-        <div class="col-12 col-sm-6 col-md-4 article--list">
-          <%#= link_to article_path(article), class: 'text-reset' do %>
-            <%= render 'article_card', article: article, highlight: false %>
-          <%# end %>
-        </div>
-      <% end %>
+        <% @articles.each do |article| %>
+          <div class="col-12 col-sm-6 col-md-4 article--list mb-4">
+            <%#= link_to article_path(article), class: 'text-reset' do %>
+              <%= render 'article_card', article: article, highlight: false %>
+            <%# end %>
+          </div>
+        <% end %>
       </div>
     </div>
   <% end %>
-
 </div>

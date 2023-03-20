@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_17_033653) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_20_010401) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -72,6 +72,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_17_033653) do
     t.boolean "featured", default: false
     t.boolean "published", default: false
     t.bigint "observatory_id"
+    t.bigint "methodology_id"
+    t.index ["methodology_id"], name: "index_articles_on_methodology_id"
     t.index ["observatory_id"], name: "index_articles_on_observatory_id"
   end
 
@@ -228,6 +230,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_17_033653) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "albums", "galleries"
+  add_foreign_key "articles", "methodologies"
   add_foreign_key "articles", "observatories"
   add_foreign_key "galleries", "methodologies"
   add_foreign_key "galleries", "observatories"

@@ -8,7 +8,7 @@ class PagesController < ApplicationController
     ]
     @observatories = policy_scope(Observatory)
     @project = Project.includes(banner_attachment: :blob).first
-    @markers = @observatories.geocoded.map do |observatory|
+    @markers = @observatories.map do |observatory|
       {
         lat: observatory.latitude,
         lng: observatory.longitude,
