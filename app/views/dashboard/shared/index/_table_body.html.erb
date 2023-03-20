@@ -31,15 +31,13 @@
             <%= link_to icon('fa-solid', 'book'), url_for(element), target: '_blank' %>
           </li>
         <% end %>
-        <% unless params[:controller] == 'dashboard/methodologies' && params[:action] == 'index' %>
-          <li class="list-inline-item border-0"
-              data-controller='tooltip'
-              data-bs-toggle="tooltip"
-              data-bs-placement="top"
-              data-bs-title="Editar">
-            <%= link_to icon('fa-solid', 'pencil'), route_for_edit_dashboard(element) %>
-          </li>
-        <% end %>
+        <li class="list-inline-item border-0"
+            data-controller='tooltip'
+            data-bs-toggle="tooltip"
+            data-bs-placement="top"
+            data-bs-title="Editar">
+          <%= link_to icon('fa-solid', 'pencil'), route_for_edit_dashboard(element) %>
+        </li>
         <% if policy(element).destroy? %>
           <li class="list-inline-item border-0"
               data-controller='tooltip'

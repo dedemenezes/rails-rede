@@ -46,6 +46,14 @@ export default class extends Controller {
 
   #clearInputValue() {
     this.streetTarget.value = ""
+    this.cityTarget.value = ""
+    this.neighborhoodTarget.value = ""
+    this.municipalityTarget.value = ""
+    this.zip_codeTarget.value = ""
+    this.numberTarget.value = ""
+    this.streetTarget.value = ""
+    this.longitudeTarget.value = ""
+    this.latitudeTarget.value = ""
   }
 
   disconnect() {

@@ -13,8 +13,8 @@ module Dashboard
     end
 
     def create
-      binding.break
       @observatory = Observatory.new(observatory_params)
+      binding.break
       if @observatory.save
         set_observatory_conflict
         flash[:notice] = "#{@observatory.name} created successfully"
