@@ -4,11 +4,11 @@
 
 import { application } from "./application"
 
-import CharacterCounter from 'stimulus-character-counter'
-application.register('character-counter', CharacterCounter)
-
 import ActiveOnHeightController from "./active_on_height_controller"
 application.register("active-on-height", ActiveOnHeightController)
+
+import AddressAutocompleteController from "./address_autocomplete_controller"
+application.register("address-autocomplete", AddressAutocompleteController)
 
 import ArticleHighlightController from "./article_highlight_controller"
 application.register("article-highlight", ArticleHighlightController)

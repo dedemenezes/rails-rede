@@ -25,57 +25,113 @@
                   input_html: { class: 'col-10 form-control' }  %>
     </div>
   </div>
-  <%= f.input :street,
+  <div data-controller="address-autocomplete" data-address-autocomplete-api-key-value="<%= ENV["MAPBOX_API_KEY"] %>">
+    <%= f.input :street,
+              wrapper_html: {
+                class: 'input-group mb-3 row',
+                data: { address_autocomplete_target: 'streetWrapper'}
+              },
+              label_html: { class: 'input-group-text mb-0 col-2 flex-end' },
+              input_html: {
+                class: 'col-10 form-control',
+                data: {
+                  address_autocomplete_target: "street"
+                }
+              }  %>
+
+    <div class="row">
+      <div class="col-5">
+        <%= f.input :number,
+                    wrapper_html: { class: 'input-group mb-3 row ' },
+                    label_html: { class: 'input-group-text mb-0 col-5 flex-end' },
+                    input_html: {
+                      class: 'col-7 form-control',
+                      data: {
+                        address_autocomplete_target: 'number'
+                      }
+                    }  %>
+      </div>
+      <div class="col-7">
+        <%= f.input :neighborhood,
+                    wrapper_html: { class: 'input-group mb-3 row ' },
+                    label_html: { class: 'input-group-text mb-0 col-3 flex-end' },
+                    input_html: {
+                      class: 'col-9 form-control',
+                      data: {
+                        address_autocomplete_target: 'neighborhood'
+                      }
+                    }  %>
+      </div>
+    </div>
+    <%= f.input :city,
             wrapper_html: { class: 'input-group mb-3 row ' },
             label_html: { class: 'input-group-text mb-0 col-2 flex-end' },
-            input_html: { class: 'col-10 form-control' }  %>
-  <div class="row">
-    <div class="col-5">
-      <%= f.input :number,
-                  wrapper_html: { class: 'input-group mb-3 row ' },
-                  label_html: { class: 'input-group-text mb-0 col-5 flex-end' },
-                  input_html: { class: 'col-7 form-control' }  %>
-    </div>
-    <div class="col-7">
-      <%= f.input :neighborhood,
-                  wrapper_html: { class: 'input-group mb-3 row ' },
-                  label_html: { class: 'input-group-text mb-0 col-3 flex-end' },
-                  input_html: { class: 'col-9 form-control' }  %>
-    </div>
-  </div>
-  <%= f.input :city,
-          wrapper_html: { class: 'input-group mb-3 row ' },
-          label_html: { class: 'input-group-text mb-0 col-2 flex-end' },
-          input_html: { class: 'col-10 form-control' }  %>
-  <div class="row">
-    <div class="col-8">
-      <%= f.input :state,
-                wrapper_html: { class: 'input-group mb-3 row ' },
-                label_html: { class: 'input-group-text mb-0 col-3 flex-end' },
-                input_html: { class: 'col-9 form-control' }  %>
-    </div>
-    <div class="col-4">
-      <%= f.input :zip_code,
+            input_html: {
+              class: 'col-10 form-control',
+              data: {
+                address_autocomplete_target: 'city'
+              }
+            }  %>
+    <div class="row">
+      <div class="col-8">
+        <%= f.input :state,
                   wrapper_html: { class: 'input-group mb-3 row ' },
                   label_html: { class: 'input-group-text mb-0 col-3 flex-end' },
-                  input_html: { class: 'col-9 form-control' }  %>
+                  input_html: {
+                    class: 'col-9 form-control',
+                    data: {
+                      address_autocomplete_target: 'state'
+                    }
+                  }  %>
+        <%= f.input :municipality,
+                  wrapper_html: { hidden: true, class: 'input-group mb-3 row ' },
+                  label_html: { class: 'input-group-text mb-0 col-3 flex-end' },
+                  input_html: {
+                    class: 'col-9 form-control',
+                    data: {
+                      address_autocomplete_target: 'state'
+                    }
+                  }  %>
+      </div>
+      <div class="col-4">
+        <%= f.input :zip_code,
+                    wrapper_html: { class: 'input-group mb-3 row ' },
+                    label_html: { class: 'input-group-text mb-0 col-3 flex-end' },
+                    input_html: {
+                      class: 'col-9 form-control',
+                      data: {
+                        address_autocomplete_target: 'zip_code'
+                      }
+                    }  %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <%= f.input :latitude,
+                    wrapper_html: { class: 'input-group mb-3 row ' },
+                    label_html: { class: 'input-group-text mb-0 col-3 flex-end' },
+                    input_html: {
+                      class: 'col-9 form-control',
+                      data: {
+                        address_autocomplete_target: 'latitude'
+                      }
+                    }  %>
+      </div>
+      <div class="col-6">
+        <%= f.input :longitude,
+                    wrapper_html: { class: 'input-group mb-3 row ' },
+                    label_html: { class: 'input-group-text mb-0 col-3 flex-end' },
+                    input_html: {
+                      class: 'col-9 form-control',
+                      data: {
+                        address_autocomplete_target: 'longitude'
+                      }
+                    }  %>
+      </div>
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-6">
-      <%= f.input :latitude,
-                  wrapper_html: { class: 'input-group mb-3 row ' },
-                  label_html: { class: 'input-group-text mb-0 col-3 flex-end' },
-                  input_html: { class: 'col-9 form-control' }  %>
-    </div>
-    <div class="col-6">
-      <%= f.input :longitude,
-                  wrapper_html: { class: 'input-group mb-3 row ' },
-                  label_html: { class: 'input-group-text mb-0 col-3 flex-end' },
-                  input_html: { class: 'col-9 form-control' }  %>
-    </div>
-  </div>
+
 
   <%= f.input :description,
               wrapper_html: { class: 'input-group mb-3 row ' },
