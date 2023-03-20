@@ -73,7 +73,7 @@
               }
             }  %>
     <div class="row">
-      <div class="col-8">
+      <div class="col-6">
         <%= f.input :state,
                   wrapper_html: { class: 'input-group mb-3 row ' },
                   label_html: { class: 'input-group-text mb-0 col-3 flex-end' },
@@ -83,19 +83,23 @@
                       address_autocomplete_target: 'state'
                     }
                   }  %>
+      </div>
+      <div class="col-2">
         <%= f.input :municipality,
-                  wrapper_html: { hidden: true, class: 'input-group mb-3 row ' },
-                  label_html: { class: 'input-group-text mb-0 col-3 flex-end' },
-                  input_html: {
-                    class: 'col-9 form-control',
-                    data: {
-                      address_autocomplete_target: 'state'
-                    }
-                  }  %>
+                    wrapper_html: { class: 'input-group mb-3 row ' },
+                    label: 'UF',
+                    label_html: { class: 'input-group-text mb-0 col-6 flex-end' },
+                    input_html: {
+                      class: 'col-6 form-control',
+                      data: {
+                        address_autocomplete_target: 'municipality'
+                      }
+                    }  %>
       </div>
       <div class="col-4">
         <%= f.input :zip_code,
                     wrapper_html: { class: 'input-group mb-3 row ' },
+                    label: 'CEP',
                     label_html: { class: 'input-group-text mb-0 col-3 flex-end' },
                     input_html: {
                       class: 'col-9 form-control',

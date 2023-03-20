@@ -5,7 +5,7 @@ import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder"
 export default class extends Controller {
   static values = { apiKey: String }
 
-  static targets = ['streetWrapper', "street", "number", 'neighborhood', 'city', 'state', 'zip_code', 'latitude', 'longitude']
+  static targets = ['municipality', 'streetWrapper', "street", "number", 'neighborhood', 'city', 'state', 'zip_code', 'latitude', 'longitude']
 
   connect() {
     this.geocoder = new MapboxGeocoder({
@@ -30,7 +30,7 @@ export default class extends Controller {
       }
       if (el.id.match(/region/)) {
         this.stateTarget.value = el.text
-        this.municipalityTarget = el.short_code.split('-')[1]
+        this.municipalityTarget.value = el.short_code.split('-')[1]
       }
       if (el.id.match(/postcode/)) {
         this.zip_codeTarget.value = el.text
