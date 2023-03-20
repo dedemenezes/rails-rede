@@ -12,7 +12,9 @@ export default class extends Controller {
       accessToken: this.apiKeyValue,
       types: "country,region,place,postcode,locality,neighborhood,address"
     })
-    this.geocoder.addTo(this.streetTarget)
+    console.log(this.geocoder);
+    console.log(this.streetTarget);
+    this.geocoder.addTo(this.streetWrapperTarget)
     this.geocoder.on("result", event => this.#setInputValue(event))
     this.geocoder.on("clear", () => this.#clearInputValue())
   }
@@ -34,23 +36,16 @@ export default class extends Controller {
         this.zip_codeTarget.value = el.text
       }
     })
+    if (event.result["address"]) {
+      this.numberTarget.value = event.result["address"]
+    }
     this.streetTarget.value = event.result["place_name"]
-    this.numberTarget.value = event.result["address"]
     this.longitudeTarget.value = event.result.geometry.coordinates[0]
     this.latitudeTarget.value = event.result.geometry.coordinates[1]
   }
 
   #clearInputValue() {
     this.streetTarget.value = ""
-    this.cityTarget.value = ""
-    this.neighborhoodTarget.value = ""
-    this.stateTarget.value = ""
-    this.municipalityTarget = ""
-    this.zip_codeTarget.value = ""
-    this.streetTarget.value = ""
-    this.numberTarget.value = ""
-    this.longitudeTarget.value = ""
-    this.latitudeTarget.value = ""
   }
 
   disconnect() {
