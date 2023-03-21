@@ -1,5 +1,5 @@
 meta_product_name: "Rede Observação"
 meta_title: "Rede Observação | PEA  "
 meta_description: "Organização social através de processos educativos que englobam formação, pesquisa e intervenção social."
-meta_image: "hero-image.png" # should exist in `app/assets/images/`
+meta_image: "og_image.png" # should exist in `app/assets/images/`
 twitter_account: "@product_twitter_account"   # required for Twitter Cards
