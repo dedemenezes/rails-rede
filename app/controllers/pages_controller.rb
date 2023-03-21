@@ -17,6 +17,8 @@ class PagesController < ApplicationController
       }
     end
     @galleries = Gallery.includes(:tags, banner_attachment: :blob).only_events
+    @albums = Album.includes(:tags, banner_attachment: :blob).only_events
+    @events = [@galleries, @albums].flatten
   end
 
   def about_us

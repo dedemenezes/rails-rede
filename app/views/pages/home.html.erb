@@ -41,31 +41,37 @@
       </div>
     </div>
   </div>
-</div>
-<div class="container">
   <div class="events__carousel styled-scrollbars" data-controller="events-scroll" data-action="scroll->events-scroll#toggleScroll">
-        <!-- Slides -->
-    <% @galleries.each do |gallery| %>
+      <!-- Slides -->
+    <% if @events.empty? %>
+      <p>Em breve novas atividades.</p>
+    <% else %>
+      <% @events.each do |gallery| %>
         <div class="card__event" style="width: 345px;">
-      <%= link_to gallery_path(gallery) do %>
-          <div class="card__event__image" style='background-image: url(<%= display_banner_as_background(gallery) %>);background-size: cover; background-position: center;'></div>
-            <div class="event__content">
-              <div class="h-100 flex-grow-1 d-flex flex-column justify-content-between align-items-start text-start">
-                <h5 class='mb-3'><%= gallery.name %></h5>
-                <div class="event__tags d-flex justify-content-start align-items-center">
-                  <% gallery.tags.each do |tag| %>
-                    <small class="tag"><%= tag.name %></small>
-                  <% end %>
+          <%= link_to url_for(gallery) do %>
+            <div class="card__event__image" style='background-image: url(<%= display_banner_as_background(gallery) %>);background-size: cover; background-position: center;'></div>
+              <div class="event__content">
+                <div class="h-100 flex-grow-1 d-flex flex-column justify-content-between align-items-start text-start">
+                  <h5 class='mb-3'><%= gallery.name %></h5>
+                  <div class="event__tags d-flex justify-content-start align-items-center">
+                    <% gallery.tags.each do |tag| %>
+                      <small class="tag"><%= tag.name %></small>
+                    <% end %>
+                  </div>
+                </div>
+                <div class="event__date">
+                  <p class="mb-0"><%= gallery.event_date.day %></p>
+                  <p class="mb-0"><%= gallery.event_date.strftime('%b') %></p>
+                  <p class="mb-0 date__year"><%= gallery.event_date.year %></p>
                 </div>
               </div>
-              <div class="event__date">
-                <p class="mb-0"><%= gallery.event_date.day %></p>
-                <p class="mb-0"><%= gallery.event_date.strftime('%b') %></p>
-                <p class="mb-0 date__year"><%= gallery.event_date.year %></p>
-              </div>
             </div>
-      <% end %>
+          <% end %>
         </div>
+      <% end %>
     <% end %>
   </div>
+</div>
+<div class="container">
+
 </div>

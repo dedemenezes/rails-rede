@@ -353,22 +353,6 @@ Observatory.where(published: true).each do |obs|
   # ADD DESCRIPTION
   ActionText::RichText.create!(record_type: 'Observatory', record_id: obs.id, name: 'rich_description', body: obs.description)
 
-  # CREATE ALBUMS
-
-  4.times do |i|
-    sample = Observatory.all.sample
-    image_path = Rails.root.join('app', 'assets', 'images', 'observatorios-banners', "#{sample.name.parameterize}.jpg")
-    unless File.exist?(image_path)
-      image_path = Rails.root.join('app', 'assets', 'images', 'observatorios-banners', "#{sample  .name.parameterize}.png")
-    end
-
-    album = Album.create! name: "Conselho Regional #{i}", gallery: obs.gallery
-    if i == 2
-      album.is_event = true
-      album.event_date
-      album.banner.attach(io: File.open(image_path), filename: "#{obs.name.parameterize}-album-banner.png", content_type: 'image/png')
-    end
-  end
 end
 
 puts 'Creating tags...'
