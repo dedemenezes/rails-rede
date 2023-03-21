@@ -24,20 +24,39 @@ CSV.foreach file, headers: :first_row, header_converters: :symbol do |row|
 
 
   observatory_name = row[:name]
+  p observatory_name
+
   if observatory_name == "Rede Observação"
-    observatory = Observatory.first
+    observatory = Project.first
+    record_type = 'Project'
   else
+    record_type = 'Observatory'
     observatory = Observatory.find_by_name(observatory_name)
   end
   rich_text_body = "<div class='trix-content'>#{text_pt_1}<br><br><h1>#{inner_h1}</h1><br>#{text_pt_2}</div>"
-  rich_body = ActionText::RichText.create(record_type: 'Observatory', record_id: observatory.id, name: "content_#{row[:id]}", body: rich_text_body)
-  article = Article.create(
+  p observatory
+  attributes = {
+    record_type: record_type,
+    name: "content_#{row[:id]}",
+    body: rich_text_body,
+    record: observatory
+  }
+
+  rich_body = ActionText::RichText.create(attributes)
+  article = Article.new(
     header:,
     sub_header:,
-    observatory_id: observatory.id,
-    rich_body: rich_body,
+    rich_body:,
     published: true
   )
+
+  if observatory.is_a? Project
+    article.project = observatory
+  else
+    article.observatory = observatory
+  end
+
+  article.save!
 
   image_path = Rails.root.join('app', 'assets', 'images', 'noticia', article.header, 'capa.jpg')
   unless File.exist?(image_path)

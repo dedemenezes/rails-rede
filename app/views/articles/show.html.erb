@@ -1,5 +1,5 @@
-<% content_for :meta_title, "#{@article.name} - #{DEFAULT_META["meta_product_name"]}" %>
-<% content_for :meta_description, @article.description.truncate(100) %>
+<% content_for :meta_title, "#{@writer.name} - #{DEFAULT_META["meta_product_name"]}" %>
+<% content_for :meta_description, @article.sub_header.truncate(100) %>
 <% content_for :meta_image, display_banner_as_background(@article) %>
 
 <div class="container">
