@@ -1,3 +1,7 @@
+<% content_for :meta_title, "#{@observatory.name} - #{DEFAULT_META["meta_product_name"]}" %>
+<% content_for :meta_description, @observatory.description.truncate(100) %>
+<% content_for :meta_image, display_banner_as_background(@observatory) %>
+
 <div data-controller="slide-n-fade-r">
   <div class="banner__observatory"
         style="background-image: radial-gradient(50% 50% at 50% 50%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.48) 100%), url(<%= display_banner_as_background @observatory %>);">
