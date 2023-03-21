@@ -34,6 +34,9 @@ application.register("hello", HelloController)
 import MapController from "./map_controller"
 application.register("map", MapController)
 
+import NavbarTogglerController from "./navbar_toggler_controller"
+application.register("navbar-toggler", NavbarTogglerController)
+
 import OverlayMenuController from "./overlay_menu_controller"
 application.register("overlay-menu", OverlayMenuController)
 

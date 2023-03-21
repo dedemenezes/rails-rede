@@ -58,7 +58,7 @@
 }
 
 
-.navbar-nav.mx-auto .nav-item {
+.navbar-nav .nav-item {
   padding: .5rem;
 }
 
@@ -71,6 +71,36 @@
     justify-content: center;
     align-items: center;
   }
+}
+
+.navbar-collapse.navbar-mobile.collapse {
+  position: absolute;
+  background-color: white;
+  width: 100%;
+  top: 62px;
+  left: 0px;
+  padding: 24px 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: start;
+  height: 0;
+  opacity: 0;
+  z-index: 5;
+  transition: opacity .7s ease-out, height .5s ease-out;
+}
+.navbar-collapse.navbar-mobile.collapse.show {
+  height: 88vh;
+  opacity: 1;
+}
+
+.block-scroll {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.navbar-mobile show {
+
 }
 
 @media (max-width: 768px) {

@@ -16,7 +16,7 @@
         <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
             <% @photos.each_with_index do |photo, index| %>
-              <div class="carousel-item <%= 'active' if index.zero? %>" data-bs-interval="5000">
+              <div class="carousel-item <%= 'active' if index.zero? %>" data-bs-interval="3000">
                 <div style="background-image: url(<%= display_banner_as_background_image(photo) %>);height: 600px; background-size: cover; background-position: center;">
                 </div>
                 <%#= display_banner_image(photo) %>
