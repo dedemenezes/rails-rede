@@ -18,9 +18,9 @@ CSV.foreach file, headers: :first_row, header_converters: :symbol do |row|
   end
   # binding.break
 
-  text_pt_1 = row[:text_0].gsub(/<p><span.+">/, '').gsub(/<\/span.+p>/, '').gsub(/<p><br style.+<\/p>/, '').gsub('&ccedil;', 'ç').gsub('&atilde;', 'ã').gsub('&iacute;', 'í').gsub('&otilde;', 'õ').gsub('&uacute;', 'ú').gsub('&eacute;', 'é').gsub('&aacute;', 'á').gsub('&ocirc;', 'ô').gsub('&oacute;', 'ó').gsub("\r\n", '<br>').gsub('&nbsp;', ' ').gsub('&acirc;','a').gsub('&agrave;', 'à')
+  text_pt_1 = row[:text_0].gsub(/<p><span.+">/, '').gsub(/<\/span.+p>/, '').gsub(/<p><br style.+<\/p>/, '').gsub('&ccedil;', 'ç').gsub('&atilde;', 'ã').gsub('&iacute;', 'í').gsub('&otilde;', 'õ').gsub('&uacute;', 'ú').gsub('&eacute;', 'é').gsub('&aacute;', 'á').gsub('&ocirc;', 'ô').gsub('&oacute;', 'ó').gsub("\r\n", '<br><br>').gsub('&nbsp;', ' ').gsub('&acirc;','a').gsub('&agrave;', 'à')
 
-  text_pt_2 = row[:text_1].gsub(/<p><span.+">/, '').gsub(/<\/span.+p>/, '').gsub(/<p><br style.+<\/p>/, '').gsub('&ccedil;', 'ç').gsub('&atilde;', 'ã').gsub('&iacute;', 'í').gsub('&otilde;', 'õ').gsub('&uacute;', 'ú').gsub('&eacute;', 'é').gsub('&aacute;', 'á').gsub('&ocirc;', 'ô').gsub('&oacute;', 'ó').gsub("\r\n", '<br>').gsub('&nbsp;', ' ').gsub('&acirc;','a').gsub('&agrave;', 'à')
+  text_pt_2 = row[:text_1].gsub(/<p><span.+">/, '').gsub(/<\/span.+p>/, '').gsub(/<p><br style.+<\/p>/, '').gsub('&ccedil;', 'ç').gsub('&atilde;', 'ã').gsub('&iacute;', 'í').gsub('&otilde;', 'õ').gsub('&uacute;', 'ú').gsub('&eacute;', 'é').gsub('&aacute;', 'á').gsub('&ocirc;', 'ô').gsub('&oacute;', 'ó').gsub("\r\n", '<br><br>').gsub('&nbsp;', ' ').gsub('&acirc;','a').gsub('&agrave;', 'à')
 
 
   observatory_name = row[:name]
