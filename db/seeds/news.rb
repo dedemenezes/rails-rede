@@ -18,9 +18,9 @@ CSV.foreach file, headers: :first_row, header_converters: :symbol do |row|
   end
   # binding.break
 
-  text_pt_1 = row[:text_0].gsub(/<p><span.+">/, '').gsub(/<\/span.+p>/, '').gsub('&ccedil;', 'ç').gsub('&atilde;', 'ã').gsub('&iacute;', 'í').gsub('&otilde;', 'õ').gsub('&uacute;', 'ú').gsub('&eacute;', 'é').gsub('&aacute;', 'á').gsub('&ocirc;', 'ô').gsub('&oacute;', 'ó').gsub("\r\n", '<br>').gsub('&nbsp;', ' ').gsub('&acirc;','a').gsub('&agrave;', 'à')
+  text_pt_1 = row[:text_0].gsub(/<p><span.+">/, '').gsub(/<\/span.+p>/, '').gsub(/<p><br style.+<\/p>/, '').gsub('&ccedil;', 'ç').gsub('&atilde;', 'ã').gsub('&iacute;', 'í').gsub('&otilde;', 'õ').gsub('&uacute;', 'ú').gsub('&eacute;', 'é').gsub('&aacute;', 'á').gsub('&ocirc;', 'ô').gsub('&oacute;', 'ó').gsub("\r\n", '<br>').gsub('&nbsp;', ' ').gsub('&acirc;','a').gsub('&agrave;', 'à')
 
-  text_pt_2 = row[:text_1].gsub(/<p><span.+">/, '').gsub(/<\/span.+p>/, '').gsub('&ccedil;', 'ç').gsub('&atilde;', 'ã').gsub('&iacute;', 'í').gsub('&otilde;', 'õ').gsub('&uacute;', 'ú').gsub('&eacute;', 'é').gsub('&aacute;', 'á').gsub('&ocirc;', 'ô').gsub('&oacute;', 'ó').gsub("\r\n", '<br>').gsub('&nbsp;', ' ').gsub('&acirc;','a').gsub('&agrave;', 'à')
+  text_pt_2 = row[:text_1].gsub(/<p><span.+">/, '').gsub(/<\/span.+p>/, '').gsub(/<p><br style.+<\/p>/, '').gsub('&ccedil;', 'ç').gsub('&atilde;', 'ã').gsub('&iacute;', 'í').gsub('&otilde;', 'õ').gsub('&uacute;', 'ú').gsub('&eacute;', 'é').gsub('&aacute;', 'á').gsub('&ocirc;', 'ô').gsub('&oacute;', 'ó').gsub("\r\n", '<br>').gsub('&nbsp;', ' ').gsub('&acirc;','a').gsub('&agrave;', 'à')
 
 
   observatory_name = row[:name]
@@ -35,13 +35,18 @@ CSV.foreach file, headers: :first_row, header_converters: :symbol do |row|
     header:,
     sub_header:,
     observatory_id: observatory.id,
-    rich_body: rich_body
+    rich_body: rich_body,
+    published: true
   )
 
-  article.
-  image_path = Rails.root.join('app', 'assets', 'images', 'methodologies', "#{m.name.parameterize}-banner-#{number}.#{extension}")
+  image_path = Rails.root.join('app', 'assets', 'images', 'noticia', article.header, 'capa.jpg')
+  unless File.exist?(image_path)
+    image_path = Rails.root.join('app', 'assets', 'images', 'noticia', article.header, 'capa.jpeg')
+  end
 
-  m.banner.attach(io: File.open(image_path), filename: "#{m.name.parameterize}-banner-#{number}.jpg", content_type: 'image/png')
+  if File.exist?(image_path)
+    article.banner.attach(io: File.open(image_path), filename: "#{article.header.downcase.parameterize}-banner.jpg", content_type: 'image/png')
+  end
   # binding.break
   p article.rich_body.to_trix_html
 end
