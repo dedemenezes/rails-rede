@@ -1,10 +1,11 @@
 <%= simple_form_for([:dashboard, album], html: {data:{controller: 'photo-preview'}}) do |f| %>
+  <%= f.input :published %>
   <%= f.input :name %>
   <%= f.association :gallery, value: album.gallery %>
   <div data-controller="display-photo-input">
     <%= f.input :is_event, label: 'Foi uma ação', input_html: { data: { display_photo_input_target: 'checkbox', action: 'change->display-photo-input#displayInput' } } %>
-    <%= f.input :event_date, as: :string, input_html: { data: { controller: 'flatpickr' } },  wrapper_html: { class: 'box--anim box--hidden', data: { display_photo_input_target: 'input' } } %>
-    <%= f.association :tags, input_html: { data: { controller: 'tom-select-create-option' } },  wrapper_html: { class: 'box--anim box--hidden', data: { display_photo_input_target: 'input' } } %>
+    <%= f.input :event_date, as: :string, input_html: { data: { controller: 'flatpickr' } },  wrapper_html: { class: 'box--anim box--hidden d-block', data: { display_photo_input_target: 'input' } } %>
+    <%= f.association :tags, input_html: { data: { controller: 'tom-select-create-option' } },  wrapper_html: { class: 'box--anim box--hidden d-block', data: { display_photo_input_target: 'input' } } %>
   </div>
     <%= render 'dashboard/shared/form/banner_input', element: album, form: f %>
   <%= f.input :photos,
