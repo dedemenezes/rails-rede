@@ -6,6 +6,10 @@ class TagPolicy < ApplicationPolicy
     # end
   end
 
+  def new?
+    user.admin?
+  end
+
   def destroy?
     user.admin?
   end
