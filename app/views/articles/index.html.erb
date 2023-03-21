@@ -56,14 +56,14 @@
         <div class="col-12 col-xl-6 article--main mb-3 mb-xl-0">
           <%#= raise %>
           <%#= link_to article_path(@featured_article), class: 'text-reset' do %>
-            <%= render 'article_card', article: @featured_article, highlight: true if @featured_article %>
+            <%= render 'article_card', article: @featured_article, min_height: '', highlight: true if @featured_article %>
           <%# end %>
         </div>
 
         <div class="col-12 col-xl-6">
           <div class="recents--layout">
             <% @recent_articles.each do |article| %>
-              <%= render 'article_card', article: article, highlight: false %>
+              <%= render 'article_card', article: article, min_height: '', highlight: false %>
                 <%#= link_to article_path(article), class: 'text-reset' do %>
                 <%# end %>
             <% end %>
@@ -74,7 +74,7 @@
         <% @articles.each do |article| %>
           <div class="col-12 col-sm-6 col-md-4 article--list mb-4">
             <%#= link_to article_path(article), class: 'text-reset' do %>
-              <%= render 'article_card', article: article, highlight: false %>
+              <%= render 'article_card', article: article, highlight: false, min_height: 'full-height' %>
             <%# end %>
           </div>
         <% end %>

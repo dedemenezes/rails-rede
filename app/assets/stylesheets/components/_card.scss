@@ -129,6 +129,10 @@
   }
 }
 
+.article__card.full-height {
+  min-height: 100%;
+}
+
 .card__image--highlight {
   height: 196px !important;
 }
