@@ -21,7 +21,8 @@ class ArticlesController < ApplicationController
   def show
     observatory = @article.observatory
     methodology = @article.methodology
-    @writer = observatory || methodology
+    project = @article.project
+    @writer = observatory || methodology || project
     set_article
     authorize @article
     add_breadcrumb @article.model_name.collection.capitalize, '#'

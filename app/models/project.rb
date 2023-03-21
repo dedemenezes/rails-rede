@@ -1,6 +1,7 @@
 class Project < ApplicationRecord
   has_many :methodologies
   has_many :members
+  has_many :articles
   has_one_attached :banner
   has_one_attached :slide_one
   has_one_attached :slide_two
