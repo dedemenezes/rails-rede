@@ -1,3 +1,7 @@
+<% content_for :meta_title, "#{@article.name} - #{DEFAULT_META["meta_product_name"]}" %>
+<% content_for :meta_description, @article.description.truncate(100) %>
+<% content_for :meta_image, display_banner_as_background(@article) %>
+
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-12 col-md-9 mt-4">

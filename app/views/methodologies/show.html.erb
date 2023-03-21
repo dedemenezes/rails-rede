@@ -1,3 +1,7 @@
+<% content_for :meta_title, "#{@methodology.name} - #{DEFAULT_META["meta_product_name"]}" %>
+<% content_for :meta_description, @methodology.description.truncate(100) %>
+<% content_for :meta_image, display_banner_as_background(@methodology) %>
+
 <div class="container">
   <div class="about_us mt-5 mb-2">
     <div class="row align-items-center justify-content-center">
