@@ -369,4 +369,7 @@ puts 'Creating tags...'
 #   name: 'Metodologia Um',
 #   project: project
 # )
+Dir[File.join(Rails.root, 'db', 'seeds', '*.rb')].each do |seed|
+  load seed
+end
 puts 'Finished zo/'
