@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_20_051203) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_21_153548) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -73,8 +73,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_20_051203) do
     t.boolean "published", default: false
     t.bigint "observatory_id"
     t.bigint "methodology_id"
+    t.bigint "project_id"
     t.index ["methodology_id"], name: "index_articles_on_methodology_id"
     t.index ["observatory_id"], name: "index_articles_on_observatory_id"
+    t.index ["project_id"], name: "index_articles_on_project_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -239,6 +241,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_20_051203) do
   add_foreign_key "albums", "galleries"
   add_foreign_key "articles", "methodologies"
   add_foreign_key "articles", "observatories"
+  add_foreign_key "articles", "projects"
   add_foreign_key "galleries", "methodologies"
   add_foreign_key "galleries", "observatories"
   add_foreign_key "members", "observatories"

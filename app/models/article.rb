@@ -4,6 +4,7 @@ class Article < ApplicationRecord
 
   belongs_to :observatory, optional: true
   belongs_to :methodology, optional: true
+  belongs_to :project, optional: true
   has_many :taggings, as: :taggable, dependent: :destroy
   has_many :tags, through: :taggings
   has_one_attached :banner

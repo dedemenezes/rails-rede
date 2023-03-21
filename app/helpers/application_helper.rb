@@ -17,6 +17,20 @@ module ApplicationHelper
     end
   end
 
+  def display_banner_image(photo, options = {})
+    if photo.attached?
+      url = "https://rails-rede-demo-dev-2.s3.us-east-2.amazonaws.com/#{photo.key}"
+    else
+      url = 'default-banner.png'
+    end
+    image_tag(url, options)
+  end
+
+  def display_banner_as_background_image(photo, options = {})
+    url = "https://rails-rede-demo-dev-2.s3.us-east-2.amazonaws.com/#{photo.key}"
+    image_path(url, options)
+  end
+
   def display_banner(instance, options = {})
     if instance.banner.attached?
       url = "https://rails-rede-demo-dev-2.s3.us-east-2.amazonaws.com/#{instance.banner.key}"

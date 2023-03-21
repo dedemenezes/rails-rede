@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="display-button-on-hover"
 export default class extends Controller {
-  static targets = ['observatoryBtn', 'observatory', 'observatoryInput', 'methodologyBtn', 'methodology', 'methodologyInput']
+  static targets = ['observatoryBtn', 'observatory', 'observatoryInput', 'methodologyBtn', 'methodology', 'methodologyInput', 'projectBtn', 'project', 'projectInput']
   connect() {
     console.log(this.observatoryTarget)
   }
@@ -14,6 +14,12 @@ export default class extends Controller {
       this.methodologyBtnTarget.classList.remove('btn-rede-news')
       this.methodologyBtnTarget.innerText = 'Metodologia'
       this.methodologyTarget.classList.remove('box--show')
+    }
+    if (this.projectTarget.classList.contains('box--show')) {
+      this.projectInputTarget.value = ''
+      this.projectBtnTarget.classList.remove('btn-rede-news')
+      this.projectBtnTarget.innerText = 'Projeto'
+      this.projectTarget.classList.remove('box--show')
     }
 
     this.observatoryTarget.classList.toggle('box--show')
@@ -43,12 +49,44 @@ export default class extends Controller {
       this.observatoryTarget.classList.remove('box--show')
     }
 
+    if (this.projectTarget.classList.contains('box--show')) {
+      this.projectInputTarget.value = ''
+      this.projectBtnTarget.classList.remove('btn-rede-news')
+      this.projectBtnTarget.innerText = 'Projeto'
+      this.projectTarget.classList.remove('box--show')
+    }
     this.methodologyTarget.classList.toggle('box--show')
     this.methodologyBtnTarget.classList.toggle('btn-rede-news')
     this.updateButtonText(this.methodologyBtnTarget, 'Metodologia')
 
     if (!this.methodologyTarget.classList.contains('box--show')) {
       this.methodologyInputTarget.value = ''
+    }
+  }
+
+  project(e) {
+    // 0. previnir envio do botao
+    e.preventDefault()
+    // 1.0 se o observatorio estiver aberto
+    if (this.observatoryTarget.classList.contains('box--show')) {
+      this.observatoryInputTarget.value = ''
+      this.observatoryBtnTarget.classList.remove('btn-rede-news')
+      this.observatoryBtnTarget.innerText = 'Observatório'
+      this.observatoryTarget.classList.remove('box--show')
+    }
+    if (this.methodologyTarget.classList.contains('box--show')) {
+      this.methodologyInputTarget.value = ''
+      this.methodologyBtnTarget.classList.remove('btn-rede-news')
+      this.methodologyBtnTarget.innerText = 'Metodologia'
+      this.methodologyTarget.classList.remove('box--show')
+    }
+
+    this.projectTarget.classList.toggle('box--show')
+    this.projectBtnTarget.classList.toggle('btn-rede-news')
+    this.updateButtonText(this.projectBtnTarget, 'Projeto')
+
+    if (!this.projectTarget.classList.contains('box--show')) {
+      this.projectInputTarget.value = ''
     }
   }
 }
