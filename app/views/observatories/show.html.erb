@@ -45,6 +45,8 @@
   <%# GALLERIES %>
     <%# <div class="cards__index cards__index--min-two mb-4"> %>
       <div class="cards--two mb-4">
+        <div class="card__square" style="background-image: url(<%= display_banner_as_background(@gallery) %>)">
+        </div>
         <% @albums.each do |album| %>
           <div class="card__square" style="background-image: url(<%= display_banner_as_background(album) %>)">
           </div>

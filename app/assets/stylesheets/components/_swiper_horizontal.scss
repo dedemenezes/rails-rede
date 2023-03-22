@@ -30,6 +30,27 @@
   // margin-right: 36px;
 }
 
+.swiper-pagination-bullet {
+  background: $r-blue-d !important;
+  opacity: .8;
+}
+
 .swiper-pagination-bullet-active {
   background: $r-blue-l !important;
+  opacity: 1 !important;
+}
+
+.pagination--custom__bottom {
+  bottom: -4px !important;
+}
+
+@media (min-width: 990px) {
+  .pagination--custom__bottom {
+    bottom: 10px !important;
+  }
+
+  .swiper--custom {
+    padding-bottom: 3.3rem !important;
+  }
+
 }
