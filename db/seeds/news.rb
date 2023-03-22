@@ -58,6 +58,8 @@ CSV.foreach file, headers: :first_row, header_converters: :symbol do |row|
 
   article.save!
 
+  Tag.all.sample(2).each { |tag| Tagging.create! taggable: article, tag: }
+
   image_path = Rails.root.join('app', 'assets', 'images', 'noticia', article.header, 'capa.jpg')
   unless File.exist?(image_path)
     image_path = Rails.root.join('app', 'assets', 'images', 'noticia', article.header, 'capa.jpeg')
