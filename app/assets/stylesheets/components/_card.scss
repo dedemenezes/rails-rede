@@ -373,9 +373,14 @@ small.tag {
   }
 }
 
+
 .new__card {
   border-radius: 10px;
   box-shadow: 4px 4px 20px rgba(0, 0, 0, .1);
+  transition: box-shadow .2s ease-out;
+  &:hover {
+    box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.2);
+  }
 }
 
 .new__card .card__content {
@@ -384,6 +389,13 @@ small.tag {
   background-color: white;
   border-radius: 0 0 10px 10px;
 }
+
+.card__content:hover {
+  h6 {
+    opacity: .7;
+  }
+}
+
 // EVENT CARD
 
 .events__carousel {
