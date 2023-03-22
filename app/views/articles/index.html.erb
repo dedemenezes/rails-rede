@@ -55,17 +55,17 @@
       <div class="row mb-4">
         <div class="col-12 col-xl-6 article--main mb-3 mb-xl-0">
           <%#= raise %>
-          <%#= link_to article_path(@featured_article), class: 'text-reset' do %>
+          <%= link_to article_path(@featured_article), class: 'text-reset' do %>
             <%= render 'article_card', article: @featured_article, min_height: '', highlight: true if @featured_article %>
-          <%# end %>
+          <% end %>
         </div>
 
         <div class="col-12 col-xl-6">
           <div class="recents--layout">
             <% @recent_articles.each do |article| %>
-              <%= render 'article_card', article: article, min_height: '', highlight: false %>
-                <%#= link_to article_path(article), class: 'text-reset' do %>
-                <%# end %>
+              <%#= link_to article_path(article) do %>
+                <%= render 'article_card', article: article, min_height: '', highlight: false %>
+              <%# end %>
             <% end %>
           </div>
         </div>
