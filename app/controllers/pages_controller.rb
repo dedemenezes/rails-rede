@@ -19,6 +19,7 @@ class PagesController < ApplicationController
     @galleries = Gallery.includes(:tags, banner_attachment: :blob).only_events
     @albums = Album.includes(:tags, banner_attachment: :blob).only_events
     @events = [@galleries, @albums].flatten
+    @articles = Article.where(published: true).order(updated_at: :desc).limit(10)
   end
 
   def about_us
