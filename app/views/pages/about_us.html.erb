@@ -50,7 +50,7 @@
                 <%#= image_tag "#{methodology.name.downcase.parameterize}-banner.jpg", width: '100%' %>
               <div class="card__content">
                 <h6 class="text-<%= @text_colors[index] %>"><%= methodology.name %></h6>
-                <p class="text-primary">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.</p>
+                <p class="text-primary"><%= methodology.card_description %></p>
                 <%= link_to 'Ver mais', methodology_path(methodology), class: "text-#{@text_colors[index]} btn btn__secondary continuous-3" %>
               </div>
             </div>
