@@ -1,3 +1,7 @@
+<% content_for :meta_title, "#{@album.name} - #{DEFAULT_META["meta_product_name"]}" %>
+<% content_for :meta_description, @album.name.truncate(100) %>
+<% content_for :meta_image, display_banner_as_background(@album) %>
+
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-12 my-4">

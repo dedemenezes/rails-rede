@@ -1,15 +1,21 @@
 <div class="container">
-  <div class="row justify-content-center align-items-center mt-4">
+  <div class="row justify-content-center align-items-center mt-5">
     <div class="col-12 col-sm-6 mt-md-4">
       <div class="row justify-content-center align-items-center">
         <div class="col-12 col-md-4 text-center my-4">
-          <%= image_tag 'ibama-logo.png', width: '82px' %>
+          <%= link_to 'https://www.gov.br/ibama/pt-br', target: '_blank' do %>
+            <%= image_tag 'ibama-logo.png', width: '82px' %>
+          <% end %>
         </div>
         <div class="col-12 col-md-4 text-center my-4">
-          <%= image_tag 'prio-logo.png', width: '116px' %>
+          <%= link_to 'https://www.prio3.com.br/', target: '_blank' do %>
+            <%= image_tag 'prio-logo.png', width: '116px' %>
+          <% end %>
         </div>
         <div class="col-12 col-md-4 text-center my-4">
-          <%= image_tag 'ambiental-logo.png', width: '146px' %>
+          <%= link_to 'https://ambientalconsult.com.br/', target: '_blank' do %>
+            <%= image_tag 'ambiental-logo.png', width: '146px' %>
+          <% end %>
         </div>
       </div>
     </div>
