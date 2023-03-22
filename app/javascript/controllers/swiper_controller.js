@@ -24,18 +24,18 @@ export default class extends Controller {
         300: {
           centeredSlides: false,
           slidesPerView: 1,
-          spaceBetween: 0,
+          spaceBetween: 10,
         },
         // when window width is >= 768
         768: {
           slidesPerView: 2,
           centeredSlides: false,
-          spaceBetween: 10,
+          spaceBetween: 20,
 
         },
         1200: {
           slidesPerView: 3,
-          centeredSlides: true,
+          centeredSlides: false,
           // spaceBetween: 10,
           spaceBetween: 30,
           grabCursor: true,
