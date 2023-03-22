@@ -25,8 +25,8 @@ class PagesController < ApplicationController
 
   def about_us
     @methodologies = Methodology.with_attached_banner.all
-    project = Project.includes(slide_one_attachment: :blob, slide_two_attachment: :blob, slide_three_attachment: :blob).first
-    @photos = [project.slide_one, project.slide_two, project.slide_three]
+    @project = Project.includes(slide_one_attachment: :blob, slide_two_attachment: :blob, slide_three_attachment: :blob).first
+    @photos = [@project.slide_one, @project.slide_two, @project.slide_three]
     @text_colors = ['rede-primary', 'rede-dark-red', 'rede-primary-l']
   end
 end

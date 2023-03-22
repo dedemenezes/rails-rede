@@ -497,6 +497,36 @@ small.tag {
   }
 }
 
+// SLIDE CARD ABOUT
+.slide__wrapper_about {
+  background-color: #f3f5f7;
+  padding: 1rem 0;
+}
+.slide__card {
+  background-color: white;
+  padding-top: 1rem;
+  // border-radius: 10px;
+  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.slide__card__image {
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  /* border-radius: 5px; */
+  height: 212px;
+}
+
+.slide__subtitle {
+  p {
+    font-size: 11.6842px;
+    line-height: 16px;
+    letter-spacing: 0.389474px;
+    padding: 8px 12px;
+    color: black;
+  }
+}
+
 @media (min-width: 768px) {
   .card__square {
     height: 195px;
