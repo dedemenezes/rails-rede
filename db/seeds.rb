@@ -1,4 +1,5 @@
 puts 'Cleaning DB...'
+Tag.destroy_all
 Article.destroy_all
 Methodology.destroy_all
 Project.destroy_all
@@ -352,13 +353,19 @@ Observatory.where(published: true).each do |obs|
 
   # ADD DESCRIPTION
   ActionText::RichText.create!(record_type: 'Observatory', record_id: obs.id, name: 'rich_description', body: obs.description)
-
 end
 
 puts 'Creating tags...'
-
 name_tags = Observatory.pluck(:name) + PriorityType.pluck(:name)
-name_tags.map { |name| Tag.create! name: }
+name_tags.uniq.map do |name|
+  names = name.split(' ')
+  length = name.starts_with?("São") ? 1 : 0
+  name = names[..length].join(' ')
+
+  next if Tag.find_by(name:)
+
+  Tag.create!(name:)
+end
 
 # puts "creating Projects"
 # project = Project.create!(
