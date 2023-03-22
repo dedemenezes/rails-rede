@@ -38,6 +38,12 @@ pt-BR:
         category: "Categoria"
         priority_type: "Prioridadde"
         conflict_type: "Conflito"
+      project:
+          name: "Nome"
+          banner_text: "Banner"
+          slide_one_subtitle: "Legenda slide um"
+          slide_two_subtitle: "Legenda slide dois"
+          slide_three_subtitle: "Legenda slide três"
     errors:
       messages:
         record_invalid: 'A validação falhou: %{errors}'

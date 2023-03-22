@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
-  get '/contacts/new', to: 'contacts#new', as: :new_contact
+  get '/contato', to: 'contacts#new', as: :new_contact
   post '/contacts', to: 'contacts#create', as: :contacts
   get '/sobre', to: 'pages#about_us', as: :about_us
   # delete 'attachments/:id', to: 'attachments#destroy', as: :destroy_attachment
