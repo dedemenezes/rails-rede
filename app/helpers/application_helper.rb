@@ -11,7 +11,7 @@ module ApplicationHelper
 
   def display_banner_as_background(instance)
     if instance.banner.attached?
-      "https://rails-rede-demo-dev-2.s3.us-east-2.amazonaws.com/#{instance.banner.key}"
+      "https://rede-observacao-prod.s3.us-east-2.amazonaws.com/#{instance.banner.key}"
     else
       image_path('default-banner.png')
     end
@@ -19,7 +19,7 @@ module ApplicationHelper
 
   def display_banner_image(photo, options = {})
     if photo.attached?
-      url = "https://rails-rede-demo-dev-2.s3.us-east-2.amazonaws.com/#{photo.key}"
+      url = "https://rede-observacao-prod.s3.us-east-2.amazonaws.com/#{photo.key}"
     else
       url = 'default-banner.png'
     end
@@ -27,13 +27,13 @@ module ApplicationHelper
   end
 
   def display_banner_as_background_image(photo, options = {})
-    url = "https://rails-rede-demo-dev-2.s3.us-east-2.amazonaws.com/#{photo.key}"
+    url = "https://rede-observacao-prod.s3.us-east-2.amazonaws.com/#{photo.key}"
     image_path(url, options)
   end
 
   def display_banner(instance, options = {})
     if instance.banner.attached?
-      url = "https://rails-rede-demo-dev-2.s3.us-east-2.amazonaws.com/#{instance.banner.key}"
+      url = "https://rede-observacao-prod.s3.us-east-2.amazonaws.com/#{instance.banner.key}"
     else
       url = 'default-banner.png'
     end
