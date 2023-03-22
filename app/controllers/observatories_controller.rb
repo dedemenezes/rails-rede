@@ -13,6 +13,14 @@ class ObservatoriesController < ApplicationController
     @observatory = Observatory.includes(:priority_subjects, :conflict_type, :gallery, :articles, :albums, banner_attachment: :blob, albums: { banner_attachment: :blob }).find_by(name: params[:name]) || Observatory.find(params[:id])
     @gallery = @observatory.gallery
     @albums = @observatory.albums
+    @markers = [
+      {
+        lat: @observatory.latitude,
+        lng: @observatory.longitude,
+        info_window: render_to_string(partial: 'observatories/info_window', locals: { observatory: @observatory }),
+        image_url: helpers.asset_path('icon-pin--blue.svg')
+      }
+    ]
     authorize @observatory
   end
 
