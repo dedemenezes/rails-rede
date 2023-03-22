@@ -19,12 +19,14 @@ class PagesController < ApplicationController
     @galleries = Gallery.includes(:tags, banner_attachment: :blob).only_events
     @albums = Album.includes(:tags, banner_attachment: :blob).only_events
     @events = [@galleries, @albums].flatten
+    @featured = Article.featured
+    @articles = Article.where(published: true, featured: false).order(updated_at: :desc).limit(4)
   end
 
   def about_us
     @methodologies = Methodology.with_attached_banner.all
-    project = Project.includes(slide_one_attachment: :blob, slide_two_attachment: :blob, slide_three_attachment: :blob).first
-    @photos = [project.slide_one, project.slide_two, project.slide_three]
+    @project = Project.includes(slide_one_attachment: :blob, slide_two_attachment: :blob, slide_three_attachment: :blob).first
+    @photos = [@project.slide_one, @project.slide_two, @project.slide_three]
     @text_colors = ['rede-primary', 'rede-dark-red', 'rede-primary-l']
   end
 end

@@ -41,7 +41,7 @@ class Dashboard::TagsController < ApplicationController
   private
 
   def set_tag
-    @tag = Tag.find(params[:id])
+    @tag = Tag.find(params[:id]) || Tag.find_by(name: params[:name])
   end
 
   def tag_params

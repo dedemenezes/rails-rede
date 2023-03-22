@@ -6,7 +6,7 @@
   <div class="banner__observatory"
         style="background-image: radial-gradient(50% 50% at 50% 50%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.48) 100%), url(<%= display_banner_as_background @observatory %>);">
     <div class="container d-flex flex-column justify-content-between pt-3">
-      <%= link_to observatories_path, class: 'btn btn-figma-light', width: '40px', data: { controller: 'display-button-on-hover--off', action: 'mouseenter->display-button-on-hover#display', action: 'mouseout->display-button-on-hover#hide'} do %>
+      <%= link_to request.referrer, class: 'btn btn-figma-light', width: '40px', data: { controller: 'display-button-on-hover--off', action: 'mouseenter->display-button-on-hover#display', action: 'mouseout->display-button-on-hover#hide'} do %>
         <%= image_tag 'arrow-down.svg', class: 'image--left', width: '16px', style: 'transform: rotate(90deg); margin-right: 16px' %>
         Voltar
       <% end %>

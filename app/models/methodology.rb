@@ -7,6 +7,7 @@ class Methodology < ApplicationRecord
   has_one :gallery, dependent: :destroy
   has_many :articles
   validates :name, presence: true, length: { minimum: 3 }
+  validates :card_description, presence: true
 
   after_create :set_gallery
 

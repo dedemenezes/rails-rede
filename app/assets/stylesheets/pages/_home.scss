@@ -2,3 +2,9 @@
 body {
   color: $primary;
 }
+
+.home__articles {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem;
+}

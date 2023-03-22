@@ -1,0 +1,48 @@
+<%= image_tag 'contact-top-wave.png', width: '100%', class: 'lg-height' %>
+<div style="background-image: url(<%= asset_path('contact-center-wave.png') %>);min-height: fit-content;">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-sm-8 col-lg-6">
+        <h3 class='text-center mb-5'>Entre em contato!</h3>
+        <%= form_with url: contacts_path, html: { class: '' } do |f| %>
+          <div class="mb-3">
+            <div class="row">
+              <div class="col-6">
+                <%= f.label :first_name, class: "form-label fw-semibold" %>
+                <%= f.text_field :first_name, class: "form-control", aria: { describedby: 'firstName' } %>
+              </div>
+              <div class="col-6">
+                <%= f.label :last_name, class: "form-label fw-semibold"%>
+                <%= f.text_field :last_name, class: "form-control", aria: { describedby: 'lastName' } %>
+              </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <div class="row">
+              <div class="col-12">
+                <%= f.label :email, class: "form-label fw-semibold" %>
+                <%= f.text_field :email, class: "form-control", aria: { describedby: 'email' } %>
+              </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <div class="row">
+              <div class="col-12">
+                <%= f.label :message, class: "form-label fw-semibold" %>
+                <%= f.text_area :message, class: "form-control", style: 'height: 138px;', aria: { describedby: 'message' } %>
+              </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <div class="row justify-content-center">
+              <div class="col-6">
+                <%= f.submit 'Saiba mais', class: 'btn btn-primary w-100' %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<%= image_tag 'contact-bottom-wave.png', width: '100%', style: 'position: absolute;' %>

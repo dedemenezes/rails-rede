@@ -1,15 +1,17 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
-  get '/contacts/new', to: 'contacts#new', as: :new_contact
+  get '/contato', to: 'contacts#new', as: :new_contact
   post '/contacts', to: 'contacts#create', as: :contacts
-  get '/about_us', to: 'pages#about_us', as: :about_us
+  get '/sobre', to: 'pages#about_us', as: :about_us
   # delete 'attachments/:id', to: 'attachments#destroy', as: :destroy_attachment
   resources :observatories, only: %i[index show], path: "observatorios", param: :name do
-    collection do
-      get :mapa
-    end
+    # collection do
+    #   get :mapa
+    # end
   end
+
+  get '/mapa-de-conflitos', to: 'observatories#mapa', as: :mapa_observatories
   resources :articles, only: %i[show index edit update], path: 'noticias', param: :header
   resources :galleries, only: %i[index show], path: 'acervos', param: :name
   resources :albums, only: %i[index show], path: 'galerias', param: :name

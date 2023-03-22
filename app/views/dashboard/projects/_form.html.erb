@@ -22,6 +22,8 @@
       </div>
     </div>
     <div class="col-10">
+      <%= f.input :slide_one_subtitle %>
+
       <% if !project.slide_one.attached? %>
         <%= f.input :slide_one,
                     as: :file,
@@ -56,9 +58,10 @@
                     wrapper_html: { class: 'box--anim box--hidden', data: { controller: 'photo-preview', photo_preview_target: 'submit', display_photo_input_target: 'input' } },
                     label: '📷 Selecione segunda foto para o slide' %>
           <%#= form.input :banner, as: :file, input_html: { class: 'box--anim box--hidden', data: { display_photo_input_target: 'input' } } %>
-          <button class="btn btn-primary" data-display-photo-input-target="button" data-action="click->display-photo-input#display">Quer atualizar o banner?</button>
+          <button class="btn btn-primary" data-display-photo-input-target="button" data-action="click->display-photo-input#display">Quer atualizar o slide um?</button>
         </div>
       <% end %>
+
     </div>
   </div>
 
@@ -72,6 +75,7 @@
       </div>
     </div>
     <div class="col-10">
+      <%= f.input :slide_two_subtitle %>
       <% if !project.slide_two.attached? %>
         <%= f.input :slide_two,
                     as: :file,
@@ -106,7 +110,7 @@
                     wrapper_html: { class: 'box--anim box--hidden', data: { controller: 'photo-preview', photo_preview_target: 'submit', display_photo_input_target: 'input' } },
                     label: '📷 Selecione segunda foto para o slide' %>
           <%#= form.input :banner, as: :file, input_html: { class: 'box--anim box--hidden', data: { display_photo_input_target: 'input' } } %>
-          <button class="btn btn-primary" data-display-photo-input-target="button" data-action="click->display-photo-input#display">Quer atualizar o banner?</button>
+          <button class="btn btn-primary" data-display-photo-input-target="button" data-action="click->display-photo-input#display">Quer atualizar o slide dois?</button>
         </div>
       <% end %>
     </div>
@@ -123,6 +127,7 @@
       </div>
     </div>
     <div class="col-10">
+      <%= f.input :slide_three_subtitle %>
       <% if !project.slide_three.attached? %>
         <%= f.input :slide_three,
                     as: :file,
@@ -157,7 +162,7 @@
                     wrapper_html: { class: 'box--anim box--hidden', data: { controller: 'photo-preview', photo_preview_target: 'submit', display_photo_input_target: 'input' } },
                     label: '📷 Selecione terceira foto para o slide' %>
           <%#= form.input :banner, as: :file, input_html: { class: 'box--anim box--hidden', data: { display_photo_input_target: 'input' } } %>
-          <button class="btn btn-primary" data-display-photo-input-target="button" data-action="click->display-photo-input#display">Quer atualizar o banner?</button>
+          <button class="btn btn-primary" data-display-photo-input-target="button" data-action="click->display-photo-input#display">Quer atualizar o slide três?</button>
         </div>
       <% end %>
     </div>

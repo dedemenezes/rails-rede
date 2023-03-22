@@ -1,3 +1,6 @@
+<% content_for :meta_title, "Acervo - #{DEFAULT_META["meta_product_name"]}" %>
+<% content_for :meta_image, display_banner_as_background(@galleries.sample) unless @galleries.empty? %>
+
 <div class="container">
   <div class="row justify-content-center mt-2 mb-5">
     <div class="col-12 mt-3">
@@ -7,6 +10,6 @@
     </div>
   </div>
   <div class="cards__index">
-    <%= render @galleries %>
+    <%= render @galleries unless @galleries.empty? %>
   </div>
 </div>

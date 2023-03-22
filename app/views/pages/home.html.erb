@@ -29,49 +29,109 @@
       <%= render 'observatories/map', markers: @markers, hide_filter: true %>
     </div>
   </div>
-</div>
 
-
-<div class="container">
- <div class="row justify-content-center mt-4">
-    <div class="col-12">
-      <%= render 'shared/breadcrumbs' %>
-      <div class="d-flex justify-content-between align-items-center border border-rede-news border-info border-5 border-end-0 border-top-0 border-bottom-0 ps-2 ps-md-3 ps-lg-4 mb-3">
-        <h1 class='mb-0 fs-3 fs-md-2'>Últimas ações</h1>
+  <div class="row mb-5">
+    <div class="row justify-content-center mt-4">
+      <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center border border-warning border-info border-5 border-end-0 border-top-0 border-bottom-0 ps-2 ps-md-3 ps-lg-4 mb-3">
+          <h1 class='mb-0 fs-3 fs-md-2'>Últimas ações</h1>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="events__carousel styled-scrollbars" data-controller="events-scroll" data-action="scroll->events-scroll#toggleScroll">
+    <div class="events__carousel styled-scrollbars" data-controller="events-scroll" data-action="scroll->events-scroll#toggleScroll">
       <!-- Slides -->
-    <% if @events.empty? %>
-      <p>Em breve novas atividades.</p>
-    <% else %>
       <% @events.each do |gallery| %>
         <div class="card__event" style="width: 345px;">
           <%= link_to url_for(gallery) do %>
-            <div class="card__event__image" style='background-image: url(<%= display_banner_as_background(gallery) %>);background-size: cover; background-position: center;'></div>
-              <div class="event__content">
-                <div class="h-100 flex-grow-1 d-flex flex-column justify-content-between align-items-start text-start">
-                  <h5 class='mb-3'><%= gallery.name %></h5>
-                  <div class="event__tags d-flex justify-content-start align-items-center">
-                    <% gallery.tags.each do |tag| %>
-                      <small class="tag"><%= tag.name %></small>
-                    <% end %>
-                  </div>
+            <div class="card__event__image" style="background-image: url(<%= display_banner_as_background(gallery) %>);background-size: cover; background-position: center;">
+            </div>
+            <div class="event__content">
+              <div class="h-100 flex-grow-1 d-flex flex-column justify-content-between align-items-start text-start">
+                <h5 class='mb-3'><%= gallery.name %></h5>
+                <div class="event__tags d-flex justify-content-start align-items-center">
+                  <% gallery.tags.each do |tag| %>
+                    <small class="tag"><%= tag.name %></small>
+                  <% end %>
                 </div>
-                <div class="event__date">
-                  <p class="mb-0"><%= gallery.event_date.day %></p>
-                  <p class="mb-0"><%= gallery.event_date.strftime('%b') %></p>
-                  <p class="mb-0 date__year"><%= gallery.event_date.year %></p>
-                </div>
+              </div>
+              <div class="event__date">
+                <p class="mb-0"><%= gallery.event_date.day %></p>
+                <p class="mb-0"><%= gallery.event_date.strftime('%b') %></p>
+                <p class="mb-0 date__year"><%= gallery.event_date.year %></p>
               </div>
             </div>
           <% end %>
         </div>
       <% end %>
-    <% end %>
+    </div>
   </div>
-</div>
-<div class="container">
+
+  <div class="articles__home">
+    <div class="row mb-5 justify-content-center mt-4">
+      <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center border border-news border-info border-5 border-end-0 border-top-0 border-bottom-0 ps-2 ps-md-3 ps-lg-4 mb-4">
+          <h1 class='mb-0 fs-3 fs-md-2'>Últimas notícias</h1>
+        </div>
+      </div>
+
+      <div class="articles__recent">
+        <div class="row mb-4">
+          <div class="col-12 col-xl-6 article--main mb-3 mb-xl-0">
+            <%#= raise %>
+            <%#= link_to article_path(@featured_article), class: 'text-reset' do %>
+              <div class="article__card min-height-100">
+                <div class="card__image card__image--highlight" style='background-image:url(<%= display_banner_as_background(@featured) %>); background-size: cover; background-position: center;'>
+                </div>
+                <div class="article__card__content">
+                  <div class="card__content__header d-flex justify-cotent-start gap-4 align-items-center mb-3">
+                    <span class="article__content__date"><%= @featured.created_at.strftime('%d.%m.%Y') %></span>
+                    <%# <small>= article.tags.first.name</small> %>
+                    <div class="article__home__tags">
+                      <% @featured.tags.each_with_index do |tag, index| %>
+                        <%= link_to articles_path(tags: [tag.name]) do %>
+                          <small class="tag <%= 'tag--hidden' if index.positive? %>"><%= tag.name %></small>
+                        <% end %>
+                      <% end %>
+                    </div>
+                  </div>
+                  <%= link_to article_path(@featured), class: 'd-block' do %>
+                    <h5 class="text-reset mb-lg-0"><%= @featured.header %></h5>
+                  <% end %>
+                </div>
+              </div>
+            <%# end %>
+          </div>
+
+          <div class="col-12 col-xl-6">
+            <div class="row">
+              <% @articles.each_with_index do |article, index| %>
+                <div class="col-6 <%= 'mb-3' unless (@articles.length - 2..@articles.length - 1).include?(index) %>">
+                  <%= link_to article do %>
+                    <div class="article__home min-height-100">
+                      <div class="article__home_image" style="background-image: url(<%= display_banner_as_background(article) %>);height: 124px; background-size: cover; background-position: center;">
+                      </div>
+                      <div class="article__home__content">
+                        <div class="article__home__content__info mb-3">
+                          <span class="article__content__date mb-1"><%= article.created_at.strftime('%d/%m/%y') %></span>
+                          <div class="article__home__tags">
+                            <% article.tags.each_with_index do |tag, index| %>
+                              <small class="tag <%= 'tag--hidden' if index.positive? %>"><%= tag.name %></small>
+                            <% end %>
+                          </div>
+                        </div>
+                        <h5 class="article__home_header text-reset"><%= article.header.truncate(86) %></h5>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </div>
+
+<%= render 'contacts/form' %>

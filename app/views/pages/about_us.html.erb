@@ -1,3 +1,6 @@
+<% content_for :meta_title, "Sobre- #{DEFAULT_META["meta_product_name"]}" %>
+<% content_for :meta_image, display_banner_as_background(@project) %>
+
 <div class="container">
   <div class="about_us mt-5 mb-4">
     <div class="row align-items-center justify-content-center">
@@ -10,30 +13,33 @@
       </div>
     </div>
   </div>
-  <div class="row justify-content-center">
-    <div class="col-12 col-md-11 col-lg-10">
-      <div class="about_us__gallery">
-        <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-inner">
-            <% @photos.each_with_index do |photo, index| %>
-              <div class="carousel-item <%= 'active' if index.zero? %>" data-bs-interval="5000">
-                <div style="background-image: url(<%= display_banner_as_background_image(photo) %>);height: 600px; background-size: cover; background-position: center;">
-                </div>
-                <%#= display_banner_image(photo) %>
-                <%#= image_tag photo.url, class: 'd-block w-100', alt: photo.filename.filename %>
+</div>
+
+<%= image_tag 'contact-top-wave.png', width: '100%' %>
+  <div class="slide__wrapper_about">
+    <div class="swiper"  data-controller="swiper-slideshow">
+      <!-- Additional required wrapper -->
+      <div class="swiper-wrapper">
+        <!-- Slides -->
+        <% @photos.each_with_index do |photo, index| %>
+          <% numbers_as_text = ['one', 'two', 'three'] %>
+          <% i = numbers_as_text[index] %>
+          <div class="swiper-slide">
+            <div class="slide__card">
+              <div class="slide__card__image" style="background-image: url(<%= display_banner_as_background_image(photo) %>);">
               </div>
-            <% end %>
+              <div class="slide__subtitle">
+                <p><%= photo.record.send("slide_#{i}_subtitle".to_sym) %></p>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="row justify-content-center mt-3 mb-4">
-          <div class="col-12 text-center text-primary">
-            <%= link_to 'IR PARA O ACERVO', galleries_path, class: 'btn btn__secondary continuous-3' %>
-          </div>
-        </div>
+        <% end %>
       </div>
     </div>
   </div>
+<%= image_tag 'contact-bottom-wave.png', width: '100%', style: "position: relative;top: -6px;"%>
 
+<div class="container">
   <div class="about_us__methodologies mt-4" id="methodologies">
     <div class="d-flex justify-content-between align-items-center border border-warning border-info border-5 border-end-0 border-top-0 border-bottom-0 ps-2 ps-md-3 ps-lg-4 mb-3">
       <h1 class='mb-0 fs-3 fs-md-2'>Metodologias</h1>
@@ -44,15 +50,17 @@
     <div class="row mb-3">
       <% @methodologies.each_with_index do |methodology, index| %>
         <div class="col-12 col-sm-4 mb-2 mb-md-4 pt-3">
-          <div class="new__card">
-            <div class="methodology__card"  style='background-image:url(<%= display_banner_as_background(methodology) %>); background-size: cover; background-position: center;'></div>
-              <%#= image_tag "#{methodology.name.downcase.parameterize}-banner.jpg", width: '100%' %>
-            <div class="card__content">
-              <h6 class="text-<%= @text_colors[index] %>"><%= methodology.name %></h6>
-              <p class="text-primary">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.</p>
-              <%= link_to 'Ver mais', methodology_path(methodology), class: "text-#{@text_colors[index]} btn btn__secondary continuous-3" %>
+          <%= link_to methodology do %>
+            <div class="new__card">
+              <div class="methodology__card"  style='background-image:url(<%= display_banner_as_background(methodology) %>); background-size: cover; background-position: center;'></div>
+                <%#= image_tag "#{methodology.name.downcase.parameterize}-banner.jpg", width: '100%' %>
+              <div class="card__content">
+                <h6 class="text-<%= @text_colors[index] %>"><%= methodology.name %></h6>
+                <p class="text-primary"><%= methodology.card_description %></p>
+                <%= link_to 'Ver mais', methodology_path(methodology), class: "text-#{@text_colors[index]} btn btn__secondary continuous-3" %>
+              </div>
             </div>
-          </div>
+          <% end %>
         </div>
       <% end %>
     </div>

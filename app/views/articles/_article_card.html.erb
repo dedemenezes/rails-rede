@@ -1,25 +1,28 @@
+<%# article - instance %>
+<%# min_height -> Card Height  %>
+<%# highlight -> main card on index page %>
 <div class="article__card <%= min_height %>">
-  <div class="card__image <%= highlight ? "card__image--highlight" : "" %>" style='background-image:url(<%= display_banner_as_background(article) %>); background-size: cover; background-position: center;'></div>
-  <div class="article__card__content">
-    <% unless highlight %>
-      <small><%= article.created_at.strftime('%d.%m.%Y') %></small>
-    <% end %>
-    <div class="card__content__header d-flex justify-cotent-start gap-2">
-      <% if highlight %>
+  <%= link_to article_path(article) do %>
+    <div class="card__image <%= highlight ? "card__image--highlight" : "" %>" style='background-image:url(<%= display_banner_as_background(article) %>); background-size: cover; background-position: center;'></div>
+    <div class="article__card__content">
+      <div class="card__content__header d-flex justify-cotent-start gap-2">
         <small><%= article.created_at.strftime('%d.%m.%Y') %></small>
-      <% end %>
-      <%# <small>= article.tags.first.name</small> %>
-      <% article.tags.each do |tag| %>
-        <%= link_to articles_path(tags: [tag.name]) do %>
-        <small class="tag"><%= tag.name %></small>
+        <%# <small>= article.tags.first.name</small> %>
+        <div class="home_article_tags gap-2">
+          <% article.tags.each_with_index do |tag, index| %>
+            <%= link_to articles_path(tags: [tag.name]) do %>
+              <small class="tag"><%= tag.name %></small>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <%= link_to article_path(article) do %>
+        <% if highlight %>
+          <h5 class="text-reset mb-lg-0"><%= article.header %></h5>
+        <% else %>
+          <h5 class="text-reset mb-lg-0 fs-6"><%= article.header.truncate(80) %></h5>
         <% end %>
       <% end %>
     </div>
-    <%= link_to article_path(article) do %>
-      <h5 class="text-reset mb-lg-0"><%= article.header.truncate(100) %></h5>
-      <% if highlight %>
-        <p class="mb-0"><%= @featured_article.sub_header.truncate(120) %></p>
-      <% end %>
-    <% end %>
-  </div>
+  <% end %>
 </div>

@@ -27,14 +27,13 @@
 
     <%= favicon_link_tag %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%#= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
 
   </head>
 
-  <body>
+  <body data-controller="navbar-toggler">
     <%= render "shared/my_navbar" %>
     <%= render "shared/flashes" %>
 
