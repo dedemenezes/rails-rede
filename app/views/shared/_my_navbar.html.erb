@@ -3,11 +3,11 @@
       <%= link_to root_path, class: 'navbar-brand' do %>
         <%= image_tag 'Logo_PEA.png', width: '186px' %>
       <% end %>
-      <button class="btn-nav" type="button" data-action="click->navbar-toggler#toggle"aria-label="Toggle navigation" >
+      <button class="navbar-toggler btn-nav" type="button" data-action="click->navbar-toggler#toggle"aria-label="Toggle navigation" >
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse navbar-mobile" id="navbarText" data-navbar-toggler-target='menu'>
-        <ul class="navbar-nav flex-grow-1 justify-content-around">
+        <ul class="navbar-nav mx-auto" data-navbar-toggler-target="menuList">
           <li class="nav-item">
             <%= link_to "Home", root_path, class: "nav-link #{tab_active?('pages' , action: 'home')}" %>
           </li>
@@ -33,7 +33,7 @@
         <% if user_signed_in? && current_user.admin && params[:controller] == 'dashboard' %>
           <%= link_to 'Sair', destroy_user_session_path, data: { turbo_method: :delete } if user_signed_in? %>
         <% else %>
-          <span class="navbar-text w-100">
+          <span class="navbar-text" data-navbar-toggler-target="socialLinks">
             <ul class="navbar-nav navbar-social">
               <li class="nav-item">
                 <%= link_to "https://www.instagram.com/pearedeobservacao/", class: 'nav-link fs-5', target: '_blank' do %>
