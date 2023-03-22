@@ -500,11 +500,11 @@ small.tag {
 // SLIDE CARD ABOUT
 .slide__wrapper_about {
   background-color: #f3f5f7;
-  padding: 1rem 0;
+  padding-top: 1.1rem;
 }
 .slide__card {
   background-color: white;
-  padding-top: 1rem;
+  // padding-top: 1rem;
   // border-radius: 10px;
   box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.1);
 }
@@ -531,10 +531,37 @@ small.tag {
   .card__square {
     height: 195px;
   }
+
+  .slide__card__image {
+    height: 544px;
+  }
+
+  .slide__subtitle--lg {
+    position: absolute;
+    bottom: 0;
+    background-color: white;
+    border-top-right-radius: 5px;
+    p {
+      color: $r-blue-d !important;
+    }
+  }
 }
+
+
+
 @media (min-width: 990px) {
   .card__square {
     height: 225px;
+  }
+  .slide__wrapper_about {
+    padding-bottom: 3.3rem;
+  }
+
+  .slide__card {
+    padding: 1rem;
+  }
+  .slide__card__image {
+    border-radius: 5px;
   }
 }
 @media (min-width: 1200px) {

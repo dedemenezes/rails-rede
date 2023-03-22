@@ -13,8 +13,24 @@ h5 {
   min-height: 100%;
 }
 
+
+.wave__wrapper {
+  position: relative;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+.about__bottom__wave {
+  position: absolute;
+  bottom: -4%;
+  z-index: -5;
+}
+
 @media (min-width: 992px) {
   .lg-height {
     height: 116px;
+  }
+  .about__bottom__wave {
+    bottom: -7%;
   }
 }
