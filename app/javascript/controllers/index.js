@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import CharacterCounter from 'stimulus-character-counter'
+application.register('character-counter', CharacterCounter)
+
 import ActiveOnHeightController from "./active_on_height_controller"
 application.register("active-on-height", ActiveOnHeightController)
 
