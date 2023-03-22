@@ -70,8 +70,11 @@ class Dashboard::ArticlesController < ApplicationController
   end
 
   def set_article
-      @article = Article.find(params[:id])
+    if params[:id].match?(/[a-zA-Z]+/)
       @article = Article.find_by(header: params[:id]) if @article.nil?
+    else
+      @article = Article.find(params[:id])
+    end
   end
 
   def article_params

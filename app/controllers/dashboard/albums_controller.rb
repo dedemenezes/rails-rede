@@ -57,8 +57,11 @@ class Dashboard::AlbumsController < ApplicationController
   private
 
   def set_album
-    @album = Album.find_by(name: params[:id])
-    @album = Album.find(params[:id]) if @album.nil?
+    if params[:id].match?(/[a-zA-Z]+/)
+      @album = Album.find_by(name: params[:id])
+    else
+      @album = Album.find(params[:id])
+    end
   end
 
   def album_params

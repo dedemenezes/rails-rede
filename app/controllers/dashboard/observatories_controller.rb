@@ -48,10 +48,10 @@ module Dashboard
     private
 
     def set_observatory
-      begin
-        @observatory = Observatory.find(params[:id])
-      rescue => exception
+      if params[:id].match?(/[a-zA-Z]+/)
         @observatory = Observatory.find_by(name: params[:id])
+      else
+        @observatory = Observatory.find(params[:id])
       end
     end
 

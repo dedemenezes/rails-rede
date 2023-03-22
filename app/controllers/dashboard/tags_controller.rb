@@ -32,7 +32,7 @@ class Dashboard::TagsController < ApplicationController
 
   def destroy
     if @tag.destroy
-      redirect_to dashboard_tags_path
+      redirect_to dashboard_tags_path, notice: 'Tag destruída'
     else
       redirect_to dashboard_tags_path, alert: 'Tag não foi removida'
     end
@@ -41,7 +41,11 @@ class Dashboard::TagsController < ApplicationController
   private
 
   def set_tag
-    @tag = Tag.find(params[:id]) || Tag.find_by(name: params[:name])
+    if params[:id].match?(/[a-zA-Z]+/)
+      Tag.find_by(name: params[:name])
+    else
+      @tag = Tag.find(params[:id])
+    end
   end
 
   def tag_params
