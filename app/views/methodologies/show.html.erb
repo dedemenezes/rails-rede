@@ -24,6 +24,7 @@
         <div class="methodology__content pe-md-5">
           <h5 class="mb-4"><%= @methodology.header_one %></h5>
           <p><%= @methodology.description_one %></p>
+          <p><%= @methodology.description_two unless @methodology.banner_two.attached? %></p>
         </div>
       </div>
       <div class="col-12 col-lg-6">
@@ -39,24 +40,26 @@
 <%= image_tag 'methodology-bottom-wave.svg', width: '100%', style: ""  %>
 
 
-<div class="container">
-  <%# BANNER_TWO %>
-  <div class="row flex-row-reverse mb-4">
-    <div class="col-12 col-lg-6">
-      <div class="methodology__content pe-md-5">
-        <h5 class="mb-4"><%= @methodology.header_two %></h5>
-        <p><%= @methodology.description_two %></p>
-      </div>
-        <%#= image_tag @methodology.banner.url, width: '100px' %>
-    </div>
-    <% if @methodology.banner_two.attached? %>
+<%# BANNER_TWO %>
+<% if @methodology.banner_two.attached? %>
+  <div class="container">
+    <div class="row flex-row-reverse mb-4">
       <div class="col-12 col-lg-6">
-        <div class="methodology__image">
-          <div class="card__image-bg h-100"
-              style="background-image: url(<%= @methodology.banner_two.url %>);">
+        <div class="methodology__content pe-md-5">
+          <h5 class="mb-4"><%= @methodology.header_two %></h5>
+          <p><%= @methodology.description_two %></p>
+        </div>
+          <%#= image_tag @methodology.banner.url, width: '100px' %>
+      </div>
+      <% if @methodology.banner_two.attached? %>
+        <div class="col-12 col-lg-6">
+          <div class="methodology__image">
+            <div class="card__image-bg h-100"
+                style="background-image: url(<%= @methodology.banner_two.url %>);">
+            </div>
           </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
-</div>
+<% end %>
