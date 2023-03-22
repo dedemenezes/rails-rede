@@ -17,6 +17,10 @@ rede_observacao = Project.create! name: 'Rede Observação', banner_text: 'Traba
 image_path = Rails.root.join('app', 'assets', 'images', "hero-image.png")
 rede_observacao.banner.attach(io: File.open(image_path), filename: "hero-image.png", content_type: 'image/png')
 
+subtitle = "Audiência pública realizada pelo MPF na comunidade quilombola de Baía Formosa, em Armação dos Búzios."
+
+rede_observacao.update!(slide_one_subtitle: subtitle, slide_two_subtitle: subtitle.split(/\b/).shuffle.join(''), slide_three_subtitle: subtitle.split(/\b/).shuffle.join(''))
+
 image_path = Rails.root.join('app', 'assets', 'images', "hero-observatory.png")
 rede_observacao.slide_one.attach(io: File.open(image_path), filename: "hero-observatory-banner.png", content_type: 'image/png')
 image_path = Rails.root.join('app', 'assets', 'images', "teatro-do-oprimido-banner.jpeg")

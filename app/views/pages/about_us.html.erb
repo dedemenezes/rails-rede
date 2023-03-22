@@ -18,13 +18,15 @@
       <!-- Additional required wrapper -->
       <div class="swiper-wrapper">
         <!-- Slides -->
-        <% ['hero.png', 'teatro-do-oprimido-banner.jpeg', 'og_image.png'].each do |file_name| %>
+        <% @photos.each_with_index do |photo, index| %>
+          <% numbers_as_text = ['one', 'two', 'three'] %>
+          <% i = numbers_as_text[index] %>
           <div class="swiper-slide">
             <div class="slide__card">
-              <div class="slide__card__image" style="background-image: url(<%= asset_path(file_name) %>);">
+              <div class="slide__card__image" style="background-image: url(<%= display_banner_as_background_image(photo) %>);">
               </div>
               <div class="slide__subtitle">
-                <p>Audiência pública realizada pelo MPF na comunidade quilombola de Baía Formosa, em Armação dos Búzios.</p>
+                <p><%= photo.record.send("slide_#{i}_subtitle".to_sym) %></p>
               </div>
             </div>
           </div>
