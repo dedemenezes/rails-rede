@@ -18,9 +18,9 @@ image_path = Rails.root.join('app', 'assets', 'images', "hero-image.png")
 rede_observacao.banner.attach(io: File.open(image_path), filename: "hero-image.png", content_type: 'image/png')
 
 subtitle = "Audiência pública realizada pelo MPF na comunidade quilombola de Baía Formosa, em Armação dos Búzios."
-
 rede_observacao.update!(slide_one_subtitle: subtitle, slide_two_subtitle: subtitle.split(/\b/).shuffle.join(''), slide_three_subtitle: subtitle.split(/\b/).shuffle.join(''))
 
+puts 'Attaching images...'
 image_path = Rails.root.join('app', 'assets', 'images', "hero-observatory.png")
 rede_observacao.slide_one.attach(io: File.open(image_path), filename: "hero-observatory-banner.png", content_type: 'image/png')
 image_path = Rails.root.join('app', 'assets', 'images', "teatro-do-oprimido-banner.jpeg")
@@ -60,6 +60,7 @@ methodologies = [
   }
 ]
 Methodology.create! methodologies
+puts 'Attaching images...'
 Methodology.all.each do |m|
   2.times do |index|
     %w[jpg jpeg png].each do |extension|
@@ -359,6 +360,7 @@ Observatory.where(published: true).each do |obs|
   end
   filename = obs.name.parameterize
   obs.banner.attach(io: File.open(image_path), filename: "#{filename}-banner.png", content_type: 'image/png')
+  obs.gallery.banner.attach(io: File.open(image_path), filename: "#{filename}-gallery-banner.png", content_type: 'image/png')
 
   # ADD DESCRIPTION
   ActionText::RichText.create!(record_type: 'Observatory', record_id: obs.id, name: 'rich_description', body: obs.description)
@@ -389,4 +391,8 @@ end
 Dir[File.join(Rails.root, 'db', 'seeds', '*.rb')].each do |seed|
   load seed
 end
+
+puts 'Publishing galleries...'
+Gallery.update_all published: true
+
 puts 'Finished zo/'
