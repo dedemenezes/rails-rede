@@ -8,37 +8,22 @@ export default class extends Controller {
     apiKey: String,
     markers: Array
   }
+  static targets = ['mapContainer', 'menuOption', 'listingGroup']
 
   connect() {
     mapboxgl.accessToken = this.apiKeyValue
 
     this.map = new mapboxgl.Map({
-      container: this.element,
+      container: this.mapContainerTarget,
       style: "mapbox://styles/mapbox/streets-v10"
     })
     this.map.dragPan.disable()
     this.map.scrollZoom.disable()
 
-
     this.#addMarkersToMap()
     this.#fitMapToMarkers()
     this.#addNavigationtoMap()
-    // this.map.on('touchstart', (e) => {
-    //   console.log(`A touchstart event occurred at ${e.lngLat}.`);
-    //   this.map.dragPan.enable()
-
-    // })
-    // this.map.on('touchend', () => {
-    //   this.map.dragPan.disable()
-    //   console.log(`A touchend event occurred at ${e.lngLat}.`);
-    // });
-    // this.map.on('click', (e) => {
-    //   alert('double click to activate scroll zoom')
-    // })
-    // this.map.on('dclick', (e) => {
-    //   alert('double click to activate scroll zoom')
-    //   console.log(this.map.scrollZoom);
-    // })
+    this.#addListenersToMeniuOptions()
   }
 
   #fitMapToMarkers() {
@@ -46,6 +31,7 @@ export default class extends Controller {
     this.markersValue.forEach(marker => bounds.extend([marker.lng, marker.lat]))
     this.map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 })
   }
+
   #addMarkersToMap() {
     this.markersValue.forEach((marker) => {
       const popup = new mapboxgl.Popup().setHTML(marker.info_window)
@@ -68,5 +54,16 @@ export default class extends Controller {
       showZoom: true
     })
     this.map.addControl(nav, 'bottom-right');
+  }
+
+  #addListenersToMeniuOptions() {
+    this.listingGroupTarget.addEventListener('change', (event) => {
+      const option = event.target.id
+      if (event.target.checked) {
+        this.map[option].enable()
+      } else {
+        this.map[option].disable()
+      }
+    })
   }
 }
