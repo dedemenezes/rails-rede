@@ -93,7 +93,7 @@
 
   <%= render 'dashboard/shared/form/banner_input', element: article, form: f %>
   <div data-controller="character-counter" data-character-counter-countdown-value="true">
-    <%= f.input :header, hint: 'Máximo de 73 caractéres', input_html: { maxlength: "73", data: { character_counter_target: 'input' } } %>
+    <%= f.input :header, hint: 'Máximo de 80 caractéres', input_html: { maxlength: "80", data: { character_counter_target: 'input' } } %>
     <p>
       Restam
       <strong data-character-counter-target="counter"></strong> caracteres nesse campo.
