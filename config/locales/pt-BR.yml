@@ -27,6 +27,18 @@ pt-BR:
       unity_type:
         one: "Tipo"
         other: "Tipos"
+      project:
+        one: "Projeto"
+        other: "Projetos"
+      article:
+        one: "Notícia"
+        other: "Notícias"
+      gallery:
+        one: "Acervo"
+        other: "Acervos"
+      album:
+        one: "Album"
+        other: "Albums"
     attributes:
       observatory:
         name: "Nome"
