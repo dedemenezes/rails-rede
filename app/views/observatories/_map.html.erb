@@ -1,28 +1,36 @@
-
-  <% if header %>
-    <div class="row justify-content-center my-4">
-      <div class="col-12">
-        <%= render 'shared/breadcrumbs' %>
-        <div class="d-flex justify-content-between align-items-center border border-rede-dark-red border-info border-5 border-end-0 border-top-0 border-bottom-0 ps-2 ps-md-3 ps-lg-4 mb-4">
-          <%= content_tag tag, class: 'mb-0 fs-3 fs-md-2' do %>
-            Mapa de conflitos
-          <% end %>
-          <% unless hide_filter %>
-            <button class="btn-icon d-none d-sm-block ">
-              Filtros
-              <%= image_tag 'filter-icon-2.png', width: '12px' %>
-            </button>
-          <% end %>
-        </div>
-        <div class="col-12 col-sm-10 col-md-8 col-lg-7">
-          <p>
-          O mapeamento realizado pelo PEA Rede Observação tem como objetivo identificar os conflitos ambientais monitorados pelos observatórios e as formas de atuação dos grupos sociais envolvidos. Parte da narrativa e da perspectiva dos sujeitos prioritários do projeto, contribuindo para dar mais visibilidade às lutas pela integridade dos territórios tradicionais e pela manutenção das respectivas atividades produtivas.</p>
-        </div>
+<% if header %>
+  <div class="row justify-content-center my-4">
+    <div class="col-12">
+      <%= render 'shared/breadcrumbs' %>
+      <div class="d-flex justify-content-between align-items-center border border-rede-dark-red border-info border-5 border-end-0 border-top-0 border-bottom-0 ps-2 ps-md-3 ps-lg-4 mb-4">
+        <%= content_tag tag, class: 'mb-0 fs-3 fs-md-2' do %>
+          Mapa de conflitos
+        <% end %>
+        <% unless hide_filter %>
+          <button class="btn-icon d-none d-sm-block ">
+            Filtros
+            <%= image_tag 'filter-icon-2.png', width: '12px' %>
+          </button>
+        <% end %>
+      </div>
+      <div class="col-12 col-sm-10 col-md-8 col-lg-7">
+        <p>
+        O mapeamento realizado pelo PEA Rede Observação tem como objetivo identificar os conflitos ambientais monitorados pelos observatórios e as formas de atuação dos grupos sociais envolvidos. Parte da narrativa e da perspectiva dos sujeitos prioritários do projeto, contribuindo para dar mais visibilidade às lutas pela integridade dos territórios tradicionais e pela manutenção das respectivas atividades produtivas.</p>
       </div>
     </div>
-  <% end %>
-  <div class="map__container"
-       data-controller="map"
-       data-map-markers-value="<%= markers.to_json %>"
-       data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
   </div>
+<% end %>
+<div class="map__wrapper"
+     data-controller="map"
+     data-map-markers-value="<%= markers.to_json %>"
+     data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+  <div class="map__container"
+       data-map-target='mapContainer'>
+  </div>
+  <nav id="listing-group" data-map-target="listingGroup" class="listing-group">
+    <input type="checkbox" data-map-target="menuOption" id="scrollZoom">
+    <label for="scrollZoom">Zoom com scroll</label>
+    <input type="checkbox" data-map-target="menuOption" id="dragPan">
+    <label for="dragPan">Arrastar e navegar</label>
+  </nav>
+</div>
