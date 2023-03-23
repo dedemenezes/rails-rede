@@ -51,10 +51,10 @@ class Dashboard::GalleriesController < ApplicationController
   private
 
   def set_gallery
-    begin
-      @gallery = Gallery.find(params[:id])
-    rescue => exception
+    if params[:id].match?(/[a-zA-Z]+/)
       @gallery = Gallery.find_by(name: params[:id])
+    else
+      @gallery = Gallery.find(params[:id])
     end
   end
 

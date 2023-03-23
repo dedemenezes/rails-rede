@@ -58,7 +58,6 @@
     <div class="articles__recent">
       <div class="row mb-4">
         <div class="col-12 col-xl-6 article--main mb-3 mb-xl-0">
-          <%#= raise %>
           <%= link_to article_path(@featured_article), class: 'text-reset' do %>
             <%= render 'article_card', article: @featured_article, min_height: '', highlight: true if @featured_article %>
           <% end %>

@@ -41,10 +41,10 @@ module Dashboard
     private
 
     def set_project
-      begin
-        @project = Project.find(params[:id])
-      rescue => exception
+      if params[:id].match?(/[a-zA-Z]+/)
         @project = Project.find_by(name: params[:id])
+      else
+        @project = Project.find(params[:id])
       end
     end
 

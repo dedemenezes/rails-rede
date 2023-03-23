@@ -18,7 +18,11 @@ class MethodologyPolicy < ApplicationPolicy
     false
   end
 
+  def edit?
+    false
+  end
+
   def destroy?
-    user.admin?
+    false
   end
 end

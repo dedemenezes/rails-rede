@@ -13,14 +13,18 @@ class Dashboard::AlbumsController < ApplicationController
 
   def create
     @album = Album.new(album_params)
-    @tags = SetTags.tagging(@album, params)
     begin
       @gallery = Gallery.find(params[:album][:gallery_id])
       @album.gallery = @gallery
     rescue => exception
     end
     if @album.save
-      redirect_to edit_dashboard_album_path(@album), notice: 'Novo albúm criado'
+      @tags = SetTags.tagging(@album, params)
+      if @album.banner.attached?
+        redirect_to dashboard_albums_path
+      else
+        redirect_to edit_dashboard_album_path(@album), notice: 'Novo albúm criado'
+      end
     else
       render :new, status: :unprocessable_entity
     end
@@ -57,8 +61,11 @@ class Dashboard::AlbumsController < ApplicationController
   private
 
   def set_album
-    @album = Album.find_by(name: params[:id])
-    @album = Album.find(params[:id]) if @album.nil?
+    if params[:id].match?(/[a-zA-Z]+/)
+      @album = Album.find_by(name: params[:id])
+    else
+      @album = Album.find(params[:id])
+    end
   end
 
   def album_params

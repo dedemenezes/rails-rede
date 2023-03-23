@@ -4,7 +4,6 @@ class ArticlesController < ApplicationController
 
   def index
     if params[:tags].present?
-      # raise
       tags_ids = Tag.where(name: params[:tags]).map{ |tag| tag.id }
       @articles = policy_scope(Article).joins(:taggings, :tags).where(taggings: { tag_id: tags_ids }).to_a
       @featured_article = @articles.select(&:featured).first
@@ -32,7 +31,10 @@ class ArticlesController < ApplicationController
   private
 
   def set_article
-    @article = Article.find_by(header: params[:header])
-    @article ||= Article.find(params[:id])
+    if params[:id].match?(/[a-zA-Z]+/)
+      @article = Article.find_by(header: params[:id]) if @article.nil?
+    else
+      @article = Article.find(params[:id])
+    end
   end
 end
