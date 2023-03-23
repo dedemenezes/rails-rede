@@ -159,12 +159,13 @@
                 </div>
               </div>
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-12 col-sm-6"
+                 data-controller="map"
+                 data-map-markers-value="<%= @markers.to_json %>"
+                 data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
               <div class="map__container"
                     style="height: 52vh;"
-                    data-controller="map"
-                    data-map-markers-value="<%= @markers.to_json %>"
-                    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+                    data-map-target="mapContainer">
               </div>
             </div>
           </div>

@@ -30,14 +30,18 @@
                 <div class="slide__card">
                   <div class="slide__card__image" style="background-image: url(<%= display_banner_as_background_image(photo) %>);">
                     <div class="row col-4 slide__subtitle--lg">
-                      <div class="slide__subtitle d-none d-lg-block">
-                        <p><%= photo.record.send("slide_#{i}_subtitle".to_sym) %></p>
-                      </div>
+                      <% unless photo.record.send("slide_#{i}_subtitle".to_sym).empty? %>
+                        <div class="slide__subtitle d-none d-lg-block">
+                          <p><%= photo.record.send("slide_#{i}_subtitle".to_sym) %></p>
+                        </div>
+                      <% end %>
                     </div>
                   </div>
-                  <div class="slide__subtitle d-lg-none">
-                    <p><%= photo.record.send("slide_#{i}_subtitle".to_sym) %></p>
-                  </div>
+                  <% unless photo.record.send("slide_#{i}_subtitle".to_sym).empty? %>
+                    <div class="slide__subtitle d-lg-none">
+                      <p><%= photo.record.send("slide_#{i}_subtitle".to_sym) %></p>
+                    </div>
+                  <% end %>
                 </div>
               </div>
             <% end %>
