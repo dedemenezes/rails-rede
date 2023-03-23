@@ -385,10 +385,11 @@ small.tag {
 
 .new__card .card__content {
   text-align: center;
-  padding: 18px 28px;
+  padding: 18px;
   background-color: white;
   border-radius: 0 0 10px 10px;
 }
+
 
 .card__content:hover {
   h6 {
@@ -616,5 +617,13 @@ small.tag {
 @media (min-width: 992px) {
   .ms-lg-5 {
     margin-left: 7rem !important;
+  }
+}
+
+
+@media (min-width: 1440px) {
+
+  .new__card .card__content {
+    padding: 18px 24px;
   }
 }
