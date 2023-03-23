@@ -26,51 +26,93 @@
 
   <div class="row mb-5">
     <div class="col-12">
-      <%= render 'observatories/map', markers: @markers, hide_filter: true, header: true %>
+      <%= render 'observatories/map', markers: @markers, hide_filter: true, header: true, tag: :h3 %>
     </div>
   </div>
 
-  <div class="row mb-5">
+  <div class="row mb-3">
+
+    <% if false %>
+      <div data-controller="filter-calendar">
+        <section class="events mb-4">
+          <div class="events__header mb-3">
+            <div class="d-flex align-items-center px-md-3">
+              <div class="flex-grow-1">
+                <h5 class='mb-0'>Últimas ações</h5>
+              </div>
+              <div class="btn-icon btn-icon--square" data-action='click->filter-calendar#formDisplay'>
+                <%= image_tag 'Calendar.png' %>
+                <%= form_with url: root_path, method: :get, class: 'd-none box--anim box--hidden', data: { filter_calendar_target: 'form', action: 'submit->filter-calendar#search'} do |f| %>
+                  <div class="d-flex">
+                    <%= text_field_tag :from_date, params[:from_date], class: 'form-input flex-grow-1', data: { controller: 'flatpickr', flatpickr_is_range_value: 'true', filter_calendar_target: 'input' } %>
+                    <%= f.submit 'Filtrar', class: 'btn btn-rede-primary' %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <div class="container">
+
+          </div>
+        </section>
+      </div>
+    <% end %>
+
+
+    <%# ACOES %>
+
     <div class="row justify-content-center mt-4">
       <div class="col-12">
-        <div class="d-flex justify-content-between align-items-center border border-warning border-info border-5 border-end-0 border-top-0 border-bottom-0 ps-2 ps-md-3 ps-lg-4 mb-3">
-          <h1 class='mb-0 fs-3 fs-md-2'>Últimas ações</h1>
+        <div class="d-flex justify-content-between align-items-center border border-warning border-info border-5 border-end-0 border-top-0 border-bottom-0 ps-2 ps-md-3 ps-lg-4 mb-4">
+          <h3 class='mb-0 fs-3 fs-md-2'>Últimas ações</h3>
         </div>
       </div>
     </div>
-    <div class="events__carousel styled-scrollbars" data-controller="events-scroll" data-action="scroll->events-scroll#toggleScroll">
-      <!-- Slides -->
-      <% @events.each do |gallery| %>
-        <div class="card__event" style="width: 345px;">
-          <%= link_to url_for(gallery) do %>
-            <div class="card__event__image" style="background-image: url(<%= display_banner_as_background(gallery) %>);background-size: cover; background-position: center;">
-            </div>
-            <div class="event__content">
-              <div class="h-100 flex-grow-1 d-flex flex-column justify-content-between align-items-start text-start">
-                <h5 class='mb-3'><%= gallery.name %></h5>
-                <div class="event__tags d-flex justify-content-start align-items-center">
-                  <% gallery.tags.each do |tag| %>
-                    <small class="tag"><%= tag.name %></small>
-                  <% end %>
+    <!-- Slider main container -->
+    <div class="swiper ms-2" data-controller='swiper' style="height: 430px;">
+      <!-- Additional required wrapper -->
+      <div class="swiper-wrapper" data-filter-calendar-target='results'>
+        <!-- Slides -->
+        <% @events.each do |gallery_or_album| %>
+          <div class="swiper-slide">
+            <%= link_to gallery_or_album do %>
+              <div class="card__event mb-3">
+                <div class="card__event__image" style='background-image: url(<%= display_banner_as_background(gallery_or_album) %>);background-size: cover; background-position: center;'></div>
+                <div class="event__content">
+                  <div class="h-100 px-md-3 pb-md-3 flex-grow-1 d-flex flex-column justify-content-between">
+                    <h5 class='mb-0'><%= gallery_or_album.name %></h5>
+                    <div class="event__tags d-flex justify-content-start align-items-center">
+
+                      <% gallery_or_album.tags.each do |tag| %>
+                        <small class="tag"><%= tag.name %></small>
+                      <% end %>
+                    </div>
+                  </div>
+                  <div class="event__date ms-0 me-2 ms-md-3 me-md-2 mb-md-3">
+                    <p class="mb-0"><%= gallery_or_album.event_date.day %></p>
+                    <p class="mb-0"><%= gallery_or_album.event_date.strftime('%b') %></p>
+                    <p class="mb-0 date__year"><%= gallery_or_album.event_date.year %></p>
+                  </div>
                 </div>
               </div>
-              <div class="event__date">
-                <p class="mb-0"><%= gallery.event_date.day %></p>
-                <p class="mb-0"><%= gallery.event_date.strftime('%b') %></p>
-                <p class="mb-0 date__year"><%= gallery.event_date.year %></p>
-              </div>
-            </div>
-          <% end %>
-        </div>
-      <% end %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+      <!-- If we need pagination -->
+      <div class="swiper-pagination"></div>
+      <!-- If we need navigation buttons -->
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
     </div>
   </div>
 
+  <%# ARTICLES %>
   <div class="articles__home">
-    <div class="row mb-5 justify-content-center mt-4">
+    <div class="row mb-5 justify-content-center">
       <div class="col-12">
         <div class="d-flex justify-content-between align-items-center border border-news border-info border-5 border-end-0 border-top-0 border-bottom-0 ps-2 ps-md-3 ps-lg-4 mb-4">
-          <h1 class='mb-0 fs-3 fs-md-2'>Últimas notícias</h1>
+          <h3 class='mb-0 fs-3 fs-md-2'>Últimas notícias</h3>
         </div>
       </div>
 

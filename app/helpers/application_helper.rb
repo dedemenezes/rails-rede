@@ -26,7 +26,11 @@ module ApplicationHelper
   end
 
   def display_banner_as_background_image(photo, options = {})
-    url = "https://rede-observacao-prod.s3.us-east-2.amazonaws.com/#{photo.key}"
+    if photo.attached?
+      url = "https://rede-observacao-prod.s3.us-east-2.amazonaws.com/#{photo.key}"
+    else
+      url = 'default-banner.png'
+    end
     image_path(url, options)
   end
 

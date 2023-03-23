@@ -13,10 +13,14 @@ export default class extends Controller {
     this.swiper = new Swiper(this.element, {
       modules: [Navigation, Pagination, Scrollbar],
       centeredSlides: true,
-      pagination: {
-        el: '.swiper-pagination',
-        type: 'bullets',
-        clickable: true,
+      // pagination: {
+      //   el: '.swiper-pagination',
+      //   type: 'bullets',
+      //   clickable: true,
+      // },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
       },
 
       breakpoints: {

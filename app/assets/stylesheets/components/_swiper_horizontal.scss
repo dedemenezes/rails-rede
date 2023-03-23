@@ -44,6 +44,19 @@
   bottom: -4px !important;
 }
 
+.swiper-button-prev, .swiper-button-next {
+  color: white !important;
+  text-shadow: 4px 4px 20px rgba(0,0,0,0.4);
+}
+
+.swiper-button-prev {
+  margin-left: 10px;
+}
+
+.swiper-button-next {
+  margin-right: 10px;
+}
+
 @media (min-width: 990px) {
   .pagination--custom__bottom {
     bottom: 10px !important;
