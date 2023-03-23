@@ -43,8 +43,8 @@ application.register("overlay-menu", OverlayMenuController)
 import PhotoPreviewController from "./photo_preview_controller"
 application.register("photo-preview", PhotoPreviewController)
 
-import PhotoswipeAlbumController from "./photoswipe_album_controller"
-application.register("photoswipe-album", PhotoswipeAlbumController)
+import PhotoswipeController from "./photoswipe_controller"
+application.register("photoswipe", PhotoswipeController)
 
 import SlideNFadeLController from "./slide_n_fade_l_controller"
 application.register("slide-n-fade-l", SlideNFadeLController)

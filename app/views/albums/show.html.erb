@@ -11,7 +11,7 @@
       </div>
     </div>
   </div>
-  <div class="cards__index" id="gallery--getting-started" data-controller="photoswipe-album">
+  <div class="cards__index" id="gallery--getting-started" data-controller="photoswipe">
     <% @album.photos.each do |photo| %>
       <a href="https://rede-observacao-prod.s3.us-east-2.amazonaws.com/<%= photo.key %>"
         data-pswp-src="https://rede-observacao-prod.s3.us-east-2.amazonaws.com/<%= photo.key %>"

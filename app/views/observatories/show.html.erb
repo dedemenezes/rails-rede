@@ -44,10 +44,18 @@
 
   <%# GALLERIES %>
     <%# <div class="cards__index cards__index--min-two mb-4"> %>
-      <div class="cards--two mb-4">
+      <div class="cards--two mb-4" data-controller='photoswipe'>
         <% @photos.each do |photo| %>
-          <div class="card__square" style="background-image: url(<%= display_banner_as_background_image(photo) %>)">
-          </div>
+          <a href="https://rede-observacao-prod.s3.us-east-2.amazonaws.com/<%= photo.key %>"
+            data-pswp-src="https://rede-observacao-prod.s3.us-east-2.amazonaws.com/<%= photo.key %>"
+            data-pswp-width="<%= photo.blob.metadata[:width] %>"
+            data-pswp-height="<%= photo.blob.metadata[:height] %>"
+            data-pswp-srcset="https://rede-observacao-prod.s3.us-east-2.amazonaws.com/<%= photo.key %>"
+            target="_blank">
+            <div class="card__index text-primary">
+              <div style="background: url('https://rede-observacao-prod.s3.us-east-2.amazonaws.com/<%= photo.key %>');background-size: cover;background-position: center; border-radius: 10px;"></div>
+            </div>
+          </a>
         <% end %>
       </div>
       <div class="row justify-content-center">
