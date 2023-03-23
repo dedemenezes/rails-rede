@@ -16,11 +16,29 @@ export default class extends Controller {
       container: this.element,
       style: "mapbox://styles/mapbox/streets-v10"
     })
+    this.map.dragPan.disable()
+    this.map.scrollZoom.disable()
 
 
     this.#addMarkersToMap()
     this.#fitMapToMarkers()
     this.#addNavigationtoMap()
+    // this.map.on('touchstart', (e) => {
+    //   console.log(`A touchstart event occurred at ${e.lngLat}.`);
+    //   this.map.dragPan.enable()
+
+    // })
+    // this.map.on('touchend', () => {
+    //   this.map.dragPan.disable()
+    //   console.log(`A touchend event occurred at ${e.lngLat}.`);
+    // });
+    // this.map.on('click', (e) => {
+    //   alert('double click to activate scroll zoom')
+    // })
+    // this.map.on('dclick', (e) => {
+    //   alert('double click to activate scroll zoom')
+    //   console.log(this.map.scrollZoom);
+    // })
   }
 
   #fitMapToMarkers() {
