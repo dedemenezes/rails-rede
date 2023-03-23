@@ -23,6 +23,10 @@
           <h5 class="text-reset mb-lg-0 fs-6"><%= article.header.truncate(80) %></h5>
         <% end %>
       <% end %>
+
+      <% if highlight %>
+        <p><%= article.rich_body.to_plain_text.truncate(170) %></p>
+      <% end %>
     </div>
   <% end %>
 </div>

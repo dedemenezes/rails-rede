@@ -119,6 +119,16 @@
 
 // ARTICLE
 
+.article__recent_new {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-gap: 1rem;
+  background-color: white;
+  background: #FFFFFF;
+  box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
 .article__home {
   box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
@@ -264,7 +274,7 @@ small.tag {
 }
 @media (min-width: 1200px) {
   .card__image--highlight {
-    height: 555px !important;
+    height: 352px !important;
   }
   .article__card .card__image {
     height: 144px;
