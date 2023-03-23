@@ -20,7 +20,11 @@ class Dashboard::AlbumsController < ApplicationController
     end
     if @album.save
       @tags = SetTags.tagging(@album, params)
-      redirect_to edit_dashboard_album_path(@album), notice: 'Novo albúm criado'
+      if @album.banner.attached?
+        redirect_to dashboard_albums_path
+      else
+        redirect_to edit_dashboard_album_path(@album), notice: 'Novo albúm criado'
+      end
     else
       render :new, status: :unprocessable_entity
     end

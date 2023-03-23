@@ -81,7 +81,6 @@
             <div class="swiper" data-controller='swiper'>
               <!-- Additional required wrapper -->
               <div class="swiper-wrapper" data-filter-calendar-target='results'>
-              <% 5.times do %>
                 <!-- Slides -->
                 <% @observatory.events.each do |album| %>
                   <div class="swiper-slide">
@@ -108,7 +107,6 @@
                     <% end %>
                   </div>
                 <% end %>
-              <% end %>
               </div>
               <!-- If we need pagination -->
               <div class="swiper-pagination"></div>
