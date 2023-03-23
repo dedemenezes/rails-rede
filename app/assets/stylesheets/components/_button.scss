@@ -14,26 +14,27 @@
 
 
 .btn-rede-light {
-  background-color: $white;
+  background-color: rgba(255,255,255,0.9);
   padding: 14px 101px;
-  border: 2px solid $r-light-gray;
+  /* border: 2px solid #0834611a; */
   border-radius: 10px;
-  color: $r-blue-d;
+  color: #083461;
   font-weight: 600;
   font-size: 14px;
   letter-spacing: 1.25px;
   text-transform: uppercase;
   text-align: center;
   display: inline-block;
-  transition: font-weight .15s ease;
+  transition: .15s ease;
+  box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.1);
 
   &:hover {
     background-color: $white;
-    border: 2px solid $r-light-gray-d;
+    border: 1px solid $r-light-gray ;
     color: $r-blue-d;
-    font-weight: 800;
+    font-weight: 700;
     text-decoration: none;
-    box-shadow: 1px 1px 7px rgba(0,0,0,0.1);
+    box-shadow: 1px 1px 0px rgba(0,0,0,0.1);
   }
   &:active {
     color: $r-blue-d;
@@ -45,6 +46,15 @@
     margin-right: .725rem;
     transform: rotate(90deg);
   }
+}
+
+.btn-rede-light--home {
+  height: 53px !important;
+  width: 325px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border: 1px solid rgba(8, 52, 97, 0.1) !important;
 }
 
 .btn-rede-light--small {
