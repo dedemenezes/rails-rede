@@ -13,13 +13,13 @@ class Dashboard::AlbumsController < ApplicationController
 
   def create
     @album = Album.new(album_params)
-    @tags = SetTags.tagging(@album, params)
     begin
       @gallery = Gallery.find(params[:album][:gallery_id])
       @album.gallery = @gallery
     rescue => exception
     end
     if @album.save
+      @tags = SetTags.tagging(@album, params)
       redirect_to edit_dashboard_album_path(@album), notice: 'Novo albúm criado'
     else
       render :new, status: :unprocessable_entity
