@@ -13,7 +13,7 @@ class ArticlesController < ApplicationController
     else
       @articles = policy_scope(Article).all_but_featured
       @featured_article = Article.featured
-    @recent_articles = @articles.slice!(0, 4)
+      @recent_articles = @articles.slice!(0, 4)
     end
   end
 

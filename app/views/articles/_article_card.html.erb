@@ -10,9 +10,9 @@
         <%# <small>= article.tags.first.name</small> %>
         <div class="home_article_tags gap-2">
           <% article.tags.each_with_index do |tag, index| %>
-            <%= link_to articles_path(tags: [tag.name]) do %>
               <small class="tag"><%= tag.name %></small>
-            <% end %>
+            <%#= link_to articles_path(tags: [tag.name]) do %>
+            <%# end %>
           <% end %>
         </div>
       </div>
