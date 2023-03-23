@@ -31,10 +31,11 @@ class ArticlesController < ApplicationController
   private
 
   def set_article
-    if params[:id].match?(/[a-zA-Z]+/)
-      @article = Article.find_by(header: params[:id]) if @article.nil?
+    query = params[:id].present? ? params[:id] : params[:header]
+    if query.match?(/[a-zA-Z]+/)
+      @article = Article.find_by(header: query)
     else
-      @article = Article.find(params[:id])
+      @article = Article.find(query)
     end
   end
 end
