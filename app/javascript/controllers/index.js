@@ -13,6 +13,9 @@ application.register("address-autocomplete", AddressAutocompleteController)
 import ArticleHighlightController from "./article_highlight_controller"
 application.register("article-highlight", ArticleHighlightController)
 
+import CharacterCounter from 'stimulus-character-counter'
+application.register('character-counter', CharacterCounter)
+
 import DisplayButtonOnHoverController from "./display_button_on_hover_controller"
 application.register("display-button-on-hover", DisplayButtonOnHoverController)
 
