@@ -121,52 +121,33 @@
       <div class="articles__recent">
         <div class="row mb-4">
           <div class="col-12 col-xl-6 article--main mb-3 mb-xl-0">
-            <%#= link_to article_path(@featured_article), class: 'text-reset' do %>
-              <div class="article__card min-height-100">
-                <div class="card__image card__image--highlight" style='background-image:url(<%= display_banner_as_background(@featured) %>); background-size: cover; background-position: center;'>
-                </div>
-                <div class="article__card__content">
-                  <div class="card__content__header d-flex justify-cotent-start gap-4 align-items-center mb-3">
-                    <span class="article__content__date"><%= @featured.created_at.strftime('%d.%m.%Y') %></span>
-                    <%# <small>= article.tags.first.name</small> %>
-                    <div class="article__home__tags">
-                      <% @featured.tags.each_with_index do |tag, index| %>
-                        <%= link_to articles_path(tags: [tag.name]) do %>
-                          <small class="tag <%= 'tag--hidden' if index.positive? %>"><%= tag.name %></small>
-                        <% end %>
-                      <% end %>
-                    </div>
-                  </div>
-                  <%= link_to article_path(@featured), class: 'd-block' do %>
-                    <h5 class="text-reset mb-lg-0"><%= @featured.header %></h5>
-                  <% end %>
-                </div>
-              </div>
-            <%# end %>
+            <%= link_to article_path(@featured), class: 'text-reset' do %>
+              <%= render 'articles/article_card', article: @featured, min_height: '', highlight: true if @featured %>
+            <% end %>
           </div>
 
           <div class="col-12 col-xl-6">
-            <div class="row">
-              <% @articles.each_with_index do |article, index| %>
-                <div class="col-6 <%= 'mb-3' unless (@articles.length - 2..@articles.length - 1).include?(index) %>">
+            <div class="d-flex flex-column justify-content-between h-100">
+              <% @articles.each do |article| %>
+                <%#= link_to article_path(article) do %>
+                  <%#= render 'article_card', article: article, min_height: '', highlight: false %>
                   <%= link_to article do %>
-                    <div class="article__home min-height-100">
-                      <div class="article__home_image" style="background-image: url(<%= display_banner_as_background(article) %>);height: 124px; background-size: cover; background-position: center;">
+                    <div class="article__recent_new">
+                      <div class="card__image-bg"
+                          style="background-image: url(<%= display_banner_as_background(@featured) %>);width: 100%;height: 100%;border-radius: 10px 0 0 10px;">
                       </div>
-                      <div class="article__home__content">
-                        <div class="article__home__content__info mb-3">
-                          <span class="article__content__date mb-1"><%= article.created_at.strftime('%d/%m/%y') %></span>
-                          <div class="article__home__tags">
-                            <% article.tags.each_with_index do |tag, index| %>
-                              <small class="tag <%= 'tag--hidden' if index.positive? %>"><%= tag.name %></small>
-                            <% end %>
-                          </div>
+                      <div class="article__info py-3 pe-3">
+                        <div class="info__header d-flex align-items-center gap-3 mb-2">
+                          <small><%= article.created_at.strftime('%d.%m.%Y') %></small>
+                          <% article.tags.each_with_index do |tag, index| %>
+                            <small class="tag"><%= tag.name %></small>
+                          <% end %>
                         </div>
-                        <h5 class="article__home_header text-reset"><%= article.header.truncate(86) %></h5>
+                        <h5 class="text-reset mb-lg-0 fs-6"><%= article.header.truncate(80) %></h5>
                       </div>
                     </div>
                   <% end %>
-                </div>
+                <%# end %>
               <% end %>
             </div>
           </div>

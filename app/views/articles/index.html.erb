@@ -78,8 +78,7 @@
         <div class="col-12 col-xl-6">
           <div class="d-flex flex-column justify-content-between h-100">
             <% @recent_articles.each do |article| %>
-              <%#= link_to article_path(article) do %>
-                <%#= render 'article_card', article: article, min_height: '', highlight: false %>
+              <%= link_to article_path(article) do %>
                 <div class="article__recent_new">
                   <div class="card__image-bg"
                       style="background-image: url(<%= display_banner_as_background(@featured_article) %>);width: 100%;height: 100%;border-radius: 10px 0 0 10px;">
@@ -94,7 +93,7 @@
                     <h5 class="text-reset mb-lg-0 fs-6"><%= article.header.truncate(87) %></h5>
                   </div>
                 </div>
-              <%# end %>
+              <% end %>
             <% end %>
           </div>
         </div>
