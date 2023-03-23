@@ -4,24 +4,26 @@
 
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-12 my-4">
+    <div class="col-12 mt-3 mb-5">
       <%= render 'shared/breadcrumbs' %>
       <div class="d-flex justify-content-between align-items-center border border-info border-5 border-end-0 border-top-0 border-bottom-0 ps-4">
         <h1><%= @album.name %></h1>
       </div>
     </div>
   </div>
-  <div class="cards__index">
+  <div class="cards__index" id="gallery--getting-started" data-controller="photoswipe">
     <% @album.photos.each do |photo| %>
-      <% if @album.pdf?(photo) %>
-        <%= link_to photo.filename.to_s, photo.url %>
-      <% else %>
-        <%= link_to photo.url, target: '_blank' do %>
-          <div class="card__index text-primary">
-            <div style="background: url(<%= photo.url %>);background-size: cover;background-position: center; border-radius: 10px;"></div>
-          </div>
-        <% end %>
-      <% end %>
+      <a href="https://rede-observacao-prod.s3.us-east-2.amazonaws.com/<%= photo.key %>"
+        data-pswp-src="https://rede-observacao-prod.s3.us-east-2.amazonaws.com/<%= photo.key %>"
+        data-pswp-width="<%= photo.blob.metadata[:width] %>"
+        data-pswp-height="<%= photo.blob.metadata[:height] %>"
+        data-pswp-srcset="https://rede-observacao-prod.s3.us-east-2.amazonaws.com/<%= photo.key %>"
+        target="_blank">
+        <div class="card__index text-primary">
+          <div style="background: url('https://rede-observacao-prod.s3.us-east-2.amazonaws.com/<%= photo.key %>');background-size: cover;background-position: center; border-radius: 10px;"></div>
+        </div>
+      </a>
     <% end %>
+
   </div>
 </div>

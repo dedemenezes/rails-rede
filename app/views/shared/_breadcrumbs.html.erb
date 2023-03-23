@@ -1,5 +1,5 @@
 <nav aria-label="breadcrumb" style="--bs-breadcrumb-divider: '>';">
-  <ol class="breadcrumb mb-3 text-reset">
+  <ol class="breadcrumb mb-5 text-reset">
     <% @breadcrumbs.each do |crumb| %>
       <% if crumb[:current] %>
         <li class="breadcrumb-item active" aria-current="page"><%= crumb[:name] %></li>
