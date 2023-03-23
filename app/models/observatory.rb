@@ -43,6 +43,11 @@ class Observatory < ApplicationRecord
     ['id', 'name', 'address', 'description', 'published?', 'created at', 'updated_at']
   end
 
+  def events
+    albums.select(&:is_event)
+  end
+
+
   def location
     neighborhood
   end
