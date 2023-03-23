@@ -1218,6 +1218,11 @@ pbf@^3.2.1:
     ieee754 "^1.1.12"
     resolve-protobuf-schema "^2.1.0"
 
+photoswipe@^5.3.6:
+  version "5.3.6"
+  resolved "https://registry.yarnpkg.com/photoswipe/-/photoswipe-5.3.6.tgz#f71cb648620205a8773b74a34b254bce8e7eb637"
+  integrity sha512-v7e8iMfaPUujTACYsK5HBCCtFoW9n2dMZmjIlbvFS2oSpTQmPrfc3PrWnGx8OGY3jNOKho8JC8L277+m+9ag9Q==
+
 picocolors@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/picocolors/-/picocolors-1.0.0.tgz#cb5bdc74ff3f51892236eaf79d68bc44564ab81c"

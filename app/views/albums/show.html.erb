@@ -25,3 +25,20 @@
     <% end %>
   </div>
 </div>
+
+<div class="cards__index">
+</div>
+<div class="cards__index" id="gallery--getting-started" data-controller="photoswipe-album">
+  <% @album.photos.each do |photo| %>
+    <a href=""
+      data-pswp-src="https://rede-observacao-prod.s3.us-east-2.amazonaws.com/<%= photo.key %>"
+      data-pswp-width="2500"
+      data-pswp-height="1668"
+      target="_blank">
+      <div class="card__index text-primary">
+        <div style="background: url(<%= photo.url %>);background-size: cover;background-position: center; border-radius: 10px;"></div>
+      </div>
+    </a>
+  <% end %>
+
+</div>
