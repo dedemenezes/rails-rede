@@ -13,7 +13,7 @@ class ObservatoriesController < ApplicationController
     @observatory = Observatory.includes(:priority_subjects, :conflict_type, :gallery, :articles, :albums, banner_attachment: :blob, albums: { banner_attachment: :blob }).find_by(name: params[:name]) || Observatory.find(params[:id])
     gallery = @observatory.gallery
     albums = @observatory.albums
-    @photos = albums.map { _photos.sample(1) }
+    @photos = albums.map { |album| album.photos.sample(1)[0] }
     @photos << gallery.banner
     @markers = [
       {

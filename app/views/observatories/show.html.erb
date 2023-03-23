@@ -57,7 +57,7 @@
       </div>
 
     <%# ACOES %>
-    <% unless @observatory.albums.empty? %>
+    <% unless @observatory.events.empty? %>
       <div data-controller="filter-calendar">
         <section class="events mb-4">
           <div class="events__header mb-3">
@@ -81,30 +81,34 @@
             <div class="swiper" data-controller='swiper'>
               <!-- Additional required wrapper -->
               <div class="swiper-wrapper" data-filter-calendar-target='results'>
+              <% 5.times do %>
                 <!-- Slides -->
-                <% @observatory.albums.each do %>
+                <% @observatory.events.each do |album| %>
                   <div class="swiper-slide">
                     <%= link_to album_path do %>
                       <div class="card__event mb-3">
                         <div class="card__event__image" style='background-image: url(<%= image_path 'default-banner.png'%>);background-size: cover; background-position: center;'></div>
                         <div class="event__content">
                           <div class="h-100 px-3 pb-3 flex-grow-1 d-flex flex-column justify-content-between">
-                            <h5 class='mb-0'>Nome da ação</h5>
+                            <h5 class='mb-0'><%= album.name %></h5>
                             <div class="event__tags d-flex justify-content-start align-items-center">
-                              <small class="tag">araruama</small>
-                              <small class="tag">pescadores</small>
+
+                              <% album.tags.each do |tag| %>
+                                <small class="tag"><%= tag.name %></small>
+                              <% end %>
                             </div>
                           </div>
                           <div class="event__date ms-0 me-2 ms-md-3 me-md-2 mb-md-3">
-                            <p class="mb-0">13</p>
-                            <p class="mb-0">DEZ</p>
-                            <p class="mb-0 date__year">2023</p>
+                            <p class="mb-0"><%= album.event_date.day %></p>
+                            <p class="mb-0"><%= album.event_date.strftime('%b') %></p>
+                            <p class="mb-0 date__year"><%= album.event_date.year %></p>
                           </div>
                         </div>
                       </div>
                     <% end %>
                   </div>
                 <% end %>
+              <% end %>
               </div>
               <!-- If we need pagination -->
               <div class="swiper-pagination"></div>
