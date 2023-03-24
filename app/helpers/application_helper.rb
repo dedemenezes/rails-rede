@@ -1,5 +1,9 @@
 module ApplicationHelper
 
+  def model_name_from_controller_name(controller_name_to_use)
+    controller_name_to_use.singularize.split('_').map(&:capitalize).join.constantize
+  end
+
   def tab_active?(expected, options = {})
     condition = params[:controller] == expected
     if params[:controller] == 'pages' || params[:controller] == 'observatories' || params[:controller] == 'contacts'
@@ -44,7 +48,7 @@ module ApplicationHelper
   end
 
   def route_for_edit_dashboard(element)
-    "#{element.class.to_s.humanize.downcase.pluralize}/#{element.id}/edit"
+    "#{element.model_name.plural}/#{element.id}/edit"
   end
 
   def hide_nested_links(name_of_controller)

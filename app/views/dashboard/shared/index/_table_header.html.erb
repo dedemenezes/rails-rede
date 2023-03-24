@@ -1,4 +1,4 @@
-<% controller_name.singularize.capitalize.constantize.dashboard_headers.each do |header| %>
+<% model_name_from_controller_name(controller_name).dashboard_headers.each do |header| %>
   <th scope="col"><%= header %></th>
 <% end %>
 <th>Actions</th>

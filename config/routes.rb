@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   get 'dashboard', to: 'dashboard#home', as: :home
   namespace :dashboard do
+    resources :conflict_types
     resources :tags, except: :show
     resources :articles
     resources :observatories

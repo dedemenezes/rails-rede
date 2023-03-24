@@ -146,11 +146,11 @@
                       label_html: { class: 'input-group-text mb-0 col-3 flex-end' },
                       input_html: {
                         multiple: true, class: 'col-9 form-control',
-                        data: { controller: 'tom-select', tom_select_max_item_value: 10 }
+                        data: { controller: 'tom-select', tom_select_max_item_value: 1 }
                       }  %>
   </div>
   <div class="col-12">
-    <%= f.input :conflict_type,
+    <%= f.association :conflict_types,
                 collection: ConflictType.all,
                 wrapper_html: { class: 'input-group mb-3 row ' },
                 label_html: { class: 'input-group-text mb-0 col-3 flex-end' },

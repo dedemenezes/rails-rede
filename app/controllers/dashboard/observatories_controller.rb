@@ -17,7 +17,7 @@ module Dashboard
       if @observatory.save
         set_observatory_priority_subjects
         set_observatory_conflict
-        flash[:notice] = "#{@observatory.name} created successfully"
+        flash[:notice] = "#{@observatory.name} criado"
         redirect_to dashboard_observatories_path
       else
         render :new, status: :unprocessable_entity
@@ -40,6 +40,7 @@ module Dashboard
         set_observatory_priority_subjects
         set_observatory_conflict
         redirect_to dashboard_observatories_path
+        flash[:notice] = "#{@observatory.name} atualizado"
       else
         render :new, status: :unprocessable_entity
       end
@@ -58,19 +59,21 @@ module Dashboard
     def observatory_params
       params.require(:observatory).permit(:name, :address, :email, :phone_number, :description, :unity_type_id,
                                           :rich_description, :banner, :latitude, :longitude, :street, :number,
-                                          :city, :state, :zip_code, :neighborhood, :municipality, :published, :priority_type_id)
+                                          :city, :state, :zip_code, :neighborhood, :municipality, :published, :priority_type_id, :conflict_type_ids)
     end
 
     def set_observatory_conflict
-      conflict_type = ConflictType.find(params[:observatory][:conflict_type])
+      @observatory.conflict_types.destroy_all
+      conflict_type = ConflictType.where(id: params[:observatory][:conflict_type_ids]).first
       ObservatoryConflict.create(observatory: @observatory, conflict_type: conflict_type)
+
     end
 
     def set_observatory_priority_subjects
+      @observatory.priority_subjects.destroy_all
       subject_ids =  params[:observatory][:priority_subject_ids]
       return if subject_ids == [""]
 
-      @observatory.priority_subjects.destroy_all
       priority_subjects = PriorityType.where(id: params[:observatory][:priority_subject_ids])
       priority_subjects.each do |ps|
         ObservatoryPrioritySubject.create priority_type: ps, observatory: @observatory
