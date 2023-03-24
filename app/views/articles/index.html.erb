@@ -3,110 +3,118 @@
 
 
 <div class="container">
-  <div class="row justify-content-center mt-2 mb-5">
-    <div class="col-12 mt-3">
-      <div class="d-flex justify-content-between align-items-center border border-news border-5 border-end-0 border-top-0 border-bottom-0 ps-4">
-        <h1>Notícias</h1>
-      </div>
-    </div>
-  </div>
-  <% unless 'search is working' %>
-    <div class="article__header" data-controller='overlay-menu'>
-      <div class="row justify-content-center mt-2 mb-5">
-        <div class="col-12">
-          <div class="overlay__wrapper d-flex justify-content-between align-items-center border border-info border-5 border-end-0 border-top-0 border-bottom-0 ps-4">
-            <h1>Notícias</h1>
-              <button class="btn-icon d-none d-md-block" data-overlay-menu-target='btn' data-action="click->overlay-menu#toggle">
-                Filtros
-                <%= image_tag 'filter-icon-2.png', width: '12px' %>
-              </button>
-          </div>
+  <div data-controller="scroll-reveal"
+       data-scroll-reveal-class-value="in"
+       data-scroll-reveal-threshold-value="0"
+       data-scroll-reveal-root-margin-value="10px">
+
+    <div class="row justify-content-center mt-2 mb-5">
+      <div class="col-12 mt-3">
+        <div class="d-flex justify-content-between align-items-center border border-news border-5 border-end-0 border-top-0 border-bottom-0 ps-4">
+          <h1>Notícias</h1>
         </div>
       </div>
+    </div>
+    <% unless 'search is working' %>
+      <div class="article__header" data-controller='overlay-menu'>
+        <div class="row justify-content-center mt-2 mb-5">
+          <div class="col-12">
+            <div class="overlay__wrapper d-flex justify-content-between align-items-center border border-info border-5 border-end-0 border-top-0 border-bottom-0 ps-4">
+              <h1>Notícias</h1>
+                <button class="btn-icon d-none d-md-block" data-overlay-menu-target='btn' data-action="click->overlay-menu#toggle">
+                  Filtros
+                  <%= image_tag 'filter-icon-2.png', width: '12px' %>
+                </button>
+            </div>
+          </div>
+        </div>
 
-      <% if false %>
-        <div class="search__form mb-3" data-overlay-menu-target='formContainer'>
-          <%= form_with url: articles_path, method: :get, html: { class: 'row justify-content-center align-items-center mb-3' } do |f| %>
-            <div class="col-7 col-sm-6 col-md-5">
-              <div class="row">
-                <div class="col-12 d-none" data-overlay-menu-target='inputWrapper'>
+        <% if false %>
+          <div class="search__form mb-3" data-overlay-menu-target='formContainer'>
+            <%= form_with url: articles_path, method: :get, html: { class: 'row justify-content-center align-items-center mb-3' } do |f| %>
+              <div class="col-7 col-sm-6 col-md-5">
+                <div class="row">
+                  <div class="col-12 d-none" data-overlay-menu-target='inputWrapper'>
 
-                  <%= f.collection_select(:tags, Tag.all, :name, :name,
-                                          {},
-                                          multiple: true,
-                                          class: "form-select",
-                                          id: "Seleccione",
-                                          data: {
-                                            controller: 'tom-select',
-                                            tom_select_options_value: {tags: true},
-                                            tom_select_max_item_value: 4
-                                          }) %>
+                    <%= f.collection_select(:tags, Tag.all, :name, :name,
+                                            {},
+                                            multiple: true,
+                                            class: "form-select",
+                                            id: "Seleccione",
+                                            data: {
+                                              controller: 'tom-select',
+                                              tom_select_options_value: {tags: true},
+                                              tom_select_max_item_value: 4
+                                            }) %>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="col-3">
-              <%= f.submit 'Filter', class: 'btn btn-primary w-100' %>
-            </div>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
-
-  <% if params[:tags] %>
-    <div class="tags__searched mb-4">
-      <%  params[:tags].reject(&:empty?).each do|tag_name| %>
-        <%= link_to articles_index_tag_path(name: tag_name, tags: params[:tags]), data: { turbo_method: :delete }, style: 'z-index: 10' do %>
-          <small class="tag">
-            <%= tag_name %>
-            <span class='text-warning'>x</span>
-          </small>
-        <% end %>
-      <% end %>
-    </div>
-  <% end %>
-
-  <% if Article.any_present? %>
-    <div class="articles__recent">
-      <div class="row mb-4">
-        <div class="col-12 col-xl-6 article--main mb-3 mb-xl-0">
-          <%= link_to article_path(@featured_article), class: 'text-reset' do %>
-            <%= render 'article_card', article: @featured_article, min_height: '', highlight: true if @featured_article %>
-          <% end %>
-        </div>
-
-        <div class="col-12 col-xl-6">
-          <div class="d-flex flex-column justify-content-between h-100">
-            <% @recent_articles.each do |article| %>
-              <%= link_to article_path(article) do %>
-                <div class="article__recent_new">
-                  <div class="card__image-bg card__image-bg--recent"
-                      style="background-image: url(<%= display_banner_as_background(article) %>);">
-                  </div>
-                  <div class="article__info px-3 py-2 py-lg-3 pe-lg-3">
-                    <div class="info__header d-flex align-items-center gap-3 mb-2">
-                      <small><%= article.created_at.strftime('%d.%m.%Y') %></small>
-                      <% article.tags.each_with_index do |tag, index| %>
-                        <small class="tag"><%= tag.name %></small>
-                      <% end %>
-                    </div>
-                    <h5 class="text-reset mb-lg-0 fs-6"><%= article.header.truncate(81) %></h5>
-                  </div>
-                </div>
-              <% end %>
+              <div class="col-3">
+                <%= f.submit 'Filter', class: 'btn btn-primary w-100' %>
+              </div>
             <% end %>
           </div>
-        </div>
-      </div>
-      <div class="row">
-        <% @articles.each do |article| %>
-          <div class="col-12 col-sm-6 col-md-4 article--list mb-4">
-            <%#= link_to article_path(article), class: 'text-reset' do %>
-              <%= render 'article_card', article: article, highlight: false, min_height: 'full-height' %>
-            <%# end %>
-          </div>
         <% end %>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+
+    <% if params[:tags] %>
+      <div class="tags__searched mb-4">
+        <%  params[:tags].reject(&:empty?).each do|tag_name| %>
+          <%= link_to articles_index_tag_path(name: tag_name, tags: params[:tags]), data: { turbo_method: :delete }, style: 'z-index: 10' do %>
+            <small class="tag">
+              <%= tag_name %>
+              <span class='text-warning'>x</span>
+            </small>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% if Article.any_present? %>
+      <div class="articles__recent">
+        <div class="row mb-3 mb-lg-4">
+          <div class="col-12 col-xl-6 article--main mb-3 mb-xl-0">
+            <%= link_to article_path(@featured_article), class: 'text-reset' do %>
+              <%= render 'article_card', article: @featured_article, min_height: '', highlight: true if @featured_article %>
+            <% end %>
+          </div>
+
+          <div class="col-12 col-xl-6">
+            <div class="d-flex flex-column justify-content-between h-100 mb-childs">
+              <% @recent_articles.each_with_index do |article, index| %>
+                <% index += 1 %>
+                <%= link_to article_path(article), class: 'reveal', data: { scroll_reveal_target: 'item' } do %>
+                  <div class="article__recent_new">
+                    <div class="card__image-bg card__image-bg--recent"
+                        style="background-image: url(<%= display_banner_as_background(article) %>);">
+                    </div>
+                    <div class="article__info px-3 py-2 py-lg-3 pe-lg-3">
+                      <div class="info__header d-flex align-items-center gap-3 mb-2">
+                        <small><%= article.created_at.strftime('%d.%m.%Y') %></small>
+                        <% article.tags.each_with_index do |tag, index| %>
+                          <small class="tag"><%= tag.name %></small>
+                        <% end %>
+                      </div>
+                      <h5 class="text-reset mb-lg-0 fs-6"><%= article.header.truncate(81) %></h5>
+                    </div>
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <% @articles.each do |article| %>
+            <div class="col-12 col-sm-6 col-md-4 article--list mb-4">
+              <%#= link_to article_path(article), class: 'text-reset' do %>
+                <%= render 'article_card', article: article, highlight: false, min_height: 'full-height' %>
+              <%# end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+
+  </div>
 </div>
