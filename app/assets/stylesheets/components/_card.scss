@@ -2,6 +2,17 @@
 .card__image-bg {
   background-size: cover;
   background-position: center;
+  width: 100%;
+  height: 264px;
+  border-radius: 10px 10px 0 0;
+
+}
+
+@media (min-width: 1200px) {
+  .card__image-bg {
+    height: 100%;
+    border-radius: 10px 0 0 10px;
+  }
 }
 
 .card__image-bg .br-2 {
