@@ -34,6 +34,10 @@ class Gallery < ApplicationRecord
     end
   end
 
+  def empty
+    albums.empty?
+  end
+
   def albums?
     albums.count.positive?
   end
