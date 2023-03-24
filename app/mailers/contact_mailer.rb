@@ -1,4 +1,5 @@
 class ContactMailer < ApplicationMailer
+  US = 'pearedeobservacao@pearedeobservacao.com.br'
 
   def form_reply_mail
     @first_name = params[:first_name]
