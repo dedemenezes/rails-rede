@@ -15,13 +15,20 @@
       align-items: center;
       justify-content: center;
       height: 100vh;
+      position: relative;
     }
     .wrapper__error {
       display: grid;
       grid-template-columns: 1fr;
-      margin-bottom: 3rem;
-      grid-gap: 3rem;
+      /* margin-bottom: 3rem; */
+      /* grid-gap: 3rem; */
       color: #083461;
+      width: 100%;
+      height: 300px;
+      position: absolute;
+      top: 10%;
+      left: 0;
+      text-align: center;
     }
 
     .error__status {
@@ -34,13 +41,15 @@
       font-size: 158.4px;
       line-height: 176px;
       color: #0069C4;
+      margin: inherit;
     }
 
     .error__message {
-      width: 461px;
+      width: 100%;
       display: flex;
       flex-direction: column;
       justify-content: center;
+      align-items: center;
     }
 
     .joke {
@@ -53,15 +62,16 @@
     }
 
     .message {
-      font-family: 'Raleway';
-      font-style: normal;
-      font-weight: 600;
-      font-size: 24px;
-      line-height: 26px;
-      display: flex;
-      align-items: flex-end;
-      letter-spacing: 0.15px;
-      font-feature-settings: 'pnum' on, 'lnum' on;
+font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 26px;
+    display: flex;
+    align-items: flex-end;
+    letter-spacing: 0.15px;
+    font-feature-settings: 'pnum' on, 'lnum' on;
+    width: 50%;
     }
 
     .error__btn {
