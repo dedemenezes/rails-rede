@@ -67,21 +67,25 @@
     <%# ACOES %>
     <% unless @observatory.events.empty? %>
       <div data-controller="filter-calendar">
-        <section class="events mb-4">
+        <section class="events my-5">
           <div class="events__header mb-3">
             <div class="d-flex align-items-center px-md-3">
-              <div class="flex-grow-1">
-                <h5 class='mb-0'>Últimas ações</h5>
-              </div>
-              <div class="btn-icon btn-icon--square" data-action='click->filter-calendar#formDisplay'>
-                <%= image_tag 'Calendar.png' %>
-                <%= form_with url: observatory_path(@observatory), class: 'd-none box--anim box--hidden', data: { filter_calendar_target: 'form', action: 'submit->filter-calendar#search'} do |f| %>
-                  <div class="d-flex">
-                    <%= text_field_tag :query, params[:query], class: 'form-input flex-grow-1', data: { controller: 'flatpickr', flatpickr_is_range_value: 'true', filter_calendar_target: 'input' } %>
-                    <%= f.submit 'Filtrar', class: 'btn btn-rede-primary' %>
-                  </div>
-                <% end %>
-              </div>
+      <div class="d-flex justify-content-between align-items-center  border border-warning border-info border-5 border-end-0 border-top-0 border-bottom-0 ps-4 mb-4">
+        <%= content_tag :h5, class: 'mb-0' do %>
+          Últimas ações
+        <% end %>
+      </div>
+              <% unless 'filter is ready' %>
+                <div class="btn-icon btn-icon--square" data-action='click->filter-calendar#formDisplay'>
+                  <%= image_tag 'Calendar.png' %>
+                  <%= form_with url: observatory_path(@observatory), class: 'd-none box--anim box--hidden', data: { filter_calendar_target: 'form', action: 'submit->filter-calendar#search'} do |f| %>
+                    <div class="d-flex">
+                      <%= text_field_tag :query, params[:query], class: 'form-input flex-grow-1', data: { controller: 'flatpickr', flatpickr_is_range_value: 'true', filter_calendar_target: 'input' } %>
+                      <%= f.submit 'Filtrar', class: 'btn btn-rede-primary' %>
+                    </div>
+                  <% end %>
+                </div>
+              <% end %>
             </div>
           </div>
           <div class="container">
@@ -92,12 +96,12 @@
                 <!-- Slides -->
                 <% @observatory.events.sort_by(&:updated_at).reverse.each do |album| %>
                   <div class="swiper-slide">
-                    <%= link_to album_path(album, name: album.name) do %>
+                    <%= link_to album_path(album, name: album.name), class: 'text-reset' do %>
                       <div class="card__event mb-3">
                         <div class="card__event__image" style='background-image: url(<%= display_banner_as_background(album) %>);background-size: cover; background-position: center;'></div>
                         <div class="event__content gap-3 gap-3">
                           <div class="h-100 px-3 pb-3 flex-grow-1 d-flex flex-column justify-content-between">
-                            <h5 class='mb-0'><%= album.name %></h5>
+                            <h5 class='mb-0 text-primary'><%= album.name %></h5>
                             <div class="event__tags d-flex justify-content-start align-items-center">
 
                               <% album.tags.each do |tag| %>
