@@ -4,7 +4,7 @@ class Album < ApplicationRecord
   has_one_attached :banner
   has_many :taggings, as: :taggable
   has_many :tags, through: :taggings
-  scope :only_events, -> { where(is_event: true) }
+  scope :only_published_events, -> { where(is_event: true, published: true) }
 
 
   def set_banner(attach)

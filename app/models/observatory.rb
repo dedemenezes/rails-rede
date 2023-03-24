@@ -44,7 +44,7 @@ class Observatory < ApplicationRecord
   end
 
   def events
-    albums.select(&:is_event)
+    albums.select { |album| album.is_event && album.published }
   end
 
 
