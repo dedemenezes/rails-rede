@@ -22,8 +22,8 @@ pt-BR:
         one: "Categoria"
         other: "Categorias"
       priority_type:
-        one: "Prioridadde"
-        other: "Prioridaddes"
+        one: "Sujeito prioritário"
+        other: "Sujeitos prioritários"
       unity_type:
         one: "Tipo"
         other: "Tipos"
