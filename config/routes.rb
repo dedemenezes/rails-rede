@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'dashboard', to: 'dashboard#home', as: :home
   namespace :dashboard do
     resources :conflict_types
+    resources :priority_types
     resources :tags, except: :show
     resources :articles
     resources :observatories
