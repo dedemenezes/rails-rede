@@ -2,7 +2,10 @@
 <% content_for :meta_description, @observatory.description.truncate(100) %>
 <% content_for :meta_image, display_banner_as_background(@observatory) %>
 
-<div data-controller="slide-n-fade-r">
+<div data-controller="scroll-reveal"
+     data-scroll-reveal-class-value="in"
+     data-scroll-reveal-threshold-value="0"
+     data-scroll-reveal-root-margin-value="10px">
   <div class="banner__observatory"
         style="background-image: radial-gradient(50% 50% at 50% 50%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.48) 100%), url(<%= display_banner_as_background @observatory %>);">
     <div class="container d-flex flex-column justify-content-between pt-3">
@@ -36,7 +39,7 @@
   <%# DESCRIPTION %>
     <div class="observatory__show mb-5">
         <div class="row justify-content-between w-100">
-          <div class="col-12 text-start" style="column-width: 421px;">
+          <div class="col-12 text-start reveal" data-scroll-reveal-target='item' style="column-width: 421px;">
             <%= @observatory.description %>
           </div>
         </div>
@@ -51,7 +54,9 @@
             data-pswp-width="<%= photo.blob.metadata[:width] %>"
             data-pswp-height="<%= photo.blob.metadata[:height] %>"
             data-pswp-srcset="https://rede-observacao-prod.s3.us-east-2.amazonaws.com/<%= photo.key %>"
-            target="_blank">
+            target="_blank"
+            data-scroll-reveal-target='item'
+            class="reveal">
             <div class="card__index text-primary">
               <div style="background: url('https://rede-observacao-prod.s3.us-east-2.amazonaws.com/<%= photo.key %>');background-size: cover;background-position: center; border-radius: 10px;"></div>
             </div>
@@ -60,21 +65,21 @@
       </div>
       <div class="row justify-content-center">
         <div class="col-12 text-center text-primary">
-          <%= link_to 'VER GALERIAS', gallery_path(@observatory.gallery), class: 'btn btn__secondary continuous-3' %>
+          <%= link_to 'VER GALERIAS', gallery_path(@observatory.gallery), class: 'btn btn__secondary continuous-3 reveal', data: { scroll_reveal_target: "item" } %>
         </div>
       </div>
 
     <%# ACOES %>
     <% unless @observatory.events.empty? %>
       <div data-controller="filter-calendar">
-        <section class="events my-5">
+        <section class="events mt-5">
           <div class="events__header mb-3">
             <div class="d-flex align-items-center px-md-3">
-      <div class="d-flex justify-content-between align-items-center  border border-warning border-info border-5 border-end-0 border-top-0 border-bottom-0 ps-4 mb-4">
-        <%= content_tag :h5, class: 'mb-0' do %>
-          Últimas ações
-        <% end %>
-      </div>
+              <div class="d-flex justify-content-between align-items-center  border border-warning border-info border-5 border-end-0 border-top-0 border-bottom-0 ps-4 mb-4">
+                <%= content_tag :h5, class: 'mb-0' do %>
+                  Últimas ações
+                <% end %>
+              </div>
               <% unless 'filter is ready' %>
                 <div class="btn-icon btn-icon--square" data-action='click->filter-calendar#formDisplay'>
                   <%= image_tag 'Calendar.png' %>
@@ -90,7 +95,7 @@
           </div>
           <div class="container">
             <!-- Slider main container -->
-            <div class="swiper" data-controller='swiper'>
+            <div class="swiper reveal"  data-scroll-reveal-target="item" data-controller='swiper'>
               <!-- Additional required wrapper -->
               <div class="swiper-wrapper" data-filter-calendar-target='results'>
                 <!-- Slides -->
@@ -132,50 +137,59 @@
     <% end %>
   </div>
 
-</div>
-
-<%= image_tag 'observatory_contact_wave_top.svg', width: '100%' %>
-<div class="observatory__contact">
-  <div class="row">
-    <div class="col-12">
-      <div class="observatory__contact__wrapper">
-        <div class="container">
-          <div class="row">
-            <div class="col-12 col-sm-6">
-              <div class="contact__info">
-                <h5>Contato</h5>
-                <div class="contact__list">
-                  <div class="list-item">
-                    <div class="d-flex align-items-center gap-3">
-                      <%= image_tag "mail-icon.svg", width: '20px' %>
-                      <p class="mb-0 contact__text"><%= @observatory.email %></p>
+  <%# CONTACT %>
+  <%= image_tag 'observatory_contact_wave_top.svg', width: '100%' %>
+  <div class="observatory__contact">
+    <div class="row">
+      <div class="col-12">
+        <div class="observatory__contact__wrapper">
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-sm-6">
+                <div class="contact__info">
+                  <h5>Contato</h5>
+                  <div class="contact__list">
+                    <div class="list-item">
+                      <div class="d-flex align-items-center gap-3 reveal" data-scroll-reveal-target="item" >
+                        <%= image_tag "mail-icon.svg", width: '20px' %>
+                        <p class="mb-0 contact__text"><%= @observatory.email %></p>
+                      </div>
                     </div>
-                  </div>
-                  <div class="list-item">
-                    <div class="d-flex align-items-center gap-3">
-                      <%#= image_tag "icon-pin-blue.png", width: '20px', height: '24px' %>
-                      <i class="fas fa-map-marker-alt" style="font-size: 1.4rem;"></i>
-                      <p class="mb-0 contact__text"><%= @observatory.address %></p>
+                    <div class="list-item">
+                      <div class="d-flex align-items-center gap-3 reveal" data-scroll-reveal-target="item">
+                        <%#= image_tag "icon-pin-blue.png", width: '20px', height: '24px' %>
+                        <i class="fas fa-map-marker-alt" style="font-size: 1.4rem;"></i>
+                        <p class="mb-0 contact__text"><%= @observatory.address %></p>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="col-12 col-sm-6"
-                 data-controller="map"
-                 data-map-markers-value="<%= @markers.to_json %>"
-                 data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-              <div class="map__container"
-                    style="height: 52vh;"
-                    data-map-target="mapContainer">
+              <div class="col-12 col-sm-6 reveal map__wrapper"
+                   style="width: 50%"
+                   data-scroll-reveal-target="item"
+                   data-controller="map"
+                   data-map-markers-value="<%= @markers.to_json %>"
+                   data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+                <div class="map__container"
+                      style="height: 52vh;"
+                      data-map-target="mapContainer">
+                </div>
+                <nav id="listing-group" data-map-target="listingGroup" class="listing-group">
+                  <input type="checkbox" data-map-target="menuOption" id="scrollZoom">
+                  <label for="scrollZoom">Zoom com scroll</label>
+                  <input type="checkbox" data-map-target="menuOption" id="dragPan">
+                  <label for="dragPan">Arrastar e navegar</label>
+                </nav>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="col-12 col-lg-6">
+      <div class="col-12 col-lg-6">
+      </div>
     </div>
   </div>
+  <%= image_tag 'observatory_contact_wave_bottom.svg', width: '100%' %>
+
 </div>
-<%= image_tag 'observatory_contact_wave_bottom.svg', width: '100%' %>
