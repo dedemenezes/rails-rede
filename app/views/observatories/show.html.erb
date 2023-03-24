@@ -146,21 +146,16 @@
                 <h5>Contato</h5>
                 <div class="contact__list">
                   <div class="list-item">
-                    <div class="d-flex align-items-center gap-2">
-                      <%= image_tag "phone-icon.svg", width: '20px' %>
-                      <p class="mb-0 contact__text">+55 (<%= @observatory.phone_number[0..1] %>) <%= @observatory.phone_number[2..] %></p>
-                    </div>
-                  </div>
-                  <div class="list-item">
-                    <div class="d-flex align-items-center gap-2">
-                      <p class="mb-0 contact__text"><%= @observatory.email %></p>
+                    <div class="d-flex align-items-center gap-3">
                       <%= image_tag "mail-icon.svg", width: '20px' %>
+                      <p class="mb-0 contact__text"><%= @observatory.email %></p>
                     </div>
                   </div>
                   <div class="list-item">
-                    <div class="d-flex align-items-center gap-2">
-                      <%= image_tag "icon-pin-blue.png", width: '12.5px', height: '16.5px' %>
-                      <p class="mb-0 contact__text"><%= @observatory.phone_number %></p>
+                    <div class="d-flex align-items-center gap-3">
+                      <%#= image_tag "icon-pin-blue.png", width: '20px', height: '24px' %>
+                      <i class="fas fa-map-marker-alt" style="font-size: 1.4rem;"></i>
+                      <p class="mb-0 contact__text"><%= @observatory.address %></p>
                     </div>
                   </div>
                 </div>
