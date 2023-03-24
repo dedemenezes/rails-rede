@@ -166,10 +166,13 @@
 }
 
 .btn-nav {
-  border: 1px solid gray;
+  border: none;
   background-color: transparent;
   padding: 4px 8px;
   border-radius: 5px;
+  &:focus {
+    box-shadow: none;
+  }
 }
 
 

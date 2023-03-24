@@ -8,7 +8,7 @@ export default class extends Controller {
     console.log(this.menuListTarget)
   }
 
-  toggle() {
+  toggle(event) {
     this.menuTarget.classList.toggle('show')
     this.menuListTarget.classList.toggle('mx-auto')
     this.menuListTarget.classList.toggle('flex-grow-1')
@@ -19,5 +19,11 @@ export default class extends Controller {
     this.socialLinksTarget.classList.toggle('mb-3')
     this.socialLinksTarget.classList.toggle('d-flex')
     this.socialLinksTarget.classList.toggle('justify-content-center')
+
+    if (this.menuTarget.classList.contains('show')) {
+      event.currentTarget.innerHTML = '<i class="fas fa-times"></i>'
+    } else {
+      event.currentTarget.innerHTML = "<i class='fas fa-bars'></i>"
+    }
   }
 }
