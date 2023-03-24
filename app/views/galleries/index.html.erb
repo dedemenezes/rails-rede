@@ -12,7 +12,7 @@
   <div class="cards__index">
     <% unless @galleries.empty? %>
       <% @galleries.each do |gallery| %>
-        <% next if gallery.albums.empty? %>
+        <% next if gallery.empty? %>
 
         <%= render 'gallery', gallery: gallery  %>
       <% end %>
