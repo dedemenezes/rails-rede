@@ -37,7 +37,7 @@ class Dashboard::ConflictTypesController < ApplicationController
   def destroy
     @dashboard_conflict_type.destroy
 
-    redirect_to dashboard_conflict_types_url, notice: "Conflict type was successfully destroyed."
+    redirect_to dashboard_conflict_types_path, notice: "Conflict type was successfully destroyed."
 
   end
 
