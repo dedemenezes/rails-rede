@@ -1,7 +1,7 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
-  config.action_mailer.default_url_options = { host: "https://rede-observacao-demo.osc-fr1.scalingo.io/" }
+  config.action_mailer.default_url_options = { host: "www.pearedeobservacao.com" }
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
