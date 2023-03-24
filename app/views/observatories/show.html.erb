@@ -92,7 +92,7 @@
                 <!-- Slides -->
                 <% @observatory.events.each do |album| %>
                   <div class="swiper-slide">
-                    <%= link_to album_path do %>
+                    <%= link_to album_path(album, name: album.name) do %>
                       <div class="card__event mb-3">
                         <div class="card__event__image" style='background-image: url(<%= image_path 'default-banner.png'%>);background-size: cover; background-position: center;'></div>
                         <div class="event__content">
