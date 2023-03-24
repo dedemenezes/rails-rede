@@ -2,7 +2,7 @@ module Dashboard
   class MethodologiesController < ApplicationController
     layout 'dashboard'
 
-    before_action :set_methodology, only: :destroy
+    before_action :set_methodology, only: %i[edit update destroy]
     def index
       @methodologies = Methodology.all
     end
@@ -18,6 +18,17 @@ module Dashboard
       @methodology.project = @project
       authorize @methodology
       if @methodology.save
+        redirect_to dashboard_methodologies_path
+      else
+        render :new, status: :unprocessable_entity
+      end
+    end
+
+    def edit
+    end
+
+    def update
+      if @methodology.update(methodology_params)
         redirect_to dashboard_methodologies_path
       else
         render :new, status: :unprocessable_entity
