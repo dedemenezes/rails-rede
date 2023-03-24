@@ -136,6 +136,11 @@
 }
 
 // ARTICLE
+@media (max-width: 1200px) {
+  .mb-childs > *:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+}
 
 .article__recent_new {
   display: grid;
@@ -157,6 +162,7 @@
   .article__recent_new {
     grid-gap: 1rem;
     grid-template-columns: 1fr 3fr;
+    margin-bottom: inherit;
   }
 
   .card__image-bg--recent {
