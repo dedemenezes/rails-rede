@@ -34,7 +34,7 @@ class Gallery < ApplicationRecord
     end
   end
 
-  def empty
+  def empty?
     albums.empty?
   end
 
