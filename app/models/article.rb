@@ -1,6 +1,6 @@
 class Article < ApplicationRecord
   validates :header, presence: true, uniqueness: true
-  validates :header, length: { maximum: 80 }
+  # validates :header, length: { maximum: 80 }
   validates_with OneFeaturedArticleValidator
 
   belongs_to :observatory, optional: true
