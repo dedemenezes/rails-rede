@@ -63,3 +63,9 @@
   content: '✔';
   margin-right: 5px;
 }
+
+@media (min-width: 572px) {
+  .map__wrapper {
+    width: 50% !important;
+  }
+}
