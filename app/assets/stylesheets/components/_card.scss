@@ -46,31 +46,37 @@
 
 .observatory__card {
   display: grid;
-    /* grid-template-columns: 1fr 1fr; */
-    // grid-template-rows: 2fr 1fr;
-    filter: drop-shadow(4px 4px 20px rgba(0, 0, 0, 0.1));
+  /* grid-template-columns: 1fr 1fr; */
+  // grid-template-rows: 2fr 1fr;
+  filter: drop-shadow(4px 4px 20px rgba(0, 0, 0, 0.1));
+  transition: .3s ease-in-out;
+  img {
+    border-radius: 10px 10px 0px 0px;
+    width: 100%;
+  }
 
-    img {
-      border-radius: 10px 10px 0px 0px;
-      width: 100%;
-    }
+  p {
+    background: #FFFFFF;
+    border-radius: 0px 0px 10px 10px;
+    width: 100%;
+    // height: 100%;
+    padding: 12px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+  }
 
-    p {
-      background: #FFFFFF;
-      border-radius: 0px 0px 10px 10px;
-      width: 100%;
-      // height: 100%;
-      padding: 12px 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      font-weight: 600;
-      font-size: 16px;
-      line-height: 24px;
-      letter-spacing: 0.15px;
-    }
 }
+
+.observatory__card--image {
+  background-size: cover;
+}
+
 
 .card__observatory {
   background-size: cover;
