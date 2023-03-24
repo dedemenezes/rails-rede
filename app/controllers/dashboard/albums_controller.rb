@@ -34,6 +34,8 @@ class Dashboard::AlbumsController < ApplicationController
   end
 
   def update
+    @gallery = Gallery.find(params[:album][:gallery_id])
+    @album.gallery = @gallery unless @gallery == @album.gallery
     if @album.update(album_params) && @album.banner.attached?
       @tags = SetTags.tagging(@album, params)
       redirect_to dashboard_albums_path, notice: 'Album atualizado'
