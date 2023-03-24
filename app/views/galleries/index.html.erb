@@ -10,6 +10,12 @@
     </div>
   </div>
   <div class="cards__index">
-    <%= render @galleries unless @galleries.empty? %>
+    <% unless @galleries.empty? %>
+      <% @galleries.each do |gallery| %>
+        <% next if gallery.albums.empty? %>
+
+        <%= render 'gallery', gallery: gallery  %>
+      <% end %>
+    <% end %>
   </div>
 </div>
