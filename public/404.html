@@ -18,7 +18,8 @@
     }
     .wrapper__error {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
+      margin-bottom: 3rem;
       grid-gap: 3rem;
       color: #083461;
     }
@@ -91,6 +92,12 @@
     }
     .error__btn:hover {
       opacity: .87625;
+    }
+
+    @media (min-width: 768px) {
+      .wrapper__error{
+        grid-template-columns: 1fr 1fr;
+      }
     }
   </style>
 </head>
