@@ -49,6 +49,9 @@ application.register("photo-preview", PhotoPreviewController)
 import PhotoswipeController from "./photoswipe_controller"
 application.register("photoswipe", PhotoswipeController)
 
+import ScrollReveal from 'stimulus-scroll-reveal'
+application.register('scroll-reveal', ScrollReveal)
+
 import SlideNFadeLController from "./slide_n_fade_l_controller"
 application.register("slide-n-fade-l", SlideNFadeLController)
 
