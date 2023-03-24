@@ -39,7 +39,7 @@ class Dashboard::ConflictTypesController < ApplicationController
   def update
     respond_to do |format|
       if @dashboard_conflict_type.update(dashboard_conflict_type_params)
-        format.html { redirect_to dashboard_conflict_type_url(@dashboard_conflict_type), notice: "Conflict type was successfully updated." }
+        format.html { redirect_to dashboard_conflict_types_path, notice: "Conflict type was successfully updated." }
         format.json { render :show, status: :ok, location: @dashboard_conflict_type }
       else
         format.html { render :edit, status: :unprocessable_entity }
