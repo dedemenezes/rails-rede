@@ -1,0 +1,12 @@
+<%= simple_form_for [:dashboard, methodology] do |f| %>
+  <%= f.input :name %>
+  <%= f.input :description %>
+  <%= render 'dashboard/shared/form/banner_input', element: methodology, form: f %>
+  <%= f.input :header_one %>
+  <%= f.input :description_one %>
+  <%= f.input :header_two %>
+  <%= f.input :description_two %>
+  <%= f.input :banner_two, as: :file %>
+  <%#= f.input :content, as: :rich_text_area %>
+  <%= render 'dashboard/shared/form/submit_cancel', form: f, element: methodology %>
+<% end %>
