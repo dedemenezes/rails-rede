@@ -71,6 +71,7 @@
   align-items: center;
   gap: 19px;
   padding: 8px 32px;
+  transition: .2s ease-in;
   &:hover {
     box-shadow: 1px 1px 1px rgba(0,0,0,0.1);
     border: 2px solid rgba(8, 52, 97, 0.2);

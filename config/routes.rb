@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, only: [:sessions]
   get 'dashboard', to: 'dashboard#home', as: :home
   namespace :dashboard do
     resources :conflict_types

@@ -2,7 +2,7 @@
   <div class="row justify-content-center">
     <div class="col-12 col-sm-4">
       <div class="form-login">
-        <h2>Log in</h2>
+        <h2>Acesso administrador</h2>
 
         <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: :false }) do |f| %>
           <div class="form-inputs">
@@ -12,10 +12,11 @@
                         placeholder: "bob@gmail.com",
                         input_html: { autocomplete: "email" } %>
             <%= f.input :password,
+                        label: 'Senha',
                         required: false,
                         placeholder: "••••••",
                         input_html: { autocomplete: "current-password" } %>
-            <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+            <%#= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
           </div>
 
           <div class="form-actions">
