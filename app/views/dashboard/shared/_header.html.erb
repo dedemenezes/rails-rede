@@ -4,7 +4,7 @@
     <h1><%= klass_name %> <small class='text-muted highlight'><%= klass.count %> <%= klass.count > 1 ? "#{klass_name}s" : klass_name %></small></h1>
     <ul class="list-inline mb-0">
       <li class="list-inline-item">
-        <% if policy(controller_name.singularize.capitalize.constantize).new? %>
+        <% if policy(controller_name.singularize.split('_').map(&:capitalize).join.constantize).new? %>
           <%= link_to url_for(controller: controller_name, action: :new), class: 'btn btn-rede-primary-l text-white' do %>
             <%= icon('fa-solid', 'plus') %> Novo <%= klass_name %>
           <% end %>

@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @dashboard_conflict_type %>
+
+<div>
+  <%= link_to "Edit this conflict type", edit_dashboard_conflict_type_path(@dashboard_conflict_type) %> |
+  <%= link_to "Back to conflict types", dashboard_conflict_types_path %>
+
+  <%= button_to "Destroy this conflict type", @dashboard_conflict_type, method: :delete %>
+</div>

@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Conflict types</h1>
+
+<div id="dashboard_conflict_types">
+  <% @dashboard_conflict_types.each do |dashboard_conflict_type| %>
+    <%= render dashboard_conflict_type %>
+    <p>
+      <%= link_to dashboard_conflict_type.name, '#' %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New conflict type", new_dashboard_conflict_type_path %>
