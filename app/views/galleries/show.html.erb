@@ -18,13 +18,7 @@
   </div>
   <div class="cards__index">
     <% @albums.each do |album| %>
-      <%= link_to album_path(album) do %>
-        <div class="card__index text-primary">
-          <div style="background: url(<%= display_banner_as_background(album) %>);background-size: cover;background-position: center;">
-          </div>
-          <p><%= album.name %></p>
-        </div>
-      <% end %>
+      <%= render 'gallery', gallery: album %>
     <% end %>
   </div>
 </div>
