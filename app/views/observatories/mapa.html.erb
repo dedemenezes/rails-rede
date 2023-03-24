@@ -1,5 +1,6 @@
 <% content_for :meta_title, "Mapa de conflitos - #{DEFAULT_META["meta_product_name"]}" %>
 <% content_for :meta_image, display_banner_as_background(@observatories.first) %>
-<div class="container">
+<div class="container"
+data-controller='scroll-reveal'>
   <%= render 'map', markers: @markers, hide_filter: true, header: true, tag: :h1, css_classes: { } %>
 </div>

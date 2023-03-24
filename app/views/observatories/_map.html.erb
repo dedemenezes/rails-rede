@@ -1,13 +1,14 @@
 <% if header %>
   <div class="row justify-content-center mt-2">
     <div class="col-12 mt-3">
-      <div class="d-flex justify-content-between align-items-center  border border-rede-dark-red border-info border-5 border-end-0 border-top-0 border-bottom-0 ps-4 mb-4">
+      <div class="d-flex justify-content-between align-items-center  border border-rede-dark-red border-info border-5 border-end-0 border-top-0 border-bottom-0 ps-4 mb-4 reveal"
+           data-scroll-reveal-target='item' >
         <%= content_tag tag, css_classes do %>
           Mapa de conflitos
         <% end %>
       </div>
       <div class="col-12 col-sm-10 col-md-8 col-lg-7">
-        <p>
+        <p class='reveal' data-scroll-reveal-target="item">
         O mapeamento realizado pelo PEA Rede Observação tem como objetivo identificar os conflitos ambientais monitorados pelos observatórios e as formas de atuação dos grupos sociais envolvidos. Parte da narrativa e da perspectiva dos sujeitos prioritários do projeto, contribuindo para dar mais visibilidade às lutas pela integridade dos territórios tradicionais e pela manutenção das respectivas atividades produtivas.</p>
       </div>
     </div>
@@ -18,10 +19,12 @@
      style="width:<%= (controller_name == 'observatories' && params[:action] == 'mapa') || controller_name == 'pages' ? '100%' : '' %> !important;"
      data-map-markers-value="<%= markers.to_json %>"
      data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-  <div class="map__container"
+  <div class="map__container reveal"
+      data-scroll-reveal-target='item'
        data-map-target='mapContainer'>
   </div>
-  <nav id="listing-group" data-map-target="listingGroup" class="listing-group">
+  <nav id="listing-group" data-map-target="listingGroup" class="listing-group reveal"
+      data-scroll-reveal-target='item'>
     <input type="checkbox" data-map-target="menuOption" id="scrollZoom">
     <label for="scrollZoom">Zoom com scroll</label>
     <input type="checkbox" data-map-target="menuOption" id="dragPan">
