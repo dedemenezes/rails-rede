@@ -90,7 +90,7 @@
               <!-- Additional required wrapper -->
               <div class="swiper-wrapper" data-filter-calendar-target='results'>
                 <!-- Slides -->
-                <% @observatory.events.each do |album| %>
+                <% @observatory.events.sort_by(&:updated_at).reverse.each do |album| %>
                   <div class="swiper-slide">
                     <%= link_to album_path(album, name: album.name) do %>
                       <div class="card__event mb-3">
@@ -118,6 +118,9 @@
               </div>
               <!-- If we need pagination -->
               <div class="swiper-pagination"></div>
+              <!-- If we need navigation buttons -->
+              <div class="swiper-button-prev"></div>
+              <div class="swiper-button-next"></div>
             </div>
           </div>
         </section>
