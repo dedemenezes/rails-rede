@@ -48,8 +48,6 @@ module ApplicationHelper
   end
 
   def route_for_edit_dashboard(element)
-    # raise
-    puts element.inspect
     "#{element.model_name.plural}/#{element.id}/edit"
   end
 

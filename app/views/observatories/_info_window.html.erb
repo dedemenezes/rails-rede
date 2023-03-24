@@ -7,7 +7,7 @@
   <p class="popup__header mb-1">Sujeito prioritário</p>
   <p class="popup__info mb-3"><%= observatory.priority_subjects.map(&:name).join(', ') %></p>
   <p class="popup__header mb-1">tema gerador</p>
-  <p class="popup__info"><%= observatory.conflict_type.name %></p>
+  <p class="popup__info"><%= observatory.conflict_types.first.name %></p>
   <div class="col-12 text-center text-primary">
     <%= link_to 'ver mais', observatory_path(observatory), class: 'btn btn__secondary continuous-3 btn__secondary--small' %>
   </div>
