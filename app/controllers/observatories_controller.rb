@@ -1,6 +1,6 @@
 class ObservatoriesController < ApplicationController
   def index
-    @observatories = policy_scope(Observatory).order(name: :asc)
+    @observatories = policy_scope(Observatory).includes(banner_attachment: :blob).order(name: :asc)
     @markers = @observatories.map do |observatory|
       {
         lat: observatory.latitude,
@@ -10,7 +10,19 @@ class ObservatoriesController < ApplicationController
   end
 
   def show
-    @observatory = Observatory.includes(:priority_subjects, :conflict_types, :gallery, :articles, :albums, banner_attachment: :blob, albums: { banner_attachment: :blob }).find_by(name: params[:name]) || Observatory.find(params[:id])
+    @observatory = Observatory.includes(
+      :priority_subjects,
+      :conflict_types,
+      :gallery,
+      banner_attachment: :blob,
+      albums: [
+        :tags,
+        {
+          photos_attachments: :blob,
+          banner_attachment: :blob
+        }
+      ]
+  ).find_by(name: params[:name]) || Observatory.find(params[:id])
     gallery = @observatory.gallery
     # @photos = albums.map { |album| album.photos.sample(1)[0] }
     @photos = @observatory.albums.map(&:photos).flatten.sample(11)
@@ -27,7 +39,7 @@ class ObservatoriesController < ApplicationController
   end
 
   def mapa
-    @observatories = policy_scope(Observatory).includes(banner_attachment: :blob).where.not(latitude: nil, longitude: nil)
+    @observatories = policy_scope(Observatory).includes(:conflict_types, :priority_subjects, banner_attachment: :blob).where.not(latitude: nil, longitude: nil)
     @markers = @observatories.map do |observatory|
       {
         lat: observatory.latitude,

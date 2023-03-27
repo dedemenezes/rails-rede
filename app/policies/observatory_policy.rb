@@ -2,7 +2,7 @@ class ObservatoryPolicy < ApplicationPolicy
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
     def resolve
-      scope.includes(:conflict_types, :priority_subjects).where(published: true)
+      scope.where(published: true)
     end
   end
 

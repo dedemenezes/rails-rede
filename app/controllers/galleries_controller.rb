@@ -1,6 +1,6 @@
 class GalleriesController < ApplicationController
   def index
-    @galleries = policy_scope(Gallery).order(name: :asc)
+    @galleries = policy_scope(Gallery).includes(:albums).order(name: :asc)
     add_breadcrumb 'Acervo', galleries_path, current: true
   end
 
