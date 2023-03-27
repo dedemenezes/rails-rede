@@ -1,7 +1,8 @@
 class Article < ApplicationRecord
-  validates :header, presence: true, uniqueness: true
   # validates :header, length: { maximum: 80 }
+  validates :header, presence: true, uniqueness: true
   validates_with OneFeaturedArticleValidator
+  validates_with MustHaveAWriter
 
   belongs_to :observatory, optional: true
   belongs_to :methodology, optional: true
@@ -37,9 +38,9 @@ class Article < ApplicationRecord
   end
 
   def current_writer_type
-    return '' if new_record?
-
     type = observatory || project || methodology
+    return '' if type.nil?
+
     type.model_name.to_s.downcase
   end
 
@@ -56,7 +57,7 @@ class Article < ApplicationRecord
   end
 
   def clean_header
-    return unless header.ends_with?('.')
+    return unless header.present? && header.ends_with?('.')
 
     self.header = header[...-1]
   end
