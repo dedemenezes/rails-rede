@@ -11,7 +11,8 @@ class Gallery < ApplicationRecord
   scope :only_published_events, -> { where(is_event: true) }
 
   def self.dashboard_headers
-    %w[id banner name category total\ de\ albuns published?]
+    to_permit = %w[id name category]
+    attribute_names.select { |a| to_permit.include?(a) }.push('published').insert(1, 'banner')
   end
 
   def published_albums

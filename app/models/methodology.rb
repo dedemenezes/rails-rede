@@ -12,7 +12,10 @@ class Methodology < ApplicationRecord
   after_create :set_gallery
 
   def self.dashboard_headers
-    %w[id banner name created\ at updated\ at]
+    # to_reject = attribute_names
+    to_permit = %w[id name updated_at]
+    attribute_names.select { |a| to_permit.include?(a) }.insert(1, 'banner')
+    # %w[id banner name created\ at updated\ at]
   end
 
   def to_param

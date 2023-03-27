@@ -9,7 +9,7 @@
         <% else %>
           <td><%= image_tag 'default-banner.png', width: '62px' %></td>
         <% end %>
-      <% elsif header == 'published?' %>
+      <% elsif header == 'published' %>
         <td>
             <%= simple_form_for [:dashboard, element] do |f| %>
               <%= f.input :published, input_html: { checked: element.not_published? }, wrapper_html: { hidden: true } %>

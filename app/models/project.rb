@@ -10,7 +10,7 @@ class Project < ApplicationRecord
   validates :banner_text, presence: true, length: { minimum: 53, maximum: 100 }
 
   def self.dashboard_headers
-    attribute_names.reject { |a| ["slide_one_subtitle", "slide_two_subtitle", "slide_three_subtitle"].include?(a) }
+    attribute_names.reject { |a| ["slide_one_subtitle", "slide_two_subtitle", "slide_three_subtitle"].include?(a) }.insert(1, 'banner')
     # ['id', 'banner', 'name', 'updated at']
   end
 

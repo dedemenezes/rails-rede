@@ -1,4 +1,8 @@
 <% model_name_from_controller_name(controller_name).dashboard_headers.each do |header| %>
-  <th scope="col"><%= model_name_from_controller_name(controller_name).human_attribute_name(header) %></th>
+  <% if header == 'featured?' %>
+    <th scope="col"><%= t('featured').capitalize %>?</th>
+  <% else %>
+    <th scope="col"><%= model_name_from_controller_name(controller_name).human_attribute_name(header).capitalize %></th>
+  <% end %>
 <% end %>
-<th><%= t('actions') %></th>
+<th><%= t('actions').capitalize %></th>

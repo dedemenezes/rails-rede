@@ -4,6 +4,6 @@ class ConflictType < ApplicationRecord
   has_many :observatories, through: :observatory_conflicts
 
   def self.dashboard_headers
-    %w[id name]
+    %w[id name updated_at]
   end
 end
