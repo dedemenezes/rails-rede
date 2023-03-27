@@ -13,15 +13,9 @@ class Dashboard::ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
-    if params[:article][:observatory_id].present?
-      @observatory = Observatory.find(params[:article][:observatory_id])
-      @article.observatory = @observatory
-    end
-    if params[:article][:methodology_id].present?
-      @methodology = Methodology.find(params[:article][:methodology_id])
-      @article.methodology = @methodology
-    end
-    create_taggings
+    ArticleWriter.set_article_writer(params, @article)
+    SetTags.tagging(@article, params)
+
     if @article.save
       redirect_to dashboard_articles_path
     else
@@ -35,8 +29,9 @@ class Dashboard::ArticlesController < ApplicationController
   def update
     # MUDAR URGENTE
     @article = Article.find_by(header: params[:id])
-    destroy_taggings
-    create_taggings
+    # raise
+    ArticleWriter.set_article_writer(params, @article)
+    SetTags.tagging(@article, params)
     if @article.update(article_params)
       redirect_to dashboard_articles_path
     else
@@ -51,24 +46,6 @@ class Dashboard::ArticlesController < ApplicationController
 
   private
 
-  def create_taggings
-    return unless params[:article][:tag_ids].present?
-
-    tags = Tag.where(id: params[:article][:tag_ids])
-    tags.each do |tag|
-      Tagging.create tag: tag, taggable: @article
-    end
-  end
-
-  def destroy_taggings
-    return unless params[:article][:tag_ids]
-    return unless params[:article][:tag_ids].count - 1 < @article.taggings.count
-
-    @article.taggings.each do |tagging|
-      tagging.destroy unless params[:article][:tag_ids].include? tagging.tag.id.to_s
-    end
-  end
-
   def set_article
     if params[:id].match?(/[a-zA-Z]+/)
       @article = Article.find_by(header: params[:id]) if @article.nil?
@@ -78,6 +55,6 @@ class Dashboard::ArticlesController < ApplicationController
   end
 
   def article_params
-    params.require(:article).permit(:banner, :header, :sub_header, :rich_body, :featured, :published, :observatory_id)
+    params.require(:article).permit(:banner, :header, :sub_header, :rich_body, :featured, :published, :observatory_id, :methodology_id, :project_id)
   end
 end

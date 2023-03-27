@@ -32,6 +32,10 @@ class Article < ApplicationRecord
     count.positive?
   end
 
+  def writer
+    observatory&.name || project&.name || methodology&.name
+  end
+
   def observatory_name
     observatory&.name
   end

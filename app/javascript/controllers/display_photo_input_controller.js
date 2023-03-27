@@ -16,7 +16,7 @@ export default class extends Controller {
   }
 
   displayInput() {
-    if (this.checkboxTarget.checked) {
+    if (this.hasCheckboxTarget && this.checkboxTarget.checked) {
       this.inputTargets.forEach(target => target.classList.add('box--show'))
       this.inputTargets.forEach(target => target.classList.remove('box--hidden'))
     } else {
