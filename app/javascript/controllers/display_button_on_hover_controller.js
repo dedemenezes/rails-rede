@@ -2,12 +2,25 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="display-button-on-hover"
 export default class extends Controller {
-  static targets = ['observatoryBtn', 'observatory', 'observatoryInput', 'methodologyBtn', 'methodology', 'methodologyInput', 'projectBtn', 'project', 'projectInput']
+  static targets = [
+    'observatoryBtn',
+    'observatory',
+    'observatoryInput',
+    'methodologyBtn',
+    'methodology',
+    'methodologyInput',
+    'projectBtn',
+    'project',
+    'projectInput'
+  ]
   static values = {
     writerType: String
   }
   connect() {
+
     switch (this.writerTypeValue) {
+      case '':
+        this.#cleanInputs()
       case 'observatory':
         const observatoryActive = Array.from(this.observatoryInputTarget.options).find(option => option.selected)
         if (observatoryActive !== undefined && observatoryActive.value !== '') {
@@ -84,6 +97,12 @@ export default class extends Controller {
     if (!this.projectTarget.classList.contains('box--show')) {
       this.projectInputTarget.value = ''
     }
+  }
+
+  #cleanInputs() {
+    this.observatoryInputTarget.value = ''
+    this.methodologyInputTarget.value = ''
+    this.projectInputTarget.value = ''
   }
 
   #activateMethodology() {
