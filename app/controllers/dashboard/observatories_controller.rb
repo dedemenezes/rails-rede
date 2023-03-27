@@ -5,7 +5,7 @@ module Dashboard
     before_action :set_observatory, only: %i[edit destroy update]
 
     def index
-      @observatories = Observatory.all
+      @observatories = Observatory.includes(banner_attachment: :blob).all
     end
 
     def new

@@ -1,6 +1,8 @@
 <% model_name_from_controller_name(controller_name).dashboard_headers.each do |header| %>
   <% if header == 'featured?' %>
     <th scope="col"><%= t('featured').capitalize %>?</th>
+  <% elsif header == 'gallery name' %>
+    <th scope="col"><%= t('gallery_name').capitalize %></th>
   <% else %>
     <th scope="col"><%= model_name_from_controller_name(controller_name).human_attribute_name(header).capitalize %></th>
   <% end %>

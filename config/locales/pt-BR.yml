@@ -2,6 +2,7 @@
 pt-BR:
   actions: 'Ações'
   featured: 'Destaque'
+  gallery_name: 'Galeria'
   dropdown_action: "Ação"
   activerecord:
     models:
