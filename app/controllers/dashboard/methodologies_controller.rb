@@ -4,7 +4,7 @@ module Dashboard
 
     before_action :set_methodology, only: %i[edit update destroy]
     def index
-      @methodologies = Methodology.all
+      @methodologies = Methodology.includes(banner_attachment: :blob).all
     end
 
     def new
