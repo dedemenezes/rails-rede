@@ -37,6 +37,8 @@ class Article < ApplicationRecord
   end
 
   def current_writer_type
+    return '' if new_record?
+
     type = observatory || project || methodology
     type.model_name.to_s.downcase
   end
