@@ -27,7 +27,7 @@ class ObservatoriesController < ApplicationController
   end
 
   def mapa
-    @observatories = policy_scope(Observatory).where.not(latitude: nil, longitude: nil)
+    @observatories = policy_scope(Observatory).includes(banner_attachment: :blob).where.not(latitude: nil, longitude: nil)
     @markers = @observatories.map do |observatory|
       {
         lat: observatory.latitude,
