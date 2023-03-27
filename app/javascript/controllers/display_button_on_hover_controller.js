@@ -22,6 +22,8 @@ export default class extends Controller {
       case '':
         this.#cleanInputs()
       case 'observatory':
+        this.projectInputTarget.value = ''
+        this.methodologyInputTarget.value = ''
         const observatoryActive = Array.from(this.observatoryInputTarget.options).find(option => option.selected)
         if (observatoryActive !== undefined && observatoryActive.value !== '') {
           this.#activateObservatory()
@@ -29,6 +31,8 @@ export default class extends Controller {
         break;
 
       case 'methodology':
+        this.observatoryInputTarget.value = ''
+        this.projectInputTarget.value = ''
         const methodologyActive = Array.from(this.methodologyInputTarget.options).find(option => option.selected)
         if (methodologyActive !== undefined && methodologyActive.value !== '') {
           this.#activateMethodology()
@@ -36,6 +40,8 @@ export default class extends Controller {
         break;
 
       case 'project':
+        this.observatoryInputTarget.value = ''
+        this.methodologyInputTarget.value = ''
         const projectActive = Array.from(this.projectInputTarget.options).find(option => option.selected)
         if (projectActive !== undefined && projectActive.value !== '') {
           this.#activateProject()
