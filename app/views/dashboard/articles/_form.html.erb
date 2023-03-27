@@ -23,10 +23,15 @@
                         data: { controller: 'tom-select', tom_select_max_item_value: 2 }
                       } %>
         </div>
-        <div class="col-12" data-controller="display-button-on-hover">
+        <div class="col-12"
+             data-controller="display-button-on-hover"
+             data-display-button-on-hover-writer-type-value="<%= article.current_writer_type %>">
           <div class="row">
             <div class="col-12">
               <p class="mb-2">Pertence a:</p>
+              <% if article.errors.include?(:writer) %>
+                <p class="invalid-feedback d-block"><%= article.errors[:writer].first  %></p>
+              <% end %>
               <div class="d-flex justify-content-between align-items-center w-100 mb-3">
                 <button class="btn btn-primary" data-action='click->display-button-on-hover#project' data-display-button-on-hover-target='projectBtn'>
                   Projeto

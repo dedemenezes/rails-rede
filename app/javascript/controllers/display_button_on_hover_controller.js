@@ -2,14 +2,50 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="display-button-on-hover"
 export default class extends Controller {
-  static targets = ['observatoryBtn', 'observatory', 'observatoryInput', 'methodologyBtn', 'methodology', 'methodologyInput', 'projectBtn', 'project', 'projectInput']
+  static targets = [
+    'observatoryBtn',
+    'observatory',
+    'observatoryInput',
+    'methodologyBtn',
+    'methodology',
+    'methodologyInput',
+    'projectBtn',
+    'project',
+    'projectInput'
+  ]
+  static values = {
+    writerType: String
+  }
   connect() {
-    // const methodologyActive = Array.from(this.methodologyInputTarget.options).find(option => option.selected)
-    // console.log(methodologyActive)
-    // if (methodologyActive.value !== undefined) {
-    //   console.log(methodologyActive.value);
-    //   this.#activateMethodology()
-    // }
+
+    switch (this.writerTypeValue) {
+      case '':
+        this.#cleanInputs()
+      case 'observatory':
+        const observatoryActive = Array.from(this.observatoryInputTarget.options).find(option => option.selected)
+        if (observatoryActive !== undefined && observatoryActive.value !== '') {
+          this.#activateObservatory()
+        }
+        break;
+
+      case 'methodology':
+        const methodologyActive = Array.from(this.methodologyInputTarget.options).find(option => option.selected)
+        if (methodologyActive !== undefined && methodologyActive.value !== '') {
+          this.#activateMethodology()
+        }
+        break;
+
+      case 'project':
+        const projectActive = Array.from(this.projectInputTarget.options).find(option => option.selected)
+        if (projectActive !== undefined && projectActive.value !== '') {
+          this.#activateProject()
+        }
+        break;
+
+      default:
+        break;
+    }
+    console.log(this.writerTypeValue)
   }
 
   updateButtonText(button, text) {
@@ -61,6 +97,12 @@ export default class extends Controller {
     if (!this.projectTarget.classList.contains('box--show')) {
       this.projectInputTarget.value = ''
     }
+  }
+
+  #cleanInputs() {
+    this.observatoryInputTarget.value = ''
+    this.methodologyInputTarget.value = ''
+    this.projectInputTarget.value = ''
   }
 
   #activateMethodology() {
