@@ -4,7 +4,7 @@ class Dashboard::AlbumsController < ApplicationController
   before_action :set_album, only: %i[edit update update_banner destroy]
 
   def index
-    @albums = Album.includes(:gallery, photos_attachments: :blob).all
+    @albums = Album.includes(:gallery, banner_attachment: :blob).all
   end
 
   def new
@@ -64,9 +64,9 @@ class Dashboard::AlbumsController < ApplicationController
 
   def set_album
     if params[:id].match?(/[a-zA-Z]+/)
-      @album = Album.find_by(name: params[:id])
+      @album = Album.includes(photos_attachments: :blob).find_by(name: params[:id])
     else
-      @album = Album.find(params[:id])
+      @album = Album.includes(photos_attachments: :blob).find(params[:id])
     end
   end
 

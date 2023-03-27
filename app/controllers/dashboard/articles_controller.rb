@@ -4,7 +4,7 @@ class Dashboard::ArticlesController < ApplicationController
   before_action :set_article, only: %i[edit destroy]
 
   def index
-    @articles = policy_scope(Article, policy_scope_class: Dashboard::UserPolicy::Scope).order(id: :desc)
+    @articles = policy_scope(Article, policy_scope_class: Dashboard::UserPolicy::Scope).includes(:observatory, :tags, banner_attachment: :blob).order(id: :desc)
   end
 
   def new

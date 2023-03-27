@@ -4,7 +4,7 @@ class Dashboard::GalleriesController < ApplicationController
   before_action :set_gallery, only: %i[edit update destroy]
 
   def index
-    @galleries = Gallery.includes(:observatory, :methodology, :albums, banner_attachment: :blob).all
+    @galleries = Gallery.includes(:observatory, :methodology, banner_attachment: :blob).all
   end
 
   def new
