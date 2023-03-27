@@ -6,8 +6,8 @@ class PagesController < ApplicationController
       { img_name: 'lampada', text: "Monitoramos os conflitos vivenciados pelas comunidades para elaborar estratégias de intervenção" },
       { img_name: 'megafone', text: "Trabalhamos para mitigar os impactos da cadeia produtiva de petróleo e gás na Bacia de Campos" }
     ]
-    @observatories = policy_scope(Observatory).where.not(latitude: nil, longitude: nil)
-    @project = Project.includes(banner_attachment: :blob).first
+    @observatories = policy_scope(Observatory).includes(:conflict_types, :priority_subjects).where.not(latitude: nil, longitude: nil)
+    @project = Project.first
     @markers = @observatories.map do |observatory|
       {
         lat: observatory.latitude,
@@ -23,8 +23,8 @@ class PagesController < ApplicationController
     if params[:from_date].present?
       @events = @events.select { |event| event.event_date.to_s > params[:from_date] }.sort_by(&:updated_at).reverse
     end
-    @featured = Article.featured
-    @articles = Article.where(published: true, featured: false).order(updated_at: :desc).limit(4)
+    @featured = Article.includes([:tags], banner_attachment: :blob).featured
+    @articles = Article.includes([:tags], banner_attachment: :blob).where(published: true, featured: false).order(updated_at: :desc).limit(4)
   end
 
   def about_us

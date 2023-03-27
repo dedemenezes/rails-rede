@@ -12,9 +12,9 @@ class ArticlesController < ApplicationController
       # @articles = [] if @articles.size == 1
     else
       @articles = policy_scope(Article).all_but_featured
-      @featured_article = Article.featured
-      @recent_articles = Article.where(published: true, featured: false).order(updated_at: :desc).limit(4)
-      @articles = Article.where(published: true, featured: false).order(updated_at: :desc).offset(4)
+      @featured_article = Article.includes(:tags, banner_attachment: :blob).featured
+      @recent_articles = Article.includes(:tags, banner_attachment: :blob).where(published: true, featured: false).order(updated_at: :desc).limit(4)
+      @articles = Article.includes(:tags, banner_attachment: :blob).where(published: true, featured: false).order(updated_at: :desc).offset(4)
     end
   end
 
