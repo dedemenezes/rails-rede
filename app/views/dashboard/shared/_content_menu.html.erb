@@ -1,4 +1,4 @@
-<ul class="list-inline mb-0 mt-2 mb-4">
+<ul class="list-inline mb-0 mt-2">
   <% %w[index new].each do |action| %>
   <% next if skip_new_action_tab?('dashboard/projects', action) || skip_new_action_tab?('dashboard/methodologies', action) %>
     <% active = params[:action] == action %>
