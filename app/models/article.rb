@@ -36,6 +36,11 @@ class Article < ApplicationRecord
     observatory&.name || project&.name || methodology&.name
   end
 
+  def current_writer_type
+    type = observatory || project || methodology
+    type.model_name.to_s.downcase
+  end
+
   def observatory_name
     observatory&.name
   end

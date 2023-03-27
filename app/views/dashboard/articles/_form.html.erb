@@ -23,7 +23,9 @@
                         data: { controller: 'tom-select', tom_select_max_item_value: 2 }
                       } %>
         </div>
-        <div class="col-12" data-controller="display-button-on-hover">
+        <div class="col-12"
+             data-controller="display-button-on-hover"
+             data-display-button-on-hover-writer-type-value="<%= article.current_writer_type %>">
           <div class="row">
             <div class="col-12">
               <p class="mb-2">Pertence a:</p>
