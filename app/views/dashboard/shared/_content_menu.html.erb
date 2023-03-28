@@ -4,7 +4,7 @@
     <% active = params[:action] == action %>
     <li class="list-inline-item px-3 py-2 m-0 <%= 'border border-bottom-0 rounded-top tab-shadow' if active %>">
       <%= link_to url_for(controller: controller_name, action: action), class: "d-flex align-items-center text-decoration-none tab-action #{'tab-action--active' if active}"  do %>
-        <%= icon('fa-solid', action == 'index' ? 'list' : 'plus', class: 'me-2') %> <%= action.capitalize %>
+        <%= icon('fa-solid', action == 'index' ? 'list' : 'plus', class: 'me-2') %> <%= t(action) %>
         <%#= icon('fa-solid', 'plus') New %>
       <% end %>
     </li>
@@ -12,7 +12,7 @@
   <% if params[:action] == 'edit' %>
     <li class="list-inline-item px-3 py-2 m-0 border border-bottom-0 rounded-top tab-shadow">
       <%= link_to url_for(controller: controller_name, action: 'edit'), class: "d-flex align-items-center text-decoration-none tab-action tab-action--active"  do %>
-        <%= icon('fa-solid', 'pencil', class: 'me-2') %> Edit
+        <%= icon('fa-solid', 'pencil', class: 'me-2') %> <%= t('edit') %>
         <%#= icon('fa-solid', 'plus') New %>
       <% end %>
     </li>

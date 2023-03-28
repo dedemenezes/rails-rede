@@ -3,6 +3,9 @@ pt-BR:
   actions: 'Ações'
   featured: 'Destaque'
   gallery_name: 'Galeria'
+  index: 'Lista'
+  new: 'Novo'
+  edit: 'Editar'
   dropdown_action: "Ação"
   activerecord:
     models:
@@ -48,6 +51,16 @@ pt-BR:
         email: "E-mail"
         phone_number: "Telefone"
         address: "Endereço"
+        street: 'Rua'
+        number: 'Número'
+        city: 'Cidade'
+        neighborhood: 'Bairro'
+        state: 'Estado'
+        municipality: 'UF'
+        zip_code: 'CEP'
+        description: 'Descrição'
+        priority_subjects: 'Sujeito prioritário'
+        conflict_types: 'Tema gerador'
         rich_description: "Descrição"
         unity_type: "Tipo"
         category: "Categoria"
