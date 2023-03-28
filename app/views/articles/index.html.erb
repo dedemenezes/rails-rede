@@ -16,7 +16,10 @@
             Filtros
             <%= image_tag 'filter-icon-2.png', width: '12px' %>
           </button>
-          <div class="" data-controller="checkbox-list">
+          <div class=""
+               data-controller="checkbox-list"
+               data-checkbox-list-count-text-value="selecionado">
+            <span data-checkbox-list-target="count"></span>
             <%= form_with url: articles_path,  method: :get, html: { class: '' } do |f| %>
               <% Tag.all.each do |tag| %>
                 <% name = tag.name.gsub(' ', '').downcase %>
@@ -26,6 +29,7 @@
                                   params[name],
                                   name: "search[#{name}]",
                                   data: {
+                                    action: 'change->checkbox-list#onCheck',
                                     checkbox_list_target: 'checkbox'
                                   },
                                   checked: (true if params[:search].present? && params[:search][name].present?) %>

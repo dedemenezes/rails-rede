@@ -3,6 +3,7 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: %i[show]
 
   def index
+    # binding.break
     if params[:tags].present?
       tags_ids = Tag.where(name: params[:tags]).map{ |tag| tag.id }
       @articles = policy_scope(Article).joins(:taggings, :tags).where(taggings: { tag_id: tags_ids }).to_a.sort_by(&:updated_at).reverse
