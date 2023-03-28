@@ -100,9 +100,16 @@ pt-BR:
         published: 'publicado'
         featured: 'destaque'
         created_at: 'criado em'
+        rich_body: 'Corpo'
+        writer: 'Autor'
         updated_at: 'atualizado em'
         updated_at_readable: 'atualizado em'
     errors:
+      models:
+        article:
+          attributes:
+            writer:
+              blank: "%{attribute} não pode ficar em BRANCO"
       messages:
         record_invalid: 'A validação falhou: %{errors}'
         restrict_dependent_destroy:

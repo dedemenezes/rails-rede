@@ -28,7 +28,7 @@
              data-display-button-on-hover-writer-type-value="<%= article.current_writer_type %>">
           <div class="row">
             <div class="col-12">
-              <p class="mb-2">Pertence a:</p>
+              <p class="mb-2"><%= Article.human_attribute_name(:writer) %></p>
               <% if article.errors.include?(:writer) %>
                 <p class="invalid-feedback d-block"><%= article.errors[:writer].first  %></p>
               <% end %>
@@ -105,6 +105,6 @@
     </p>
   </div>
   <%= f.input :sub_header %>
-  <%= f.rich_text_area :rich_body %>
+  <%= f.input :rich_body, as: :rich_text_area %>
   <%= render 'dashboard/shared/form/submit_cancel', element: article, form: f %>
 <% end %>
