@@ -11,5 +11,35 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe MetaTagsHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe '#meta_title' do
+    context 'when used with content_for' do
+      it 'return the correct title' do
+        content_for :meta_title, 'Gabigol'
+        # binding.break
+        expect(meta_title).to eq("Gabigol")
+      end
+    end
+    context 'when not used with content_for' do
+      it 'return the correct title' do
+        # binding.break
+        expect(meta_title).to eq(DEFAULT_META["meta_title"])
+      end
+    end
+  end
+
+  describe '#meta_description' do
+    context 'when used with content_for' do
+      it 'return the correct description' do
+        content_for :meta_description, 'Gabigol'
+        # binding.break
+        expect(meta_description).to eq("Gabigol")
+      end
+    end
+    context 'when not used with content_for' do
+      it 'return the correct description' do
+        # binding.break
+        expect(meta_description).to eq(DEFAULT_META["meta_description"])
+      end
+    end
+  end
 end

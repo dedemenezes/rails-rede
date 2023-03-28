@@ -1,4 +1,5 @@
 class Album < ApplicationRecord
+  validates :name, uniqueness: { scope: :gallery }
   belongs_to :gallery
   has_many_attached :photos
   has_one_attached :banner

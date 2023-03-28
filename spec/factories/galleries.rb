@@ -1,7 +1,6 @@
 FactoryBot.define do
   factory :gallery do
-    name { "MyString" }
-    observatory { nil }
-    category { "MyString" }
+    name { "Gallery" }
+    association :observatory, factory: :ninho_do_urubu
   end
 end
