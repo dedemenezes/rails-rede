@@ -1,9 +1,7 @@
 <% form_path_ready =  params[:controller].match?(/dashboard/) ? [:dashboard, observatory] : observatory %>
 <%= simple_form_for form_path_ready,
                     html: { class: 'row my-3' } do |f| %>
-  <%= f.input :published, label: 'Publicado' %>
   <%= f.input :name,
-              label: "Name",
               placeholder: 'PEA - Arraial do Cabo',
               wrapper_html: { class: 'input-group mb-3 row ' },
               label_html: { class: 'input-group-text mb-0 col-2 flex-end' },
@@ -11,7 +9,6 @@
   <div class="row">
     <div class="col-8">
       <%= f.input :email,
-                  label: 'Email',
                   placeholder: 'email@example.tld',
                   wrapper_html: { class: 'input-group mb-3 row ' },
                   label_html: { class: 'input-group-text mb-0 col-2 flex-end' },
@@ -19,7 +16,6 @@
     </div>
     <div class="col-4">
       <%= f.input :phone_number,
-                  label: 'Telefone',
                   wrapper_html: { class: 'input-group mb-3 row ' },
                   label_html: { class: 'input-group-text mb-0 col-4 flex-end' },
                   input_html: { class: 'col-10 form-control' }  %>
@@ -87,7 +83,6 @@
       <div class="col-2">
         <%= f.input :municipality,
                     wrapper_html: { class: 'input-group mb-3 row ' },
-                    label: 'UF',
                     label_html: { class: 'input-group-text mb-0 col-6 flex-end' },
                     input_html: {
                       class: 'col-6 form-control',
@@ -99,7 +94,6 @@
       <div class="col-4">
         <%= f.input :zip_code,
                     wrapper_html: { class: 'input-group mb-3 row ' },
-                    label: 'CEP',
                     label_html: { class: 'input-group-text mb-0 col-3 flex-end' },
                     input_html: {
                       class: 'col-9 form-control',
