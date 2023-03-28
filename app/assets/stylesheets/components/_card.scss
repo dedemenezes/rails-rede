@@ -136,6 +136,10 @@
   }
 }
 
+.mb-childs > *:not(:last-child) {
+  margin-bottom: .725rem;
+}
+
 // ARTICLE
 @media (max-width: 1200px) {
   .mb-childs > *:not(:last-child) {

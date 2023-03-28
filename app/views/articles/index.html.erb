@@ -56,46 +56,52 @@
       </div>
     <% end %>
 
-    <% if Article.any_present? %>
+    <% if @articles.empty? %>
+      <h6>'Sem artigos no momento...'</h6>
+    <% else %>
       <div class="articles__recent">
         <div class="row mb-3 mb-lg-4">
-          <div class="col-12 col-xl-6 article--main mb-3 mb-xl-0">
-            <%= link_to article_path(@featured_article), class: 'text-reset' do %>
-              <%= render 'article_card', article: @featured_article, min_height: '', highlight: true if @featured_article %>
-            <% end %>
-          </div>
-
-          <div class="col-12 col-xl-6">
-            <div class="d-flex flex-column justify-content-between h-100 mb-childs">
-              <% @recent_articles.each_with_index do |article, index| %>
-                <% index += 1 %>
-                <%= link_to article_path(article), class: 'reveal', data: { scroll_reveal_target: 'item' } do %>
-                  <div class="article__recent_new">
-                    <div class="card__image-bg card__image-bg--recent"
-                        style="background-image: url(<%= display_banner_as_background(article) %>);">
-                    </div>
-                    <div class="article__info px-3 py-2 py-lg-3 pe-lg-3">
-                      <div class="info__header d-flex align-items-center gap-3 mb-2">
-                        <small><%= article.created_at.strftime('%d.%m.%Y') %></small>
-                        <% article.tags.each_with_index do |tag, index| %>
-                          <small class="tag"><%= tag.name %></small>
-                        <% end %>
-                      </div>
-                      <h5 class="text-reset mb-lg-0 fs-6"><%= article.header.truncate(81) %></h5>
-                    </div>
-                  </div>
+          <% @articles.each_with_index do |article, index| %>
+            <% if index.zero? %>
+              <div class="col-12 col-xl-6 article--main mb-3 mb-xl-0">
+                <%= link_to article_path(article), class: 'text-reset' do %>
+                  <%= render 'article_card', article: article, min_height: '', highlight: true %>
                 <% end %>
+              </div>
+              <div class="col-12 col-xl-6">
+                <div class="d-flex flex-column h-100 mb-childs <%= 'justify-content-between' if @articles.size > 5 %>">
+            <% elsif index.positive? && index < 5 %>
+                  <%= link_to article_path(article), class: 'reveal', data: { scroll_reveal_target: 'item' } do %>
+                    <div class="article__recent_new">
+                      <div class="card__image-bg card__image-bg--recent"
+                          style="background-image: url(<%= display_banner_as_background(article) %>);">
+                      </div>
+                      <div class="article__info px-3 py-2 py-lg-3 pe-lg-3">
+                        <div class="info__header d-flex align-items-center gap-3 mb-2">
+                          <small><%= article.updated_at.strftime('%d.%m.%Y') %></small>
+                          <% article.tags.each_with_index do |tag, index| %>
+                            <small class="tag"><%= tag.name %></small>
+                          <% end %>
+                        </div>
+                        <h5 class="text-reset mb-lg-0 fs-6"><%= article.header.truncate(81) %></h5>
+                      </div>
+                    </div>
+                  <% end %>
+            <% else %>
+               <% if index == 5 %>
+                </div>
+              </div>
+              <div class="row mt-4">
+               <% end %>
+                <div class="col-12 col-sm-6 col-md-4 article--list mb-4">
+                  <%#= link_to article_path(article), class: 'text-reset' do %>
+                    <%= render 'article_card', article: article, highlight: false, min_height: 'full-height' %>
+                  <%# end %>
+                </div>
+              <% if index == @articles.count - 1 %>
+                </div>
               <% end %>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <% @articles.each do |article| %>
-            <div class="col-12 col-sm-6 col-md-4 article--list mb-4">
-              <%#= link_to article_path(article), class: 'text-reset' do %>
-                <%= render 'article_card', article: article, highlight: false, min_height: 'full-height' %>
-              <%# end %>
-            </div>
+            <% end %>
           <% end %>
         </div>
       </div>

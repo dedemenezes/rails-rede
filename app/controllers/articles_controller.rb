@@ -3,19 +3,23 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: %i[show]
 
   def index
-    # binding.break
-    if params[:tags].present?
-      tags_ids = Tag.where(name: params[:tags]).map{ |tag| tag.id }
-      @articles = policy_scope(Article).joins(:taggings, :tags).where(taggings: { tag_id: tags_ids }).to_a.sort_by(&:updated_at).reverse
-      # @featured_article = @articles.select(&:featured).first
-      # @featured_article = @articles.first if @featured_article.nil?
-      # @recent_articles = @articles.slice!(1, 5)
-      # @articles = [] if @articles.size == 1
+    if params[:search].present?
+      tags = []
+      params[:search].each do |name, dom_id|
+        tags << Tag.find(dom_id.split('_').last)
+      end
+      @articles = policy_scope(Article)
+                  .includes(:tags, banner_attachment: :blob)
+                  .joins(:taggings, :tags)
+                  .where(taggings: { tag_id: tags.map(&:id) })
+                  .order(updated_at: :desc)
     else
       @articles = policy_scope(Article).all_but_featured
-      @featured_article = Article.includes(:tags, banner_attachment: :blob).featured
-      @recent_articles = Article.includes(:tags, banner_attachment: :blob).where(published: true, featured: false).order(updated_at: :desc).limit(4)
-      @articles = Article.includes(:tags, banner_attachment: :blob).where(published: true, featured: false).order(updated_at: :desc).offset(4)
+      featured_article = Article.includes(:tags, banner_attachment: :blob).featured
+      all_but_featured = Article.includes(:tags, banner_attachment: :blob).where(published: true, featured: false).order(updated_at: :desc)
+      recent_articles = all_but_featured.limit(4)
+      articles = all_but_featured.offset(4)
+      @articles = [featured_article, recent_articles, articles].flatten
     end
   end
 
