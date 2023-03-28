@@ -1,5 +1,6 @@
 FactoryBot.define do
-  factory :project do
-    name { "MyString" }
+  factory :rede, class: "Project" do
+    name { "Rede Observacao" }
+    banner_text { "Rede ObservacaoRede ObservacaoRede ObservacaoRede Observacao" }
   end
 end
