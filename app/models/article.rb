@@ -22,7 +22,9 @@ class Article < ApplicationRecord
   # acts_as_taggable_on :tags
 
   def self.dashboard_headers
-    %w[id banner header tags\ name featured? published? observatory\ name]
+
+    to_permit = %w[id header]
+    attribute_names.select { |a| to_permit.include?(a) }.push(%w[featured? published]).flatten.insert(1, 'banner')
   end
 
   def self.featured

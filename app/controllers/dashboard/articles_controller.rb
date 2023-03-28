@@ -4,7 +4,7 @@ class Dashboard::ArticlesController < ApplicationController
   before_action :set_article, only: %i[edit destroy]
 
   def index
-    @articles = policy_scope(Article, policy_scope_class: Dashboard::UserPolicy::Scope).includes(:observatory, :tags, banner_attachment: :blob).order(id: :desc)
+    @articles = policy_scope(Article, policy_scope_class: Dashboard::UserPolicy::Scope).includes(banner_attachment: :blob).order(id: :desc)
   end
 
   def new
@@ -14,9 +14,8 @@ class Dashboard::ArticlesController < ApplicationController
   def create
     @article = Article.new(article_params)
     ArticleWriter.set_article_writer(params, @article)
-    SetTags.tagging(@article, params)
-
     if @article.save
+      SetTags.tagging(@article, params)
       redirect_to dashboard_articles_path
     else
       render :new, status: :unprocessable_entity

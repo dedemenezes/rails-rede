@@ -12,7 +12,11 @@ class Album < ApplicationRecord
   end
 
   def self.dashboard_headers
-    %w[id banner name number\ of\ photos gallery\ name published?]
+    to_permit = %w[id name]
+    attribute_names.select { |a| to_permit.include?(a) }
+                   .push(%w[gallery\ name published updated_at])
+                   .flatten
+                   .insert(1, 'banner')
   end
 
   def number_of_photos

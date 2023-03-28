@@ -1,5 +1,8 @@
 ---
 pt-BR:
+  actions: 'Ações'
+  featured: 'Destaque'
+  gallery_name: 'Galeria'
   dropdown_action: "Ação"
   activerecord:
     models:
@@ -50,13 +53,63 @@ pt-BR:
         category: "Categoria"
         priority_type: "Prioridadde"
         conflict_type: "Conflito"
+        published: 'publicado'
+        created_at: 'criado em'
+        updated_at: 'atualizado em'
       project:
-          name: "Nome"
-          banner_text: "Banner"
-          slide_one_subtitle: "Legenda slide um"
-          slide_two_subtitle: "Legenda slide dois"
-          slide_three_subtitle: "Legenda slide três"
+        name: "Nome"
+        banner_text: "Texto banner"
+        slide_one_subtitle: "Legenda slide um"
+        slide_two_subtitle: "Legenda slide dois"
+        slide_three_subtitle: "Legenda slide três"
+      methodology:
+        name: "Nome"
+        created_at: 'criado em'
+        updated_at: 'atualizado em'
+      conflict_type:
+        name: "Nome"
+        created_at: 'criado em'
+        updated_at: 'atualizado em'
+      priority_type:
+        name: "Nome"
+        created_at: 'criado em'
+        updated_at: 'atualizado em'
+        updated_at_readable: 'atualizado em'
+      tag:
+        name: "Nome"
+        created_at: 'criado em'
+        updated_at: 'atualizado em'
+        updated_at_readable: 'atualizado em'
+      gallery:
+        name: "Nome"
+        created_at: 'criado em'
+        category: 'pertence a'
+        published: 'publicado'
+        updated_at: 'atualizado em'
+        updated_at_readable: 'atualizado em'
+      album:
+        name: "Nome"
+        created_at: 'criado em'
+        category: 'pertence a'
+        published: 'publicado'
+        updated_at: 'atualizado em'
+        updated_at_readable: 'atualizado em'
+      article:
+        header: "Título"
+        sub_header: "Sub título"
+        published: 'publicado'
+        featured: 'destaque'
+        created_at: 'criado em'
+        rich_body: 'Corpo'
+        writer: 'Autor'
+        updated_at: 'atualizado em'
+        updated_at_readable: 'atualizado em'
     errors:
+      models:
+        article:
+          attributes:
+            writer:
+              blank: "%{attribute} não pode ficar em BRANCO"
       messages:
         record_invalid: 'A validação falhou: %{errors}'
         restrict_dependent_destroy:
