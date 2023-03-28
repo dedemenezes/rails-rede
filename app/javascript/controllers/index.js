@@ -16,6 +16,9 @@ application.register("article-highlight", ArticleHighlightController)
 import CharacterCounter from 'stimulus-character-counter'
 application.register('character-counter', CharacterCounter)
 
+import CheckboxListController from "./checkbox_list_controller"
+application.register("checkbox-list", CheckboxListController)
+
 import DisplayButtonOnHoverController from "./display_button_on_hover_controller"
 application.register("display-button-on-hover", DisplayButtonOnHoverController)
 
