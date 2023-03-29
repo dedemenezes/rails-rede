@@ -16,4 +16,8 @@ export default class extends Controller {
       this.iconTarget.style.transform = transformDegrees
     }
   }
+
+  close() {
+    this.toggle()
+  }
 }

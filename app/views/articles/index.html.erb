@@ -20,6 +20,9 @@
                 data-controller="checkbox-list"
                 data-checkbox-list-count-text-value="selecionado"
                 data-reveal-on-click-target="dropdown">
+              <div class="drop__down__close" data-action='click->reveal-on-click#toggle'>
+                <%= image_tag 'close-icon.svg', width: '12px' %>
+              </div>
               <div data-controller="reveal-on-click">
                 <div class="d-flex align-items-center gap-3 hover-cursor"
                      data-action="click->reveal-on-click#toggle">
