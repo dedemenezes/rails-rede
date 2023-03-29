@@ -6,7 +6,7 @@
     <div class="card__image <%= highlight ? "card__image--highlight" : "" %>" style='background-image:url(<%= display_banner_as_background(article) %>); background-size: cover; background-position: center;'></div>
     <div class="article__card__content">
       <div class="card__content__header d-flex justify-cotent-start gap-2">
-        <small><%= article.created_at.strftime('%d.%m.%Y') %></small>
+        <small><%= article.updated_at.strftime('%d.%m.%Y') %></small>
         <%# <small>= article.tags.first.name</small> %>
         <div class="home_article_tags gap-2">
           <% article.tags.each_with_index do |tag, index| %>

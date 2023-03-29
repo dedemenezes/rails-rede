@@ -32,6 +32,40 @@ h5 {
   top: -11%;
 }
 
+.text-header {
+  font-family: $headers-font;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: $primary
+}
+
+.hidden__el {
+  opacity: 0;
+  // visibility: hidden;
+}
+.show__el, .active {
+  opacity: 1;
+  visibility: visible;
+}
+
+form.hidden__el {
+  visibility: hidden;
+  transition: visibility .2s ease-in-out;
+  position: absolute;
+}
+
+form.hidden__el.active {
+  margin-top: .7625rem;
+  visibility:visible !important;
+  position: initial;
+}
+
+.hover-cursor {
+  cursor: pointer;
+}
+
 @media (min-width: 768px) {
   .about__bottom__wave {
     bottom: -6%;

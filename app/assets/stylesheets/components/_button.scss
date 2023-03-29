@@ -55,6 +55,7 @@
   align-items: center !important;
   justify-content: center !important;
   border: 1px solid rgba(8, 52, 97, 0.1) !important;
+  z-index: 100;
 }
 
 .btn-rede-light--small {
@@ -80,6 +81,15 @@
       opacity: .9;
     }
   }
+}
+
+.btn-icon.active {
+  background: rgba(8, 52, 97, 0.1);
+  border: 2px solid rgba(8, 52, 97, 0.1);
+  box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.1);
+  z-index: 7;
+  position: relative;
+  margin-bottom: 8px;
 }
 
 .btn-icon--square {
@@ -186,5 +196,21 @@
 }
 
 .rede-link--footer:hover {
-  color: $r-blue-l !important;
+  color: white !important;
+}
+
+.btn-bd-light {
+  --bs-btn-font-weight: 600;
+  --bs-btn-color: #083461;
+  --bs-btn-bg: white;
+  --bs-btn-border-color: rgba(8, 52, 97, 0.1)
+  --bs-btn-border-radius: .5rem;
+  --bs-btn-hover-color: #083461;
+  --bs-btn-hover-bg: white;
+  --bs-btn-hover-border-color: rgba(8, 52, 97, 0.5);;
+  --bs-btn-focus-shadow-rgb: rgb(255, 255, 255);
+  --bs-btn-active-color: var(--bs-btn-hover-color);
+  --bs-btn-active-bg: #{shade-color(#fff, 20%)};
+  --bs-btn-active-border-color: #{shade-color(#fff, 20%)};
+  border: 2px solid var(--bs-btn-border-color);
 }

@@ -1,0 +1,50 @@
+.drop__down {
+  position: relative;
+}
+
+.dropdown__icon {
+  transform: rotate(-90deg);
+}
+
+.drop__down__card {
+  position: absolute;
+  background-color: white;
+  padding: 21px 31px;
+  right: 0;
+  box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  z-index: 7;
+  transition:all .5s ease-in-out;
+}
+
+.drop__down__counter {
+  white-space: nowrap;
+}
+
+.drop__down__options {
+  height: 160px;
+  overflow-y: scroll;
+  overflow-x: auto;
+}
+
+.drop__down__card.active {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.drop__down__close {
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* width: 20px; */
+  /* height: 20px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid $r-light-gray-d;
+  border-bottom-right-radius: 5px;
+  border-bottom: 1px solid $r-light-gray-d;
+  padding: 6px;
+  // box-shadow: 1px 1px 1px rgba(0, 0, 0, .1);
+  cursor: pointer;
+}

@@ -136,6 +136,10 @@
   }
 }
 
+.mb-childs > *:not(:last-child) {
+  margin-bottom: .725rem;
+}
+
 // ARTICLE
 @media (max-width: 1200px) {
   .mb-childs > *:not(:last-child) {
@@ -250,7 +254,7 @@
   align-items: center;
 }
 
-small.tag {
+small.tag, small > .tag {
   text-transform: uppercase;
   font-weight: 500;
   font-size: 8px;
