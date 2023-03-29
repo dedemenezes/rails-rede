@@ -6,7 +6,7 @@
   position: absolute;
   background-color: white;
   padding: 21px 31px;
-  left: 0;
+  right: 0;
   box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   z-index: 7;
@@ -14,4 +14,11 @@
 
 .drop__down__counter {
   white-space: nowrap;
+}
+
+.drop__down__options {
+  height: 160px;
+  overflow-y: scroll;
+  overflow-x: auto;
+
 }

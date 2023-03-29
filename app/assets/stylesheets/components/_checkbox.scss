@@ -47,3 +47,7 @@ input[type="checkbox"]:checked {
   letter-spacing: 1.25px;
   line-height: 1rem;
 }
+
+.search__input--checkbox:not(:last-child) {
+  margin-bottom: 1rem;
+}
