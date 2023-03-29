@@ -8,32 +8,37 @@
       <div class="col-12 mt-3">
         <div class="d-flex justify-content-between align-items-center border border-news border-5 border-end-0 border-top-0 border-bottom-0 ps-4">
           <h1>Notícias</h1>
-          <button class="btn-icon d-none d-md-block" data-overlay-menu-target='btn' data-action="click->overlay-menu#toggle">
-            Filtros
-            <%= image_tag 'filter-icon-2.png', width: '12px' %>
-          </button>
-          <div class=""
-               data-controller="checkbox-list"
-               data-checkbox-list-count-text-value="selecionado">
-            <span data-checkbox-list-target="count"></span>
-            <%= form_with url: articles_path,  method: :get, html: { class: '' } do |f| %>
-              <% Tag.all.each do |tag| %>
-                <% name = tag.name.gsub(' ', '').downcase %>
-                <%= label_tag "search[#{name}]", tag.name %>
-                <%= check_box_tag "search[#{name}]",
-                                  dom_id(tag),
-                                  params[name],
-                                  name: "search[#{name}]",
-                                  data: {
-                                    action: 'change->checkbox-list#onCheck',
-                                    checkbox_list_target: 'checkbox'
-                                  },
-                                  checked: (true if params[:search].present? && params[:search][name].present?) %>
+          <div class="drop__down">
+            <button class="btn-icon d-none d-md-block" data-overlay-menu-target='btn' data-action="click->overlay-menu#toggle">
+              Filtros
+              <%= image_tag 'filter-icon-2.png', width: '12px' %>
+            </button>
+            <div class="drop__down__card"
+                data-controller="checkbox-list"
+                data-checkbox-list-count-text-value="selecionado">
+              <span class="drop__down__counter" data-checkbox-list-target="count"></span>
+              <%= form_with url: articles_path,  method: :get, html: { class: '' } do |f| %>
+                <% Tag.all.each do |tag| %>
+                  <% name = tag.name.gsub(' ', '').downcase %>
+                  <div class="search__input--checkbox">
+                    <%= label_tag "search[#{name}]", tag.name %>
+                    <%= check_box_tag "search[#{name}]",
+                                      dom_id(tag),
+                                      params[name],
+                                      name: "search[#{name}]",
+                                      data: {
+                                        action: 'change->checkbox-list#onCheck',
+                                        checkbox_list_target: 'checkbox'
+                                      },
+                                      checked: (true if params[:search].present? && params[:search][name].present?) %>
+                    <span class="rede-checkbox"></span>
+                  </div>
+                <% end %>
+                <%= f.submit %>
               <% end %>
-              <%= f.submit %>
-            <% end %>
-            <%= link_to 'Limpar', '#', data: { action: 'click->checkbox-list#checkNone' } %>
-            <%= link_to 'Selecionar todas', '#', data: { action: 'click->checkbox-list#checkAll' } %>
+              <%= link_to 'Limpar', '#', data: { action: 'click->checkbox-list#checkNone' } %>
+              <%= link_to 'Selecionar todas', '#', data: { action: 'click->checkbox-list#checkAll' } %>
+            </div>
           </div>
         </div>
       </div>

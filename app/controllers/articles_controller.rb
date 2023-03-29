@@ -9,7 +9,7 @@ class ArticlesController < ApplicationController
         tags << Tag.find(dom_id.split('_').last)
       end
       @articles = policy_scope(Article)
-                  .includes(:tags, banner_attachment: :blob)
+                  .includes(:tags, :rich_text_rich_body, banner_attachment: :blob)
                   .joins(:taggings, :tags)
                   .where(taggings: { tag_id: tags.map(&:id) })
                   .order(updated_at: :desc)
