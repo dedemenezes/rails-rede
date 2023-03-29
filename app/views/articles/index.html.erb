@@ -8,41 +8,54 @@
       <div class="col-12 mt-3">
         <div class="d-flex justify-content-between align-items-center border border-news border-5 border-end-0 border-top-0 border-bottom-0 ps-4">
           <h1>Notícias</h1>
-          <div class="drop__down">
-            <button class="btn-icon d-none d-md-flex" data-overlay-menu-target='btn' data-action="click->overlay-menu#toggle">
+          <div class="drop__down" data-controller='reveal-on-click'>
+            <button class="btn-icon d-none d-md-flex"
+                    data-overlay-menu-target='btn'
+                    data-action="click->reveal-on-click#toggle"
+                    data-reveal-on-click-target='button'>
               Filtros
-              <%= image_tag 'sidearrow.svg', width: '12px', style: 'transform: rotate(-90deg);' %>
+              <%= image_tag 'sidearrow.svg', width: '12px', class: 'dropdown__icon', data: { reveal_on_click_target: 'icon' } %>
             </button>
-            <div class="drop__down__card"
+            <div class="drop__down__card hidden__el"
                 data-controller="checkbox-list"
-                data-checkbox-list-count-text-value="selecionado">
-              <%= form_with url: articles_path,  method: :get, html: { class: '' } do |f| %>
-                <p class="text-header">Observatórios</p>
-                <div class="drop__down__options">
-                  <small class="drop__down__counter" data-checkbox-list-target="count"></small>
-                  <% Tag.all.each do |tag| %>
-                    <% name = tag.name.gsub(' ', '').downcase %>
-                    <div class="search__input--checkbox">
-                      <%= label_tag "search[#{name}]" do %>
-                        <%= check_box_tag "search[#{name}]",
-                                          dom_id(tag),
-                                          params[name],
-                                          name: "search[#{name}]",
-                                          data: {
-                                            action: 'change->checkbox-list#onCheck',
-                                            checkbox_list_target: 'checkbox'
-                                          },
-                                          checked: (true if params[:search].present? && params[:search][name].present?) %>
-                        <%= tag.name %>
-                      <% end %>
-                      <%# <span class="rede-checkbox"></span> %>
-                    </div>
-                  <% end %>
+                data-checkbox-list-count-text-value="selecionado"
+                data-reveal-on-click-target="dropdown">
+              <div data-controller="reveal-on-click">
+                <div class="d-flex align-items-center gap-3 hover-cursor"
+                     data-action="click->reveal-on-click#toggle">
+                  <p class="text-header mb-0"
+                     data-reveal-on-click-target='button'>Observatórios</p>
+                  <%= image_tag 'sidearrow.svg', width: '12px', class: "#{'dropdown__icon' unless params[:search].present?}", data: { reveal_on_click_target: 'icon' } %>
                 </div>
-                <%= f.submit %>
-              <% end %>
-              <%= link_to 'Limpar', '#', data: { action: 'click->checkbox-list#checkNone' } %>
-              <%= link_to 'Selecionar todas', '#', data: { action: 'click->checkbox-list#checkAll' } %>
+                <%= form_with url: articles_path,  method: :get, html: { class: "hidden__el #{'active' if params[:search].present?}", data: { reveal_on_click_target: 'dropdown' } } do |f| %>
+                  <div class="drop__down__options">
+                    <small class="drop__down__counter" data-checkbox-list-target="count"></small>
+                    <% Tag.all.each do |tag| %>
+                      <% name = tag.name.gsub(' ', '').downcase %>
+                      <div class="search__input--checkbox">
+                        <%= label_tag "search[#{name}]" do %>
+                          <%= check_box_tag "search[#{name}]",
+                                            dom_id(tag),
+                                            params[name],
+                                            name: "search[#{name}]",
+                                            data: {
+                                              action: 'change->checkbox-list#onCheck',
+                                              checkbox_list_target: 'checkbox'
+                                            },
+                                            checked: (true if params[:search].present? && params[:search][name].present?) %>
+                          <%= tag.name %>
+                        <% end %>
+                        <%# <span class="rede-checkbox"></span> %>
+                      </div>
+                    <% end %>
+                  </div>
+                  <%= f.submit %>
+                  <div class="d-flex align-items-center gap-2" style="font-size: .9rem;">
+                    <%= link_to 'Limpar', '#', data: { action: 'click->checkbox-list#checkNone' } %>
+                    <%= link_to 'Selecionar todas', '#', data: { action: 'click->checkbox-list#checkAll' } %>
+                  </div>
+                <% end %>
+              </div>
             </div>
           </div>
         </div>

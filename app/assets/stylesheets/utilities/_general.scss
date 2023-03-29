@@ -41,6 +41,29 @@ h5 {
   color: $primary
 }
 
+.hidden__el {
+  opacity: 0;
+  // visibility: hidden;
+}
+.show__el, .active {
+  opacity: 1;
+  visibility: visible;
+}
+
+form.hidden__el {
+  height: 0;
+  transition: all .2s ease-in-out;
+}
+
+form.hidden__el.active {
+  margin-top: .7625rem;
+  height: fit-content !important;
+}
+
+.hover-cursor {
+  cursor: pointer;
+}
+
 @media (min-width: 768px) {
   .about__bottom__wave {
     bottom: -6%;
