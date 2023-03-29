@@ -21,17 +21,19 @@
                 <% Tag.all.each do |tag| %>
                   <% name = tag.name.gsub(' ', '').downcase %>
                   <div class="search__input--checkbox">
-                    <%= label_tag "search[#{name}]", tag.name %>
-                    <%= check_box_tag "search[#{name}]",
-                                      dom_id(tag),
-                                      params[name],
-                                      name: "search[#{name}]",
-                                      data: {
-                                        action: 'change->checkbox-list#onCheck',
-                                        checkbox_list_target: 'checkbox'
-                                      },
-                                      checked: (true if params[:search].present? && params[:search][name].present?) %>
-                    <span class="rede-checkbox"></span>
+                    <%= label_tag "search[#{name}]" do %>
+                      <%= check_box_tag "search[#{name}]",
+                                        dom_id(tag),
+                                        params[name],
+                                        name: "search[#{name}]",
+                                        data: {
+                                          action: 'change->checkbox-list#onCheck',
+                                          checkbox_list_target: 'checkbox'
+                                        },
+                                        checked: (true if params[:search].present? && params[:search][name].present?) %>
+                      <%= tag.name %>
+                    <% end %>
+                    <%# <span class="rede-checkbox"></span> %>
                   </div>
                 <% end %>
                 <%= f.submit %>

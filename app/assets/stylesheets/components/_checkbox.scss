@@ -1,65 +1,105 @@
-.search__input--checkbox {
-  position: relative;
+// .search__input--checkbox {
+//   position: relative;
+// }
+
+// .search__input--checkbox input {
+//   position: absolute;
+//   visibility: hidden;
+//   cursor: pointer;
+// }
+
+
+
+
+// .search__input--checkbox .rede-checkbox {
+//   position: absolute;
+//   top: 0;
+//   left: 100%;
+//   height: 22px;
+//   width: 22px;
+//   background-color: transparent;
+//   border-radius: 5px;
+//   border: 1px solid $r-blue-l;
+// }
+
+// .search__input--checkbox .rede-checkbox::after {
+//   position: absolute;
+//   content: "";
+//   left: 100%;
+//   top: 0;
+//   height: 0px;
+//   width: 0px;
+//   border-radius: 5px;
+//   border: solid $primary;
+//   border-width: 0 3px 3px 0;
+//   -webkit-transform: rotate(0deg) scale(0);
+//   -ms-transform: rotate(0deg) scale(0);
+//   transform: rotate(0deg) scale(0);
+//   opacity: 1;
+// }
+
+// .search__input--checkbox input:checked ~ .rede-checkbox {
+//   background-color: $white;
+//   border-radius: 5px;
+//   -webkit-transform: rotate(0deg) scale(1);
+//   -ms-transform: rotate(0deg) scale(1);
+//   transform: rotate(0deg) scale(1);
+//   opacity: 1;
+//   border: 2ox solid $primary;
+// }
+
+// .search__input--checkbox input:checked ~ .rede-checkbox::after {
+//   -webkit-transform: rotate(45deg) scale(1);
+//   -ms-transform: rotate(45deg) scale(1);
+//   transform: rotate(45deg) scale(1);
+//   opacity: 1;
+//   left: 8px;
+//   top: 3px;
+//   width: 6px;
+//   height: 12px;
+//   border: solid $r-blue-l;
+//   border-width: 0 2px 2px 0;
+//   background-color: $white;
+//   border-radius: 0;
+
+// }
+
+
+// V2
+input[type="checkbox"] {
+  margin: 0;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  margin: 0;
+  font: inherit;
+  color: currentColor;
+  width: 1.15em;
+  height: 1.15em;
+  border: .15em solid currentColor;
+  border-radius: .15em;
+  // transform: translateY(-0.075em);
+
+  display: grid;
+  place-content: center;
 }
 
-.search__input--checkbox input {
-  position: absolute;
-  visibility: hidden;
-  cursor: pointer;
-}
-
-
-
-
-.search__input--checkbox .rede-checkbox {
-  position: absolute;
-  top: 0;
-  left: 100%;
-  height: 22px;
-  width: 22px;
-  background-color: transparent;
-  border-radius: 5px;
-  border: 1px solid $r-blue-l;
-}
-
-.search__input--checkbox .rede-checkbox::after {
-  position: absolute;
+input[type="checkbox"]::before {
   content: "";
-  left: 100%;
-  top: 0;
-  height: 0px;
-  width: 0px;
-  border-radius: 5px;
-  border: solid $primary;
-  border-width: 0 3px 3px 0;
-  -webkit-transform: rotate(0deg) scale(0);
-  -ms-transform: rotate(0deg) scale(0);
-  transform: rotate(0deg) scale(0);
-  opacity: 1;
+  width: 0.65em;
+  height: 0.65em;
+  transform: scale(0);
+  transition: .12s transform ease-in-out;
+  box-shadow: inset 1em 1em $r-blue-l;
 }
 
-.search__input--checkbox input:checked ~ .rede-checkbox {
-  background-color: $white;
-  border-radius: 5px;
-  -webkit-transform: rotate(0deg) scale(1);
-  -ms-transform: rotate(0deg) scale(1);
-  transform: rotate(0deg) scale(1);
-  opacity: 1;
-  border: 2ox solid $primary;
+input[type="checkbox"]:checked::before {
+  transform: scale(1);
 }
 
-.search__input--checkbox input:checked ~ .rede-checkbox::after {
-  -webkit-transform: rotate(45deg) scale(1);
-  -ms-transform: rotate(45deg) scale(1);
-  transform: rotate(45deg) scale(1);
-  opacity: 1;
-  left: 8px;
-  top: 3px;
-  width: 6px;
-  height: 12px;
-  border: solid $r-blue-l;
-  border-width: 0 2px 2px 0;
-  background-color: $white;
-  border-radius: 0;
-
+.search__input--checkbox label {
+  display: grid;
+  grid-template-columns: 1em auto;
+  gap: .5em;
+  align-items: center;
 }
