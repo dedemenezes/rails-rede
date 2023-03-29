@@ -32,7 +32,7 @@
                 </div>
                 <%= form_with url: articles_path,  method: :get, html: { class: "hidden__el #{'active' if params[:search].present?}", data: { reveal_on_click_target: 'dropdown' } } do |f| %>
                   <div class="drop__down__options">
-                    <small class="drop__down__counter" data-checkbox-list-target="count"></small>
+                    <%# <small class="drop__down__counter" data-checkbox-list-target="count"></small> %>
                     <% Tag.all.each do |tag| %>
                       <% name = tag.name.gsub(' ', '').downcase %>
                       <div class="search__input--checkbox">
@@ -52,10 +52,11 @@
                       </div>
                     <% end %>
                   </div>
-                  <%= f.submit %>
                   <div class="d-flex align-items-center gap-2" style="font-size: .9rem;">
-                    <%= link_to 'Limpar', '#', data: { action: 'click->checkbox-list#checkNone' } %>
-                    <%= link_to 'Selecionar todas', '#', data: { action: 'click->checkbox-list#checkAll' } %>
+                    <%= f.submit 'Pesquisar', class: 'btn btn-primary' %>
+                    <small>
+                      <%= link_to 'Limpar', '#', class: 'btn btn-bd-light', data: { action: 'click->checkbox-list#checkNone' } %>
+                    </small>
                   </div>
                 <% end %>
               </div>

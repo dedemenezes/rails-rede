@@ -254,7 +254,7 @@
   align-items: center;
 }
 
-small.tag {
+small.tag, small > .tag {
   text-transform: uppercase;
   font-weight: 500;
   font-size: 8px;

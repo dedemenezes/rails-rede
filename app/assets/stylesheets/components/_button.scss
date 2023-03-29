@@ -198,3 +198,19 @@
 .rede-link--footer:hover {
   color: white !important;
 }
+
+.btn-bd-light {
+  --bs-btn-font-weight: 600;
+  --bs-btn-color: #083461;
+  --bs-btn-bg: white;
+  --bs-btn-border-color: rgba(8, 52, 97, 0.1)
+  --bs-btn-border-radius: .5rem;
+  --bs-btn-hover-color: #083461;
+  --bs-btn-hover-bg: white;
+  --bs-btn-hover-border-color: rgba(8, 52, 97, 0.5);;
+  --bs-btn-focus-shadow-rgb: rgb(255, 255, 255);
+  --bs-btn-active-color: var(--bs-btn-hover-color);
+  --bs-btn-active-bg: #{shade-color(#fff, 20%)};
+  --bs-btn-active-border-color: #{shade-color(#fff, 20%)};
+  border: 2px solid var(--bs-btn-border-color);
+}

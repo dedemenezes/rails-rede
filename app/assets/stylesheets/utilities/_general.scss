@@ -51,13 +51,15 @@ h5 {
 }
 
 form.hidden__el {
-  height: 0;
-  transition: all .2s ease-in-out;
+  visibility: hidden;
+  transition: visibility .2s ease-in-out;
+  position: absolute;
 }
 
 form.hidden__el.active {
   margin-top: .7625rem;
-  height: fit-content !important;
+  visibility:visible !important;
+  position: initial;
 }
 
 .hover-cursor {
