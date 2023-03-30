@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   get '/contato', to: 'contacts#new', as: :new_contact
   post '/contacts', to: 'contacts#create', as: :contacts
   get '/sobre', to: 'pages#about_us', as: :about_us
+  get '/events', to: 'events#index', as: :events
+
   # delete 'attachments/:id', to: 'attachments#destroy', as: :destroy_attachment
   resources :observatories, only: %i[index show], path: "observatorios", param: :name do
     # collection do
