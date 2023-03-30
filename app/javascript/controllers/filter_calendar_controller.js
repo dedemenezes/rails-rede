@@ -18,4 +18,17 @@ export default class extends Controller {
       this.formTarget.classList.remove('box--hidden')
     }, 250)
   }
+
+  search(e) {
+    e.preventDefault()
+    this.url = `${this.formTarget.action}?before_date=${this.inputTarget.value}`
+    fetch(this.url, {
+      headers: { 'Accept': 'text/plain' }
+    })
+      .then(response => response.text())
+      .then((data) => {
+        console.log(data)
+        this.resultsTarget.outerHTML = data
+      })
+  }
 }

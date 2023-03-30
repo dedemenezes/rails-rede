@@ -69,12 +69,13 @@
             <div class="btn-icon btn-icon--square"
                 data-action='click->filter-calendar#formDisplay'>
               <%= image_tag 'Calendar.png' %>
-              <%= form_with url: root_path, method: :get, class: 'd-none box--anim box--hidden', data: { filter_calendar_target: 'form', action: 'submit->filter-calendar#search'} do |f| %>
+              <%= form_with url: events_path, method: :get, class: 'd-none box--anim box--hidden', data: { filter_calendar_target: 'form', action: 'submit->filter-calendar#search'} do |f| %>
                 <div class="d-flex">
                   <%= text_field_tag :before_date,
                                      params[:before_date],
                                      class: 'form-input flex-grow-1',
                                      data: {
+                                      action: 'change->filter-calendar#search',
                                       controller: 'flatpickr',
                                       flatpickr_is_range_value: 'true',
                                       filter_calendar_target: 'input'
