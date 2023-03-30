@@ -417,8 +417,11 @@ small.tag, small > .tag {
 //   opacity: 0;
 // }
 .card__link--gray {
-  color: $r-pink-l;
+  color: $r-red;
   font-size: 1.125rem;
+  &:hover {
+    color: #{shade-color($r-red, 10%)}
+  }
 }
 
 // .card__link--hover {

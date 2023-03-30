@@ -9,7 +9,7 @@
         <% case photo.blob.content_type %>
         <% when "image/jpeg" %>
           <%= image_tag photo.url, width: '100%' %>
-          <%= link_to update_banner_dashboard_album_path(photo.record, photo_id: photo.id), data: { turbo_method: 'delete' }, class: 'album__card__link  card__link--gray' do %>
+          <%= link_to dashboard_attachment_path(photo), data: { turbo_method: 'delete', turbo_confirm: 'Essa ação é irreverssível. Voce tem certeza?' }, class: 'album__card__link  card__link--gray' do %>
             <%= icon('fa-solid', 'trash') %>
           <% end %>
         <% when "application/pdf" %>

@@ -16,6 +16,7 @@ Rails.application.routes.draw do
         patch 'update_banner'
       end
     end
+    delete '/attachments/:id', to: 'attachments#destroy', as: :attachment
   end
   root to: "pages#home"
   get '/contato', to: 'contacts#new', as: :new_contact
