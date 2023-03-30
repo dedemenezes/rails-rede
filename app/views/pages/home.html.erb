@@ -1,18 +1,20 @@
-<div class="banner--home mb-5" style='background-image: url(<%= display_banner_as_background(@project) %>);'>
-  <div class="banner__wrapper">
-    <div class="container">
-      <div class="row justify-content-center text-center">
-        <div class="col-12 col-md-10">
-          <div class="d-flex flex-column align-items-center gap-4">
-            <h1 class='home__text'><%= @project.banner_text %></h1>
-            <%= link_to 'Saiba mais', about_us_path, class: ' btn-rede-light btn-rede-light--home' %>
+<% cache @project do %>
+  <div class="banner--home mb-5" style='background-image: url(<%= display_banner_as_background(@project) %>);'>
+    <div class="banner__wrapper">
+      <div class="container">
+        <div class="row justify-content-center text-center">
+          <div class="col-12 col-md-10">
+            <div class="d-flex flex-column align-items-center gap-4">
+              <h1 class='home__text'><%= @project.banner_text %></h1>
+              <%= link_to 'Saiba mais', about_us_path, class: ' btn-rede-light btn-rede-light--home' %>
+            </div>
           </div>
         </div>
       </div>
+      <%= image_tag 'hero-wave.png', width: '100%', class: 'banner__hero__image' %>
     </div>
-    <%= image_tag 'hero-wave.png', width: '100%', class: 'banner__hero__image' %>
   </div>
-</div>
+<% end %>
 
 <div class="container ">
   <div class="row mb-4" data-controller="scroll-reveal"
@@ -20,12 +22,14 @@
                data-scroll-reveal-threshold-value="0.3"
                data-scroll-reveal-root-margin-value="10px">
     <% @info_cards.each do |item| %>
-      <div class="col-12 col-sm-6 col-md-4">
-        <div class="card__we reveal" data-scroll-reveal-target="item">
-          <%= image_tag "#{item[:img_name]}.svg" %>
-          <p class="reveal" data-scroll-reveal-target="item"><%= item[:text] %></p>
+      <% cache item do %>
+        <div class="col-12 col-sm-6 col-md-4">
+          <div class="card__we reveal" data-scroll-reveal-target="item">
+            <%= image_tag "#{item[:img_name]}.svg" %>
+            <p class="reveal" data-scroll-reveal-target="item"><%= item[:text] %></p>
+          </div>
         </div>
-      </div>
+      <% end %>
     <% end %>
   </div>
 
@@ -79,29 +83,31 @@
       <div class="swiper-wrapper" data-filter-calendar-target='results'>
         <!-- Slides -->
         <% @events.each do |gallery_or_album| %>
-          <div class="swiper-slide">
-            <%= link_to gallery_or_album do %>
-              <div class="card__event mb-3">
-                <div class="card__event__image" style='background-image: url(<%= display_banner_as_background(gallery_or_album) %>);background-size: cover; background-position: center;'></div>
-                <div class="event__content gap-3 gap-3">
-                  <div class="h-100 px-md-3 pb-md-3 flex-grow-1 d-flex flex-column justify-content-between">
-                    <h5 class='mb-0'><%= gallery_or_album.name %></h5>
-                    <div class="event__tags d-flex justify-content-start align-items-center">
+          <% cache gallery_or_album do %>
+            <div class="swiper-slide">
+              <%= link_to gallery_or_album do %>
+                <div class="card__event mb-3">
+                  <div class="card__event__image" style='background-image: url(<%= display_banner_as_background(gallery_or_album) %>);background-size: cover; background-position: center;'></div>
+                  <div class="event__content gap-3 gap-3">
+                    <div class="h-100 px-md-3 pb-md-3 flex-grow-1 d-flex flex-column justify-content-between">
+                      <h5 class='mb-0'><%= gallery_or_album.name %></h5>
+                      <div class="event__tags d-flex justify-content-start align-items-center">
 
-                      <% gallery_or_album.tags.each do |tag| %>
-                        <small class="tag"><%= tag.name %></small>
-                      <% end %>
+                        <% gallery_or_album.tags.each do |tag| %>
+                          <small class="tag"><%= tag.name %></small>
+                        <% end %>
+                      </div>
+                    </div>
+                    <div class="event__date ms-0 me-2 ms-md-3 me-md-2 mb-md-3">
+                      <p class="mb-0"><%= gallery_or_album.event_date.day %></p>
+                      <p class="mb-0"><%= gallery_or_album.event_date.strftime('%b') %></p>
+                      <p class="mb-0 date__year"><%= gallery_or_album.event_date.year %></p>
                     </div>
                   </div>
-                  <div class="event__date ms-0 me-2 ms-md-3 me-md-2 mb-md-3">
-                    <p class="mb-0"><%= gallery_or_album.event_date.day %></p>
-                    <p class="mb-0"><%= gallery_or_album.event_date.strftime('%b') %></p>
-                    <p class="mb-0 date__year"><%= gallery_or_album.event_date.year %></p>
-                  </div>
                 </div>
-              </div>
-            <% end %>
-          </div>
+              <% end %>
+            </div>
+          <% end %>
         <% end %>
       </div>
       <!-- If we need pagination -->
@@ -125,7 +131,9 @@
         <div class="row mb-4">
           <div class="col-12 col-xl-6 article--main mb-3 mb-xl-0">
             <%= link_to article_path(@featured), class: 'text-reset' do %>
-              <%= render 'articles/article_card', article: @featured, min_height: '', highlight: true if @featured %>
+              <% cache @featured do %>
+                <%= render 'articles/article_card', article: @featured, min_height: '', highlight: true if @featured %>
+              <% end %>
             <% end %>
           </div>
 
@@ -136,25 +144,27 @@
                data-scroll-reveal-root-margin-value="10px">
             <div class="d-flex flex-column justify-content-between h-100 mb-childs">
               <% @articles.each do |article| %>
-                <%#= link_to article_path(article) do %>
-                  <%#= render 'article_card', article: article, min_height: '', highlight: false %>
-                  <%= link_to article, class: 'reveal', data: { scroll_reveal_target: 'item' } do %>
-                    <div class="article__recent_new">
-                      <div class="card__image-bg"
-                          style="background-image: url(<%= display_banner_as_background(article) %>);">
-                      </div>
-                      <div class="article__info px-3 py-2 py-lg-3 pe-lg-3">
-                        <div class="info__header d-flex align-items-center gap-3 mb-2">
-                          <small><%= article.created_at.strftime('%d.%m.%Y') %></small>
-                          <% article.tags.each_with_index do |tag, index| %>
-                            <small class="tag"><%= tag.name %></small>
-                          <% end %>
+                <% cache article do %>
+                  <%#= link_to article_path(article) do %>
+                    <%#= render 'article_card', article: article, min_height: '', highlight: false %>
+                    <%= link_to article, class: 'reveal', data: { scroll_reveal_target: 'item' } do %>
+                      <div class="article__recent_new">
+                        <div class="card__image-bg"
+                            style="background-image: url(<%= display_banner_as_background(article) %>);">
                         </div>
-                        <h5 class="text-reset mb-lg-0 fs-6"><%= article.header.truncate(80) %></h5>
+                        <div class="article__info px-3 py-2 py-lg-3 pe-lg-3">
+                          <div class="info__header d-flex align-items-center gap-3 mb-2">
+                            <small><%= article.created_at.strftime('%d.%m.%Y') %></small>
+                            <% article.tags.each_with_index do |tag, index| %>
+                              <small class="tag"><%= tag.name %></small>
+                            <% end %>
+                          </div>
+                          <h5 class="text-reset mb-lg-0 fs-6"><%= article.header.truncate(80) %></h5>
+                        </div>
                       </div>
-                    </div>
-                  <% end %>
-                <%# end %>
+                    <% end %>
+                  <%# end %>
+                <% end %>
               <% end %>
             </div>
           </div>
