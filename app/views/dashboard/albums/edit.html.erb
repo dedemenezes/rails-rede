@@ -9,7 +9,9 @@
         <% case photo.blob.content_type %>
         <% when "image/jpeg" %>
           <%= image_tag photo.url, width: '100%' %>
-          <%= link_to 'Usar como banner', update_banner_dashboard_album_path(photo.record, photo_id: photo.id), data: { turbo_method: 'patch' }, class: 'btn btn-primary album__card__link card__link--hidden' %>
+          <%= link_to update_banner_dashboard_album_path(photo.record, photo_id: photo.id), data: { turbo_method: 'delete' }, class: 'album__card__link  card__link--gray' do %>
+            <%= icon('fa-solid', 'trash') %>
+          <% end %>
         <% when "application/pdf" %>
           <%= link_to photo.blob.filename.to_s, photo.url %>
         <% end %>
