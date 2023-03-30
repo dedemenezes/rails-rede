@@ -42,6 +42,20 @@ $navbar-light-color: rgba($r-blue-d, .7);
 $navbar-light-hover-color: rgba($r-blue-d, .55);
 $navbar-light-active-color: rgba($r-blue-d, 1);
 
+// Inputs
+$input-btn-focus-width: .1rem;
+$input-btn-focus-color-opacity: .25;
+$input-btn-focus-color: rgba($r-light-gray, $input-btn-focus-color-opacity);
+$input-btn-focus-blur: 0;
+$input-btn-focus-box-shadow: 0 0 $input-btn-focus-blur $input-btn-focus-width $input-btn-focus-color;
+$input-bg: $body-bg;
+$input-color: $body-color;
+$input-focus-bg: $input-bg;
+$input-focus-border-color: tint-color($r-light-gray, 50%);
+$input-focus-color: $input-color;
+$input-focus-width: $input-btn-focus-width;
+$input-focus-box-shadow: $input-btn-focus-box-shadow;
+
 $rede-colors: (
   "rede-primary": $r-blue-d,
   "rede-primary-l": $r-blue-l,
