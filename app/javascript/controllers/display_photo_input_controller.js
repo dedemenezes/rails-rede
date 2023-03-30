@@ -4,7 +4,6 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ['input', 'button', 'checkbox']
   connect() {
-    console.log(this.inputTarget);
     this.displayInput()
   }
 

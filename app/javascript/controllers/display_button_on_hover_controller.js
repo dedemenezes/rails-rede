@@ -51,7 +51,6 @@ export default class extends Controller {
       default:
         break;
     }
-    console.log(this.writerTypeValue)
   }
 
   updateButtonText(button, text) {

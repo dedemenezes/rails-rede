@@ -6,7 +6,6 @@ export default class extends Controller {
   }
 
   toggleScroll() {
-    // console.log(this.element);
     // this.element.classList.add('styled-scrollbars--active')
   }
 }

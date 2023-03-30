@@ -5,7 +5,6 @@ export default class extends Controller {
   static targets = ['menu', 'menuList', 'socialLinks']
 
   connect() {
-    console.log(this.menuListTarget)
   }
 
   toggle(event) {

@@ -4,15 +4,9 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ['input', 'form', 'results']
   connect() {
-    console.log(this.formTarget);
-    console.log(this.inputTarget);
-    console.log(this.resultsTarget);
   }
 
   formDisplay() {
-    console.log(this.formTarget);
-    console.log(this.inputTarget);
-    console.log(this.resultsTarget);
     this.formTarget.classList.remove('d-none')
     setTimeout(() => {
       this.formTarget.classList.remove('box--hidden')
@@ -27,7 +21,6 @@ export default class extends Controller {
     })
       .then(response => response.text())
       .then((data) => {
-        console.log(data)
         this.resultsTarget.outerHTML = data
       })
   }

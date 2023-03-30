@@ -9,7 +9,6 @@ export default class extends Controller {
   }
 
   connect() {
-    // console.log(this.wrapperTarget)
     this.swiper = new Swiper(this.element, {
       modules: [Navigation, Pagination, Scrollbar],
       centeredSlides: true,
@@ -59,11 +58,9 @@ export default class extends Controller {
     //   }
     // })
     // this.swiper.on('doubleTap', (event) => {
-    //   console.log('DOIS CLICKS');
     //   this.swiper.navigation.nextEl
     // })
     // this.swiper.on('doubleClick', (event) => {
-    //   // console.log(event);
     //   if (event.touches.currentX < window.innerWidth / 2) {
     //     this.swiper.slidePrev()
     //   } else{

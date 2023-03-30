@@ -12,15 +12,12 @@ export default class extends Controller {
       accessToken: this.apiKeyValue,
       types: "country,region,place,postcode,locality,neighborhood,address"
     })
-    console.log(this.geocoder);
-    console.log(this.streetTarget);
     this.geocoder.addTo(this.streetWrapperTarget)
     this.geocoder.on("result", event => this.#setInputValue(event))
     this.geocoder.on("clear", () => this.#clearInputValue())
   }
 
   #setInputValue(event) {
-    console.log(event);
     event.result.context.forEach((el) => {
       if (el.id.match(/place/)) {
         this.cityTarget.value = el.text

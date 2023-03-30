@@ -4,7 +4,6 @@ import Swiper, { Navigation, Pagination, Scrollbar, Autoplay, EffectFade } from 
 // Connects to data-controller="swiper-slideshow"
 export default class extends Controller {
   connect() {
-    console.log('hllo swiper slide');
     this.swiper = new Swiper(this.element, {
       modules: [Autoplay, EffectFade, Pagination],
       pagination: {
