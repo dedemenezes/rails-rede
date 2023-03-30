@@ -20,8 +20,8 @@ class PagesController < ApplicationController
     @albums = Album.includes(:tags, banner_attachment: :blob).only_published_events
     @events = [@galleries, @albums].compact.flatten.sort_by(&:event_date).reverse
 
-    if params[:from_date].present?
-      @events = @events.select { |event| event.event_date.to_s > params[:from_date] }.sort_by(&:updated_at).reverse
+    if params[:before_date].present?
+      @events = @events.select { |event| event.event_date.to_s <= params[:before_date] }
     end
     @featured = Article.includes([:tags], banner_attachment: :blob).featured
     @articles = Article.includes([:tags], banner_attachment: :blob).where(published: true, featured: false).order(updated_at: :desc).limit(4)
