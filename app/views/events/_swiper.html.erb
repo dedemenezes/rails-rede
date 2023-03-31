@@ -1,41 +1,47 @@
-<div class="swiper px-3"
-     data-controller='swiper'
-     data-filter-calendar-target='results'
-     style="height: 430px;">
-  <!-- Additional required wrapper -->
-  <div class="swiper-wrapper">
-    <!-- Slides -->
-    <% events.each do |gallery_or_album| %>
-      <% cache gallery_or_album do %>
-        <div class="swiper-slide">
-          <%= link_to gallery_or_album do %>
-            <div class="card__event mb-3">
-              <div class="card__event__image" style='background-image: url(<%= display_banner_as_background(gallery_or_album) %>);background-size: cover; background-position: center;'></div>
-              <div class="event__content gap-3 gap-3">
-                <div class="h-100 px-md-3 pb-md-3 flex-grow-1 d-flex flex-column justify-content-between">
-                  <h5 class='mb-0'><%= gallery_or_album.name %></h5>
-                  <div class="event__tags d-flex justify-content-start align-items-center">
+<% if events.empty? %>
+  <h6>Sem resultados no momento...</h6>
 
-                    <% gallery_or_album.tags.each do |tag| %>
-                      <small class="tag"><%= tag.name %></small>
-                    <% end %>
+<% else %>
+  <div class="swiper px-3"
+      data-controller='swiper'
+      data-filter-calendar-target='results'
+      style="height: 430px;">
+    <!-- Additional required wrapper -->
+    <div class="swiper-wrapper">
+      <!-- Slides -->
+
+      <% events.each do |gallery_or_album| %>
+        <% cache gallery_or_album do %>
+          <div class="swiper-slide">
+            <%= link_to gallery_or_album do %>
+              <div class="card__event mb-3">
+                <div class="card__event__image" style='background-image: url(<%= display_banner_as_background(gallery_or_album) %>);background-size: cover; background-position: center;'></div>
+                <div class="event__content gap-3 gap-3">
+                  <div class="h-100 px-md-3 pb-md-3 flex-grow-1 d-flex flex-column justify-content-between">
+                    <h5 class='mb-0'><%= gallery_or_album.name %></h5>
+                    <div class="event__tags d-flex justify-content-start align-items-center">
+
+                      <% gallery_or_album.tags.each do |tag| %>
+                        <small class="tag"><%= tag.name %></small>
+                      <% end %>
+                    </div>
+                  </div>
+                  <div class="event__date ms-0 me-2 ms-md-3 me-md-2 mb-md-3">
+                    <p class="mb-0"><%= gallery_or_album.event_date.day %></p>
+                    <p class="mb-0"><%= gallery_or_album.event_date.strftime('%b') %></p>
+                    <p class="mb-0 date__year"><%= gallery_or_album.event_date.year %></p>
                   </div>
                 </div>
-                <div class="event__date ms-0 me-2 ms-md-3 me-md-2 mb-md-3">
-                  <p class="mb-0"><%= gallery_or_album.event_date.day %></p>
-                  <p class="mb-0"><%= gallery_or_album.event_date.strftime('%b') %></p>
-                  <p class="mb-0 date__year"><%= gallery_or_album.event_date.year %></p>
-                </div>
               </div>
-            </div>
-          <% end %>
-        </div>
+            <% end %>
+          </div>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
+    <!-- If we need pagination -->
+    <div class="swiper-pagination"></div>
+    <!-- If we need navigation buttons -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
   </div>
-  <!-- If we need pagination -->
-  <div class="swiper-pagination"></div>
-  <!-- If we need navigation buttons -->
-  <div class="swiper-button-prev"></div>
-  <div class="swiper-button-next"></div>
-</div>
+<% end %>
