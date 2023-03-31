@@ -42,22 +42,14 @@
   <div class="row mb-3">
 
     <% if false %>
-      <div data-controller="filter-calendar">
+      <div >
         <section class="events mb-4">
           <div class="events__header mb-3">
             <div class="d-flex align-items-center px-md-3">
               <div class="flex-grow-1">
                 <h5 class='mb-0'>Últimas ações</h5>
               </div>
-              <div class="btn-icon btn-icon--square" data-action='click->filter-calendar#formDisplay'>
-                <%= image_tag 'Calendar.png' %>
-                <%= form_with url: root_path, method: :get, class: 'd-none box--anim box--hidden', data: { filter_calendar_target: 'form', action: 'submit->filter-calendar#search'} do |f| %>
-                  <div class="d-flex">
-                    <%= text_field_tag :from_date, params[:from_date], class: 'form-input flex-grow-1', data: { controller: 'flatpickr', flatpickr_is_range_value: 'true', filter_calendar_target: 'input' } %>
-                    <%= f.submit 'Filtrar', class: 'btn btn-rede-primary' %>
-                  </div>
-                <% end %>
-              </div>
+
             </div>
           </div>
           <div class="container">
@@ -69,52 +61,34 @@
 
 
     <%# ACOES %>
-
-    <div class="row justify-content-center mt-4">
-      <div class="col-12">
-        <div class="d-flex justify-content-between align-items-center border border-warning border-info border-5 border-end-0 border-top-0 border-bottom-0 ps-2 ps-md-3 ps-lg-4 mb-4">
-          <h3 class='mb-0 fs-3 fs-md-2'>Últimas ações</h3>
-        </div>
-      </div>
-    </div>
-    <!-- Slider main container -->
-    <div class="swiper px-3" data-controller='swiper' style="height: 430px;">
-      <!-- Additional required wrapper -->
-      <div class="swiper-wrapper" data-filter-calendar-target='results'>
-        <!-- Slides -->
-        <% @events.each do |gallery_or_album| %>
-          <% cache gallery_or_album do %>
-            <div class="swiper-slide">
-              <%= link_to gallery_or_album do %>
-                <div class="card__event mb-3">
-                  <div class="card__event__image" style='background-image: url(<%= display_banner_as_background(gallery_or_album) %>);background-size: cover; background-position: center;'></div>
-                  <div class="event__content gap-3 gap-3">
-                    <div class="h-100 px-md-3 pb-md-3 flex-grow-1 d-flex flex-column justify-content-between">
-                      <h5 class='mb-0'><%= gallery_or_album.name %></h5>
-                      <div class="event__tags d-flex justify-content-start align-items-center">
-
-                        <% gallery_or_album.tags.each do |tag| %>
-                          <small class="tag"><%= tag.name %></small>
-                        <% end %>
-                      </div>
-                    </div>
-                    <div class="event__date ms-0 me-2 ms-md-3 me-md-2 mb-md-3">
-                      <p class="mb-0"><%= gallery_or_album.event_date.day %></p>
-                      <p class="mb-0"><%= gallery_or_album.event_date.strftime('%b') %></p>
-                      <p class="mb-0 date__year"><%= gallery_or_album.event_date.year %></p>
-                    </div>
-                  </div>
+    <div data-controller="filter-calendar">
+      <div class="row justify-content-center mt-4">
+        <div class="col-12">
+          <div class="d-flex justify-content-between align-items-center border border-warning border-info border-5 border-end-0 border-top-0 border-bottom-0 ps-2 ps-md-3 ps-lg-4 mb-4">
+            <h3 class='mb-0 fs-3 fs-md-2 flex-grow-1'>Últimas ações</h3>
+            <div class="btn-icon btn-icon--square"
+                data-controller='flatipickr'>
+              <%= image_tag 'Calendar.png', data: { action: 'click->filter-calendar#formToggle' } %>
+              <%= form_with url: events_path, method: :get, class: 'd-none box--anim box--hidden', data: { filter_calendar_target: 'form', action: 'submit->filter-calendar#search'} do |f| %>
+                <div class="d-flex">
+                  <%= text_field_tag :before_date,
+                                     params[:before_date],
+                                     class: 'form-input flex-grow-1 input--search',
+                                     data: {
+                                      action: 'change->filter-calendar#search',
+                                      controller: 'flatpickr',
+                                      flatpickr_is_range_value: 'true',
+                                      filter_calendar_target: 'input'
+                                    },
+                                    placeholder: 'Antes de...' %>
                 </div>
               <% end %>
             </div>
-          <% end %>
-        <% end %>
+          </div>
+        </div>
       </div>
-      <!-- If we need pagination -->
-      <div class="swiper-pagination"></div>
-      <!-- If we need navigation buttons -->
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-button-next"></div>
+      <!-- Slider main container -->
+      <%= render 'events/swiper', events: @events %>
     </div>
   </div>
 

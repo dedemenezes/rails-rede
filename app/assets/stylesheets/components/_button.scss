@@ -76,7 +76,6 @@
   &:hover {
     box-shadow: 1px 1px 1px rgba(0,0,0,0.1);
     border: 2px solid rgba(8, 52, 97, 0.2);
-    cursor: pointer;
     img {
       opacity: .9;
     }
@@ -94,6 +93,11 @@
 
 .btn-icon--square {
   padding: 12px 16px;
+
+}
+
+.btn-icon--square > img:hover {
+  cursor: pointer;
 }
 
 .btn__album {
@@ -207,7 +211,7 @@
   --bs-btn-border-radius: .5rem;
   --bs-btn-hover-color: #083461;
   --bs-btn-hover-bg: white;
-  --bs-btn-hover-border-color: rgba(8, 52, 97, 0.5);;
+  --bs-btn-hover-border-color: rgba(8, 52, 97, 0.5);
   --bs-btn-focus-shadow-rgb: rgb(255, 255, 255);
   --bs-btn-active-color: var(--bs-btn-hover-color);
   --bs-btn-active-bg: #{shade-color(#fff, 20%)};

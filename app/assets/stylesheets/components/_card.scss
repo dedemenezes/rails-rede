@@ -394,27 +394,39 @@ small.tag, small > .tag {
 }
 .album__card {
   position: relative;
-  &:hover {
-    .card__link--hidden {
-        opacity: 1;
-      }
-  }
+  // &:hover {
+  //   .card__link--hidden {
+  //       opacity: 1;
+  //     }
+  // }
 }
 
 .album__card__link {
   transition: opacity .5s ease;
   position: absolute;
-  top: 8px;
-  left: 8px;
+  top:12px;
+  right: 12px;
+  opacity: .7;
+  cursor: pointer;
+  &:hover {
+    opacity: 1;
+  }
 }
 
-.card__link--hidden {
-  opacity: 0;
+// .card__link--hidden {
+//   opacity: 0;
+// }
+.card__link--gray {
+  color: $r-red;
+  font-size: 1.125rem;
+  &:hover {
+    color: #{shade-color($r-red, 10%)}
+  }
 }
 
-.card__link--hover {
-  opacity: 1;
-}
+// .card__link--hover {
+//   opacity: 1;
+// }
 
 // METHDO CARD
 .methodology__card {
