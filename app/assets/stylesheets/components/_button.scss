@@ -94,6 +94,11 @@
 
 .btn-icon--square {
   padding: 12px 16px;
+
+}
+
+.btn-icon--square > img:hover {
+  cursor: pointer;
 }
 
 .btn__album {

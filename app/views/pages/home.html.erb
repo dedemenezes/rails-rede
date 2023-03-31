@@ -67,9 +67,8 @@
           <div class="d-flex justify-content-between align-items-center border border-warning border-info border-5 border-end-0 border-top-0 border-bottom-0 ps-2 ps-md-3 ps-lg-4 mb-4">
             <h3 class='mb-0 fs-3 fs-md-2 flex-grow-1'>Últimas ações</h3>
             <div class="btn-icon btn-icon--square"
-                data-action='click->filter-calendar#formDisplay'
                 data-controller='flatipickr'>
-              <%= image_tag 'Calendar.png' %>
+              <%= image_tag 'Calendar.png', data: { action: 'click->filter-calendar#formToggle' } %>
               <%= form_with url: events_path, method: :get, class: 'd-none box--anim box--hidden', data: { filter_calendar_target: 'form', action: 'submit->filter-calendar#search'} do |f| %>
                 <div class="d-flex">
                   <%= text_field_tag :before_date,
