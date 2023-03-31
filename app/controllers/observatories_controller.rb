@@ -35,6 +35,8 @@ class ObservatoriesController < ApplicationController
         image_url: helpers.asset_path('icon-pin--blue.svg')
       }
     ]
+    @articles = Article.includes(:tags, :rich_text_rich_body, banner_attachment: :blob).find_by_writer('Rede Observação').sort_by(&:updated_at).reverse.take(5)
+    @featured = @articles.shift
     authorize @observatory
   end
 
