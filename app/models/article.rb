@@ -35,6 +35,10 @@ class Article < ApplicationRecord
     count.positive?
   end
 
+  def self.find_by_writer(name)
+    includes(:project, :observatory, :methodology).all.select {|a| a.writer == name }
+  end
+
   def writer
     observatory&.name || project&.name || methodology&.name
   end
