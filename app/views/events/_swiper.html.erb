@@ -5,7 +5,7 @@
   <!-- Additional required wrapper -->
   <div class="swiper-wrapper">
     <!-- Slides -->
-    <% @events.each do |gallery_or_album| %>
+    <% events.each do |gallery_or_album| %>
       <% cache gallery_or_album do %>
         <div class="swiper-slide">
           <%= link_to gallery_or_album do %>
