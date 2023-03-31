@@ -116,45 +116,49 @@
 
         <div class="articles__recent">
           <div class="row mb-4">
-            <div class="col-12 col-xl-6 article--main mb-3 mb-xl-0">
-              <%= link_to article_path(@featured), class: 'text-reset' do %>
-                <% cache @featured do %>
-                  <%= render 'articles/article_card', article: @featured, min_height: '', highlight: true if @featured %>
-                <% end %>
-              <% end %>
-            </div>
-
-            <div class="col-12 col-xl-6"
-                data-controller="scroll-reveal"
-                data-scroll-reveal-class-value="in"
-                data-scroll-reveal-threshold-value="0"
-                data-scroll-reveal-root-margin-value="10px">
-              <div class="d-flex flex-column justify-content-between h-100 mb-childs">
-                <% @articles.each do |article| %>
-                  <% cache article do %>
-                    <%#= link_to article_path(article) do %>
-                      <%#= render 'article_card', article: article, min_height: '', highlight: false %>
-                      <%= link_to article, class: 'reveal', data: { scroll_reveal_target: 'item' } do %>
-                        <div class="article__recent_new">
-                          <div class="card__image-bg"
-                              style="background-image: url(<%= display_banner_as_background(article) %>);">
-                          </div>
-                          <div class="article__info px-3 py-2 py-lg-3 pe-lg-3">
-                            <div class="info__header d-flex align-items-center gap-3 mb-2">
-                              <small><%= article.created_at.strftime('%d.%m.%Y') %></small>
-                              <% article.tags.each_with_index do |tag, index| %>
-                                <small class="tag"><%= tag.name %></small>
-                              <% end %>
-                            </div>
-                            <h5 class="text-reset mb-lg-0 fs-6"><%= article.header.truncate(80) %></h5>
-                          </div>
-                        </div>
-                      <% end %>
-                    <%# end %>
+            <% if @featured %>
+              <div class="col-12 col-xl-6 article--main mb-3 mb-xl-0">
+                <%= link_to article_path(@featured), class: 'text-reset' do %>
+                  <% cache @featured do %>
+                    <%= render 'articles/article_card', article: @featured, min_height: '', highlight: true if @featured %>
                   <% end %>
                 <% end %>
               </div>
-            </div>
+            <% end %>
+
+            <% unless @articles.empty? %>
+              <div class="col-12 col-xl-6"
+                  data-controller="scroll-reveal"
+                  data-scroll-reveal-class-value="in"
+                  data-scroll-reveal-threshold-value="0"
+                  data-scroll-reveal-root-margin-value="10px">
+                <div class="d-flex flex-column justify-content-between h-100 mb-childs">
+                  <% @articles.each do |article| %>
+                    <% cache article do %>
+                      <%#= link_to article_path(article) do %>
+                        <%#= render 'article_card', article: article, min_height: '', highlight: false %>
+                        <%= link_to article, class: 'reveal', data: { scroll_reveal_target: 'item' } do %>
+                          <div class="article__recent_new">
+                            <div class="card__image-bg"
+                                style="background-image: url(<%= display_banner_as_background(article) %>);">
+                            </div>
+                            <div class="article__info px-3 py-2 py-lg-3 pe-lg-3">
+                              <div class="info__header d-flex align-items-center gap-3 mb-2">
+                                <small><%= article.created_at.strftime('%d.%m.%Y') %></small>
+                                <% article.tags.each_with_index do |tag, index| %>
+                                  <small class="tag"><%= tag.name %></small>
+                                <% end %>
+                              </div>
+                              <h5 class="text-reset mb-lg-0 fs-6"><%= article.header.truncate(80) %></h5>
+                            </div>
+                          </div>
+                        <% end %>
+                      <%# end %>
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
           </div>
         </div>
       </div>
