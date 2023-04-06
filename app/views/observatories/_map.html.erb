@@ -21,7 +21,13 @@
      data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
   <div class="map__container reveal"
       data-scroll-reveal-target='item'
-       data-map-target='mapContainer'>
+       data-map-target='mapContainer'
+       data-action="click->map#coverWarning">
+  </div>
+  <div class="map__cover h-100 w-100"
+       data-map-target="cover">
+    <p class='mb-0'>Ative uma das opções de navegação</p>
+    <%= image_tag 'arrow-up.svg', width: '40px' %>
   </div>
   <nav id="listing-group" data-map-target="listingGroup" class="listing-group reveal"
       data-scroll-reveal-target='item'>
