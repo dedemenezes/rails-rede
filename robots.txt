@@ -1,6 +1,0 @@
-User-Agent: *
-Allow: /
-Disallow : /dashboard*
-Disallow : /contact*
-
-Sitemap: https://www.pearedeobservacao.com/sitemap.xml.gz
