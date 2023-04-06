@@ -8,7 +8,7 @@ export default class extends Controller {
     apiKey: String,
     markers: Array
   }
-  static targets = ['mapContainer', 'menuOption', 'listingGroup']
+  static targets = ['mapContainer', 'menuOption', 'listingGroup', "cover"]
 
   connect() {
     mapboxgl.accessToken = this.apiKeyValue
@@ -24,6 +24,30 @@ export default class extends Controller {
     this.#fitMapToMarkers()
     this.#addNavigationtoMap()
     this.#addListenersToMeniuOptions()
+  }
+
+
+  coverWarning() {
+    if (this.map.dragPan.isEnabled() || this.map.scrollZoom.isEnabled()) {
+      console.log('DO NOTHING!');
+    } else {
+      this.#displayCoverElement()
+      this.#fadeOutCoverElement()
+    }
+  }
+
+  #fadeOutCoverElement() {
+    setTimeout(() => {
+      this.coverTarget.style.opacity = 0
+    }, 3000);
+    setTimeout(() => {
+      this.coverTarget.style.zIndex = -5
+    }, 3200);
+  }
+
+  #displayCoverElement() {
+    this.coverTarget.style.opacity = 1
+    this.coverTarget.style.zIndex = 5
   }
 
   #fitMapToMarkers() {
@@ -61,6 +85,8 @@ export default class extends Controller {
       const option = event.target.id
       if (event.target.checked) {
         this.map[option].enable()
+        this.coverTarget.style.opacity = 0
+        this.coverTarget.style.zIndex = -5
       } else {
         this.map[option].disable()
       }

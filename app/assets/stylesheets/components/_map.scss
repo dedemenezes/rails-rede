@@ -24,6 +24,7 @@
   border-radius: 3px;
   max-width: 20%;
   color: #fff;
+  z-index: 5;
 }
 
 // MAP OPTIONS
@@ -64,8 +65,46 @@
   margin-right: 5px;
 }
 
+// MAP COVER
+.map__cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(233, 233, 233, .85);
+  z-index: -5;
+  font-weight: 600;
+  opacity: 0;
+  transition: opacity .2s ease-in-out;
+  img {
+    transform: scale(-1) rotate(-52deg);
+    /* flex-grow: 1; */
+    width: 150px;
+    /* position: absolute; */
+    // right: 10%;
+    // bottom: 44%;
+  }
+}
+
+.map__cover--active {
+  opacity: 1;
+  z-index: 5;
+}
+
+.listing-group--deactivated {
+}
+
 @media (min-width: 572px) {
   .map__wrapper {
     width: 50% !important;
+  }
+
+  .map__cover img {
+    position: absolute;
+    right: 10%;
+    bottom: 44%;
   }
 }
