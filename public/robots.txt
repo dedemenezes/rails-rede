@@ -1,1 +1,6 @@
-# See https://www.robotstxt.org/robotstxt.html for documentation on how to use the robots.txt file
+User-Agent: *
+Allow: /
+Disallow : /dashboard*
+Disallow : /contact*
+
+Sitemap: https://www.pearedeobservacao.com/sitemap.xml.gz
