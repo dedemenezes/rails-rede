@@ -26,5 +26,7 @@ module RailsRede
     config.active_storage.replace_on_assign_to_many = false
 
     config.i18n.default_locale = :'pt-BR'
+
+    config.active_storage.variant_processor = :mini_magick
   end
 end
