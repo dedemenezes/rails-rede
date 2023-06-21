@@ -64,6 +64,9 @@ application.register("slide-n-fade-l", SlideNFadeLController)
 import SlideNFadeRController from "./slide_n_fade_r_controller"
 application.register("slide-n-fade-r", SlideNFadeRController)
 
+import SweetalertController from "./sweetalert_controller"
+application.register("sweetalert", SweetalertController)
+
 import SwiperController from "./swiper_controller"
 application.register("swiper", SwiperController)
 

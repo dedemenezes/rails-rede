@@ -1,4 +1,18 @@
-<%= simple_form_for([:dashboard, album], html: {data:{controller: 'photo-preview'}}) do |f| %>
+<%= simple_form_for([:dashboard, album],
+                    html: {
+                      data:{
+                        controller: 'photo-preview',
+                        controller: "sweetalert",
+                        sweetalert_icon_value: "warning",
+                        sweetalert_title_value: "Confirmar?",
+                        sweetalert_html_value: "Atualizar galeria",
+                        sweetalert_confirm_button_text_value: "Confirmar!",
+                        sweetalert_show_cancel_button_value: true,
+                        sweetalert_cancel_button_text_value: "Cancelar",
+                        action: "submit->sweetalert#initSweetalert",
+                        turbo: false
+                      }
+                    }) do |f| %>
   <%= f.input :published %>
   <%= f.input :name %>
   <%= f.association :gallery, value: album.gallery %>
@@ -87,5 +101,5 @@
 
 
   </div>
-    <%= render 'dashboard/shared/form/submit_cancel', element: album, form: f %>
+  <%= render 'dashboard/shared/form/submit_cancel', element: album, form: f %>
 <% end %>
