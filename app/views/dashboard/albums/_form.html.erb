@@ -40,6 +40,12 @@
                         photo_preview_target: 'photoPreview'
                       }
                     },
+                    wrapper_html: {
+                      class: 'box--anim', data: {
+                        photo_preview_target: 'submit',
+                        controller: 'photo-preview'
+                      }
+                    },
                     label: '📷 Selecione as imagens' %>
       </div>
       <div class="form-check">
@@ -52,7 +58,7 @@
                           } %>
         <label class="form-check-label" for="with_documents">Galeria com documentos</label>
       </div>
-      <div class="hidden__el" data-toggle-element-target='docInput'>
+      <div class="d-none" data-toggle-element-target='docInput'>
         <%= f.input :documents,
                     as: :file,
                     input_html: {
@@ -67,6 +73,12 @@
                       class: 'upload-photo',
                       data: {
                         photo_preview_target: 'photoPreview'
+                      }
+                    },
+                    wrapper_html: {
+                      class: 'box--anim', data: {
+                        photo_preview_target: 'submit',
+                        controller: 'photo-preview'
                       }
                     },
                     label: "🗄 Selecione os arquivos" %>
