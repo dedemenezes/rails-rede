@@ -70,6 +70,9 @@ application.register("swiper", SwiperController)
 import SwiperSlideshowController from "./swiper_slideshow_controller"
 application.register("swiper-slideshow", SwiperSlideshowController)
 
+import ToggleElementController from "./toggle_element_controller"
+application.register("toggle-element", ToggleElementController)
+
 import TomSelectController from "./tom_select_controller"
 application.register("tom-select", TomSelectController)
 

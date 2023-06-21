@@ -11,47 +11,73 @@
 
   <%= render 'dashboard/shared/form/banner_input', element: album, form: f %>
 
-  <div class="toggles d-flex align-items-center mb-4">
-    <%= icon('fa-solid', 'image') %>
-    <div class="form-group">
-      <input type="checkbox" name="album[attachment_type]" id="album_attachment_type">
-      <label for="album_attachment_type"></label>
+  <div class="attachment-inputs" data-controller="toggle-element">
+    <div class="toggles d-flex align-items-center mb-4">
+      <%= icon('fa-solid', 'image') %>
+      <div class="form-group">
+        <input type="checkbox" name="album[attachment_type]" id="album_attachment_type">
+        <label for="album_attachment_type"></label>
+      </div>
+      <%= icon('fa-solid', 'file') %>
     </div>
-    <%= icon('fa-solid', 'file') %>
+
+    <div class="form-check">
+      <label class="form-check-label" for="with_images">Galeria com imagens</label>
+      <%= check_box_tag :with_images,
+                        '1',
+                        false,
+                        class: 'form-check-input',
+                        data: {
+                          action: 'change->toggle-element#photoInput'
+                        } %>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label" for="with_documents">Galeria com documentos</label>
+      <%= check_box_tag :with_documents,                        '1',
+                        false,
+                        class: 'form-check-input',
+                        data: {
+                          action: 'change->toggle-element#docInput'
+                        } %>
+    </div>
+    <div class="d-none" data-toggle-element-target='photoInput'>
+      <%= f.input :photos,
+                  as: :file,
+                  input_html: {
+                    multiple: true,
+                    class: 'd-none',
+                    data: {
+                      photo_preview_target: "photoInput",
+                      action: 'change->photo-preview#displayFilesCounter'
+                    }
+                  },
+                  label_html: {
+                    class: 'upload-photo',
+                    data: {
+                      photo_preview_target: 'photoPreview'
+                    }
+                  },
+                  label: '📷 Selecione as imagens' %>
+    </div>
+    <div class="d-none" data-toggle-element-target='docInput'>
+      <%= f.input :documents,
+                  as: :file,
+                  input_html: {
+                    multiple: true,
+                    class: 'd-none',
+                    data: {
+                      photo_preview_target: "photoInput",
+                      action: 'change->photo-preview#displayFilesCounter'
+                    }
+                  },
+                  label_html: {
+                    class: 'upload-photo',
+                    data: {
+                      photo_preview_target: 'photoPreview'
+                    }
+                  },
+                  label: "🗄 Selecione os arquivos" %>
+    </div>
   </div>
-  <%= f.input :photos,
-              as: :file,
-              input_html: {
-                multiple: true,
-                class: 'd-none',
-                data: {
-                  photo_preview_target: "photoInput",
-                  action: 'change->photo-preview#displayFilesCounter'
-                }
-              },
-              label_html: {
-                class: 'upload-photo',
-                data: {
-                  photo_preview_target: 'photoPreview'
-                }
-              },
-              label: '📷 Selecione as imagens' %>
-  <%= f.input :documents,
-              as: :file,
-              input_html: {
-                multiple: true,
-                class: 'd-none',
-                data: {
-                  photo_preview_target: "photoInput",
-                  action: 'change->photo-preview#displayFilesCounter'
-                }
-              },
-              label_html: {
-                class: 'upload-photo',
-                data: {
-                  photo_preview_target: 'photoPreview'
-                }
-              },
-              label: "🗄 Selecione os arquivos" %>
     <%= render 'dashboard/shared/form/submit_cancel', element: album, form: f %>
 <% end %>
