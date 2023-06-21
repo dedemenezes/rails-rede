@@ -2,6 +2,7 @@ class Album < ApplicationRecord
   validates :name, uniqueness: { scope: :gallery }
   belongs_to :gallery
   has_many_attached :photos
+  has_many_attached :documents
   has_one_attached :banner
   has_many :taggings, as: :taggable
   has_many :tags, through: :taggings

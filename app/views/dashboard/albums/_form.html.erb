@@ -24,6 +24,23 @@
                   photo_preview_target: 'photoPreview'
                 }
               },
-              label: '🖇️ Selecione os arquivos' %>
+              label: '📷 Selecione as imagens' %>
+  <%= f.input :documents,
+              as: :file,
+              input_html: {
+                multiple: true,
+                class: 'd-none',
+                data: {
+                  photo_preview_target: "photoInput",
+                  action: 'change->photo-preview#displayFilesCounter'
+                }
+              },
+              label_html: {
+                class: 'upload-photo',
+                data: {
+                  photo_preview_target: 'photoPreview'
+                }
+              },
+              label: "🗄 Selecione os arquivos" %>
     <%= render 'dashboard/shared/form/submit_cancel', element: album, form: f %>
 <% end %>
