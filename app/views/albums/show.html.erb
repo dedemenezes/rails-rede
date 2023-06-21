@@ -11,19 +11,36 @@
       </div>
     </div>
   </div>
-  <div class="cards__index" id="gallery--getting-started" data-controller="photoswipe">
+  <div class="cards__index" id="gallery--getting-started" data-controller="<%= 'photoswipe' unless @documents.attached? %>">
     <% @album.photos.each do |photo| %>
-      <a href="https://rede-observacao-prod.s3.us-east-2.amazonaws.com/<%= photo.key %>"
-        data-pswp-src="https://rede-observacao-prod.s3.us-east-2.amazonaws.com/<%= photo.key %>"
-        data-pswp-width="<%= photo.blob.metadata[:width] %>"
-        data-pswp-height="<%= photo.blob.metadata[:height] %>"
-        data-pswp-srcset="https://rede-observacao-prod.s3.us-east-2.amazonaws.com/<%= photo.key %>"
-        target="_blank">
-        <div class="card__index text-primary">
-          <div style="background: url('https://rede-observacao-prod.s3.us-east-2.amazonaws.com/<%= photo.key %>');background-size: cover;background-position: center; border-radius: 10px;"></div>
-        </div>
-      </a>
+    <%# ActiveStorage::Blob.find_by filename: photo.filename.to_s %>
+      <% doc = @documents.includes([:blob]).find { |doc| doc.blob.filename.to_s.split(".").first == photo.blob.filename.to_s } %>
+      <% if doc %>
+        <%= link_to "https://rede-observacao-prod.s3.us-east-2.amazonaws.com/#{doc.key}",
+                    data: {
+                            pswp_src: "https://rede-observacao-prod.s3.us-east-2.amazonaws.com/#{photo.key}",
+                            pswp_width: photo.blob.metadata[:width],
+                            pswp_height: photo.blob.metadata[:height],
+                            pswp_srcset: "https://rede-observacao-prod.s3.us-east-2.amazonaws.com/#{photo.key}"
+                          },
+                          target: "_blank" do %>
+          <div class="card__index text-primary">
+            <div style="background: url('https://rede-observacao-prod.s3.us-east-2.amazonaws.com/<%= photo.key %>');background-size: cover;background-position: top; border-radius: 10px;"></div>
+            <small class="ps-2"><em><%= doc.filename %></em></small>
+          </div>
+        <% end %>
+      <% else %>
+        <a href="https://rede-observacao-prod.s3.us-east-2.amazonaws.com/<%= photo.key %>"
+          data-pswp-src="https://rede-observacao-prod.s3.us-east-2.amazonaws.com/<%= photo.key %>"
+          data-pswp-width="<%= photo.blob.metadata[:width] %>"
+          data-pswp-height="<%= photo.blob.metadata[:height] %>"
+          data-pswp-srcset="https://rede-observacao-prod.s3.us-east-2.amazonaws.com/<%= photo.key %>"
+          target="_blank">
+          <div class="card__index text-primary">
+            <div style="background: url('https://rede-observacao-prod.s3.us-east-2.amazonaws.com/<%= photo.key %>');background-size: cover;background-position: center; border-radius: 10px;"></div>
+          </div>
+        </a>
+      <% end %>
     <% end %>
-
   </div>
 </div>
