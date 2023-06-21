@@ -12,6 +12,9 @@ export default class extends Controller {
   }
 
   docInput(){
-    this.docInputTarget.classList.toggle('d-none')
+    // this.docInputTarget.classList.toggle('d-none')
+    this.docInputTarget.classList.toggle('hidden__el')
+    this.docInputTarget.classList.toggle('show__el')
+
   }
 }

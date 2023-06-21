@@ -51,3 +51,31 @@ input[type="checkbox"]:checked {
 .search__input--checkbox:not(:last-child) {
   margin-bottom: 1rem;
 }
+
+// LW Checkbox pill
+.tag-item {
+  display: inline-block;
+}
+
+.tag-selector {
+  position: absolute;
+  transform: scale(0);
+}
+
+.tag-selector + label {
+  cursor: pointer;
+  display: inline-block;
+  font-size: 0.9rem;
+  border-radius: 50rem;
+  padding: 0.1rem 0.5rem;
+  background-color: $r-blue-sky;
+  color: $primary;
+  border: 1px solid $r-blue-l;
+  margin-right: 0.6rem;
+  margin-bottom: 0.4rem;
+}
+
+.tag-selector:checked+label {
+  background-color: $r-blue-l;
+  color: white;
+}
