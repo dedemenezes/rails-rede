@@ -22,7 +22,8 @@ class PdfToImage
   end
 
   def generate_png_from_pdf_first_page
-    @file_name = @pdf_attachment_blob.filename.to_s.gsub(/(\s|-)/, '_').split('.').first
+    # @file_name = @pdf_attachment_blob.filename.to_s.gsub(/(\s|-)/, '_').split('.').first
+    @file_name = @pdf_attachment_blob.filename.to_s.split('.').first
     @converted_file_path = File.join(Rails.root, 'tmp', "#{file_name}.png")
     MiniMagick::Tool::Convert.new do |convert|
       convert.background "white"

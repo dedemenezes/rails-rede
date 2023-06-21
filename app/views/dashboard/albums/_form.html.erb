@@ -7,7 +7,18 @@
     <%= f.input :event_date, as: :string, input_html: { data: { controller: 'flatpickr' } },  wrapper_html: { class: 'box--anim box--hidden d-block', data: { display_photo_input_target: 'input' } } %>
     <%= f.association :tags, input_html: { data: { controller: 'tom-select-create-option' } },  wrapper_html: { class: 'box--anim box--hidden d-block', data: { display_photo_input_target: 'input' } } %>
   </div>
-    <%= render 'dashboard/shared/form/banner_input', element: album, form: f %>
+
+
+  <%= render 'dashboard/shared/form/banner_input', element: album, form: f %>
+
+  <div class="toggles d-flex align-items-center mb-4">
+    <%= icon('fa-solid', 'image') %>
+    <div class="form-group">
+      <input type="checkbox" name="album[attachment_type]" id="album_attachment_type">
+      <label for="album_attachment_type"></label>
+    </div>
+    <%= icon('fa-solid', 'file') %>
+  </div>
   <%= f.input :photos,
               as: :file,
               input_html: {
