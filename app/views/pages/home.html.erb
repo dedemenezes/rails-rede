@@ -33,6 +33,21 @@
     <% end %>
   </div>
 
+  <div class="row justify-content-center mb-1" data-controller="scroll-reveal">
+      <div class="col-md-8 col-lg-6">
+        <div class="video_wrapper" >
+          <iframe frameborder="0"
+                  width="100%"
+                  height="100%"
+                  src='https://www.youtube.com/embed/<%= @project.video_id %>?rel=0&autoplay=<%= params[:autoplay] || 0 %>'
+                  allowfullscreen
+                  data-scroll-reveal-target='item'
+                  class="reveal" >
+          </iframe>
+        </div>
+      </div>
+  </div>
+
   <div class="row mb-5" data-controller="scroll-reveal">
     <div class="col-12">
       <%= render 'observatories/map', markers: @markers, hide_filter: true, header: true, tag: :h3, css_classes: { class: 'mb-0 fs-3 fs-md-2' } %>
