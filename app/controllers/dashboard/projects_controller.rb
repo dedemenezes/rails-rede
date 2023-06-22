@@ -49,7 +49,7 @@ module Dashboard
     end
 
     def project_params
-      params.require(:project).permit(:name, :content, :banner, :banner_text, :slide_one, :slide_two, :slide_three, :slide_one_subtitle, :slide_two_subtitle, :slide_three_subtitle)
+      params.require(:project).permit(:name, :content, :banner, :banner_text, :slide_one, :slide_two, :slide_three, :slide_one_subtitle, :slide_two_subtitle, :slide_three_subtitle, :teaser_url)
     end
   end
 end

@@ -9,17 +9,18 @@
     </p>
   </div>
 
+  <div class="row align-items-center my-3">
+    <%# TEASER URL %>
+    <%= f.input :teaser_url %>
+  </div>
+
   <%= render 'dashboard/shared/form/banner_input', element: project, form: f %>
 
   <%# SLIDE ONE %>
 
-  <div class="row align-items-center my-3">
+  <div class="row align-items-center my-3 border-bottom border-top py-3">
     <div class="col-2">
-      <div class="row">
-        <div class="col-6">
-          <%= display_banner_image(project.slide_one, width: '100%', class: 'mb-2') %>
-        </div>
-      </div>
+        <%= display_banner_image(project.slide_one, width: '100%', class: 'mb-2') %>
     </div>
     <div class="col-10">
       <%= f.input :slide_one_subtitle %>
@@ -66,13 +67,9 @@
   </div>
 
   <%# SLIDE TWO %>
-  <div class="row align-items-center my-3">
+  <div class="row align-items-center my-3 border-bottom pb-3">
     <div class="col-2">
-      <div class="row">
-        <div class="col-6">
-          <%= display_banner_image(project.slide_two, width: '100%', class: 'mb-2') %>
-        </div>
-      </div>
+      <%= display_banner_image(project.slide_two, width: '100%', class: 'mb-2') %>
     </div>
     <div class="col-10">
       <%= f.input :slide_two_subtitle %>
@@ -118,13 +115,9 @@
 
   <%# SLIDE THREE %>
 
-  <div class="row align-items-center my-3">
+  <div class="row align-items-center my-3 border-bottom pb-3">
     <div class="col-2">
-      <div class="row">
-        <div class="col-6">
-          <%= display_banner_image(project.slide_three, width: '100%', class: 'mb-2') %>
-        </div>
-      </div>
+      <%= display_banner_image(project.slide_three, width: '100%', class: 'mb-2') %>
     </div>
     <div class="col-10">
       <%= f.input :slide_three_subtitle %>
