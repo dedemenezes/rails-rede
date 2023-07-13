@@ -1,4 +1,5 @@
 class Project < ApplicationRecord
+  YOUTUBE_BASE_URL = 'https://www.youtube.com/embed/  '
   has_many :methodologies
   has_many :members
   has_many :articles
@@ -22,7 +23,7 @@ class Project < ApplicationRecord
   def strip_video_id
     return unless video_id.present?
 
-    id = video_id.match /watch\?v=(?<id>.*)&+.*\z/
+    id = video_id.match /(?:(you.+)\/)(?:(watch\?\w?=)?)(?<id>\w+)/
     self.video_id = id[:id]
   end
 end
