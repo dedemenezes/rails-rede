@@ -1,5 +1,5 @@
 class Project < ApplicationRecord
-  YOUTUBE_BASE_URL = 'https://www.youtube.com/embed/  '
+  YOUTUBE_BASE_URL = 'https://www.youtube.com/embed/'
   has_many :methodologies
   has_many :members
   has_many :articles
