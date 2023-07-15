@@ -33,6 +33,21 @@
     <% end %>
   </div>
 
+  <div class="row justify-content-center my-5" data-controller="scroll-reveal">
+      <div class="col-12 slide__card">
+        <div class="video_wrapper" >
+          <iframe frameborder="0"
+                  width="100%"
+                  height="100%"
+                  src='<%= Project::YOUTUBE_BASE_URL %><%= @project.video_id %>?rel=0&autoplay=<%= params[:autoplay] || 0 %>'
+                  allowfullscreen
+                  data-scroll-reveal-target='item'
+                  class="reveal" >
+          </iframe>
+        </div>
+      </div>
+  </div>
+
   <div class="row mb-5" data-controller="scroll-reveal">
     <div class="col-12">
       <%= render 'observatories/map', markers: @markers, hide_filter: true, header: true, tag: :h3, css_classes: { class: 'mb-0 fs-3 fs-md-2' } %>
@@ -104,10 +119,14 @@
       <div class="articles__recent">
         <div class="row mb-4">
           <div class="col-12 col-xl-6 article--main mb-3 mb-xl-0">
-            <%= link_to article_path(@featured), class: 'text-reset' do %>
-              <% cache @featured do %>
-                <%= render 'articles/article_card', article: @featured, min_height: '', highlight: true if @featured %>
+            <% if @featured %>
+              <%= link_to article_path(@featured), class: 'text-reset' do %>
+                <% cache @featured do %>
+                  <%= render 'articles/article_card', article: @featured, min_height: '', highlight: true if @featured %>
+                <% end %>
               <% end %>
+            <% else %>
+              <p>No Article featured</p>
             <% end %>
           </div>
 
