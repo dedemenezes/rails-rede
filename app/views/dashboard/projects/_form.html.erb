@@ -11,7 +11,7 @@
 
   <div class="row align-items-center my-3">
     <%# TEASER URL %>
-    <%= f.input :video_id, label: 'Youtube URL' %>
+    <%= f.input :video_id, label: 'YouTube link', input_html: { value: "https://www.youtube.com/watch?v=#{project.video_id}" }  %>
   </div>
 
   <%= render 'dashboard/shared/form/banner_input', element: project, form: f %>
