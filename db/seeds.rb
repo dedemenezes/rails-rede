@@ -1,16 +1,18 @@
-puts 'Cleaning DB...'
-Tag.destroy_all
-Article.destroy_all
-Methodology.destroy_all
-Project.destroy_all
-Observatory.destroy_all
-UnityType.destroy_all
-User.destroy_all
-ConflictType.destroy_all
-PriorityType.destroy_all
-Tag.destroy_all
-Article.destroy_all
-puts 'DB cleaned!'
+if Rails.env.development?
+  puts 'Cleaning DB...'
+  Tag.destroy_all
+  Article.destroy_all
+  Methodology.destroy_all
+  Project.destroy_all
+  Observatory.destroy_all
+  UnityType.destroy_all
+  User.destroy_all
+  ConflictType.destroy_all
+  PriorityType.destroy_all
+  Tag.destroy_all
+  Article.destroy_all
+  puts 'DB cleaned!'
+end
 
 puts 'Creating Project...'
 rede_observacao = Project.create! name: 'Rede Observação', banner_text: 'Trabalhamos na construção de um processo educativo crítico para fortalecer grupos locais'
@@ -132,7 +134,6 @@ araruama = Observatory.create!(
   municipality: 'RJ',
   latitude: -22.872485564827493,
   longitude: -42.33547534557519,
-  conflict_type: ConflictType.first,
   description: description
 )
 ObservatoryPrioritySubject.create! priority_type: pescadores_artesanais, observatory: araruama
@@ -154,7 +155,6 @@ arraial = Observatory.create!(
   municipality: 'RJ',
   latitude: -22.963868106076266,
   longitude: -42.02533391947336,
-  conflict_type: ConflictType.first,
   description: arraial_desc
 )
 ObservatoryPrioritySubject.create! priority_type: mariqueiras, observatory: arraial
@@ -177,7 +177,6 @@ buzios = Observatory.create!(
   latitude: -22.79925249532444,
   longitude: -41.96957568375965,
   municipality: 'RJ',
-  conflict_type: perda_quilombola,
   description: buzios_desc
 )
 ObservatoryPrioritySubject.create! priority_type: quilombolas, observatory: buzios
@@ -202,7 +201,6 @@ campos = Observatory.create!(
   latitude: -21.8444477,
   longitude: -41.4311549,
 
-  conflict_type: perda_quilombola,
   description: campos_desc
 )
 ObservatoryPrioritySubject.create! priority_type: quilombolas, observatory: campos
@@ -223,7 +221,6 @@ cabo_frio = Observatory.create!(
   municipality: 'RJ',
   latitude: -22.59086326033604,
   longitude: -42.02271354306846,
-  conflict_type: pesqueira,
   description: cabo_frio_desc
 )
 ObservatoryPrioritySubject.create! priority_type: pescadores_artesanais, observatory: cabo_frio
@@ -245,7 +242,6 @@ itapemirim = Observatory.create!(
   municipality: 'RJ',
   latitude: -20.88840589846213,
   longitude: -40.77419706071976,
-  conflict_type: pesqueira,
   description: itapemirim_desc
 )
 ObservatoryPrioritySubject.create! priority_type: mariqueiras, observatory: itapemirim
@@ -266,7 +262,6 @@ macae = Observatory.create!(
   municipality: 'RJ',
   latitude: -22.377997212357936,
   longitude: -41.77510307662048,
-  conflict_type: territorio_rural,
   description: macae_desc
 )
 ObservatoryPrioritySubject.create! priority_type: agricultores, observatory: macae
@@ -287,7 +282,6 @@ rio_das_ostras = Observatory.create!(
   municipality: 'RJ',
   latitude: -22.42278840417887,
   longitude: -41.93859410216907,
-  conflict_type: territorio_rural,
   description: rio_das_ostras_desc
 )
 ObservatoryPrioritySubject.create! priority_type: agricultores, observatory: rio_das_ostras
@@ -308,7 +302,6 @@ itabapoana = Observatory.create!(
   municipality: 'RJ',
   latitude: -21.4988412,
   longitude: -41.0717608,
-  conflict_type: territorio_rural,
   description: itabapoana_desc
 )
 ObservatoryPrioritySubject.create! priority_type: agricultores, observatory: itabapoana
@@ -329,7 +322,6 @@ sjbarra = Observatory.create!(
   municipality: 'RJ',
   latitude: -21.631087756083133,
   longitude: -41.03993937012111,
-  conflict_type: pesca_laguna,
   description: sao_joao_desc
 )
 ObservatoryPrioritySubject.create! priority_type: beneficiadoras, observatory: sjbarra

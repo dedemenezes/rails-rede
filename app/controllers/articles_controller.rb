@@ -5,7 +5,7 @@ class ArticlesController < ApplicationController
   def index
     if params[:search].present?
       tags = []
-      params[:search].each do |name, dom_id|
+      params[:search].each do |_name, dom_id|
         tags << Tag.find(dom_id.split('_').last)
       end
       @articles = policy_scope(Article)
@@ -14,12 +14,16 @@ class ArticlesController < ApplicationController
                   .where(taggings: { tag_id: tags.map(&:id) })
                   .order(updated_at: :desc)
     else
-      @articles = policy_scope(Article).all_but_featured
-      featured_article = Article.includes(:tags, banner_attachment: :blob).featured
-      all_but_featured = Article.includes(:tags, banner_attachment: :blob).where(published: true, featured: false).order(updated_at: :desc)
-      recent_articles = all_but_featured.limit(4)
-      articles = all_but_featured.offset(4)
-      @articles = [featured_article, recent_articles, articles].flatten
+      # @articles = policy_scope(Article).all_but_featured
+      # featured_article = Article.includes(:tags, banner_attachment: :blob).featured
+      # all_but_featured = Article.includes(:tags, banner_attachment: :blob).where(published: true, featured: false).order(updated_at: :desc)
+      # recent_articles = all_but_featured.limit(4)
+      # articles = all_but_featured.offset(4)
+      # @articles = [featured_article, recent_articles, articles].flatten
+      @articles = policy_scope Article
+      @featured = @articles.featured
+      @articles = @articles.all_but_featured
+      @top_four = @articles.shift(4)
     end
   end
 
