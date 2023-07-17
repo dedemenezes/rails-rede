@@ -17,7 +17,7 @@ class Article < ApplicationRecord
   before_validation :ensure_one_featured_article
 
   scope :only_published, -> { where(published: true).order(featured: 'DESC') }
-  scope :all_but_featured, -> { only_published.where.not(featured: true).order(created_at: :desc) }
+  scope :all_but_featured, -> { only_published.where.not(featured: true).order(updated_at: :desc) }
 
   # acts_as_taggable_on :tags
 

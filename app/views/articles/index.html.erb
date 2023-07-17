@@ -79,77 +79,30 @@
       </div>
     <% end %>
 
-    <% if @articles.empty? %>
+    <% if @featured.nil? && @top_four.empty? %>
       <h6>'Sem artigos no momento...'</h6>
     <% else %>
       <div class="articles__recent">
-        <div class="row mb-3">
-          <div class="col-12 col-xl-6">
-            Artigo Featured
+        <div class="row mb-4">
+          <div class="col-12 col-xl-6 mb-4 mb-xl-0">
+            <%= render 'article_card', article: @featured, min_height: '', highlight: true %>
           </div>
           <div class="col-12 col-xl-6">
-            <div class="row">
-              <% 4.times do %>
-                <div class="col-12">Artigo comum</div>
+            <div class="h-100 d-flex flex-column <%= @top_four.size == 4 ? 'justify-content-between' : 'gap-4' %>">
+              <% @top_four.each_with_index do |article, index| %>
+                <%= render 'article_recent', article: article, index: index, top_four: @top_four %>
               <% end %>
             </div>
           </div>
         </div>
         <div class="row mb-3">
-          <div class="row">
-            <div class="col-12 col-sm-6 col-md-4">
-              Artigo comum
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="articles__recent">
-        <div class="row mb-3 mb-lg-4">
-          <% @articles.each_with_index do |article, index| %>
-            <% if index.zero? %>
-              <div class="col-12 col-xl-6 article--main mb-3 mb-xl-0">
-                <%= link_to article_path(article), class: 'text-reset' do %>
-                  <%= render 'article_card', article: article, min_height: '', highlight: true %>
-                <% end %>
+            <% @articles.each do |article| %>
+              <div class="col-12 col-sm-6 col-lg-4 article--list mb-4">
+                  <%= render 'article_card', article: article, highlight: false, min_height: 'full-height' %>
               </div>
-              <div class="col-12 col-xl-6">
-                <div class="d-flex flex-column h-100 mb-childs <%= 'justify-content-between' if @articles.size > 5 %>">
-            <% elsif index.positive? && index < 5 %>
-                  <%= link_to article_path(article), class: 'reveal', data: { scroll_reveal_target: 'item' } do %>
-                    <div class="article__recent_new">
-                      <div class="card__image-bg card__image-bg--recent"
-                          style="background-image: url(<%= display_banner_as_background(article) %>);">
-                      </div>
-                      <div class="article__info px-3 py-2 py-lg-3 pe-lg-3">
-                        <div class="info__header d-flex align-items-center gap-3 mb-2">
-                          <small><%= article.updated_at.strftime('%d.%m.%Y') %></small>
-                          <% article.tags.each_with_index do |tag, index| %>
-                            <small class="tag"><%= tag.name %></small>
-                          <% end %>
-                        </div>
-                        <h5 class="text-reset mb-lg-0 fs-6"><%= article.header.truncate(81) %></h5>
-                      </div>
-                    </div>
-                  <% end %>
-            <% else %>
-               <% if index == 5 %>
-                </div>
-              </div>
-              <div class="row mt-4">
-               <% end %>
-                <div class="col-12 col-sm-6 col-md-4 article--list mb-4">
-                  <%#= link_to article_path(article), class: 'text-reset' do %>
-                    <%= render 'article_card', article: article, highlight: false, min_height: 'full-height' %>
-                  <%# end %>
-                </div>
-              <% if index == @articles.count - 1 %>
-                </div>
-              <% end %>
             <% end %>
-          <% end %>
         </div>
       </div>
     <% end %>
-
   </div>
 </div>

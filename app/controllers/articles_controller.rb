@@ -3,28 +3,24 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: %i[show]
 
   def index
+    # binding.b
     if params[:search].present?
       tags = []
       params[:search].each do |_name, dom_id|
         tags << Tag.find(dom_id.split('_').last)
       end
       @articles = policy_scope(Article)
-                  .includes(:tags, :rich_text_rich_body, banner_attachment: :blob)
+                  .includes(:tags, :rich_text_rich_body)
                   .joins(:taggings, :tags)
                   .where(taggings: { tag_id: tags.map(&:id) })
                   .order(updated_at: :desc)
     else
-      # @articles = policy_scope(Article).all_but_featured
-      # featured_article = Article.includes(:tags, banner_attachment: :blob).featured
-      # all_but_featured = Article.includes(:tags, banner_attachment: :blob).where(published: true, featured: false).order(updated_at: :desc)
-      # recent_articles = all_but_featured.limit(4)
-      # articles = all_but_featured.offset(4)
-      # @articles = [featured_article, recent_articles, articles].flatten
-      @articles = policy_scope Article
-      @featured = @articles.featured
-      @articles = @articles.all_but_featured
-      @top_four = @articles.shift(4)
+      @articles = policy_scope(Article.includes(:tags, banner_attachment: :blob))
     end
+    @featured = Article.featured
+    @articles = @articles.all_but_featured
+    @top_four = @articles.limit(4)
+    @articles = @articles.offset(4)
   end
 
   def show
