@@ -66,10 +66,12 @@
       </div>
     </div>
 
-    <% if params[:tags] %>
+    <% if params[:search] %>
       <div class="tags__searched mb-4">
-        <%  params[:tags].reject(&:empty?).each do|tag_name| %>
-          <%= link_to articles_index_tag_path(name: tag_name, tags: params[:tags]), data: { turbo_method: :delete }, style: 'z-index: 10' do %>
+        <%  params[:search].each do|tag_name, dom_id| %>
+          <%= link_to articles_path(search: params[:search].delete(tag_name)), data: { turbo_method: :delete }, style: 'z-index: 10' do %>
+            <%= params[:search] %>
+            <%= tag_name %>
             <small class="tag">
               <%= tag_name %>
               <span class='text-warning'>x</span>
