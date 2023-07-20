@@ -16,8 +16,8 @@ class Article < ApplicationRecord
   before_validation :clean_header
   before_validation :ensure_one_featured_article
 
-  scope :only_published, -> { where(published: true) }
-  scope :all_but_featured, -> { order(created_at: :desc).to_a.delete_if(&:featured) }
+  scope :only_published, -> { where(published: true).order(featured: 'DESC') }
+  scope :all_but_featured, -> { only_published.where.not(featured: true).order(updated_at: :desc) }
 
   # acts_as_taggable_on :tags
 
