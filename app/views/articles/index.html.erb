@@ -33,8 +33,8 @@
                 <%= form_with url: articles_path,  method: :get, html: { class: "hidden__el #{'active' if params[:search].present?}", data: { reveal_on_click_target: 'dropdown' } } do |f| %>
                   <div class="drop__down__options" id="style-2">
                     <%# <small class="drop__down__counter" data-checkbox-list-target="count"></small> %>
-                    <% Tag.all.each do |tag| %>
-                      <% name = tag.name.gsub(' ', '').downcase %>
+                    <% @tags.each do |tag| %>
+                      <% name = tag.name.downcase %>
                       <div class="search__input--checkbox">
                         <%= label_tag "search[#{name}]" do %>
                           <%= check_box_tag "search[#{name}]",
@@ -90,7 +90,7 @@
             <%= render 'article_card', article: @featured, min_height: '', highlight: true %>
           </div>
           <div class="col-12 col-xl-6">
-            <div class="h-100 d-flex flex-column <%= @top_four.size == 4 ? 'justify-content-between' : 'gap-4' %>">
+            <div class="h-100 d-flex flex-column <%= @top_four_is_full ? 'justify-content-between' : 'gap-4' %>">
               <% @top_four.each_with_index do |article, index| %>
                 <%= render 'article_recent', article: article, index: index, top_four: @top_four %>
               <% end %>

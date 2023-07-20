@@ -3,23 +3,22 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: %i[show]
 
   def index
-    # binding.b
+    @articles = policy_scope(Article)
+    @tags = Tag.all.order(name: :asc)
     if params[:search].present?
-      tags = []
-      params[:search].each do |_name, dom_id|
-        tags << Tag.find(dom_id.split('_').last)
-      end
-      @articles = policy_scope(Article)
-                  .includes(:tags, :rich_text_rich_body)
-                  .joins(:taggings, :tags)
-                  .where(taggings: { tag_id: tags.map(&:id) })
-                  .order(updated_at: :desc)
+      tag_ids = params[:search].values.map { _1.split('_').last }
+      @articles = @articles.includes(:tags, banner_attachment: :blob).joins(:taggings)
+                           .where(taggings: { tag_id: tag_ids })
+                           .order(updated_at: :desc)
+      @featured = @articles.limit(1).first
+      @articles = @articles.offset(1)
     else
-      @articles = policy_scope(Article.includes(:tags, banner_attachment: :blob))
+      @articles = @articles.includes(:tags, banner_attachment: :blob)
+      @featured = @articles.featured
     end
-    @featured = Article.featured
     @articles = @articles.all_but_featured
     @top_four = @articles.limit(4)
+    @top_four_is_full = @top_four.length > 3
     @articles = @articles.offset(4)
   end
 
