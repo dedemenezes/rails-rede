@@ -23,7 +23,7 @@ input[type="checkbox"]::before {
   height: 0.65em;
   transform: scale(0);
   transition: .12s transform ease-in-out;
-  box-shadow: inset 1em 1em $r-blue-l;
+  box-shadow: inset 1em 1em $white;
   background-color: CanvasText;
   clip-path: polygon(10% 49%, 37% 71%, 84% 0, 100% 11%, 41% 100%, 0 63%);
 }
