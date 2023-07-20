@@ -14,7 +14,7 @@ class Article < ApplicationRecord
   has_rich_text :rich_body
 
   before_validation :clean_header
-  before_validation :ensure_one_featured_article
+  before_validation :ensure_one_featured_article, if: :will_save_change_to_featured?
 
   scope :only_published, -> { where(published: true).order(featured: 'DESC') }
   scope :all_but_featured, -> { only_published.where.not(featured: true).order(updated_at: :desc) }
@@ -73,10 +73,10 @@ class Article < ApplicationRecord
   end
 
   def ensure_one_featured_article
-    return if featured
-    return unless Article.featured.nil?
-
-    self.featured = true
+    return if Article.featured == self
+    if featured
+      Article.where.not(id: id).update_all featured: false
+    end
   end
 
   def to_param
