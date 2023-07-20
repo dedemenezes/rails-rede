@@ -69,7 +69,7 @@
     <% if params[:search] %>
       <div class="tags__searched mb-4">
         <%  params[:search].each do|tag_name, dom_id| %>
-          <%= link_to articles_path(search: params[:search].delete(tag_name)), data: { turbo_method: :delete }, style: 'z-index: 10' do %>
+          <%= link_to articles_path(search: query_string_except(tag_name)), style: 'z-index: 10' do %>
             <%= params[:search] %>
             <%= tag_name %>
             <small class="tag">
