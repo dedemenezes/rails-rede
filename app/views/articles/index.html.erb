@@ -69,9 +69,7 @@
     <% if params[:search] %>
       <div class="tags__searched mb-4">
         <%  params[:search].each do|tag_name, dom_id| %>
-          <%= link_to articles_path(search: query_string_except(tag_name)), style: 'z-index: 10' do %>
-            <%= params[:search] %>
-            <%= tag_name %>
+          <%= link_to articles_path(search: query_string_except(tag_name, @tags)), style: 'z-index: 10' do %>
             <small class="tag">
               <%= tag_name %>
               <span class='text-warning'>x</span>

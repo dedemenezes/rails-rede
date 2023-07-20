@@ -1,6 +1,6 @@
 module ApplicationHelper
-  def query_string_except(tag)
-    params[:search].permit(Tag.all.map(&:name).map(&:downcase).map(&:to_sym)).except(tag)
+  def query_string_except(tag, tags)
+    params[:search].permit(tags.map(&:name).map(&:downcase).map(&:to_sym)).except(tag)
   end
 
   def model_name_from_controller_name(controller_name_to_use)
