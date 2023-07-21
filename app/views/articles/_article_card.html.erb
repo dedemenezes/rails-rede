@@ -1,7 +1,7 @@
 <%# article - instance %>
 <%# min_height -> Card Height  %>
 <%# highlight -> main card on index page %>
-<div class="article__card <%= min_height %> <%= highlight ? '' : 'reveal' %>", data-scroll-reveal-target='item'>
+<div class="article__card <%= min_height %> <%= highlight ? '' : 'reveal' %>" data-scroll-reveal-target='item'>
   <%= link_to article_path(article) do %>
     <div class="card__image <%= highlight ? "card__image--highlight" : "" %>" style='background-image:url(<%= display_banner_as_background(article) %>); background-size: cover; background-position: center;'></div>
     <div class="article__card__content">
