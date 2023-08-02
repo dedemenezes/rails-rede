@@ -1,0 +1,25 @@
+<% content_for :meta_title, "#{@gallery.name} - #{DEFAULT_META["meta_product_name"]}" %>
+<% content_for :meta_image, display_banner_as_background(@gallery) %>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 mt-3">
+      <%= render 'shared/breadcrumbs' %>
+      <div class="d-flex justify-content-between align-items-center border border-warning border-5 border-end-0 border-top-0 border-bottom-0 ps-4 mb-5">
+        <h1><%= @gallery.name %> <span style="font-size: 18px; font-weight: 300;">(Documentos)</span></h1>
+
+        <% if @gallery.observatory? %>
+          <%= link_to @gallery.observatory, class: "btn-icon d-none d-md-block" do %>
+            Visitar observatório
+          <% end %>
+        <% end %>
+          <%#= image_tag 'filter-icon-2.png', width: '12px' %>
+      </div>
+    </div>
+  </div>
+  <div class="cards__index">
+    <% @albums.each do |album| %>
+      <%= render 'gallery', gallery: album %>
+    <% end %>
+  </div>
+</div>
