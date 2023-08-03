@@ -11,4 +11,10 @@ class GalleriesController < ApplicationController
     add_breadcrumb 'Acervo', galleries_path
     add_breadcrumb @gallery.name, gallery_path(@gallery), current: true
   end
+
+  def documentos
+    @galleries = policy_scope(Gallery).includes(albums: [:documents_attachments]).order(name: :asc)
+    @galleries = @galleries.select { |gallery| gallery.albums.any? { _1.documents.attached? } }
+    add_breadcrumb 'Acervo', galleries_path, current: true
+  end
 end

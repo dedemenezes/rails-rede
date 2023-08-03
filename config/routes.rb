@@ -33,7 +33,11 @@ Rails.application.routes.draw do
 
   get '/mapa-de-conflitos', to: 'observatories#mapa', as: :mapa_observatories
   resources :articles, only: %i[show index edit update], path: 'noticias', param: :header
-  resources :galleries, only: %i[index show], path: 'acervos', param: :name
+  resources :galleries, only: %i[index show], path: 'acervos', param: :name do
+    collection do
+      get :documentos
+    end
+  end
   resources :methodologies, only: %i[index show], path: 'metodologias', param: :name
   resources :tags, only: :show
   resources :albums, only: %i[index show], param: :name
