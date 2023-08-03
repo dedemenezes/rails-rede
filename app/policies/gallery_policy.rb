@@ -17,4 +17,12 @@ class GalleryPolicy < ApplicationPolicy
   def destroy?
     user.admin?
   end
+
+  def documentos?
+    true
+  end
+
+  def imagens?
+    true
+  end
 end

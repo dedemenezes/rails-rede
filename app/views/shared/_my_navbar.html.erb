@@ -20,7 +20,7 @@
           <li class="nav-item">
             <%= link_to "Observatórios", observatories_path, class: "nav-link #{tab_active?('observatories', action: 'index')}" %>
           </li>
-          <li class="nav-item">
+          <li class="nav-item drop__down <%= tab_active?('galleries')%>" data-controller='reveal-on-click'>
             <%= link_to "Acervo", galleries_path, class: "nav-link #{tab_active?('galleries')}" %>
           </li>
           <li class="nav-item">
