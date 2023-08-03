@@ -30,7 +30,7 @@ class GalleriesController < ApplicationController
 
   def imagens
     @galleries = policy_scope(Gallery).includes(albums: [:documents_attachments]).order(name: :asc)
-    @galleries = @galleries.reject { |gallery| gallery.albums.any? { _1.documents.attached? } }
+    @galleries = @galleries.reject { |gallery| gallery.albums.all? { _1.documents.attached? } }
     add_breadcrumb 'Acervo', galleries_path, current: true
   end
 end
