@@ -54,4 +54,12 @@ class Gallery < ApplicationRecord
   def to_param
     name
   end
+
+  def contain_image_albums?
+    albums.any? { _1.photos.attached? && !_1.documents.attached? }
+  end
+
+  def contain_document_albums?
+    albums.any? { _1.documents.attached? }
+  end
 end

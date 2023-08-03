@@ -1,6 +1,6 @@
 class GalleriesController < ApplicationController
   def index
-    @galleries = policy_scope(Gallery).includes(:albums).order(name: :asc)
+    @galleries = policy_scope(Gallery).includes(albums: [:photos_attachments, :documents_attachments]).order(name: :asc)
     add_breadcrumb 'Acervo', galleries_path, current: true
   end
 
@@ -13,7 +13,7 @@ class GalleriesController < ApplicationController
   end
 
   def documentos
-    @gallery = Gallery.includes(albums: { banner_attachment: :blob}).find_by(name: params[:name]) || Gallery.find(params[:id])
+    @gallery = Gallery.includes(albums: [:documents_attachments, { banner_attachment: :blob }]).find_by(name: params[:name]) || Gallery.find(params[:id])
     @albums = @gallery.published_albums.sort_by(&:updated_at).reverse
     @albums = @albums.select { |album| album.documents.attached? }
     authorize @gallery
