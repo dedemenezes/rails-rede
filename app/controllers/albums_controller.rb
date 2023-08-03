@@ -3,11 +3,16 @@ class AlbumsController < ApplicationController
     @album = Album.includes(photos_attachments: :blob).find_by(name: params[:name])
     @documents = @album.documents
     authorize @album
+    if @album.documents.attached?
+      add_breadcrumb 'Acervo (Documentos)', documentos_galleries_path
+      add_breadcrumb "#{@album.gallery.name} (Documentos)", gallery_path(@album.gallery, t: 'documentos')
+      add_breadcrumb @album.name, album_path(@album), current: true
+    end
 
-    gallery_breadcrumb_type_info = @album.documents.attached? ? '(Documentos)' : '(Imagens)'
-    path_to_gallery = @album.documents.attached? ? documentos_gallery_path(@album.gallery) : imagens_gallery_path(@album.gallery)
-    add_breadcrumb 'Acervo', galleries_path
-    add_breadcrumb "#{@album.gallery.name} #{gallery_breadcrumb_type_info}", path_to_gallery
-    add_breadcrumb @album.name, album_path(@album), current: true
+    unless @album.documents.attached?
+      add_breadcrumb 'Acervo (Imagens)', imagens_galleries_path
+      add_breadcrumb "#{@album.gallery.name} (Imagens)", gallery_path(@album.gallery, t: 'imagens')
+      add_breadcrumb @album.name, album_path(@album), current: true
+    end
   end
 end

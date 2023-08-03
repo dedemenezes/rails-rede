@@ -20,8 +20,18 @@
           <li class="nav-item">
             <%= link_to "Observatórios", observatories_path, class: "nav-link #{tab_active?('observatories', action: 'index')}" %>
           </li>
-          <li class="nav-item drop__down <%= tab_active?('galleries')%>" data-controller='reveal-on-click'>
-            <%= link_to "Acervo", galleries_path, class: "nav-link #{tab_active?('galleries')}" %>
+          <li class="nav-item drop__down <%= 'active' if params[:controller] == 'galleries' || params[:controller] == 'albums' %>" data-controller='reveal-on-click'>
+            <p class="nav-link pb-0"
+               data-action="click->reveal-on-click#toggle"
+               data-reveal-on-click-target='button'>Acervo <i class="fa-solid fa-chevron-down" style="opacity: 0.7;"></i></p>
+            <ul class="drop__down__card drop__down__card--nav hidden__el"
+                data-reveal-on-click-target="dropdown">
+              <div class="drop__down__close" data-action='click->reveal-on-click#toggle'>
+                <%= image_tag 'close-icon.svg', width: '12px' %>
+              </div>
+              <%= link_to "Documentos", documentos_galleries_path, class: "nav-link #{params[:t] == 'documentos' || params[:action] == 'documentos' ? 'active' : 'fw-normal'}" %>
+              <%= link_to "Imagens", imagens_galleries_path, class: "nav-link #{params[:t] == 'imagens' || params[:action] == 'imagens' ? 'active' : 'fw-normal'}" %>
+            </ul>
           </li>
           <li class="nav-item">
             <%= link_to "Notícias", articles_path, class: "nav-link #{tab_active?('articles')}" %>
