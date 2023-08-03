@@ -20,6 +20,14 @@
   right: 0;
 }
 
+// coming from master
+.drop__down__card--nav {
+  inset: 0 auto auto 0;
+  transform: translate3d(12px, 44px, 0);
+  border: 1px solid #08346125;
+}
+// coming from master
+
 .drop__down__counter {
   white-space: nowrap;
 }

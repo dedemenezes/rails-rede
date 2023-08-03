@@ -17,9 +17,9 @@
               <%= image_tag 'sidearrow.svg', width: '12px', class: 'dropdown__icon', data: { reveal_on_click_target: 'icon' } %>
             </button>
             <div class="drop__down__card drop__down__card--right hidden__el"
+                data-reveal-on-click-target="dropdown"
                 data-controller="checkbox-list"
-                data-checkbox-list-count-text-value="selecionado"
-                data-reveal-on-click-target="dropdown">
+                data-checkbox-list-count-text-value="selecionado">
               <div class="drop__down__close" data-action='click->reveal-on-click#toggle'>
                 <%= image_tag 'close-icon.svg', width: '12px' %>
               </div>

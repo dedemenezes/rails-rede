@@ -14,7 +14,24 @@
       <% @galleries.each do |gallery| %>
         <% next if gallery.empty? %>
 
-        <%= render 'gallery', gallery: gallery  %>
+          <div class="observatory__card backdrop">
+            <%#= display_banner(observatory) %>
+            <div class="observatory__card--image" style="background-image: url('<%= display_banner_as_background(gallery) %>'); height: 240px; border-radius: 10px 10px 0 0; background-position: center;"></div>
+            <ul class=" backdrop__curtain backdrop__curtain--center">
+              <% if gallery.contain_image_albums? %>
+                <li class="-item">
+                  <%= link_to 'Imagens', imagens_gallery_path(gallery), class: 'btn btn-primary' %>
+                </li>
+              <% end %>
+              <% if gallery.contain_document_albums? %>
+                <li class="-item">
+                  <%= link_to 'Documentos', documentos_gallery_path(gallery), class: 'btn btn-primary' %>
+                </li>
+              <% end %>
+            </ul>
+            <p><%= gallery.name %></p>
+          </div>
+
       <% end %>
     <% end %>
   </div>

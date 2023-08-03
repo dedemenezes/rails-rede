@@ -41,7 +41,7 @@ class Dashboard::AlbumsController < ApplicationController
     @album.gallery = @gallery unless @gallery == @album.gallery
     if @album.update(album_params) && @album.banner.attached?
 
-      attach_documents_first_page_as_photos
+      attach_documents_first_page_as_photos unless params[:album][:documents].compact_blank.empty?
 
 
       @tags = SetTags.tagging(@album, params)

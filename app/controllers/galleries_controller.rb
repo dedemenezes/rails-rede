@@ -1,6 +1,6 @@
 class GalleriesController < ApplicationController
   def index
-    @galleries = policy_scope(Gallery).includes(:albums).order(name: :asc)
+    @galleries = policy_scope(Gallery).includes(albums: [:photos_attachments, :documents_attachments]).order(name: :asc)
     add_breadcrumb 'Acervo', galleries_path, current: true
   end
 
@@ -19,7 +19,6 @@ class GalleriesController < ApplicationController
         add_breadcrumb "#{@gallery.name} (Imagens)", gallery_path(@gallery), current: true
       end
     end
-    @albums = @albums.reject { _1.documents.attached? } if params[:t].present? && params[:t] == 'imagens'
     authorize @gallery
   end
 
