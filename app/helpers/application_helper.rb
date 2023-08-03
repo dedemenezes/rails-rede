@@ -51,7 +51,10 @@ module ApplicationHelper
   end
 
   def route_for_edit_dashboard(element)
-    "#{element.model_name.plural}/#{element.id}/edit"
+    path = "#{element.model_name.plural}/#{element.id}/edit"
+    return path unless  element.is_a? Album
+
+    path.gsub(/^albums\//, '')
   end
 
   def hide_nested_links(name_of_controller)
