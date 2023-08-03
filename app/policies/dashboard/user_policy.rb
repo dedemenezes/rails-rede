@@ -42,5 +42,9 @@ module Dashboard
     def imagens?
       home?
     end
+
+    def documentos?
+      home?
+    end
   end
 end
