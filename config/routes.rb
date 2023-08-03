@@ -36,6 +36,7 @@ Rails.application.routes.draw do
   resources :galleries, only: %i[index show], path: 'acervos', param: :name do
     collection do
       get :documentos
+      get :imagens
     end
   end
   resources :methodologies, only: %i[index show], path: 'metodologias', param: :name
