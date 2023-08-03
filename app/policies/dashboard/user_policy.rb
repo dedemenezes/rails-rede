@@ -38,5 +38,9 @@ module Dashboard
     def home?
       user.admin?
     end
+
+    def imagens?
+      home?
+    end
   end
 end

@@ -7,6 +7,10 @@ class Dashboard::AlbumsController < ApplicationController
     @albums = Album.includes(:gallery, banner_attachment: :blob).all
   end
 
+  def imagens
+    @albums = Album.includes(:gallery, banner_attachment: :blob).reject { |album| album.documents.attached? }
+  end
+
   def new
     @album = Album.new
   end
