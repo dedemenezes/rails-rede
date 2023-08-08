@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   # SET DASHBOARD HEADER TITLE
-  def dashboard_header_title(klass)
+  def dashboard_header_title_tag(klass)
     klass_name = klass.model_name.human
     klass_name = params[:action] == 'documentos' ? 'Documento' : "Imagem" if params[:action] == 'documentos' || params[:action] == 'imagens'
     counter = klass.count > 1 ? "#{klass_name}s" : klass_name

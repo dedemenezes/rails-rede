@@ -1,7 +1,7 @@
 
 <div class="dashboard__header">
   <div class="d-flex justify-content-between align-items-center p-3 border-bottom">
-    <%= dashboard_header_title(klass) %>
+    <%= dashboard_header_title_tag(klass) %>
     <ul class="list-inline mb-0">
       <li class="list-inline-item">
         <% if policy(model_name_from_controller_name(controller_name)).new? %>
