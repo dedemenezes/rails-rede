@@ -8,11 +8,11 @@ class Dashboard::AlbumsController < ApplicationController
   end
 
   def imagens
-    @albums = Album.includes(:gallery, banner_attachment: :blob).reject { |album| album.documents.attached? }
+    @albums = Album.includes(:gallery, :documents_attachments, banner_attachment: :blob).reject { |album| album.documents.attached? }
   end
 
   def documentos
-    @albums = Album.includes(:gallery, banner_attachment: :blob).select { |album| album.documents.attached? }
+    @albums = Album.includes(:gallery, :documents_attachments, banner_attachment: :blob).select { |album| album.documents.attached? }
   end
 
   def new
