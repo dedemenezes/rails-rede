@@ -6,7 +6,7 @@
       <li class="list-inline-item">
         <% if policy(model_name_from_controller_name(controller_name)).new? %>
           <%= link_to url_for(controller: controller_name, action: :new), class: 'btn btn-rede-primary-l text-white' do %>
-            <%= icon('fa-solid', 'plus') %> Novo(a) <%= klass %>
+            <%= icon('fa-solid', 'plus') %> Novo(a) <%= klass.model_name.human %>
           <% end %>
         <% end %>
       </li>
