@@ -32,7 +32,11 @@ class Dashboard::AlbumsController < ApplicationController
 
       @tags = SetTags.tagging(@album, params)
       if @album.banner.attached?
-        redirect_to dashboard_albums_path
+        if @album.documents.attached?
+          redirect_to documentos_dashboard_albums_path, notice: 'Album atualizado'
+        else
+          redirect_to imagens_dashboard_albums_path, notice: 'Album atualizado'
+        end
       else
         redirect_to edit_dashboard_album_path(@album), notice: 'Novo albúm criado'
       end
