@@ -77,6 +77,13 @@ pt-BR:
         slide_three_subtitle: "Legenda slide três"
       methodology:
         name: "Nome"
+        card_description: 'Texto do card'
+        description: 'Paragrafo um'
+        header_one: 'sub título um'
+        description_one: 'Paragrafo dois'
+        header_two: 'sub título dois'
+        description_two: 'Paragrafo três'
+        banner_two: 'Segunda imagem'
         created_at: 'criado em'
         updated_at: 'atualizado em'
       conflict_type:
