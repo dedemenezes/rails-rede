@@ -45,15 +45,21 @@ class Dashboard::AlbumsController < ApplicationController
   end
 
   def update
-    @gallery = Gallery.find(params[:album][:gallery_id])
-    @album.gallery = @gallery unless @gallery == @album.gallery
+    if params[:album][:gallery_id]
+      @gallery = Gallery.find(params[:album][:gallery_id])
+      @album.gallery = @gallery unless @gallery == @album.gallery
+    end
     if @album.update(album_params) && @album.banner.attached?
 
-      attach_documents_first_page_as_photos unless params[:album][:documents].compact_blank.empty?
+      attach_documents_first_page_as_photos
 
 
       @tags = SetTags.tagging(@album, params)
-      redirect_to dashboard_albums_path, notice: 'Album atualizado'
+      if @album.documents.attached?
+        redirect_to documentos_dashboard_albums_path, notice: 'Album atualizado'
+      else
+        redirect_to imagens_dashboard_albums_path, notice: 'Album atualizado'
+      end
     else
       render :edit, status: :unprocessable_entity
     end
@@ -90,11 +96,16 @@ class Dashboard::AlbumsController < ApplicationController
   end
 
   def attach_documents_first_page_as_photos
+    return unless params[:album][:documents]
+    return if params[:album][:documents].compact_blank.empty?
+
     # checkar se temos algum pdf attached.
     attachments = ActiveStorage::Attachment.where record: @album
-    docs = attachments.select { |attachment| attachment.name == 'documents' }
+    new_attachment_names = params[:album][:documents].compact_blank.map(&:original_filename)
+
+    new_docs = attachments.select { |attachment| new_attachment_names.include? attachment.filename.to_s }
     # tendo pdf temos que
-    docs.each do |doc|
+    new_docs.each do |doc|
       pdf_to_img = PdfToImage.new doc.blob
       # criar os pngs
       pdf_to_img.convert
