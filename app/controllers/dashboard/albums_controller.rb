@@ -32,11 +32,7 @@ class Dashboard::AlbumsController < ApplicationController
 
       @tags = SetTags.tagging(@album, params)
       if @album.banner.attached?
-        if @album.documents.attached?
-          redirect_to documentos_dashboard_albums_path, notice: 'Album atualizado'
-        else
-          redirect_to imagens_dashboard_albums_path, notice: 'Album atualizado'
-        end
+        redirect_to_correct_album_type_path(notice: 'Album criado')
       else
         redirect_to edit_dashboard_album_path(@album), notice: 'Novo albúm criado'
       end
@@ -59,11 +55,7 @@ class Dashboard::AlbumsController < ApplicationController
 
 
       @tags = SetTags.tagging(@album, params)
-      if @album.documents.attached?
-        redirect_to documentos_dashboard_albums_path, notice: 'Album atualizado'
-      else
-        redirect_to imagens_dashboard_albums_path, notice: 'Album atualizado'
-      end
+      redirect_to_correct_album_type_path(notice: 'Album atualizado')
     else
       render :edit, status: :unprocessable_entity
     end
@@ -74,7 +66,7 @@ class Dashboard::AlbumsController < ApplicationController
     @album.set_banner(@photo)
 
     if @album.save
-      redirect_to dashboard_albums_path, notice: 'Banner atualizado'
+      redirect_to_correct_album_type_path(notice: 'Banner atualizado')
     else
       render :edit, status: :unprocessable_entity
     end
@@ -82,7 +74,7 @@ class Dashboard::AlbumsController < ApplicationController
 
   def destroy
     @album.destroy
-    redirect_to dashboard_albums_path, notice: 'Album destruído'
+    redirect_to_correct_album_type_path(notice: 'Album destruído')
   end
 
   private
@@ -97,6 +89,14 @@ class Dashboard::AlbumsController < ApplicationController
 
   def album_params
     params.require(:album).permit(:name, :is_event, :event_date, :published, :banner, photos: [], documents: [])
+  end
+
+  def redirect_to_correct_album_type_path(options = {})
+    if @album.documents.attached?
+      redirect_to documentos_dashboard_albums_path, options
+    else
+      redirect_to imagens_dashboard_albums_path, options
+    end
   end
 
   def attach_documents_first_page_as_photos
