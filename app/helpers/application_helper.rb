@@ -1,4 +1,18 @@
 module ApplicationHelper
+  def rendering_documents_or_images?
+    params[:action] =~ /documentos/ || params[:action] =~ /imagens/
+  end
+
+
+  # SET DASHBOARD HEADER TITLE
+  def dashboard_header_title_tag(klass)
+    klass_name = klass.model_name.human
+    klass_name = params[:action] == 'documentos' ? 'Documento' : "Imagem" if params[:action] == 'documentos' || params[:action] == 'imagens'
+    counter = klass.count > 1 ? "#{klass_name}s" : klass_name
+    counter[-2] = 'n' if klass_name == 'Imagem'
+    "<h1>#{klass_name} <small class='text-muted highlight'>#{klass.count} #{counter} </small></h1>".html_safe
+  end
+
   def query_string_except(tag, tags)
     params[:search].permit(tags.map(&:name).map(&:downcase).map(&:to_sym)).except(tag)
   end
@@ -51,7 +65,10 @@ module ApplicationHelper
   end
 
   def route_for_edit_dashboard(element)
-    "#{element.model_name.plural}/#{element.id}/edit"
+    path = "#{element.model_name.plural}/#{element.id}/edit"
+    return path unless  element.is_a? Album
+
+    path.gsub(/^albums\//, '')
   end
 
   def hide_nested_links(name_of_controller)

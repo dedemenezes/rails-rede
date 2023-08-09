@@ -24,7 +24,7 @@
                 <% if controller_name != 'dashboard'  %>
                   <%= render 'dashboard/shared/header', klass: controller_name.singularize.split('_').map(&:capitalize).join.constantize, hide_button: hide_nested_links(controller_name) %>
                   <%= render 'shared/breadcrumbs' %>
-                  <%= render 'dashboard/shared/content_menu', hide_link_new: hide_nested_links(controller_name) %>
+                  <%= render 'dashboard/shared/content_menu', hide_link_new: hide_nested_links(controller_name) unless rendering_documents_or_images? %>
                 <% else %>
                   <h1>Dashboard</h1>
                 <% end %>

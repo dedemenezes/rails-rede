@@ -12,6 +12,10 @@ Rails.application.routes.draw do
     resources :projects
     resources :galleries
     resources :albums do
+      collection do
+        get :imagens
+        get :documentos
+      end
       member do
         patch 'update_banner'
       end

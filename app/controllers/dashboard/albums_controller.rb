@@ -7,6 +7,14 @@ class Dashboard::AlbumsController < ApplicationController
     @albums = Album.includes(:gallery, banner_attachment: :blob).all
   end
 
+  def imagens
+    @albums = Album.includes(:gallery, :documents_attachments, banner_attachment: :blob).reject { |album| album.documents.attached? }
+  end
+
+  def documentos
+    @albums = Album.includes(:gallery, :documents_attachments, banner_attachment: :blob).select { |album| album.documents.attached? }
+  end
+
   def new
     @album = Album.new
   end
@@ -24,7 +32,7 @@ class Dashboard::AlbumsController < ApplicationController
 
       @tags = SetTags.tagging(@album, params)
       if @album.banner.attached?
-        redirect_to dashboard_albums_path
+        redirect_to_correct_album_type_path(notice: 'Album criado')
       else
         redirect_to edit_dashboard_album_path(@album), notice: 'Novo albúm criado'
       end
@@ -37,15 +45,17 @@ class Dashboard::AlbumsController < ApplicationController
   end
 
   def update
-    @gallery = Gallery.find(params[:album][:gallery_id])
-    @album.gallery = @gallery unless @gallery == @album.gallery
+    if params[:album][:gallery_id]
+      @gallery = Gallery.find(params[:album][:gallery_id])
+      @album.gallery = @gallery unless @gallery == @album.gallery
+    end
     if @album.update(album_params) && @album.banner.attached?
 
-      attach_documents_first_page_as_photos unless params[:album][:documents].compact_blank.empty?
+      attach_documents_first_page_as_photos
 
 
       @tags = SetTags.tagging(@album, params)
-      redirect_to dashboard_albums_path, notice: 'Album atualizado'
+      redirect_to_correct_album_type_path(notice: 'Album atualizado')
     else
       render :edit, status: :unprocessable_entity
     end
@@ -56,7 +66,7 @@ class Dashboard::AlbumsController < ApplicationController
     @album.set_banner(@photo)
 
     if @album.save
-      redirect_to dashboard_albums_path, notice: 'Banner atualizado'
+      redirect_to_correct_album_type_path(notice: 'Banner atualizado')
     else
       render :edit, status: :unprocessable_entity
     end
@@ -64,7 +74,7 @@ class Dashboard::AlbumsController < ApplicationController
 
   def destroy
     @album.destroy
-    redirect_to dashboard_albums_path, notice: 'Album destruído'
+    redirect_to_correct_album_type_path(notice: 'Album destruído')
   end
 
   private
@@ -81,12 +91,25 @@ class Dashboard::AlbumsController < ApplicationController
     params.require(:album).permit(:name, :is_event, :event_date, :published, :banner, photos: [], documents: [])
   end
 
+  def redirect_to_correct_album_type_path(options = {})
+    if @album.documents.attached?
+      redirect_to documentos_dashboard_albums_path, options
+    else
+      redirect_to imagens_dashboard_albums_path, options
+    end
+  end
+
   def attach_documents_first_page_as_photos
+    return unless params[:album][:documents]
+    return if params[:album][:documents].compact_blank.empty?
+
     # checkar se temos algum pdf attached.
     attachments = ActiveStorage::Attachment.where record: @album
-    docs = attachments.select { |attachment| attachment.name == 'documents' }
+    new_attachment_names = params[:album][:documents].compact_blank.map(&:original_filename)
+
+    new_docs = attachments.select { |attachment| new_attachment_names.include? attachment.filename.to_s }
     # tendo pdf temos que
-    docs.each do |doc|
+    new_docs.each do |doc|
       pdf_to_img = PdfToImage.new doc.blob
       # criar os pngs
       pdf_to_img.convert

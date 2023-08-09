@@ -52,6 +52,9 @@ application.register("photo-preview", PhotoPreviewController)
 import PhotoswipeController from "./photoswipe_controller"
 application.register("photoswipe", PhotoswipeController)
 
+import PublishCheckboxController from "./publish_checkbox_controller"
+application.register("publish-checkbox", PublishCheckboxController)
+
 import RevealOnClickController from "./reveal_on_click_controller"
 application.register("reveal-on-click", RevealOnClickController)
 

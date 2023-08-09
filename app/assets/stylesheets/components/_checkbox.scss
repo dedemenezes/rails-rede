@@ -69,14 +69,19 @@ input[type="checkbox"]:checked {
   font-size: 0.9rem;
   border-radius: 50rem;
   padding: 0.1rem 0.5rem;
-  background-color: $r-blue-sky;
-  color: $primary;
-  border: 1px solid $r-blue-l;
+  background-color: $r-blue-sky !important;
+  color: $primary !important;
+  border: 1px solid $r-blue-l !important;
   margin-right: 0.6rem;
   margin-bottom: 0.4rem;
 }
 
 .tag-selector:checked+label {
-  background-color: $r-blue-l;
-  color: white;
+  background-color: $r-blue-l !important;
+  color: white !important;
+}
+
+.tag-selector--large + label {
+  padding: 12px 24px;
+  font-size: 1rem;
 }

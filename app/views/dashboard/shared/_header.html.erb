@@ -1,12 +1,12 @@
-<% klass_name = klass.model_name.human %>
+
 <div class="dashboard__header">
   <div class="d-flex justify-content-between align-items-center p-3 border-bottom">
-    <h1><%= klass_name %> <small class='text-muted highlight'><%= klass.count %> <%= klass.count > 1 ? "#{klass_name}s" : klass_name %></small></h1>
+    <%= dashboard_header_title_tag(klass) %>
     <ul class="list-inline mb-0">
       <li class="list-inline-item">
         <% if policy(model_name_from_controller_name(controller_name)).new? %>
           <%= link_to url_for(controller: controller_name, action: :new), class: 'btn btn-rede-primary-l text-white' do %>
-            <%= icon('fa-solid', 'plus') %> Novo <%= klass_name %>
+            <%= icon('fa-solid', 'plus') %> Novo(a) <%= klass.model_name.human %>
           <% end %>
         <% end %>
       </li>
