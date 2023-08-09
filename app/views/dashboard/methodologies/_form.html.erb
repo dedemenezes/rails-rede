@@ -1,5 +1,6 @@
 <%= simple_form_for [:dashboard, methodology] do |f| %>
   <%= f.input :name %>
+  <%= f.input :card_description %>
   <%= f.input :description %>
   <%= render 'dashboard/shared/form/banner_input', element: methodology, form: f %>
   <%= f.input :header_one %>
