@@ -58,6 +58,7 @@ export default class extends Controller {
         this.addSourcePopup(e)
       }
     })
+
     this.map.on('mouseenter', 'araruama', (e) => {
       this.addSourcePopup(e)
       console.log(`ENTROU!`);
