@@ -6,11 +6,13 @@ import mapboxgl from 'mapbox-gl'
 export default class extends Controller {
   static values = {
     apiKey: String,
-    markers: Array
+    markers: Array,
+    source: String,
   }
   static targets = ['mapContainer', 'menuOption', 'listingGroup', "cover"]
 
   connect() {
+    console.log(this.sourceValue)
     mapboxgl.accessToken = this.apiKeyValue
 
     this.map = new mapboxgl.Map({
@@ -21,8 +23,10 @@ export default class extends Controller {
     this.map.dragPan.disable()
     this.map.scrollZoom.disable()
 
-    this.#addMarkersToMap()
-    this.#fitMapToMarkers()
+    if (this.markersValue.length !== 0) {
+      this.#addMarkersToMap()
+      this.#fitMapToMarkers()
+    }
     this.#addNavigationtoMap()
     this.#addListenersToMeniuOptions()
 
@@ -37,20 +41,20 @@ export default class extends Controller {
 
     this.hoveredPolygonId = null
     this.popup = null
-    this.map.on('mousemove', 'araruama', (e) => {
+    this.map.on('mousemove', this.sourceValue, (e) => {
       if (e.features.length > 0) {
 
 
         if (this.hoveredPolygonId !== null) {
           this.map.setFeatureState(
-            { source: 'pea-data', sourceLayer: 'Araruama', id: this.hoveredPolygonId },
+            { source: 'pea-data', sourceLayer: this.sourceValue, id: this.hoveredPolygonId },
             { hover: false }
           )
         }
 
         this.hoveredPolygonId = e.features[0].id
         this.map.setFeatureState(
-          { source: 'pea-data', sourceLayer: 'Araruama', id: this.hoveredPolygonId },
+          { source: 'pea-data', sourceLayer: this.sourceValue, id: this.hoveredPolygonId },
           { hover: true }
         )
 
@@ -59,14 +63,14 @@ export default class extends Controller {
       }
     })
 
-    this.map.on('mouseenter', 'araruama', (e) => {
+    this.map.on('mouseenter', this.sourceValue, (e) => {
       this.addSourcePopup(e)
       console.log(`ENTROU!`);
     })
-    this.map.on('mouseleave', 'araruama', () => {
+    this.map.on('mouseleave', this.sourceValue, () => {
       if (this.hoveredPolygonId  !== null) {
         this.map.setFeatureState(
-          { source: 'pea-data', sourceLayer: 'Araruama', id: this.hoveredPolygonId },
+          { source: 'pea-data', sourceLayer: this.sourceValue, id: this.hoveredPolygonId },
           { hover: false }
         );
         if (this.popup.isOpen()) {
@@ -80,14 +84,14 @@ export default class extends Controller {
   addSource() {
     this.map.addSource('pea-data', {
       type: 'vector',
-      url: 'mapbox://dedemenezes.alnm2a00',
+      url: 'mapbox://dedemenezes.clo6mrn5x0cyn2fms8kt0pk8w-6ty29',
       generateId: true // This ensures that all features have unique IDs
     })
   }
 
   addSourceLayer() {
     this.map.addLayer({
-      'id': 'araruama',
+      'id': this.sourceValue,
       'type': 'fill',
       'source': 'pea-data',
       'layout': {
@@ -97,7 +101,7 @@ export default class extends Controller {
       'paint': {
         'fill-color': 'rgba(55,148,179,1)'
       },
-      'source-layer': 'Araruama'
+      'source-layer': this.sourceValue
     })
   }
 
@@ -108,12 +112,17 @@ export default class extends Controller {
       this.popup.remove()
     }
     // create popup
-    this.popup = new mapboxgl.Popup().setHTML(event.features[0].properties.description)
+    let popHTML = `<p>`
+    const properties = event.features[0].properties
+    console.log(properties);
+    Object.entries(properties).forEach((k) => popHTML += `<strong>${k[0]}:</strong> ${k[1]}`)
+    popHTML += '</p>'
 
+    this.popup = new mapboxgl.Popup().setHTML(popHTML)
     // Display a popup with the name of the county
     this.popup.setLngLat([event.lngLat.lng, event.lngLat.lat])
-      .setText(feature.properties.Description)
-      .addTo(this.map);
+              .addTo(this. map);
+      // .setText(feature.properties.Description)
   }
 
   coverWarning() {
