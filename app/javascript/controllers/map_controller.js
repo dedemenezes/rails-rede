@@ -8,7 +8,9 @@ export default class extends Controller {
     apiKey: String,
     markers: Array,
     source: String,
+    url: String,
   }
+
   static targets = ['mapContainer', 'menuOption', 'listingGroup', "cover"]
 
   connect() {
@@ -84,7 +86,7 @@ export default class extends Controller {
   addSource() {
     this.map.addSource('pea-data', {
       type: 'vector',
-      url: 'mapbox://dedemenezes.clo6mrn5x0cyn2fms8kt0pk8w-6ty29',
+      url: this.urlValue,
       generateId: true // This ensures that all features have unique IDs
     })
   }
