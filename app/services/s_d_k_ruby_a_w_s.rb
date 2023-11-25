@@ -17,7 +17,6 @@ class SDKRubyAWS
 
   def stage_into_bucket
     retrieve_s3_credentials
-    binding.b
     upload_file
   end
 
@@ -39,16 +38,10 @@ class SDKRubyAWS
     # sessionToken
     credentials = Aws::Credentials.new(body['accessKeyId'], body['secretAccessKey'], body['sessionToken'])
     client = Aws::S3::Client.new(region: 'us-east-1', credentials:)
-    object = Aws::S3::Object.new(body['bucket'], 'dado_pelo_usuario', nil, client:)
+    object = Aws::S3::Object.new(body['bucket'], body['key'], nil, client:)
     file_path = '/mnt/c/Users/matme/Downloads/Araruama1.kml'
-    File.open(file_path, 'rb') do |file|
-      client.put_object(
-        bucket: body['bucket'],
-        key: 'dado_pelo_usuario',
-        body: file
-      )
-    end
-    true
+    response = object.upload_file(file_path)
+    puts "File Uploaded! zo/\nObject: #{response}"
   rescue Aws::Errors::ServiceError => e
     puts "Couldn't upload file #{file_path} to #{object.key}. Here's why: #{e.message}"
   end
