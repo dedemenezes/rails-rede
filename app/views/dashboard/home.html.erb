@@ -24,11 +24,12 @@
   </nav>
 </div>
 
-<%= form_with url: '#',
+<%= form_with url: dashboard_mapbox_tilesets_path,
               data: {
                 controller: 'map--tileset--create',
                 map__tileset__create_api_key_value: ENV['MAPBOX_SUPER_KEY'],
                 action: 'submit->map--tileset--create#upload',
+                 map__tileset__create_target: 'form',
               } do |f| %>
 
   <%= f.text_field :name, data: { map__tileset__create_target: 'nameField' } %>
