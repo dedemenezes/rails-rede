@@ -63,12 +63,15 @@ gem "cloudinary"
 # gem 'acts-as-taggable-on', '~> 9.0'
 
 gem "aws-sdk-s3", require: false
+gem 'faraday'
+
 
 gem 'rack-cors'
 
 gem 'sitemap_generator'
 
 gem "mini_magick"
+
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
