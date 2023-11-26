@@ -42,25 +42,25 @@ export default class extends Controller {
       this.addSourceLayer()
     })
 
+    this.addSourcePopupsOnHovering()
+  }
+
+  addSourcePopupsOnHovering() {
     this.hoveredPolygonId = null
     this.popup = null
     this.map.on('mousemove', this.sourceValue, (e) => {
       if (e.features.length > 0) {
-
-
         if (this.hoveredPolygonId !== null) {
           this.map.setFeatureState(
-            { source: 'pea-data', sourceLayer: this.sourceValue, id: this.hoveredPolygonId },
+            { source: this.sourceValue, sourceLayer: this.sourceValue, id: this.hoveredPolygonId },
             { hover: false }
           )
         }
-
         this.hoveredPolygonId = e.features[0].id
         this.map.setFeatureState(
-          { source: 'pea-data', sourceLayer: this.sourceValue, id: this.hoveredPolygonId },
+          { source: this.sourceValue, sourceLayer: this.sourceValue, id: this.hoveredPolygonId },
           { hover: true }
         )
-
         console.log(e.features[0])
         this.addSourcePopup(e)
       }
@@ -70,10 +70,11 @@ export default class extends Controller {
       this.addSourcePopup(e)
       console.log(`ENTROU!`);
     })
+
     this.map.on('mouseleave', this.sourceValue, () => {
-      if (this.hoveredPolygonId  !== null) {
+      if (this.hoveredPolygonId !== null) {
         this.map.setFeatureState(
-          { source: 'pea-data', sourceLayer: this.sourceValue, id: this.hoveredPolygonId },
+          { source: this.sourceValue, sourceLayer: this.sourceValue, id: this.hoveredPolygonId },
           { hover: false }
         );
         if (this.popup.isOpen()) {
@@ -85,7 +86,7 @@ export default class extends Controller {
   }
 
   addSource() {
-    this.map.addSource('pea-data', {
+    this.map.addSource(this.sourceValue, {
       type: 'vector',
       url: this.urlValue,
       id: this.sourceValue // This ensures that all features have unique IDs
@@ -96,7 +97,7 @@ export default class extends Controller {
     this.map.addLayer({
       'id': this.sourceValue,
       'type': 'fill',
-      'source': 'pea-data',
+      'source': this.sourceValue,
       'layout': {
         // Make the layer visible by default.
         'visibility': 'visible'
