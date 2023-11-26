@@ -88,7 +88,7 @@ export default class extends Controller {
     this.map.addSource('pea-data', {
       type: 'vector',
       url: this.urlValue,
-      generateId: true // This ensures that all features have unique IDs
+      id: this.sourceValue // This ensures that all features have unique IDs
     })
   }
 
