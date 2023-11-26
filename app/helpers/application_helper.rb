@@ -30,7 +30,7 @@ module ApplicationHelper
   end
 
   def display_banner_as_background(instance)
-    if instance.banner.attached?
+    if instance && instance.banner.attached?
       "https://rede-observacao-prod.s3.us-east-2.amazonaws.com/#{instance.banner.key}"
     else
       image_path('default-banner.png')
