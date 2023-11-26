@@ -31,8 +31,7 @@
                 action: 'submit->map--tileset--create#upload',
                  map__tileset__create_target: 'form',
               } do |f| %>
-
-  <%= f.text_field :name, data: { map__tileset__create_target: 'nameField' } %>
-  <%= f.file_field :tileset, data: {action: 'change->map--tileset--create#fileSelected', map__tileset__create_target: 'fileField',  } %>
+  <%= f.text_field :name, class: 'form-control', data: { map__tileset__create_target: 'nameField' } %>
+  <%= f.file_field :tileset, class: 'form-control', data: {action: 'change->map--tileset--create#fileSelected', map__tileset__create_target: 'fileField',  } %>
   <%= f.submit %>
 <% end %>

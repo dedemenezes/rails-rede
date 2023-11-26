@@ -18,7 +18,14 @@ export default class extends Controller {
 
   fileSelected() {
     console.log(this.fileFieldTarget.files)
-
+    const file = this.fileFieldTarget.files[0]
+    if (file) {
+      this.fileFieldTarget.classList.remove('is-invalid')
+      this.fileFieldTarget.classList.add('is-valid')
+    } else {
+      this.fileFieldTarget.classList.remove('is-valid')
+      this.fileFieldTarget.classList.add('is-invalid')
+    }
   }
 
   upload(event){
