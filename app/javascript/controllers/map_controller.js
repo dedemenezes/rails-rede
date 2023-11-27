@@ -8,19 +8,18 @@ export default class extends Controller {
   static values = {
     apiKey: String,
     markers: Array,
-    source: String,
-    url: String,
+    tilesets: Array,
+    style: String,
   }
 
   static targets = ['mapContainer', 'menuOption', 'listingGroup', "cover"]
 
   connect() {
-    console.log(this.sourceValue)
     mapboxgl.accessToken = this.apiKeyValue
 
     this.map = new mapboxgl.Map({
       container: this.mapContainerTarget,
-      style: "mapbox://styles/mapbox/streets-v10"
+      style: this.styleValue
     })
 
     this.map.dragPan.disable()
@@ -33,71 +32,33 @@ export default class extends Controller {
     this.#addNavigationtoMap()
     this.#addListenersToMeniuOptions()
 
-
     this.map.on('load', () => {
-      // Add Araruama tileset as source
-      this.addSource()
+      this.tilesetsValue.forEach((tileset) => {
+        // Add Araruama tileset as source
+        this.addSource(tileset)
 
-      // Add new layer to dislay the tileset
-      this.addSourceLayer()
+        // Add new layer to dislay the tileset
+        this.addSourceLayer(tileset)
+
+        this.addSourcePopupsOnHovering(tileset)
+      })
     })
 
-    this.addSourcePopupsOnHovering()
   }
 
-  addSourcePopupsOnHovering() {
-    this.hoveredPolygonId = null
-    this.popup = null
-    this.map.on('mousemove', this.sourceValue, (e) => {
-      if (e.features.length > 0) {
-        if (this.hoveredPolygonId !== null) {
-          this.map.setFeatureState(
-            { source: this.sourceValue, sourceLayer: this.sourceValue, id: this.hoveredPolygonId },
-            { hover: false }
-          )
-        }
-        this.hoveredPolygonId = e.features[0].id
-        this.map.setFeatureState(
-          { source: this.sourceValue, sourceLayer: this.sourceValue, id: this.hoveredPolygonId },
-          { hover: true }
-        )
-        console.log(e.features[0])
-        this.addSourcePopup(e)
-      }
-    })
-
-    this.map.on('mouseenter', this.sourceValue, (e) => {
-      this.addSourcePopup(e)
-      console.log(`ENTROU!`);
-    })
-
-    this.map.on('mouseleave', this.sourceValue, () => {
-      if (this.hoveredPolygonId !== null) {
-        this.map.setFeatureState(
-          { source: this.sourceValue, sourceLayer: this.sourceValue, id: this.hoveredPolygonId },
-          { hover: false }
-        );
-        if (this.popup.isOpen()) {
-          this.popup.remove()
-        }
-      }
-      this.hoveredPolygonId = null;
-    });
-  }
-
-  addSource() {
-    this.map.addSource(this.sourceValue, {
+  addSource(tileset) {
+    this.map.addSource(tileset.sourceValue, {
       type: 'vector',
-      url: this.urlValue,
-      id: this.sourceValue // This ensures that all features have unique IDs
+      url: tileset.urlValue,
+      id: tileset.sourceValue // This ensures that all features have unique IDs
     })
   }
 
-  addSourceLayer() {
+  addSourceLayer(tileset) {
     this.map.addLayer({
-      'id': this.sourceValue,
+      'id': tileset.sourceValue,
       'type': 'fill',
-      'source': this.sourceValue,
+      'source': tileset.sourceValue,
       'layout': {
         // Make the layer visible by default.
         'visibility': 'visible'
@@ -105,20 +66,66 @@ export default class extends Controller {
       'paint': {
         'fill-color': 'rgba(55,148,179,1)'
       },
-      'source-layer': this.sourceValue
+      'source-layer': tileset.sourceValue
     })
   }
 
-  addSourcePopup(event) {
-    // Single out the first found feature.
-    const feature = event.features[0];
-    if (this.popup) {
+  addSourcePopupsOnHovering(tileset) {
+    this.hoveredPolygonId = null
+    this.popup = null
+    // this.map.on('mousemove', this.sourceValue, (e) => {
+    // if (e.features.length > 0) {
+    //   if (this.hoveredPolygonId !== null) {
+    //     this.map.setFeatureState(
+    //       { source: this.sourceValue, sourceLayer: this.sourceValue, id: this.hoveredPolygonId },
+    //       { hover: false }
+    //     )
+    //   }
+    //   this.hoveredPolygonId = e.features[0].id
+    //   this.map.setFeatureState(
+    //     { source: this.sourceValue, sourceLayer: this.sourceValue, id: this.hoveredPolygonId },
+    //     { hover: true }
+    //   )
+    //   this.addSourcePopup(e)
+    // }
+    // })
+
+    this.map.on('mouseenter', tileset.sourceValue, (e) => {
+      this.addSourcePopup(e)
+      console.log(`ENTROU!`);
+      // Single out the first found feature.
+      const feature = e.features[0];
+      console.log(e);
+    })
+
+    this.map.on('mouseleave', tileset.sourceValue, (e) => {
+      console.log(`SAIU!`);
+      console.log(e);
+      this.removeSourcePopup()
+    });
+  }
+
+  removeSourcePopup() {
+    if (this.popup.isOpen()) {
       this.popup.remove()
+      this.popup = null
     }
+    this.hoveredPolygonId = null;
+  }
+
+  addSourcePopup(event) {
+
+    // if (this.popup) {
+    //   this.popup.remove()
+    // }
     // create popup
+    if (this.popup) {
+      return undefined
+    }
+
     let popHTML = `<p>`
     const properties = event.features[0].properties
-    console.log(properties);
+    // console.log(properties);
     Object.entries(properties).forEach((k) => popHTML += `<strong>${k[0]}:</strong> ${k[1]}`)
     popHTML += '</p>'
 
