@@ -1,9 +1,6 @@
 <%= simple_form_for [:dashboard, :mapbox, dashboard_tileset] do |f| %>
   <%= f.input :name %>
-  <% if dashboard_tileset.kml.attached? %>
-    <%= f.input :kml, value: dashboard_tileset.kml %>
-
-  <% end %>
+    <%= f.input :kml %>
   <% unless dashboard_tileset.new_record? %>
     <%= f.input :mapbox_owner %>
     <%= f.input :mapbox_id, label: 'Mapbox ID' %>
