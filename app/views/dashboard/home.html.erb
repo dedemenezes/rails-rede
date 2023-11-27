@@ -3,7 +3,7 @@
 <div class="col-12 col-sm-6 map__wrapper"
                    data-controller="map"
                    data-map-markers-value="<%= [] %>"
-                   data-map-style-value="mapbox://styles/mapbox/streets-v10"
+                   data-map-style-value="mapbox://styles/mapbox/streets-v12"
                    data-map-tilesets-value="<%= @tilesets.to_json %>"
                    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
   <div class="map__container"
@@ -24,14 +24,14 @@
   </nav>
 </div>
 
-<%= form_with url: dashboard_mapbox_tilesets_path,
+<%= simple_form_for [:dashboard, :mapbox, Tileset.new],
               data: {
                 controller: 'map--tileset--create',
                 map__tileset__create_api_key_value: ENV['MAPBOX_SUPER_KEY'],
                 action: 'submit->map--tileset--create#upload',
                  map__tileset__create_target: 'form',
               } do |f| %>
-  <%= f.text_field :name, class: 'form-control', data: { map__tileset__create_target: 'nameField', action: 'blur->map--tileset--create#enableSubmitButton'} %>
+  <%= f.input :name, data: { map__tileset__create_target: 'nameField', action: 'blur->map--tileset--create#enableSubmitButton'} %>
   <%= f.file_field :tileset, class: 'form-control', data: {action: 'change->map--tileset--create#fileSelected', map__tileset__create_target: 'fileField',  } %>
   <%= f.submit 'Salvar', class: 'btn btn-primary', data: { map__tileset__create_target: 'submit' } %>
 <% end %>

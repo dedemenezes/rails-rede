@@ -47,6 +47,7 @@ export default class extends Controller {
   }
 
   addSource(tileset) {
+    console.log(tileset);
     this.map.addSource(tileset.sourceValue, {
       type: 'vector',
       url: tileset.urlValue,

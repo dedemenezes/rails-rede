@@ -1,9 +1,9 @@
 class Tileset < ApplicationRecord
   NON_ASCII_CHARS_REGEX = /[^\x00-\x7F]+\ *(?:[^\x00-\x7F]| )*/
-  validates :name, :mapbox_id, presence: true, uniqueness: { case_sensitive: false }
+  validates :name, presence: true, uniqueness: { case_sensitive: false }
   validates :name, uniqueness: { scope: :mapbox_id }
   before_validation :strip_name!
-  before_validation :set_mapbox_id
+  # before_validation :set_mapbox_id
 
   validate :ensure_kml_attached
 

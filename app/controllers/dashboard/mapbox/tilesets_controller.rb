@@ -10,6 +10,10 @@ class Dashboard::Mapbox::TilesetsController < DashboardController
       if @dashboard_tileset.save
         rename_kml_blob
         upload_tileset_to_mapbox
+        data = JSON.parse @response.body
+        @dashboard_tileset.mapbox_id = data['name'] if data['name']
+        @dashboard_tileset.mapbox_owner = data['owner'] if data['owner']
+        @dashboard_tileset.save
         format.html do
           flash[:notice] = 'Tileset created!'
           redirect_to home_path
@@ -25,7 +29,7 @@ class Dashboard::Mapbox::TilesetsController < DashboardController
 
   def upload_tileset_to_mapbox
     begin
-      @response = MapboxUploader.tileset_from_kml(@dashboard_tileset.mapbox_id, tileset_params[:kml].path)
+      @response = MapboxUploader.tileset_from_kml(@dashboard_tileset.name, tileset_params[:kml].path)
     rescue S3::NotAuthorizedError => e
       @response = e
     end
@@ -34,7 +38,7 @@ class Dashboard::Mapbox::TilesetsController < DashboardController
   def rename_kml_blob
     @dashboard_tileset.kml.blob.filename = ActiveStorage::Filename.new(Tileset.new
                                               .replace_non_ascii_with_ascii(
-                                                @dashboard_tileset.kml.blob.filename.to_s.downcase
+                                                @dashboard_tileset.kml.blob.filename.to_s
                                               ))
     @dashboard_tileset.kml.blob.save
   end

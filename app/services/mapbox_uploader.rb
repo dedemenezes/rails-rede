@@ -1,7 +1,7 @@
 require "aws-sdk-s3"
 
 class MapboxUploader
-  attr_reader :body
+  attr_reader :body, :tileset_name
 
   USERNAME = 'dedemenezes'
   CREDENTIALS_URL = "https://api.mapbox.com/uploads/v1/dedemenezes/credentials?access_token=#{ENV.fetch('MAPBOX_SUPER_KEY')}"
@@ -19,6 +19,7 @@ class MapboxUploader
   end
 
   def tileset_from_kml
+    update_kml_file
     @body = S3.retrieve_credentials(CREDENTIALS_URL)
     stage_file
     upload_tileset
@@ -26,19 +27,24 @@ class MapboxUploader
 
   private
 
-  def ensure_valid_name(tileset_name)
-    tileset_name.downcase.gsub(' ', '_')
+  def update_kml_file
+    document = Nokogiri::XML(File.open(@file_path))
+    update_target_element(document)
+    save_document_to_file(document)
   end
 
-  # def retrieve_s3_credentials
-  #   connection = Faraday.new(headers: { 'Content-Type' => 'application/json' })
-  #   response = connection.post(
-  #     @credentials_url,
-  #     nil,
-  #     { 'Content-Type' => 'application/json' }
-  #   )
-  #   @body = JSON.parse(response.body)
-  # end
+  def update_target_element(document)
+    target_element = document.at('Folder > name')
+    target_element.content = @tileset_name
+  end
+
+  def save_document_to_file(document)
+    File.open(@file_path, 'w') { |file| file.write(document.to_xml) }
+  end
+
+  def ensure_valid_name(tileset_name)
+    Tileset.new.replace_non_ascii_with_ascii(tileset_name).gsub(' ', '_')
+  end
 
   def stage_file
     # aws_access_key_id, aws_secret_access_key
@@ -61,6 +67,9 @@ class MapboxUploader
         "name" => @tileset_name
       }
     )
-    connection.post @upload_url, tile_set_body
+
+    response = connection.post @upload_url, tile_set_body
+    binding.b
+    response
   end
 end
