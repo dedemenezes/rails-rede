@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     delete '/attachments/:id', to: 'attachments#destroy', as: :attachment
 
     namespace :mapbox do
-      resources :tilesets, only: :create
+      resources :tilesets
     end
   end
   root to: "pages#home"

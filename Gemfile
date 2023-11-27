@@ -65,7 +65,7 @@ gem "cloudinary"
 gem "aws-sdk-s3", require: false
 gem 'faraday'
 gem "webmock"
-
+gem 'unicode'
 gem 'rack-cors'
 
 gem 'sitemap_generator'
