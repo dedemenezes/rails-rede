@@ -12,7 +12,7 @@ class Dashboard::Mapbox::TilesetsController < DashboardController
         upload_tileset_to_mapbox
         format.html do
           flash[:notice] = 'Tileset created!'
-          redirect_to dashboard_mapbox_tilesets_path
+          redirect_to home_path
         end
       else
         format.html { render :new, status: :unprocessable_entity }
