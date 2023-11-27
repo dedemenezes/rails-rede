@@ -71,6 +71,13 @@ module ApplicationHelper
     path.gsub(/^albums\//, '')
   end
 
+  def route_for_destroy_dashboard(element)
+    path = "#{element.model_name.plural}/#{element.id}"
+    return path unless  element.is_a? Album
+
+    path.gsub(/^albums\//, '')
+  end
+
   def hide_nested_links(name_of_controller)
     name_of_controller == 'albums'
   end

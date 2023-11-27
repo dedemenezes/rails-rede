@@ -1,4 +1,8 @@
 class Dashboard::Mapbox::TilesetsController < DashboardController
+  def index
+    @tilesets = Tileset.all
+  end
+
   def new
     @dashboard_tileset = Tileset.new
     authorize [:dashboard, current_user]
@@ -23,6 +27,38 @@ class Dashboard::Mapbox::TilesetsController < DashboardController
       end
       format.json { render json: @response.body, status: @response.status }
     end
+  end
+
+  def edit
+    @dashboard_tileset = Tileset.find(params[:id])
+  end
+
+  def update
+    @dashboard_tileset = Tileset.find(params[:id])
+    @dashboard_tileset.update(tileset_params)
+    respond_to do |format|
+      if @dashboard_tileset.save
+        rename_kml_blob
+        upload_tileset_to_mapbox
+        data = JSON.parse @response.body
+        @dashboard_tileset.mapbox_id = data['name'] if data['name']
+        @dashboard_tileset.mapbox_owner = data['owner'] if data['owner']
+        @dashboard_tileset.save
+        format.html do
+          flash[:notice] = 'Tileset updated!'
+          redirect_to home_path
+        end
+      else
+        format.html { render :new, status: :unprocessable_entity }
+      end
+      format.json { render json: @response.body, status: @response.status }
+    end
+  end
+
+  def destroy
+    @dashboard_tileset = Tileset.find(params[:id])
+    @dashboard_tileset.destroy
+    redirect_to dashboard_mapbox_tilesets_path, status: :see_other
   end
 
   private
