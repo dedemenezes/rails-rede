@@ -1,13 +1,13 @@
 <%= render 'shared/breadcrumbs' %>
 
-<div class="col-12 col-sm-6 map__wrapper"
+<div class="col-12 map__wrapper" style="width: 100% !important;"
                    data-controller="map"
                    data-map-markers-value="<%= [] %>"
                    data-map-style-value="mapbox://styles/mapbox/streets-v10"
                    data-map-tilesets-value="<%= @tilesets.to_json %>"
                    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
   <div class="map__container"
-                      style="height: 52vh;"
+                      style="height: 80vh;"
                       data-map-target="mapContainer"
                       data-action="click->map#coverWarning">
   </div>
@@ -23,15 +23,3 @@
     <label for="dragPan">Arrastar e navegar</label>
   </nav>
 </div>
-
-<%= simple_form_for [:dashboard, :mapbox, Tileset.new],
-              data: {
-                controller: 'map--tileset--create',
-                map__tileset__create_api_key_value: ENV['MAPBOX_SUPER_KEY'],
-                action: 'submit->map--tileset--create#upload',
-                 map__tileset__create_target: 'form',
-              } do |f| %>
-  <%= f.input :name, data: { map__tileset__create_target: 'nameField', action: 'blur->map--tileset--create#enableSubmitButton'} %>
-  <%= f.file_field :tileset, class: 'form-control', data: {action: 'change->map--tileset--create#fileSelected', map__tileset__create_target: 'fileField',  } %>
-  <%= f.submit 'Salvar', class: 'btn btn-primary', data: { map__tileset__create_target: 'submit' } %>
-<% end %>
