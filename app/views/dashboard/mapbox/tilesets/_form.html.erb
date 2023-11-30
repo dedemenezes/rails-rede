@@ -1,6 +1,11 @@
-<%= simple_form_for [:dashboard, :mapbox, dashboard_tileset] do |f| %>
+<%= simple_form_for [:dashboard, :mapbox, dashboard_tileset], html: { data: { controller: 'to-geojson' } } do |f| %>
   <%= f.input :name %>
-    <%= f.input :kml %>
+  <%= f.input :kml, input_html: { data: { to_geojson_target: 'inputFile', action: 'change->to-geojson#convert' } } %>
+  <%= f.input :geo_json,
+              label_html: { data: { to_geojson_target: 'labelGeoJson' }, hidden: true },
+              input_html: { data: { to_geojson_target: 'inputGeoJson' }, hidden: true } %>
+  <pre data-to-geojson-target="preTag"></pre>
+
   <% unless dashboard_tileset.new_record? %>
     <%= f.input :mapbox_owner %>
     <%= f.input :mapbox_id, label: 'Mapbox ID' %>

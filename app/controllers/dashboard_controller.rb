@@ -8,7 +8,8 @@ class DashboardController < ApplicationController
     @tilesets = Tileset.all.map do |tileset|
       {
         sourceValue: tileset.mapbox_id,
-        urlValue: "mapbox://dedemenezes.#{tileset.mapbox_id}"
+        urlValue: "mapbox://dedemenezes.#{tileset.mapbox_id}",
+        geoJson: tileset.geo_json
       }
     end
     authorize [:dashboard, current_user]

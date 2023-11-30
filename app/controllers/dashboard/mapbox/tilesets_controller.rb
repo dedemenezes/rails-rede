@@ -80,6 +80,6 @@ class Dashboard::Mapbox::TilesetsController < DashboardController
   end
 
   def tileset_params
-    params.require(:tileset).permit(:name, :kml)
+    params.require(:tileset).permit(:name, :kml, :geo_json)
   end
 end

@@ -79,6 +79,9 @@ application.register("swiper", SwiperController)
 import SwiperSlideshowController from "./swiper_slideshow_controller"
 application.register("swiper-slideshow", SwiperSlideshowController)
 
+import ToGeojsonController from "./to_geojson_controller"
+application.register("to-geojson", ToGeojsonController)
+
 import ToggleElementController from "./toggle_element_controller"
 application.register("toggle-element", ToggleElementController)
 
