@@ -6,6 +6,7 @@
     "@hotwired/stimulus": "^3.2.1",
     "@hotwired/turbo-rails": "^7.2.4",
     "@mapbox/mapbox-gl-geocoder": "^5.0.1",
+    "@mapbox/togeojson": "^0.16.2",
     "@popperjs/core": "^2.11.6",
     "@rails/actiontext": "^7.0.4",
     "aws-sdk": "^2.1481.0",
