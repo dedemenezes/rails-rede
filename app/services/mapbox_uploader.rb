@@ -69,7 +69,7 @@ class MapboxUploader
     )
 
     response = connection.post @upload_url, tile_set_body
-    binding.b
+    # binding.b
     response
   end
 end
