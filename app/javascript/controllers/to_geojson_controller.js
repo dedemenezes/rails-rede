@@ -4,13 +4,13 @@ import toGeoJSON from "@mapbox/togeojson"
 
 // Connects to data-controller="to-geojson"
 export default class extends Controller {
-  static targets = ['progressBar']
+  static targets = ['progressBar','inputFile']
 
   objectURL(file) {
     return window.URL.createObjectURL(file);
   }
   convert() {
-    const file = this.element.files[0]
+    const file = this.inputFileTarget.files[0]
     if(file) {
       // console.log(file);
       // const fr = new FileReader()

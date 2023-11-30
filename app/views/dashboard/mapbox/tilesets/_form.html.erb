@@ -1,6 +1,6 @@
 <%= simple_form_for [:dashboard, :mapbox, dashboard_tileset], html: { data: { controller: 'to-geojson' } } do |f| %>
   <%= f.input :name %>
-  <%= f.input :kml, input_html: { action: 'change->to-geojson#convert' } %>
+  <%= f.input :kml, input_html: { data: { to_geojson_target: 'inputFile', action: 'change->to-geojson#convert' } } %>
   <div class="progress mb-3" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
     <div class="progress-bar" data-to-geojson-target="progressBar" style="width: 0%">0%</div>
   </div>
