@@ -32,217 +32,87 @@ export default class extends Controller {
     this.#addNavigationtoMap()
     this.#addListenersToMeniuOptions()
 
+    this.macae = Array.from(this.tilesetsValue)
+      .find(tileset => tileset.sourceValue === 'Cabo_Frio')
+    // console.log(this.macae)
+    const macaeGeoJson = JSON.parse(this.macae.geoJson)
+    const pointFeatures = macaeGeoJson.features.filter(feature => feature.geometry.type == 'Point')
+    const polygonFeatures = macaeGeoJson.features.filter(feature => feature.geometry.type == 'Polygon')
+    console.log(pointFeatures)
+    console.log(polygonFeatures)
+
+
+
+
     this.map.on('load', (e) => {
-      this.macae = Array.from(this.tilesetsValue)
-                         .find(tileset => tileset.sourceValue === 'Macae')
-      console.log(this.macae)
-      const macaeGeoJson = JSON.parse(this.macae.geoJson)
-      console.log(macaeGeoJson)
-      const points = macaeGeoJson.features.filter(feature => feature.geometry.type == 'Point')
-      const polygons = macaeGeoJson.features.filter(feature => feature.geometry.type == 'Polygon')
-      const point = points[0]
 
       this.map.addSource(this.macae.sourceValue, {
         'type': 'geojson',
         'data': macaeGeoJson
       })
+      polygonFeatures.forEach((feature, index) => {
+        const featureSourceId = this.setFeatureSourceId(this.macae.sourceValue, feature, index)
 
-      polygons.forEach((polygon) => {
-        this.addPolygonLayer(polygon)
-      })
+        this.map.addSource(featureSourceId, {
+          'type': 'geojson',
+          'data': feature
+        })
 
-      this.addSourcePopupsOnHovering(this.macae)
+        const layerId = featureSourceId + '-fill'
 
-
-      this.map.loadImage(point.properties.icon, (error, image) => {
-        if(error) throw error
-
-        const imgName = point.properties.styleUrl.substring(1)
-        this.map.addImage(imgName, image)
+        this.map.addLayer({
+          'id': layerId,
+          'type': 'fill',
+          'source': featureSourceId,
+          'layout': {
+            // Make the layer visible by default.
+            'visibility': 'visible'
+          },
+          'paint': {
+            'fill-antialias': true,
+            'fill-color': feature.properties.fill,
+            'fill-opacity': feature.properties["fill-opacity"],
+          },
+          'sourceLayer': `polygon-${feature.properties.fill}-layer`
+        })
         this.map.addLayer(
           {
-            id: this.macae.sourceValue,
+            id: layerId + '-label',
             // References the GeoJSON source defined above
             // and does not require a `source-layer`
-            source: this.macae.sourceValue,
+            source: featureSourceId,
             type: 'symbol',
             layout: {
               // Set the label content to the
               // feature's `name` property
-              'icon-image': imgName, // reference the image
-              'icon-size': 0.25
+              'text-field': feature.properties.name,
             }
           },
         )
 
+        this.addSourcePopupsOnHovering(layerId)
       })
 
-      // this.map.addLayer({
-      //   'id': tileset.sourceValue + '-fill',
-      //   'type': 'fill',
-      //   'source': tileset.sourceValue,
-      //   'layout': {
-      //     // Make the layer visible by default.
-      //     'visibility': 'visible'
-      //   },
-      //   'paint': {
-      //     'fill-color': 'rgba(55,148,179,0.5)'
-      //   },
-      //   'source-layer': tileset.sourceValue,
-      //   'filter': ['==', ['geometry-type'], 'Polygon']
-      // })
-      // this.tilesetsValue.forEach((tileset) => {
-      //   // Log the features to the console
-      //   const features = this.map.querySourceFeatures(tileset.sourceValue)
-
-      //   // Add Araruama tileset as source
-      //   this.addSource(tileset)
-
-      //   // Add new layer to dislay the tileset
-      //   this.addSourceLayer(tileset)
-
-      //   // Add new layer to dislay the tileset as points
-      //   this.addPointLayer(tileset)
-
-      //   this.addSourcePopupsOnHovering(tileset)
-      // })
+      const featuresByIcons = Object.groupBy(pointFeatures, ({ properties }) => properties.icon)
+      // console.log(featuresByIcons)
+      Object.keys(featuresByIcons).forEach((icon) => {
+        this.#loadImageAndAddToMap(this.map, icon, (imgName) => {
+          featuresByIcons[icon].forEach((feature, index) => {
+            this.#processFeatures(this.map, feature, imgName, index);
+          });
+        });
+      })
     })
-
-    // this.map.on('load', () => {
-    //   // Load an image from an external URL.
-    //   this.map.loadImage(
-    //     'https://docs.mapbox.com/mapbox-gl-js/assets/cat.png',
-    //     (error, image) => {
-    //       if (error) throw error
-
-    //       // Add the image to the map style.
-    //       this.map.addImage('cat', image)
-
-    //       // Add a data source containing one point feature.
-    //       this.map.addSource('point', {
-    //         'type': 'geojson',
-    //         'data': {
-    //           'type': 'FeatureCollection',
-    //           'features': [
-    //             {
-    //               'type': 'Feature',
-    //               'geometry': {
-    //                 'type': 'Point',
-    //                 'coordinates': [-77.4144, 25.0759]
-    //               }
-    //             }
-    //           ]
-    //         }
-    //       })
-
-    //       // Add a layer to use the image to represent the data.
-    //       this.map.addLayer({
-    //         'id': 'points',
-    //         'type': 'symbol',
-    //         'source': 'point', // reference the data source
-    //         'layout': {
-    //           'icon-image': 'cat', // reference the image
-    //           'icon-size': 0.25
-    //         }
-    //       })
-    //     }
-    //   )
-    // })
 
   }
 
-  addPolygonLayer(polygon) {
-    // // add fill layer
-    this.map.addLayer({
-      'id': this.macae.sourceValue + '--fill',
-      'type': 'fill',
-      'source': this.macae.sourceValue,
-      'layout': {},
-      'paint': {
-        "fill-antialias": true,
-        "fill-color": polygon.properties.fill,
-        "fill-opacity": polygon.properties["fill-opacity"],
-      }
-    })
+  setFeatureSourceId(sourceValue, feature, index) {
+    const featureType = feature.geometry.type
+    const featureStyleUrl = feature.properties.styleUrl
+    return `${index + 1}_${sourceValue}-${featureType}${featureStyleUrl}`
   }
 
-  addSource(tileset) {
-    this.map.addSource(tileset.sourceValue, {
-      type: 'vector',
-      url: tileset.urlValue,
-      id: tileset.sourceValue // This ensures that all features have unique IDs
-    })
-  }
-
-  addSourceLayer(tileset) {
-    this.map.addLayer({
-      'id': tileset.sourceValue + '-fill',
-      'type': 'fill',
-      'source': tileset.sourceValue,
-      'layout': {
-        // Make the layer visible by default.
-        'visibility': 'visible'
-      },
-      'paint': {
-        'fill-color': 'rgba(55,148,179,0.5)'
-      },
-      'source-layer': tileset.sourceValue,
-      'filter': ['==', ['geometry-type'], 'Polygon']
-    })
-    // Add a symbol layer for displaying names on fill polygons
-    this.map.addLayer({
-      'id': tileset.sourceValue + '-fill-label',
-      'type': 'symbol',
-      'source': tileset.sourceValue,
-      'layout': {
-        'text-field': ['get', 'name'], // Display the 'name' property as text
-        'text-size': 12,
-        'text-anchor': 'bottom'
-      },
-      'paint': {
-        'text-color': 'rgba(0,0,0,1)'
-      },
-      'source-layer': tileset.sourceValue,
-      'filter': ['==', ['geometry-type'], 'Polygon'] // Filter for polygon features
-    })
-  }
-
-  addPointLayer(tileset) {
-    this.map.addLayer({
-      'id': tileset.sourceValue + '-point',
-      'type': 'circle', // Use 'circle' for point data
-      'source': tileset.sourceValue,
-      'layout': {
-        // Make the layer visible by default.
-        'visibility': 'visible',
-        // 'text-field': ['get', 'name'], // Display the 'name' property as text
-        // 'text-size': 12
-      },
-      'paint': {
-        'circle-radius': 2,
-        'circle-color': 'rgba(255,0,0,1)'
-      },
-      'source-layer': tileset.sourceValue,
-      'filter': ['==', ['geometry-type'], 'Point']
-    })
-    this.map.addLayer({
-      'id': tileset.sourceValue + '-point-label',
-      'type': 'symbol',
-      'source': tileset.sourceValue,
-      'layout': {
-        'text-field': ['get', 'name'], // Display the 'name' property as text
-        'text-size': 12,
-        'text-anchor': 'bottom'
-      },
-      'paint': {
-        'text-color': 'rgba(0,0,0,1)'
-      },
-      'source-layer': tileset.sourceValue,
-      'filter': ['==', ['geometry-type'], 'Point'] // Filter for point features
-    })
-  }
-
-  addSourcePopupsOnHovering(tileset) {
+  addSourcePopupsOnHovering(layerId) {
     this.hoveredPolygonId = null
     this.popup = null
     // this.map.on('mousemove', this.sourceValue, (e) => {
@@ -262,19 +132,21 @@ export default class extends Controller {
     // }
     // })
 
-    this.map.on('mouseenter', tileset.sourceValue + '--fill', (e) => {
+    // const layerId = tileset.sourceValue + '--fill'
+
+    this.map.on('mouseenter', layerId, (e) => {
       this.addSourcePopup(e)
-      console.log('ENTROU!');
-      console.log(e);
-      console.log('SAINDO DO ENTROU Evento');
+      // console.log('ENTROU!');
+      // console.log(e);
+      // console.log('SAINDO DO ENTROU Evento');
       // Single out the first found feature.
       const feature = e.features[0]
     })
 
-    this.map.on('mouseleave', tileset.sourceValue + '--fill', (e) => {
-      console.log('SAINDO ELEMENT | LEAVE Event');
+    this.map.on('mouseleave', layerId, (e) => {
+      // console.log('SAINDO ELEMENT | LEAVE Event')
       this.removeSourcePopup()
-      console.log('SAINDO DO LEAVE Event');
+      // console.log('SAINDO DO LEAVE Event')
     })
   }
 
@@ -314,6 +186,41 @@ export default class extends Controller {
       this.#displayCoverElement()
       this.#fadeOutCoverElement()
     }
+  }
+
+  #loadImageAndAddToMap(map, icon, callback) {
+    const nameRegex = /.+\/(.+\w+)\.\w+$/
+    const imgName = icon.match(nameRegex)[1]
+
+    map.loadImage(icon, (error, image) => {
+      if (error) throw error
+
+      map.addImage(imgName, image);
+      callback(imgName)
+    })
+  }
+
+  #processFeatures(map, feature, imgName, index) {
+    const featureSourceId = this.setFeatureSourceId(this.macae.sourceValue, feature, index)
+    map.addSource(featureSourceId, {
+      'type': 'geojson',
+      'data': feature
+    })
+    this.map.addLayer(
+      {
+        id: featureSourceId + '-icon',
+        // References the GeoJSON source defined above
+        // and does not require a `source-layer`
+        source: featureSourceId,
+        type: 'symbol',
+        layout: {
+          // Set the label content to the
+          // feature's `name` property
+          'icon-image': imgName, // reference the image
+          'icon-size': 0.25
+        }
+      },
+    )
   }
 
   #fadeOutCoverElement() {
