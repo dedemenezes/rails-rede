@@ -73,7 +73,6 @@ module Tilesets
         faraday.request :url_encoded
         faraday.adapter Faraday.default_adapter
       end
-      debugger
 
       # Make the request
       conn.post do |req|
