@@ -3,7 +3,7 @@ class Tileset < ApplicationRecord
   validates :name, presence: true, uniqueness: { case_sensitive: false }
   validates :name, uniqueness: { scope: :mapbox_id }
   before_validation :strip_name!
-  # before_validation :set_mapbox_id
+  before_validation :set_mapbox_id
 
   validate :ensure_kml_attached
 
@@ -54,7 +54,7 @@ class Tileset < ApplicationRecord
   end
 
   def set_mapbox_id
-    self.mapbox_id = replace_non_ascii_with_ascii(name).downcase.gsub(' ', '_')
+    self.mapbox_id = replace_non_ascii_with_ascii(kml.blob.filename.to_s[...-4]).downcase.gsub(' ', '_')
   end
 
 
