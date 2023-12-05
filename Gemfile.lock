@@ -95,7 +95,6 @@ GEM
     aws-sigv4 (1.5.2)
       aws-eventstream (~> 1, >= 1.0.2)
     aws_cf_signer (0.1.3)
-    base64 (0.2.0)
     bcrypt (3.1.18)
     bindex (0.8.1)
     bootsnap (1.16.0)
@@ -150,11 +149,11 @@ GEM
     factory_bot_rails (6.2.0)
       factory_bot (~> 6.2.0)
       railties (>= 5.0.0)
-    faraday (2.7.12)
-      base64
-      faraday-net_http (>= 2.0, < 3.1)
-      ruby2_keywords (>= 0.0.4)
-    faraday-net_http (3.0.2)
+    faraday (1.2.0)
+      multipart-post (>= 1.2, < 3)
+      ruby2_keywords
+    faraday_middleware (1.2.0)
+      faraday (~> 1.0)
     ffi (1.15.5)
     font-awesome-sass (6.3.0)
       sassc (~> 2.0)
@@ -201,6 +200,7 @@ GEM
     mini_mime (1.1.2)
     minitest (5.18.0)
     msgpack (1.6.1)
+    multipart-post (2.3.0)
     net-imap (0.3.4)
       date
       net-protocol
@@ -269,6 +269,9 @@ GEM
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
     rexml (3.2.5)
+    rgeo (3.0.1)
+    rgeo-geojson (2.1.1)
+      rgeo (>= 1.0.0)
     rspec-core (3.12.1)
       rspec-support (~> 3.12.0)
     rspec-expectations (3.12.2)
@@ -362,6 +365,7 @@ DEPENDENCIES
   dotenv-rails
   factory_bot_rails
   faraday
+  faraday_middleware
   font-awesome-sass (~> 6.1)
   geocoder
   image_processing (~> 1.2)
@@ -375,6 +379,8 @@ DEPENDENCIES
   rack-cors
   rails (~> 7.0.4)
   redis (~> 4.0)
+  rgeo (~> 3.0, >= 3.0.1)
+  rgeo-geojson
   rspec-rails (~> 6.0.0)
   selenium-webdriver
   shoulda-matchers (~> 5.0)

@@ -64,6 +64,8 @@ gem "cloudinary"
 
 gem "aws-sdk-s3", require: false
 gem 'faraday'
+gem 'faraday_middleware'
+
 gem "webmock"
 gem 'unicode'
 gem 'rack-cors'
@@ -71,7 +73,8 @@ gem 'rack-cors'
 gem 'sitemap_generator'
 
 gem "mini_magick"
-
+gem 'rgeo', '~> 3.0', '>= 3.0.1'
+gem 'rgeo-geojson'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
