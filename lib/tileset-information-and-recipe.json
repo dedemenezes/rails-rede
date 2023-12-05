@@ -1,1 +1,58 @@
-{"recipe":{"version":1,"layers":{"inspections-points":{"source":"mapbox://tileset-source/dedemenezes/saofranciscodeitabapoana_final","minzoom":10,"maxzoom":15,"features":{"attributes":{"allowed_output":["name","icon","description","styleUrl","styleHash","styleMapHash"]},"filter":["all",["==",["geometry-type"],"Point"],["!",["has","fill"]]]}}}},"name":"saofranciscodeitabapoana_final","description":"Todos os pontos de araruama","attribution":[{"text":"© Hello Legal World","link":""}]}
+{
+  "version": 1,
+  "layers": {
+    "inspections-points": {
+      "source": "mapbox://tileset-source/dedemenezes/saofranciscodeitabapoana_final",
+      "minzoom": 0,
+      "maxzoom": 14,
+      "features": {
+        "attributes": {
+          "allowed_output": [
+            "name",
+            "icon",
+            "description",
+            "styleUrl",
+            "styleHash",
+            "styleMapHash"
+          ]
+        },
+        "filter": ["all",
+          [ "==", [ "geometry-type" ], "Point" ],
+          [ "!", [ "has", "fill" ] ]
+        ]
+      }
+    },
+    "inspections-areas": {
+      "source": "mapbox://tileset-source/dedemenezes/saofranciscodeitabapoana_final",
+      "minzoom": 0,
+      "maxzoom": 14,
+      "features": {
+        "attributes": {
+          "allowed_output": [
+            "name",
+            "description",
+            "styleUrl",
+            "styleHash",
+            "styleMapHash",
+            "stroke",
+            "stroke-opacity",
+            "fill-opacity",
+            "fill",
+            "ESCALA",
+            "JURISDICAO",
+            "ROTULO",
+            "PUBLIC_DAT",
+            "TUTELA",
+            "INEA",
+            "AREA_HA",
+            "PERIM_m2"
+          ]
+        },
+        "filter": ["all",
+          [ "==", [ "geometry-type" ], "Polygon" ],
+          [ "has", "fill" ]
+        ]
+      }
+    }
+  }
+}

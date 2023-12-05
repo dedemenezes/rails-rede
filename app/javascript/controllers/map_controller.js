@@ -19,7 +19,9 @@ export default class extends Controller {
 
     this.map = new mapboxgl.Map({
       container: this.mapContainerTarget,
-      style: this.styleValue
+      style: this.styleValue,
+      center: [-41.071818909425474, -21.408881455430915],
+      zoom: 8
     })
 
     this.map.dragPan.disable()
@@ -32,35 +34,130 @@ export default class extends Controller {
     this.#addNavigationtoMap()
     this.#addListenersToMeniuOptions()
 
-    // this.macae = Array.from(this.tilesetsValue)
-    //                   .find(tileset => tileset.sourceValue === 'Cabo_Frio')
-    // console.log(this.macae)
-    // const macaeGeoJson = JSON.parse(this.macae.geoJson)
-    // const pointFeatures = macaeGeoJson.features.filter(feature => feature.geometry.type == 'Point')
-    // const polygonFeatures = macaeGeoJson.features.filter(feature => feature.geometry.type == 'Polygon')
-    // console.log(pointFeatures)
-    // console.log(polygonFeatures)
 
-
-
-
+    this.hoveredPolygonId = null
     this.map.on('load', (e) => {
       this.map.addSource('my-data', {
         type: 'vector',
         url: 'mapbox://dedemenezes.saofranciscodeitabapoana_final'
       });
+
       this.map.addLayer({
         'id': 'my-data-points',
         'type': 'circle',
         'source': 'my-data',
         'source-layer': 'inspections-points',
-        'paint': {
-          'circle-radius': 4,
-          'circle-color': '#ff69b4'
+        "paint": {
+          'circle-color': "rgb(255, 255, 0)",
         }
       });
 
+      this.map.addLayer({
+        'id': 'my-data-polygons',
+        'type': 'fill',
+        'source': "my-data",
+        'source-layer': 'inspections-areas',
+        'paint': {
+          'fill-color': ['get', 'fill'],
+          'fill-opacity': [
+            'case',
+            ['boolean', ['feature-state', 'hover'], false],
+            0.7,
+            0.5
+          ],
+        }
+      });
 
+      // this.map.addLayer({
+      //   'id': 'my-data-polygons-labels',
+      //   'type': 'symbol',
+      //   'source': 'my-data',
+      //   'source-layer': 'inspections-points',
+      //   "paint": {
+      //     'circle-color': "rgb(255, 255, 0)", // assuming 'icon' is the name of the property containing the icon URL
+      //   }
+      // })
+
+      this.map.on('mouseenter', 'my-data-polygons', (event) => {
+        this.map.getCanvas().style.cursor = 'pointer';
+        if (event.features.length > 0) {
+          if (this.hoveredPolygonId !== null) {
+            this.map.setFeatureState(
+              { source: 'my-data', sourceLayer: 'inspections-areas', id: this.hoveredPolygonId },
+              { hover: false }
+            );
+          }
+          this.hoveredPolygonId = event.features[0].id;
+          console.log(event);
+          this.map.setFeatureState(
+            { source: 'my-data', sourceLayer: 'inspections-areas', id: this.hoveredPolygonId },
+            { hover: true }
+          );
+        }
+      })
+
+      // When the user moves their mouse over the state-fill layer, we'll update the
+      // feature state for the feature under the mouse.
+      this.map.on('mousemove', 'my-data-polygons', (e) => {
+          this.map.getCanvas().style.cursor = 'pointer';
+        if (e.features.length > 0) {
+          if (this.hoveredPolygonId !== null) {
+            this.map.setFeatureState(
+              { source: 'my-data', sourceLayer: 'inspections-areas' , id: this.hoveredPolygonId },
+              { hover: false }
+            );
+          }
+          this.hoveredPolygonId = e.features[0].id;
+          this.map.setFeatureState(
+            { source: 'my-data', sourceLayer: 'inspections-areas', id: this.hoveredPolygonId },
+            { hover: true }
+          );
+        }
+      });
+
+      this.map.on('mouseleave', 'my-data-polygons', (e) => {
+        if (this.hoveredPolygonId) {
+          this.map.getCanvas().style.cursor = '';
+          this.map.setFeatureState(
+            { source: 'my-data', sourceLayer: 'inspections-areas', id: this.hoveredPolygonId },
+            { hover: false }
+          );
+        }
+      })
+
+      // this.map.on('mouseenter', 'my-data-polygons', (e) => {
+      //   const isPopupOpen = popup.isOpen();
+      //   if (!isPopupOpen) {
+      //     console.log('A mouseenter event occurred on a visible portion of the my-data-polygons-layer layer.');
+      //     console.log(e);
+      //     // Change the cursor style as a UI indicator.
+      //     this.map.getCanvas().style.cursor = 'pointer';
+
+      //     // Copy coordinates array.
+      //     const coordinates = e.features[0].geometry.coordinates.slice();
+      //     const description = e.features[0].properties.description;
+      //     console.log(coordinates.sort((a, b) => a[0] - b[0]));
+
+      //     // Ensure that if the map is zoomed out such that multiple
+      //     // copies of the feature are visible, the popup appears
+      //     // over the copy being pointed to.
+      //     while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+      //       coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+      //     }
+
+      //     // Populate the popup and set its coordinates
+      //     // based on the feature found.
+      //     popup.setLngLat(e.lngLat).setHTML(description).addTo(this.map);
+      //   }
+
+      // });
+
+      // this.map.on('mouseleave', 'my-data-polygons', () => {
+      //   this.map.getCanvas().style.cursor = '';
+      //   popup.remove();
+      // });
+
+      console.log(this.map.getSource('my-data'))
 
       // OLD
 
@@ -133,38 +230,17 @@ export default class extends Controller {
   addSourcePopupsOnHovering(layerId) {
     this.hoveredPolygonId = null
     this.popup = null
-    // this.map.on('mousemove', this.sourceValue, (e) => {
-    // if (e.features.length > 0) {
-    //   if (this.hoveredPolygonId !== null) {
-    //     this.map.setFeatureState(
-    //       { source: this.sourceValue, sourceLayer: this.sourceValue, id: this.hoveredPolygonId },
-    //       { hover: false }
-    //     )
-    //   }
-    //   this.hoveredPolygonId = e.features[0].id
-    //   this.map.setFeatureState(
-    //     { source: this.sourceValue, sourceLayer: this.sourceValue, id: this.hoveredPolygonId },
-    //     { hover: true }
-    //   )
-    //   this.addSourcePopup(e)
-    // }
-    // })
-
-    // const layerId = tileset.sourceValue + '--fill'
 
     this.map.on('mouseenter', layerId, (e) => {
       this.addSourcePopup(e)
-      // console.log('ENTROU!');
-      // console.log(e);
-      // console.log('SAINDO DO ENTROU Evento');
-      // Single out the first found feature.
+
       const feature = e.features[0]
+      console.log(feature);
+      console.log(e);
     })
 
     this.map.on('mouseleave', layerId, (e) => {
-      // console.log('SAINDO ELEMENT | LEAVE Event')
       this.removeSourcePopup()
-      // console.log('SAINDO DO LEAVE Event')
     })
   }
 
@@ -178,10 +254,6 @@ export default class extends Controller {
 
   addSourcePopup(event) {
 
-    // if (this.popup) {
-    //   this.popup.remove()
-    // }
-    // create popup
     if (this.popup) {
       return undefined
     }
@@ -190,8 +262,12 @@ export default class extends Controller {
     const properties = event.features[0].properties
     Object.entries(properties).forEach((k) => popHTML += `<strong>${k[0]}:</strong> ${k[1]}<br>`)
     popHTML += '</p>'
+    this.popup = new mapboxgl.Popup({
+      closeButton: false,
+      closeOnClick: false
+    }).setHTML(popHTML)
 
-    this.popup = new mapboxgl.Popup().setHTML(popHTML)
+    // this.popup = new mapboxgl.Popup()
     // Display a popup with the name of the county
     this.popup.setLngLat([event.lngLat.lng, event.lngLat.lat])
               .addTo(this.map)
