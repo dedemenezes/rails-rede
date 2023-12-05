@@ -32,76 +32,94 @@ export default class extends Controller {
     this.#addNavigationtoMap()
     this.#addListenersToMeniuOptions()
 
-    this.macae = Array.from(this.tilesetsValue)
-      .find(tileset => tileset.sourceValue === 'Cabo_Frio')
+    // this.macae = Array.from(this.tilesetsValue)
+    //                   .find(tileset => tileset.sourceValue === 'Cabo_Frio')
     // console.log(this.macae)
-    const macaeGeoJson = JSON.parse(this.macae.geoJson)
-    const pointFeatures = macaeGeoJson.features.filter(feature => feature.geometry.type == 'Point')
-    const polygonFeatures = macaeGeoJson.features.filter(feature => feature.geometry.type == 'Polygon')
-    console.log(pointFeatures)
-    console.log(polygonFeatures)
+    // const macaeGeoJson = JSON.parse(this.macae.geoJson)
+    // const pointFeatures = macaeGeoJson.features.filter(feature => feature.geometry.type == 'Point')
+    // const polygonFeatures = macaeGeoJson.features.filter(feature => feature.geometry.type == 'Polygon')
+    // console.log(pointFeatures)
+    // console.log(polygonFeatures)
 
 
 
 
     this.map.on('load', (e) => {
+      this.map.addSource('my-data', {
+        type: 'vector',
+        url: 'mapbox://dedemenezes.saofranciscodeitabapoana_final'
+      });
+      this.map.addLayer({
+        'id': 'my-data-points',
+        'type': 'circle',
+        'source': 'my-data',
+        'source-layer': 'inspections-points',
+        'paint': {
+          'circle-radius': 4,
+          'circle-color': '#ff69b4'
+        }
+      });
 
-      this.map.addSource(this.macae.sourceValue, {
-        'type': 'geojson',
-        'data': macaeGeoJson
-      })
-      polygonFeatures.forEach((feature, index) => {
-        const featureSourceId = this.setFeatureSourceId(this.macae.sourceValue, feature, index)
 
-        this.map.addSource(featureSourceId, {
-          'type': 'geojson',
-          'data': feature
-        })
 
-        const layerId = featureSourceId + '-fill'
+      // OLD
 
-        this.map.addLayer({
-          'id': layerId,
-          'type': 'fill',
-          'source': featureSourceId,
-          'layout': {
-            // Make the layer visible by default.
-            'visibility': 'visible'
-          },
-          'paint': {
-            'fill-antialias': true,
-            'fill-color': feature.properties.fill,
-            'fill-opacity': feature.properties["fill-opacity"],
-          },
-          'sourceLayer': `polygon-${feature.properties.fill}-layer`
-        })
-        this.map.addLayer(
-          {
-            id: layerId + '-label',
-            // References the GeoJSON source defined above
-            // and does not require a `source-layer`
-            source: featureSourceId,
-            type: 'symbol',
-            layout: {
-              // Set the label content to the
-              // feature's `name` property
-              'text-field': feature.properties.name,
-            }
-          },
-        )
+      // this.map.addSource(this.macae.sourceValue, {
+      //   'type': 'geojson',
+      //   'data': macaeGeoJson
+      // })
+      // polygonFeatures.forEach((feature, index) => {
+      //   const featureSourceId = this.setFeatureSourceId(this.macae.sourceValue, feature, index)
 
-        this.addSourcePopupsOnHovering(layerId)
-      })
+      //   this.map.addSource(featureSourceId, {
+      //     'type': 'geojson',
+      //     'data': feature
+      //   })
 
-      const featuresByIcons = Object.groupBy(pointFeatures, ({ properties }) => properties.icon)
-      // console.log(featuresByIcons)
-      Object.keys(featuresByIcons).forEach((icon) => {
-        this.#loadImageAndAddToMap(this.map, icon, (imgName) => {
-          featuresByIcons[icon].forEach((feature, index) => {
-            this.#processFeatures(this.map, feature, imgName, index);
-          });
-        });
-      })
+      //   const layerId = featureSourceId + '-fill'
+
+      //   this.map.addLayer({
+      //     'id': layerId,
+      //     'type': 'fill',
+      //     'source': featureSourceId,
+      //     'layout': {
+      //       // Make the layer visible by default.
+      //       'visibility': 'visible'
+      //     },
+      //     'paint': {
+      //       'fill-antialias': true,
+      //       'fill-color': feature.properties.fill,
+      //       'fill-opacity': feature.properties["fill-opacity"],
+      //     },
+      //     'sourceLayer': `polygon-${feature.properties.fill}-layer`
+      //   })
+      //   this.map.addLayer(
+      //     {
+      //       id: layerId + '-label',
+      //       // References the GeoJSON source defined above
+      //       // and does not require a `source-layer`
+      //       source: featureSourceId,
+      //       type: 'symbol',
+      //       layout: {
+      //         // Set the label content to the
+      //         // feature's `name` property
+      //         'text-field': feature.properties.name,
+      //       }
+      //     },
+      //   )
+
+      //   this.addSourcePopupsOnHovering(layerId)
+      // })
+
+      // const featuresByIcons = Object.groupBy(pointFeatures, ({ properties }) => properties.icon)
+      // // console.log(featuresByIcons)
+      // Object.keys(featuresByIcons).forEach((icon) => {
+      //   this.#loadImageAndAddToMap(this.map, icon, (imgName) => {
+      //     featuresByIcons[icon].forEach((feature, index) => {
+      //       this.#processFeatures(this.map, feature, imgName, index);
+      //     });
+      //   });
+      // })
     })
 
   }

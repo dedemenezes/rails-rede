@@ -91,7 +91,8 @@ class Dashboard::Mapbox::TilesetsController < DashboardController
 
     # 4. Write a recipe and create Tileset
     # Replace '{tileset_id}' with your actual tileset ID
-    r = create_tileset_with_recipe(tileset_id, access_token)
+    tilset_source = JSON.parse(r.body)["id"]
+    r = create_tileset_with_recipe(tilset_source, id, tileset_id, access_token)
     debugger
 
     # 6. Publish your new tileset
@@ -135,10 +136,17 @@ class Dashboard::Mapbox::TilesetsController < DashboardController
     response
   end
 
-  def create_tileset_with_recipe(tileset_id, access_token)
+  def create_tileset_with_recipe(tilset_source, id, tileset_id, access_token)
     recipe_and_instructions_file_path = File.join(Rails.root.join('lib', 'tileset-information-and-recipe.json'))
     tileset_info_recipe_file_path = recipe_and_instructions_file_path
     tileset_info_recipe_content = File.read(tileset_info_recipe_file_path)
+    info_and_recipe = JSON.parse(tileset_info_recipe_content)
+    info_and_recipe['name'] = id
+    info_and_recipe['recipe']['layers']['inspections-points']['source'] = tilset_source
+    # Write into same file
+    File.open(recipe_and_instructions_file_path, 'w') { |file| file.write(JSON.generate(info_and_recipe)) }
+
+    debugger
     conn = Faraday.new(url: "https://api.mapbox.com") do |faraday|
       faraday.adapter Faraday.default_adapter
     end
