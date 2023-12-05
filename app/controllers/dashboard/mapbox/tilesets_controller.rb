@@ -13,9 +13,9 @@ class Dashboard::Mapbox::TilesetsController < DashboardController
   def create
     @dashboard_tileset = Tileset.new(tileset_params)
 
-    upload_tileset_geojson_with_recipe
     # respond_to do |format|
       if @dashboard_tileset.save
+        upload_tileset_geojson_with_recipe
     #     rename_kml_blob
     #     upload_tileset_to_mapbox
     #     data = JSON.parse @response.body
@@ -40,7 +40,6 @@ class Dashboard::Mapbox::TilesetsController < DashboardController
   def update
     @dashboard_tileset = Tileset.find(params[:id])
     # @dashboard_tileset.update(tileset_params)
-    upload_tileset_geojson_with_recipe
     respond_to do |format|
       if @dashboard_tileset.save
         # rename_kml_blob
@@ -70,14 +69,8 @@ class Dashboard::Mapbox::TilesetsController < DashboardController
 
   def upload_tileset_geojson_with_recipe
     tileset_service = Tilesets::TilesetService.new(params[:tileset])
-    debugger
     tileset_service.upload_and_publish_tileset
   end
-
-
-
-
-
 
   def upload_tileset_to_mapbox
     begin
