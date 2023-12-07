@@ -3,7 +3,7 @@
   "layers": {
     "inspections-points": {
       "source": "mapbox://tileset-source/dedemenezes/araruama_final",
-      "minzoom": 0,
+      "minzoom": 1,
       "maxzoom": 16,
       "features": {
         "attributes": {
@@ -37,7 +37,7 @@
     },
     "inspections-lines": {
       "source": "mapbox://tileset-source/dedemenezes/araruama_final",
-      "minzoom": 0,
+      "minzoom": 10,
       "maxzoom": 16,
       "features": {
         "attributes": {
@@ -68,8 +68,8 @@
     },
     "inspections-areas": {
       "source": "mapbox://tileset-source/dedemenezes/araruama_final",
-      "minzoom": 0,
-      "maxzoom": 16,
+      "minzoom": 10,
+      "maxzoom": 14,
       "features": {
         "attributes": {
           "allowed_output": [
