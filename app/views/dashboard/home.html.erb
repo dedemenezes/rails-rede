@@ -3,6 +3,7 @@
 <div class="col-12 map__wrapper" style="width: 100% !important;"
                    data-controller="map"
                    data-map-markers-value="<%= [] %>"
+                   data-map-can-close-value="false"
                    data-map-style-value="mapbox://styles/mapbox/satellite-streets-v12"
                    data-map-tilesets-value="<%= @tilesets.to_json %>"
                    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
