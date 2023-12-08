@@ -38,7 +38,10 @@ export default class extends Controller {
 
 
 
+    // Initialize hover variable and timeout variable to be used on close popup
     this.hoveredPolygonId = null
+    this.removalTimeout = null
+
     this.map.on('load', (e) => {
       // Load an image from an external URL.
       this.tilesetsValue[0]["icons"].forEach((iconUrl) => {
@@ -51,14 +54,14 @@ export default class extends Controller {
 
       this.tilesetsValue.forEach((tileset) => {
         // console.log(tileset)
-        // ADD SOURCES
+
+        // ADD SOURCE
         this.map.addSource(tileset.sourceValue, {
           type: 'vector',
           url: tileset.urlValue
         });
 
         // ADD LAYERS
-
         // POLYGON LAYER
         this.map.addLayer({
           'id': tileset.sourceValue + '-polygons',
@@ -109,9 +112,13 @@ export default class extends Controller {
           }
         });
 
-        // ADD EVENT LISTNERS
+        // ADD EVENT LISTENERS
         this.map.on('mouseenter', tileset.sourceValue + '-points', (event) => {
           this.updateHoveredlayerElement(event, 'inspections-points', tileset.sourceValue)
+          console.log(event.features[0].geometry.coordinates)
+          this.addSourcePopup(event, event.features[0].geometry.coordinates)
+          this.mouseOverPopup()
+          this.mouseLeavePopup()
 
         })
 
@@ -278,41 +285,6 @@ export default class extends Controller {
       this.#displayCoverElement()
       this.#fadeOutCoverElement()
     }
-  }
-
-  #loadImageAndAddToMap(map, icon, callback) {
-    const nameRegex = /.+\/(.+\w+)\.\w+$/
-    const imgName = icon.match(nameRegex)[1]
-
-    map.loadImage(icon, (error, image) => {
-      if (error) throw error
-
-      map.addImage(imgName, image);
-      callback(imgName)
-    })
-  }
-
-  #processFeatures(map, feature, imgName, index) {
-    const featureSourceId = this.setFeatureSourceId(this.macae.sourceValue, feature, index)
-    map.addSource(featureSourceId, {
-      'type': 'geojson',
-      'data': feature
-    })
-    this.map.addLayer(
-      {
-        id: featureSourceId + '-icon',
-        // References the GeoJSON source defined above
-        // and does not require a `source-layer`
-        source: featureSourceId,
-        type: 'symbol',
-        layout: {
-          // Set the label content to the
-          // feature's `name` property
-          'icon-image': imgName, // reference the image
-          'icon-size': 0.25
-        }
-      },
-    )
   }
 
   #fadeOutCoverElement() {
