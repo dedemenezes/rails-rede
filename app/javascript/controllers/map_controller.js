@@ -76,6 +76,7 @@ export default class extends Controller {
           }
         });
 
+        // LINE LAYER
         this.map.addLayer({
           'id': tileset.sourceValue + '-lines',
           'type': 'line',
@@ -124,8 +125,6 @@ export default class extends Controller {
           }
         })
 
-        // When the user moves their mouse over the state-fill layer, we'll update the
-        // feature state for the feature under the mouse.
         this.map.on('mousemove', tileset.sourceValue + '-polygons', (e) => {
           this.updateHoveredlayerElement(e, 'inspections-areas', tileset.sourceValue)
         });
@@ -133,25 +132,23 @@ export default class extends Controller {
         this.map.on('mouseenter', tileset.sourceValue + '-polygons', (event) => {
           clearTimeout(this.removalTimeout)
           this.updateHoveredlayerElement(event, 'inspections-areas', tileset.sourceValue)
-          // Add popup to the right element
-          // 1. access feature description
-          const longitudes = event.features[0].geometry.coordinates[0].map(coordinate => coordinate[0])
-          const avgLongitude = this.#avgCoordinates(longitudes)
-          const latitudes = event.features[0].geometry.coordinates[0].map(coordinate => coordinate[1])
-          const avgLatitude = this.#avgCoordinates(latitudes)
-          // 2. Create Popup
-          // this.addSourcePopup(event, avgLongitude, avgLatitude)
-          const mostWestAndEastPoints = this.findMostWestAndEastPoints(event.features[0].geometry.coordinates[0])
-          const center = (mostWestAndEastPoints.mostEast[0] + mostWestAndEastPoints.mostWest[0]) / 2
 
-          const mapWidth = this.map.getContainer().getClientRects()[0].width
-          console.log(event.lngLat.lng > center ? 'right' : 'left')
-          if (event.lngLat.lng > center) {
+          const coordinates = event.features[0].geometry.coordinates[0]
+          const mostWestAndEastPoints = this.findMostWestAndEastPoints(coordinates)
+          const hoveredPolygonCenterLongitude = (mostWestAndEastPoints.mostEast[0] + mostWestAndEastPoints.mostWest[0]) / 2
+          const mouseLogitudeOverPolygon = event.lngLat.lng
+
+          console.log(mouseLogitudeOverPolygon > hoveredPolygonCenterLongitude ? 'right' : 'left')
+
+          if (mouseLogitudeOverPolygon > hoveredPolygonCenterLongitude) {
             this.addSourcePopup(event, mostWestAndEastPoints.mostWest)
+            this.mouseOverPopup()
+            this.mouseLeavePopup()
           } else {
             this.addSourcePopup(event, mostWestAndEastPoints.mostEast)
+            this.mouseOverPopup()
+            this.mouseLeavePopup()
           }
-          // 3.
         })
 
         this.map.on('mouseleave', tileset.sourceValue + '-polygons', (e) => {
@@ -205,13 +202,8 @@ export default class extends Controller {
     return { mostWest, mostEast };
   }
 
-  #avgCoordinates(coordinates) {
-    const coordinatesSum = coordinates.reduce((acc, coordinate) => {
-      return acc + coordinate
-    }, 0)
-    return coordinatesSum / coordinates.length
-  }
-
+  // When the user moves their mouse over the state-fill layer, we'll update the
+  // feature state for the feature under the mouse.
   updateHoveredlayerElement(event, sourceLayer, tilesetSourceValue) {
     this.map.getCanvas().style.cursor = 'pointer';
     if (event.features.length > 0) {
@@ -235,23 +227,6 @@ export default class extends Controller {
     return `${index + 1}_${sourceValue}-${featureType}${featureStyleUrl}`
   }
 
-  addSourcePopupsOnHovering(layerId) {
-    this.hoveredPolygonId = null
-    this.popup = null
-
-    this.map.on('mouseenter', layerId, (e) => {
-      this.addSourcePopup(e)
-
-      const feature = e.features[0]
-      console.log(feature);
-      console.log(e);
-    })
-
-    this.map.on('mouseleave', layerId, (e) => {
-      this.removeSourcePopup()
-    })
-  }
-
   removeSourcePopup() {
     if (this.popup && this.popup.isOpen()) {
       this.popup.remove()
@@ -260,9 +235,21 @@ export default class extends Controller {
     this.hoveredPolygonId = null
   }
 
+  mouseOverPopup() {
+    document.querySelector('.area_popup').addEventListener('mouseover', (e) => {
+      console.log('from event listner inside addSourcePopup')
+      this.clearPopupWithTimeout()
+    })
+  }
+
+  mouseLeavePopup() {
+    document.querySelector('.area_popup').addEventListener('mouseleave', (e) => {
+      this.removePopupWithTimeout()
+    })
+  }
+
   addSourcePopup(event, coordinates) {
     if (this.popup) {
-
       return undefined
     }
 
@@ -283,13 +270,6 @@ export default class extends Controller {
 
     this.popup.setLngLat(coordinates)
               .addTo(this.map)
-    document.querySelector('.area_popup').addEventListener('mouseover', (e) => {
-      console.log('from event listner inside addSourcePopup')
-      this.clearPopupWithTimeout()
-    })
-    document.querySelector('.area_popup').addEventListener('mouseleave', (e) => {
-      this.removePopupWithTimeout()
-    })
   }
 
   coverWarning() {
