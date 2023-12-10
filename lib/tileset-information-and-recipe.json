@@ -3,7 +3,7 @@
     "version": 1,
     "layers": {
       "inspections-points": {
-        "source": "mapbox://tileset-source/dedemenezes/araruama_final",
+        "source": "mapbox://tileset-source/dedemenezes/cabofrio_final",
         "minzoom": 0,
         "maxzoom": 14,
         "features": {
@@ -37,7 +37,7 @@
         }
       },
       "inspections-lines": {
-        "source": "mapbox://tileset-source/dedemenezes/riodasostras_final",
+        "source": "mapbox://tileset-source/dedemenezes/cabofrio_final",
         "minzoom": 5,
         "maxzoom": 12,
         "features": {
@@ -68,7 +68,7 @@
         }
       },
       "inspections-areas": {
-        "source": "mapbox://tileset-source/dedemenezes/araruama_final",
+        "source": "mapbox://tileset-source/dedemenezes/cabofrio_final",
         "minzoom": 5,
         "maxzoom": 12,
         "features": {
@@ -111,12 +111,5 @@
       }
     }
   },
-  "name": "araruama_final",
-  "description": "Spaceship Earth with all of the people, places, and things.",
-  "attribution": [
-    {
-      "text": "© Hello Legal World",
-      "link": ""
-    }
-  ]
+  "name": "cabofrio_final"
 }
