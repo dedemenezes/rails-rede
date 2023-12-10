@@ -177,19 +177,6 @@ export default class extends Controller {
 
   }
 
-  removePopupWithTimeout() {
-    this.removalTimeout = setTimeout(() => {
-      this.removeSourcePopup()
-    }, 500);
-  }
-
-  clearPopupWithTimeout() {
-    if(this.removalTimeout) {
-      clearTimeout(this.removalTimeout)
-      this.removalTimeout = null
-    }
-  }
-
   findMostWestAndEastPoints(coordinates) {
     // Initialize with the first coordinate
     let mostWest = coordinates[0];
@@ -225,6 +212,18 @@ export default class extends Controller {
         { source: tilesetSourceValue, sourceLayer: sourceLayer, id: this.hoveredPolygonId },
         { hover: true }
       );
+      if (this.popup) {
+        const notSameElement = !this.popup.getElement().innerHTML.includes(event.features[0].properties.description)
+        if (notSameElement) {
+          clearTimeout(this.removalTimeout)
+          this.removeSourcePopup()
+          const coordinates = event.features[0].geometry.coordinates[0]
+          const mostWestAndEastPoints = this.findMostWestAndEastPoints(coordinates)
+          this.addSourcePopup(event, mostWestAndEastPoints.mostEast)
+          this.mouseOverPopup()
+          this.mouseLeavePopup()
+        }
+      }
     }
   }
 
@@ -232,6 +231,19 @@ export default class extends Controller {
     const featureType = feature.geometry.type
     const featureStyleUrl = feature.properties.styleUrl
     return `${index + 1}_${sourceValue}-${featureType}${featureStyleUrl}`
+  }
+
+  removePopupWithTimeout() {
+    this.removalTimeout = setTimeout(() => {
+      this.removeSourcePopup()
+    }, 500);
+  }
+
+  clearPopupWithTimeout() {
+    if (this.removalTimeout) {
+      clearTimeout(this.removalTimeout)
+      this.removalTimeout = null
+    }
   }
 
   removeSourcePopup() {
@@ -260,14 +272,12 @@ export default class extends Controller {
       return undefined
     }
 
-    let popHTML = `<p data-action="mouseover->map#clearPopupWithTimeout mouseleave->map#removePopupWithTimeout">`
+    let popHTML = `<div data-action="mouseover->map#clearPopupWithTimeout mouseleave->map#removePopupWithTimeout">`
     const properties = event.features[0].properties
-    Object.entries(properties).forEach((k) => {
-      if(k[0] === 'description') {
-        popHTML += `<strong>${k[0]}:</strong> ${k[1]}<br>`
-      }
-    })
-    popHTML += '</p>'
+    // console.log(properties)
+    popHTML += `<h6><strong>${properties.name}</strong></h6>`
+    popHTML += `<p class="mb-0">${properties.description}</p>`
+    popHTML += '</div>'
 
     this.popup = new mapboxgl.Popup({
       closeButton: false,
