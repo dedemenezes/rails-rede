@@ -211,7 +211,7 @@ export default class extends Controller {
         { source: tilesetSourceValue, sourceLayer: sourceLayer, id: this.hoveredPolygonId },
         { hover: true }
       );
-      if (this.popup) {
+      if (this.popup && this.popup.getElement()) {
         const notSameElement = !this.popup.getElement().innerHTML.includes(event.features[0].properties.description)
         if (notSameElement) {
           clearTimeout(this.removalTimeout)
