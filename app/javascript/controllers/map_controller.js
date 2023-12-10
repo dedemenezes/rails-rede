@@ -115,21 +115,20 @@ export default class extends Controller {
         });
 
         // ADD EVENT LISTENERS
-        // POINTS
+        this.map.on('mouseenter', tileset.sourceValue + '-points', (event) => {
+          this.updateHoveredlayerElement(event, 'inspections-points', tileset.sourceValue)
 
-        this.map.on('mousemove', tileset.sourceValue + '-points', (e) => {
-          this.updateHoveredlayerElement(e, 'inspections-points', tileset.sourceValue)
-        });
+        })
 
-        // POLYGONS
-
-        // this.map.on('click', tileset.sourceValue + '-polygons', (event) => {
-        //   // 1. remove a popup atual
-        //   this.removeSourcePopup()
-        //   // 2. add new popup
-        //   this.addSourcePopup(event, event.lngLat)
-
-        // })
+        this.map.on('mouseleave', tileset.sourceValue + "-points", (e) => {
+          if (this.hoveredPolygonId) {
+            this.map.getCanvas().style.cursor = '';
+            this.map.setFeatureState(
+              { source: tileset.sourceValue, sourceLayer: 'inspections-points', id: this.hoveredPolygonId },
+              { hover: false }
+            );
+          }
+        })
 
         this.map.on('mousemove', tileset.sourceValue + '-polygons', (e) => {
           this.updateHoveredlayerElement(e, 'inspections-areas', tileset.sourceValue)
@@ -187,12 +186,6 @@ export default class extends Controller {
         { hover: true }
       );
     }
-  }
-
-  setFeatureSourceId(sourceValue, feature, index) {
-    const featureType = feature.geometry.type
-    const featureStyleUrl = feature.properties.styleUrl
-    return `${index + 1}_${sourceValue}-${featureType}${featureStyleUrl}`
   }
 
   removeSourcePopup() {
