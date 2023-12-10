@@ -63,6 +63,7 @@ export default class extends Controller {
         });
 
         // ADD LAYERS
+
         // POLYGON LAYER
         this.map.addLayer({
           'id': tileset.sourceValue + '-polygons',
@@ -114,85 +115,59 @@ export default class extends Controller {
         });
 
         // ADD EVENT LISTENERS
-        this.map.on('mouseenter', tileset.sourceValue + '-points', (event) => {
-          this.updateHoveredlayerElement(event, 'inspections-points', tileset.sourceValue)
-          console.log(event.features[0].geometry.coordinates)
-          this.addSourcePopup(event, event.features[0].geometry.coordinates)
-          this.mouseOverPopup()
-          this.mouseLeavePopup()
+        // POINTS
 
-        })
+        this.map.on('mousemove', tileset.sourceValue + '-points', (e) => {
+          this.updateHoveredlayerElement(e, 'inspections-points', tileset.sourceValue)
+        });
 
-        this.map.on('mouseleave', tileset.sourceValue + '-points', (e) => {
-          if (this.hoveredPolygonId) {
-            this.map.getCanvas().style.cursor = '';
-            this.map.setFeatureState(
-              { source: tileset.sourceValue, sourceLayer: 'inspections-points', id: this.hoveredPolygonId },
-              { hover: false }
-            );
-          }
-        })
+        // POLYGONS
+
+        // this.map.on('click', tileset.sourceValue + '-polygons', (event) => {
+        //   // 1. remove a popup atual
+        //   this.removeSourcePopup()
+        //   // 2. add new popup
+        //   this.addSourcePopup(event, event.lngLat)
+
+        // })
 
         this.map.on('mousemove', tileset.sourceValue + '-polygons', (e) => {
           this.updateHoveredlayerElement(e, 'inspections-areas', tileset.sourceValue)
         });
 
+
         this.map.on('mouseenter', tileset.sourceValue + '-polygons', (event) => {
-          clearTimeout(this.removalTimeout)
           this.updateHoveredlayerElement(event, 'inspections-areas', tileset.sourceValue)
 
-          const coordinates = event.features[0].geometry.coordinates[0]
-          const mostWestAndEastPoints = this.findMostWestAndEastPoints(coordinates)
-          const hoveredPolygonCenterLongitude = (mostWestAndEastPoints.mostEast[0] + mostWestAndEastPoints.mostWest[0]) / 2
-          const mouseLogitudeOverPolygon = event.lngLat.lng
-
-          if (mouseLogitudeOverPolygon > hoveredPolygonCenterLongitude) {
-            this.addSourcePopup(event, mostWestAndEastPoints.mostWest)
-            this.mouseOverPopup()
-            this.mouseLeavePopup()
-          } else {
-            this.addSourcePopup(event, mostWestAndEastPoints.mostEast)
-            this.mouseOverPopup()
-            this.mouseLeavePopup()
-          }
         })
 
-        this.map.on('mouseleave', tileset.sourceValue + '-polygons', (e) => {
+        this.map.on('mouseleave', tileset.sourceValue + "-polygons", (e) => {
           if (this.hoveredPolygonId) {
             this.map.getCanvas().style.cursor = '';
             this.map.setFeatureState(
               { source: tileset.sourceValue, sourceLayer: 'inspections-areas', id: this.hoveredPolygonId },
               { hover: false }
             );
-
-
-            this.removePopupWithTimeout()
           }
         })
-
       })
-
     })
 
-  }
-
-  findMostWestAndEastPoints(coordinates) {
-    // Initialize with the first coordinate
-    let mostWest = coordinates[0];
-    let mostEast = coordinates[0];
-
-    // Iterate through the coordinates to find the most west and most east points
-    for (const [longitude, latitude] of coordinates) {
-      if (longitude < mostWest[0]) {
-        mostWest = [longitude, latitude];
+    this.map.on('click', (event) => {
+      const features = this.map.queryRenderedFeatures(event.point)
+      console.log(features.length > 0)
+      const feature = features[0]
+      if (!feature) {
+        return;
       }
 
-      if (longitude > mostEast[0]) {
-        mostEast = [longitude, latitude];
+      const isPolygonLayer = feature.layer.id.includes('-polygons')
+      const isPointLayer = feature.layer.id.includes('-points')
+      if (isPointLayer || isPolygonLayer) {
+        this.removeSourcePopup()
+        this.addSourcePopup(feature, event.lngLat)
       }
-    }
-
-    return { mostWest, mostEast };
+    })
   }
 
   // When the user moves their mouse over the state-fill layer, we'll update the
@@ -211,18 +186,6 @@ export default class extends Controller {
         { source: tilesetSourceValue, sourceLayer: sourceLayer, id: this.hoveredPolygonId },
         { hover: true }
       );
-      if (this.popup && this.popup.getElement()) {
-        const notSameElement = !this.popup.getElement().innerHTML.includes(event.features[0].properties.description)
-        if (notSameElement) {
-          clearTimeout(this.removalTimeout)
-          this.removeSourcePopup()
-          const coordinates = event.features[0].geometry.coordinates[0]
-          const mostWestAndEastPoints = this.findMostWestAndEastPoints(coordinates)
-          this.addSourcePopup(event, mostWestAndEastPoints.mostEast)
-          this.mouseOverPopup()
-          this.mouseLeavePopup()
-        }
-      }
     }
   }
 
@@ -232,54 +195,27 @@ export default class extends Controller {
     return `${index + 1}_${sourceValue}-${featureType}${featureStyleUrl}`
   }
 
-  removePopupWithTimeout() {
-    this.removalTimeout = setTimeout(() => {
-      this.removeSourcePopup()
-    }, 500);
-  }
-
-  clearPopupWithTimeout() {
-    if (this.removalTimeout) {
-      clearTimeout(this.removalTimeout)
-      this.removalTimeout = null
-    }
-  }
-
   removeSourcePopup() {
     if (this.popup && this.popup.isOpen()) {
       this.popup.remove()
-      this.popup = null
     }
     this.hoveredPolygonId = null
   }
 
-  mouseOverPopup() {
-    document.querySelector('.area_popup').addEventListener('mouseover', (e) => {
-      console.log('from event listner inside addSourcePopup')
-      this.clearPopupWithTimeout()
-    })
-  }
-
-  mouseLeavePopup() {
-    document.querySelector('.area_popup').addEventListener('mouseleave', (e) => {
-      this.removePopupWithTimeout()
-    })
-  }
-
-  addSourcePopup(event, coordinates) {
-    if (this.popup) {
+  addSourcePopup(feature, coordinates) {
+    if (this.popup && this.popup.isOpen()) {
       return undefined
     }
 
-    let popHTML = `<div data-action="mouseover->map#clearPopupWithTimeout mouseleave->map#removePopupWithTimeout">`
-    const properties = event.features[0].properties
+    let popHTML = `<div>`
+    const properties = feature.properties
     // console.log(properties)
     popHTML += `<h6><strong>${properties.name}</strong></h6>`
     popHTML += `<p class="mb-0">${properties.description}</p>`
     popHTML += '</div>'
 
     this.popup = new mapboxgl.Popup({
-      closeButton: false,
+      closeButton: true,
       closeOnClick: false,
       className: 'area_popup'
     }).setHTML(popHTML)
