@@ -42,6 +42,7 @@ export default class extends Controller {
     this.hoveredPolygonId = null
     this.removalTimeout = null
 
+
     this.map.on('load', (e) => {
       // Load an image from an external URL.
       this.tilesetsValue[0]["icons"].forEach((iconUrl) => {
@@ -144,8 +145,6 @@ export default class extends Controller {
           const mostWestAndEastPoints = this.findMostWestAndEastPoints(coordinates)
           const hoveredPolygonCenterLongitude = (mostWestAndEastPoints.mostEast[0] + mostWestAndEastPoints.mostWest[0]) / 2
           const mouseLogitudeOverPolygon = event.lngLat.lng
-
-          console.log(mouseLogitudeOverPolygon > hoveredPolygonCenterLongitude ? 'right' : 'left')
 
           if (mouseLogitudeOverPolygon > hoveredPolygonCenterLongitude) {
             this.addSourcePopup(event, mostWestAndEastPoints.mostWest)
