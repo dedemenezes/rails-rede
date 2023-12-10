@@ -16,6 +16,7 @@
 <% end %>
 <div class="map__wrapper"
      data-controller="map"
+     data-map-style-value="mapbox://styles/mapbox/streets-v10"
      style="width:<%= (controller_name == 'observatories' && params[:action] == 'mapa') || controller_name == 'pages' ? '100%' : '' %> !important;"
      data-map-markers-value="<%= markers.to_json %>"
      data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">

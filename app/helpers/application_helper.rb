@@ -30,7 +30,7 @@ module ApplicationHelper
   end
 
   def display_banner_as_background(instance)
-    if instance.banner.attached?
+    if instance && instance.banner.attached?
       "https://rede-observacao-prod.s3.us-east-2.amazonaws.com/#{instance.banner.key}"
     else
       image_path('default-banner.png')
@@ -66,6 +66,13 @@ module ApplicationHelper
 
   def route_for_edit_dashboard(element)
     path = "#{element.model_name.plural}/#{element.id}/edit"
+    return path unless  element.is_a? Album
+
+    path.gsub(/^albums\//, '')
+  end
+
+  def route_for_destroy_dashboard(element)
+    path = "#{element.model_name.plural}/#{element.id}"
     return path unless  element.is_a? Album
 
     path.gsub(/^albums\//, '')

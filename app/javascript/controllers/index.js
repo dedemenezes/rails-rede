@@ -37,6 +37,9 @@ application.register("flatpickr", FlatpickrController)
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
+import Map__Tileset__CreateController from "./map/tileset/create_controller"
+application.register("map--tileset--create", Map__Tileset__CreateController)
+
 import MapController from "./map_controller"
 application.register("map", MapController)
 
@@ -75,6 +78,9 @@ application.register("swiper", SwiperController)
 
 import SwiperSlideshowController from "./swiper_slideshow_controller"
 application.register("swiper-slideshow", SwiperSlideshowController)
+
+import ToGeojsonController from "./to_geojson_controller"
+application.register("to-geojson", ToGeojsonController)
 
 import ToggleElementController from "./toggle_element_controller"
 application.register("toggle-element", ToggleElementController)

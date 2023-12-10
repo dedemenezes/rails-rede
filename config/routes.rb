@@ -21,6 +21,10 @@ Rails.application.routes.draw do
       end
     end
     delete '/attachments/:id', to: 'attachments#destroy', as: :attachment
+
+    namespace :mapbox do
+      resources :tilesets
+    end
   end
   root to: "pages#home"
   get '/contato', to: 'contacts#new', as: :new_contact

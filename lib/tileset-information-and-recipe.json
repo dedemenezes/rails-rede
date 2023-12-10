@@ -1,0 +1,115 @@
+{
+  "recipe": {
+    "version": 1,
+    "layers": {
+      "inspections-points": {
+        "source": "mapbox://tileset-source/dedemenezes/camposdosgoytacazes_final",
+        "minzoom": 0,
+        "maxzoom": 10,
+        "features": {
+          "attributes": {
+            "allowed_output": [
+              "name",
+              "icon",
+              "description",
+              "styleUrl",
+              "styleHash",
+              "styleMapHash"
+            ]
+          },
+          "filter": [
+            "all",
+            [
+              "==",
+              [
+                "geometry-type"
+              ],
+              "Point"
+            ],
+            [
+              "!",
+              [
+                "has",
+                "fill"
+              ]
+            ]
+          ]
+        }
+      },
+      "inspections-lines": {
+        "source": "mapbox://tileset-source/dedemenezes/camposdosgoytacazes_final",
+        "minzoom": 5,
+        "maxzoom": 10,
+        "features": {
+          "attributes": {
+            "allowed_output": [
+              "name",
+              "styleUrl",
+              "styleHash",
+              "styleMapHash",
+              "description",
+              "stroke",
+              "stroke-opacity",
+              "stroke-width",
+              "fill",
+              "fill-opacity"
+            ]
+          },
+          "filter": [
+            "all",
+            [
+              "==",
+              [
+                "geometry-type"
+              ],
+              "LineString"
+            ]
+          ]
+        }
+      },
+      "inspections-areas": {
+        "source": "mapbox://tileset-source/dedemenezes/camposdosgoytacazes_final",
+        "minzoom": 5,
+        "maxzoom": 10,
+        "features": {
+          "attributes": {
+            "allowed_output": [
+              "name",
+              "description",
+              "styleUrl",
+              "styleHash",
+              "styleMapHash",
+              "stroke",
+              "stroke-opacity",
+              "fill-opacity",
+              "fill",
+              "ESCALA",
+              "JURISDICAO",
+              "ROTULO",
+              "PUBLIC_DAT",
+              "TUTELA",
+              "INEA",
+              "AREA_HA",
+              "PERIM_m2"
+            ]
+          },
+          "filter": [
+            "all",
+            [
+              "==",
+              [
+                "geometry-type"
+              ],
+              "Polygon"
+            ],
+            [
+              "has",
+              "fill"
+            ]
+          ]
+        }
+      }
+    }
+  },
+  "name": "camposdosgoytacazes_final"
+}
