@@ -89,7 +89,7 @@ export default class extends Controller {
           'source-layer': 'inspections-lines',
           'paint': {
             'line-color': [ 'get', 'stroke' ],
-            // 'line-opacity': ['get', 'stroke-opacity'],
+            'line-opacity': ['get', 'stroke-opacity'],
             'line-width': ['get', 'stroke-width']
           }
         })
@@ -162,7 +162,8 @@ export default class extends Controller {
 
       const isPolygonLayer = feature.layer.id.includes('-polygons')
       const isPointLayer = feature.layer.id.includes('-points')
-      if (isPointLayer || isPolygonLayer) {
+      const isLineLayer = feature.layer.id.includes('-lines')
+      if (isPointLayer || isPolygonLayer || isLineLayer) {
         this.removeSourcePopup()
         this.addSourcePopup(feature, event.lngLat)
       }
