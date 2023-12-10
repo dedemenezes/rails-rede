@@ -1,24 +1,23 @@
 module Tilesets
   class TilesetPublisher
     ACCESS_TOKEN = ENV.fetch("MAPBOX_SUPER_KEY")
-    USERNAME = "dedemenezes"
+    USERNAME = ENV.fetch("MAPBOX_USERNAME")
 
     def initialize(output_ldgeojson_path)
       @output_ldgeojson_path = output_ldgeojson_path
     end
 
     def create_and_publish_tileset!(id)
-
       tileset_id = "#{USERNAME}.#{id}"
 
       # 3. Create a tileset source
-      r = create_tileset_source(id, @output_ldgeojson_path)
+      response = create_tileset_source(id, @output_ldgeojson_path)
       puts "### RESPONSE FROM TILSET SOURCE ####"
-      p r.body
+      p response.body
 
       # 4. Write a recipe and create Tileset
       # Replace '{tileset_id}' with your actual tileset ID
-      tilset_source = JSON.parse(r.body)["id"]
+      tilset_source = JSON.parse(response.body)["id"]
 
       r = create_tileset_with_recipe(tilset_source, id, tileset_id)
       puts "### RESPONSE FROM TILESET W/ RECIPE ####"
@@ -42,13 +41,13 @@ module Tilesets
 
     def create_tileset_with_recipe(tilset_source, id, tileset_id)
       recipe_and_instructions_file_path = File.join(Rails.root.join('lib', 'tileset-information-and-recipe.json'))
-      tileset_info_recipe_file_path = recipe_and_instructions_file_path
-      tileset_info_recipe_content = File.read(tileset_info_recipe_file_path)
+      tileset_info_recipe_content = File.read(recipe_and_instructions_file_path)
       info_and_recipe = JSON.parse(tileset_info_recipe_content)
 
       info_and_recipe['name'] = id
       info_and_recipe['recipe']['layers']['inspections-points']['source'] = tilset_source
       info_and_recipe['recipe']['layers']['inspections-areas']['source'] = tilset_source
+      info_and_recipe['recipe']['layers']['inspections-lines']['source'] = tilset_source
       # Write into same file
       File.open(recipe_and_instructions_file_path, 'w') { |file| file.write(JSON.generate(info_and_recipe)) }
       updated_tileset_info_recipe_content = File.read(recipe_and_instructions_file_path)

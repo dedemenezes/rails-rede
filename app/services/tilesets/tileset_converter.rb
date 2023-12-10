@@ -14,8 +14,7 @@ module Tilesets
       geojson_file_path     = generate_geo_json_file(original_file_name, geojson_string)
 
       # 2. Convert GeoJSON to GeoJSONld
-      output_ldgeojson_path = generate_geo_json_ld_file(geojson_file_path, original_file_name)
-      output_ldgeojson_path
+      generate_geo_json_ld_file(geojson_file_path, original_file_name)
     end
 
     private
