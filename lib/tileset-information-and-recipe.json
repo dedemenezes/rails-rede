@@ -3,9 +3,9 @@
     "version": 1,
     "layers": {
       "inspections-points": {
-        "source": "mapbox://tileset-source/dedemenezes/cabofrio_final",
+        "source": "mapbox://tileset-source/dedemenezes/camposdosgoytacazes_final",
         "minzoom": 0,
-        "maxzoom": 14,
+        "maxzoom": 10,
         "features": {
           "attributes": {
             "allowed_output": [
@@ -37,9 +37,9 @@
         }
       },
       "inspections-lines": {
-        "source": "mapbox://tileset-source/dedemenezes/cabofrio_final",
+        "source": "mapbox://tileset-source/dedemenezes/camposdosgoytacazes_final",
         "minzoom": 5,
-        "maxzoom": 12,
+        "maxzoom": 10,
         "features": {
           "attributes": {
             "allowed_output": [
@@ -68,9 +68,9 @@
         }
       },
       "inspections-areas": {
-        "source": "mapbox://tileset-source/dedemenezes/cabofrio_final",
+        "source": "mapbox://tileset-source/dedemenezes/camposdosgoytacazes_final",
         "minzoom": 5,
-        "maxzoom": 12,
+        "maxzoom": 10,
         "features": {
           "attributes": {
             "allowed_output": [
@@ -111,5 +111,5 @@
       }
     }
   },
-  "name": "cabofrio_final"
+  "name": "camposdosgoytacazes_final"
 }
