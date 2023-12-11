@@ -27,7 +27,7 @@ class Dashboard::Mapbox::TilesetsController < DashboardController
           redirect_to home_path
     #     end
       else
-        format.html { render :new, status: :unprocessable_entity }
+        render :new, status: :unprocessable_entity
       end
     #   format.json { render json: @response.body, status: @response.status }
     # end
