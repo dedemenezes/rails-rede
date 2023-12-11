@@ -92,7 +92,7 @@ export default class extends Controller {
               'case',
               ['boolean', ['feature-state', 'hover'], false],
               0.7,
-              0.2
+              0.4
             ],
           }
         });
