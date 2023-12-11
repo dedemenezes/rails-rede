@@ -45,12 +45,28 @@ export default class extends Controller {
 
     this.map.on('load', (e) => {
       // Load an image from an external URL.
-      this.tilesetsValue[0]["icons"].forEach((iconUrl) => {
-        this.map.loadImage(iconUrl, (error, image) => {
-          if (error) throw error;
-          // Add the loaded image to the style's sprite with the ID 'kitten'.
-          this.map.addImage(iconUrl, image);
-        });
+      let iconUrls = []
+      this.tilesetsValue.forEach(tileset => {
+        tileset.icons.forEach(url => {
+          if (!iconUrls.includes(url)) {
+            iconUrls.push(url)
+          }
+        })
+      })
+      console.log(iconUrls)
+      iconUrls.forEach((iconUrl) => {
+        console.log(iconUrl)
+        const iconExists = this.map.hasImage(iconUrl);
+        console.log(iconExists)
+        if (!iconExists) {
+          this.map.loadImage(iconUrl, (error, image) => {
+            if (error) throw error;
+
+            // Add the loaded image to the style's sprite with the ID 'kitten'.
+            this.map.addImage(iconUrl, image);
+          })
+        }
+        this.map.listImages()
       })
 
       this.tilesetsValue.forEach((tileset) => {
