@@ -21,8 +21,8 @@ export default class extends Controller {
     this.map = new mapboxgl.Map({
       container: this.mapContainerTarget,
       style: this.styleValue,
-      center: [-42.21261111043489, -22.86973318580614],
-      zoom: 10
+      center: [-41.69857001374035, -22.07093159509607],
+      zoom: 7
     })
 
     this.map.dragPan.disable()
@@ -32,6 +32,7 @@ export default class extends Controller {
       this.#addMarkersToMap()
       this.#fitMapToMarkers()
     }
+
     this.#addNavigationtoMap()
     this.#addListenersToMeniuOptions()
 
@@ -184,6 +185,7 @@ export default class extends Controller {
         this.addSourcePopup(feature, event.lngLat)
       }
     })
+
   }
 
   // When the user moves their mouse over the state-fill layer, we'll update the

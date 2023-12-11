@@ -4,7 +4,9 @@
   box-shadow: 1px 1px 7px rgba(0, 0, 0, .1);
   border-radius: 10px;
 }
-
+.map__container.map--lg {
+  height: 88vh;
+}
 .mapboxgl-popup .mapboxgl-popup-content {
   border-radius: 10px;
 }
