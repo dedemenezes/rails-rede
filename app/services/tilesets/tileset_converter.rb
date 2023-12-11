@@ -47,6 +47,7 @@ module Tilesets
           ldgeojson_file.puts(geojson_string)
         end
       end
+
       # remove geojson file if we have a converted version
       File.delete(geojson_file_path) if File.exist?(output_ldgeojson_path) && File.exist?(geojson_file_path)
       output_ldgeojson_path
