@@ -53,8 +53,10 @@ export default class extends Controller {
       console.error('Erro ao analisar o documento XML.');
       return;
     }
-    const converted = toGeoJSON.kml(kml);
     const convertedWithStyles = toGeoJSON.kml(kml, { styles: true });
+    console.log(convertedWithStyles)
+    convertedWithStyles.features.filter(feature => feature.geometry.type === 'Point').forEach(feature => feature.properties.icon = `https${feature.properties.icon.substring(4)}`)
+    console.log("AFTER")
     console.log(convertedWithStyles)
     this.inputGeoJsonTarget.innerText = JSON.stringify(convertedWithStyles)
     // this.adjustTextareaHeight(this.inputGeoJsonTarget)

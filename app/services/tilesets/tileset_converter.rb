@@ -20,8 +20,21 @@ module Tilesets
     private
 
     def generate_geo_json_file(file_name, geojson)
+      geojson_with_icons_as_https = JSON.parse(geojson).map do |key, value|
+        if key == 'features'
+          value.map do |feature, f_value|
+            if feature['properties']['icon'].present?
+              feature['properties']['icon'].gsub!('http', 'https') unless feature['properties']['icon'].include?('https')
+            end
+            [feature, f_value]
+          end.to_h
+        end
+        [key, value]
+      end.to_h
+
+      geojson_with_icons_as_https['features'].select { _1['properties']['icon'].present? }.each { |f| puts f['properties']['icon']}
       geojson_file_path = File.join(Rails.root.join('tmp', "#{file_name}.geojson"))
-      File.open(geojson_file_path, 'w') { |file| file.write(geojson) }
+      File.open(geojson_file_path, 'w') { |file| file.write(geojson_with_icons_as_https.to_json) }
       geojson_file_path
     end
 
