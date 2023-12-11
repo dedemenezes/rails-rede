@@ -82,6 +82,7 @@ export default class extends Controller {
         // ADD LAYERS
 
         // POLYGON LAYER
+        // skip specific property
         this.map.addLayer({
           'id': tileset.sourceValue + '-polygons',
           'type': 'fill',
@@ -95,9 +96,27 @@ export default class extends Controller {
               0.7,
               0.4
             ],
-          }
+          },
+          'filter': [
+            'all',
+            ['!=', ['string', ['get', 'name']], "Área de Proteção Ambiental da Bacia do Rio São João/Mico-Leão-Dourado"],
+            ['!=', ['string', ['get', 'name']], "Parque Natural Municipal do Mico-Leão-Dourado"]
+          ]
         });
 
+        if (tileset.sourceValue === 'cabofrio_final') {
+          this.map.addLayer({
+            'id': tileset.sourceValue + '-polygons-stroke',
+            'type': 'line',
+            'source': tileset.sourceValue,
+            'source-layer': 'inspections-areas',
+            'paint': {
+              'line-color': ['get', 'stroke'],
+              'line-opacity': ['get', 'stroke-opacity'],
+              'line-width': ['get', 'stroke-width']
+            }
+          });
+        }
         // LINE LAYER
         this.map.addLayer({
           'id': tileset.sourceValue + '-lines',
