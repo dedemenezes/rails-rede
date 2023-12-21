@@ -93,30 +93,31 @@ export default class extends Controller {
             'fill-opacity': [
               'case',
               ['boolean', ['feature-state', 'hover'], false],
-              0.7,
-              0.4
+              ['get', 'fill-opacity'],
+              ['/', ['get', 'fill-opacity'], 2]
             ],
           },
           'filter': [
             'all',
-            ['!=', ['string', ['get', 'name']], "Área de Proteção Ambiental da Bacia do Rio São João/Mico-Leão-Dourado"],
-            ['!=', ['string', ['get', 'name']], "Parque Natural Municipal do Mico-Leão-Dourado"]
+            ['>', ['number', ['get', 'fill-opacity']], 0.2],
           ]
         });
 
-        if (tileset.sourceValue === 'cabofrio_final') {
-          this.map.addLayer({
-            'id': tileset.sourceValue + '-polygons-stroke',
-            'type': 'line',
-            'source': tileset.sourceValue,
-            'source-layer': 'inspections-areas',
-            'paint': {
-              'line-color': ['get', 'stroke'],
-              'line-opacity': ['get', 'stroke-opacity'],
-              'line-width': ['get', 'stroke-width']
-            }
-          });
-        }
+        this.map.addLayer({
+          'id': tileset.sourceValue + '-polygons-stroke',
+          'type': 'line',
+          'source': tileset.sourceValue,
+          'source-layer': 'inspections-areas',
+          'paint': {
+            'line-color': ['get', 'stroke'],
+            'line-opacity': ['get', 'stroke-opacity'],
+            'line-width': ['*', ['get', 'stroke-width'], 10]
+          },
+          'filter': [
+            'all',
+            ['<', ['number', ['get', 'fill-opacity']], 0.3],
+          ]
+        });
         // LINE LAYER
         this.map.addLayer({
           'id': tileset.sourceValue + '-lines',
@@ -139,6 +140,7 @@ export default class extends Controller {
           "layout": {
             "icon-image": ['get', 'icon'],
             "icon-size": 0.5,
+            "icon-allow-overlap": true
           },
           "paint": {
             "icon-opacity": [
