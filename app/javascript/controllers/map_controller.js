@@ -134,10 +134,27 @@ export default class extends Controller {
           'source-layer': 'inspections-lines',
           'paint': {
             'line-color': [ 'get', 'stroke' ],
-            'line-opacity': ['get', 'stroke-opacity'],
+            // Stroke opacity em 1 funciona para Rio das Ostras Oleodutos
+            'line-opacity': 1,
+            // 'line-opacity': ['get', 'stroke-opacity'],
             'line-width': ['get', 'stroke-width']
           }
         })
+
+        // new layer for adding name on top of lines
+        this.map.addLayer({
+          'id': tileset.sourceValue + '-lines-label',
+          'type': 'symbol',
+          'source': tileset.sourceValue,
+          'source-layer': 'inspections-lines',
+          'layout': {
+            'text-field': ['get', 'name'],
+            'symbol-placement': 'line'
+          },
+          'paint': {
+            'text-color': '#f8f8ff'
+          }
+        });
 
         // ICON LAYER
         this.map.addLayer({
