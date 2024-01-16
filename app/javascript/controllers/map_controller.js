@@ -111,13 +111,21 @@ export default class extends Controller {
           'paint': {
             'line-color': ['get', 'stroke'],
             'line-opacity': ['get', 'stroke-opacity'],
-            'line-width': ['*', ['get', 'stroke-width'], 10]
+            // 'line-width': ['*', ['get', 'stroke-width'], 10]
+            'line-width': [
+              'match',
+              ['get', 'stroke'],
+              '#00aa00', 3,
+              // 'value2', ['*', ['get', 'stroke-width'], 20],
+              50 // default value
+            ]
           },
           'filter': [
             'all',
             ['<', ['number', ['get', 'fill-opacity']], 0.3],
           ]
         });
+
         // LINE LAYER
         this.map.addLayer({
           'id': tileset.sourceValue + '-lines',
