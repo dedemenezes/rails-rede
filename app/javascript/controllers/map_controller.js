@@ -212,6 +212,13 @@ export default class extends Controller {
             );
           }
         })
+
+        // detect zoomend on console
+        this.map.on('zoomend', (e) => {
+          console.log(e)
+          const zoomLevel = this.map.getZoom();
+          console.log("Zoom level: ", zoomLevel);
+        });
       })
     })
 
