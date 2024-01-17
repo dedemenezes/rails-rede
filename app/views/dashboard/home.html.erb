@@ -1,10 +1,10 @@
 <%= render 'shared/breadcrumbs' %>
 
-<div class="col-12 map__wrapper" style="width: 100% !important;"
+<div class="col-12 map__wrapper mt-5" style="width: 100% !important;"
                    data-controller="map"
                    data-map-markers-value="<%= [] %>"
                    data-map-can-close-value="false"
-                   data-map-style-value="mapbox://styles/dedemenezes/clpvtqnt500z301p78s28e109"
+                   data-map-style-value="mapbox://styles/dedemenezes/clri3vd1t00d301peboqu0r57"
                    data-map-tilesets-value="<%= @tilesets.to_json %>"
                    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
   <div class="map__container"
