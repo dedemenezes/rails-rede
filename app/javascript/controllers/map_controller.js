@@ -101,7 +101,7 @@ export default class extends Controller {
             'all',
             ['>', ['number', ['get', 'fill-opacity']], 0.2],
           ]
-        });
+        }, "settlement-minor-label");
 
         this.map.addLayer({
           'id': tileset.sourceValue + '-polygons-stroke',
@@ -124,7 +124,7 @@ export default class extends Controller {
             'all',
             ['<', ['number', ['get', 'fill-opacity']], 0.3],
           ]
-        });
+        }, "settlement-minor-label");
 
         // LINE LAYER
         this.map.addLayer({
@@ -139,7 +139,7 @@ export default class extends Controller {
             // 'line-opacity': ['get', 'stroke-opacity'],
             'line-width': ['get', 'stroke-width']
           }
-        })
+        }, "settlement-minor-label");
 
         // new layer for adding name on top of lines
         this.map.addLayer({
@@ -154,7 +154,7 @@ export default class extends Controller {
           'paint': {
             'text-color': '#f8f8ff'
           }
-        });
+        }, "settlement-minor-label");
 
         // ICON LAYER
         this.map.addLayer({
@@ -175,7 +175,7 @@ export default class extends Controller {
               0.7
             ]
           }
-        });
+        }, "settlement-minor-label");
 
         // ADD EVENT LISTENERS
         this.map.on('mouseenter', tileset.sourceValue + '-points', (event) => {
