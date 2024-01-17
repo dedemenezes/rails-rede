@@ -82,7 +82,6 @@ export default class extends Controller {
         // ADD LAYERS
 
         // POLYGON LAYER
-        // skip specific property
         this.map.addLayer({
           'id': tileset.sourceValue + '-polygons',
           'type': 'fill',
@@ -103,6 +102,7 @@ export default class extends Controller {
           ]
         }, "settlement-minor-label");
 
+        // POLYGON STROKE LAYER
         this.map.addLayer({
           'id': tileset.sourceValue + '-polygons-stroke',
           'type': 'line',
@@ -126,6 +126,25 @@ export default class extends Controller {
           ]
         }, "settlement-minor-label");
 
+        // POLYGONS STROKE LABEL LAYER
+        this.map.addLayer({
+          'id': tileset.sourceValue + '-polygons-stroke-label',
+          'type': 'symbol',
+          'source': tileset.sourceValue,
+          'source-layer': 'inspections-areas',
+          'layout': {
+            'text-field': ['get', 'name'],
+            'symbol-placement': 'line'
+          },
+          'paint': {
+            'text-color': '#f8f8ff'
+          },
+          'filter': [
+            'all',
+            ['<', ['number', ['get', 'fill-opacity']], 0.3],
+          ]
+        }, "settlement-minor-label");
+
         // LINE LAYER
         this.map.addLayer({
           'id': tileset.sourceValue + '-lines',
@@ -141,7 +160,7 @@ export default class extends Controller {
           }
         }, "settlement-minor-label");
 
-        // new layer for adding name on top of lines
+        // LINE LABEL LAYER
         this.map.addLayer({
           'id': tileset.sourceValue + '-lines-label',
           'type': 'symbol',
