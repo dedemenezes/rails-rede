@@ -35,10 +35,10 @@
   </head>
 
   <body data-controller="navbar-toggler">
-    <%= render "shared/my_navbar" %>
+    <%= render "shared/my_navbar" unless params[:action] == 'mapa_teste' %>
     <%= render "shared/flashes" %>
 
     <%= yield %>
-    <%= render 'shared/footer' %>
+    <%= render 'shared/footer' unless params[:action] == 'mapa_teste' %>
   </body>
 </html>
