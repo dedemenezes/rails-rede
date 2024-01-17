@@ -7,7 +7,7 @@ export default class extends Controller {
   static targets = ['labelGeoJson', 'inputFile', 'inputGeoJson', 'preTag']
 
   connect() {
-    console.log(this)
+    // console.log(this)
 
   }
 
@@ -33,8 +33,8 @@ export default class extends Controller {
           // this.
         })
     } else {
-      console.log(event.currentTarget);
-      console.log(event.currentTarget.files);
+      // console.log(event.currentTarget);
+      // console.log(event.currentTarget.files);
     }
   }
 
@@ -44,8 +44,8 @@ export default class extends Controller {
   };
 
   #parseKmlToGeoJson(event) {
-    console.log(this)
-    console.log(this.inputGeoJsonTarget)
+    // console.log(this)
+    // console.log(this.inputGeoJsonTarget)
 
     const kmlContent = event.target.result
     const kml = new DOMParser().parseFromString(kmlContent, 'text/xml');
@@ -54,10 +54,10 @@ export default class extends Controller {
       return;
     }
     const convertedWithStyles = toGeoJSON.kml(kml, { styles: true });
-    console.log(convertedWithStyles)
+    // console.log(convertedWithStyles)
     convertedWithStyles.features.filter(feature => feature.geometry.type === 'Point').forEach(feature => feature.properties.icon = `https${feature.properties.icon.substring(4)}`)
-    console.log("AFTER")
-    console.log(convertedWithStyles)
+    // console.log("AFTER")
+    // console.log(convertedWithStyles)
     this.inputGeoJsonTarget.innerText = JSON.stringify(convertedWithStyles)
     // this.adjustTextareaHeight(this.inputGeoJsonTarget)
     this.preTagTarget.innerText = JSON.stringify(convertedWithStyles, '', 2)

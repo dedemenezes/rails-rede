@@ -54,11 +54,11 @@ export default class extends Controller {
           }
         })
       })
-      console.log(iconUrls)
+      // console.log(iconUrls)
       iconUrls.forEach((iconUrl) => {
-        console.log(iconUrl)
+        // console.log(iconUrl)
         const iconExists = this.map.hasImage(iconUrl);
-        console.log(iconExists)
+        // console.log(iconExists)
         if (!iconExists) {
           this.map.loadImage(iconUrl, (error, image) => {
             if (error) throw error;
@@ -217,7 +217,7 @@ export default class extends Controller {
 
     this.map.on('click', (event) => {
       const features = this.map.queryRenderedFeatures(event.point)
-      console.log(features.length > 0)
+      // console.log(features.length > 0)
       const feature = features[0]
       if (!feature) {
         return;
@@ -231,7 +231,6 @@ export default class extends Controller {
         this.addSourcePopup(feature, event.lngLat)
       }
     })
-
   }
 
   // When the user moves their mouse over the state-fill layer, we'll update the
