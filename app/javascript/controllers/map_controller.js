@@ -222,6 +222,16 @@ export default class extends Controller {
       })
     })
 
+    // add zoom in to clicked city name
+    this.map.on('click', 'settlement-minor-label', (e) => {
+      // Zoom to level 10
+      this.map.flyTo({
+        center: e.lngLat,
+        zoom: 12,
+        speed: 0.2
+      });
+    });
+
     this.map.on('click', (event) => {
       const features = this.map.queryRenderedFeatures(event.point)
       // console.log(features.length > 0)
