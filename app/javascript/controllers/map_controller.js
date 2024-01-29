@@ -88,7 +88,7 @@ export default class extends Controller {
           'source': tileset.sourceValue,
           'source-layer': 'inspections-areas',
           'paint': {
-            'fill-color': ['get', 'fill'],
+            'fill-color': ['coalesce', ['get', 'fill'], '#ff7f50'],
             'fill-opacity': [
               'case',
               ['boolean', ['feature-state', 'hover'], false],
@@ -196,6 +196,7 @@ export default class extends Controller {
           }
         }, "settlement-minor-label");
 
+
         // ADD EVENT LISTENERS
         this.map.on('mouseenter', tileset.sourceValue + '-points', (event) => {
           this.updateHoveredlayerElement(event, 'inspections-points', tileset.sourceValue)
@@ -231,13 +232,6 @@ export default class extends Controller {
             );
           }
         })
-
-        // detect zoomend on console
-        this.map.on('zoomend', (e) => {
-          console.log(e)
-          const zoomLevel = this.map.getZoom();
-          console.log("Zoom level: ", zoomLevel);
-        });
       })
     })
 
