@@ -49,15 +49,68 @@ export default class extends Controller {
 
     const kmlContent = event.target.result
     const kml = new DOMParser().parseFromString(kmlContent, 'text/xml');
+    // console.log(kml)
     if (kml.documentElement.nodeName === 'parsererror') {
       console.error('Erro ao analisar o documento XML.');
       return;
     }
+    // console.log(kmlContent)
     const convertedWithStyles = toGeoJSON.kml(kml, { styles: true });
-    // console.log(convertedWithStyles)
+    console.log(convertedWithStyles)
     convertedWithStyles.features.filter(feature => feature.geometry.type === 'Point').forEach(feature => feature.properties.icon = `https${feature.properties.icon.substring(4)}`)
     // console.log("AFTER")
     // console.log(convertedWithStyles)
+
+    kml.getElementsByTagName('MultiGeometry')[0].childNodes.forEach((geometryNode) => {
+
+      // featureProperties = Object.assign({}, convertedWithStyles.features[featureIndex].properties)
+      // console.log(featureProperties)
+      if (geometryNode.nodeType === 1) { // Check if it's an element node
+        if (geometryNode.nodeName === 'MultiGeometry') {
+          // Handle nested MultiGeometry, iterate through its child nodes
+          geometryNode.childNodes.forEach((polygonNode) => {
+            if (polygonNode.nodeName === 'Polygon') {
+              // extract coordinates into array of array's
+              const polygonCoordinates = polygonNode.querySelector('coordinates').textContent.trim().split(' ').map((coordinates) => {
+                const [lng, lat, _elevation] = coordinates.split(',').map(Number)
+                return [lng, lat]
+              })
+              // create GeoJson feature
+              const feature = {
+                type: 'Feature',
+              }
+              feature.geometry = {
+                type: 'Polygon',
+                coordinates: [polygonCoordinates]
+              }
+
+              const placemark = geometryNode.parentElement.parentElement
+              console.dir(placemark)
+              // 1. NAME
+              const name = placemark.querySelector('name')
+              if (name) {
+                const nameText = name.textContent
+                console.log(nameText)
+                console.log(convertedWithStyles.features)
+                const parentFeature = convertedWithStyles.features.find((element) => {
+                  if (element.properties && element.properties.name) {
+                    return element.properties['name'] === nameText
+                  }
+                })
+                feature.properties = {
+                  ...parentFeature.properties
+                }
+              }
+
+              console.log(feature)
+              convertedWithStyles.features.push(feature);
+            }
+          })
+        }
+      }
+    })
+    console.log(convertedWithStyles)
+
     this.inputGeoJsonTarget.innerText = JSON.stringify(convertedWithStyles)
     // this.adjustTextareaHeight(this.inputGeoJsonTarget)
     this.preTagTarget.innerText = JSON.stringify(convertedWithStyles, '', 2)
