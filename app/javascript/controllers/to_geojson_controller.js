@@ -57,10 +57,8 @@ export default class extends Controller {
           geometryNode.childNodes.forEach((polygonNode) => {
             if (polygonNode.nodeName === 'Polygon') {
               // extract coordinates into array of array's
-              const polygonCoordinates = polygonNode.querySelector('coordinates').textContent.trim().split(' ').map((coordinates) => {
-                const [lng, lat, _elevation] = coordinates.split(',').map(Number)
-                return [lng, lat]
-              })
+              const polygonCoordinates = this.findAndBuildCoordinates(polygonNode)
+
               // create GeoJson feature
               const feature = {
                 type: 'Feature',
@@ -84,6 +82,7 @@ export default class extends Controller {
                   ...parentFeature.properties
                 }
               }
+              console.log(feature)
 
               convertedWithStyles.features.push(feature);
             }
@@ -98,5 +97,15 @@ export default class extends Controller {
     // this.adjustTextareaHeight(this.preTagTarget)
     this.preTagTarget.style.maxHeight = '200px'
     this.labelGeoJsonTarget.hidden = false
+  }
+
+  findAndBuildCoordinates(polygonNode) {
+    const coordinatesArray = polygonNode.querySelector('coordinates').textContent.trim().split(' ')
+    return coordinatesArray.map(this.extractCoordinates)
+  }
+
+  extractCoordinates(coordinates) {
+    const [lng, lat, elevation] = coordinates.split(',').map(Number)
+    return [lng, lat, elevation]
   }
 }
