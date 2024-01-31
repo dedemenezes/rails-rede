@@ -111,19 +111,19 @@ export default class extends Controller {
           'paint': {
             'line-color': ['get', 'stroke'],
             'line-opacity': ['get', 'stroke-opacity'],
-            // 'line-width': ['*', ['get', 'stroke-width'], 10]
-            'line-width': [
-              'match',
-              ['get', 'stroke'],
-              '#00aa00', 3,
-              // 'value2', ['*', ['get', 'stroke-width'], 20],
-              50 // default value
-            ]
+            'line-width': ['coalesce', ['get', 'stroke-width'], 1]
+            // 'line-width': [
+            //   'match',
+            //   ['get', 'stroke'],
+            //   '#00aa00', 3,
+            //   // 'value2', ['*', ['get', 'stroke-width'], 20],
+            //   5 // default value
+            // ]
           },
-          'filter': [
-            'all',
-            ['<', ['number', ['get', 'fill-opacity']], 0.3],
-          ]
+          // 'filter': [
+          //   'all',
+          //   ['<', ['number', ['get', 'fill-opacity']], 0.3],
+          // ]
         }, "settlement-minor-label");
 
         // POLYGONS STROKE LABEL LAYER
