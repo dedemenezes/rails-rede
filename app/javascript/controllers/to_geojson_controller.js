@@ -49,48 +49,48 @@ export default class extends Controller {
     convertedWithStyles.features.filter(feature => feature.geometry.type === 'Point').forEach(feature => feature.properties.icon = `https${feature.properties.icon.substring(4)}`)
 
 
-    // pegar todos os multigeometry
-    const allMultiGeometry = kml.getElementsByTagName('MultiGeometry')
-    // const allPolygons = kml.getElementsByTagName('Polygon')
+    // // pegar todos os multigeometry
+    // const allMultiGeometry = kml.getElementsByTagName('MultiGeometry')
+    // // const allPolygons = kml.getElementsByTagName('Polygon')
 
-    // filtrar entre somente os que tem childnode Polygon
-    const polygonNodesFromMultiGeometry = [];
-    Array.from(allMultiGeometry).forEach((node) => {
-      this.findPolygonNodes(node, polygonNodesFromMultiGeometry)
-    });
+    // // filtrar entre somente os que tem childnode Polygon
+    // const polygonNodesFromMultiGeometry = [];
+    // Array.from(allMultiGeometry).forEach((node) => {
+    //   this.findPolygonNodes(node, polygonNodesFromMultiGeometry)
+    // });
 
-    polygonNodesFromMultiGeometry.forEach((polygon) => {
-      const polygonCoordinates = this.findAndBuildCoordinates(polygon)
-      // create GeoJson feature
-      const feature = {
-        type: 'Feature',
-      }
-      feature.geometry = {
-        type: 'Polygon',
-        coordinates: [polygonCoordinates]
-      }
+    // polygonNodesFromMultiGeometry.forEach((polygon) => {
+    //   const polygonCoordinates = this.findAndBuildCoordinates(polygon)
+    //   // create GeoJson feature
+    //   const feature = {
+    //     type: 'Feature',
+    //   }
+    //   feature.geometry = {
+    //     type: 'Polygon',
+    //     coordinates: [polygonCoordinates]
+    //   }
 
-      const placemark = this.findPlacemarkNode(polygon)
-      // // 1. NAME
-      const name = placemark.querySelector('name')
+    //   const placemark = this.findPlacemarkNode(polygon)
+    //   // // 1. NAME
+    //   const name = placemark.querySelector('name')
 
-      if (name) {
-        const nameText = name.textContent
-        const parentFeature = convertedWithStyles.features.find((element) => {
-          if (element.properties && element.properties.name) {
-            return element.properties['name'] === nameText
-          }
-        })
+    //   if (name) {
+    //     const nameText = name.textContent
+    //     const parentFeature = convertedWithStyles.features.find((element) => {
+    //       if (element.properties && element.properties.name) {
+    //         return element.properties['name'] === nameText
+    //       }
+    //     })
 
-        if(parentFeature) {
-          feature.properties = {
-            ...parentFeature.properties
-          }
-        }
-      }
+    //     if(parentFeature) {
+    //       feature.properties = {
+    //         ...parentFeature.properties
+    //       }
+    //     }
+    //   }
 
-      convertedWithStyles.features.push(feature)
-    })
+    //   convertedWithStyles.features.push(feature)
+    // })
 
     this.inputGeoJsonTarget.innerText = JSON.stringify(convertedWithStyles)
     // this.adjustTextareaHeight(this.inputGeoJsonTarget)

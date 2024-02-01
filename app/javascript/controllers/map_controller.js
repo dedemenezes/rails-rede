@@ -93,7 +93,7 @@ export default class extends Controller {
               'case',
               ['boolean', ['feature-state', 'hover'], false],
               ['get', 'fill-opacity'],
-              ['/', ['get', 'fill-opacity'], 2]
+              ['*', ['get', 'fill-opacity'], 0.75]
             ],
           },
           'filter': [
