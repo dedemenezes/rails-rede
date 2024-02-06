@@ -49,48 +49,41 @@ export default class extends Controller {
     convertedWithStyles.features.filter(feature => feature.geometry.type === 'Point').forEach(feature => feature.properties.icon = `https${feature.properties.icon.substring(4)}`)
 
 
-    // // pegar todos os multigeometry
-    // const allMultiGeometry = kml.getElementsByTagName('MultiGeometry')
-    // // const allPolygons = kml.getElementsByTagName('Polygon')
+    // Assuming kml is the XML document obtained from parsing the KML file
+    let placemarks = kml.getElementsByTagName('Placemark');
 
-    // // filtrar entre somente os que tem childnode Polygon
-    // const polygonNodesFromMultiGeometry = [];
-    // Array.from(allMultiGeometry).forEach((node) => {
-    //   this.findPolygonNodes(node, polygonNodesFromMultiGeometry)
-    // });
+    for (let i = 0; i < placemarks.length; i++) {
+      let placemark = placemarks[i];
+      let multiGeometries = this.findNestedMultiGeometries(placemark);
+      const polygonNodes = []
+      multiGeometries.forEach((geometryNode) => {
+        this.findPolygonNodes(geometryNode, polygonNodes)
+      })
 
-    // polygonNodesFromMultiGeometry.forEach((polygon) => {
-    //   const polygonCoordinates = this.findAndBuildCoordinates(polygon)
-    //   // create GeoJson feature
-    //   const feature = {
-    //     type: 'Feature',
-    //   }
-    //   feature.geometry = {
-    //     type: 'Polygon',
-    //     coordinates: [polygonCoordinates]
-    //   }
+      if (polygonNodes.length !== 0) {
+        polygonNodes.forEach((polygonNode) => {
+          const polygonCoordinates = this.findAndBuildCoordinates(polygonNode)
+          const feature = {
+            type: 'Feature',
+          }
+          feature.geometry = {
+            type: 'Polygon',
+            coordinates: [polygonCoordinates]
+          }
 
-    //   const placemark = this.findPlacemarkNode(polygon)
-    //   // // 1. NAME
-    //   const name = placemark.querySelector('name')
-
-    //   if (name) {
-    //     const nameText = name.textContent
-    //     const parentFeature = convertedWithStyles.features.find((element) => {
-    //       if (element.properties && element.properties.name) {
-    //         return element.properties['name'] === nameText
-    //       }
-    //     })
-
-    //     if(parentFeature) {
-    //       feature.properties = {
-    //         ...parentFeature.properties
-    //       }
-    //     }
-    //   }
-
-    //   convertedWithStyles.features.push(feature)
-    // })
+          const name = placemark.querySelector('name')
+          if (name) {
+            const parentFeature = convertedWithStyles.features.find((element) => {
+              if (element.properties && element.properties.name) {
+                return element.properties['name'] === name.textContent
+              }
+            })
+            feature.properties = {...parentFeature.properties}
+          }
+          convertedWithStyles.features.push(feature);
+        })
+      }
+    }
 
     this.inputGeoJsonTarget.innerText = JSON.stringify(convertedWithStyles)
     // this.adjustTextareaHeight(this.inputGeoJsonTarget)
@@ -134,5 +127,29 @@ export default class extends Controller {
 
     const parentNode = node.parentNode
     return this.findPlacemarkNode(parentNode)
+  }
+
+
+  // recursively search for MultiGeometry elements inside Placemark
+  findNestedMultiGeometries(placemark) {
+    let multiGeometries = [];
+
+    let directMultiGeometries = Array.from(placemark.getElementsByTagName('MultiGeometry'));
+
+    if (directMultiGeometries.length > 0) {
+      directMultiGeometries.forEach(directMultiGeometry => {
+        if (this.hasNestedMultiGeometry(directMultiGeometry)) {
+          multiGeometries.push(directMultiGeometry);
+        }
+      });
+    }
+
+    return multiGeometries;
+  }
+
+  // to check if a MultiGeometry element has nested MultiGeometry elements
+  hasNestedMultiGeometry(multiGeometry) {
+    let nestedMultiGeometries = Array.from(multiGeometry.getElementsByTagName('MultiGeometry'));
+    return nestedMultiGeometries.length > 0;
   }
 }
