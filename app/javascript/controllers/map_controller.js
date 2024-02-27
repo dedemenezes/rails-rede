@@ -120,10 +120,10 @@ export default class extends Controller {
             //   5 // default value
             // ]
           },
-          // 'filter': [
-          //   'all',
-          //   ['<', ['number', ['get', 'fill-opacity']], 0.3],
-          // ]
+          'filter': [
+            'all',
+            ['<', ['number', ['get', 'fill-opacity']], 0.3],
+          ]
         }, "settlement-minor-label");
 
         // POLYGONS STROKE LABEL LAYER
