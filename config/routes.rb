@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     namespace :mapbox do
       resources :tilesets
     end
+    get :map, as: :staging_map
   end
   root to: "pages#home"
   get '/contato', to: 'contacts#new', as: :new_contact

@@ -46,5 +46,9 @@ module Dashboard
     def documentos?
       home?
     end
+
+    def map?
+      home?
+    end
   end
 end
