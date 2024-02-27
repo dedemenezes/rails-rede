@@ -261,6 +261,11 @@ export default class extends Controller {
         this.addSourcePopup(feature, event.lngLat)
       }
     })
+
+    this.map.on('zoomend', () => {
+      const zoom = this.map.getZoom();
+      console.log('Current zoom level is: ' + zoom);
+    });
   }
 
   // When the user moves their mouse over the state-fill layer, we'll update the
