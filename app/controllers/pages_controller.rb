@@ -1,5 +1,21 @@
 class PagesController < ApplicationController
 
+  def mapa_teste
+    @tilesets = Tileset.all.map do |tileset|
+      geo_json = JSON.parse(tileset.geo_json)
+      features = geo_json['features']
+      points = features.select { |f| f['geometry']['type'] == 'Point' }
+      icons = points.uniq { |f| f['properties']['icon'] }
+                    .map { |f| f['properties']['icon'] }
+      {
+        sourceValue: tileset.mapbox_id,
+        urlValue: "mapbox://dedemenezes.#{tileset.mapbox_id}",
+        geoJson: tileset.geo_json,
+        icons:
+      }
+    end
+  end
+
   def home
     @info_cards = [
       { img_name: 'binoculo', text: "11 observatórios na região da Bacia de Campos, onde há extração de petróleo e gás natural" },

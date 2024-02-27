@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'mapa-teste', to: 'pages#mapa_teste'
+
   devise_for :users, only: [:sessions]
   get 'dashboard', to: 'dashboard#home', as: :home
   namespace :dashboard do

@@ -54,11 +54,11 @@ export default class extends Controller {
           }
         })
       })
-      console.log(iconUrls)
+      // console.log(iconUrls)
       iconUrls.forEach((iconUrl) => {
-        console.log(iconUrl)
+        // console.log(iconUrl)
         const iconExists = this.map.hasImage(iconUrl);
-        console.log(iconExists)
+        // console.log(iconExists)
         if (!iconExists) {
           this.map.loadImage(iconUrl, (error, image) => {
             if (error) throw error;
@@ -82,41 +82,69 @@ export default class extends Controller {
         // ADD LAYERS
 
         // POLYGON LAYER
-        // skip specific property
         this.map.addLayer({
           'id': tileset.sourceValue + '-polygons',
           'type': 'fill',
           'source': tileset.sourceValue,
           'source-layer': 'inspections-areas',
           'paint': {
-            'fill-color': ['get', 'fill'],
+            'fill-color': ['coalesce', ['get', 'fill'], '#ff7f50'],
             'fill-opacity': [
               'case',
               ['boolean', ['feature-state', 'hover'], false],
-              0.7,
-              0.4
+              ['get', 'fill-opacity'],
+              ['*', ['get', 'fill-opacity'], 0.75]
             ],
           },
           'filter': [
             'all',
-            ['!=', ['string', ['get', 'name']], "Área de Proteção Ambiental da Bacia do Rio São João/Mico-Leão-Dourado"],
-            ['!=', ['string', ['get', 'name']], "Parque Natural Municipal do Mico-Leão-Dourado"]
+            ['>', ['number', ['get', 'fill-opacity']], 0.2],
           ]
-        });
+        }, "settlement-minor-label");
 
-        if (tileset.sourceValue === 'cabofrio_final') {
-          this.map.addLayer({
-            'id': tileset.sourceValue + '-polygons-stroke',
-            'type': 'line',
-            'source': tileset.sourceValue,
-            'source-layer': 'inspections-areas',
-            'paint': {
-              'line-color': ['get', 'stroke'],
-              'line-opacity': ['get', 'stroke-opacity'],
-              'line-width': ['get', 'stroke-width']
-            }
-          });
-        }
+        // POLYGON STROKE LAYER
+        this.map.addLayer({
+          'id': tileset.sourceValue + '-polygons-stroke',
+          'type': 'line',
+          'source': tileset.sourceValue,
+          'source-layer': 'inspections-areas',
+          'paint': {
+            'line-color': ['get', 'stroke'],
+            'line-opacity': ['get', 'stroke-opacity'],
+            'line-width': ['coalesce', ['get', 'stroke-width'], 1]
+            // 'line-width': [
+            //   'match',
+            //   ['get', 'stroke'],
+            //   '#00aa00', 3,
+            //   // 'value2', ['*', ['get', 'stroke-width'], 20],
+            //   5 // default value
+            // ]
+          },
+          'filter': [
+            'all',
+            ['<', ['number', ['get', 'fill-opacity']], 0.3],
+          ]
+        }, "settlement-minor-label");
+
+        // POLYGONS STROKE LABEL LAYER
+        this.map.addLayer({
+          'id': tileset.sourceValue + '-polygons-stroke-label',
+          'type': 'symbol',
+          'source': tileset.sourceValue,
+          'source-layer': 'inspections-areas',
+          'layout': {
+            'text-field': ['get', 'name'],
+            'symbol-placement': 'line'
+          },
+          'paint': {
+            'text-color': '#f8f8ff'
+          },
+          'filter': [
+            'all',
+            ['<', ['number', ['get', 'fill-opacity']], 0.3],
+          ]
+        }, "settlement-minor-label");
+
         // LINE LAYER
         this.map.addLayer({
           'id': tileset.sourceValue + '-lines',
@@ -125,10 +153,27 @@ export default class extends Controller {
           'source-layer': 'inspections-lines',
           'paint': {
             'line-color': [ 'get', 'stroke' ],
-            'line-opacity': ['get', 'stroke-opacity'],
+            // Stroke opacity em 1 funciona para Rio das Ostras Oleodutos
+            'line-opacity': 1,
+            // 'line-opacity': ['get', 'stroke-opacity'],
             'line-width': ['get', 'stroke-width']
           }
-        })
+        }, "settlement-minor-label");
+
+        // LINE LABEL LAYER
+        this.map.addLayer({
+          'id': tileset.sourceValue + '-lines-label',
+          'type': 'symbol',
+          'source': tileset.sourceValue,
+          'source-layer': 'inspections-lines',
+          'layout': {
+            'text-field': ['get', 'name'],
+            'symbol-placement': 'line'
+          },
+          'paint': {
+            'text-color': '#f8f8ff'
+          }
+        }, "settlement-minor-label");
 
         // ICON LAYER
         this.map.addLayer({
@@ -139,6 +184,7 @@ export default class extends Controller {
           "layout": {
             "icon-image": ['get', 'icon'],
             "icon-size": 0.5,
+            "icon-allow-overlap": true
           },
           "paint": {
             "icon-opacity": [
@@ -148,7 +194,8 @@ export default class extends Controller {
               0.7
             ]
           }
-        });
+        }, "settlement-minor-label");
+
 
         // ADD EVENT LISTENERS
         this.map.on('mouseenter', tileset.sourceValue + '-points', (event) => {
@@ -188,9 +235,19 @@ export default class extends Controller {
       })
     })
 
+    // add zoom in to clicked city name
+    this.map.on('click', 'settlement-minor-label', (e) => {
+      // Zoom to level 10
+      this.map.flyTo({
+        center: e.lngLat,
+        zoom: 12,
+        speed: 0.2
+      });
+    });
+
     this.map.on('click', (event) => {
       const features = this.map.queryRenderedFeatures(event.point)
-      console.log(features.length > 0)
+      // console.log(features.length > 0)
       const feature = features[0]
       if (!feature) {
         return;
@@ -205,6 +262,10 @@ export default class extends Controller {
       }
     })
 
+    this.map.on('zoomend', () => {
+      const zoom = this.map.getZoom();
+      console.log('Current zoom level is: ' + zoom);
+    });
   }
 
   // When the user moves their mouse over the state-fill layer, we'll update the
