@@ -333,7 +333,7 @@ export default class extends Controller {
       return undefined
     }
 
-    let popHTML = `<div>`
+    let popHTML = `<div class="popup__source">`
     const properties = feature.properties
     // console.log(properties)
     popHTML += `<h6><strong>${properties.name}</strong></h6>`

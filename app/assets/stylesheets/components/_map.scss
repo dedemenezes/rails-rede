@@ -11,6 +11,11 @@
   border-radius: 10px;
 }
 
+.popup__source {
+  max-height: 270px;
+  overflow-y: auto;
+}
+
 .map__wrapper {
   position: relative;
   width: 100%;
