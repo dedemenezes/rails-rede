@@ -40,6 +40,9 @@
 *.swp
 .DS_Store
 
+# ignore WIP for tileset upload recipe service
+app/services/tilesets/upload_tileset_recipe.rb
+/lib/mapbox/*
 # ignore images from project
 /lib/imagens/*
 /figma_htmlgenerator-(1)/*
