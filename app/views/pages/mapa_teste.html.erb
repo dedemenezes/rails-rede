@@ -7,18 +7,8 @@
                    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
   <div class="map__container"
                       style="height: 80vh;"
-                      data-map-target="mapContainer"
-                      data-action="click->map#coverWarning">
+                      data-map-target="mapContainer">
+                      <%# // REFAC COORDINATE GESTURES %>
+                      <%# data-action="click->map#coverWarning"> %>
   </div>
-  <div class="map__cover h-100 w-100"
-                    data-map-target="cover">
-    <p class='mb-0'>Ative uma das opções de navegação</p>
-    <%= image_tag 'arrow-up.svg', width: '40px', style: 'position: initial' %>
-  </div>
-  <nav id="listing-group" data-map-target="listingGroup" class="listing-group">
-    <input type="checkbox" data-map-target="menuOption" id="scrollZoom">
-    <label for="scrollZoom">Zoom com scroll</label>
-    <input type="checkbox" data-map-target="menuOption" id="dragPan">
-    <label for="dragPan">Arrastar e navegar</label>
-  </nav>
 </div>

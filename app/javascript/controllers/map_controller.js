@@ -13,7 +13,7 @@ export default class extends Controller {
     canClose: Boolean
   }
 
-  static targets = ['mapContainer', 'menuOption', 'listingGroup', "cover"]
+  static targets = ['mapContainer', 'menuOption', 'listingGroup']
 
   connect() {
     mapboxgl.accessToken = this.apiKeyValue
@@ -22,11 +22,14 @@ export default class extends Controller {
       container: this.mapContainerTarget,
       style: this.styleValue,
       center: [-41.69857001374035, -22.07093159509607],
-      zoom: 7
+      zoom: 7,
+      cooperativeGestures: true,
+      locale: {
+        "TouchPanBlocker.Message": "Use dois dedos para mover o mapa",
+        "ScrollZoomBlocker.CtrlMessage": "Use ctrl + scroll para ampliar o mapa",
+        "ScrollZoomBlocker.CmdMessage": "Use ⌘ + scroll para ampliar o mapa"
+      },
     })
-
-    this.map.dragPan.disable()
-    this.map.scrollZoom.disable()
 
     if (this.markersValue.length !== 0) {
       this.#addMarkersToMap()
@@ -34,10 +37,6 @@ export default class extends Controller {
     }
 
     this.#addNavigationtoMap()
-    this.#addListenersToMeniuOptions()
-
-
-
 
     // Initialize hover variable and timeout variable to be used on close popup
     this.hoveredPolygonId = null
@@ -350,28 +349,6 @@ export default class extends Controller {
               .addTo(this.map)
   }
 
-  coverWarning() {
-    if (this.map.dragPan.isEnabled() || this.map.scrollZoom.isEnabled()) {
-    } else {
-      this.#displayCoverElement()
-      this.#fadeOutCoverElement()
-    }
-  }
-
-  #fadeOutCoverElement() {
-    setTimeout(() => {
-      this.coverTarget.style.opacity = 0
-    }, 3000)
-    setTimeout(() => {
-      this.coverTarget.style.zIndex = -5
-    }, 3200)
-  }
-
-  #displayCoverElement() {
-    this.coverTarget.style.opacity = 1
-    this.coverTarget.style.zIndex = 5
-  }
-
   #fitMapToMarkers() {
     const bounds = new mapboxgl.LngLatBounds()
     this.markersValue.forEach(marker => bounds.extend([marker.lng, marker.lat]))
@@ -400,18 +377,5 @@ export default class extends Controller {
       showZoom: true
     })
     this.map.addControl(nav, 'bottom-right')
-  }
-
-  #addListenersToMeniuOptions() {
-    this.listingGroupTarget.addEventListener('change', (event) => {
-      const option = event.target.id
-      if (event.target.checked) {
-        this.map[option].enable()
-        this.coverTarget.style.opacity = 0
-        this.coverTarget.style.zIndex = -5
-      } else {
-        this.map[option].disable()
-      }
-    })
   }
 }
