@@ -111,7 +111,7 @@ export default class extends Controller {
           'paint': {
             'line-color': ['get', 'stroke'],
             'line-opacity': ['get', 'stroke-opacity'],
-            'line-width': ['coalesce', ['get', 'stroke-width'], 1]
+            'line-width': ['coalesce', ['get', 'stroke-width'], 3]
             // 'line-width': [
             //   'match',
             //   ['get', 'stroke'],
