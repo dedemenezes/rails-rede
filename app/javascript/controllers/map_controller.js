@@ -70,6 +70,14 @@ export default class extends Controller {
         this.map.listImages()
       })
 
+      // Manually adds green pushpin icon [NOT COMING FROM FILE]
+      this.map.loadImage("https://maps.google.com/mapfiles/kml/pushpin/grn-pushpin.png", (error, image) => {
+        if (error) throw error;
+
+        // Add the loaded image to the style's sprite with the ID 'kitten'.
+        this.map.addImage("https://maps.google.com/mapfiles/kml/pushpin/grn-pushpin.png", image);
+      })
+
       this.tilesetsValue.forEach((tileset) => {
         // console.log(tileset)
 
@@ -194,6 +202,32 @@ export default class extends Controller {
               0.7
             ]
           }
+        }, "settlement-minor-label");
+
+        // POLYGONS STROKE ICON LAYER
+        this.map.addLayer({
+          'id': tileset.sourceValue + '-polygons-stroke-points',
+          'type': 'symbol',
+          'source': tileset.sourceValue,
+          'source-layer': 'inspections-areas',
+          "layout": {
+            // HARD-CODED green pushpin icon added before
+            "icon-image": "https://maps.google.com/mapfiles/kml/pushpin/grn-pushpin.png",
+            "icon-size": 0.5,
+            "icon-allow-overlap": true,
+          },
+          "paint": {
+            "icon-opacity": [
+              'case',
+              ['boolean', ['feature-state', 'hover'], false],
+              1,
+              0.7
+            ]
+          },
+          'filter': [
+            'all',
+            ['<', ['number', ['get', 'fill-opacity']], 0.3],
+          ]
         }, "settlement-minor-label");
 
 
