@@ -41,7 +41,7 @@
 .DS_Store
 
 # ignore WIP for tileset upload recipe service
-app/services/tilesets/upload_tileset_recipe.rb
+app/services/tilesets/update_tileset_recipe.rb
 /lib/mapbox/*
 # ignore images from project
 /lib/imagens/*
