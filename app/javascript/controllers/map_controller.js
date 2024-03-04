@@ -30,9 +30,6 @@ export default class extends Controller {
         "ScrollZoomBlocker.CmdMessage": "Use ⌘ + scroll para ampliar o mapa"
       },
     })
-    // REFAC COORDINATE GESTURES
-    // this.map.dragPan.disable()
-    // this.map.scrollZoom.disable()
 
     if (this.markersValue.length !== 0) {
       this.#addMarkersToMap()
@@ -40,11 +37,6 @@ export default class extends Controller {
     }
 
     this.#addNavigationtoMap()
-    // REFAC COORDINATE GESTURES
-    // this.#addListenersToMeniuOptions()
-
-
-
 
     // Initialize hover variable and timeout variable to be used on close popup
     this.hoveredPolygonId = null
@@ -357,31 +349,6 @@ export default class extends Controller {
               .addTo(this.map)
   }
 
-  // REFAC COORDINATE GESTURES
-  // coverWarning() {
-  //   if (this.map.dragPan.isEnabled() || this.map.scrollZoom.isEnabled()) {
-  //   } else {
-  //     this.#displayCoverElement()
-  //     this.#fadeOutCoverElement()
-  //   }
-  // }
-
-  // REFAC COORDINATE GESTURES
-  // #fadeOutCoverElement() {
-  //   setTimeout(() => {
-  //     this.coverTarget.style.opacity = 0
-  //   }, 3000)
-  //   setTimeout(() => {
-  //     this.coverTarget.style.zIndex = -5
-  //   }, 3200)
-  // }
-
-  // REFAC COORDINATE GESTURES
-  // #displayCoverElement() {
-  //   this.coverTarget.style.opacity = 1
-  //   this.coverTarget.style.zIndex = 5
-  // }
-
   #fitMapToMarkers() {
     const bounds = new mapboxgl.LngLatBounds()
     this.markersValue.forEach(marker => bounds.extend([marker.lng, marker.lat]))
@@ -411,18 +378,4 @@ export default class extends Controller {
     })
     this.map.addControl(nav, 'bottom-right')
   }
-
-  // REFAC COORDINATE GESTURES
-  // #addListenersToMeniuOptions() {
-  //   this.listingGroupTarget.addEventListener('change', (event) => {
-  //     const option = event.target.id
-  //     if (event.target.checked) {
-  //       this.map[option].enable()
-  //       this.coverTarget.style.opacity = 0
-  //       this.coverTarget.style.zIndex = -5
-  //     } else {
-  //       this.map[option].disable()
-  //     }
-  //   })
-  // }
 }
