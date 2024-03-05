@@ -71,6 +71,9 @@
         "source": "mapbox://tileset-source/dedemenezes/arraialdocabo_final_copy",
         "minzoom": 5,
         "maxzoom": 15,
+        "tiles": {
+          "order": "sequence"
+        },
         "features": {
           "attributes": {
             "allowed_output": [
@@ -84,6 +87,7 @@
               "stroke-width",
               "fill-opacity",
               "fill",
+              "sequence",
               "ESCALA",
               "JURISDICAO",
               "ROTULO",
