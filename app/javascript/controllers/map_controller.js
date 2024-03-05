@@ -95,6 +95,9 @@ export default class extends Controller {
           'type': 'fill',
           'source': tileset.sourceValue,
           'source-layer': 'inspections-areas',
+          'layout': {
+            'fill-sort-key': ['coalesce', [ "to-number", ['get', 'sequence']], 0]
+          },
           'paint': {
             'fill-color': ['coalesce', ['get', 'fill'], '#ff7f50'],
             'fill-opacity': [
