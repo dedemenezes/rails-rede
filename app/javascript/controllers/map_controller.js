@@ -135,23 +135,23 @@ export default class extends Controller {
         }, "settlement-minor-label");
 
         // POLYGONS STROKE LABEL LAYER
-        this.map.addLayer({
-          'id': tileset.sourceValue + '-polygons-stroke-label',
-          'type': 'symbol',
-          'source': tileset.sourceValue,
-          'source-layer': 'inspections-areas',
-          'layout': {
-            'text-field': ['get', 'name'],
-            'symbol-placement': 'line'
-          },
-          'paint': {
-            'text-color': '#f8f8ff'
-          },
-          'filter': [
-            'all',
-            ['<', ['number', ['get', 'fill-opacity']], 0.3],
-          ]
-        }, "settlement-minor-label");
+        // this.map.addLayer({
+        //   'id': tileset.sourceValue + '-polygons-stroke-label',
+        //   'type': 'symbol',
+        //   'source': tileset.sourceValue,
+        //   'source-layer': 'inspections-areas',
+        //   'layout': {
+        //     'text-field': ['get', 'name'],
+        //     'symbol-placement': 'line'
+        //   },
+        //   'paint': {
+        //     'text-color': '#f8f8ff'
+        //   },
+        //   'filter': [
+        //     'all',
+        //     ['<', ['number', ['get', 'fill-opacity']], 0.3],
+        //   ]
+        // }, "settlement-minor-label");
 
         // LINE LAYER
         this.map.addLayer({
