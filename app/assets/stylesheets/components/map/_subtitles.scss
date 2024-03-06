@@ -1,0 +1,64 @@
+.subtitle__wrapper {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  height: 38px;
+}
+ul.map__subtitles {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0;
+
+  li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+}
+
+.subtitle {
+  width: 300px;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.1);
+  padding-bottom: 32px;
+  padding-top: 16px;
+
+
+  p {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  i {
+    margin-right: 4px;
+  }
+
+  .icon--dark-blue {
+    color: #08335F;
+  }
+
+  .icon--green {
+    color: #29A223;
+  }
+
+  .icon--light-blue {
+    color: #55FFFF;
+  }
+
+  .icon--pink {
+    color: #BF489C;
+  }
+
+  .icon--red {
+    color: #6F1B1E;
+  }
+}
+
+.subtitle .carousel-indicators {
+  margin-bottom: -1.5rem !important;
+}

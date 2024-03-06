@@ -7,8 +7,88 @@
                    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
   <div class="map__container"
                       style="height: 80vh;"
-                      data-map-target="mapContainer">
-                      <%# // REFAC COORDINATE GESTURES %>
-                      <%# data-action="click->map#coverWarning"> %>
+                      data-map-target="mapContainer"></div>
+
+  <div class="subtitle__wrapper" data-controller="reveal-on-click">
+      <button class="btn btn-info mb-1"  data-action="click->reveal-on-click#toggle" data-reveal-on-click-target="button">Legendas</button>
+    <div class="subtitle hidden__el" data-reveal-on-click-target="dropdown">
+      <div id="carouselExampleIndicators" class="carousel carousel-dark slide">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="subtitle__content">
+              <p>Poligonos</p>
+              <ul class="map__subtitles">
+                <li >
+                  <i class="fa-solid fa-draw-polygon icon--dark-blue"></i> Território do grupo tradicional
+                </li>
+                <li>
+                  <i class="fa-solid fa-draw-polygon icon--green"></i> Território do grupo tradicional
+                </li>
+                <li>
+                  <i class="fa-solid fa-draw-polygon icon--light-blue"></i> Território do grupo tradicional
+                </li>
+                <li>
+                  <i class="fa-solid fa-draw-polygon icon--pink"></i> Território do grupo tradicional
+                </li>
+                <li>
+                  <i class="fa-solid fa-draw-polygon icon--red"></i> Território do grupo tradicional
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="subtitle__content">
+              <p>Poligonos</p>
+              <ul class="map__subtitles">
+                <li >
+                  <i class="fa-solid fa-draw-polygon icon--dark-blue"></i> Território do grupo tradicional
+                </li>
+                <li>
+                  <i class="fa-solid fa-draw-polygon icon--green"></i> Território do grupo tradicional
+                </li>
+                <li>
+                  <i class="fa-solid fa-draw-polygon icon--light-blue"></i> Território do grupo tradicional
+                </li>
+                <li>
+                  <i class="fa-solid fa-draw-polygon icon--pink"></i> Território do grupo tradicional
+                </li>
+                <li>
+                  <i class="fa-solid fa-draw-polygon icon--red"></i> Território do grupo tradicional
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="subtitle__content">
+              <p>Poligonos</p>
+              <ul class="map__subtitles">
+                <li >
+                  <i class="fa-solid fa-draw-polygon icon--dark-blue"></i> Território do grupo tradicional
+                </li>
+                <li>
+                  <i class="fa-solid fa-draw-polygon icon--green"></i> Território do grupo tradicional
+                </li>
+                <li>
+                  <i class="fa-solid fa-draw-polygon icon--light-blue"></i> Território do grupo tradicional
+                </li>
+                <li>
+                  <i class="fa-solid fa-draw-polygon icon--pink"></i> Território do grupo tradicional
+                </li>
+                <li>
+                  <i class="fa-solid fa-draw-polygon icon--red"></i> Território do grupo tradicional
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+
+
 </div>
