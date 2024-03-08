@@ -1,5 +1,7 @@
 <div class="col-12 map__wrapper mt-5" style="width: 100% !important;"
-                   data-controller="map"
+                   data-controller="map fullscreen-element"
+                   data-fullscreen-element-maximize-icon-value="expand"
+                   data-fullscreen-element-minimize-icon-value="compress"
                    data-map-markers-value="<%= [] %>"
                    data-map-can-close-value="false"
                    data-map-style-value="mapbox://styles/dedemenezes/cltdkdgwl009t01qo7f6kbtlg"
@@ -7,10 +9,12 @@
                    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
   <div class="map__container"
                       style="height: 80vh;"
-                      data-map-target="mapContainer"></div>
-
-  <%= render 'observatories/map_subtitles' %>
-  <div class="fullscreen_icon btn btn-light">
-    <%= icon('fa-solid', 'maximize') %>
+                      data-map-target="mapContainer"
+                      data-fullscreen-element-target="mapContainer">
+    <%= render 'observatories/map_subtitles' %>
+    <div class="fullscreen_icon btn btn-light" data-action="click->fullscreen-element#toggle" data-fullscreen-element-target="button">
+      <%= icon('fa-solid', 'expand') %>
+    </div>
   </div>
+
 </div>

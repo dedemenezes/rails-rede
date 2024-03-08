@@ -34,6 +34,9 @@ application.register("filter-calendar", FilterCalendarController)
 import FlatpickrController from "./flatpickr_controller"
 application.register("flatpickr", FlatpickrController)
 
+import FullscreenElementController from "./fullscreen_element_controller"
+application.register("fullscreen-element", FullscreenElementController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
