@@ -37,7 +37,7 @@ export default class extends Controller {
     }
 
     this.#addNavigationtoMap()
-    this.map.addControl(new mapboxgl.FullscreenControl());
+    // this.map.addControl(new mapboxgl.FullscreenControl());
 
     // Initialize hover variable and timeout variable to be used on close popup
     this.hoveredPolygonId = null

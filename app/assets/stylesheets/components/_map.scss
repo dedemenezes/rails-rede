@@ -104,6 +104,14 @@
 .listing-group--deactivated {
 }
 
+// MAP FULLSCREEN ICON
+.fullscreen_icon {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+
+}
+
 @media (max-width: 572px) {
   .popup__source {
     margin-top: 6px;
