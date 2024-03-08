@@ -109,7 +109,8 @@
   position: absolute;
   top: 8px;
   right: 8px;
-
+  z-index: 10;
+  color: $mapbox-gray-d;
 }
 
 @media (max-width: 572px) {
