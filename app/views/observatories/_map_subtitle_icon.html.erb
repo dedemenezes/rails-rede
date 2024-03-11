@@ -2,7 +2,7 @@
   <ul class="map__subtitles">
     <% icons.each do |icon, text| %>
       <li>
-        <%= image_tag "https://maps.google.com/mapfiles/kml/#{icon == :water ? 'shapes' : 'paddle'}/#{icon}.png", alt: text %> <%= text %>
+        <%= image_tag "https://maps.google.com/mapfiles/kml/#{water?(icon)}/#{icon}.png", alt: text %> <%= text %>
       </li>
     <% end %>
   </ul>
