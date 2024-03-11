@@ -10,16 +10,16 @@
       </div>
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <%= render 'observatories/map_subtitle_polygon' %>
+          <%= render 'observatories/map_subtitle_polygon', polygons: map_subtitles[:polygons] %>
         </div>
         <div class="carousel-item">
-          <%= render 'observatories/map_subtitle_pin' %>
+          <%= render 'observatories/map_subtitle_pin', pins: map_subtitles[:pins] %>
         </div>
         <div class="carousel-item">
-          <%= render 'observatories/map_subtitle_icon' %>
+          <%= render 'observatories/map_subtitle_icon', icons: map_subtitles[:icons] %>
         </div>
         <div class="carousel-item">
-          <%= render 'observatories/map_subtitle_line' %>
+          <%= render 'observatories/map_subtitle_line', lines: map_subtitles[:lines] %>
         </div>
       </div>
     </div>

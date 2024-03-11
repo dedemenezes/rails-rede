@@ -1,14 +1,9 @@
-
 <div class="subtitle__content">
   <ul class="map__subtitles">
-    <li>
-      <%= image_tag 'https://maps.google.com/mapfiles/kml/paddle/wht-blank.png', alt: 'Locais de serviços públicos' %> Locais de serviços públicos
-    </li>
-    <li>
-      <%= image_tag 'https://maps.google.com/mapfiles/kml/paddle/blu-blank.png', alt: 'Pontos importantes para práticas laborais' %> Pontos importantes para práticas laborais
-    </li>
-    <li>
-      <%= image_tag 'https://maps.google.com/mapfiles/kml/shapes/water.png', alt: 'Lagoa' %> Lagoas
-    </li>
+    <% icons.each do |icon, text| %>
+      <li>
+        <%= image_tag "https://maps.google.com/mapfiles/kml/#{icon == :water ? 'shapes' : 'paddle'}/#{icon}.png", alt: text %> <%= text %>
+      </li>
+    <% end %>
   </ul>
 </div>

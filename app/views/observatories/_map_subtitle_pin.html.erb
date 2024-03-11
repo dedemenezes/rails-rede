@@ -1,19 +1,9 @@
 <div class="subtitle__content">
   <ul class="map__subtitles">
-    <li >
-      <img src="https://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png" alt="">Observatório e instituições
-    </li>
-    <li>
-      <img src="https://maps.google.com/mapfiles/kml/pushpin/blue-pushpin.png" alt="">Práticas laborais e sociais
-    </li>
-    <li>
-      <img src="https://maps.google.com/mapfiles/kml/pushpin/red-pushpin.png" alt="">Estruturas que interferem na atividade social
-    </li>
-    <li>
-      <img src="https://maps.google.com/mapfiles/kml/pushpin/pink-pushpin.png" alt="">Locais de serviço público
-    </li>
-    <li>
-      <img src="https://maps.google.com/mapfiles/kml/pushpin/wht-pushpin.png" alt="">Outros pontos de referências
-    </li>
+    <% pins.each do |icon, text| %>
+      <li >
+        <img src="https://maps.google.com/mapfiles/kml/pushpin/<%= icon %>.png" alt="<%= text %>"> <%= text %>
+      </li>
+    <% end %>
   </ul>
 </div>

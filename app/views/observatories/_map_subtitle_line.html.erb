@@ -1,13 +1,9 @@
 <div class="subtitle__content">
   <ul class="map__subtitles">
-    <li >
-      <%= image_tag 'map/noun-zig-zag--black.svg' %> Dutos
-    </li>
-    <li>
-      <%= image_tag 'map/noun-zig-zag--blue.svg' %> Rios
-    </li>
-    <li>
-      <%= image_tag 'map/noun-zig-zag--pink.svg' %> Ruas
-    </li>
+    <% lines.each do |icon, text| %>
+      <li >
+        <%= image_tag "map/noun-zig-zag--#{icon}.svg" %> <%= text %>
+      </li>
+    <% end %>
   </ul>
 </div>
