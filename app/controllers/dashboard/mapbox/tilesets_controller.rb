@@ -3,6 +3,8 @@ require 'rgeo'
 module Dashboard
   module Mapbox
     class TilesetsController < DashboardController
+      skip_before_action :add_default_dashboard_breadcrumb
+
       def index
         @tilesets = Tileset.all
       end

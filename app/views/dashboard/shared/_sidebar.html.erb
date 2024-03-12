@@ -2,61 +2,61 @@
   <ul class="list-group border-0">
     <li class="list-group-item border-0">
       <%= link_to home_path do %>
-        <%= icon 'fa-solid', 'house-user' %> Dashboard
+        <%= icon 'fa-solid', 'house-user', class: 'me-2' %> Dashboard
       <% end %>
     </li>
     <li class="list-group-item border-0">
       <%= link_to dashboard_projects_path do %>
-        <%= icon('fa-solid', 'briefcase') %> Projeto
+        <%= icon('fa-solid', 'briefcase', class: 'me-2') %> Projeto
       <% end %>
     </li>
     <li class="list-group-item border-0">
       <%= link_to dashboard_methodologies_path do %>
-        <%= icon 'fa-solid', 'table-columns' %> Metodologias
+        <%= icon 'fa-solid', 'table-columns', class: 'me-2' %> Metodologias
       <% end %>
     </li>
     <li class="list-group-item border-0">
       <%= link_to dashboard_observatories_path do %>
-        <%= icon 'fa-solid', 'table-columns' %> Observatórios
+        <%= icon 'fa-solid', 'tower-observation', class: 'me-2' %> Observatórios
       <% end %>
     </li>
     <li class="list-group-item border-0">
       <%= link_to dashboard_conflict_types_path do %>
-        <%= icon 'fa-solid', 'table-columns' %> Conflitos
+        <%= icon 'fa-solid', 'eye' , class: 'me-2'%> Conflitos
       <% end %>
     </li>
     <li class="list-group-item border-0">
       <%= link_to dashboard_priority_types_path do %>
-        <%= icon 'fa-solid', 'table-columns' %> Sujeitos prioritários
+        <%= icon 'fa-solid', 'list' , class: 'me-2'%> Sujeitos prioritários
       <% end %>
     </li>
     <li class="list-group-item border-0">
       <%= link_to dashboard_articles_path do %>
-        <%= icon('fa-solid', 'briefcase') %> Notícias
+        <%= icon('fa-solid', 'newspaper', class: 'me-2') %> Notícias
       <% end %>
     </li>
     <li class="list-group-item border-0">
       <%= link_to dashboard_tags_path do %>
-        <%= icon('fa-solid', 'check') %> Tags
+        <%= icon('fa-solid', 'tag', class: 'me-2') %> Tags
       <% end %>
     <li class="list-group-item border-0">
       <%= link_to dashboard_mapbox_tilesets_path do %>
-        <%= icon('fa-solid', 'check') %> Tilesets
+        <%= icon('fa-solid', 'map', class: 'me-2') %> Tilesets
       <% end %>
     </li>
     <li class="list-group-item border-0">
       <%= link_to dashboard_galleries_path do %>
-        <%= icon 'fa-solid', 'table-columns' %> Acervos
+        <%= icon 'fa-solid', 'folder' , class: 'me-2'%> Acervos
       <% end %>
       <ul class="list-group border-0 mb-0">
         <li class="list-group-item border-0">
           <%= link_to documentos_dashboard_albums_path do %>
-            <%= icon('fa-solid', 'briefcase') %> Documentos
+            <%= icon('fa-solid', 'folder-tree', class: 'me-2') %> Documentos
           <% end %>
         </li>
         <li class="list-group-item border-0">
           <%= link_to imagens_dashboard_albums_path do %>
-            <%= icon('fa-solid', 'briefcase') %> Imagens
+            <%= icon('fa-solid', 'folder-tree', class: 'me-2') %> Imagens
           <% end %>
         </li>
       </ul>

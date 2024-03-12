@@ -17,14 +17,14 @@
 <div class="map__wrapper"
      data-controller="map fullscreen-element"
      data-map-style-value="mapbox://styles/dedemenezes/cltdkdgwl009t01qo7f6kbtlg"
-     style="width:<%= (controller_name == 'observatories' && params[:action] == 'mapa') || controller_name == 'pages' ? '100%' : '' %> !important;"
+     style="width:<%= (controller_name == 'observatories' && params[:action] == 'mapa') || controller_name =~ /(pages|dashboard)/ ? '100%' : '' %> !important;"
      data-map-tilesets-value="<%= tilesets.to_json %>"
      data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
      data-map-can-close-value="false"
      data-fullscreen-element-maximize-icon-value="expand"
      data-fullscreen-element-minimize-icon-value="compress">
 
-  <div class="map__container reveal <%= class_names({"map--lg": current_page?(mapa_observatories_path)}) %>"
+  <div class="map__container <%= 'reveal' unless local_assigns[:visible] %> <%= class_names({"map--lg": current_page?(mapa_observatories_path)}) %>"
        data-scroll-reveal-target='item'
        data-map-target='mapContainer'
        data-fullscreen-element-target="mapContainer">
