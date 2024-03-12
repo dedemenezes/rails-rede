@@ -2,5 +2,5 @@
 <% content_for :meta_image, display_banner_as_background(@observatories.first) %>
 <div class="container"
 data-controller='scroll-reveal'>
-  <%= render 'map', markers: @markers, hide_filter: true, header: true, tag: :h1, css_classes: { } %>
+  <%= render 'map', tilesets: @tilesets, hide_filter: true, header: true, tag: :h1, css_classes: { } %>
 </div>

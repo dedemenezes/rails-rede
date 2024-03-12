@@ -59,14 +59,7 @@ class ObservatoriesController < ApplicationController
     @observatories = policy_scope(Observatory).includes(:conflict_types, :priority_subjects, banner_attachment: :blob).where.not(
       latitude: nil, longitude: nil
     )
-    @markers = @observatories.map do |observatory|
-      {
-        lat: observatory.latitude,
-        lng: observatory.longitude,
-        info_window: render_to_string(partial: 'info_window', locals: { observatory: }),
-        image_url: helpers.asset_path('icon-pin--blue.svg')
-      }
-    end
+
     @tilesets = Tileset.all.map do |tileset|
       geo_json = JSON.parse(tileset.geo_json)
       features = geo_json['features']
