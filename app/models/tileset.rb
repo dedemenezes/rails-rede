@@ -10,11 +10,11 @@ class Tileset < ApplicationRecord
   has_one_attached :kml
 
   def self.dashboard_headers
-    %w(name mapbox_id mapbox_owner)
+    %w[name mapbox_id mapbox_owner]
   end
 
   def replace_non_ascii_with_ascii(text)
-    normalized_text = Unicode::normalize_KD(text).gsub(/[^\x00-\x7F]/, '')
+    normalized_text = Unicode.normalize_KD(text).gsub(/[^\x00-\x7F]/, '')
 
     mapping = {
       'À' => 'A', 'Á' => 'A', 'Â' => 'A', 'Ã' => 'A', 'Ä' => 'Ae', 'Å' => 'A',
@@ -54,13 +54,12 @@ class Tileset < ApplicationRecord
   end
 
   def set_mapbox_id
+    return unless kml.attached?
+
     self.mapbox_id = replace_non_ascii_with_ascii(kml.blob.filename.to_s[...-4]).downcase.gsub(' ', '_')
   end
-
 
   def strip_name!
     self.name = name.strip unless name.nil?
   end
-
-
 end
