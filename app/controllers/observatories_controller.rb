@@ -40,17 +40,19 @@ class ObservatoriesController < ApplicationController
     @featured = @articles.shift
 
     tileset = Tileset.find_by_name(@observatory.name)
-    geo_json = JSON.parse(tileset.geo_json)
-    features = geo_json['features']
-    points = features.select { |f| f['geometry']['type'] == 'Point' }
-    icons = points.uniq { |f| f['properties']['icon'] }
-                  .map { |f| f['properties']['icon'] }
-    @tileset = [{
-      sourceValue: tileset.mapbox_id,
-      urlValue: "mapbox://dedemenezes.#{tileset.mapbox_id}",
-      geoJson: tileset.geo_json,
-      icons:
-    }]
+    if tileset
+      geo_json = JSON.parse(tileset.geo_json)
+      features = geo_json['features']
+      points = features.select { |f| f['geometry']['type'] == 'Point' }
+      icons = points.uniq { |f| f['properties']['icon'] }
+                    .map { |f| f['properties']['icon'] }
+      @tileset = [{
+        sourceValue: tileset.mapbox_id,
+        urlValue: "mapbox://dedemenezes.#{tileset.mapbox_id}",
+        geoJson: tileset.geo_json,
+        icons:
+      }]
+    end
     # binding.b
     authorize @observatory
   end

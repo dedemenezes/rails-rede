@@ -1,3 +1,50 @@
-<div class="col-12">
-  <%= render 'observatories/map', tilesets: @tilesets, hide_filter: true, header: false, tag: :h3, css_classes: { class: 'mb-0 fs-3 fs-md-2' }, visible: true %>
+<div class="row">
+  <% if false %>
+
+    <div class="col-12">
+      <div class="grid-one-five px-3 py-4 rounded">
+        <p class='mb-0'><%= t('activerecord.models.article.other') %></p>
+        <div class="progress flex-grow-1" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+          <div class="progress-bar progress-bar-striped bg-rede-news" style="width: <%= Article.count %>5%"></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="grid-one-five px-3 py-4 rounded">
+        <p class='mb-0'><%= t('activerecord.models.methodology.other') %></p>
+        <div class="progress flex-grow-1" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+          <div class="progress-bar progress-bar-striped bg-rede-secondary" style="width: <%= Methodology.count %>3%"></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="grid-one-five px-3 py-4 rounded">
+        <p class='mb-0'><%= t('activerecord.models.observatory.other') %></p>
+        <div class="progress flex-grow-1" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+          <div class="progress-bar progress-bar-striped bg-rede-primary-l" style="width: <%= Methodology.count %>3%"></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="grid-one-five px-3 py-4 rounded">
+        <p class='mb-0'><%= t('activerecord.models.tileset.other') %></p>
+        <div class="progress flex-grow-1" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+          <div class="progress-bar progress-bar-striped bg-rede-dark-red" style="width: <%= Tileset.count %>%"></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="grid-one-five px-3 py-4 rounded">
+        <p class='mb-0'><%= t('activerecord.models.project.one') %></p>
+        <div class="progress flex-grow-1" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+          <div class="progress-bar progress-bar-striped bg-rede-primary" style="width: 100%"></div>
+        </div>
+      </div>
+    </div>
+
+  <% end %>
+  <div class="col-12">
+    <%= render 'observatories/map', tilesets: @tilesets, hide_filter: true, header: false, tag: :h3, css_classes: { class: 'mb-0 fs-3 fs-md-2' }, visible: true %>
+  </div>
+
 </div>

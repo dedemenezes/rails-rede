@@ -13,6 +13,16 @@ h5 {
   min-height: 100%;
 }
 
+.grid-one-five {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  grid-gap: .5rem;
+  align-items: center;
+}
+
+.cursor__link--hover {
+  cursor: pointer;
+}
 
 .wave__wrapper {
   position: relative;
