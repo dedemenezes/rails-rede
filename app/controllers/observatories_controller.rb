@@ -38,6 +38,20 @@ class ObservatoriesController < ApplicationController
     @articles = Article.includes(:tags, :rich_text_rich_body,
                                  banner_attachment: :blob).find_by_writer(@observatory.name).sort_by(&:updated_at).reverse.take(5)
     @featured = @articles.shift
+
+    tileset = Tileset.find_by_name(@observatory.name)
+    geo_json = JSON.parse(tileset.geo_json)
+    features = geo_json['features']
+    points = features.select { |f| f['geometry']['type'] == 'Point' }
+    icons = points.uniq { |f| f['properties']['icon'] }
+                  .map { |f| f['properties']['icon'] }
+    @tileset = [{
+      sourceValue: tileset.mapbox_id,
+      urlValue: "mapbox://dedemenezes.#{tileset.mapbox_id}",
+      geoJson: tileset.geo_json,
+      icons:
+    }]
+    binding.b
     authorize @observatory
   end
 
