@@ -4,6 +4,7 @@ class Tileset < ApplicationRecord
   validates :name, uniqueness: { scope: :mapbox_id }
   before_validation :strip_name!
   before_validation :set_mapbox_id
+  before_validation :set_mapbox_owner
 
   validate :ensure_kml_attached
   validate :ensure_mapbox_id_max_length
@@ -12,6 +13,12 @@ class Tileset < ApplicationRecord
 
   def self.dashboard_headers
     %w[name mapbox_id mapbox_owner]
+  end
+
+  def full_tileset_id
+    return nil unless mapbox_owner && mapbox_id
+
+    "#{mapbox_owner}.#{mapbox_id}"
   end
 
   def replace_non_ascii_with_ascii(text)
@@ -58,6 +65,10 @@ class Tileset < ApplicationRecord
     return if errors.any? || kml.attached?
 
     errors.add(:kml, 'não pode ficar em branco')
+  end
+
+  def set_mapbox_owner
+    self.mapbox_owner = ENV.fetch('MAPBOX_USERNAME')
   end
 
   def set_mapbox_id

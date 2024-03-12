@@ -1,6 +1,6 @@
 module Tilesets
   class TilesetService
-    def initialize(tileset_params)
+    def initialize(tileset_params = nil)
       @tileset_params = tileset_params
     end
 
@@ -11,6 +11,11 @@ module Tilesets
 
       tileset_publisher = TilesetPublisher.new(output_ldgeojson_path)
       tileset_publisher.create_and_publish_tileset!(file_name)
+    end
+
+    def delete_from_mapbox
+      tileset_destroyer = TilesetDestroyer.new(@tileset_params)
+      tileset_destroyer.run
     end
   end
 end

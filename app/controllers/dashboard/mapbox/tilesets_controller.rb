@@ -15,24 +15,13 @@ module Dashboard
       def create
         @dashboard_tileset = Tileset.new(tileset_params)
 
-        # respond_to do |format|
         if @dashboard_tileset.save
           upload_tileset_geojson_with_recipe
-          #     rename_kml_blob
-          #     upload_tileset_to_mapbox
-          #     data = JSON.parse @response.body
-          #     @dashboard_tileset.mapbox_id = data['name'] if data['name']
-          #     @dashboard_tileset.mapbox_owner = data['owner'] if data['owner']
-          #     @dashboard_tileset.save
-          #     format.html do
           flash[:notice] = 'Tileset created!'
           redirect_to home_path
-        #     end
         else
           render :new, status: :unprocessable_entity
         end
-        #   format.json { render json: @response.body, status: @response.status }
-        # end
       end
 
       def edit
@@ -44,8 +33,6 @@ module Dashboard
         # @dashboard_tileset.update(tileset_params)
         respond_to do |format|
           if @dashboard_tileset.save
-            # rename_kml_blob
-            # upload_tileset_to_mapbox
             # data = JSON.parse @response.body
             # @dashboard_tileset.mapbox_id = data['name'] if data['name']
             # @dashboard_tileset.mapbox_owner = data['owner'] if data['owner']
@@ -63,8 +50,18 @@ module Dashboard
 
       def destroy
         @dashboard_tileset = Tileset.find(params[:id])
-        @dashboard_tileset.destroy
-        redirect_to dashboard_mapbox_tilesets_path, status: :see_other
+        response = Tilesets::TilesetService.new(@dashboard_tileset.full_tileset_id)
+                                           .delete_from_mapbox
+
+        if response.status == 200
+          @dashboard_tileset.destroy
+          flash[:notice] = 'Tileset removido!'
+          redirect_to dashboard_mapbox_tilesets_path, status: :see_other
+        else
+          Rails.logger.debug "ERROR - [STATUS] - #{response.status} - [BODY] - #{response.body}"
+          flash[:alert] = 'Não foi possível remover'
+          redirect_to dashboard_mapbox_tilesets_path
+        end
       end
 
       private
@@ -72,20 +69,6 @@ module Dashboard
       def upload_tileset_geojson_with_recipe
         tileset_service = Tilesets::TilesetService.new(params[:tileset])
         tileset_service.upload_and_publish_tileset
-      end
-
-      def upload_tileset_to_mapbox
-        @response = MapboxUploader.tileset_from_kml(@dashboard_tileset.name, tileset_params[:kml].path)
-      rescue S3::NotAuthorizedError => e
-        @response = e
-      end
-
-      def rename_kml_blob
-        @dashboard_tileset.kml.blob.filename = ActiveStorage::Filename.new(Tileset.new
-                                                  .replace_non_ascii_with_ascii(
-                                                    @dashboard_tileset.kml.blob.filename.to_s
-                                                  ))
-        @dashboard_tileset.kml.blob.save
       end
 
       def tileset_params
