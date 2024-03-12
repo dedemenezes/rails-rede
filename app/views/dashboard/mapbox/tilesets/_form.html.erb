@@ -10,5 +10,5 @@
     <%= f.input :mapbox_owner %>
     <%= f.input :mapbox_id, label: 'Mapbox ID' %>
   <% end %>
-  <%= f.submit %>
+  <%= render 'dashboard/shared/form/submit_cancel', form: f, element: dashboard_tileset %>
 <% end %>
