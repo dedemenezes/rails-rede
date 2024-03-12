@@ -13,6 +13,7 @@ class ProjectPolicy < Dashboard::UserPolicy
   def destroy?
     false
   end
+
   def edit?
     true
   end

@@ -14,7 +14,7 @@ class MapboxUploader
   end
 
   def self.tileset_from_kml(tileset_name, file_path)
-    sdk_ruby = new(tileset_name: tileset_name, file_path: file_path)
+    sdk_ruby = new(tileset_name:, file_path:)
     sdk_ruby.tileset_from_kml
   end
 
@@ -39,7 +39,7 @@ class MapboxUploader
   end
 
   def save_document_to_file(document)
-    File.open(@file_path, 'w') { |file| file.write(document.to_xml) }
+    File.write(@file_path, document.to_xml)
   end
 
   def ensure_valid_name(tileset_name)
@@ -68,8 +68,7 @@ class MapboxUploader
       }
     )
 
-    response = connection.post @upload_url, tile_set_body
+    connection.post @upload_url, tile_set_body
     # binding.b
-    response
   end
 end

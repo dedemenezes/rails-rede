@@ -3,8 +3,6 @@ module ArticleWriter
     set_project(params, article) || set_observatory(params, article) || set_methodology(params, article)
   end
 
-  private
-
   def self.set_methodology(params, article)
     return unless params[:article][:methodology_id].present?
 

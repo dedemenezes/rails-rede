@@ -1,0 +1,9 @@
+<div class="subtitle__content">
+  <ul class="map__subtitles">
+    <% icons.each do |icon, text| %>
+      <li>
+        <%= image_tag "https://maps.google.com/mapfiles/kml/#{water?(icon)}/#{icon}.png", alt: text %> <%= text %>
+      </li>
+    <% end %>
+  </ul>
+</div>

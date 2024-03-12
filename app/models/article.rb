@@ -22,7 +22,6 @@ class Article < ApplicationRecord
   # acts_as_taggable_on :tags
 
   def self.dashboard_headers
-
     to_permit = %w[id header]
     attribute_names.select { |a| to_permit.include?(a) }.push(%w[featured? published]).flatten.insert(1, 'banner')
   end
@@ -36,7 +35,7 @@ class Article < ApplicationRecord
   end
 
   def self.find_by_writer(name)
-    includes(:project, :observatory, :methodology).all.select {|a| a.writer == name }
+    includes(:project, :observatory, :methodology).all.select { |a| a.writer == name }
   end
 
   def writer
@@ -74,9 +73,10 @@ class Article < ApplicationRecord
 
   def ensure_one_featured_article
     return if Article.featured == self
-    if featured
-      Article.where.not(id: id).update_all featured: false
-    end
+
+    return unless featured
+
+    Article.where.not(id:).update_all featured: false
   end
 
   def to_param

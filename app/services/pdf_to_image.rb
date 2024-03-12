@@ -35,5 +35,4 @@ class PdfToImage
       convert << @converted_file_path
     end
   end
-
 end

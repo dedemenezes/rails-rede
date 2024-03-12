@@ -65,13 +65,12 @@ module Dashboard
     def set_observatory_conflict
       @observatory.conflict_types.destroy_all
       conflict_type = ConflictType.where(id: params[:observatory][:conflict_type_ids]).first
-      ObservatoryConflict.create(observatory: @observatory, conflict_type: conflict_type)
-
+      ObservatoryConflict.create(observatory: @observatory, conflict_type:)
     end
 
     def set_observatory_priority_subjects
       @observatory.priority_subjects.destroy_all
-      subject_ids =  params[:observatory][:priority_subject_ids]
+      subject_ids = params[:observatory][:priority_subject_ids]
       return if subject_ids == [""]
 
       priority_subjects = PriorityType.where(id: params[:observatory][:priority_subject_ids])

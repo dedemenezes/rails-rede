@@ -28,7 +28,6 @@ module Tilesets
       p r.body
     end
 
-
     private
 
     def publish_tileset(tileset_id)
@@ -49,7 +48,7 @@ module Tilesets
       info_and_recipe['recipe']['layers']['inspections-areas']['source'] = tilset_source
       info_and_recipe['recipe']['layers']['inspections-lines']['source'] = tilset_source
       # Write into same file
-      File.open(recipe_and_instructions_file_path, 'w') { |file| file.write(JSON.generate(info_and_recipe)) }
+      File.write(recipe_and_instructions_file_path, JSON.generate(info_and_recipe))
       updated_tileset_info_recipe_content = File.read(recipe_and_instructions_file_path)
 
       conn = Faraday.new(url: "https://api.mapbox.com") do |faraday|

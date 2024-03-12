@@ -48,19 +48,21 @@
   <%# GALLERIES %>
     <%# <div class="cards__index cards__index--min-two mb-4"> %>
       <div class="cards--two mb-4" data-controller='photoswipe'>
-        <% @photos.each do |photo| %>
-          <a href="https://rede-observacao-prod.s3.us-east-2.amazonaws.com/<%= photo.key %>"
-            data-pswp-src="https://rede-observacao-prod.s3.us-east-2.amazonaws.com/<%= photo.key %>"
-            data-pswp-width="<%= photo.blob.metadata[:width] %>"
-            data-pswp-height="<%= photo.blob.metadata[:height] %>"
-            data-pswp-srcset="https://rede-observacao-prod.s3.us-east-2.amazonaws.com/<%= photo.key %>"
-            target="_blank"
-            data-scroll-reveal-target='item'
-            class="reveal">
-            <div class="card__index text-primary">
-              <div style="background: url('https://rede-observacao-prod.s3.us-east-2.amazonaws.com/<%= photo.key %>');background-size: cover;background-position: center; border-radius: 10px;"></div>
-            </div>
-          </a>
+        <% if @observatory.gallery.albums? %>
+          <% @photos.each do |photo| %>
+            <a href="https://rede-observacao-prod.s3.us-east-2.amazonaws.com/<%= photo.key %>"
+              data-pswp-src="https://rede-observacao-prod.s3.us-east-2.amazonaws.com/<%= photo.key %>"
+              data-pswp-width="<%= photo.blob.metadata[:width] %>"
+              data-pswp-height="<%= photo.blob.metadata[:height] %>"
+              data-pswp-srcset="https://rede-observacao-prod.s3.us-east-2.amazonaws.com/<%= photo.key %>"
+              target="_blank"
+              data-scroll-reveal-target='item'
+              class="reveal">
+              <div class="card__index text-primary">
+                <div style="background: url('https://rede-observacao-prod.s3.us-east-2.amazonaws.com/<%= photo.key %>');background-size: cover;background-position: center; border-radius: 10px;"></div>
+              </div>
+            </a>
+          <% end %>
         <% end %>
       </div>
       <div class="row justify-content-center">
@@ -196,24 +198,14 @@
               <div class="col-12 col-sm-6 reveal map__wrapper"
                    data-scroll-reveal-target="item"
                    data-controller="map"
-                   data-map-markers-value="<%= @markers.to_json %>"
+                   data-map-markers-value="<%= [] %>"
+                   data-map-tilesets-value="<%= @tileset.to_json %>"
+                   data-map-style-value="mapbox://styles/dedemenezes/cltdkdgwl009t01qo7f6kbtlg"
                    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
                 <div class="map__container"
                       style="height: 52vh;"
-                      data-map-target="mapContainer"
-                      data-action="click->map#coverWarning">
+                      data-map-target="mapContainer">
                 </div>
-                <div class="map__cover h-100 w-100"
-                    data-map-target="cover">
-                  <p class='mb-0'>Ative uma das opções de navegação</p>
-                  <%= image_tag 'arrow-up.svg', width: '40px', style: 'position: initial' %>
-                </div>
-                <nav id="listing-group" data-map-target="listingGroup" class="listing-group">
-                  <input type="checkbox" data-map-target="menuOption" id="scrollZoom">
-                  <label for="scrollZoom">Zoom com scroll</label>
-                  <input type="checkbox" data-map-target="menuOption" id="dragPan">
-                  <label for="dragPan">Arrastar e navegar</label>
-                </nav>
               </div>
             </div>
           </div>

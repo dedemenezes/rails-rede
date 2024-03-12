@@ -50,7 +50,7 @@
 
   <div class="row mb-5" data-controller="scroll-reveal">
     <div class="col-12">
-      <%= render 'observatories/map', markers: @markers, hide_filter: true, header: true, tag: :h3, css_classes: { class: 'mb-0 fs-3 fs-md-2' } %>
+      <%= render 'observatories/map', tilesets: @tilesets, hide_filter: true, header: true, tag: :h3, css_classes: { class: 'mb-0 fs-3 fs-md-2' } %>
     </div>
   </div>
 
@@ -126,7 +126,7 @@
                 <% end %>
               <% end %>
             <% else %>
-              <p>No Article featured</p>
+              <h6>Sem resultados no momento...</h6>
             <% end %>
           </div>
 

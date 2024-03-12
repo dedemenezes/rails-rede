@@ -12,7 +12,9 @@ class Project < ApplicationRecord
   before_validation :strip_video_link
 
   def self.dashboard_headers
-    attribute_names.reject { |a| ["slide_one_subtitle", "slide_two_subtitle", "slide_three_subtitle"].include?(a) }.insert(1, 'banner')
+    attribute_names.reject do |a|
+      ["slide_one_subtitle", "slide_two_subtitle", "slide_three_subtitle"].include?(a)
+    end.insert(1, 'banner')
     # ['id', 'banner', 'name', 'updated at']
   end
 
@@ -27,7 +29,7 @@ class Project < ApplicationRecord
   def strip_video_id
     return unless video_id.present?
 
-    match_data = video_id.match /(?:(you.+)\/)(?:(watch\?\w?=)?)(?<id>\w+)/
+    match_data = video_id.match(%r{(?:(you.+)/)(?:(watch\?\w?=)?)(?<id>\w+)})
     match_data[:id]
   end
 end

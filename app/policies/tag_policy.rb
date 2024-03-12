@@ -17,5 +17,4 @@ class TagPolicy < ApplicationPolicy
   def show?
     false
   end
-
 end

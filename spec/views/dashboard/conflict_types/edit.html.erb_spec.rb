@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe "dashboard/conflict_types/edit", type: :view do
-  let(:dashboard_conflict_type) {
-    Dashboard::ConflictType.create!()
-  }
+  let(:dashboard_conflict_type) do
+    Dashboard::ConflictType.create!
+  end
 
   before(:each) do
     assign(:dashboard_conflict_type, dashboard_conflict_type)

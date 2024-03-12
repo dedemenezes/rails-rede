@@ -6,15 +6,16 @@ class Tileset < ApplicationRecord
   before_validation :set_mapbox_id
 
   validate :ensure_kml_attached
+  validate :ensure_mapbox_id_max_length
 
   has_one_attached :kml
 
   def self.dashboard_headers
-    %w(name mapbox_id mapbox_owner)
+    %w[name mapbox_id mapbox_owner]
   end
 
   def replace_non_ascii_with_ascii(text)
-    normalized_text = Unicode::normalize_KD(text).gsub(/[^\x00-\x7F]/, '')
+    normalized_text = Unicode.normalize_KD(text).gsub(/[^\x00-\x7F]/, '')
 
     mapping = {
       'À' => 'A', 'Á' => 'A', 'Â' => 'A', 'Ã' => 'A', 'Ä' => 'Ae', 'Å' => 'A',
@@ -47,6 +48,12 @@ class Tileset < ApplicationRecord
 
   private
 
+  def ensure_mapbox_id_max_length
+    return if errors.any? || mapbox_id.size <= 32
+
+    errors.add(:kml, ' inválido. Nome do arquivo tem que ter no máximo 32 caracteres')
+  end
+
   def ensure_kml_attached
     return if errors.any? || kml.attached?
 
@@ -54,13 +61,12 @@ class Tileset < ApplicationRecord
   end
 
   def set_mapbox_id
+    return unless kml.attached?
+
     self.mapbox_id = replace_non_ascii_with_ascii(kml.blob.filename.to_s[...-4]).downcase.gsub(' ', '_')
   end
-
 
   def strip_name!
     self.name = name.strip unless name.nil?
   end
-
-
 end

@@ -31,13 +31,13 @@ export default class extends Controller {
       },
     })
 
-    if (this.markersValue.length !== 0) {
+    if (this.hasMarkerValue && this.markersValue.length !== 0) {
       this.#addMarkersToMap()
       this.#fitMapToMarkers()
     }
 
     this.#addNavigationtoMap()
-    this.map.addControl(new mapboxgl.FullscreenControl());
+    // this.map.addControl(new mapboxgl.FullscreenControl());
 
     // Initialize hover variable and timeout variable to be used on close popup
     this.hoveredPolygonId = null
@@ -90,13 +90,13 @@ export default class extends Controller {
         // ADD LAYERS
 
         // POLYGON LAYER
-        this.map.addLayer({
+        const polygonLayer = {
           'id': tileset.sourceValue + '-polygons',
           'type': 'fill',
           'source': tileset.sourceValue,
           'source-layer': 'inspections-areas',
           'layout': {
-            'fill-sort-key': ['coalesce', [ "to-number", ['get', 'sequence']], 0]
+            'fill-sort-key': ['coalesce', ["to-number", ['get', 'sequence']], 0]
           },
           'paint': {
             'fill-color': ['coalesce', ['get', 'fill'], '#ff7f50'],
@@ -111,10 +111,12 @@ export default class extends Controller {
             'all',
             ['>', ['number', ['get', 'fill-opacity']], 0.2],
           ]
-        }, "settlement-minor-label");
+        }
+
+        this.map.addLayer(polygonLayer, "settlement-minor-label");
 
         // POLYGON STROKE LAYER
-        this.map.addLayer({
+        const polygonStrokeLayer = {
           'id': tileset.sourceValue + '-polygons-stroke',
           'type': 'line',
           'source': tileset.sourceValue,
@@ -135,44 +137,27 @@ export default class extends Controller {
             'all',
             ['<', ['number', ['get', 'fill-opacity']], 0.3],
           ]
-        }, "settlement-minor-label");
-
-        // POLYGONS STROKE LABEL LAYER
-        // this.map.addLayer({
-        //   'id': tileset.sourceValue + '-polygons-stroke-label',
-        //   'type': 'symbol',
-        //   'source': tileset.sourceValue,
-        //   'source-layer': 'inspections-areas',
-        //   'layout': {
-        //     'text-field': ['get', 'name'],
-        //     'symbol-placement': 'line'
-        //   },
-        //   'paint': {
-        //     'text-color': '#f8f8ff'
-        //   },
-        //   'filter': [
-        //     'all',
-        //     ['<', ['number', ['get', 'fill-opacity']], 0.3],
-        //   ]
-        // }, "settlement-minor-label");
+        }
+        this.map.addLayer(polygonStrokeLayer, "settlement-minor-label");
 
         // LINE LAYER
-        this.map.addLayer({
+        const lineLayer = {
           'id': tileset.sourceValue + '-lines',
           'type': 'line',
           'source': tileset.sourceValue,
           'source-layer': 'inspections-lines',
           'paint': {
-            'line-color': [ 'get', 'stroke' ],
+            'line-color': ['get', 'stroke'],
             // Stroke opacity em 1 funciona para Rio das Ostras Oleodutos
             'line-opacity': 1,
             // 'line-opacity': ['get', 'stroke-opacity'],
             'line-width': ['get', 'stroke-width']
           }
-        }, "settlement-minor-label");
+        }
+        this.map.addLayer(lineLayer, "settlement-minor-label");
 
         // LINE LABEL LAYER
-        this.map.addLayer({
+        const lineLabelLayer = {
           'id': tileset.sourceValue + '-lines-label',
           'type': 'symbol',
           'source': tileset.sourceValue,
@@ -184,10 +169,11 @@ export default class extends Controller {
           'paint': {
             'text-color': '#f8f8ff'
           }
-        }, "settlement-minor-label");
+        }
+        this.map.addLayer(lineLabelLayer, "settlement-minor-label");
 
         // ICON LAYER
-        this.map.addLayer({
+        const iconLayer = {
           'id': tileset.sourceValue + '-points',
           'type': 'symbol',
           'source': tileset.sourceValue,
@@ -205,10 +191,11 @@ export default class extends Controller {
               0.7
             ]
           }
-        }, "settlement-minor-label");
+        }
+        this.map.addLayer(iconLayer, "settlement-minor-label");
 
         // POLYGONS STROKE ICON LAYER
-        this.map.addLayer({
+        const polygonStrokeIconLayer = {
           'id': tileset.sourceValue + '-polygons-stroke-points',
           'type': 'symbol',
           'source': tileset.sourceValue,
@@ -231,7 +218,8 @@ export default class extends Controller {
             'all',
             ['<', ['number', ['get', 'fill-opacity']], 0.3],
           ]
-        }, "settlement-minor-label");
+        }
+        this.map.addLayer(polygonStrokeIconLayer, "settlement-minor-label");
 
 
         // ADD EVENT LISTENERS
@@ -303,6 +291,7 @@ export default class extends Controller {
       const zoom = this.map.getZoom();
       console.log('Current zoom level is: ' + zoom);
     });
+
   }
 
   // When the user moves their mouse over the state-fill layer, we'll update the

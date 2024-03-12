@@ -18,7 +18,6 @@ RSpec.describe Dashboard::ConflictTypesController, type: :routing do
       expect(get: "/dashboard/conflict_types/1/edit").to route_to("dashboard/conflict_types#edit", id: "1")
     end
 
-
     it "routes to #create" do
       expect(post: "/dashboard/conflict_types").to route_to("dashboard/conflict_types#create")
     end

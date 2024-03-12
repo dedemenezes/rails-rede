@@ -18,6 +18,7 @@ $body-color: $gray;
 $primary:    $r-blue-d;
 $success:   #198754;
 $info:       $r-blue;
+$light:      $white;
 $danger:     $r-red-d;
 $warning:    $r-orange;
 $news:       $r-yellow;
@@ -70,6 +71,7 @@ $theme-colors: (
   "primary": $primary,
   "success": $success,
   'danger': $danger,
+  'light': $light,
   "info": $info,
   "warning": $warning,
   'news': $yellow,
