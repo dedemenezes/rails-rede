@@ -52,7 +52,7 @@ module Dashboard
         @dashboard_tileset = Tileset.find(params[:id])
         response = Tilesets::TilesetService.new(@dashboard_tileset.full_tileset_id).delete_from_mapbox
 
-        if response.body == "{}"
+        if response.status == 200
           @dashboard_tileset.destroy
           flash[:notice] = 'Tileset removido!'
           redirect_to dashboard_mapbox_tilesets_path, status: :see_other
