@@ -50,7 +50,8 @@ module Dashboard
 
       def destroy
         @dashboard_tileset = Tileset.find(params[:id])
-        response = Tilesets::TilesetService.new(@dashboard_tileset.full_tileset_id).delete_from_mapbox
+        response = Tilesets::TilesetService.new(@dashboard_tileset.full_tileset_id)
+                                           .delete_from_mapbox
 
         if response.status == 200
           @dashboard_tileset.destroy
