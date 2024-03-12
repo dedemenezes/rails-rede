@@ -21,8 +21,8 @@ export default class extends Controller {
     this.map = new mapboxgl.Map({
       container: this.mapContainerTarget,
       style: this.styleValue,
-      center: [-41.69857001374035, -22.07093159509607],
-      zoom: 7,
+      center: [-41.891660, -22.470090],
+      zoom: 8,
       cooperativeGestures: true,
       locale: {
         "TouchPanBlocker.Message": "Use dois dedos para mover o mapa",
