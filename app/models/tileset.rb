@@ -16,6 +16,8 @@ class Tileset < ApplicationRecord
   end
 
   def full_tileset_id
+    return nil unless mapbox_owner && mapbox_id
+
     "#{mapbox_owner}.#{mapbox_id}"
   end
 

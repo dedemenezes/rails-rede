@@ -57,8 +57,7 @@ module Dashboard
           flash[:notice] = 'Tileset removido!'
           redirect_to dashboard_mapbox_tilesets_path, status: :see_other
         else
-          logger.debug "ERROR - #{response.body}"
-          logger.debug "ERROR - Tileset was not removed..."
+          Rails.logger.debug "ERROR - [STATUS] - #{response.status} - [BODY] - #{response.body}"
           flash[:alert] = 'Não foi possível remover'
           redirect_to dashboard_mapbox_tilesets_path
         end
