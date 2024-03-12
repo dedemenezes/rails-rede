@@ -9,6 +9,9 @@ pt-BR:
   dropdown_action: "Ação"
   activerecord:
     models:
+      tileset:
+        one: 'Tileset'
+        other: 'Tilesets'
       observatory:
         one: "Observatório"
         other: "Observatorios"
