@@ -1,5 +1,5 @@
 <%= simple_form_for [:dashboard, :mapbox, dashboard_tileset], html: { data: { controller: 'to-geojson' } } do |f| %>
-  <%= f.input :name %>
+  <%= f.input :name, as: :select, collection: Observatory.pluck(:name) %>
   <%= f.input :kml, input_html: { data: { to_geojson_target: 'inputFile', action: 'change->to-geojson#convert' } } %>
   <%= f.input :geo_json,
               label_html: { data: { to_geojson_target: 'labelGeoJson' }, hidden: true },
