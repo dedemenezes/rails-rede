@@ -50,21 +50,17 @@ module Dashboard
 
       def destroy
         @dashboard_tileset = Tileset.find(params[:id])
+        response = Tilesets::TilesetService.new(@dashboard_tileset.full_tileset_id).delete_from_mapbox
 
-        url = "/tilesets/v1/#{@dashboard_tileset.mapbox_owner}.#{@dashboard_tileset.mapbox_id}"
-        conn = Faraday.new(url: "https://api.mapbox.com") do |faraday|
-          faraday.adapter Faraday.default_adapter
-        end
-        response = conn.delete { |req| req.url "#{url}?access_token=#{ENV.fetch("MAPBOX_SUPER_KEY")}" }
-
-        if response.body.empty?
+        if response.body == "{}"
           @dashboard_tileset.destroy
           flash[:notice] = 'Tileset removido!'
           redirect_to dashboard_mapbox_tilesets_path, status: :see_other
         else
-          logger.debug reponse.body
-          logger.debug "Tileset was not removed..."
+          logger.debug "ERROR - #{response.body}"
+          logger.debug "ERROR - Tileset was not removed..."
           flash[:alert] = 'Não foi possível remover'
+          redirect_to dashboard_mapbox_tilesets_path
         end
       end
 

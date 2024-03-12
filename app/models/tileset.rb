@@ -15,6 +15,10 @@ class Tileset < ApplicationRecord
     %w[name mapbox_id mapbox_owner]
   end
 
+  def full_tileset_id
+    "#{mapbox_owner}.#{mapbox_id}"
+  end
+
   def replace_non_ascii_with_ascii(text)
     normalized_text = Unicode.normalize_KD(text).gsub(/[^\x00-\x7F]/, '')
 
