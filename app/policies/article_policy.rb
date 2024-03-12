@@ -11,7 +11,7 @@ class ArticlePolicy < ApplicationPolicy
   end
 
   def show?
-   true
+    true
   end
 
   def destroy?

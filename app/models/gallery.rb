@@ -16,7 +16,7 @@ class Gallery < ApplicationRecord
   end
 
   def published_albums
-    albums.select { |album| album.published }
+    albums.select(&:published)
   end
 
   def observatory_name

@@ -52,7 +52,8 @@ module Dashboard
     end
 
     def methodology_params
-      params.require(:methodology).permit(:name, :description, :banner, :header_one, :description_one, :header_two, :description_two, :banner_two, :content)
+      params.require(:methodology).permit(:name, :description, :banner, :header_one, :description_one, :header_two,
+                                          :description_two, :banner_two, :content)
     end
   end
 end

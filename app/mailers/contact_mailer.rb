@@ -1,5 +1,5 @@
 class ContactMailer < ApplicationMailer
-  US = ENV['GMAIL_ADDRESS']
+  US = ENV.fetch('GMAIL_ADDRESS', nil)
 
   def form_reply_mail
     @first_name = params[:first_name]

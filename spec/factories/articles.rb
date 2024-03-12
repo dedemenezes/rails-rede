@@ -5,13 +5,13 @@ FactoryBot.define do
     featured { true }
     published { true }
     association :project, factory: :rede
-    rich_body {
+    rich_body do
       ActionText::RichText.create(
         { record_type: 'Article',
           name: "content",
           body: "<div class='trix-content'>HELLO</div>",
-          record_id: self.id }
+          record_id: id }
       )
-    }
+    end
   end
 end

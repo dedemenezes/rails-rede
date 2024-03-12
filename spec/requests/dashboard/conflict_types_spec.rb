@@ -13,17 +13,16 @@ require 'rails_helper'
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
 RSpec.describe "/dashboard/conflict_types", type: :request do
-  
   # This should return the minimal set of attributes required to create a valid
   # Dashboard::ConflictType. As you add validations to Dashboard::ConflictType, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
+  let(:valid_attributes) do
     skip("Add a hash of attributes valid for your model")
-  }
+  end
 
-  let(:invalid_attributes) {
+  let(:invalid_attributes) do
     skip("Add a hash of attributes invalid for your model")
-  }
+  end
 
   describe "GET /index" do
     it "renders a successful response" do
@@ -59,9 +58,9 @@ RSpec.describe "/dashboard/conflict_types", type: :request do
   describe "POST /create" do
     context "with valid parameters" do
       it "creates a new Dashboard::ConflictType" do
-        expect {
+        expect do
           post dashboard_conflict_types_url, params: { dashboard_conflict_type: valid_attributes }
-        }.to change(Dashboard::ConflictType, :count).by(1)
+        end.to change(Dashboard::ConflictType, :count).by(1)
       end
 
       it "redirects to the created dashboard_conflict_type" do
@@ -72,25 +71,23 @@ RSpec.describe "/dashboard/conflict_types", type: :request do
 
     context "with invalid parameters" do
       it "does not create a new Dashboard::ConflictType" do
-        expect {
+        expect do
           post dashboard_conflict_types_url, params: { dashboard_conflict_type: invalid_attributes }
-        }.to change(Dashboard::ConflictType, :count).by(0)
+        end.to change(Dashboard::ConflictType, :count).by(0)
       end
 
-    
       it "renders a response with 422 status (i.e. to display the 'new' template)" do
         post dashboard_conflict_types_url, params: { dashboard_conflict_type: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
-    
     end
   end
 
   describe "PATCH /update" do
     context "with valid parameters" do
-      let(:new_attributes) {
+      let(:new_attributes) do
         skip("Add a hash of attributes valid for your model")
-      }
+      end
 
       it "updates the requested dashboard_conflict_type" do
         conflict_type = Dashboard::ConflictType.create! valid_attributes
@@ -108,22 +105,20 @@ RSpec.describe "/dashboard/conflict_types", type: :request do
     end
 
     context "with invalid parameters" do
-    
       it "renders a response with 422 status (i.e. to display the 'edit' template)" do
         conflict_type = Dashboard::ConflictType.create! valid_attributes
         patch dashboard_conflict_type_url(conflict_type), params: { dashboard_conflict_type: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
-    
     end
   end
 
   describe "DELETE /destroy" do
     it "destroys the requested dashboard_conflict_type" do
       conflict_type = Dashboard::ConflictType.create! valid_attributes
-      expect {
+      expect do
         delete dashboard_conflict_type_url(conflict_type)
-      }.to change(Dashboard::ConflictType, :count).by(-1)
+      end.to change(Dashboard::ConflictType, :count).by(-1)
     end
 
     it "redirects to the dashboard_conflict_types list" do

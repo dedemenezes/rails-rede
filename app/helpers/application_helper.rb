@@ -3,11 +3,12 @@ module ApplicationHelper
     params[:action] =~ /documentos/ || params[:action] =~ /imagens/
   end
 
-
   # SET DASHBOARD HEADER TITLE
   def dashboard_header_title_tag(klass)
     klass_name = klass.model_name.human
-    klass_name = params[:action] == 'documentos' ? 'Documento' : "Imagem" if params[:action] == 'documentos' || params[:action] == 'imagens'
+    if params[:action] == 'documentos' || params[:action] == 'imagens'
+      klass_name = params[:action] == 'documentos' ? 'Documento' : "Imagem"
+    end
     counter = klass.count > 1 ? "#{klass_name}s" : klass_name
     counter[-2] = 'n' if klass_name == 'Imagem'
     "<h1>#{klass_name} <small class='text-muted highlight'>#{klass.count} #{counter} </small></h1>".html_safe
@@ -30,7 +31,7 @@ module ApplicationHelper
   end
 
   def display_banner_as_background(instance)
-    if instance && instance.banner.attached?
+    if instance&.banner&.attached?
       "https://rede-observacao-prod.s3.us-east-2.amazonaws.com/#{instance.banner.key}"
     else
       image_path('default-banner.png')
@@ -66,16 +67,16 @@ module ApplicationHelper
 
   def route_for_edit_dashboard(element)
     path = "#{element.model_name.plural}/#{element.id}/edit"
-    return path unless  element.is_a? Album
+    return path unless element.is_a? Album
 
-    path.gsub(/^albums\//, '')
+    path.gsub(%r{^albums/}, '')
   end
 
   def route_for_destroy_dashboard(element)
     path = "#{element.model_name.plural}/#{element.id}"
-    return path unless  element.is_a? Album
+    return path unless element.is_a? Album
 
-    path.gsub(/^albums\//, '')
+    path.gsub(%r{^albums/}, '')
   end
 
   def hide_nested_links(name_of_controller)

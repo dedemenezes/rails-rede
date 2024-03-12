@@ -2,7 +2,7 @@ class Observatory < ApplicationRecord
   validates :name,
             :email,
             :state, presence: true
-            # :municipality,
+  # :municipality,
   validates :municipality, length: { in: 0..3 }
   # validates :zip_code, length: { is: 8 }
   # validates :phone_number, format: { with: /\A(\+5521|0?\d{2})?(\d{8}|\d{9})\z/ }
@@ -47,7 +47,6 @@ class Observatory < ApplicationRecord
   def events
     albums.select { |album| album.is_event && album.published }
   end
-
 
   def location
     neighborhood

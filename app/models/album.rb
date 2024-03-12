@@ -8,7 +8,6 @@ class Album < ApplicationRecord
   has_many :tags, through: :taggings
   scope :only_published_events, -> { where(is_event: true, published: true) }
 
-
   def set_banner(attach)
     self.banner = attach.blob
   end
