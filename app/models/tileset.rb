@@ -6,6 +6,7 @@ class Tileset < ApplicationRecord
   before_validation :set_mapbox_id
 
   validate :ensure_kml_attached
+  validate :ensure_mapbox_id_max_length
 
   has_one_attached :kml
 
@@ -46,6 +47,12 @@ class Tileset < ApplicationRecord
   end
 
   private
+
+  def ensure_mapbox_id_max_length
+    return if errors.any? || mapbox_id.size <= 32
+
+    errors.add(:kml, ' inválido. Nome do arquivo tem que ter no máximo 32 caracteres')
+  end
 
   def ensure_kml_attached
     return if errors.any? || kml.attached?
