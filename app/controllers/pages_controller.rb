@@ -27,14 +27,15 @@ class PagesController < ApplicationController
     @observatories = policy_scope(Observatory).includes(:conflict_types, :priority_subjects).where.not(latitude: nil,
                                                                                                        longitude: nil)
     @project = Project.first
-    @markers = @observatories.map do |observatory|
-      {
-        lat: observatory.latitude,
-        lng: observatory.longitude,
-        info_window: render_to_string(partial: 'observatories/info_window', locals: { observatory: }),
-        image_url: helpers.asset_path('icon-pin--blue.svg')
-      }
-    end
+    # REFAC TILESET
+    # @markers = @observatories.map do |observatory|
+    #   {
+    #     lat: observatory.latitude,
+    #     lng: observatory.longitude,
+    #     info_window: render_to_string(partial: 'observatories/info_window', locals: { observatory: }),
+    #     image_url: helpers.asset_path('icon-pin--blue.svg')
+    #   }
+    # end
     @galleries = Gallery.includes(:tags, banner_attachment: :blob).only_published_events
     @albums = Album.includes(:tags, banner_attachment: :blob).only_published_events
     @events = [@galleries, @albums].compact.flatten.sort_by(&:event_date).reverse
@@ -43,6 +44,20 @@ class PagesController < ApplicationController
     @featured = Article.includes([:tags], banner_attachment: :blob).featured
     @articles = Article.includes([:tags], banner_attachment: :blob).where(published: true,
                                                                           featured: false).order(updated_at: :desc).limit(4)
+
+    @tilesets = Tileset.all.map do |tileset|
+      geo_json = JSON.parse(tileset.geo_json)
+      features = geo_json['features']
+      points = features.select { |f| f['geometry']['type'] == 'Point' }
+      icons = points.uniq { |f| f['properties']['icon'] }
+                    .map { |f| f['properties']['icon'] }
+      {
+        sourceValue: tileset.mapbox_id,
+        urlValue: "mapbox://dedemenezes.#{tileset.mapbox_id}",
+        geoJson: tileset.geo_json,
+        icons:
+      }
+    end
   end
 
   def about_us

@@ -31,7 +31,7 @@ export default class extends Controller {
       },
     })
 
-    if (this.markersValue.length !== 0) {
+    if (this.hasMarkerValue && this.markersValue.length !== 0) {
       this.#addMarkersToMap()
       this.#fitMapToMarkers()
     }
