@@ -22,7 +22,7 @@ export default class extends Controller {
       container: this.mapContainerTarget,
       style: this.styleValue,
       center: [-41.891660, -22.470090],
-      zoom: 8,
+      zoom: 7,
       cooperativeGestures: true,
       locale: {
         "TouchPanBlocker.Message": "Use dois dedos para mover o mapa",
