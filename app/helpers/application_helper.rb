@@ -10,7 +10,7 @@ module ApplicationHelper
       klass_name = params[:action] == 'documentos' ? 'Documento' : "Imagem"
     end
     counter = klass.count > 1 ? "#{klass_name}s" : klass_name
-    counter[-2] = 'n' if klass_name == 'Imagem'
+    counter[-2] = 'n' if klass_name == 'Imagem' && klass.count > 1
     "<h1>#{klass_name} <small class='text-muted highlight'>#{klass.count} #{counter} </small></h1>".html_safe
   end
 
