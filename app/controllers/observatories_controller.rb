@@ -51,7 +51,7 @@ class ObservatoriesController < ApplicationController
       geoJson: tileset.geo_json,
       icons:
     }]
-    binding.b
+    # binding.b
     authorize @observatory
   end
 
