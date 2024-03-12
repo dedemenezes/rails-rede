@@ -9,8 +9,8 @@ module Dashboard
     end
 
     def imagens
-      @albums = Album.includes(:gallery, :documents_attachments, banner_attachment: :blob).reject do |album|
-        album.documents.attached?
+      @albums = Album.includes(:gallery, :documents_attachments, banner_attachment: :blob).select do |album|
+        album.photos.attached?
       end
     end
 

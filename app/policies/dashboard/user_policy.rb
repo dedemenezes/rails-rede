@@ -11,6 +11,10 @@ module Dashboard
       home?
     end
 
+    def show?
+      home?
+    end
+
     def new?
       home?
     end
