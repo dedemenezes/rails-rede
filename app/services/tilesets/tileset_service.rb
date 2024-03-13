@@ -8,6 +8,10 @@ module Tilesets
       Tilesets::TilesetLoader.new.run
     end
 
+    def self.load_one(tileset)
+      Tilesets::TilesetLoader.new.present(tileset)
+    end
+
     def upload_and_publish_tileset
       tileset_converter = TilesetConverter.new(@tileset_params)
       output_ldgeojson_path = tileset_converter.convert_geo_json_to_geo_json_ld
