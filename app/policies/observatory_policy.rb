@@ -14,6 +14,10 @@ class ObservatoryPolicy < ApplicationPolicy
     true
   end
 
+  def mapa?
+    true
+  end
+
   def destroy?
     user.admin?
   end

@@ -58,10 +58,7 @@ class ObservatoriesController < ApplicationController
   end
 
   def mapa
-    @observatories = policy_scope(Observatory).includes(:conflict_types, :priority_subjects, banner_attachment: :blob).where.not(
-      latitude: nil, longitude: nil
-    )
-
     @tilesets = Tilesets::TilesetService.load_all
+    authorize Observatory
   end
 end
