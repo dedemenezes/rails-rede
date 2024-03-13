@@ -1,52 +1,11 @@
 <% cache @project do %>
-  <div class="banner--home mb-5" style='background-image: url(<%= display_banner_as_background(@project) %>);'>
-    <div class="banner__wrapper">
-      <div class="container">
-        <div class="row justify-content-center text-center">
-          <div class="col-12 col-md-10">
-            <div class="d-flex flex-column align-items-center gap-4">
-              <h1 class='home__text'><%= @project.banner_text %></h1>
-              <%= link_to 'Saiba mais', about_us_path, class: ' btn-rede-light btn-rede-light--home' %>
-            </div>
-          </div>
-        </div>
-      </div>
-      <%= image_tag 'hero-wave.png', width: '100%', class: 'banner__hero__image' %>
-    </div>
-  </div>
+  <%= render 'home_banner', project: @project %>
 <% end %>
 
 <div class="container ">
-  <div class="row mb-4" data-controller="scroll-reveal"
-               data-scroll-reveal-class-value="in"
-               data-scroll-reveal-threshold-value="0.3"
-               data-scroll-reveal-root-margin-value="10px">
-    <% @info_cards.each do |item| %>
-      <% cache item do %>
-        <div class="col-12 col-sm-6 col-md-4">
-          <div class="card__we reveal" data-scroll-reveal-target="item">
-            <%= image_tag "#{item[:img_name]}.svg" %>
-            <p class="reveal" data-scroll-reveal-target="item"><%= item[:text] %></p>
-          </div>
-        </div>
-      <% end %>
-    <% end %>
-  </div>
+  <%= render 'info_cards', info_cards: @info_cards %>
 
-  <div class="row justify-content-center my-5" data-controller="scroll-reveal">
-      <div class="col-12 slide__card">
-        <div class="video_wrapper" >
-          <iframe frameborder="0"
-                  width="100%"
-                  height="100%"
-                  src='<%= Project::YOUTUBE_BASE_URL %><%= @project.video_id %>?rel=0&autoplay=<%= params[:autoplay] || 0 %>'
-                  allowfullscreen
-                  data-scroll-reveal-target='item'
-                  class="reveal" >
-          </iframe>
-        </div>
-      </div>
-  </div>
+  <%= render 'teaser', project: @project %>
 
   <div class="row mb-5" data-controller="scroll-reveal">
     <div class="col-12">
@@ -54,117 +13,10 @@
     </div>
   </div>
 
-  <div class="row mb-3">
-
-    <% if false %>
-      <div >
-        <section class="events mb-4">
-          <div class="events__header mb-3">
-            <div class="d-flex align-items-center px-md-3">
-              <div class="flex-grow-1">
-                <h5 class='mb-0'>Últimas ações</h5>
-              </div>
-
-            </div>
-          </div>
-          <div class="container">
-
-          </div>
-        </section>
-      </div>
-    <% end %>
-
-
-    <%# ACOES %>
-    <div data-controller="filter-calendar">
-      <div class="row justify-content-center mt-4">
-        <div class="col-12">
-          <div class="d-flex justify-content-between align-items-center border border-warning border-info border-5 border-end-0 border-top-0 border-bottom-0 ps-2 ps-md-3 ps-lg-4 mb-4">
-            <h3 class='mb-0 fs-3 fs-md-2 flex-grow-1'>Últimas ações</h3>
-            <div class="btn-icon btn-icon--square"
-                data-controller='flatipickr'>
-              <%= image_tag 'Calendar.png', data: { action: 'click->filter-calendar#formToggle' } %>
-              <%= form_with url: events_path, method: :get, class: 'd-none box--anim box--hidden', data: { filter_calendar_target: 'form', action: 'submit->filter-calendar#search'} do |f| %>
-                <div class="d-flex">
-                  <%= text_field_tag :before_date,
-                                     params[:before_date],
-                                     class: 'form-input flex-grow-1 input--search',
-                                     data: {
-                                      action: 'change->filter-calendar#search',
-                                      controller: 'flatpickr',
-                                      flatpickr_is_range_value: 'true',
-                                      filter_calendar_target: 'input'
-                                    },
-                                    placeholder: 'Antes de...' %>
-                </div>
-              <% end %>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Slider main container -->
-      <%= render 'events/swiper', events: @events %>
-    </div>
-  </div>
+  <%= render 'events', events: @events %>
 
   <%# ARTICLES %>
-  <div class="articles__home">
-    <div class="row mb-5 justify-content-center">
-      <div class="col-12">
-        <div class="d-flex justify-content-between align-items-center border border-news border-info border-5 border-end-0 border-top-0 border-bottom-0 ps-2 ps-md-3 ps-lg-4 mb-4">
-          <h3 class='mb-0 fs-3 fs-md-2'>Últimas notícias</h3>
-        </div>
-      </div>
-
-      <div class="articles__recent">
-        <div class="row mb-4">
-          <div class="col-12 col-xl-6 article--main mb-3 mb-xl-0">
-            <% if @featured %>
-              <%= link_to article_path(@featured), class: 'text-reset' do %>
-                <% cache @featured do %>
-                  <%= render 'articles/article_card', article: @featured, min_height: '', highlight: true if @featured %>
-                <% end %>
-              <% end %>
-            <% else %>
-              <h6>Sem resultados no momento...</h6>
-            <% end %>
-          </div>
-
-          <div class="col-12 col-xl-6"
-               data-controller="scroll-reveal"
-               data-scroll-reveal-class-value="in"
-               data-scroll-reveal-threshold-value="0"
-               data-scroll-reveal-root-margin-value="10px">
-            <div class="d-flex flex-column justify-content-between h-100 mb-childs">
-              <% @articles.each do |article| %>
-                <%# cache article do %>
-                  <%#= link_to article_path(article) do %>
-                    <%#= render 'article_card', article: article, min_height: '', highlight: false %>
-                    <%= link_to article, class: 'reveal', data: { scroll_reveal_target: 'item' } do %>
-                      <div class="article__recent_new">
-                        <div class="card__image-bg"
-                            style="background-image: url(<%= display_banner_as_background(article) %>);">
-                        </div>
-                        <div class="article__info px-3 py-2 py-lg-3 pe-lg-3">
-                          <div class="info__header d-flex align-items-center gap-3 mb-2">
-                            <small><%= article.created_at.strftime('%d.%m.%Y') %></small>
-                            <% article.tags.each_with_index do |tag, index| %>
-                              <small class="tag"><%= tag.name %></small>
-                            <% end %>
-                          </div>
-                          <h5 class="text-reset mb-lg-0 fs-6"><%= article.header.truncate(80) %></h5>
-                        </div>
-                      </div>
-                    <% end %>
-                  <%# end %>
-                <%# end %>
-              <% end %>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <%= render 'articles', featured: @featured, articles: @articles %>
 
 </div>
 

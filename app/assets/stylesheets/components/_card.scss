@@ -493,6 +493,12 @@ small.tag, small > .tag {
   .card__event__image {
     height: 254px;
   }
+
+  &:hover {
+    h5 {
+      opacity: 0.8;
+    }
+  }
 }
 
 .card-event .event-image {
@@ -513,11 +519,6 @@ small.tag, small > .tag {
   h5 {
     font-size: .9em;
     line-height: 18px;
-  }
-  &:hover {
-    h5 {
-      color: $r-blue-l !important;
-    }
   }
 }
 

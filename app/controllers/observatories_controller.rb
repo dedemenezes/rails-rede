@@ -27,53 +27,26 @@ class ObservatoriesController < ApplicationController
     # @photos = albums.map { |album| album.photos.sample(1)[0] }
     @photos = @observatory.albums.map(&:photos).flatten.sample(11)
     @photos << gallery.banner
-    @markers = [
-      {
-        lat: @observatory.latitude,
-        lng: @observatory.longitude,
-        info_window: render_to_string(partial: 'observatories/info_window', locals: { observatory: @observatory }),
-        image_url: helpers.asset_path('icon-pin--blue.svg')
-      }
-    ]
+
     @articles = Article.includes(:tags, :rich_text_rich_body,
                                  banner_attachment: :blob).find_by_writer(@observatory.name).sort_by(&:updated_at).reverse.take(5)
     @featured = @articles.shift
 
-    tileset = Tileset.find_by_name(@observatory.name)
-    if tileset
-      geo_json = JSON.parse(tileset.geo_json)
-      features = geo_json['features']
-      points = features.select { |f| f['geometry']['type'] == 'Point' }
-      icons = points.uniq { |f| f['properties']['icon'] }
-                    .map { |f| f['properties']['icon'] }
-      @tileset = [{
-        sourceValue: tileset.mapbox_id,
-        urlValue: "mapbox://dedemenezes.#{tileset.mapbox_id}",
-        geoJson: tileset.geo_json,
-        icons:
-      }]
-    end
-    # binding.b
+    @tileset = load_tileset
+
     authorize @observatory
   end
 
   def mapa
-    @observatories = policy_scope(Observatory).includes(:conflict_types, :priority_subjects, banner_attachment: :blob).where.not(
-      latitude: nil, longitude: nil
-    )
+    @tilesets = Tilesets::TilesetService.load_all
+    authorize Observatory
+  end
 
-    @tilesets = Tileset.all.map do |tileset|
-      geo_json = JSON.parse(tileset.geo_json)
-      features = geo_json['features']
-      points = features.select { |f| f['geometry']['type'] == 'Point' }
-      icons = points.uniq { |f| f['properties']['icon'] }
-                    .map { |f| f['properties']['icon'] }
-      {
-        sourceValue: tileset.mapbox_id,
-        urlValue: "mapbox://dedemenezes.#{tileset.mapbox_id}",
-        geoJson: tileset.geo_json,
-        icons:
-      }
-    end
+  private
+
+  def load_tileset
+    tileset = Tileset.find_by_name(@observatory.name)
+
+    tileset ? [Tilesets::TilesetService.load_one(tileset)] : []
   end
 end
