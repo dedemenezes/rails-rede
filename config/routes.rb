@@ -3,5 +3,4 @@ Rails.application.routes.draw do
   draw :dashboard
   draw :app
   root to: "pages#home"
-
 end
