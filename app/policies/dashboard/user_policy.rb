@@ -50,5 +50,9 @@ module Dashboard
     def documentos?
       home?
     end
+
+    def edit_document?
+      home?
+    end
   end
 end

@@ -16,6 +16,7 @@ namespace :dashboard do
     end
     member do
       patch 'update_banner'
+      get :edit_document
     end
   end
   delete '/attachments/:id', to: 'attachments#destroy', as: :attachment

@@ -20,6 +20,10 @@ module Dashboard
       end
     end
 
+    def edit_document
+      @album = Album.find(params[:id])
+    end
+
     def new
       @album = Album.new
     end

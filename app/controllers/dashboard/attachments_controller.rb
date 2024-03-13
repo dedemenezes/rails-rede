@@ -1,6 +1,7 @@
 module Dashboard
   class AttachmentsController < ApplicationController
     def destroy
+      raise
       @attachment = ActiveStorage::Attachment.find(params[:id])
       @attachment.purge_later
       purge_document_attachment
