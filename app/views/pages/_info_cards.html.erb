@@ -1,0 +1,15 @@
+<div class="row mb-4" data-controller="scroll-reveal"
+               data-scroll-reveal-class-value="in"
+               data-scroll-reveal-threshold-value="0.3"
+               data-scroll-reveal-root-margin-value="10px">
+  <% info_cards.each do |item| %>
+    <% cache item do %>
+      <div class="col-12 col-sm-6 col-md-4">
+        <div class="card__we reveal" data-scroll-reveal-target="item">
+          <%= image_tag "#{item[:img_name]}.svg" %>
+          <p class="reveal" data-scroll-reveal-target="item"><%= item[:text] %></p>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
