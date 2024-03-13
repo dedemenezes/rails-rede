@@ -17,5 +17,18 @@ module Tilesets
       tileset_destroyer = TilesetDestroyer.new(@tileset_params)
       tileset_destroyer.run
     end
+
+    def present
+      geo_json = JSON.parse(@tileset_params.geo_json)
+      features = geo_json['features']
+      points = features.select { |f| f['geometry']['type'] == 'Point' }
+      icons = points.uniq { |f| f['properties']['icon'] }.map { |f| f['properties']['icon'] }
+      {
+        sourceValue: @tileset_params.mapbox_id,
+        urlValue: "mapbox://dedemenezes.#{@tileset_params.mapbox_id}",
+        geoJson: @tileset_params.geo_json,
+        icons:
+      }
+    end
   end
 end
