@@ -37,9 +37,7 @@ class PagesController < ApplicationController
   end
 
   def load_tilesets
-    @tilesets = Tileset.all.map do |tileset|
-      Tilesets::TilesetService.new(tileset).present
-    end
+    @tilesets = Tilesets::TilesetService.load_all
   end
 
   def load_info_cards
