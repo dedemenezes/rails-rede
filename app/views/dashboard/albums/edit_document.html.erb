@@ -1,28 +1,27 @@
-mostrar todos os documentos <br>
-opcao para deletar documentos <br>
-opcao para subir novos documentos <br>
-
 <div class="row">
-  <% @album.documents.each do |document| %>
+  <% @attachments.each do |attachment_hash| %>
     <div class="col-3">
-      <% photo = ActiveStorage::Blob.find_by('filename ILIKE ?', "#{document.filename.to_s[...-4]}") %>
       <div class="album__card">
-        <%= link_to "https://rede-observacao-prod.s3.us-east-2.amazonaws.com/#{document.key}",
+        <%= link_to "https://rede-observacao-prod.s3.us-east-2.amazonaws.com/#{attachment_hash[:document_attachment].key}",
                         data: {
-                                pswp_src: "https://rede-observacao-prod.s3.us-east-2.amazonaws.com/#{photo.key}",
-                                pswp_width: photo.metadata[:width],
-                                pswp_height: photo.metadata[:height],
-                                pswp_srcset: "https://rede-observacao-prod.s3.us-east-2.amazonaws.com/#{photo.key}"
+                                pswp_src: "https://rede-observacao-prod.s3.us-east-2.amazonaws.com/#{attachment_hash[:document_preview_attachment].key}",
+                                pswp_width: attachment_hash[:document_preview_attachment].metadata[:width],
+                                pswp_height: attachment_hash[:document_preview_attachment].metadata[:height],
+                                pswp_srcset: "https://rede-observacao-prod.s3.us-east-2.amazonaws.com/#{attachment_hash[:document_preview_attachment].key}"
                               },
                               target: "_blank" do %>
           <div class="card__index text-primary">
-            <div style="background: url('https://rede-observacao-prod.s3.us-east-2.amazonaws.com/<%= photo.key %>');background-size: cover;background-position: top; border-radius: 10px;"></div>
-            <small class="ps-2"><em><%= document.filename %></em></small>
+            <div style="background: url('https://rede-observacao-prod.s3.us-east-2.amazonaws.com/<%= attachment_hash[:document_preview_attachment].key %>');background-size: cover;background-position: top; border-radius: 10px;"></div>
+            <small class="ps-2"><em><%= attachment_hash[:document_attachment].filename %></em></small>
           </div>
         <% end %>
-        <%= photo.inspect %>
-        <%= document.blob.inspect %>
-        <%= link_to dashboard_attachment_path(photo), data: { turbo_method: 'delete', turbo_confirm: 'Essa ação é irreverssível. Voce tem certeza?' }, class: 'album__card__link  card__link--gray' do %>
+        <%= link_to dashboard_attachment_path(
+            attachment_hash[:document_preview_attachment],
+            document_attachment_id: attachment_hash[:document_attachment].id
+          ),
+          data: { turbo_method: 'delete', turbo_confirm: 'Essa ação é irreverssível. Voce tem certeza?' },
+          class: 'album__card__link  card__link--gray' do
+        %>
           <%= icon('fa-solid', 'trash') %>
         <% end %>
       </div>
