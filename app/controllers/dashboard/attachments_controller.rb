@@ -2,8 +2,8 @@ module Dashboard
   class AttachmentsController < ApplicationController
     def destroy
       @preview_attachment = ActiveStorage::Attachment.find(params[:id])
-      @preview_attachment.purge_later
       if params[:document_attachment_id].present?
+        @preview_attachment.purge_later
         purge_document_attachment
         redirect_to documentos_dashboard_album_path(@preview_attachment.record), notice: 'Documento removido'
       else
