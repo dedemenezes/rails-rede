@@ -10,7 +10,6 @@ class Album < ApplicationRecord
   scope :with_documents, -> { joins(:documents_attachments).distinct }
   scope :with_only_photos, -> { left_outer_joins(:documents_attachments).where(documents_attachments: { id: nil }) }
 
-
   def set_banner(attach)
     self.banner = attach.blob
   end
@@ -21,6 +20,10 @@ class Album < ApplicationRecord
                    .push(%w[gallery\ name published updated_at])
                    .flatten
                    .insert(1, 'banner')
+  end
+
+  def has_only_photos?
+    binding.b
   end
 
   def number_of_photos

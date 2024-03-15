@@ -10,6 +10,10 @@ class AlbumPolicy < ApplicationPolicy
     user.admin?
   end
 
+  def update?
+    user.admin?
+  end
+
   def show?
     true
   end

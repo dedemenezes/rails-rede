@@ -3,6 +3,7 @@
     <% flash[:alert] = "Selecione uma foto de banner" %>
   <% end %>
   <div class="cards__index mt-3 mb-4">
+    <%= @album.has_only_photos? %>
     <% @album.photos.each do |photo| %>
       <div class="album__card">
         <% if photo.blob.content_type == "image/jpeg" || photo.blob.content_type == "image/png" %>

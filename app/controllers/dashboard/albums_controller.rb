@@ -16,20 +16,20 @@ module Dashboard
       @albums = Album.includes(:gallery).with_documents.with_attached_banner
     end
 
-    def edit_document
-      @album = Album.find(params[:id])
-      @attachments = @album.documents.map do |document_attachment|
-        document_preview_attachment = ActiveStorage::Attachment.joins(:blob)
-                                                               .where(
-                                                                 'active_storage_blobs.filename ILIKE ?',
-                                                                 document_attachment.blob.filename.base
-                                                               ).first
-        {
-          document_attachment:,
-          document_preview_attachment:
-        }
-      end
-    end
+    # def edit_document
+    #   @album = Album.find(params[:id])
+    #   @attachments = @album.documents.map do |document_attachment|
+    #     document_preview_attachment = ActiveStorage::Attachment.joins(:blob)
+    #                                                            .where(
+    #                                                              'active_storage_blobs.filename ILIKE ?',
+    #                                                              document_attachment.blob.filename.base
+    #                                                            ).first
+    #     {
+    #       document_attachment:,
+    #       document_preview_attachment:
+    #     }
+    #   end
+    # end
 
     def new
       @album = Album.new
