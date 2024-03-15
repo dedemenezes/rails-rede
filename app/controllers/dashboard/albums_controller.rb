@@ -13,9 +13,7 @@ module Dashboard
     end
 
     def documentos
-      @albums = Album.includes(:gallery, :documents_attachments, banner_attachment: :blob).select do |album|
-        album.documents.attached?
-      end
+      @albums = Album.includes(:gallery).with_documents.with_attached_banner
     end
 
     def edit_document
