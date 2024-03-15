@@ -9,9 +9,7 @@ module Dashboard
     end
 
     def imagens
-      @albums = Album.includes(:gallery, :documents_attachments, banner_attachment: :blob).select do |album|
-        album.photos.attached?
-      end
+      @albums = Album.includes(:gallery).with_only_photos.with_attached_banner
     end
 
     def documentos
