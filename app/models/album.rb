@@ -23,7 +23,7 @@ class Album < ApplicationRecord
   end
 
   def has_only_photos?
-    binding.b
+    documents.empty?
   end
 
   def number_of_photos
