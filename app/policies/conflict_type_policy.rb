@@ -6,6 +6,10 @@ class ConflictTypePolicy < ApplicationPolicy
     # end
   end
 
+  def update?
+    user.admin?
+  end
+
   def new?
     user.admin?
   end

@@ -6,6 +6,10 @@ class PriorityTypePolicy < ApplicationPolicy
     # end
   end
 
+  def update?
+    user.admin?
+  end
+
   def new?
     admin?
   end
