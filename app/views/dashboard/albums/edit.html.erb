@@ -3,16 +3,13 @@
     <% flash[:alert] = "Selecione uma foto de banner" %>
   <% end %>
   <div class="cards__index mt-3 mb-4">
+    <% @album.has_only_photos? %>
     <% @album.photos.each do |photo| %>
       <div class="album__card">
-        <% if photo.blob.content_type == "image/jpeg" || photo.blob.content_type == "image/png" %>
           <%= image_tag "https://rede-observacao-prod.s3.us-east-2.amazonaws.com/#{photo.key}", width: '100%' %>
           <%= link_to dashboard_attachment_path(photo), data: { turbo_method: 'delete', turbo_confirm: 'Essa ação é irreverssível. Voce tem certeza?' }, class: 'album__card__link  card__link--gray' do %>
             <%= icon('fa-solid', 'trash') %>
           <% end %>
-        <% elsif photo.blob.content_type == "application/pdf" %>
-          <%= link_to photo.blob.filename.to_s, photo.url %>
-        <% end %>
       </div>
     <% end %>
   </div>

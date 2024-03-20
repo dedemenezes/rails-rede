@@ -2,25 +2,22 @@ module Dashboard
   class AttachmentsController < ApplicationController
     def destroy
       @attachment = ActiveStorage::Attachment.find(params[:id])
+      filename = @attachment.blob.filename.base
+      @album = @attachment.record
       @attachment.purge_later
-      purge_document_attachment
-
-      redirect_to edit_dashboard_album_path(@attachment.record), notice: 'Foto removida'
+      if @album.has_only_photos?
+        redirect_to edit_dashboard_album_path(@album), notice: 'Foto removida'
+      else
+        purge_document_attachment(filename)
+        redirect_to edit_dashboard_album_path(@album), notice: 'Documento removido'
+      end
     end
 
     private
 
-    def purge_document_attachment
-      filename = @attachment.blob.filename.to_s
-
-      return nil unless @attachment.record.is_a?(Album)
-
-      document_from_image = ActiveStorage::Attachment.joins(:blob).find_by("active_storage_blobs.filename LIKE ?",
-                                                                           "#{filename}.pdf")
-
-      return unless document_from_image
-
-      document_from_image.purge_later
+    def purge_document_attachment(filename)
+      document_attachment = @album.documents.find { _1.blob.filename.base == filename }
+      document_attachment.purge_later
     end
   end
 end

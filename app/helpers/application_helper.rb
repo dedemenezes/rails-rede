@@ -1,6 +1,6 @@
 module ApplicationHelper
   def rendering_documents_or_images?
-    params[:action] =~ /documentos/ || params[:action] =~ /imagens/
+    params[:action] =~ /document/ || params[:action] =~ /imag/
   end
 
   # SET DASHBOARD HEADER TITLE
