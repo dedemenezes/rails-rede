@@ -22,6 +22,10 @@ class GalleryPolicy < ApplicationPolicy
     true
   end
 
+  def update?
+    user.admin?
+  end
+
   def imagens?
     true
   end
