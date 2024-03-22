@@ -29,7 +29,9 @@ class GalleriesController < ApplicationController
                  .with_published_albums
                  .order(name: :asc)
                  .uniq
+                 .select(&:published_albums)
     @galleries = @galleries.select { |gallery| gallery.albums.any? { _1.documents.attached? } }
+
     add_breadcrumb 'Acervo', galleries_path, current: true
   end
 
@@ -39,7 +41,9 @@ class GalleriesController < ApplicationController
                  .with_published_albums
                  .order(name: :asc)
                  .uniq
+                 .select(&:published_albums)
     @galleries = @galleries.reject { |gallery| gallery.albums.all? { _1.documents.attached? } }
+
     add_breadcrumb 'Acervo', galleries_path, current: true
   end
 end
