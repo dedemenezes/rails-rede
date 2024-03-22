@@ -17,8 +17,6 @@ export default class extends Controller {
   }
 
   close(event) {
-    event.preventDefault()
-
     // Ignore event if clicked within element
     if(this.element === event.target || this.element.contains(event.target)) {
       return
