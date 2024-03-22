@@ -22,7 +22,7 @@
           </li>
           <li class="nav-item drop__down <%= 'active' if params[:controller] == 'galleries' || params[:controller] == 'albums' %>" data-controller='reveal-on-click'>
             <p class="nav-link cursor__link--hover pb-0"
-               data-action="click->reveal-on-click#toggle"
+               data-action="click->reveal-on-click#toggle click@window->reveal-on-click#close"
                data-reveal-on-click-target='button'>Acervo <i class="fa-solid fa-chevron-down" style="opacity: 0.7;"></i></p>
             <ul class="drop__down__card drop__down__card--nav hidden__el"
                 data-reveal-on-click-target="dropdown">

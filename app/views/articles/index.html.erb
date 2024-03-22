@@ -14,13 +14,13 @@
                     data-action="click->reveal-on-click#toggle"
                     data-reveal-on-click-target='button'>
               Filtros
-              <%= image_tag 'filter-icon.svg', width: '12px', class: 'dropdown__icon', data: { reveal_on_click_target: 'icon' } %>
+              <%= image_tag 'filter-icon.svg', width: '12px', class: 'dropdown__icon' %>
             </button>
             <div class="drop__down__card drop__down__card--lg drop__down__card--right hidden__el"
                 data-reveal-on-click-target="dropdown"
                 data-controller="checkbox-list"
                 data-checkbox-list-count-text-value="selecionado">
-              <div class="drop__down__close" data-action='click->reveal-on-click#toggle'>
+              <div class="drop__down__close" data-action='click->reveal-on-click#toggle click@window->reveal-on-click#close'>
                 <%= image_tag 'close-icon.svg', width: '12px' %>
               </div>
               <div data-controller="reveal-on-click">
