@@ -28,7 +28,7 @@
                      data-action="click->reveal-on-click#toggle">
                   <p class="text-header mb-0"
                      data-reveal-on-click-target='button'>Observatórios</p>
-                  <%= image_tag 'sidearrow.svg', width: '12px', class: "#{'dropdown__icon' unless params[:search].present?}", data: { reveal_on_click_target: 'icon' } %>
+                  <%= image_tag 'sidearrow.svg', width: '12px', class: "#{'dropdown__icon--right' unless params[:search].present?}", data: { reveal_on_click_target: 'icon' } %>
                 </div>
                 <%= form_with url: articles_path,  method: :get, html: { class: "hidden__el #{'active' if params[:search].present?}", data: { reveal_on_click_target: 'dropdown' } } do |f| %>
                   <div class="drop__down__options" id="style-2">
