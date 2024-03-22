@@ -9,6 +9,7 @@ class Gallery < ApplicationRecord
 
   scope :published, -> { where(published: true) }
   scope :only_published_events, -> { where(is_event: true) }
+  scope :with_published_albums, -> { joins(:albums).where(albums: { published: true }) }
 
   def self.dashboard_headers
     to_permit = %w[id name category]
