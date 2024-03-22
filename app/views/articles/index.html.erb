@@ -16,13 +16,17 @@
               Filtros
               <%= image_tag 'filter-icon.svg', width: '12px', class: 'dropdown__icon' %>
             </button>
+
+
             <div class="drop__down__card drop__down__card--lg drop__down__card--right hidden__el"
                 data-reveal-on-click-target="dropdown"
                 data-controller="checkbox-list"
                 data-checkbox-list-count-text-value="selecionado">
+
               <div class="drop__down__close" data-action='click->reveal-on-click#toggle click@window->reveal-on-click#close'>
                 <%= image_tag 'close-icon.svg', width: '12px' %>
               </div>
+
               <div data-controller="reveal-on-click">
                 <div class="d-flex align-items-center gap-3 hover-cursor"
                      data-action="click->reveal-on-click#toggle">
@@ -30,6 +34,7 @@
                   <p class="text-header mb-0 flex-grow-1"
                      data-reveal-on-click-target='button'>Observatórios</p>
                 </div>
+
                 <%= form_with url: articles_path,  method: :get, html: { class: "hidden__el #{'active' if params[:search].present?}", data: { reveal_on_click_target: 'dropdown' } } do |f| %>
                   <div class="drop__down__options drop__down__options--lg" id="style-2">
                     <%# <small class="drop__down__counter" data-checkbox-list-target="count"></small> %>
