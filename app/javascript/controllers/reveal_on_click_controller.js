@@ -16,7 +16,18 @@ export default class extends Controller {
     }
   }
 
-  close() {
-    this.toggle()
+  close(event) {
+    // Ignore event if clicked within element
+    if(this.element === event.target || this.element.contains(event.target)) {
+      return
+    }
+
+    // Execute the actual action we're interested in
+    this.buttonTarget.classList.remove('active')
+    this.dropdownTarget.classList.remove('active')
+    if (this.hasIconTarget) {
+      const transformDegrees = this.dropdownTarget.classList.contains('active') ? 'rotate(0deg)' : 'rotate(-90deg)'
+      this.iconTarget.style.transform = transformDegrees
+    }
   }
 }

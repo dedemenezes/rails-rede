@@ -2,7 +2,7 @@
   position: relative;
 }
 
-.dropdown__icon {
+.dropdown__icon--right {
   transform: rotate(-90deg);
 }
 
@@ -20,11 +20,19 @@
   right: 0;
 }
 
+.drop__down__card--lg {
+  min-width: 332px;
+  padding: 24px;
+  padding-bottom: 16px;
+  padding-top: 28px;
+}
+
 // coming from master
 .drop__down__card--nav {
   inset: 0 auto auto 0;
   transform: translate3d(12px, 44px, 0);
   border: 1px solid #08346125;
+  margin-top: 4px !important;
 }
 // coming from master
 
@@ -38,9 +46,14 @@
   overflow-x: auto;
 }
 
+.drop__down__options--lg {
+  margin-bottom: 1rem;
+}
+
 .drop__down__card.active {
   visibility: visible !important;
   opacity: 1 !important;
+  margin-top: 8px;
 }
 
 .drop__down__close {

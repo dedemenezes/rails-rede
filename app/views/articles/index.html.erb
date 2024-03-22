@@ -4,34 +4,34 @@
        data-scroll-reveal-threshold-value="0"
        data-scroll-reveal-root-margin-value="10px">
 
-    <div class="row justify-content-center mt-2 mb-5">
+    <div class="row justify-content-center mt-2 mb-4 mb-md-5">
       <div class="col-12 mt-3">
         <div class="d-flex justify-content-between align-items-center border border-news border-5 border-end-0 border-top-0 border-bottom-0 ps-4">
           <h1>Notícias</h1>
           <div class="drop__down" data-controller='reveal-on-click'>
-            <button class="btn-icon d-none d-md-flex"
+            <button class="btn-icon d-md-flex"
                     data-overlay-menu-target='btn'
                     data-action="click->reveal-on-click#toggle"
                     data-reveal-on-click-target='button'>
               Filtros
-              <%= image_tag 'sidearrow.svg', width: '12px', class: 'dropdown__icon', data: { reveal_on_click_target: 'icon' } %>
+              <%= image_tag 'filter-icon.svg', width: '12px', class: 'dropdown__icon' %>
             </button>
-            <div class="drop__down__card drop__down__card--right hidden__el"
+            <div class="drop__down__card drop__down__card--lg drop__down__card--right hidden__el"
                 data-reveal-on-click-target="dropdown"
                 data-controller="checkbox-list"
                 data-checkbox-list-count-text-value="selecionado">
-              <div class="drop__down__close" data-action='click->reveal-on-click#toggle'>
+              <div class="drop__down__close" data-action='click->reveal-on-click#toggle click@window->reveal-on-click#close'>
                 <%= image_tag 'close-icon.svg', width: '12px' %>
               </div>
               <div data-controller="reveal-on-click">
                 <div class="d-flex align-items-center gap-3 hover-cursor"
                      data-action="click->reveal-on-click#toggle">
-                  <p class="text-header mb-0"
+                  <%= image_tag 'sidearrow.svg', width: '12px', class: "#{'dropdown__icon--right' unless params[:search].present?}", data: { reveal_on_click_target: 'icon' } %>
+                  <p class="text-header mb-0 flex-grow-1"
                      data-reveal-on-click-target='button'>Observatórios</p>
-                  <%= image_tag 'sidearrow.svg', width: '12px', class: "#{'dropdown__icon' unless params[:search].present?}", data: { reveal_on_click_target: 'icon' } %>
                 </div>
                 <%= form_with url: articles_path,  method: :get, html: { class: "hidden__el #{'active' if params[:search].present?}", data: { reveal_on_click_target: 'dropdown' } } do |f| %>
-                  <div class="drop__down__options" id="style-2">
+                  <div class="drop__down__options--lg" id="style-2">
                     <%# <small class="drop__down__counter" data-checkbox-list-target="count"></small> %>
                     <% @tags.each do |tag| %>
                       <% name = tag.name.downcase %>
