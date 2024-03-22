@@ -20,6 +20,12 @@
   right: 0;
 }
 
+.drop__down__card--lg {
+  min-width: 332px;
+  padding: 24px;
+  padding-bottom: 16px;
+}
+
 // coming from master
 .drop__down__card--nav {
   inset: 0 auto auto 0;
@@ -36,6 +42,10 @@
   height: 160px;
   overflow-y: scroll;
   overflow-x: auto;
+}
+
+.drop__down__options--lg {
+  margin-bottom: 1rem;
 }
 
 .drop__down__card.active {
