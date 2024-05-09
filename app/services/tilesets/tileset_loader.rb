@@ -7,7 +7,6 @@ module Tilesets
     end
 
     def present(tileset)
-      binding.b
       geo_json = JSON.parse(tileset.geo_json)
       features = geo_json['features']
       points = features.select { |f| f['geometry']['type'] == 'Point' }
