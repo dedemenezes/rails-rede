@@ -8,18 +8,20 @@ class GalleriesController < ApplicationController
     @gallery = Gallery.includes(albums: [:documents_attachments,
                                          { banner_attachment: :blob }]).find_by(name: params[:name]) || Gallery.find(params[:id])
     @albums = @gallery.published_albums.sort_by(&:updated_at).reverse
-    if params[:t].present?
-      if params[:t] == 'documentos'
-        @albums = @albums.select { _1.documents.attached? }
-        add_breadcrumb 'Acervo (Documentos)', documentos_galleries_path
-        add_breadcrumb "#{@gallery.name} (Documentos)", gallery_path(@gallery), current: true
-      end
-      if params[:t] == 'imagens'
-        @albums = @albums.reject { _1.documents.attached? }
-        add_breadcrumb 'Acervo (Imagens)', imagens_galleries_path
-        add_breadcrumb "#{@gallery.name} (Imagens)", gallery_path(@gallery), current: true
-      end
+
+    album_type = params[:t]
+
+    if album_type.present? && album_type == 'documentos'
+      @albums = @albums.select { _1.documents.attached? }
+      add_breadcrumb 'Acervo (Documentos)', documentos_galleries_path
+      add_breadcrumb "#{@gallery.name} (Documentos)", gallery_path(@gallery), current: true
     end
+    if album_type.present? && album_type == 'imagens'
+      @albums = @albums.reject { _1.documents.attached? }
+      add_breadcrumb 'Acervo (Imagens)', imagens_galleries_path
+      add_breadcrumb "#{@gallery.name} (Imagens)", gallery_path(@gallery), current: true
+    end
+
     authorize @gallery
   end
 
