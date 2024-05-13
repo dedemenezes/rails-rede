@@ -11,9 +11,10 @@ module Tilesets
       features = geo_json['features']
       points = features.select { |f| f['geometry']['type'] == 'Point' }
       icons = points.uniq { |f| f['properties']['icon'] }.map { |f| f['properties']['icon'] }
+
       {
         sourceValue: tileset.mapbox_id,
-        urlValue: "mapbox://dedemenezes.#{tileset.mapbox_id}",
+        urlValue: "mapbox://#{ENV.fetch('MAPBOX_USERNAME')}.#{tileset.mapbox_id}",
         geoJson: tileset.geo_json,
         icons:
       }
