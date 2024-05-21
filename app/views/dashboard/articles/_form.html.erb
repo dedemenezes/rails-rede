@@ -105,6 +105,9 @@
     </p>
   </div>
   <%= f.input :sub_header %>
-  <%= f.input :rich_body, as: :rich_text_area %>
+  <div data-controller="trix">
+    <%= f.input :rich_body, as: :rich_text_area, input_html: { data: { trix_target: 'editor' } } %>
+  </div>
+
   <%= render 'dashboard/shared/form/submit_cancel', element: article, form: f %>
 <% end %>
