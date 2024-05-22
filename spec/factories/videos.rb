@@ -1,6 +1,5 @@
 FactoryBot.define do
-  factory :video do
+  factory :still_valid, class: Video do
     url { "https://www.youtube.com/watch?v=_CL6n0FJZpk" }
-    yt_id { "_CL6n0FJZpk" }
   end
 end
