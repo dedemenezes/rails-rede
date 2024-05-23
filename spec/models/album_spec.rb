@@ -26,5 +26,17 @@ RSpec.describe Album, type: :model do
         expect(subject.class.only_published_events.size).to eq(1)
       end
     end
+
+    context '::with_videos' do
+      it 'returns empty when no videos assigned' do
+        expect(Album.with_videos.size).to eq(0)
+      end
+      it 'returns only albums containing videos' do
+        create(:still_valid)
+        create(:published_event_album)
+        create(:unpublished_event_album)
+        expect(Album.with_videos.size).to eq(1)
+      end
+    end
   end
 end
