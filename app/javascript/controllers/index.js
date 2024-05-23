@@ -88,6 +88,9 @@ application.register("to-geojson", ToGeojsonController)
 import ToggleElementController from "./toggle_element_controller"
 application.register("toggle-element", ToggleElementController)
 
+import ToggleOnChangeController from "./toggle_on_change_controller"
+application.register("toggle-on-change", ToggleOnChangeController)
+
 import TomSelectController from "./tom_select_controller"
 application.register("tom-select", TomSelectController)
 
