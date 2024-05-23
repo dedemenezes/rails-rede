@@ -4,19 +4,17 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ['input', 'button', 'wrapper']
   connect() {
-    console.log(this.inputTarget)
-    console.log(this.buttonTarget)
   }
 
   new() {
+    this.nextInputIndex = this.inputTargets.length
     const labelClone = this.inputTarget.previousElementSibling.cloneNode(true)
-    console.log(labelClone)
-    const labelCloneForValue = `album_videos_attributes_${this.inputTargets.length}_url`
+    const labelCloneForValue = `album_videos_attributes_${this.nextInputIndex}_url`
     labelClone.setAttribute('for', labelCloneForValue)
 
     const inputElement = document.createElement('input')
     inputElement.type = 'url'
-    const name = `album[videos_attributes][${this.inputTargets.length}][url]`
+    const name = `album[videos_attributes][${this.nextInputIndex}][url]`
     inputElement.name = name
     inputElement.setAttribute('id', name)
     inputElement.dataset.addInputTarget = 'input'
@@ -24,13 +22,11 @@ export default class extends Controller {
     inputElement.classList.add('string')
     inputElement.classList.add('url')
     inputElement.classList.add('required')
+
     const wraper = this.inputTarget.parentElement.cloneNode()
     wraper.insertAdjacentElement('afterbegin', labelClone)
     wraper.insertAdjacentElement('beforeend', inputElement)
 
-    console.log(wraper)
-    console.log(labelClone)
-    console.log(inputElement)
-    this.inputTargets[this.inputTargets.length - 1].parentElement.insertAdjacentElement('afterend', wraper)
+    this.inputTargets[this.nextInputIndex - 1].parentElement.insertAdjacentElement('afterend', wraper)
   }
 }
