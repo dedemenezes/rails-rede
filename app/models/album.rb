@@ -1,6 +1,10 @@
 class Album < ApplicationRecord
+  CATEGORIES = ['document', 'video', 'photo']
+
   validates :name, uniqueness: { scope: :gallery_id }
-  validates :category, inclusion: { in: ['document', 'video', 'photo']}
+  validates :category, inclusion: { in: CATEGORIES }
+  # validate :category_must_match_attachment
+
   belongs_to :gallery
   has_many_attached :photos
   has_many_attached :documents
@@ -11,23 +15,33 @@ class Album < ApplicationRecord
   accepts_nested_attributes_for :videos
 
   scope :only_published_events, -> { where(is_event: true, published: true) }
-  scope :with_documents, -> { joins(:documents_attachments).distinct }
+  # scope :with_documents, -> { joins(:documents_attachments).distinct }
   scope :with_only_photos, -> { left_outer_joins(:documents_attachments).where(documents_attachments: { id: nil }) }
 
   def set_banner(attach)
     self.banner = attach.blob
   end
 
+  def self.with_photos
+    where(category: 'photo')
+  end
+
   def self.with_videos
-    includes(:videos).reject do |album|
-      album.videos.empty?
-    end
+    where(category: 'video')
+  end
+
+  def self.with_documents
+    where(category: 'document')
+  end
+
+  def self.published_with_documents
+    with_documents.where(published: true)
   end
 
   def self.dashboard_headers
     to_permit = %w[id name]
     attribute_names.select { |a| to_permit.include?(a) }
-                   .push(%w[gallery\ name published updated_at])
+                   .push(%w[gallery\ name category published updated_at])
                    .flatten
                    .insert(1, 'banner')
   end
@@ -51,4 +65,23 @@ class Album < ApplicationRecord
   def to_param
     name
   end
+
+  # def category_must_match_attachment
+  #   # binding.b
+  #   return if category.nil?
+  #   return unless errors.empty?
+
+  #   ['photo', 'document'].each do |category_default|
+  #     # binding.b
+  #     if (category == category_default && !self.send("#{category_default}s".to_sym)&.attached?) ||
+  #        (self.send("#{category_default}s".to_sym).attached? && category != category_default)
+  #       errors.add(:category, "#{category.upcase} must match attachment type")
+  #     end
+  #   end
+
+  #   if (category == 'video' && videos.empty?) ||
+  #       (videos.present? && category != category_default)
+  #     errors.add(:category, "VIDEO must match attachment type")
+  #   end
+  # end
 end
