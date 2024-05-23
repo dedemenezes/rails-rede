@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_05_23_002742) do
+ActiveRecord::Schema[7.0].define(version: 2024_05_23_133249) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -60,6 +60,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_23_002742) do
     t.boolean "is_event", default: false
     t.date "event_date"
     t.boolean "published", default: false
+    t.string "category"
     t.index ["gallery_id"], name: "index_albums_on_gallery_id"
   end
 

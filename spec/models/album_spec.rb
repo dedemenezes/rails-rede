@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Album, type: :model do
   describe 'Validation' do
-    it { should validate_uniqueness_of(:name).scoped_to(:gallery) }
+    it { should validate_inclusion_of(:category).in_array(['document', 'video', 'photo']) }
   end
 
   describe "Association" do

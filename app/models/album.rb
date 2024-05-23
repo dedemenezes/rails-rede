@@ -1,5 +1,6 @@
 class Album < ApplicationRecord
-  validates :name, uniqueness: { scope: :gallery }
+  validates :name, uniqueness: { scope: :gallery_id }
+  validates :category, inclusion: { in: ['document', 'video', 'photo']}
   belongs_to :gallery
   has_many_attached :photos
   has_many_attached :documents
