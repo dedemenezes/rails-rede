@@ -4,7 +4,9 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ['category', 'video', 'photo', 'document']
   connect() {
-    this.dynamicTarget(this.categoryTarget.value).classList.remove('d-none')
+    if (this.categoryTarget.value !== '') {
+      this.dynamicTarget(this.categoryTarget.value).classList.remove('d-none')
+    }
   }
 
   update(event) {

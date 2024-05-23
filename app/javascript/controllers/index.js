@@ -7,6 +7,9 @@ import { application } from "./application"
 import ActiveOnHeightController from "./active_on_height_controller"
 application.register("active-on-height", ActiveOnHeightController)
 
+import AddInputController from "./add_input_controller"
+application.register("add-input", AddInputController)
+
 import AddressAutocompleteController from "./address_autocomplete_controller"
 application.register("address-autocomplete", AddressAutocompleteController)
 
