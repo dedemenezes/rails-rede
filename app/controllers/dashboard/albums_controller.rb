@@ -103,7 +103,17 @@ module Dashboard
     end
 
     def album_params
-      params.require(:album).permit(:name, :is_event, :event_date, :published, :banner, photos: [], documents: [])
+      params.require(:album)
+            .permit(
+              :name,
+              :is_event,
+              :event_date,
+              :published,
+              :banner,
+              photos: [],
+              documents: [],
+              videos_attributes: [:url]
+            )
     end
 
     def redirect_to_correct_album_type_path(options = {})

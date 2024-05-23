@@ -39,10 +39,6 @@ module Dashboard
       home?
     end
 
-    def home?
-      user.admin?
-    end
-
     def imagens?
       home?
     end
@@ -53,6 +49,12 @@ module Dashboard
 
     def edit_document?
       home?
+    end
+
+    private
+
+    def home?
+      user.admin?
     end
   end
 end

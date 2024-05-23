@@ -1,0 +1,12 @@
+<div class="container mt-3">
+  <%= render 'dashboard/albums/form', album: @album do |form_album| %>
+      <%= form_album.simple_fields_for :videos do |form_video| %>
+        <%= form_video.input :url %>
+      <% end %>
+        <div class="d-flex justify-content-end align-items-center">
+          <div class="btn btn-rede-primary">
+            <span>Adicionar URL </span><%= icon('fa-solid', 'plus') %>
+          </div>
+        </div>
+  <% end %>
+</div>

@@ -7,6 +7,8 @@ class Album < ApplicationRecord
   has_many :taggings, as: :taggable
   has_many :tags, through: :taggings
   has_many :videos
+  accepts_nested_attributes_for :videos
+
   scope :only_published_events, -> { where(is_event: true, published: true) }
   scope :with_documents, -> { joins(:documents_attachments).distinct }
   scope :with_only_photos, -> { left_outer_joins(:documents_attachments).where(documents_attachments: { id: nil }) }
