@@ -60,6 +60,10 @@ h5 {
   visibility: visible;
 }
 
+.mb-out {
+  margin-bottom: 0 !important;
+}
+
 form.hidden__el {
   visibility: hidden;
   transition: visibility .2s ease-in-out;

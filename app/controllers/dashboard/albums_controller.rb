@@ -48,7 +48,7 @@ module Dashboard
         @album.gallery = @gallery
       rescue StandardError
       end
-      if @album.save!
+      if @album.save
 
         attach_documents_first_page_as_photos
 
