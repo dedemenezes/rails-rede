@@ -1,7 +1,7 @@
 class Album < ApplicationRecord
   CATEGORIES = ['document', 'video', 'photo']
 
-  validates :name, uniqueness: { scope: :gallery_id }
+  validates :name, presence: true, uniqueness: { scope: :gallery_id }
   validates :category, inclusion: { in: CATEGORIES }
   # validate :category_must_match_attachment
 
