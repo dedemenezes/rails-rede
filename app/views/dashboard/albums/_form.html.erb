@@ -25,21 +25,9 @@
 
   <%= render 'dashboard/shared/form/banner_input', element: album, form: f %>
 
-  <div data-controller="toggle-on-change">
-    <%= f.input :category, collection: Album::CATEGORIES, input_html: { data: { action: 'change->toggle-on-change#update'} } %>
-    <div class="d-none" data-toggle-on-change-target="video">
-      <%= f.simple_fields_for :videos do |form_video| %>
-        <%= form_video.input :url %>
-      <% end %>
-      <div class="d-flex justify-content-end align-items-center">
-        <div class="btn btn-rede-primary">
-          <span>Adicionar URL </span><%= icon('fa-solid', 'plus') %>
-        </div>
-      </div>
-    </div>
 
     <%= render 'dashboard/shared/form/album_attachments', form: f %>
-  </div>
+
 
   <%= render 'dashboard/shared/form/submit_cancel', element: album, form: f %>
 <% end %>
