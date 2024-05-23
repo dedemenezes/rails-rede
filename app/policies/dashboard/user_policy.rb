@@ -51,8 +51,6 @@ module Dashboard
       home?
     end
 
-    private
-
     def home?
       user.admin?
     end
