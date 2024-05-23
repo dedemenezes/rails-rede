@@ -26,8 +26,16 @@ class Album < ApplicationRecord
     where(category: 'photo')
   end
 
+  def self.published_with_photos
+    with_photos.where(published: true)
+  end
+
   def self.with_videos
     where(category: 'video')
+  end
+
+  def self.published_with_videos
+    with_videos.where(published: true)
   end
 
   def self.with_documents
