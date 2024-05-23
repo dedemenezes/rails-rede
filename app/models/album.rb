@@ -12,7 +12,7 @@ class Album < ApplicationRecord
   has_many :taggings, as: :taggable
   has_many :tags, through: :taggings
   has_many :videos
-  accepts_nested_attributes_for :videos
+  accepts_nested_attributes_for :videos, reject_if: proc { |attributes| attributes['url'].blank? }
 
   scope :only_published_events, -> { where(is_event: true, published: true) }
   # scope :with_documents, -> { joins(:documents_attachments).distinct }

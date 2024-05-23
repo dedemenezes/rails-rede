@@ -24,14 +24,14 @@ class GalleriesController < ApplicationController
   end
 
   def documentos
-    @galleries = policy_scope(Gallery)
-                 .includes(albums: [:documents_attachments])
-                 .with_published_albums
-                 .order(name: :asc)
-                 .uniq
-                 .select(&:published_albums)
-    @galleries = @galleries.select { |gallery| gallery.albums.any? { _1.documents.attached? } }
-
+    # @galleries = policy_scope(Gallery)
+    #              .includes(albums: [:documents_attachments])
+    #              .with_published_albums
+    #              .order(name: :asc)
+    #              .uniq
+    #              .select(&:published_albums)
+    # @galleries = @galleries.select { |gallery| gallery.albums.any? { _1.documents.attached? } }
+    @galleries = policy_scope(Album).published_with_documents.map(&:gallery).uniq
     add_breadcrumb 'Acervo', galleries_path, current: true
   end
 

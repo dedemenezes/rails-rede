@@ -9,11 +9,16 @@ module Dashboard
     end
 
     def imagens
-      @albums = Album.includes(:gallery).with_only_photos.with_attached_banner
+      # @albums = Album.includes(:gallery).with_only_photos.with_attached_banner
+      @albums = Album.includes(:gallery).where(category: 'photo').with_attached_banner
     end
 
     def documentos
       @albums = Album.includes(:gallery).with_documents.with_attached_banner
+    end
+
+    def videos
+      @albums = Album.includes(:gallery).with_videos.with_attached_banner
     end
 
     # def edit_document
@@ -43,7 +48,7 @@ module Dashboard
         @album.gallery = @gallery
       rescue StandardError
       end
-      if @album.save
+      if @album.save!
 
         attach_documents_first_page_as_photos
 
@@ -111,6 +116,7 @@ module Dashboard
               :event_date,
               :published,
               :banner,
+              :category,
               photos: [],
               documents: [],
               videos_attributes: [:url]
@@ -118,10 +124,16 @@ module Dashboard
     end
 
     def redirect_to_correct_album_type_path(options = {})
-      if @album.documents.attached?
+      case @album.category
+      when 'video'
+        redirect_to dashboard_albums_videos_path, options
+      when 'document'
         redirect_to documentos_dashboard_albums_path, options
-      else
+      when 'photo'
         redirect_to imagens_dashboard_albums_path, options
+      end
+      if @album.documents.attached?
+      else
       end
     end
 
