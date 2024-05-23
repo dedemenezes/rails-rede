@@ -24,11 +24,17 @@
 
 
   <%= render 'dashboard/shared/form/banner_input', element: album, form: f %>
+  <%= f.input :category, collection: Album::CATEGORIES %>
 
-  <% if block_given? %>
-    <%= yield(f) %>
-  <% else %>
-    <%= render 'dashboard/shared/form/album_attachments', form: f %>
+  <%= f.simple_fields_for :videos do |form_video| %>
+    <%= form_video.input :url %>
   <% end %>
+  <div class="d-flex justify-content-end align-items-center">
+    <div class="btn btn-rede-primary">
+      <span>Adicionar URL </span><%= icon('fa-solid', 'plus') %>
+    </div>
+  </div>
+  <%= render 'dashboard/shared/form/album_attachments', form: f %>
+
   <%= render 'dashboard/shared/form/submit_cancel', element: album, form: f %>
 <% end %>

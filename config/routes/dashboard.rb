@@ -1,9 +1,5 @@
 get 'dashboard', to: 'dashboard#home', as: :home
 namespace :dashboard do
-  namespace :albums do
-    resources :videos, only: %i[index new]
-  end
-
   resources :conflict_types
   resources :priority_types
   resources :tags, except: :show
@@ -17,6 +13,7 @@ namespace :dashboard do
     collection do
       get :imagens
       get :documentos
+      get :videos
     end
     member do
       patch 'update_banner'

@@ -47,6 +47,10 @@ module Dashboard
       home?
     end
 
+    def videos?
+      home?
+    end
+
     def edit_document?
       home?
     end
