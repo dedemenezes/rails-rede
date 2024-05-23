@@ -17,6 +17,12 @@ class Album < ApplicationRecord
     self.banner = attach.blob
   end
 
+  def self.with_videos
+    includes(:videos).reject do |album|
+      album.videos.empty?
+    end
+  end
+
   def self.dashboard_headers
     to_permit = %w[id name]
     attribute_names.select { |a| to_permit.include?(a) }
