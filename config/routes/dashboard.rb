@@ -19,6 +19,7 @@ namespace :dashboard do
       patch 'update_banner'
     end
   end
+  resources :videos, only: :destroy
   delete '/attachments/:id', to: 'attachments#destroy', as: :attachment
 
   namespace :mapbox do
