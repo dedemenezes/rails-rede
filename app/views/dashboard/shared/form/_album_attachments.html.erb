@@ -1,7 +1,8 @@
 
 <div data-controller="toggle-on-change">
 
-  <%= form.input :category,
+  <div class="" data-controller="add-input">
+    <%= form.input :category,
                  collection: Album::CATEGORIES,
                  input_html: {
                   data: {
@@ -11,15 +12,16 @@
                 } %>
 
 
-  <div class="d-none" data-controller="add-input" data-toggle-on-change-target="video">
-    <%= form.simple_fields_for :videos do |form_video| %>
-      <%= form_video.input :url,
-                           input_html: { data: { add_input_target: 'input' }},
-                           wrapper_html: { data: { add_input_target: 'wrapper' }} %>
-    <% end %>
-    <div class="d-flex justify-content-end align-items-center">
-      <div class="btn btn-rede-primary" data-add-input-target="button" data-action="click->add-input#new">
-        <span>Adicionar URL </span><%= icon('fa-solid', 'plus') %>
+    <div class="d-none"  data-toggle-on-change-target="video">
+      <%= form.simple_fields_for :videos do |form_video| %>
+        <%= form_video.input :url,
+                                input_html: { data: { add_input_target: 'input' }},
+                                wrapper_html: {data: { add_input_target: 'wrapper' }} %>
+      <% end %>
+      <div class="d-flex justify-content-end align-items-center">
+        <div class="btn btn-rede-primary" data-add-input-target="button" data-action="click->add-input#new">
+          <span>Adicionar URL </span><%= icon('fa-solid', 'plus') %>
+        </div>
       </div>
     </div>
   </div>
