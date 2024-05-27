@@ -13,11 +13,13 @@ namespace :dashboard do
     collection do
       get :imagens
       get :documentos
+      get :videos
     end
     member do
       patch 'update_banner'
     end
   end
+  resources :videos, only: :destroy
   delete '/attachments/:id', to: 'attachments#destroy', as: :attachment
 
   namespace :mapbox do

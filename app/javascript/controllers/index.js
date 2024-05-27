@@ -7,6 +7,9 @@ import { application } from "./application"
 import ActiveOnHeightController from "./active_on_height_controller"
 application.register("active-on-height", ActiveOnHeightController)
 
+import AddInputController from "./add_input_controller"
+application.register("add-input", AddInputController)
+
 import AddressAutocompleteController from "./address_autocomplete_controller"
 application.register("address-autocomplete", AddressAutocompleteController)
 
@@ -87,6 +90,9 @@ application.register("to-geojson", ToGeojsonController)
 
 import ToggleElementController from "./toggle_element_controller"
 application.register("toggle-element", ToggleElementController)
+
+import ToggleOnChangeController from "./toggle_on_change_controller"
+application.register("toggle-on-change", ToggleOnChangeController)
 
 import TomSelectController from "./tom_select_controller"
 application.register("tom-select", TomSelectController)

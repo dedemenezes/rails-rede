@@ -1,0 +1,25 @@
+<% content_for :meta_title, "Acervo - #{DEFAULT_META["meta_product_name"]}" %>
+<% content_for :meta_image, display_banner_as_background(@galleries.sample) unless @galleries.empty? %>
+<div class="container">
+  <div class="row justify-content-center mt-2 mb-4 mb-md-5">
+    <div class="col-12 mt-3">
+      <div class="d-flex justify-content-between align-items-center border border-warning border-5 border-end-0 border-top-0 border-bottom-0 ps-4">
+        <h1>Acervo <span class='fs-4 fw-light'>(Videos)</span></h1>
+      </div>
+    </div>
+  </div>
+  <div class="cards__observatories">
+    <% unless @galleries.empty? %>
+      <% @galleries.each do |gallery| %>
+        <% next if gallery.empty? %>
+        <%= link_to gallery_path(gallery, t: 'videos') do %>
+          <div class="observatory__card">
+            <%#= display_banner(observatory) %>
+            <div class="observatory__card--image" style="background-image: url('<%= display_banner_as_background(gallery) %>'); height: 240px; border-radius: 10px 10px 0 0; background-position: center;"></div>
+            <p><%= gallery.name %></p>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

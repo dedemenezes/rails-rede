@@ -1,0 +1,103 @@
+
+<div data-controller="toggle-on-change">
+
+  <div class="" data-controller="add-input">
+    <%= form.input :category,
+                 collection: Album::CATEGORIES,
+                 input_html: {
+                  data: {
+                    action: 'change->toggle-on-change#update',
+                    toggle_on_change_target: 'category'
+                  }
+                } %>
+
+
+    <div class="d-none"  data-toggle-on-change-target="video">
+      <%= form.simple_fields_for :videos do |form_video| %>
+        <%= form_video.input :url,
+                                input_html: { data: { add_input_target: 'input' }},
+                                wrapper_html: {data: { add_input_target: 'wrapper' }} %>
+      <% end %>
+      <div class="d-flex justify-content-end align-items-center">
+        <div class="btn btn-rede-primary" data-add-input-target="button" data-action="click->add-input#new">
+          <span>Adicionar URL </span><%= icon('fa-solid', 'plus') %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="attachment-inputs" data-controller="toggle-element">
+    <div class="d-flex justify-content-start align-items-center">
+      <div class="form-check tag-item d-none" data-toggle-on-change-target='photo'>
+        <%= check_box_tag :with_images,
+                            '1',
+                            false,
+                            class: 'form-check-input tag-selector',
+                            data: {
+                              action: 'change->toggle-element#photoInput'
+                            } %>
+        <label class="form-check-label" for="with_images">Adicionar imagens</label>
+      </div>
+      <div class="d-none" data-toggle-element-target='photoInput'>
+        <%= form.input :photos,
+                      as: :file,
+                      input_html: {
+                        multiple: true,
+                        class: 'd-none',
+                        data: {
+                          photo_preview_target: "photoInput",
+                          action: 'change->photo-preview#displayFilesCounter'
+                        }
+                      },
+                      label_html: {
+                        class: 'upload-photo',
+                        data: {
+                          photo_preview_target: 'photoPreview'
+                        }
+                      },
+                      wrapper_html: {
+                        class: 'box--anim mb-out', data: {
+                          photo_preview_target: 'submit',
+                          controller: 'photo-preview'
+                        }
+                      },
+                      label: '📷 Selecione as imagens' %>
+      </div>
+      <div class="form-check tag-item d-none" data-toggle-on-change-target='document'>
+        <%= check_box_tag :with_documents,
+                            '1',
+                            false,
+                            class: 'form-check-input tag-selector',
+                            data: {
+                              action: 'change->toggle-element#docInput'
+                            } %>
+        <label class="form-check-label" for="with_documents">Adicionar documentos</label>
+      </div>
+      <div class="d-none" data-toggle-element-target='docInput'>
+        <%= form.input :documents,
+                      as: :file,
+                      input_html: {
+                        multiple: true,
+                        class: 'd-none',
+                        data: {
+                          photo_preview_target: "photoInput",
+                          action: 'change->photo-preview#displayFilesCounter'
+                        }
+                      },
+                      label_html: {
+                        class: 'upload-photo',
+                        data: {
+                          photo_preview_target: 'photoPreview'
+                        }
+                      },
+                      wrapper_html: {
+                        class: 'box--anim mb-out', data: {
+                          photo_preview_target: 'submit',
+                          controller: 'photo-preview'
+                        }
+                      },
+                      label: "🗄 Selecione os arquivos" %>
+      </div>
+    </div>
+  </div>
+</div>
