@@ -8,7 +8,7 @@ export default class extends Controller {
 
   new(event) {
     const newInputBlock = this.buildUrlFormInputBlock()
-    this.element.lastElementChild.insertAdjacentElement('beforebegin', newInputBlock)
+    this.buttonTarget.parentElement.insertAdjacentElement('beforebegin', newInputBlock)
   }
 
   labelHTML() {
