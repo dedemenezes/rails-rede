@@ -75,12 +75,10 @@ class Album < ApplicationRecord
   end
 
   # def category_must_match_attachment
-  #   # binding.b
   #   return if category.nil?
   #   return unless errors.empty?
 
   #   ['photo', 'document'].each do |category_default|
-  #     # binding.b
   #     if (category == category_default && !self.send("#{category_default}s".to_sym)&.attached?) ||
   #        (self.send("#{category_default}s".to_sym).attached? && category != category_default)
   #       errors.add(:category, "#{category.upcase} must match attachment type")

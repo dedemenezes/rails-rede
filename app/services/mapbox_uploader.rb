@@ -69,6 +69,5 @@ class MapboxUploader
     )
 
     connection.post @upload_url, tile_set_body
-    # binding.b
   end
 end

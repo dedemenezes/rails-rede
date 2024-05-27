@@ -13,10 +13,8 @@ CSV.foreach file, headers: :first_row, header_converters: :symbol do |row|
   end
 
   if sub_header.empty? || sub_header.nil?
-    # binding.break
     sub_header = header.truncate(10)
   end
-  # binding.break
 
   text_pt_1 = row[:text_0].gsub(/<p><span.+">/, '').gsub(/<\/span.+p>/, '').gsub(/<p><br style.+<\/p>/, '').gsub('&ccedil;', 'ç').gsub('&atilde;', 'ã').gsub('&iacute;', 'í').gsub('&otilde;', 'õ').gsub('&uacute;', 'ú').gsub('&eacute;', 'é').gsub('&aacute;', 'á').gsub('&ocirc;', 'ô').gsub('&oacute;', 'ó').gsub("\r\n", '<br><br>').gsub('&nbsp;', ' ').gsub('&acirc;','a').gsub('&agrave;', 'à')
 
@@ -68,6 +66,5 @@ CSV.foreach file, headers: :first_row, header_converters: :symbol do |row|
   if File.exist?(image_path)
     article.banner.attach(io: File.open(image_path), filename: "#{article.header.downcase.parameterize}-banner.jpg", content_type: 'image/png')
   end
-  # binding.break
   p article.rich_body.to_trix_html
 end
