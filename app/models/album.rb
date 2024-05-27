@@ -23,11 +23,11 @@ class Album < ApplicationRecord
   end
 
   def self.with_photos
-    where(category: 'photo')
+    left_joins(:photos_attachments).where(category: 'photo').group(:id)
   end
 
   def self.published_with_photos
-    with_photos.where(published: true)
+    with_photos.where(published: true).having("COUNT(active_storage_attachments) > 0")
   end
 
   def self.with_videos
@@ -39,11 +39,12 @@ class Album < ApplicationRecord
   end
 
   def self.with_documents
-    where(category: 'document')
+    # where(category: 'document')
+    left_joins(:documents_attachments).where(category: 'document').group(:id)
   end
 
   def self.published_with_documents
-    with_documents.where(published: true)
+    with_documents.where(published: true).having("COUNT(active_storage_attachments) > 0")
   end
 
   def self.dashboard_headers
