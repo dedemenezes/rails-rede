@@ -11,7 +11,7 @@ class Album < ApplicationRecord
   has_one_attached :banner
   has_many :taggings, as: :taggable
   has_many :tags, through: :taggings
-  has_many :videos
+  has_many :videos, dependent: :destroy
   accepts_nested_attributes_for :videos, reject_if: proc { |attributes| attributes['url'].blank? }
 
   scope :only_published_events, -> { where(is_event: true, published: true) }
