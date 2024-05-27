@@ -119,21 +119,18 @@ module Dashboard
               :category,
               photos: [],
               documents: [],
-              videos_attributes: [:url]
+              videos_attributes: [:id, :url]
             )
     end
 
     def redirect_to_correct_album_type_path(options = {})
       case @album.category
       when 'video'
-        redirect_to dashboard_albums_videos_path, options
+        redirect_to videos_dashboard_albums_path, options
       when 'document'
         redirect_to documentos_dashboard_albums_path, options
       when 'photo'
         redirect_to imagens_dashboard_albums_path, options
-      end
-      if @album.documents.attached?
-      else
       end
     end
 
