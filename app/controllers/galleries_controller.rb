@@ -27,11 +27,6 @@ class GalleriesController < ApplicationController
         add_breadcrumb "#{@gallery.name} (Videos)", gallery_path(@gallery), current: true
       end
     end
-    if album_type.present? && album_type == 'imagens'
-      @albums = @albums.reject { _1.documents.attached? }
-      add_breadcrumb 'Acervo (Imagens)', imagens_galleries_path
-      add_breadcrumb "#{@gallery.name} (Imagens)", gallery_path(@gallery), current: true
-    end
 
     authorize @gallery
   end
