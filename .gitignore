@@ -50,3 +50,4 @@ figma_htmlgenerator/*
 
 # ignore client secret for google youtube api
 client_secret.json
+riffling.rb

@@ -25,81 +25,9 @@
 
   <%= render 'dashboard/shared/form/banner_input', element: album, form: f %>
 
-  <div class="attachment-inputs" data-controller="toggle-element">
-    <div class="d-flex justify-content-start align-items-center">
-      <div class="form-check tag-item">
-        <%= check_box_tag :with_images,
-                          '1',
-                          false,
-                          class: 'form-check-input tag-selector',
-                          data: {
-                            action: 'change->toggle-element#photoInput'
-                          } %>
-        <label class="form-check-label" for="with_images">Adicionar imagens</label>
-      </div>
-      <div class="d-none" data-toggle-element-target='photoInput'>
-        <%= f.input :photos,
-                    as: :file,
-                    input_html: {
-                      multiple: true,
-                      class: 'd-none',
-                      data: {
-                        photo_preview_target: "photoInput",
-                        action: 'change->photo-preview#displayFilesCounter'
-                      }
-                    },
-                    label_html: {
-                      class: 'upload-photo',
-                      data: {
-                        photo_preview_target: 'photoPreview'
-                      }
-                    },
-                    wrapper_html: {
-                      class: 'box--anim', data: {
-                        photo_preview_target: 'submit',
-                        controller: 'photo-preview'
-                      }
-                    },
-                    label: '📷 Selecione as imagens' %>
-      </div>
-      <div class="form-check">
-        <%= check_box_tag :with_documents,
-                          '1',
-                          false,
-                          class: 'form-check-input tag-selector',
-                          data: {
-                            action: 'change->toggle-element#docInput'
-                          } %>
-        <label class="form-check-label" for="with_documents">Adicionar documentos</label>
-      </div>
-      <div class="d-none" data-toggle-element-target='docInput'>
-        <%= f.input :documents,
-                    as: :file,
-                    input_html: {
-                      multiple: true,
-                      class: 'd-none',
-                      data: {
-                        photo_preview_target: "photoInput",
-                        action: 'change->photo-preview#displayFilesCounter'
-                      }
-                    },
-                    label_html: {
-                      class: 'upload-photo',
-                      data: {
-                        photo_preview_target: 'photoPreview'
-                      }
-                    },
-                    wrapper_html: {
-                      class: 'box--anim', data: {
-                        photo_preview_target: 'submit',
-                        controller: 'photo-preview'
-                      }
-                    },
-                    label: "🗄 Selecione os arquivos" %>
-      </div>
-    </div>
+
+    <%= render 'dashboard/shared/form/album_attachments', form: f, element: album %>
 
 
-  </div>
   <%= render 'dashboard/shared/form/submit_cancel', element: album, form: f %>
 <% end %>

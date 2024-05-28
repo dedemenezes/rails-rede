@@ -584,6 +584,10 @@ small.tag, small > .tag {
   box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.1);
 }
 
+.slide__card--small {
+  padding: 8px !important;
+}
+
 .slide__card__image {
   width: 100%;
   background-size: cover;

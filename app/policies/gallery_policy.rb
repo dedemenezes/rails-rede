@@ -26,6 +26,10 @@ class GalleryPolicy < ApplicationPolicy
     true
   end
 
+  def videos?
+    true
+  end
+
   def update?
     user.admin?
   end

@@ -1,0 +1,13 @@
+<%= link_to "https://rede-observacao-prod.s3.us-east-2.amazonaws.com/#{doc.key}",
+                data: {
+                        pswp_src: "https://rede-observacao-prod.s3.us-east-2.amazonaws.com/#{photo.key}",
+                        pswp_width: photo.blob.metadata[:width],
+                        pswp_height: photo.blob.metadata[:height],
+                        pswp_srcset: "https://rede-observacao-prod.s3.us-east-2.amazonaws.com/#{photo.key}"
+                      },
+                      target: "_blank" do %>
+  <div class="card__index text-primary">
+    <div style="background: url('https://rede-observacao-prod.s3.us-east-2.amazonaws.com/<%= photo.key %>');background-size: cover;background-position: top; border-radius: 10px;"></div>
+    <small class="ps-2"><em><%= doc.filename %></em></small>
+  </div>
+<% end %>

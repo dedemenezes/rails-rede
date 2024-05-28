@@ -1,0 +1,25 @@
+<div class="slide__card slide__card--small">
+  <div class="video_wrapper pb-0"  data-bs-toggle="modal" data-bs-target="#exampleModal" >
+    <img src="https://img.youtube.com/vi/<%= video.yt_id %>/hqdefault.jpg" alt="">
+  </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-fullscreen">
+    <div class="modal-content">
+      <div class="modal-body">
+        <iframe frameborder="0"
+                                    width="100%"
+                                    height="100%"
+                                    src='<%= Project::YOUTUBE_BASE_URL %><%= video.yt_id %>?rel=0'
+                                    allowfullscreen
+                                    class="" >
+        </iframe>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -51,12 +51,17 @@
       <ul class="list-group border-0 mb-0">
         <li class="list-group-item border-0">
           <%= link_to documentos_dashboard_albums_path do %>
-            <%= icon('fa-solid', 'folder-tree', class: 'me-2') %> Documentos
+            <%= icon('fa-solid', 'file', class: 'me-2') %> Documentos
           <% end %>
         </li>
         <li class="list-group-item border-0">
           <%= link_to imagens_dashboard_albums_path do %>
-            <%= icon('fa-solid', 'folder-tree', class: 'me-2') %> Imagens
+            <%= icon('fa-solid', 'image', class: 'me-2') %> Imagens
+          <% end %>
+        </li>
+        <li class="list-group-item border-0">
+          <%= link_to videos_dashboard_albums_path do %>
+            <%= icon('fa-solid', 'video', class: 'me-2') %> Videos
           <% end %>
         </li>
       </ul>

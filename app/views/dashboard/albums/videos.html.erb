@@ -1,0 +1,14 @@
+<% if true %>
+  <div class="dashboard__list px-3">
+    <table class='table'>
+      <thead>
+        <tr>
+          <%= render 'dashboard/shared/index/table_header' %>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render 'dashboard/shared/index/table_body', collection: @albums %>
+      </tbody>
+    </table>
+  </div>
+<% end %>
