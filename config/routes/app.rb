@@ -6,6 +6,11 @@ get '/mapa-de-conflitos', to: 'observatories#mapa', as: :mapa_observatories
 # delete 'attachments/:id', to: 'attachments#destroy', as: :destroy_attachment
 resources :observatories, only: %i[index show], path: "observatorios", param: :name
 
+
+namespace :acervos do
+  resources :videos, only: :index, path: 'producoes_audiovisuais'
+end
+
 resources :articles, only: %i[show index edit update], path: 'noticias', param: :header
 resources :galleries, only: %i[index show], path: 'acervos', param: :name do
   collection do
