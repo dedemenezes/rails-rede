@@ -53,3 +53,23 @@
   letter-spacing: 0.5px;
   font-feature-settings: 'pnum' on, 'lnum' on;
 }
+
+centered-div {
+  display: block;
+  text-align: center;
+}
+
+right-div {
+  display: block;
+  text-align: end;
+}
+
+justified-div {
+  display: block;
+  text-align: justify;
+}
+
+left-div {
+  display: block;
+  text-align: start;
+}

@@ -27,6 +27,7 @@ class GalleriesController < ApplicationController
         add_breadcrumb "#{@gallery.name} (Videos)", gallery_path(@gallery), current: true
       end
     end
+
     authorize @gallery
   end
 

@@ -28,5 +28,19 @@ module RailsRede
     config.i18n.default_locale = :'pt-BR'
 
     config.active_storage.variant_processor = :mini_magick
+
+    config.after_initialize do
+      ActionText::ContentHelper.allowed_attributes.add 'style'
+      ActionText::ContentHelper.allowed_attributes.add 'controls'
+      ActionText::ContentHelper.allowed_attributes.add 'poster'
+
+      # ActionText::ContentHelper.allowed_tags.add 'video'
+      # ActionText::ContentHelper.allowed_tags.add 'source'
+      ActionText::ContentHelper.allowed_tags.add 'centered-div'
+      ActionText::ContentHelper.allowed_tags.add 'right-div'
+      ActionText::ContentHelper.allowed_tags.add 'justified-div'
+      ActionText::ContentHelper.allowed_tags.add 'left-div'
+    end
   end
+
 end

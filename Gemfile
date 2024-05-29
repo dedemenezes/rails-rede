@@ -97,6 +97,9 @@ group :development do
 
   gem 'letter_opener'
   gem 'bullet'
+
+  # Check most updated files
+  gem 'churn'
 end
 
 group :test do

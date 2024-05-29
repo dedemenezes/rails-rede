@@ -47,4 +47,7 @@ app/services/tilesets/update_tileset_recipe.rb
 /lib/imagens/*
 /figma_htmlgenerator-(1)/*
 figma_htmlgenerator/*
+
+# ignore client secret for google youtube api
+client_secret.json
 riffling.rb
