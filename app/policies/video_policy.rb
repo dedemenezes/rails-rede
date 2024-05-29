@@ -7,7 +7,6 @@ class VideoPolicy < Dashboard::UserPolicy
   end
 
   def show?
-    true
+    false
   end
-
 end

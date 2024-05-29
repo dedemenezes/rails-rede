@@ -1,4 +1,8 @@
-class Dashboard::VideosController < ApplicationController
+class Dashboard::VideosController < DashboardController
+  def index
+    @videos = Video.all
+  end
+
   def destroy
     @video = Video.find(params[:id])
     authorize @video

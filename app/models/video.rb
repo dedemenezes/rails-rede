@@ -8,7 +8,7 @@ class Video < ApplicationRecord
   before_validation :strip_url, :set_yt_id
 
   def self.dashboard_headers
-    [:id, :url, :name, :gallery, :published, :updated_at]
+    %w(id url name published updated_at)
   end
 
   private
