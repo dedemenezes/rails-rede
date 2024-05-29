@@ -3,7 +3,6 @@ class Video < ApplicationRecord
 
   validates :url, presence: true
   validates :url, format: { with: URL_REGEX }
-  belongs_to :album
 
   before_validation :strip_url, :set_yt_id
 
