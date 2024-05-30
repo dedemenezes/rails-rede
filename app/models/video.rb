@@ -1,10 +1,13 @@
 class Video < ApplicationRecord
   URL_REGEX = %r{\A((?<protocol>https?):\/\/(?<www>w{3})?|w{3})\.?(?<host>\w+\.\w{2,3}(\.\w{2})?)(?<path>\/(?<_>watch\?v=)?(?<video_id>\w+).*)?\z}
 
-  validates :url, presence: true
+  validates :url, :name, presence: true
+  validates :name, length: { minimum: 3 }, format: { with: /\A(\w+\s*)+\z/, message: 'só pode conter caracteres de palavra (letra, número, sublinhado)' }
   validates :url, format: { with: URL_REGEX }
 
   before_validation :strip_url, :set_yt_id
+
+  scope :published, -> { where(published: true) }
 
   def self.dashboard_headers
     %w(id url name published updated_at)

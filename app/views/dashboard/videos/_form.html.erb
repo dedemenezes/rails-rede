@@ -1,5 +1,13 @@
 <%= simple_form_for [:dashboard, video] do |f| %>
   <%= f.input :name %>
   <%= f.input :url %>
+  <%= f.input :published %>
+  <%#= f.input :published,
+              hint: '',
+              input_html: { class: "tag-selector tag-selector--large", data: { action: 'change->publish-checkbox#updateHint', publish_checkbox_target: 'input'  } },
+              wrapper_html: { class: 'tag-item mt-3 ps-0', data: { controller: 'publish-checkbox' } },
+              label_html: { data: { publish_checkbox_target: 'label' } } %>
+
+
   <%= render 'dashboard/shared/form/submit_cancel', form: f,  element: video %>
 <% end %>

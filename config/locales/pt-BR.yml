@@ -9,6 +9,9 @@ pt-BR:
   dropdown_action: "Ação"
   activerecord:
     models:
+      video:
+        one: 'Vídeo'
+        other: 'Vídeos'
       tileset:
         one: 'Tileset'
         other: 'Tilesets'
@@ -49,6 +52,9 @@ pt-BR:
         one: "Album"
         other: "Albums"
     attributes:
+      video:
+        name: 'Nome'
+        published: 'Publicado'
       observatory:
         name: "Nome"
         email: "E-mail"
