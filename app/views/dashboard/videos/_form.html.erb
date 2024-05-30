@@ -1,0 +1,5 @@
+<%= simple_form_for [:dashboard, video] do |f| %>
+  <%= f.input :name %>
+  <%= f.input :url %>
+  <%= render 'dashboard/shared/form/submit_cancel', form: f,  element: video %>
+<% end %>
