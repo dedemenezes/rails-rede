@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <% @videos.each do |video| %>
-      <div class="col-4 mb-3 d-flex align-items-stretch">
+      <div class="col-12 col-lg-4 mb-3 d-flex align-items-stretch">
         <div class="slide__card slide__card--small rounded">
           <div class="video_wrapper h-100 pb-0  d-flex flex-column" data-bs-toggle="modal" data-bs-target="#exampleModal">
             <img class="modal-trigger" src="https://img.youtube.com/vi/<%= video.yt_id %>/hqdefault.jpg" width="100%" alt="">
