@@ -1,4 +1,5 @@
 class Dashboard::VideosController < DashboardController
+  skip_before_action :add_default_dashboard_breadcrumb
   before_action :set_video, only: %i[show edit destroy update]
 
   def index
