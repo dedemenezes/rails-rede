@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row">
+    <% @videos.each do |video| %>
+      <div class="col-4 mb-3 d-flex align-items-stretch">
+        <div class="slide__card slide__card--small rounded">
+          <div class="video_wrapper h-100 pb-0  d-flex flex-column" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <img class="modal-trigger" src="https://img.youtube.com/vi/<%= video.yt_id %>/hqdefault.jpg" width="100%" alt="">
+            <div class="video__content d-flex flex-column flex-grow-1">
+              <p class="subtitles__video flex-grow-1 mt-3 mb-2"><%= video.name %></p>
+              <p class="slide__card__text text-muted mb-0">Mussum Ipsum, cacilds vidis litro abertis. A ordem dos tratores não altera o pão duris. Mé faiz elementum girarzis, nisi eros vermeio. Negão é teu passadis, eu sou faxa pretis.</p>
+            </div>
+          </div>
+        </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+              <div class="modal-body">
+                <iframe frameborder="0"
+                                          width="100%"
+                                          height="100%"
+                                          src='<%= Project::YOUTUBE_BASE_URL %><%= video.yt_id %>?rel=0'
+                                          allowfullscreen
+                                          class="" >
+                </iframe>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

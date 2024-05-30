@@ -9,9 +9,9 @@ export default class extends Controller {
 
   updateHint(event = null) {
     if (this.inputTarget.checked) {
-      this.labelTarget.innerText = "Publicar!"
+      this.labelTarget.innerText = "Publicar ✅"
     } else {
-      this.labelTarget.innerText = "Publicar?"
+      this.labelTarget.innerText = "Publicar ❌"
     }
   }
 }

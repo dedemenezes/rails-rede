@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_05_23_133249) do
+ActiveRecord::Schema[7.0].define(version: 2024_05_29_234933) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -262,10 +262,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_23_133249) do
     t.string "yt_username"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "album_id", null: false
     t.boolean "published", default: false, null: false
     t.string "name"
-    t.index ["album_id"], name: "index_videos_on_album_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
@@ -287,5 +285,4 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_23_133249) do
   add_foreign_key "observatory_priority_subjects", "observatories"
   add_foreign_key "observatory_priority_subjects", "priority_types"
   add_foreign_key "taggings", "tags"
-  add_foreign_key "videos", "albums"
 end
