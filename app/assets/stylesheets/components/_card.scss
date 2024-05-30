@@ -86,6 +86,13 @@
 
 }
 
+.observatory__card--video {
+  height: 440px;
+  img {
+    height: 100% !important;
+  }
+}
+
 .observatory__card--image {
   background-size: cover;
 }
@@ -583,9 +590,16 @@ small.tag, small > .tag {
   // border-radius: 10px;
   box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.1);
 }
+.slide__card__text {
+  opacity: .7;
+}
 
 .slide__card--small {
   padding: 8px !important;
+}
+
+.slide__card--md {
+  padding: 16px !important;
 }
 
 .slide__card__image {

@@ -57,6 +57,9 @@ input[type="checkbox"]:checked {
 .tag-item {
   display: inline-block;
   padding-left: 0;
+  .form-check {
+    padding-left: 0 !important;
+  }
 }
 
 .tag-selector {
