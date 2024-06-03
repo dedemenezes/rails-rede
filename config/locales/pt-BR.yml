@@ -55,6 +55,7 @@ pt-BR:
       video:
         name: 'Nome'
         published: 'Publicado'
+        description: 'Descrição'
       observatory:
         name: "Nome"
         email: "E-mail"
