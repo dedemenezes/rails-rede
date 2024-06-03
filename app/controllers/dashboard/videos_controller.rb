@@ -8,6 +8,7 @@ class Dashboard::VideosController < DashboardController
 
   def new
     @video = Video.new
+    logger.debug("new video is: #{@video.inspect}")
   end
 
   def create
@@ -20,6 +21,7 @@ class Dashboard::VideosController < DashboardController
   end
 
   def edit
+    logger.debug("new video is: #{@video.inspect}")
   end
 
   def update
