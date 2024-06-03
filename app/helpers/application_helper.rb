@@ -66,7 +66,8 @@ module ApplicationHelper
   end
 
   def route_for_edit_dashboard(element)
-    path = "#{element.model_name.plural}/#{element.id}/edit"
+    param = element.is_a?(Article) ? element.header : element.id
+    path = "#{element.model_name.plural}/#{param}/edit"
     return path unless element.is_a? Album
 
     path.gsub(%r{^albums/}, '')

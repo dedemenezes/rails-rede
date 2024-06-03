@@ -1,6 +1,5 @@
 class ArticlesController < ApplicationController
   skip_before_action :authenticate_user!
-  before_action :set_article, only: %i[show]
 
   def index
     @articles = policy_scope(Article)
@@ -23,24 +22,13 @@ class ArticlesController < ApplicationController
   end
 
   def show
+    @article = Article.find_by(header: params[:header])
     observatory = @article.observatory
     methodology = @article.methodology
     project = @article.project
     @writer = observatory || methodology || project
-    set_article
     authorize @article
     add_breadcrumb @article.model_name.collection.capitalize, '#'
     add_breadcrumb "article_#{@article.id}", '#'
-  end
-
-  private
-
-  def set_article
-    query = params[:id].present? ? params[:id] : params[:header]
-    if query.match?(/[a-zA-Z]+/)
-      @article = Article.find_by(header: query)
-    else
-      @article = Article.find(query)
-    end
   end
 end

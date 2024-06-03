@@ -3,7 +3,7 @@ namespace :dashboard do
   resources :conflict_types
   resources :priority_types
   resources :tags, except: :show
-  resources :articles
+  resources :articles, param: :header
   resources :observatories
   resources :categories
   resources :methodologies
