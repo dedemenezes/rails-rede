@@ -1,8 +1,8 @@
 class Album < ApplicationRecord
-  CATEGORIES = ['document', 'video', 'photo']
+  CATEGORIES = [['document', 'documento'], ['photo', 'foto']]
 
   validates :name, presence: true, uniqueness: { scope: :gallery_id }
-  validates :category, inclusion: { in: CATEGORIES }
+  validates :category, inclusion: { in: CATEGORIES.map(&:first) }
   # validate :category_must_match_attachment
 
   belongs_to :gallery
@@ -11,8 +11,6 @@ class Album < ApplicationRecord
   has_one_attached :banner
   has_many :taggings, as: :taggable
   has_many :tags, through: :taggings
-  has_many :videos, dependent: :destroy
-  accepts_nested_attributes_for :videos, reject_if: proc { |attributes| attributes['url'].blank? }
 
   scope :only_published_events, -> { where(is_event: true, published: true) }
   # scope :with_documents, -> { joins(:documents_attachments).distinct }

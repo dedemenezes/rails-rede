@@ -38,7 +38,6 @@ module Dashboard
 
     def new
       @album = Album.new
-      @album.videos.build
     end
 
     def create
@@ -119,7 +118,6 @@ module Dashboard
               :category,
               photos: [],
               documents: [],
-              videos_attributes: [:id, :url]
             )
     end
 

@@ -8,12 +8,10 @@ export default class extends Controller {
     minimizeIcon: String
   }
   connect() {
-    console.log('Fullscreen ready!')
   }
 
   toggle() {
     if (!document.fullscreenElement) {
-      console.log(this.element)
       this.mapContainerTarget.requestFullscreen();
       this.buttonTarget.innerHTML = `<i class="fa-solid fa-${this.minimizeIconValue}"></i>`
     } else if (document.fullscreenElement) {

@@ -10,7 +10,7 @@ class Video < ApplicationRecord
   scope :published, -> { where(published: true) }
 
   def self.dashboard_headers
-    %w(id thumbnail url name published updated_at)
+    %w(id thumbnail url name description published updated_at)
   end
 
   def thumbnail

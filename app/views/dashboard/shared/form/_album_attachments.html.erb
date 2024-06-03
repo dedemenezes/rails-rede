@@ -1,29 +1,17 @@
 
 <div data-controller="toggle-on-change">
 
-  <div class="" data-controller="add-input">
+  <div class="">
     <%= form.input :category,
                  collection: Album::CATEGORIES,
+                 label_method: :second,
+                 value_method: :first,
                  input_html: {
                   data: {
                     action: 'change->toggle-on-change#update',
                     toggle_on_change_target: 'category'
                   }
                 } %>
-
-
-    <div class="d-none"  data-toggle-on-change-target="video">
-      <%= form.simple_fields_for :videos do |form_video| %>
-        <%= form_video.input :url,
-                                input_html: { data: { add_input_target: 'input' }},
-                                wrapper_html: {data: { add_input_target: 'wrapper' }} %>
-      <% end %>
-      <div class="d-flex justify-content-end align-items-center">
-        <div class="btn btn-rede-primary" data-add-input-target="button" data-action="click->add-input#new">
-          <span>Adicionar URL </span><%= icon('fa-solid', 'plus') %>
-        </div>
-      </div>
-    </div>
   </div>
 
   <div class="attachment-inputs" data-controller="toggle-element">
