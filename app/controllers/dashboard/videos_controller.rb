@@ -47,6 +47,6 @@ class Dashboard::VideosController < DashboardController
   end
 
   def video_params
-    params.require(:video).permit(:name, :url, :published)
+    params.require(:video).permit(:name, :url, :published, :description)
   end
 end

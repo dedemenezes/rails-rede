@@ -118,7 +118,6 @@ module Dashboard
               :category,
               photos: [],
               documents: [],
-              videos_attributes: [:id, :url]
             )
     end
 
