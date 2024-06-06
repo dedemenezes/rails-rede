@@ -102,6 +102,3 @@ application.register("tom-select-create-option", TomSelectCreateOptionController
 
 import TooltipController from "./tooltip_controller"
 application.register("tooltip", TooltipController)
-
-import TrixController from "./trix_controller"
-application.register("trix", TrixController)
