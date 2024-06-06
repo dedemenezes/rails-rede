@@ -24,7 +24,7 @@ Trix.config.blockAttributes.textAlignLeft = {
 document.addEventListener('trix-initialize', updateToolbars, { once: true });
 console.log('EVENT LISTERNER BINDED @ init_tri.js');
 
-function updateToolbars(event) {
+const updateToolbars = (event) => {
   console.log('init TRIX');
   const toolbars = document.querySelectorAll('trix-toolbar');
   console.log(toolbars)
@@ -49,11 +49,7 @@ const textAlignButtons = () => {
             </span>`
   }
 
-/**
- * This is the default Trix toolbar. Feel free to change / manipulate it how you would like.
- * @see https://github.com/basecamp/trix/blob/main/src/trix/config/toolbar.coffee
- */
-function toolbarDefaultHTML() {
+const toolbarDefaultHTML = () => {
   const {lang} = Trix.config;
   return `<div class="trix-button-row">
     <span class="trix-button-group trix-button-group--text-tools" data-trix-button-group="text-tools">
