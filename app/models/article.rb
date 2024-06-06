@@ -38,6 +38,10 @@ class Article < ApplicationRecord
     includes(:project, :observatory, :methodology).all.select { |a| a.writer == name }
   end
 
+  def oldest_two_tags
+    taggings.order(created_at: :asc).first(2).map(&:tag)
+  end
+
   def writer
     observatory&.name || project&.name || methodology&.name
   end
