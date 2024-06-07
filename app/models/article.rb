@@ -19,6 +19,7 @@ class Article < ApplicationRecord
   scope :only_published, -> { where(published: true).order(featured: 'DESC') }
   scope :all_but_featured, -> { only_published.where.not(featured: true).order(updated_at: :desc) }
 
+  delegate :visble_tags, to: :taggings
   # acts_as_taggable_on :tags
 
   def self.dashboard_headers

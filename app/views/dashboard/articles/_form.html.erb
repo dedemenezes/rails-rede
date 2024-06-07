@@ -18,6 +18,7 @@
       <div class="row">
         <div class="col-12">
           <%= f.association :tags,
+                      hint: 'A ordem é importante. Use as teclas de seta ← e → para mover o cursor entre os itens.',
                       input_html: {
                         multiple: true,
                         data: { controller: 'tom-select', tom_select_max_item_value: 20 }
