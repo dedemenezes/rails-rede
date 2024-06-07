@@ -6,7 +6,8 @@ class ArticlesController < ApplicationController
     @tags = Tag.all.order(name: :asc)
     if params[:search].present?
       tag_ids = params[:search].values.map { _1.split('_').last }
-      @articles = @articles.where(taggings: { tag_id: tag_ids })
+      @articles = @articles.includes(:taggings)
+                           .where(taggings: { tag_id: tag_ids })
                            .order(updated_at: :desc)
       @featured = @articles.limit(1).first
       @articles = @articles.offset(1)
