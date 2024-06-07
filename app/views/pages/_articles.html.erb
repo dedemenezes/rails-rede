@@ -33,7 +33,7 @@
                   <div class="article__info px-3 py-2 py-lg-3 pe-lg-3">
                     <div class="info__header d-flex align-items-center gap-3 mb-2">
                       <small><%= article.created_at.strftime('%d.%m.%Y') %></small>
-                      <% article.taggings.visible_tags.each_with_index do |tagging, index| %>
+                      <% article.visible_tags.each_with_index do |tagging, index| %>
                         <small class="tag"><%= tagging.tag.name %></small>
                       <% end %>
                     </div>
