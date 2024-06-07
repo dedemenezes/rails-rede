@@ -10,7 +10,7 @@ export default class extends Controller {
 
   connect() {
     new TomSelect(this.element, {
-      plugins: ['remove_button'],
+      plugins: ['remove_button', 'caret_position'],
       hideSelected: true,
       loadingClass: 'tag__select',
       maxItems: this.maxItemValue,

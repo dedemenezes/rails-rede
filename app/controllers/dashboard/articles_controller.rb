@@ -28,9 +28,6 @@ module Dashboard
     end
 
     def update
-      # MUDAR URGENTE
-      # @article = Article.find_by_header(params[:header])
-      # raise
       ArticleWriter.set_article_writer(params, @article)
       SetTags.tagging(@article, params)
       if @article.update(article_params)
