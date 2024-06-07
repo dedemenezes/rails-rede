@@ -8,6 +8,9 @@ Bundler.require(*Rails.groups)
 
 module RailsRede
   class Application < Rails::Application
+    config.autoload_paths << "#{root}/app/views"
+    config.autoload_paths << "#{root}/app/views/layouts"
+    config.autoload_paths << "#{root}/app/views/components"
     config.generators do |generate|
       generate.assets false
       generate.helper false

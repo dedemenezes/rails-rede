@@ -2,7 +2,7 @@ module Dashboard
   class ArticlesController < ApplicationController
     layout 'dashboard'
 
-    before_action :set_article, only: %i[edit destroy]
+    before_action :set_article, only: %i[edit update destroy]
 
     def index
       @articles = policy_scope(Article,
@@ -28,15 +28,12 @@ module Dashboard
     end
 
     def update
-      # MUDAR URGENTE
-      @article = Article.find_by(header: params[:id])
-      # raise
       ArticleWriter.set_article_writer(params, @article)
       SetTags.tagging(@article, params)
       if @article.update(article_params)
         redirect_to dashboard_articles_path
       else
-        render :new, status: :unprocessable_entity
+        render :edit, status: :unprocessable_entity
       end
     end
 
@@ -48,11 +45,7 @@ module Dashboard
     private
 
     def set_article
-      if params[:id].match?(/[a-zA-Z]+/)
-        @article = Article.find_by(header: params[:id]) if @article.nil?
-      else
-        @article = Article.find(params[:id])
-      end
+      @article = Article.find_by(header: params[:header])
     end
 
     def article_params

@@ -9,10 +9,7 @@
       <div class="collapse navbar-collapse navbar-mobile" id="navbarText" data-navbar-toggler-target='menu'>
         <ul class="navbar-nav mx-auto" data-navbar-toggler-target="menuList">
           <li class="nav-item">
-            <%= link_to "Home", root_path, class: "nav-link #{tab_active?('pages' , action: 'home')}" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Sobre nós", about_us_path, class: "nav-link #{tab_active?('pages' , action: 'about_us')}"%>
+            <%= link_to "Sobre", about_us_path, class: "nav-link #{tab_active?('pages' , action: 'about_us')}"%>
           </li>
           <li class="nav-item">
             <%= link_to "Mapa", mapa_observatories_path, class: "nav-link #{tab_active?('observatories' , action: 'mapa')}" %>

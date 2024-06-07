@@ -4,3 +4,4 @@ import "./controllers"
 import "bootstrap"
 import "trix"
 import "@rails/actiontext"
+import './packs/init_trix'
