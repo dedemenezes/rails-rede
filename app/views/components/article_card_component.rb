@@ -28,8 +28,8 @@ class ArticleCardComponent < ApplicationComponent
           small { article.updated_at.strftime("%d.%m.%Y") }
           # <small>= article.tags.first.name</small>
           div(class: "home_article_tags gap-2") do
-            article.oldest_two_tags.each_with_index do |tag, index|
-              render TagComponent.new(name: tag.name)
+            article.visible_tags.each_with_index do |tagging, index|
+              render TagComponent.new(name: tagging.tag.name)
             end
           end
         end

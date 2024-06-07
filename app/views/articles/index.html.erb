@@ -104,7 +104,8 @@
         <div class="row mb-3">
             <% @articles.each do |article| %>
               <div class="col-12 col-sm-6 col-lg-4 article--list mb-4">
-                  <%= render 'article_card', article: article, highlight: false, min_height: 'full-height' %>
+                <%= render ArticleCardComponent.new(article: article, highlight: false, min_height: 'full-height') %>
+                  <%#= render 'article_card', article: article, highlight: false, min_height: 'full-height' %>
               </div>
             <% end %>
         </div>

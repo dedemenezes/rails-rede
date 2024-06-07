@@ -29,8 +29,8 @@ module Card
                         article_path(article)
               end
               div(class: 'flex-grow-1') do
-                article.oldest_two_tags.each_with_index do |tag, index|
-                  render TagComponent.new(name: tag.name)
+                article.visible_tags.each_with_index do |tagging, index|
+                  render TagComponent.new(name: tagging.tag.name)
                 end
               end
             end
