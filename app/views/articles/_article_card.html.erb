@@ -9,8 +9,8 @@
         <small><%= article.updated_at.strftime('%d.%m.%Y') %></small>
         <%# <small>= article.tags.first.name</small> %>
         <div class="home_article_tags gap-2">
-          <% article.visble_tags.each_with_index do |tag, index| %>
-              <small class="tag"><%= tag.name %></small>
+          <% article.taggings.visible_tags.each_with_index do |tagging, index| %>
+              <small class="tag"><%= tagging.tag.name %></small>
             <%#= link_to articles_path(tags: [tag.name]) do %>
             <%# end %>
           <% end %>

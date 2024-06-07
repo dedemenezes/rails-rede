@@ -2,7 +2,7 @@ class ArticlesController < ApplicationController
   skip_before_action :authenticate_user!
 
   def index
-    @articles = policy_scope(Article).includes(:tags, banner_attachment: :blob)
+    @articles = policy_scope(Article).includes(banner_attachment: :blob)
     @tags = Tag.all.order(name: :asc)
     if params[:search].present?
       tag_ids = params[:search].values.map { _1.split('_').last }
