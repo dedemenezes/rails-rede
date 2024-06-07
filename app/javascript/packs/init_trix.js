@@ -1,56 +1,41 @@
 import Trix from 'trix';
 
-window.Trix = Trix; // Don't need to bind to the window, but useful for debugging.
-Trix.config.toolbar.getDefaultHTML = toolbarDefaultHTML;
+window.Trix = Trix;
+const { lang } = Trix.config;
 
-Trix.config.blockAttributes.textAlignCenter = {
-  tagName: 'centered-div'
-}
-Trix.config.blockAttributes.textAlignRight = {
-  tagName: 'right-div'
-}
+const initTrix = () => {
+  Trix.config.toolbar.getDefaultHTML = getDefaultHTML.bind(this);
+  addTextAlignCenterButtonConfig();
+  addTextAlignRightButtonConfig();
+  addTextAlignJustifyButtonConfig();
+  addTextAlignLeftButtonConfig();
+};
 
-Trix.config.blockAttributes.textAlignJustify = {
-  tagName: 'justified-div'
-}
+const addTextAlignCenterButtonConfig = () => {
+  Trix.config.blockAttributes.textAlignCenter = {
+    tagName: 'centered-div'
+  };
+};
 
-Trix.config.blockAttributes.textAlignLeft = {
-  tagName: 'left-div'
-}
+const addTextAlignRightButtonConfig = () => {
+  Trix.config.blockAttributes.textAlignRight = {
+    tagName: 'right-div'
+  };
+};
 
-// trix-before-initialize runs too early.
-// We only need to do this once. Everything after initialize will get the
-// defaultHTML() call automatically.
-document.addEventListener('trix-initialize', updateToolbars, { once: true });
-console.log('EVENT LISTERNER BINDED @ init_tri.js');
+const addTextAlignJustifyButtonConfig = () => {
+  Trix.config.blockAttributes.textAlignJustify = {
+    tagName: 'justified-div'
+  };
+};
 
-const updateToolbars = (event) => {
-  console.log('init TRIX');
-  const toolbars = document.querySelectorAll('trix-toolbar');
-  console.log(toolbars)
-  const html = Trix.config.toolbar.getDefaultHTML();
-  toolbars.forEach((toolbar) => (toolbar.innerHTML = html));
-}
+const addTextAlignLeftButtonConfig = () => {
+  Trix.config.blockAttributes.textAlignLeft = {
+    tagName: 'left-div'
+  };
+};
 
-const textAlignButtons = () => {
-    return `<span class="trix-button-group trix-button-group--align-tools" data-trix-button-group="align-tools">
-              <button type="button" class="trix-button" data-trix-attribute="textAlignLeft">
-                <span class="icon"><i class="fas fa-align-left fa-lg"></i></span>
-              </button>
-              <button type="button" class="trix-button" data-trix-attribute="textAlignCenter">
-                <span class="icon"><i class="fas fa-align-center fa-lg"></i></span>
-              </button>
-              <button type="button" class="trix-button" data-trix-attribute="textAlignRight">
-                <span class="icon"><i class="fas fa-align-right fa-lg"></i></span>
-              </button>
-              <button type="button" class="trix-button" data-trix-attribute="textAlignJustify">
-                <span class="icon"><i class="fas fa-align-justify fa-lg"></i></span>
-              </button>
-            </span>`
-  }
-
-const toolbarDefaultHTML = () => {
-  const {lang} = Trix.config;
+const getDefaultHTML = () => {
   return `<div class="trix-button-row">
     <span class="trix-button-group trix-button-group--text-tools" data-trix-button-group="text-tools">
       <button type="button" class="trix-button trix-button--icon trix-button--icon-bold" data-trix-attribute="bold" data-trix-key="b" title="${lang.bold}" tabindex="-1">${lang.bold}</button>
@@ -87,5 +72,27 @@ const toolbarDefaultHTML = () => {
         </div>
       </div>
     </div>
-  </div>`
-}
+  </div>`;
+};
+
+const textAlignButtons = () => {
+  return `<span class="trix-button-group trix-button-group--align-tools" data-trix-button-group="align-tools">
+            <button type="button" class="trix-button" data-trix-attribute="textAlignLeft">
+              <span class="icon"><i class="fas fa-align-left fa-lg"></i></span>
+            </button>
+            <button type="button" class="trix-button" data-trix-attribute="textAlignCenter">
+              <span class="icon"><i class="fas fa-align-center fa-lg"></i></span>
+            </button>
+            <button type="button" class="trix-button" data-trix-attribute="textAlignRight">
+              <span class="icon"><i class="fas fa-align-right fa-lg"></i></span>
+            </button>
+            <button type="button" class="trix-button" data-trix-attribute="textAlignJustify">
+              <span class="icon"><i class="fas fa-align-justify fa-lg"></i></span>
+            </button>
+          </span>`;
+};
+
+
+document.addEventListener('trix-before-initialize', () => {
+  initTrix();
+});
