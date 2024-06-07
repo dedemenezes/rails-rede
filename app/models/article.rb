@@ -39,7 +39,7 @@ class Article < ApplicationRecord
   end
 
   def oldest_two_tags
-    taggings.order(created_at: :asc).first(2).map(&:tag)
+    tags.sample(2)
   end
 
   def writer
