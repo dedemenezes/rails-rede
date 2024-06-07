@@ -30,7 +30,7 @@ module Card
               end
               div(class: 'flex-grow-1') do
                 article.visible_tags.each do |tagging|
-                  render TagComponent.new(name: tagging.tag.name)
+                  render TagComponent.new(tag: tagging.tag)
                 end
               end
             end

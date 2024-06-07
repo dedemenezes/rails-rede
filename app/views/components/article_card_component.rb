@@ -29,7 +29,7 @@ class ArticleCardComponent < ApplicationComponent
           # <small>= article.tags.first.name</small>
           div(class: "home_article_tags gap-2") do
             article.visible_tags.each do |tagging|
-              render TagComponent.new(name: tagging.tag.name)
+              render TagComponent.new(tag: tagging.tag)
             end
           end
         end

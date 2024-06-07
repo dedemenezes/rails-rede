@@ -1,15 +1,16 @@
 # frozen_string_literal: true
 
 class TagComponent < ApplicationComponent
-  attr_reader :name
+  attr_reader :tag
 
-  def initialize(name:)
-    @name = name
+  def initialize(tag:)
+    @tag = tag
   end
 
   def view_template
-    a(href: articles_path(tags: [name])) do
-      small(class: 'tag') { name }
+    # "search"=>{}
+    a(href: articles_path(search: { tag.name => tag.id })) do
+      small(class: 'tag') { tag.name }
     end
   end
 end
