@@ -38,7 +38,6 @@ module Dashboard
     end
 
     def destroy
-      # raise
       @article = Article.find(params[:header])
       @article.destroy
       redirect_to dashboard_articles_path, notice: 'Noticia destruída'
