@@ -1,4 +1,7 @@
 <%= simple_form_for [:dashboard, @priority_subject] do |f| %>
-  <%= f.input :name, label: 'Nome' %>
+      <%= f.input :name,
+                  wrapper_html: { class: 'input-group' },
+                  label_html: { class: 'input-group-text mb-0' }
+      %>
   <%= render 'dashboard/shared/form/submit_cancel', form: f, element: @priority_subject %>
 <% end %>

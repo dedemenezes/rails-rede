@@ -13,13 +13,36 @@
                         turbo: false
                       }
                     }) do |f| %>
-  <%= f.input :published %>
   <%= f.input :name %>
-  <%= f.association :gallery, value: album.gallery %>
+  <%= f.association :gallery,
+                    value: album.gallery,
+                    wrapper_html: { class: 'input-group mb-3' },
+                    label_html: { class: 'input-group-text mb-0' }
+  %>
   <div data-controller="display-photo-input">
-    <%= f.input :is_event, label: 'Foi uma ação', input_html: { data: { display_photo_input_target: 'checkbox', action: 'change->display-photo-input#displayInput' } } %>
-    <%= f.input :event_date, as: :string, input_html: { data: { controller: 'flatpickr' } },  wrapper_html: { class: 'box--anim box--hidden d-block', data: { display_photo_input_target: 'input' } } %>
-    <%= f.association :tags, input_html: { data: { controller: 'tom-select-create-option' } },  wrapper_html: { class: 'box--anim box--hidden d-block', data: { display_photo_input_target: 'input' } } %>
+    <%= f.input :is_event,
+                label: 'Foi uma ação',
+                wrapper_html: {
+                  class: 'tag-item'
+                },
+                input_html: {
+                  class: 'ps-0 tag-selector tag-selector--large',
+                  data: {
+                    display_photo_input_target: 'checkbox',
+                    action: 'change->display-photo-input#displayInput'
+                  }
+                } %>
+
+    <%= f.input :event_date,
+                as: :string,
+                input_html: { data: { controller: 'flatpickr' } },
+                wrapper_html: { class: 'box--anim box--hidden',
+                data: { display_photo_input_target: 'input' } } %>
+    <%= f.association :tags,
+                input_html: { class: 'form-control', data: { controller: 'tom-select-create-option' } },
+                label_html: { class: 'input-group-text mb-0'},
+                wrapper_html: { class: 'box--anim box--hidden input-group',
+                data: { display_photo_input_target: 'input' } } %>
   </div>
 
 
@@ -28,6 +51,12 @@
 
     <%= render 'dashboard/shared/form/album_attachments', form: f, element: album %>
 
+    <%= f.input :published,
+                hint: '',
+                input_html: { class: "tag-selector tag-selector--large", data: { action: 'change->publish-checkbox#updateHint', publish_checkbox_target: 'input'  } },
+                wrapper_html: { class: 'tag-item mt-3', data: { controller: 'publish-checkbox', publish_checkbox_text_value: 'Publicar' } },
+                label_html: { data: { publish_checkbox_target: 'label' } }
+    %>
 
   <%= render 'dashboard/shared/form/submit_cancel', element: album, form: f %>
 <% end %>

@@ -4,6 +4,8 @@
   <div class="">
     <%= form.input :category,
                  collection: Album::CATEGORIES,
+                 label_html: { class: 'input-group-text mb-0'},
+                 wrapper_html: { class: 'input-group' },
                  label_method: :second,
                  value_method: :first,
                  input_html: {

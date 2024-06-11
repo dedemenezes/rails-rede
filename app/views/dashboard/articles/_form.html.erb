@@ -1,26 +1,40 @@
 <%= simple_form_for([:dashboard, article], html: { class: 'row mt-3' }) do |f| %>
   <div class="row">
-    <div class="col-6">
+    <div class="col-12 col-sm-5">
       <div class="row">
         <div class="col-12 col-sm-6">
           <div class="row">
             <div class="col-12">
-              <%= f.input :featured, hint: "#{Article.featured ? 'Substituirá a notícia em destaque' : ''}" %>
+              <%= f.input :featured,
+                          hint: "#{Article.featured ? 'Substituirá a notícia em destaque' : ''}",
+                          input_html: { class: "tag-selector tag-selector--large", data: { action: 'change->publish-checkbox#updateHint', publish_checkbox_target: 'input'  } },
+                          wrapper_html: { class: 'tag-item mt-3', data: { controller: 'publish-checkbox', publish_checkbox_text_value: 'Destaque' } },
+                          label_html: { data: { publish_checkbox_target: 'label' } }
+              %>
             </div>
             <div class="col-12">
-              <%= f.input :published %>
+              <%= f.input :published,
+                          input_html: { class: "tag-selector tag-selector--large", data: { action: 'change->publish-checkbox#updateHint', publish_checkbox_target: 'input'  } },
+                          wrapper_html: { class: 'tag-item mt-3', data: { controller: 'publish-checkbox', publish_checkbox_text_value: 'Publicar' } },
+                          label_html: { data: { publish_checkbox_target: 'label' } }
+
+              %>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="col-12 col-sm-6">
+    <div class="col-12 col-sm-7">
       <div class="row">
         <div class="col-12">
           <%= f.association :tags,
                       hint: 'A ordem é importante. Use as teclas de seta ← e → para mover o cursor entre os itens.',
+                      hint_html: { style: 'width: 100% !important;'},
+                      wrapper_html: { class: 'input-group' },
+                      label_html: { class: 'input-group-text mb-0'},
                       input_html: {
                         multiple: true,
+                        class: 'form-control',
                         data: { controller: 'tom-select', tom_select_max_item_value: 20 }
                       } %>
         </div>
@@ -29,7 +43,7 @@
              data-display-button-on-hover-writer-type-value="<%= article.current_writer_type %>">
           <div class="row">
             <div class="col-12">
-              <p class="mb-2"><%= Article.human_attribute_name(:writer) %></p>
+              <p class="mb-2 input-group-text"><%= Article.human_attribute_name(:writer) %></p>
               <% if article.errors.include?(:writer) %>
                 <p class="invalid-feedback d-block"><%= article.errors[:writer].first  %></p>
               <% end %>
@@ -47,10 +61,11 @@
             </div>
             <div class="col-12">
               <%= f.association :project,
+                                label_html: { class: 'input-group-text mb-0' },
                           label: 'Projeto',
                           selected: Project.first,
                           wrapper_html: {
-                            class: 'box--anim box--hidden w-100',
+                            class: 'box--anim box--hidden w-100 input-group',
                             data: { display_button_on_hover_target: 'project' }
                           },
                           input_html: {
@@ -63,9 +78,10 @@
             </div>
             <div class="col-12">
               <%= f.association :observatory,
+                                label_html: { class: 'input-group-text mb-0' },
                           label: 'Observatorio',
                           wrapper_html: {
-                            class: 'box--anim box--hidden w-100',
+                            class: 'box--anim box--hidden w-100 input-group',
                             data: { display_button_on_hover_target: 'observatory' }
                           },
                           input_html: {
@@ -78,9 +94,10 @@
             </div>
             <div class="col-12">
               <%= f.association :methodology,
+                                label_html: { class: 'input-group-text mb-0' },
                           label: 'Metodologia',
                           wrapper_html: {
-                            class: 'box--anim box--hidden w-100',
+                            class: 'box--anim box--hidden w-100 input-group',
                             data: { display_button_on_hover_target: 'methodology' }
                           },
                           input_html: {
@@ -99,15 +116,29 @@
 
   <%= render 'dashboard/shared/form/banner_input', element: article, form: f %>
   <div data-controller="character-counter" data-character-counter-countdown-value="true">
-    <%= f.input :header, hint: 'Máximo de 80 caractéres', input_html: { maxlength: "80", data: { character_counter_target: 'input' } } %>
+    <%= f.input :header,
+                wrapper_html: { class: 'input-group mb-3' },
+                label_html: { class: 'input-group-text mb-0' },
+                input_html: {
+                  class: 'form-control',
+                  maxlength: "80",
+                  data: {
+                    character_counter_target: 'input'
+                  }
+                } %>
+
     <p>
       Restam
       <strong data-character-counter-target="counter"></strong> caracteres nesse campo.
     </p>
   </div>
-  <%= f.input :sub_header %>
+  <%= f.input :sub_header,
+              wrapper_html: { class: 'input-group mb-3' },
+              label_html: { class: 'input-group-text mb-0' }
+  %>
   <div data-controller="trix">
-    <%= f.input :rich_body, as: :rich_text_area, input_html: { data: { trix_target: 'editor' } } %>
+    <p class='input-group-text mb-2'>Corpo</p>
+    <%= f.input :rich_body, as: :rich_text_area, wrapper_html: { class: 'd-block' }, label: false, input_html: { class: 'w-100', data: { trix_target: 'editor' } } %>
   </div>
 
   <%= render 'dashboard/shared/form/submit_cancel', element: article, form: f %>

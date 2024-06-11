@@ -1,6 +1,16 @@
-<%= simple_form_for [:dashboard, :mapbox, dashboard_tileset], html: { data: { controller: 'to-geojson' } } do |f| %>
-  <%= f.input :name, as: :select, collection: Observatory.pluck(:name).reject { Tileset.pluck(:name).include?(_1) } %>
-  <%= f.input :kml, input_html: { data: { to_geojson_target: 'inputFile', action: 'change->to-geojson#convert' } } %>
+<%= simple_form_for [:dashboard, :mapbox, dashboard_tileset], html: { class: 'mt-3', data: { controller: 'to-geojson' } } do |f| %>
+  <%= f.input :name,
+              as: :select,
+              wrapper_html: { class: 'input-group' },
+              label_html: { class: 'input-group-text mb-0' },
+              collection: Observatory.pluck(:name).reject { Tileset.pluck(:name).include?(_1) } %>
+  <%= f.input :kml,
+              wrapper_html: { class: 'input-group' },
+              label_html: { class: 'input-group-text mb-0' },
+              input_html: {
+                class: 'form-controler',
+                data: { to_geojson_target: 'inputFile', action: 'change->to-geojson#convert' }
+              } %>
   <%= f.input :geo_json,
               label_html: { data: { to_geojson_target: 'labelGeoJson' }, hidden: true },
               input_html: { data: { to_geojson_target: 'inputGeoJson' }, hidden: true } %>
