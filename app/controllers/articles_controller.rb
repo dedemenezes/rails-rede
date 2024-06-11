@@ -11,8 +11,8 @@ class ArticlesController < ApplicationController
                            .order(updated_at: :desc)
       @featured = @articles.limit(1).first
       @articles = @articles.offset(1)
-      @articles = @articles.offset(5)
       @top_four = @articles.limit(4)
+      @articles = @articles.offset(5)
     else
       @featured = @articles.featured
       @articles = @articles.all_but_featured
