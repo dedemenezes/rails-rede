@@ -1,167 +1,163 @@
-<%= simple_form_for [:dashboard, project] do |f| %>
-  <%= f.input :name, required: true %>
-
-  <div data-controller="character-counter" data-character-counter-countdown-value="true">
-    <%= f.input :banner_text, hint: 'Máximo de 100 caractéres', input_html: { maxlength: "100", data: { character_counter_target: 'input' } } %>
-    <p>
-      Restam
-      <strong data-character-counter-target="counter"></strong> caracteres nesse campo.
-    </p>
-  </div>
-
-  <div class="row align-items-center my-3">
-    <%# TEASER URL %>
-    <%= f.input :video_id, label: 'YouTube link', placeholder: 'Endereço do video no YouTube', hint: "#{'Para atualizar, coloque o link do Youtube. Ex: https://www.youtube.com/watch?v=23fdfa3s' if project.video_id.present?}"  %>
-  </div>
-
-  <%= render 'dashboard/shared/form/banner_input', element: project, form: f %>
-
-  <%# SLIDE ONE %>
-
-  <div class="row align-items-center my-3 border-bottom border-top py-3">
-    <div class="col-2">
+<div class="mt-3">
+  <%= simple_form_for [:dashboard, project] do |f| %>
+    <%= f.input :name, wrapper_html: { class: 'input-group' }, label_html: { class: 'mb-0 input-group-text' }, required: true %>
+    <div data-controller="character-counter" data-character-counter-countdown-value="true">
+      <%= f.input :banner_text, wrapper_html: { class: 'input-group' }, hint_html: { class: 'w-100' }, hint: 'Máximo de 100 caractéres', label_html: { class: 'mb-0 input-group-text' }, input_html: { maxlength: "100", data: { character_counter_target: 'input' } } %>
+      <p>
+        Restam
+        <strong data-character-counter-target="counter"></strong> caracteres nesse campo.
+      </p>
+    </div>
+    <div class="row align-items-center my-3">
+      <%# TEASER URL %>
+      <%= f.input :video_id,
+                  wrapper_html: { class: 'input-group' },
+                  label: 'YouTube link',
+                  placeholder: 'Endereço do video no YouTube',
+                  hint: "#{'Para atualizar, coloque o link do Youtube. Ex: https://www.youtube.com/watch?v=23fdfa3s' if project.video_id.present?}",
+                  hint_html: { class: 'w-100' },
+                  label_html: { class: 'input-group-text mb-0' } %>
+    </div>
+    <%= render 'dashboard/shared/form/banner_input', element: project, form: f %>
+    <%# SLIDE ONE %>
+    <div class="row align-items-center my-3 border-bottom border-top py-3">
+      <div class="col-2">
         <%= display_banner_image(project.slide_one, width: '100%', class: 'mb-2') %>
+      </div>
+      <div class="col-10">
+        <%= f.input :slide_one_subtitle %>
+        <% if !project.slide_one.attached? %>
+          <%= f.input :slide_one,
+                      as: :file,
+                      input_html: {
+                        class: 'd-none',
+                        data: {
+                          photo_preview_target: "photoInput",
+                          action: 'change->photo-preview#displayFilesCounter'
+                        }
+                      },
+                      label_html: {
+                        class: 'upload-photo',
+                        data: { photo_preview_target: 'photoPreview' }
+                      },
+                      wrapper_html: { data: { controller: 'photo-preview', photo_preview_target: 'submit' } },
+                      label: '📷 Selecione primeira foto para o slide' %>
+        <% else %>
+          <div data-controller="display-photo-input">
+            <%= f.input :slide_one,
+                      as: :file,
+                      input_html: {
+                        class: 'd-none',
+                        data: {
+                          photo_preview_target: "photoInput",
+                          action: 'change->photo-preview#displayFilesCounter'
+                        }
+                      },
+                      label_html: {
+                        class: 'upload-photo',
+                        data: { photo_preview_target: 'photoPreview' }
+                      },
+                      wrapper_html: { class: 'box--anim box--hidden', data: { controller: 'photo-preview', photo_preview_target: 'submit', display_photo_input_target: 'input' } },
+                      label: '📷 Selecione segunda foto para o slide' %>
+            <%#= form.input :banner, as: :file, input_html: { class: 'box--anim box--hidden', data: { display_photo_input_target: 'input' } } %>
+            <button class="btn btn-primary" data-display-photo-input-target="button" data-action="click->display-photo-input#display">Quer atualizar o slide um?</button>
+          </div>
+        <% end %>
+      </div>
     </div>
-    <div class="col-10">
-      <%= f.input :slide_one_subtitle %>
-
-      <% if !project.slide_one.attached? %>
-        <%= f.input :slide_one,
-                    as: :file,
-                    input_html: {
-                      class: 'd-none',
-                      data: {
-                        photo_preview_target: "photoInput",
-                        action: 'change->photo-preview#displayFilesCounter'
-                      }
-                    },
-                    label_html: {
-                      class: 'upload-photo',
-                      data: { photo_preview_target: 'photoPreview' }
-                    },
-                    wrapper_html: { data: { controller: 'photo-preview', photo_preview_target: 'submit' } },
-                    label: '📷 Selecione primeira foto para o slide' %>
-      <% else %>
-        <div data-controller="display-photo-input">
-        <%= f.input :slide_one,
-                    as: :file,
-                    input_html: {
-                      class: 'd-none',
-                      data: {
-                        photo_preview_target: "photoInput",
-                        action: 'change->photo-preview#displayFilesCounter'
-                      }
-                    },
-                    label_html: {
-                      class: 'upload-photo',
-                      data: { photo_preview_target: 'photoPreview' }
-                    },
-                    wrapper_html: { class: 'box--anim box--hidden', data: { controller: 'photo-preview', photo_preview_target: 'submit', display_photo_input_target: 'input' } },
-                    label: '📷 Selecione segunda foto para o slide' %>
-          <%#= form.input :banner, as: :file, input_html: { class: 'box--anim box--hidden', data: { display_photo_input_target: 'input' } } %>
-          <button class="btn btn-primary" data-display-photo-input-target="button" data-action="click->display-photo-input#display">Quer atualizar o slide um?</button>
-        </div>
-      <% end %>
-
+    <%# SLIDE TWO %>
+    <div class="row align-items-center my-3 border-bottom pb-3">
+      <div class="col-2">
+        <%= display_banner_image(project.slide_two, width: '100%', class: 'mb-2') %>
+      </div>
+      <div class="col-10">
+        <%= f.input :slide_two_subtitle %>
+        <% if !project.slide_two.attached? %>
+          <%= f.input :slide_two,
+                      as: :file,
+                      input_html: {
+                        class: 'd-none',
+                        data: {
+                          photo_preview_target: "photoInput",
+                          action: 'change->photo-preview#displayFilesCounter'
+                        }
+                      },
+                      label_html: {
+                        class: 'upload-photo',
+                        data: { photo_preview_target: 'photoPreview' }
+                      },
+                      wrapper_html: { data: { controller: 'photo-preview', photo_preview_target: 'submit' } },
+                      label: '📷 Selecione segunda foto para o slide' %>
+        <% else %>
+          <div data-controller="display-photo-input">
+            <%= f.input :slide_two,
+                      as: :file,
+                      input_html: {
+                        class: 'd-none',
+                        data: {
+                          photo_preview_target: "photoInput",
+                          action: 'change->photo-preview#displayFilesCounter'
+                        }
+                      },
+                      label_html: {
+                        class: 'upload-photo',
+                        data: { photo_preview_target: 'photoPreview' }
+                      },
+                      wrapper_html: { class: 'box--anim box--hidden', data: { controller: 'photo-preview', photo_preview_target: 'submit', display_photo_input_target: 'input' } },
+                      label: '📷 Selecione segunda foto para o slide' %>
+            <%#= form.input :banner, as: :file, input_html: { class: 'box--anim box--hidden', data: { display_photo_input_target: 'input' } } %>
+            <button class="btn btn-primary" data-display-photo-input-target="button" data-action="click->display-photo-input#display">Quer atualizar o slide dois?</button>
+          </div>
+        <% end %>
+      </div>
     </div>
-  </div>
-
-  <%# SLIDE TWO %>
-  <div class="row align-items-center my-3 border-bottom pb-3">
-    <div class="col-2">
-      <%= display_banner_image(project.slide_two, width: '100%', class: 'mb-2') %>
+    <%# SLIDE THREE %>
+    <div class="row align-items-center my-3 border-bottom pb-3">
+      <div class="col-2">
+        <%= display_banner_image(project.slide_three, width: '100%', class: 'mb-2') %>
+      </div>
+      <div class="col-10">
+        <%= f.input :slide_three_subtitle %>
+        <% if !project.slide_three.attached? %>
+          <%= f.input :slide_three,
+                      as: :file,
+                      input_html: {
+                        class: 'd-none',
+                        data: {
+                          photo_preview_target: "photoInput",
+                          action: 'change->photo-preview#displayFilesCounter'
+                        }
+                      },
+                      label_html: {
+                        class: 'upload-photo',
+                        data: { photo_preview_target: 'photoPreview' }
+                      },
+                      wrapper_html: { data: { controller: 'photo-preview', photo_preview_target: 'submit' } },
+                      label: '📷 Selecione terceira foto para o slide' %>
+        <% else %>
+          <div data-controller="display-photo-input">
+            <%= f.input :slide_three,
+                      as: :file,
+                      input_html: {
+                        class: 'd-none',
+                        data: {
+                          photo_preview_target: "photoInput",
+                          action: 'change->photo-preview#displayFilesCounter'
+                        }
+                      },
+                      label_html: {
+                        class: 'upload-photo',
+                        data: { photo_preview_target: 'photoPreview' }
+                      },
+                      wrapper_html: { class: 'box--anim box--hidden', data: { controller: 'photo-preview', photo_preview_target: 'submit', display_photo_input_target: 'input' } },
+                      label: '📷 Selecione terceira foto para o slide' %>
+            <%#= form.input :banner, as: :file, input_html: { class: 'box--anim box--hidden', data: { display_photo_input_target: 'input' } } %>
+            <button class="btn btn-primary" data-display-photo-input-target="button" data-action="click->display-photo-input#display">Quer atualizar o slide três?</button>
+          </div>
+        <% end %>
+      </div>
     </div>
-    <div class="col-10">
-      <%= f.input :slide_two_subtitle %>
-      <% if !project.slide_two.attached? %>
-        <%= f.input :slide_two,
-                    as: :file,
-                    input_html: {
-                      class: 'd-none',
-                      data: {
-                        photo_preview_target: "photoInput",
-                        action: 'change->photo-preview#displayFilesCounter'
-                      }
-                    },
-                    label_html: {
-                      class: 'upload-photo',
-                      data: { photo_preview_target: 'photoPreview' }
-                    },
-                    wrapper_html: { data: { controller: 'photo-preview', photo_preview_target: 'submit' } },
-                    label: '📷 Selecione segunda foto para o slide' %>
-      <% else %>
-        <div data-controller="display-photo-input">
-        <%= f.input :slide_two,
-                    as: :file,
-                    input_html: {
-                      class: 'd-none',
-                      data: {
-                        photo_preview_target: "photoInput",
-                        action: 'change->photo-preview#displayFilesCounter'
-                      }
-                    },
-                    label_html: {
-                      class: 'upload-photo',
-                      data: { photo_preview_target: 'photoPreview' }
-                    },
-                    wrapper_html: { class: 'box--anim box--hidden', data: { controller: 'photo-preview', photo_preview_target: 'submit', display_photo_input_target: 'input' } },
-                    label: '📷 Selecione segunda foto para o slide' %>
-          <%#= form.input :banner, as: :file, input_html: { class: 'box--anim box--hidden', data: { display_photo_input_target: 'input' } } %>
-          <button class="btn btn-primary" data-display-photo-input-target="button" data-action="click->display-photo-input#display">Quer atualizar o slide dois?</button>
-        </div>
-      <% end %>
-    </div>
-  </div>
+    <%= render 'dashboard/shared/form/submit_cancel', element: project, form: f %>
+  <% end %>
 
-  <%# SLIDE THREE %>
-
-  <div class="row align-items-center my-3 border-bottom pb-3">
-    <div class="col-2">
-      <%= display_banner_image(project.slide_three, width: '100%', class: 'mb-2') %>
-    </div>
-    <div class="col-10">
-      <%= f.input :slide_three_subtitle %>
-      <% if !project.slide_three.attached? %>
-        <%= f.input :slide_three,
-                    as: :file,
-                    input_html: {
-                      class: 'd-none',
-                      data: {
-                        photo_preview_target: "photoInput",
-                        action: 'change->photo-preview#displayFilesCounter'
-                      }
-                    },
-                    label_html: {
-                      class: 'upload-photo',
-                      data: { photo_preview_target: 'photoPreview' }
-                    },
-                    wrapper_html: { data: { controller: 'photo-preview', photo_preview_target: 'submit' } },
-                    label: '📷 Selecione terceira foto para o slide' %>
-      <% else %>
-        <div data-controller="display-photo-input">
-        <%= f.input :slide_three,
-                    as: :file,
-                    input_html: {
-                      class: 'd-none',
-                      data: {
-                        photo_preview_target: "photoInput",
-                        action: 'change->photo-preview#displayFilesCounter'
-                      }
-                    },
-                    label_html: {
-                      class: 'upload-photo',
-                      data: { photo_preview_target: 'photoPreview' }
-                    },
-                    wrapper_html: { class: 'box--anim box--hidden', data: { controller: 'photo-preview', photo_preview_target: 'submit', display_photo_input_target: 'input' } },
-                    label: '📷 Selecione terceira foto para o slide' %>
-          <%#= form.input :banner, as: :file, input_html: { class: 'box--anim box--hidden', data: { display_photo_input_target: 'input' } } %>
-          <button class="btn btn-primary" data-display-photo-input-target="button" data-action="click->display-photo-input#display">Quer atualizar o slide três?</button>
-        </div>
-      <% end %>
-    </div>
-  </div>
-
-
-
-  <%= render 'dashboard/shared/form/submit_cancel', element: project, form: f %>
-<% end %>
+</div>

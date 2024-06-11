@@ -119,8 +119,10 @@ pt-BR:
         updated_at_readable: 'atualizado em'
       album:
         name: "Nome"
+        gallery: "Galeria"
+        event_date: 'Dia da ação'
         created_at: 'criado em'
-        category: 'pertence a'
+        category: 'contém'
         published: 'publicado'
         updated_at: 'atualizado em'
         updated_at_readable: 'atualizado em'
