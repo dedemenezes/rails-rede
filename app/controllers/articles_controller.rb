@@ -11,17 +11,17 @@ class ArticlesController < ApplicationController
                            .order(updated_at: :desc)
       @featured = @articles.limit(1).first
       @articles = @articles.offset(1)
+      @articles = @articles.offset(5)
+      @top_four = @articles.limit(4)
     else
       @featured = @articles.featured
+      @articles = @articles.all_but_featured
+      @top_four = @articles.limit(4)
+      @articles = @articles.offset(4)
     end
-    @articles = @articles.all_but_featured
-    @top_four = @articles.limit(4)
-
+    # raise
     @top_four_is_full = @top_four.length > 3
-    @articles = @articles.offset(4)
-
     @tags = Tag.all.order(name: :asc)
-
   end
 
   def show
