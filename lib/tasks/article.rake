@@ -10,4 +10,16 @@ namespace :article do
     puts 'Done zo/'
   end
 
+  desc 'Update present tags to be visible (max 2)'
+  task update_tags_visibility: :environment do
+    puts "Selecting articles w/ tags"
+    articles = Article.all.reject { |article| article.taggings.empty? }
+    puts "Setting two taggings as visible"
+    articles.each do |article|
+      article.taggings.each { |tagging| tagging.update(visible: false) }
+      article.taggings.sample(2).each { |tagging| tagging.update(visible: true) }
+      p article.taggings.where(visible: true)
+    end
+  end
+
 end
