@@ -2,7 +2,7 @@ module Dashboard
   class ArticlesController < ApplicationController
     layout 'dashboard'
 
-    before_action :set_article, only: %i[edit update destroy]
+    before_action :set_article, only: %i[edit update]
 
     def index
       @articles = policy_scope(Article,
@@ -38,6 +38,8 @@ module Dashboard
     end
 
     def destroy
+      # raise
+      @article = Article.find(params[:header])
       @article.destroy
       redirect_to dashboard_articles_path, notice: 'Noticia destruída'
     end
