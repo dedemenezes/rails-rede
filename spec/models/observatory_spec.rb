@@ -24,4 +24,32 @@ RSpec.describe Observatory, type: :model do
       expect(Tag.last.name).to eq(observatory.class.model_name)
     end
   end
+
+  describe '#set_address' do
+    context 'concatanates all address fields like number, city, state' do
+      it 'returns what ' do
+        ninho = create(:ninho_do_urubu)
+        expect(ninho.address).to eq("#{ninho.street}, #{ninho.state}")
+        ninho.street = ''
+        ninho.valid?
+        expect(ninho.address).to eq("#{ninho.state}")
+      end
+    end
+    context 'with street' do
+      it 'concatanates all address fields in the correct way' do
+        street = 'Rua Marques de Olinda'
+        number = 80
+        city = 'Rio de Janeiro'
+        ninho = Observatory.new(street:)
+        ninho.valid?
+        expect(ninho.address).to eq(street)
+        ninho.city = city
+        ninho.valid?
+        expect(ninho.address).to eq("#{street}, #{city}")
+        ninho.number = number
+        ninho.valid?
+        expect(ninho.address).to eq("#{street}, #{number}, #{city}")
+      end
+    end
+  end
 end
