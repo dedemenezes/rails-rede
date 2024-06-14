@@ -10,9 +10,6 @@ application.register("active-on-height", ActiveOnHeightController)
 import AddInputController from "./add_input_controller"
 application.register("add-input", AddInputController)
 
-import AddressAutocompleteController from "./address_autocomplete_controller"
-application.register("address-autocomplete", AddressAutocompleteController)
-
 import ArticleHighlightController from "./article_highlight_controller"
 application.register("article-highlight", ArticleHighlightController)
 
