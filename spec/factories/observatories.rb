@@ -17,6 +17,7 @@ FactoryBot.define do
     name { "Ninho do Urubu" }
     email { "ninho@urubu.com" }
     phone_number { "2197458878" }
+    street { 'Vargem Grande'}
     state { "Rio de Janeiro" }
     municipality { "RJ" }
     address { "Rua Marques de Olinda, 80" }
