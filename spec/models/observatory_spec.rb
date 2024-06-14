@@ -26,12 +26,13 @@ RSpec.describe Observatory, type: :model do
   end
 
   describe '#set_address' do
-    context 'without street field' do
-      it 'cleans address' do
+    context 'concatanates all address fields like number, city, state' do
+      it 'returns what ' do
         ninho = create(:ninho_do_urubu)
+        expect(ninho.address).to eq("#{ninho.street}, #{ninho.state}")
         ninho.street = ''
         ninho.valid?
-        expect(ninho.address).to eq('')
+        expect(ninho.address).to eq("#{ninho.state}")
       end
     end
     context 'with street' do
