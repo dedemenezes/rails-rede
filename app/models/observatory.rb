@@ -69,11 +69,7 @@ class Observatory < ApplicationRecord
   end
 
   def set_address
-    if street.nil? || street.empty?
-      self.address = ''
-      return
-    end
-    self.address = [street, number, city, state].compact.join(', ')
+    self.address = [street, number, city, state].compact_blank.join(', ')
   end
 
   def to_param
