@@ -43,6 +43,9 @@ module RailsRede
       ActionText::ContentHelper.allowed_tags.add 'right-div'
       ActionText::ContentHelper.allowed_tags.add 'justified-div'
       ActionText::ContentHelper.allowed_tags.add 'left-div'
+      ActionText::ContentHelper.allowed_tags.add 'image--small'
+      ActionText::ContentHelper.allowed_tags.add 'image--medium'
+      ActionText::ContentHelper.allowed_tags.add 'image--large'
     end
   end
 

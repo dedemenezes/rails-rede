@@ -73,3 +73,15 @@ left-div {
   display: block;
   text-align: start;
 }
+
+image--small img {
+  max-width: 30% !important;
+}
+
+image--medium img {
+  max-width: 60% !important;
+}
+
+image--large img {
+  max-width: 90% !important;
+}
