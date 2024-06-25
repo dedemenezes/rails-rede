@@ -1,5 +1,7 @@
 class Article < ApplicationRecord
-  # validates :header, length: { maximum: 80 }
+  HEADER_MAX_SIZE = 114
+
+  validates :header, length: { maximum: HEADER_MAX_SIZE }
   validates :header, presence: true, uniqueness: true
   validates_with OneFeaturedArticleValidator
   validates_with MustHaveAWriter
