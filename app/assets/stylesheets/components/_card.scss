@@ -261,10 +261,10 @@
   align-items: center;
 }
 
-h5.line-limit-3, h5.line-limit-3 {
+h5.line-limit-2, h5.line-limit-2 {
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2;
   overflow: hidden;
 }
 
