@@ -40,17 +40,17 @@ const addTextAlignLeftButtonConfig = () => {
 
 const addImageSmallButtonConfig = () => {
   Trix.config.blockAttributes.imageSmall = {
-    tagName: 'image--small'
+    tagName: 'image-small'
   };
 };
 const addImageMediumButtonConfig = () => {
   Trix.config.blockAttributes.imageMedium = {
-    tagName: 'image--medium'
+    tagName: 'image-medium'
   };
 };
 const addImageLargeButtonConfig = () => {
   Trix.config.blockAttributes.imageLarge = {
-    tagName: 'image--large'
+    tagName: 'image-large'
   };
 };
 
