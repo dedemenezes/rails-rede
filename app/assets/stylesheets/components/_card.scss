@@ -261,6 +261,13 @@
   align-items: center;
 }
 
+h5.line-limit-3, h5.line-limit-3 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
 small.tag, small > .tag {
   text-transform: uppercase;
   font-weight: 500;
