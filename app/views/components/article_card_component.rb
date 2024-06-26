@@ -37,7 +37,7 @@ class ArticleCardComponent < ApplicationComponent
           if highlight
             h5(class: "text-reset mb-lg-0") { article.header }
           else
-            h5(class: "text-reset mb-lg-0 fs-6") { article.header.truncate(80) }
+            h5(class: "text-reset mb-lg-0 fs-6 line-limit-3") { article.header.truncate(113) }
           end
         end
         if highlight

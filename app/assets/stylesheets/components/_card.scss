@@ -261,6 +261,13 @@
   align-items: center;
 }
 
+.article__info h5.line-limit-3, .article__card__content h5.line-limit-3 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
 small.tag, small > .tag {
   text-transform: uppercase;
   font-weight: 500;
