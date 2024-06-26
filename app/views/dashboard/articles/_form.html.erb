@@ -138,6 +138,7 @@
   %>
   <div data-controller="trix">
     <p class='input-group-text mb-2'>Corpo</p>
+    <small>Aplique os estilos separadamente</small>
     <%= f.input :rich_body, as: :rich_text_area, wrapper_html: { class: 'd-block' }, label: false, input_html: { class: 'w-100', data: { trix_target: 'editor' } } %>
   </div>
 

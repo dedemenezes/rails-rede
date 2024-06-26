@@ -9,6 +9,9 @@ const initTrix = () => {
   addTextAlignRightButtonConfig();
   addTextAlignJustifyButtonConfig();
   addTextAlignLeftButtonConfig();
+  addImageSmallButtonConfig();
+  addImageMediumButtonConfig();
+  addImageLargeButtonConfig();
 };
 
 const addTextAlignCenterButtonConfig = () => {
@@ -35,6 +38,22 @@ const addTextAlignLeftButtonConfig = () => {
   };
 };
 
+const addImageSmallButtonConfig = () => {
+  Trix.config.blockAttributes.imageSmall = {
+    tagName: 'image-small'
+  };
+};
+const addImageMediumButtonConfig = () => {
+  Trix.config.blockAttributes.imageMedium = {
+    tagName: 'image-medium'
+  };
+};
+const addImageLargeButtonConfig = () => {
+  Trix.config.blockAttributes.imageLarge = {
+    tagName: 'image-large'
+  };
+};
+
 const getDefaultHTML = () => {
   return `<div class="trix-button-row">
     <span class="trix-button-group trix-button-group--text-tools" data-trix-button-group="text-tools">
@@ -51,11 +70,12 @@ const getDefaultHTML = () => {
       <button type="button" class="trix-button trix-button--icon trix-button--icon-number-list" data-trix-attribute="number" title="${lang.numbers}" tabindex="-1">${lang.numbers}</button>
       <button type="button" class="trix-button trix-button--icon trix-button--icon-decrease-nesting-level" data-trix-action="decreaseNestingLevel" title="${lang.outdent}" tabindex="-1">${lang.outdent}</button>
       <button type="button" class="trix-button trix-button--icon trix-button--icon-increase-nesting-level" data-trix-action="increaseNestingLevel" title="${lang.indent}" tabindex="-1">${lang.indent}</button>
-      </span>
-      ${textAlignButtons()}
+    </span>
+    ${textAlignButtons()}
     <span class="trix-button-group trix-button-group--file-tools" data-trix-button-group="file-tools">
       <button type="button" class="trix-button trix-button--icon trix-button--icon-attach" data-trix-action="attachFiles" title="${lang.attachFiles}" tabindex="-1">${lang.attachFiles}</button>
     </span>
+    ${imageResizeButtons()}
     <span class="trix-button-group-spacer"></span>
     <span class="trix-button-group trix-button-group--history-tools" data-trix-button-group="history-tools">
       <button type="button" class="trix-button trix-button--icon trix-button--icon-undo" data-trix-action="undo" data-trix-key="z" title="${lang.undo}" tabindex="-1">${lang.undo}</button>
@@ -77,21 +97,34 @@ const getDefaultHTML = () => {
 
 const textAlignButtons = () => {
   return `<span class="trix-button-group trix-button-group--align-tools" data-trix-button-group="align-tools">
-            <button type="button" class="trix-button" data-trix-attribute="textAlignLeft">
+            <button type="button" class="trix-button" data-trix-attribute="textAlignLeft" title="à esquerda">
               <span class="icon"><i class="fas fa-align-left fa-lg"></i></span>
             </button>
-            <button type="button" class="trix-button" data-trix-attribute="textAlignCenter">
+            <button type="button" class="trix-button" data-trix-attribute="textAlignCenter" title="ao centro">
               <span class="icon"><i class="fas fa-align-center fa-lg"></i></span>
             </button>
-            <button type="button" class="trix-button" data-trix-attribute="textAlignRight">
+            <button type="button" class="trix-button" data-trix-attribute="textAlignRight" title="à direita">
               <span class="icon"><i class="fas fa-align-right fa-lg"></i></span>
             </button>
-            <button type="button" class="trix-button" data-trix-attribute="textAlignJustify">
+            <button type="button" class="trix-button" data-trix-attribute="textAlignJustify" title="justificado">
               <span class="icon"><i class="fas fa-align-justify fa-lg"></i></span>
             </button>
           </span>`;
 };
 
+const imageResizeButtons = () => {
+  return `<span class="trix-button-group trix-button-group--image-tools" data-trix-button-group="image-tools">
+            <button type="button" class="trix-button" data-trix-attribute="imageSmall" title="Imagem pequena">
+              <span class="icon"><i class="fa-solid fa-p fa-lg"></i></span>
+            </button>
+            <button type="button" class="trix-button" data-trix-attribute="imageMedium" title="Imagem média">
+              <span class="icon"><i class="fa-solid fa-m fa-lg"></i></span>
+            </button>
+            <button type="button" class="trix-button" data-trix-attribute="imageLarge" title="Imagem grande">
+              <span class="icon"><i class="fa-solid fa-g fa-lg"></i></span>
+            </button>
+          </span>`;
+};
 
 document.addEventListener('trix-before-initialize', () => {
   initTrix();
