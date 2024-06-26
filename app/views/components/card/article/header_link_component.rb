@@ -16,7 +16,7 @@ module Card
           if article.featured
             h5(class: "text-reset mb-lg-0") { article.header }
           else
-            h5(class: "text-reset mb-lg-0 fs-6 line-limit-2") { article.header.truncate(::Article::HEADER_MAX_SIZE) }
+            h5(class: "text-reset mb-lg-0 fs-6 line-limit-3") { article.header.truncate(::Article::HEADER_MAX_SIZE) }
           end
         end
       end
