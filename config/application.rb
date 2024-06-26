@@ -15,6 +15,7 @@ module RailsRede
       generate.assets false
       generate.helper false
       generate.test_framework :rspec, fixture: false
+      generate.helper_specs :false
     end
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
