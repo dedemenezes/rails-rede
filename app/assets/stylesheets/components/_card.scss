@@ -267,6 +267,12 @@ h5.line-limit-2, h5.line-limit-2 {
   -webkit-line-clamp: 2;
   overflow: hidden;
 }
+h5.line-limit-3 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
 
 small.tag, small > .tag {
   text-transform: uppercase;

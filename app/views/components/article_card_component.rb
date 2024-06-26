@@ -24,22 +24,8 @@ class ArticleCardComponent < ApplicationComponent
         )
       end
       div(class: "article__card__content") do
-        div(class: "card__content__header d-flex justify-cotent-start gap-2") do
-          small { article.updated_at.strftime("%d.%m.%Y") }
-          # <small>= article.tags.first.name</small>
-          div(class: "home_article_tags gap-2") do
-            article.visible_tags.each do |tagging|
-              render TagComponent.new(tag: tagging.tag)
-            end
-          end
-        end
-        link_to article_path(article) do
-          if highlight
-            h5(class: "text-reset mb-lg-0") { article.header }
-          else
-            h5(class: "text-reset mb-lg-0 fs-6 line-limit-2") { article.header.truncate(Article::HEADER_MAX_SIZE) }
-          end
-        end
+        render Card::Article::ContentHeaderComponent.new(article:)
+        render Card::Article::HeaderLinkComponent.new(article:)
         if highlight
           p do
             plain article.rich_body.to_plain_text.truncate(170)
