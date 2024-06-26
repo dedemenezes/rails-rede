@@ -2,10 +2,7 @@ class Observatory < ApplicationRecord
   validates :name,
             :email,
             :state, presence: true
-  # :municipality,
   validates :municipality, length: { in: 0..3 }
-  # validates :zip_code, length: { is: 8 }
-  # validates :phone_number, format: { with: /\A(\+5521|0?\d{2})?(\d{8}|\d{9})\z/ }
 
   belongs_to :unity_type, inverse_of: :observatories
 
@@ -37,7 +34,7 @@ class Observatory < ApplicationRecord
   # after_validation :geocode
   # after_validation :reverse_geocode
 
-  after_create :set_gallery
+  after_create :set_gallery, :create_tag
 
   def self.dashboard_headers
     to_permit = ['id', 'name', 'address', 'description', 'created at', 'updated_at']
@@ -74,5 +71,13 @@ class Observatory < ApplicationRecord
 
   def to_param
     name
+  end
+
+  private
+
+  def create_tag
+    return if Tag.find_by(name:) || Tag.find_by(name: name.downcase)
+
+    Tag.create(name:)
   end
 end

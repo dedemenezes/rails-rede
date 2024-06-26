@@ -1,16 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe "Galleries", type: :request do
-  describe "GET /index" do
+  describe "GET /acervos/imagens" do
     it "returns http success" do
-      get "/galleries/index"
+      get imagens_galleries_path
       expect(response).to have_http_status(:success)
     end
   end
 
-  describe "GET /show" do
+  describe "GET /acervos/documentos" do
     it "returns http success" do
-      get "/galleries/show"
+      get documentos_galleries_path
       expect(response).to have_http_status(:success)
     end
   end

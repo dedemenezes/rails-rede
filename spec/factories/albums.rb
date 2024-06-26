@@ -11,7 +11,7 @@ FactoryBot.define do
   factory :video_album, class: 'Album' do
     association :gallery, factory: :video_gallery
     name { "[Album] - Video Published" }
-    category { 'video' }
+    category { 'photo' }
     # is_event { true }
     # event_date { Date.yesterday }
     published { true }

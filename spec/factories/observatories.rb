@@ -6,6 +6,8 @@ FactoryBot.define do
     email { "MyString" }
     phone_number { "MyString" }
     address { "MyString" }
+    state { "Rio de Janeiro" }
+    municipality { "RJ" }
     latitude { 1.5 }
     longitude { 1.5 }
     type { "" }

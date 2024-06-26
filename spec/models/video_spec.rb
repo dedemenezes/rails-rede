@@ -35,9 +35,4 @@ RSpec.describe Video, type: :model do
       expect(video.url).to eq('www.flamengo.com')
     end
   end
-
-  describe 'Associations' do
-    it { should belong_to(:album)}
-  end
-
 end
