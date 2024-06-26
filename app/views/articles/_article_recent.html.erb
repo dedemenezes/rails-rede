@@ -7,7 +7,7 @@
   <div class="article__info px-3 py-2 py-lg-3 pe-lg-3">
     <%= render Card::Article::ContentHeaderComponent.new(article: article) %>
     <%= link_to article_path(article) do %>
-      <h5 class="text-reset mb-lg-0 fs-6 line-limit-3"><%= article.header.truncate(113) %></h5>
+      <h5 class="text-reset mb-lg-0 fs-6 line-limit-3"><%= article.header.truncate(Article::HEADER_MAX_SIZE) %></h5>
     <% end %>
   </div>
 </div>
