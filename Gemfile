@@ -66,7 +66,7 @@ gem "aws-sdk-s3", require: false
 gem 'faraday'
 gem 'faraday_middleware'
 
-gem "webmock"
+# gem "webmock"
 gem 'unicode'
 gem 'rack-cors'
 
@@ -108,6 +108,6 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
-  gem "webdrivers"
+  # gem "webdrivers"
   gem 'database_cleaner'
 end
