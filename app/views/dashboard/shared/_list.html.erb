@@ -5,7 +5,7 @@
     </div>
     <div class="col-8 col-md-9">
       <div class="d-flex align-items-center gap-2">
-        <%= image_tag element.banner, width: '40px', height: '40px', class: 'avatar' if element.banner.attached? %>
+        <%= image_tag element.banner, width: '40px', height: '40px', class: 'avatar', alt: "#{element.class} banner" if element.banner.attached? %>
         <%= link_to element.name, link_to_show %>
       </div>
     </div>
