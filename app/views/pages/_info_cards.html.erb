@@ -6,7 +6,7 @@
     <% cache item do %>
       <div class="col-12 col-sm-6 col-md-4">
         <div class="card__we reveal" data-scroll-reveal-target="item">
-          <%= image_tag "#{item[:img_name]}.svg" %>
+          <%= image_tag "#{item[:img_name]}.svg", alt: item[:text] %>
           <p class="reveal" data-scroll-reveal-target="item"><%= item[:text] %></p>
         </div>
       </div>

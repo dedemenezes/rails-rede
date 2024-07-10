@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light text-primary">
   <div class="container">
       <%= link_to root_path, class: 'navbar-brand' do %>
-        <%= image_tag 'Logo_PEA.png', width: '186px' %>
+        <%= image_tag 'Logo_PEA.png', width: '186px', alt: 'Logo do PEA Rede Observação' %>
       <% end %>
       <button class="navbar-toggler btn-nav" type="button" data-action="click->navbar-toggler#toggle"aria-label="Toggle navigation"  >
         <i class="fas fa-bars"></i>
@@ -24,9 +24,9 @@
                data-reveal-on-click-target='button'>Acervos <i class="fa-solid fa-chevron-down" style="opacity: 0.7;"></i></a>
             <ul class="drop__down__card drop__down__card--nav hidden__el"
                 data-reveal-on-click-target="dropdown">
-              <div class="drop__down__close" data-action='click->reveal-on-click#toggle'>
-                <%= image_tag 'close-icon.svg', width: '12px' %>
-              </div>
+              <a class="drop__down__close" href="#" aria-label="Fechar" data-action='click->reveal-on-click#toggle'>
+                <%= image_tag 'close-icon.svg', width: '12px', alt: 'fechar dropwdown' %>
+              </a>
               <%= link_to "Audiovisuais", acervos_videos_path, class: "nav-link #{params[:t] == 'videos' || params[:action] == 'videos' ? 'active' : 'fw-normal'}" %>
               <%= link_to "Documentos", documentos_galleries_path, class: "nav-link #{params[:t] == 'documentos' || params[:action] == 'documentos' ? 'active' : 'fw-normal'}" %>
               <%= link_to "Imagens", imagens_galleries_path, class: "nav-link #{params[:t] == 'imagens' || params[:action] == 'imagens' ? 'active' : 'fw-normal'}" %>
