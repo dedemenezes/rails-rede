@@ -18,9 +18,10 @@
             <%= link_to "Observatórios", observatories_path, class: "nav-link #{tab_active?('observatories', action: 'index')}" %>
           </li>
           <li class="nav-item drop__down <%= 'active' if params[:controller] == 'galleries' || params[:controller] == 'albums' %>" data-controller='reveal-on-click'>
-            <p class="nav-link cursor__link--hover pb-0"
+            <a class="nav-link cursor__link--hover pb-0"
+               href="#"
                data-action="click->reveal-on-click#toggle click@window->reveal-on-click#close"
-               data-reveal-on-click-target='button'>Acervos <i class="fa-solid fa-chevron-down" style="opacity: 0.7;"></i></p>
+               data-reveal-on-click-target='button'>Acervos <i class="fa-solid fa-chevron-down" style="opacity: 0.7;"></i></a>
             <ul class="drop__down__card drop__down__card--nav hidden__el"
                 data-reveal-on-click-target="dropdown">
               <div class="drop__down__close" data-action='click->reveal-on-click#toggle'>
