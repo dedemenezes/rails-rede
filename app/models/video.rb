@@ -5,7 +5,8 @@ class Video < ApplicationRecord
   validates :name, length: { minimum: 3 }
   validates :url, format: { with: URL_REGEX }
 
-  before_validation :strip_url, :set_yt_id
+  before_validation :strip_url
+  after_validation :set_yt_id
 
   scope :published, -> { where(published: true) }
 
@@ -14,6 +15,8 @@ class Video < ApplicationRecord
   end
 
   def thumbnail
+    return '' unless yt_id.present?
+
     "https://img.youtube.com/vi/#{yt_id}/hqdefault.jpg"
   end
 
