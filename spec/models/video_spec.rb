@@ -3,13 +3,14 @@ require 'rails_helper'
 RSpec.describe Video, type: :model do
   describe '::published' do
     it 'is expected to return only published videos' do
-      create(:still_valid)
+      still_one = create(:still_valid)
       expect(Video.published.length).to eq(0)
 
-      create(:still_valid, published: true)
+      still_two = create(:still_valid, published: true)
       expect(Video.published.length).to eq(1)
-      create(:still_valid, published: true)
-      expect(Video.published.length).to eq(2)
+
+      expect(Video.published).to include(still_two)
+      expect(Video.published).not_to include(still_one)
     end
   end
 

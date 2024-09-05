@@ -18,19 +18,7 @@ RSpec.describe Video, type: :model do
 
     context 'before_validation' do
       it 'strips the url from any trailing space' do
-        video = build(:still_valid, url: '      https://www.youtube.com/watch?v=_CL6n0FJZpk    ')
-        video.valid?
-        expect(video.url).to eq('https://www.youtube.com/watch?v=_CL6n0FJZpk')
-      end
-
-      it 'strips starting trailing space from the url' do
-        video = build(:still_valid, url: '      https://www.youtube.com/watch?v=_CL6n0FJZpk')
-        video.valid?
-        expect(video.url).to eq('https://www.youtube.com/watch?v=_CL6n0FJZpk')
-      end
-
-      it 'strips ending trailing space from the url' do
-        video = build(:still_valid, url: 'https://www.youtube.com/watch?v=_CL6n0FJZpk      ')
+        video = build(:still_valid, url: " \n https://www.youtube.com/watch?v=_CL6n0FJZpk  \n")
         video.valid?
         expect(video.url).to eq('https://www.youtube.com/watch?v=_CL6n0FJZpk')
       end
