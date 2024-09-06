@@ -110,4 +110,5 @@ group :test do
   gem "selenium-webdriver"
   # gem "webdrivers"
   gem 'database_cleaner'
+  gem 'simplecov', require: false
 end
