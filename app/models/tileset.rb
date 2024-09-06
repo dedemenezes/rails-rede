@@ -21,40 +21,6 @@ class Tileset < ApplicationRecord
     "#{mapbox_owner}.#{mapbox_id}"
   end
 
-  def replace_non_ascii_with_ascii(text)
-    normalized_text = Unicode.normalize_KD(text).gsub(/[^\x00-\x7F]/, '')
-
-    mapping = {
-      'À' => 'A', 'Á' => 'A', 'Â' => 'A', 'Ã' => 'A', 'Ä' => 'Ae', 'Å' => 'A',
-      'Æ' => 'AE', 'Ç' => 'C',
-      'È' => 'E', 'É' => 'E', 'Ê' => 'E', 'Ë' => 'E',
-      'Ì' => 'I', 'Í' => 'I', 'Î' => 'I', 'Ï' => 'I',
-      'Ð' => 'D', 'Ñ' => 'N',
-      'Ò' => 'O', 'Ó' => 'O', 'Ô' => 'O', 'Õ' => 'O', 'Ö' => 'Oe', 'Ő' => 'O',
-      'Ø' => 'O',
-      'Ù' => 'U', 'Ú' => 'U', 'Û' => 'U', 'Ü' => 'Ue', 'Ű' => 'U',
-      'Ý' => 'Y',
-      'Þ' => 'TH',
-      'ß' => 'ss',
-      'à' => 'a', 'á' => 'a', 'â' => 'a', 'ã' => 'a', 'ä' => 'ae', 'å' => 'a',
-      'æ' => 'ae', 'ç' => 'c',
-      'è' => 'e', 'é' => 'e', 'ê' => 'e', 'ë' => 'e',
-      'ì' => 'i', 'í' => 'i', 'î' => 'i', 'ï' => 'i',
-      'ð' => 'd', 'ñ' => 'n',
-      'ò' => 'o', 'ó' => 'o', 'ô' => 'o', 'õ' => 'o', 'ö' => 'oe', 'ő' => 'o',
-      'ø' => 'o',
-      'ù' => 'u', 'ú' => 'u', 'û' => 'u', 'ü' => 'ue', 'ű' => 'u',
-      'ý' => 'y',
-      'þ' => 'th',
-      'ÿ' => 'y'
-    }
-    normalized_text.gsub(/[^\x00-\x7F]/) do |char|
-      mapping[char] || char
-    end
-  end
-
-  private
-
   def ensure_mapbox_id_max_length
     return if errors.any? || mapbox_id.size <= 32
 
@@ -76,6 +42,32 @@ class Tileset < ApplicationRecord
 
     self.mapbox_id = replace_non_ascii_with_ascii(kml.blob.filename.to_s[...-4]).downcase.gsub(' ', '_')
   end
+
+  def replace_non_ascii_with_ascii(text)
+    normalized_text = Unicode.normalize_KD(text).gsub(/[^\x00-\x7F]/, '')
+    mapping = ascii_dictionary
+    normalized_text.gsub(/[^\x00-\x7F]/) do |char|
+      mapping[char] || char
+    end
+  end
+
+  private
+
+  # rubocop:disable Metrics/MethodLength
+  def ascii_dictionary
+    { 'À' => 'A', 'Á' => 'A', 'Â' => 'A', 'Ã' => 'A', 'Ä' => 'Ae', 'Å' => 'A',
+      'Æ' => 'AE', 'Ç' => 'C', 'È' => 'E', 'É' => 'E', 'Ê' => 'E', 'Ë' => 'E',
+      'Ì' => 'I', 'Í' => 'I', 'Î' => 'I', 'Ï' => 'I', 'Ð' => 'D', 'Ñ' => 'N',
+      'Ò' => 'O', 'Ó' => 'O', 'Ô' => 'O', 'Õ' => 'O', 'Ö' => 'Oe', 'Ő' => 'O',
+      'Ø' => 'O', 'Ù' => 'U', 'Ú' => 'U', 'Û' => 'U', 'Ü' => 'Ue', 'Ű' => 'U',
+      'Ý' => 'Y', 'Þ' => 'TH', 'ß' => 'ss', 'à' => 'a', 'á' => 'a', 'â' => 'a',
+      'ã' => 'a', 'ä' => 'ae', 'å' => 'a', 'æ' => 'ae', 'ç' => 'c', 'è' => 'e',
+      'é' => 'e', 'ê' => 'e', 'ë' => 'e', 'ì' => 'i', 'í' => 'i', 'î' => 'i',
+      'ï' => 'i', 'ð' => 'd', 'ñ' => 'n', 'ò' => 'o', 'ó' => 'o', 'ô' => 'o',
+      'õ' => 'o', 'ö' => 'oe', 'ő' => 'o', 'ø' => 'o', 'ù' => 'u', 'ú' => 'u',
+      'û' => 'u', 'ü' => 'ue', 'ű' => 'u', 'ý' => 'y', 'þ' => 'th', 'ÿ' => 'y' }
+  end
+  # rubocop:enable Metrics/MethodLength
 
   def strip_name!
     self.name = name.strip unless name.nil?
