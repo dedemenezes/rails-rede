@@ -8,8 +8,6 @@ RSpec.describe Tileset, type: :model do
         tileset.valid?
         expect(tileset.name).to eq('Tileset Test')
       end
-
-      # it 'sets mapbox_id correctly after validation ' do
     end
   end
 
