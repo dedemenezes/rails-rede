@@ -7,9 +7,7 @@ RSpec.describe Observatory, type: :model do
   end
 
   describe 'Associations' do
-    it { should have_one(:observatory_category).dependent(:destroy) }
     it { should have_one(:observatory_conflict).dependent(:destroy) }
-    it { should have_one(:category) }
   end
 
   describe '#create_tag' do

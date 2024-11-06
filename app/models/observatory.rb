@@ -6,8 +6,6 @@ class Observatory < ApplicationRecord
 
   belongs_to :unity_type, inverse_of: :observatories
 
-  has_one :observatory_category, dependent: :destroy
-  has_one :category, through: :observatory_category
   has_one :observatory_conflict, dependent: :destroy
   has_many :conflict_types, through: :observatory_conflict
   has_one :gallery, dependent: :destroy
