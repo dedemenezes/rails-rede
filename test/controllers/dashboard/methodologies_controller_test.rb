@@ -2,7 +2,9 @@ require "test_helper"
 
 class Dashboard::MethodologiesControllerTest < ActionDispatch::IntegrationTest
   test "should get new" do
-    get new_dashboard_methodology_url
+    sign_in(users(:coppola))
+
+    get '/dashboard/methodologies'
     assert_response :success
   end
 end
