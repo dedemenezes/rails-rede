@@ -1,0 +1,9 @@
+# arraial_banner:
+#   name: banner
+#   record: arraial_tile (Tileset)
+#   blob: arraial_banner_blob
+
+arraial_kml:
+  name: kml # This must match the attachment name in the model
+  record: arraial_tile (Tileset)
+  blob: arraial_kml_blob

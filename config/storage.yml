@@ -16,6 +16,11 @@ amazon:
   secret_access_key: <%= ENV['SECRET_ACCESS_KEY'] %>
   region: us-east-2
   bucket: <%= ENV['BUCKET_NAME'] %>
+
+test_fixtures:
+  service: Disk
+  root: <%= Rails.root.join("tmp/storage_fixtures") %>
+
 # Use bin/rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
 
 # Remember not to checkin your GCS keyfile to a repository
