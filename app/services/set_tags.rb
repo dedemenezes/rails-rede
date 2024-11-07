@@ -3,7 +3,7 @@ module SetTags
     model_name_as_symbol = extract_model_name(instance)
     return unless params[model_name_as_symbol][:tag_ids].present?
 
-    ids = sanitize_and_remove_blanks(params)
+    ids = sanitize_and_remove_blanks(params[model_name_as_symbol][:tag_ids])
     # tag_names = params[model_name_as_symbol][:tag_ids].select { |id| id.match?(/[a-zA-Z]/) }
     # ids.delete('')
     # removed_taggings = instance.taggings.reject { |tagging| ids.include? tagging.tag.id.to_s }
@@ -22,7 +22,7 @@ module SetTags
     instance.model_name.to_s.downcase.parameterize.gsub('-', '_').to_sym
   end
 
-  def self.sanitize_and_remove_blanks(params)
-    params[model_name_as_symbol][:tag_ids].grep_v(/[a-zA-Z]/).compact_blank
+  def self.sanitize_and_remove_blanks(ids)
+    ids.grep_v(/[a-zA-Z]/).compact_blank
   end
 end
