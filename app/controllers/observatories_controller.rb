@@ -1,12 +1,12 @@
 class ObservatoriesController < ApplicationController
   def index
     @observatories = policy_scope(Observatory).includes(banner_attachment: :blob).order(name: :asc)
-    @markers = @observatories.map do |observatory|
-      {
-        lat: observatory.latitude,
-        lng: observatory.longitude
-      }
-    end
+    # @markers = @observatories.map do |observatory|
+    #   {
+    #     lat: observatory.latitude,
+    #     lng: observatory.longitude
+    #   }
+    # end
   end
 
   def show
