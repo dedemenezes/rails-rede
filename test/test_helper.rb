@@ -17,4 +17,9 @@ class ActiveSupport::TestCase
   include FactoryBot::Syntax::Methods
   # include Warden::Test::Helpers
   include Devise::Test::IntegrationHelpers
+
+  # Sets ActiveStorage::Current.host for tests using local disk
+  ActiveSupport.on_load :action_controller do
+    include ActiveStorage::SetCurrent
+  end
 end
