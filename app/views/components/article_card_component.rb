@@ -13,12 +13,12 @@ class ArticleCardComponent < ApplicationComponent
 
   def view_template
     div(
-      class: %(article__card #{min_height} #{highlight ? "" : "reveal"}),
+      class: %(article__card #{min_height} #{highlight ? '' : 'reveal'}),
       data_scroll_reveal_target: "item"
     ) do
       link_to article_path(article) do
         div(
-          class: %(card__image #{highlight ? "card__image--highlight" : ""}),
+          class: %(card__image #{highlight ? 'card__image--highlight' : ''}),
           style:
             %(background-image:url(#{display_banner_as_background(article)}); background-size: cover; background-position: center;)
         )

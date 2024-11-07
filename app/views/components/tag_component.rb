@@ -14,6 +14,6 @@ class TagComponent < ApplicationComponent
     end
   end
 end
-          # <%= link_to articles_path(tags: [tag.name]) do %>
-          #   <small class="tag"><%= tag.name %></small>
-          # <% end %>
+# <%= link_to articles_path(tags: [tag.name]) do %>
+#   <small class="tag"><%= tag.name %></small>
+# <% end %>

@@ -27,7 +27,7 @@ RSpec.describe Observatory, type: :model do
         expect(ninho.address).to eq("#{ninho.street}, #{ninho.state}")
         ninho.street = ''
         ninho.valid?
-        expect(ninho.address).to eq("#{ninho.state}")
+        expect(ninho.address).to eq(ninho.state.to_s)
       end
     end
     context 'with street' do

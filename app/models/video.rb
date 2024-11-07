@@ -1,5 +1,5 @@
 class Video < ApplicationRecord
-  URL_REGEX = %r{\A((?<protocol>https?):\/\/(?<www>w{3})?|w{3})\.?(?<host>\w+\.\w{2,3}(\.\w{2})?)(?<path>\/(?<_>watch\?v=)?(?<video_id>\w+).*)?\z}
+  URL_REGEX = %r{\A((?<protocol>https?)://(?<www>w{3})?|w{3})\.?(?<host>\w+\.\w{2,3}(\.\w{2})?)(?<path>/(?<_>watch\?v=)?(?<video_id>\w+).*)?\z}
 
   validates :url, :name, presence: true
   validates :name, length: { minimum: 3 }
@@ -11,7 +11,7 @@ class Video < ApplicationRecord
   scope :published, -> { where(published: true) }
 
   def self.dashboard_headers
-    %w(id thumbnail url name description published updated_at)
+    %w[id thumbnail url name description published updated_at]
   end
 
   def thumbnail

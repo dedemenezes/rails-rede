@@ -5,7 +5,7 @@ namespace :article do
     Tagging.update_all(visible: false)
     puts 'Randomly marking two as visible...'
     Article.all.each do |article|
-      article.taggings.sample(2).each{ |t| t.update(visible: true) }
+      article.taggings.sample(2).each { |t| t.update(visible: true) }
     end
     puts 'Done zo/'
   end
@@ -21,5 +21,4 @@ namespace :article do
       p article.taggings.where(visible: true)
     end
   end
-
 end

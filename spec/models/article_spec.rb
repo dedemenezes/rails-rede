@@ -23,9 +23,8 @@ RSpec.describe Article, type: :model do
     it 'returns the observatory name' do
       article = build(:observatory_article_featured)
       expect(article.observatory_name).to eq('Ninho do Urubu')
-        article.observatory = nil
-        expect(article.observatory_name).to eq(nil)
+      article.observatory = nil
+      expect(article.observatory_name).to eq(nil)
     end
   end
-
 end

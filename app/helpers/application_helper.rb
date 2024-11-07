@@ -1,5 +1,4 @@
 module ApplicationHelper
-
   # SET DASHBOARD HEADER TITLE
   def dashboard_header_title_tag(klass)
     klass_name = klass.model_name.human
@@ -76,7 +75,6 @@ module ApplicationHelper
 
     path.gsub(%r{^albums/}, '')
   end
-
 
   def skip_new_action_tab?(controller_name, action)
     params[:controller] == controller_name && action == 'new'

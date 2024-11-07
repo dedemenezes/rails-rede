@@ -14,7 +14,8 @@ RSpec.describe Video, type: :model do
         expect(video.errors.full_messages).to include('Url não é válido')
       end
 
-      ['www.flamengo.com.br', 'http://www.flamengo.com', 'https://www.flamengo.com', 'https://flamengo.com.br'].each do |url|
+      ['www.flamengo.com.br', 'http://www.flamengo.com', 'https://www.flamengo.com',
+       'https://flamengo.com.br'].each do |url|
         video.url = url
         video.valid?
         expect(video.errors.include?(:url)).to be_falsey

@@ -7,7 +7,7 @@ module Tilesets
     end
 
     def present(tileset)
-      geo_json = tileset.geo_json.is_a?(String) ? JSON.parse(tileset.geo_json) : geo_json = tileset.geo_json
+      geo_json = tileset.geo_json.is_a?(String) ? JSON.parse(tileset.geo_json) : tileset.geo_json
 
       features = geo_json['features']
       points = features.select { |f| f['geometry']['type'] == 'Point' }
