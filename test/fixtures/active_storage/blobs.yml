@@ -1,2 +1,7 @@
 # arraial_banner_blob: <%= ActiveStorage::FixtureSet.blob filename: "arraial.png", service_name: "test_fixtures" %>
 arraial_kml_blob: <%= ActiveStorage::FixtureSet.blob filename: "arraial.kml", service_name: "test_fixtures" %>
+pdf_one_blob: <%= ActiveStorage::FixtureSet.blob filename: "sample-pdf-file.pdf", service_name: "test_fixtures" %>
+pdf_two_blob: <%= ActiveStorage::FixtureSet.blob filename: "sample-pdf-file.pdf", service_name: "test_fixtures" %>
+img_one_blob: <%= ActiveStorage::FixtureSet.blob filename: "arraial.png", service_name: "test_fixtures" %>
+img_two_blob: <%= ActiveStorage::FixtureSet.blob filename: "arraial.png", service_name: "test_fixtures" %>
+img_three_blob: <%= ActiveStorage::FixtureSet.blob filename: "arraial.png", service_name: "test_fixtures" %>
