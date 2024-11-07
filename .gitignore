@@ -54,3 +54,6 @@ riffling.rb
 
 ./app/models/news.txt
 coverage
+
+# capybara images
+capybara*.png
