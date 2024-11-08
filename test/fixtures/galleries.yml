@@ -1,3 +1,7 @@
 one:
   name: 'Test Gallery'
   methodology: flamenguismo
+
+bp_photos:
+  name: 'Test BP'
+  methodology: flamenguismo

@@ -11,13 +11,13 @@ unpublished_with_documents:
   category: document
 
 published_with_one_photo:
-  gallery: one
+  gallery: bp_photos
   name: TEST-Photos-Album-One
   published: true
   category: photo
 
 unpublished_with_photos:
-  gallery: one
+  gallery: bp_photos
   name: TEST-Photos-Album-Multiple
   published: false
   category: photo
