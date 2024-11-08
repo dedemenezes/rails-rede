@@ -37,4 +37,11 @@ class AlbumTest < ActiveSupport::TestCase
     assert_equal %w[id banner name gallery\ name category published updated_at], Album.dashboard_headers
     refute_equal %w[banner id name gallery\ name category published updated_at], Album.dashboard_headers
   end
+
+  test "#pdf?" do
+    album = albums(:unpublished_with_documents)
+    assert album.pdf?(album.documents.first)
+    photo_album = albums(:unpublished_with_photos)
+    refute photo_album.pdf?(photo_album.photos.first)
+  end
 end
