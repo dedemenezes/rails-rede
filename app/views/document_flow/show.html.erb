@@ -1,0 +1,8 @@
+<h1><%= @gallery.name %></h1>
+  <% unless @albums.empty? %>
+    <div class="cards__index">
+      <% @albums.each do |album| %>
+        <%= render 'galleries/gallery', gallery: album %>
+      <% end %>
+    </div>
+  <% end %>

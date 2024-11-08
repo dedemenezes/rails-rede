@@ -1,0 +1,14 @@
+<% unless @galleries.empty? %>
+  <% @galleries.each do |gallery| %>
+    <% next if gallery.empty? %>
+
+    <%= link_to gallery_path(gallery, t: 'documentos') do %>
+      <div class="observatory__card">
+        <%#= display_banner(observatory) %>
+        <div class="observatory__card--image" style="background-image: url('<%= display_banner_as_background(gallery) %>'); height: 240px; border-radius: 10px 10px 0 0; background-position: center;"></div>
+        <p><%= gallery.name %></p>
+      </div>
+    <% end %>
+
+  <% end %>
+<% end %>
