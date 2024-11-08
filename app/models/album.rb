@@ -4,6 +4,7 @@ class Album < ApplicationRecord
   include Taggable
 
   CATEGORIES = [['document', 'documento'], ['photo', 'foto']]
+  HEADERS = %w[id banner name gallery\ name category published updated_at]
 
   validates :name, presence: true, uniqueness: { scope: :gallery_id }
   validates :category, inclusion: { in: CATEGORIES.map(&:first) }
@@ -12,13 +13,14 @@ class Album < ApplicationRecord
   has_one_attached :banner
 
   scope :only_published_events, -> { where(is_event: true, published: true) }
+  scope :with_videos, -> { where(category: 'video') }
+  scope :published_with_videos, -> { with_videos.where(published: true) }
+
+  delegate :name, to: :gallery, prefix: true, allow_nil: true
+
 
   def self.dashboard_headers
-    to_permit = %w[id name]
-    attribute_names.select { |a| to_permit.include?(a) }
-                   .push(%w[gallery\ name category published updated_at])
-                   .flatten
-                   .insert(1, 'banner')
+    HEADERS
   end
 
   # ?? UNUSED ??
