@@ -28,17 +28,6 @@ class Album < ApplicationRecord
     self.banner = attach.blob
   end
 
-
-  def self.with_videos
-    where(category: 'video')
-  end
-
-  def self.published_with_videos
-    with_videos.where(published: true)
-  end
-
-  delegate :name, to: :gallery, prefix: true, allow_nil: true
-
   # UNUSED?
   def pdf?(attachment)
     attachment.blob.content_type =~ /pdf/ && attachment.blob.filename.to_s =~ /.pdf/
