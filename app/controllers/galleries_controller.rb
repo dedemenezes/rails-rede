@@ -1,8 +1,9 @@
 class GalleriesController < ApplicationController
-  def index
-    @galleries = policy_scope(Gallery).includes(albums: %i[photos_attachments documents_attachments]).order(name: :asc)
-    add_breadcrumb 'Acervo', galleries_path, current: true
-  end
+  # NO ROUTE
+  # def index
+  #   @galleries = policy_scope(Gallery).includes(albums: %i[photos_attachments documents_attachments]).order(name: :asc)
+  #   add_breadcrumb 'Acervo', galleries_path, current: true
+  # end
 
   def show
     @gallery = Gallery.includes(albums: [:documents_attachments,
@@ -26,6 +27,8 @@ class GalleriesController < ApplicationController
         add_breadcrumb 'Acervo (Videos)', videos_galleries_path
         add_breadcrumb "#{@gallery.name} (Videos)", gallery_path(@gallery), current: true
       end
+    else
+      redirect_to root_path, alert: 'Categoria do acervo deve ser especificada', status: :forbidden
     end
 
     authorize @gallery
@@ -36,7 +39,7 @@ class GalleriesController < ApplicationController
                  .published_with_documents
                  .map(&:gallery)
                  .uniq
-    add_breadcrumb 'Acervo', galleries_path, current: true
+    add_breadcrumb 'Acervo', "#", current: true
   end
 
   def imagens

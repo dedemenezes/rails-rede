@@ -13,7 +13,7 @@ end
 
 resources :articles, only: %i[show index], path: 'noticias', param: :header
 
-resources :galleries, only: %i[index show], path: 'acervos', param: :name do
+resources :galleries, only: %i[show], path: 'acervos', param: :name do
   collection do
     get :documentos
     get :imagens
