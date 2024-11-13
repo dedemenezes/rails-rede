@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_06_07_134834) do
+ActiveRecord::Schema[7.0].define(version: 2024_11_05_225423) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -78,12 +78,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_07_134834) do
     t.index ["methodology_id"], name: "index_articles_on_methodology_id"
     t.index ["observatory_id"], name: "index_articles_on_observatory_id"
     t.index ["project_id"], name: "index_articles_on_project_id"
-  end
-
-  create_table "categories", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "conflict_types", force: :cascade do |t|
@@ -162,15 +156,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_07_134834) do
     t.string "municipality"
     t.text "description"
     t.index ["unity_type_id"], name: "index_observatories_on_unity_type_id"
-  end
-
-  create_table "observatory_categories", force: :cascade do |t|
-    t.bigint "observatory_id", null: false
-    t.bigint "category_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "index_observatory_categories_on_category_id"
-    t.index ["observatory_id"], name: "index_observatory_categories_on_observatory_id"
   end
 
   create_table "observatory_conflicts", force: :cascade do |t|
@@ -280,8 +265,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_07_134834) do
   add_foreign_key "members", "projects"
   add_foreign_key "methodologies", "projects"
   add_foreign_key "observatories", "unity_types"
-  add_foreign_key "observatory_categories", "categories"
-  add_foreign_key "observatory_categories", "observatories"
   add_foreign_key "observatory_conflicts", "conflict_types"
   add_foreign_key "observatory_conflicts", "observatories"
   add_foreign_key "observatory_priority_subjects", "observatories"

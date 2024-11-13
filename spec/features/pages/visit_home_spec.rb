@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Visiting home page', js: true do
+RSpec.describe 'Visiting home page', type: :feature do
   context 'without articles' do
     it 'sees content' do
       project = create(:project)

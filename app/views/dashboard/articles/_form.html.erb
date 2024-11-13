@@ -48,13 +48,13 @@
                 <p class="invalid-feedback d-block"><%= article.errors[:writer].first  %></p>
               <% end %>
               <div class="d-flex justify-content-between align-items-center w-100 mb-3">
-                <button class="btn btn-primary" data-action='click->display-button-on-hover#project' data-display-button-on-hover-target='projectBtn'>
+                <button class="btn btn-primary" id="project" data-action='click->display-button-on-hover#project' data-display-button-on-hover-target='projectBtn'>
                   Projeto
                 </button>
-                <button class="btn btn-primary" data-action='click->display-button-on-hover#observatory' data-display-button-on-hover-target='observatoryBtn'>
+                <button class="btn btn-primary" id="observatory" data-action='click->display-button-on-hover#observatory' data-display-button-on-hover-target='observatoryBtn'>
                   Observatório
                 </button>
-                <button class="btn btn-primary" data-action='click->display-button-on-hover#methodology'  data-display-button-on-hover-target='methodologyBtn'>
+                <button class="btn btn-primary" id="methodology" data-action='click->display-button-on-hover#methodology'  data-display-button-on-hover-target='methodologyBtn'>
                   Metodologia
                 </button>
               </div>

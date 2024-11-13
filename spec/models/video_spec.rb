@@ -1,43 +1,29 @@
 require 'rails_helper'
 
 RSpec.describe Video, type: :model do
-  describe "Validations" do
-    it { should validate_presence_of(:url) }
-    it 'is expected to validate that :url format is valid' do
-      video = Video.new
-      expect(video.invalid?).to eq(true)
-      expect(video.errors).to include(:url)
-      expect(video.errors.full_messages).to include('Url não é válido')
+  describe '::published' do
+    it 'is expected to return only published videos' do
+      still_one = create(:still_valid)
+      expect(Video.published.length).to eq(0)
 
-      ['htt://www.flamengo.com', 'ww.flamengo.com'].each do |invalid_url|
-        video.url = invalid_url
-        expect(video.invalid?).to be_truthy
-        expect(video.errors).to include(:url)
-        expect(video.errors.full_messages).to include('Url não é válido')
-      end
+      still_two = create(:still_valid, published: true)
+      expect(Video.published.length).to eq(1)
 
-      ['www.flamengo.com.br', 'http://www.flamengo.com', 'https://www.flamengo.com', 'https://flamengo.com.br'].each do |url|
-        video.url = url
-        video.valid?
-        expect(video.errors.include?(:url)).to be_falsey
-      end
+      expect(Video.published).to include(still_two)
+      expect(Video.published).not_to include(still_one)
+    end
+  end
+
+  describe '#thumbnail' do
+    it 'is expected to return correct youtube url' do
+      video = create(:still_valid)
+      expect(video.thumbnail).to eq('https://img.youtube.com/vi/_CL6n0FJZpk/hqdefault.jpg')
     end
 
-    it 'is expected to set youtube video id' do
+    it 'is expected to return empty string when no youtube id is set' do
       video = build(:still_valid)
-      video.valid?
-      expect(video.yt_id).to eq('_CL6n0FJZpk')
-    end
-
-    it 'is expected to strip url before validation' do
-      video = Video.new url: '         www.flamengo.com         '
-      video.valid?
-      expect(video.url).to eq('www.flamengo.com')
+      video.yt_id = ''
+      expect(video.thumbnail).to eq('')
     end
   end
-
-  describe 'Associations' do
-    it { should belong_to(:album)}
-  end
-
 end

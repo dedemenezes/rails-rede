@@ -30,7 +30,7 @@
               data-bs-toggle="tooltip"
               data-bs-placement="left"
               data-bs-title="Ver no site">
-            <%= link_to icon('fa-solid', 'book'), url_for(element), target: '_blank' %>
+            <%= link_to icon('fa-solid', 'book'), url_for(element), target: '_blank', id: dom_id(element)  %>
           </li>
         <% end %>
         <% if policy(element).edit? %>
@@ -39,7 +39,7 @@
                         data-bs-toggle="tooltip"
                         data-bs-placement="top"
                         data-bs-title="Editar">
-            <%= link_to icon('fa-solid', 'pencil'), route_for_edit_dashboard(element) %>
+            <%= link_to icon('fa-solid', 'pencil'), route_for_edit_dashboard(element), id: "edit_#{dom_id(element)}" %>
           </li>
         <% end %>
 
@@ -49,7 +49,7 @@
               data-bs-toggle="tooltip"
               data-bs-placement="left"
               data-bs-title="Remover">
-            <%= link_to icon('fa-solid', 'trash'), route_for_destroy_dashboard(element), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
+            <%= link_to icon('fa-solid', 'trash'), route_for_destroy_dashboard(element), id: "destroy_#{dom_id(element)}", data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
           </li>
         <% end %>
       </ul>

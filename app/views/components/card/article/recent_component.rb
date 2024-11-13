@@ -12,7 +12,7 @@ module Card
       def view_template
         div(
           class:
-            %(article__recent_new #{"mb-4" unless index == top_four.size - 1} mb-xl-0 reveal),
+            %(article__recent_new #{'mb-4' unless index == top_four.size - 1} mb-xl-0 reveal),
           data_scroll_reveal_target: "item"
         ) do
           link_to article_path(article) do
@@ -41,6 +41,5 @@ module Card
         end
       end
     end
-
   end
 end

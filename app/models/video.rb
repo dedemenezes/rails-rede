@@ -1,19 +1,22 @@
 class Video < ApplicationRecord
-  URL_REGEX = %r{\A((?<protocol>https?):\/\/(?<www>w{3})?|w{3})\.?(?<host>\w+\.\w{2,3}(\.\w{2})?)(?<path>\/(?<_>watch\?v=)?(?<video_id>\w+).*)?\z}
+  URL_REGEX = %r{\A((?<protocol>https?)://(?<www>w{3})?|w{3})\.?(?<host>\w+\.\w{2,3}(\.\w{2})?)(?<path>/(?<_>watch\?v=)?(?<video_id>\w+).*)?\z}
 
   validates :url, :name, presence: true
   validates :name, length: { minimum: 3 }
   validates :url, format: { with: URL_REGEX }
 
-  before_validation :strip_url, :set_yt_id
+  before_validation :strip_url
+  after_validation :set_yt_id
 
   scope :published, -> { where(published: true) }
 
   def self.dashboard_headers
-    %w(id thumbnail url name description published updated_at)
+    %w[id thumbnail url name description published updated_at]
   end
 
   def thumbnail
+    return '' unless yt_id.present?
+
     "https://img.youtube.com/vi/#{yt_id}/hqdefault.jpg"
   end
 

@@ -2,3 +2,5 @@ coppola:
   email: "francis@coppola.com"
   first_name: "Francis"
   last_name: "Coppola"
+  encrypted_password: 123456
+  admin: true

@@ -1,8 +1,4 @@
 module ApplicationHelper
-  def rendering_documents_or_images_or_videos?
-    params[:action] =~ /document/ || params[:action] =~ /imag/ || params[:action] =~ /video/
-  end
-
   # SET DASHBOARD HEADER TITLE
   def dashboard_header_title_tag(klass)
     klass_name = klass.model_name.human
@@ -78,10 +74,6 @@ module ApplicationHelper
     return path unless element.is_a? Album
 
     path.gsub(%r{^albums/}, '')
-  end
-
-  def hide_nested_links(name_of_controller)
-    name_of_controller == 'albums'
   end
 
   def skip_new_action_tab?(controller_name, action)

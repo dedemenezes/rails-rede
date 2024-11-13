@@ -117,7 +117,7 @@ module Dashboard
               :banner,
               :category,
               photos: [],
-              documents: [],
+              documents: []
             )
     end
 

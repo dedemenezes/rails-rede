@@ -51,17 +51,19 @@ class Article < ApplicationRecord
     type.model_name.to_s.downcase
   end
 
-  def observatory_name
-    observatory&.name
-  end
+  delegate :name, to: :observatory, prefix: true, allow_nil: true
+  # def observatory_name
+  #   observatory&.name
+  # end
 
-  def tags_name
-    return '' if tags.empty?
-    return tags[0].name unless tags.count > 1
+  # NEVER USED
+  # def tags_name
+  #   return '' if tags.empty?
+  #   return tags[0].name unless tags.count > 1
 
-    names = tags.map(&:name)
-    "#{names[0...-1].join(', ')} e #{names[-1]}"
-  end
+  #   names = tags.map(&:name)
+  #   "#{names[0...-1].join(', ')} e #{names[-1]}"
+  # end
 
   def clean_header
     return unless header.present? && header.ends_with?('.')

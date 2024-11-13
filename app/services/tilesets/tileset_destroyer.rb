@@ -20,7 +20,7 @@ module Tilesets
       conn = Faraday.new(url: "https://api.mapbox.com") do |faraday|
         faraday.adapter Faraday.default_adapter
       end
-      conn.delete { |req| req.url "#{url}?access_token=#{ENV.fetch("MAPBOX_SUPER_KEY")}" }
+      conn.delete { |req| req.url "#{url}?access_token=#{ENV.fetch('MAPBOX_SUPER_KEY')}" }
     end
 
     def delete_source
@@ -30,7 +30,7 @@ module Tilesets
       conn = Faraday.new(url: "https://api.mapbox.com") do |faraday|
         faraday.adapter Faraday.default_adapter
       end
-      conn.delete { |req| req.url "#{url}?access_token=#{ENV.fetch("MAPBOX_SUPER_KEY")}" }
+      conn.delete { |req| req.url "#{url}?access_token=#{ENV.fetch('MAPBOX_SUPER_KEY')}" }
     end
   end
 end

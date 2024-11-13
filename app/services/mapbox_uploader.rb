@@ -43,7 +43,7 @@ class MapboxUploader
   end
 
   def ensure_valid_name(tileset_name)
-    Tileset.new.replace_non_ascii_with_ascii(tileset_name).gsub(' ', '_')
+    Tileset.new.replace_non_ascii_with_ascii(tileset_name).gsub(' ', '_').downcase
   end
 
   def stage_file

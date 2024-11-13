@@ -1,0 +1,2 @@
+# arraial_banner_blob: <%= ActiveStorage::FixtureSet.blob filename: "arraial.png", service_name: "test_fixtures" %>
+arraial_kml_blob: <%= ActiveStorage::FixtureSet.blob filename: "arraial.kml", service_name: "test_fixtures" %>

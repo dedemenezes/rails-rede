@@ -1,7 +1,10 @@
+require "simplecov"
+SimpleCov.start
 ENV["RAILS_ENV"] ||= "test"
 require_relative "../config/environment"
 require "rails/test_help"
-require 'webmock/minitest'
+# require 'webmock/minitest'
+
 
 class ActiveSupport::TestCase
   # Run tests in parallel with specified workers
@@ -11,4 +14,12 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  include FactoryBot::Syntax::Methods
+  # include Warden::Test::Helpers
+  include Devise::Test::IntegrationHelpers
+
+  # Sets ActiveStorage::Current.host for tests using local disk
+  ActiveSupport.on_load :action_controller do
+    include ActiveStorage::SetCurrent
+  end
 end
