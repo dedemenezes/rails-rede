@@ -4,7 +4,7 @@ module Dashboard
     before_action :set_video, only: %i[show edit destroy update]
 
     def index
-      @videos = Video.all.order(updated_at: :desc)
+      @videos = Video.where(album: nil).order(updated_at: :desc)
     end
 
     def new
