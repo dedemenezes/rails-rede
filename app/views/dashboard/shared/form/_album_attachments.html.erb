@@ -88,6 +88,15 @@
                       },
                       label: "🗄 Selecione os arquivos" %>
       </div>
+      <div class="w-100 d-none" data-toggle-on-change-target="video">
+        <%= form.simple_fields_for :videos do |videos_form| %>
+        <%#= render 'dashboard/videos/form', video: Video.new %>
+          <%= videos_form.input :name, wrapper_html: { class: 'flex-grow-1' } %>
+          <%= videos_form.input :description %>
+          <%= videos_form.input :url %>
+        <% end %>
+        <button type="button" class="btn btn-primary">Adicionar outro video</button>
+      </div>
     </div>
   </div>
 </div>

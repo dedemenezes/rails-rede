@@ -38,6 +38,7 @@ module Dashboard
 
     def new
       @album = Album.new
+      @album.videos.build
     end
 
     def create
