@@ -50,6 +50,7 @@ module Dashboard
       end
       # binding.b
       if @album.save
+        @album.videos.update_all(published: true) if @album.category == 'video'
 
         attach_documents_first_page_as_photos
 

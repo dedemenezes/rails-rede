@@ -26,9 +26,11 @@ class Dashboard::AlbumsControllerTest < ActionDispatch::IntegrationTest
         }
       }
     }
-    assert_difference   'Video.count', 2 do
+
+    assert_difference 'Album.count', 1 do
       post dashboard_albums_url, params: valid_params
     end
+    assert_response :redirect
     assert_equal 2, Album.last.videos.size
   end
 end

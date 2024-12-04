@@ -12,7 +12,7 @@ namespace :dashboard do
     collection do
       get :imagens
       get :documentos
-      # get :videos
+      get :videos
     end
     member do
       patch 'update_banner'
