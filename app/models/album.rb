@@ -3,13 +3,16 @@ class Album < ApplicationRecord
   include Photoable
   include Taggable
 
-  CATEGORIES = [['document', 'documento'], ['photo', 'foto']]
+  CATEGORIES = [['document', 'documento'], ['photo', 'foto'], ['video', 'video']]
   HEADERS = %w[id banner name gallery\ name category published updated_at]
 
   validates :name, presence: true, uniqueness: { scope: :gallery_id }
   validates :category, inclusion: { in: CATEGORIES.map(&:first) }
 
   belongs_to :gallery
+  has_many :videos
+  accepts_nested_attributes_for :videos
+
   has_one_attached :banner
 
   scope :only_published_events, -> { where(is_event: true, published: true) }

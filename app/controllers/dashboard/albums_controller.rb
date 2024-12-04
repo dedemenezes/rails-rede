@@ -47,6 +47,7 @@ module Dashboard
         @album.gallery = @gallery
       rescue StandardError
       end
+      # binding.b
       if @album.save
 
         attach_documents_first_page_as_photos
@@ -117,7 +118,8 @@ module Dashboard
               :banner,
               :category,
               photos: [],
-              documents: []
+              documents: [],
+              videos_attributes: [[ :id, :name, :description, :url ]]
             )
     end
 
