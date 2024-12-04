@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Video, type: :model do
+  describe 'Associations' do
+    it { should belong_to(:album).optional(true) }
+  end
+
   describe '::published' do
     it 'is expected to return only published videos' do
       still_one = create(:still_valid)
