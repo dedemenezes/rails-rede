@@ -42,7 +42,9 @@ module Dashboard
     end
 
     def create
+      binding.b
       @album = Album.new(album_params)
+
       begin
         @gallery = Gallery.find(params[:album][:gallery_id])
         @album.gallery = @gallery
