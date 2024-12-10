@@ -98,7 +98,10 @@
             <%= videos_form.input :url %>
           <% end %>
         </div>
-        <button type="button" class="btn btn-primary" data-action="click->duplicate-inputs#add"><%= icon('fa-solid', 'plus') %></button>
+        <div class="videos-actions">
+          <button type="button" class="btn btn-primary" data-action="click->duplicate-inputs#add"><%= icon('fa-solid', 'plus') %></button>
+          <button type="button" class="btn btn-rede-white d-none" data-duplicate-inputs-target='removeBtn' data-action="click->duplicate-inputs#remove"><%= icon('fa-solid', 'minus') %></button>
+        </div>
       </div>
     </div>
   </div>
