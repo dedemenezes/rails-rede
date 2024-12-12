@@ -7,7 +7,8 @@ module ApplicationHelper
     end
     counter = klass.count > 1 ? "#{klass_name}s" : klass_name
     counter[-2] = 'n' if klass_name == 'Imagem' && klass.count > 1
-    "<h1>#{klass_name} <small class='text-muted highlight'>#{klass.count} #{counter} </small></h1>".html_safe
+    # <small class='text-muted highlight'>#{klass.count} #{counter} </small>
+    "<h1>#{klass_name}</h1>".html_safe
   end
 
   def query_string_except(tag, tags)
