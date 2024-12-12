@@ -42,7 +42,7 @@ module Dashboard
     end
 
     def create
-      binding.b
+      # binding.b
       @album = Album.new(album_params)
 
       begin
