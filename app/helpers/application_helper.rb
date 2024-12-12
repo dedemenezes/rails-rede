@@ -16,6 +16,8 @@ module ApplicationHelper
   end
 
   def model_name_from_controller_name(controller_name_to_use)
+    return Album if controller_name.match?(/materials/)
+
     controller_name_to_use.singularize.split('_').map(&:capitalize).join.constantize
   end
 

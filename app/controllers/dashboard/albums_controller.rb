@@ -126,12 +126,10 @@ module Dashboard
 
     def redirect_to_correct_album_type_path(options = {})
       case @album.category
-      when 'video'
-        redirect_to videos_dashboard_albums_path, options
-      when 'document'
-        redirect_to documentos_dashboard_albums_path, options
       when 'photo'
         redirect_to imagens_dashboard_albums_path, options
+      else
+        redirect_to dashboard_materials_path, options
       end
     end
 

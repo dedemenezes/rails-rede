@@ -22,7 +22,11 @@
             <div class="col-12 col-md-9 col-xl-10 ps-0">
               <div class="container">
                 <% if controller_name != 'dashboard'  %>
-                  <%= render 'dashboard/shared/header', klass: controller_name.singularize.split('_').map(&:capitalize).join.constantize, hide_button: hide_nested_links(controller_name) %>
+                  <% if controller_name.match?(/materials/) %>
+                    <%= render 'dashboard/shared/header', klass: Album, hide_button: hide_nested_links(controller_name) %>
+                  <% else %>
+                    <%= render 'dashboard/shared/header', klass: controller_name.singularize.split('_').map(&:capitalize).join.constantize, hide_button: hide_nested_links(controller_name) %>
+                  <% end %>
                   <%= render 'shared/breadcrumbs' %>
                   <%= render 'dashboard/shared/content_menu', hide_link_new: hide_nested_links(controller_name) unless rendering_documents_or_images_or_videos? %>
                 <% else %>

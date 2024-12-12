@@ -8,10 +8,12 @@ namespace :dashboard do
   resources :methodologies
   resources :projects
   resources :galleries
+  scope module: 'albums' do
+    resources :materials, only: %i[index new]
+  end
   resources :albums do
     collection do
       get :imagens
-      get :documentos
       get :videos
     end
     member do
