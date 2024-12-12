@@ -11,7 +11,7 @@ class Album < ApplicationRecord
 
   belongs_to :gallery
   has_many :videos, dependent: :destroy
-  accepts_nested_attributes_for :videos
+  accepts_nested_attributes_for :videos, reject_if: lambda { |a| a[:when].blank? || a[:where].blank? }
 
   has_one_attached :banner
 
