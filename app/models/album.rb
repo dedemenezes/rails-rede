@@ -10,7 +10,7 @@ class Album < ApplicationRecord
   validates :category, inclusion: { in: CATEGORIES.map(&:first) }
 
   belongs_to :gallery
-  has_many :videos
+  has_many :videos, dependent: :destroy
   accepts_nested_attributes_for :videos
 
   has_one_attached :banner
