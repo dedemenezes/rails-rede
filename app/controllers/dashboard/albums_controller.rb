@@ -42,7 +42,6 @@ module Dashboard
     end
 
     def create
-      # binding.b
       @album = Album.new(album_params)
 
       begin
@@ -50,7 +49,6 @@ module Dashboard
         @album.gallery = @gallery
       rescue StandardError
       end
-      # binding.b
       if @album.save
         @album.videos.update_all(published: true) if @album.category == 'video'
 
