@@ -21,3 +21,9 @@ unpublished_with_photos:
   name: TEST-Photos-Album-Multiple
   published: false
   category: photo
+
+published_with_one_video:
+  gallery: one
+  name: TEST-Videos-Album-One
+  published: true
+  category: video

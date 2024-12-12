@@ -1,0 +1,5 @@
+published:
+  name: TEST-Video-One
+  description: "Video publicado aqui esta descrito"
+  url: "https://www.youtube.com/watch?v=MvGeaYBqvPY"
+  album: published_with_one_video
