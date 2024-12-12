@@ -28,6 +28,7 @@ export default class extends Controller {
     .forEach((input) => {
       input.setAttribute('id', input.id.replace(/\d/, inputNumber))
       input.setAttribute('name', input.name.replace(/\d/, inputNumber))
+      input.value = ''
     })
 
     // rename labels accordingly
