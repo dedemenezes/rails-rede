@@ -1,10 +1,4 @@
 class GalleriesController < ApplicationController
-  # NO ROUTE
-  # def index
-  #   @galleries = policy_scope(Gallery).includes(albums: %i[photos_attachments documents_attachments]).order(name: :asc)
-  #   add_breadcrumb 'Acervo', galleries_path, current: true
-  # end
-
   def show
     @gallery = Gallery.includes(albums: [:documents_attachments,
                                          { banner_attachment: :blob }]).find_by(name: params[:name]) || Gallery.find(params[:id])
