@@ -15,6 +15,7 @@ resources :articles, only: %i[show index], path: 'noticias', param: :header
 
 resources :galleries, only: %i[show], path: 'acervos', param: :name do
   collection do
+    resources :materials, path: 'materiais', only: :index
     resources :document_flow, only: %i[index show], param: :name
     get :documentos
     get :imagens

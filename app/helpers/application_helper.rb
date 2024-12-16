@@ -26,7 +26,7 @@ module ApplicationHelper
     if params[:controller] == 'pages' || params[:controller] == 'observatories' || params[:controller] == 'contacts' || params[:controller] == 'galleries'
       condition = params[:action] == options[:action] && params[:controller] == expected
     end
-    condition ? 'active' : ''
+    condition ? 'active' : 'fw-normal'
   end
 
   def display_banner_as_background(instance)
