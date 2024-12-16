@@ -19,6 +19,8 @@ class Album < ApplicationRecord
   scope :with_videos, -> { where(category: 'video') }
   scope :published_with_videos, -> { with_videos.where(published: true) }
 
+  scope :materials, -> { published_with_videos + published_with_documents }
+
   delegate :name, to: :gallery, prefix: true, allow_nil: true
 
 
