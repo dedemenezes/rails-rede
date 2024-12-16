@@ -43,7 +43,6 @@ module Dashboard
 
     def create
       @album = Album.new(album_params)
-
       begin
         @gallery = Gallery.find(params[:album][:gallery_id])
         @album.gallery = @gallery
