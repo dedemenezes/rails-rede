@@ -4,7 +4,6 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ['formFields', 'title', 'removeBtn']
   connect() {
-    console.log("connected!");
   }
 
   remove() {
@@ -44,16 +43,11 @@ export default class extends Controller {
     // insert before video input actions
     this.element.insertBefore(clone, this.element.lastElementChild)
 
+    // 2 represent the .video-actions element + one formField in the _album_attachments
+    // that's why we remove the removeBtn, there's only one input field
     if (this.formFieldsTargets.length === 2) {
       this.removeBtnTarget.classList.remove('d-none')
     }
 
   }
 }
-
-
-
-// clone.querySelectorAll('input')
-//         .forEach((label) => {
-//           label.setAttribute('name', label.name.replace(/\d/, controller.childElementCount - 1))
-//         })
