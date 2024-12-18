@@ -7,11 +7,3 @@ module Album::Documentable
     scope :published_with_documents, -> { with_documents.where(published: true).having("COUNT(active_storage_attachments) > 0") }
   end
 end
-
-# def self.with_documents
-#   # where(category: 'document')
-#   left_joins(:documents_attachments).where(category: 'document').group(:id)
-# end
-# def self.published_with_documents
-#   with_documents.where(published: true).having("COUNT(active_storage_attachments) > 0")
-# end
