@@ -1,4 +1,29 @@
 published_with_one_document:
   gallery: one
-  name: TEST-Documents-Album
+  name: TEST-Documents-Album-One
   published: true
+  category: document
+
+unpublished_with_documents:
+  gallery: one
+  name: TEST-Documents-Album-Multiple
+  published: false
+  category: document
+
+published_with_one_photo:
+  gallery: bp_photos
+  name: TEST-Photos-Album-One
+  published: true
+  category: photo
+
+unpublished_with_photos:
+  gallery: bp_photos
+  name: TEST-Photos-Album-Multiple
+  published: false
+  category: photo
+
+published_with_one_video:
+  gallery: one
+  name: TEST-Videos-Album-One
+  published: true
+  category: video

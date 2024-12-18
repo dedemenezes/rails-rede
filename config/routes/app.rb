@@ -13,9 +13,9 @@ end
 
 resources :articles, only: %i[show index], path: 'noticias', param: :header
 
-resources :galleries, only: %i[index show], path: 'acervos', param: :name do
+resources :galleries, only: %i[show], path: 'acervos', param: :name do
   collection do
-    get :documentos
+    resources :materials, path: 'materiais', only: %i[index show], param: :name
     get :imagens
     get :videos
   end
@@ -29,4 +29,5 @@ namespace :articles do
     delete '/tag/:name', to: 'tags#destroy', as: :tag
   end
 end
+
 # delete 'articles/index/tags', to: 'articles_index_tags#destroy', as: :remove_tag_from_filter

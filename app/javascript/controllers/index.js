@@ -25,6 +25,9 @@ application.register("display-button-on-hover", DisplayButtonOnHoverController)
 import DisplayPhotoInputController from "./display_photo_input_controller"
 application.register("display-photo-input", DisplayPhotoInputController)
 
+import DuplicateInputsController from "./duplicate_inputs_controller"
+application.register("duplicate-inputs", DuplicateInputsController)
+
 import EventsScrollController from "./events_scroll_controller"
 application.register("events-scroll", EventsScrollController)
 

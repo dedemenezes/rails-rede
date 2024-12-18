@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="toggle-on-change"
 export default class extends Controller {
-  static targets = ['category', 'photo', 'document']
+  static targets = ['category', 'photo', 'document', 'video']
   connect() {
     if (this.categoryTarget.value !== '') {
       this.dynamicTarget(this.categoryTarget.value).classList.remove('d-none')
@@ -10,7 +10,7 @@ export default class extends Controller {
   }
 
   update(event) {
-    ['photo', 'document'].forEach((name) => {
+    ['photo', 'document', 'video'].forEach((name) => {
       this.dynamicTarget(name).classList.add('d-none')
     })
     const selected = event.currentTarget.value

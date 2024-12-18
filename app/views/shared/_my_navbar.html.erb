@@ -17,19 +17,18 @@
           <li class="nav-item">
             <%= link_to "Observatórios", observatories_path, class: "nav-link #{tab_active?('observatories', action: 'index')}" %>
           </li>
-          <li class="nav-item drop__down <%= 'active' if params[:controller] == 'galleries' || params[:controller] == 'albums' %>" data-controller='reveal-on-click'>
-            <a class="nav-link cursor__link--hover pb-0"
-               href="#"
+          <li class="nav-item drop__down <%= 'active' if params[:controller] == 'galleries' || params[:controller] == 'albums' || params[:controller] == 'materials' || params[:controller].match?(/videos/) %>" data-controller='reveal-on-click'>
+            <p class="nav-link cursor__link--hover pb-0"
                data-action="click->reveal-on-click#toggle click@window->reveal-on-click#close"
                data-reveal-on-click-target='button'>Acervos <i class="fa-solid fa-chevron-down" style="opacity: 0.7;"></i></a>
             <ul class="drop__down__card drop__down__card--nav hidden__el"
                 data-reveal-on-click-target="dropdown">
-              <a class="drop__down__close" href="#" aria-label="Fechar" data-action='click->reveal-on-click#toggle'>
-                <%= image_tag 'close-icon.svg', width: '12px', alt: 'fechar dropwdown' %>
-              </a>
-              <%= link_to "Audiovisuais", acervos_videos_path, class: "nav-link #{params[:t] == 'videos' || params[:action] == 'videos' ? 'active' : 'fw-normal'}" %>
-              <%= link_to "Documentos", documentos_galleries_path, class: "nav-link #{params[:t] == 'documentos' || params[:action] == 'documentos' ? 'active' : 'fw-normal'}" %>
+              <div class="drop__down__close" data-action='click->reveal-on-click#toggle'>
+                <%= image_tag 'close-icon.svg', width: '12px' %>
+              </div>
+              <%= link_to "Audiovisuais", acervos_videos_path, class: "nav-link #{params[:t] == 'videos' || params[:action] == 'videos' || params[:controller].match?(/videos/) ? 'active' : 'fw-normal'}" %>
               <%= link_to "Imagens", imagens_galleries_path, class: "nav-link #{params[:t] == 'imagens' || params[:action] == 'imagens' ? 'active' : 'fw-normal'}" %>
+              <%= link_to "Materiais", materials_path, class: "nav-link #{tab_active?('materials', action: 'index')}" %>
             </ul>
           </li>
           <li class="nav-item">

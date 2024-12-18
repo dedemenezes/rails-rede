@@ -7,3 +7,28 @@ arraial_kml:
   name: kml # This must match the attachment name in the model
   record: arraial_tile (Tileset)
   blob: arraial_kml_blob
+
+pdf_one:
+  name: documents
+  record: published_with_one_document (Album)
+  blob: pdf_one_blob
+
+pdf_two:
+  name: documents
+  record: unpublished_with_documents (Album)
+  blob: pdf_two_blob
+
+img_one:
+  name: photos
+  record: published_with_one_photo (Album)
+  blob: img_one_blob
+
+img_two:
+  name: photos
+  record: unpublished_with_photos (Album)
+  blob: img_two_blob
+
+img_three:
+  name: photos
+  record: unpublished_with_photos (Album)
+  blob: img_three_blob

@@ -17,10 +17,6 @@ module Dashboard
       @albums = Album.includes(:gallery).with_documents.with_attached_banner
     end
 
-    def videos
-      @albums = Album.includes(:gallery).with_videos.with_attached_banner
-    end
-
     # def edit_document
     #   @album = Album.find(params[:id])
     #   @attachments = @album.documents.map do |document_attachment|
@@ -38,6 +34,7 @@ module Dashboard
 
     def new
       @album = Album.new
+      @album.videos.build
     end
 
     def create
@@ -48,6 +45,7 @@ module Dashboard
       rescue StandardError
       end
       if @album.save
+        @album.videos.update_all(published: true) if @album.category == 'video'
 
         attach_documents_first_page_as_photos
 
@@ -108,27 +106,25 @@ module Dashboard
     end
 
     def album_params
-      params.require(:album)
-            .permit(
-              :name,
-              :is_event,
-              :event_date,
-              :published,
-              :banner,
-              :category,
-              photos: [],
-              documents: []
-            )
+      params.require(:album).permit(
+        :name,
+        :is_event,
+        :event_date,
+        :published,
+        :banner,
+        :category,
+        photos: [],
+        documents: [],
+        videos_attributes: [%i[id name description url]]
+      )
     end
 
     def redirect_to_correct_album_type_path(options = {})
       case @album.category
-      when 'video'
-        redirect_to videos_dashboard_albums_path, options
-      when 'document'
-        redirect_to documentos_dashboard_albums_path, options
       when 'photo'
         redirect_to imagens_dashboard_albums_path, options
+      else
+        redirect_to dashboard_materials_path, options
       end
     end
 

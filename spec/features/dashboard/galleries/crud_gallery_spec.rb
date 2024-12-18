@@ -22,7 +22,7 @@ RSpec.describe 'CRUD Gallery', type: :feature do
     gallery = create(:gallery)
     visit dashboard_galleries_path
     click_on "destroy_gallery_#{gallery.id}"
-    expect(page).to have_content("1 Acervo")
+    expect(page).to have_content("Acervo")
     expect(Gallery.count).to eq(1)
   end
 

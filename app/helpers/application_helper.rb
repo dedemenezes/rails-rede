@@ -2,12 +2,9 @@ module ApplicationHelper
   # SET DASHBOARD HEADER TITLE
   def dashboard_header_title_tag(klass)
     klass_name = klass.model_name.human
-    if params[:action] == 'documentos' || params[:action] == 'imagens'
-      klass_name = params[:action] == 'documentos' ? 'Documento' : "Imagem"
-    end
-    counter = klass.count > 1 ? "#{klass_name}s" : klass_name
-    counter[-2] = 'n' if klass_name == 'Imagem' && klass.count > 1
-    "<h1>#{klass_name} <small class='text-muted highlight'>#{klass.count} #{counter} </small></h1>".html_safe
+    klass_name = "Imagens" if params[:action] == 'imagens'
+    klass_name = "Materiais" if params[:controller].match?(/materials/)
+    "<h1>#{klass_name}</h1>".html_safe
   end
 
   def query_string_except(tag, tags)
@@ -15,6 +12,8 @@ module ApplicationHelper
   end
 
   def model_name_from_controller_name(controller_name_to_use)
+    return Album if controller_name.match?(/materials/)
+
     controller_name_to_use.singularize.split('_').map(&:capitalize).join.constantize
   end
 
@@ -23,7 +22,7 @@ module ApplicationHelper
     if params[:controller] == 'pages' || params[:controller] == 'observatories' || params[:controller] == 'contacts' || params[:controller] == 'galleries'
       condition = params[:action] == options[:action] && params[:controller] == expected
     end
-    condition ? 'active' : ''
+    condition ? 'active' : 'fw-normal'
   end
 
   def display_banner_as_background(instance)

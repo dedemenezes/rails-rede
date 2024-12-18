@@ -9,6 +9,7 @@ RSpec.describe Album, type: :model do
     it { should have_many_attached(:photos) }
     it { should have_many(:taggings) }
     it { should have_many(:tags).through(:taggings) }
+    it { should have_many(:videos) }
   end
 
   describe 'Scopes' do

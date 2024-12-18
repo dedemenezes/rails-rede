@@ -1,0 +1,79 @@
+<% if true %>
+  <div class="dashboard__list px-3">
+    <table class='table'>
+      <thead>
+      <% Album.dashboard_headers.each do |header| %>
+          <% if header == 'featured?' %>
+          <th scope="col"><%= t('featured').capitalize %>?</th>
+        <% elsif header == 'gallery name' %>
+          <th scope="col"><%= t('gallery_name').capitalize %></th>
+        <% else %>
+          <th scope="col"><%= model_name_from_controller_name(controller_name).human_attribute_name(header).capitalize %></th>
+        <% end %>
+      <% end %>
+      <th><%= t('actions').capitalize %></th>
+
+      </thead>
+      <tbody>
+        <% @albums.each do |album| %>
+          <tr>
+            <% album.class.dashboard_headers.each do |header| %>
+              <% if %w[updated\ at created\ at].include? header %>
+                <td><%= album.send(header.gsub(' ', '_').to_sym).in_time_zone.strftime('%b %e, %Y - %H:%M:%S') %></td>
+              <% elsif header == 'thumbnail' %>
+                  <td><%= image_tag album.send(header.to_sym), width: '82px' %></td>
+              <% elsif header == 'banner' %>
+                <% if album.send(header.gsub(' ', '_').to_sym).attached? %>
+                  <td><%= image_tag album.send(header.gsub(' ', '_').to_sym).url, width: '62px' %></td>
+                <% else %>
+                  <td><%= image_tag 'default-banner.png', width: '62px' %></td>
+                <% end %>
+              <% elsif header == 'published' %>
+                <td>
+                    <%= simple_form_for [:dashboard, album] do |f| %>
+                      <%= f.input :published, input_html: { checked: album.not_published? }, wrapper_html: { hidden: true } %>
+                      <%= f.submit album.published ? 'Despublicar' : 'Publicar', class: "btn btn-rede-#{album.published ? 'secondary' : 'primary-l'} text-white" %>
+                    <% end %>
+                </td>
+              <% else %>
+                <td><%= album.send(header.gsub(' ', '_').to_sym) %></td>
+              <% end %>
+            <% end %>
+            <td>
+              <ul class="list-inline mb-0">
+                <% if policy(album).show? %>
+                  <li class="list-inline-item border-0"
+                      data-controller='tooltip'
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="left"
+                      data-bs-title="Ver no site">
+                    <%= link_to icon('fa-solid', 'book'), album_path(album), target: '_blank', id: dom_id(album)  %>
+                  </li>
+                <% end %>
+                <% if policy(album).edit? %>
+                  <li class="list-inline-item border-0"
+                                data-controller='tooltip'
+                                data-bs-toggle="tooltip"
+                                data-bs-placement="top"
+                                data-bs-title="Editar">
+                    <%= link_to icon('fa-solid', 'pencil'), edit_dashboard_album_path(album), id: "edit_#{dom_id(album)}" %>
+                  </li>
+                <% end %>
+
+                <% if policy(album).destroy? %>
+                  <li class="list-inline-item border-0"
+                      data-controller='tooltip'
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="left"
+                      data-bs-title="Remover">
+                    <%= link_to icon('fa-solid', 'trash'), dashboard_album_path(album), id: "destroy_#{dom_id(album)}", data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
+                  </li>
+                <% end %>
+              </ul>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>

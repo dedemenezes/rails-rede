@@ -58,5 +58,12 @@
                 label_html: { data: { publish_checkbox_target: 'label' } }
     %>
 
-  <%= render 'dashboard/shared/form/submit_cancel', element: album, form: f %>
+  <div class="d-flex justify-content-between mt-5">
+    <%= f.submit album.new_record? ? "Criar #{album.model_name.human}" : "Atualizar #{album.model_name.human}", class: 'btn btn-primary shadow-sm' %>
+    <% if @album.category == 'photo' %>
+      <%= link_to 'Cancelar', imagens_dashboard_albums_path, class: 'btn btn-rede-light btn-rede-light--small shadow-sm' %>
+    <% else %>
+      <%= link_to 'Cancelar', dashboard_galleries_path, class: 'btn btn-rede-light btn-rede-light--small shadow-sm' %>
+    <% end %>
+  </div>
 <% end %>

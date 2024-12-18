@@ -4,7 +4,7 @@ module Dashboard
     before_action :set_video, only: %i[show edit destroy update]
 
     def index
-      @videos = Video.all.order(updated_at: :desc)
+      @videos = Video.where(album: nil).order(updated_at: :desc)
     end
 
     def new
@@ -35,7 +35,8 @@ module Dashboard
 
     def destroy
       if @video.destroy
-        redirect_to dashboard_videos_path, notice: 'Vídeo removido.'
+        redirect_to dashboard_videos_path, notice: 'Vídeo removido.' if @video.album.nil?
+        redirect_to edit_dashboard_album_path(@video.album), notice: 'Vídeo removido.' if @video.album.present?
       else
         @videos = Video.all.order(updated_at: :desc)
         render :index, status: :unprocessable_entity

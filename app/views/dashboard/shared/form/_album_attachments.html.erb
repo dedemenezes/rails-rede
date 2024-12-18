@@ -88,6 +88,21 @@
                       },
                       label: "🗄 Selecione os arquivos" %>
       </div>
+      <div class="w-100 d-none" data-toggle-on-change-target="video" data-controller="duplicate-inputs">
+        <div class="w-100" data-duplicate-inputs-target="formFields">
+          <%#= render 'dashboard/videos/form', video: Video.new %>
+          <p class='mb-1' data-duplicate-inputs-target="title">Video 1</p>
+          <%= form.simple_fields_for :videos do |videos_form| %>
+            <%= videos_form.input :name, wrapper_html: { class: 'flex-grow-1' } %>
+            <%= videos_form.input :description %>
+            <%= videos_form.input :url %>
+          <% end %>
+        </div>
+        <div class="videos-actions">
+          <button type="button" class="btn btn-primary" data-action="click->duplicate-inputs#add"><%= icon('fa-solid', 'plus') %></button>
+          <button type="button" class="btn btn-rede-white d-none" data-duplicate-inputs-target='removeBtn' data-action="click->duplicate-inputs#remove"><%= icon('fa-solid', 'minus') %></button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

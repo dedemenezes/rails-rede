@@ -3,13 +3,24 @@
     <% flash[:alert] = "Selecione uma foto de banner" %>
   <% end %>
   <div class="cards__index mt-3 mb-4">
-    <% @album.photos.each do |photo| %>
-      <div class="album__card">
-          <%= image_tag "https://rede-observacao-prod.s3.us-east-2.amazonaws.com/#{photo.key}", width: '100%', alt: photo.blob.filename.to_s %>
-          <%= link_to dashboard_attachment_path(photo), data: { turbo_method: 'delete', turbo_confirm: 'Essa ação é irreverssível. Voce tem certeza?' }, class: 'album__card__link  card__link--gray' do %>
+    <% if @album.category == 'video' %>
+      <% @album.videos.each do |video| %>
+        <div class="album__card">
+          <%= image_tag video.thumbnail, width: '100%' %>
+          <%= link_to dashboard_video_path(video), data: { turbo_method: :delete, turbo_confirm: 'Essa ação é irreverssível. Voce tem certeza?' }, class: 'album__card__link  card__link--gray' do %>
             <%= icon('fa-solid', 'trash') %>
           <% end %>
-      </div>
+        </div>
+      <% end %>
+    <% else %>
+      <% @album.photos.each do |photo| %>
+        <div class="album__card">
+            <%= image_tag "https://rede-observacao-prod.s3.us-east-2.amazonaws.com/#{photo.key}", width: '100%' %>
+            <%= link_to dashboard_attachment_path(photo), data: { turbo_method: 'delete', turbo_confirm: 'Essa ação é irreverssível. Voce tem certeza?' }, class: 'album__card__link  card__link--gray' do %>
+              <%= icon('fa-solid', 'trash') %>
+            <% end %>
+        </div>
+      <% end %>
     <% end %>
   </div>
   <%= render 'form', album: @album %>
