@@ -8,6 +8,7 @@ export default class extends Controller {
   }
 
   toggle(e) {
+    e.preventDefault()
     this.buttonTarget.classList.toggle('active')
     this.dropdownTarget.classList.toggle('active')
     if (this.hasIconTarget) {

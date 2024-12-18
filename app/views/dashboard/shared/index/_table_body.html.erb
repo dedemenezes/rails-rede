@@ -4,12 +4,12 @@
       <% if %w[updated\ at created\ at].include? header %>
         <td><%= element.send(header.gsub(' ', '_').to_sym).in_time_zone.strftime('%b %e, %Y - %H:%M:%S') %></td>
       <% elsif header == 'thumbnail' %>
-          <td><%= image_tag element.send(header.to_sym), width: '82px' %></td>
+          <td><%= image_tag element.send(header.to_sym), width: '82px', alt: "#{element.class} thumbnail" %></td>
       <% elsif header == 'banner' %>
         <% if element.send(header.gsub(' ', '_').to_sym).attached? %>
-          <td><%= image_tag element.send(header.gsub(' ', '_').to_sym).url, width: '62px' %></td>
+          <td><%= image_tag element.send(header.gsub(' ', '_').to_sym).url, width: '62px', alt: "#{element.class} thumbnail" %></td>
         <% else %>
-          <td><%= image_tag 'default-banner.png', width: '62px' %></td>
+          <td><%= image_tag 'default-banner.png', width: '62px', alt: 'default banner' %></td>
         <% end %>
       <% elsif header == 'published' %>
         <td>
