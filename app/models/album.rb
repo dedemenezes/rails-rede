@@ -11,7 +11,7 @@ class Album < ApplicationRecord
 
   belongs_to :gallery
   has_many :videos, dependent: :destroy
-  accepts_nested_attributes_for :videos, reject_if: -> { |input| input[:name].blank? || input[:url].blank? }
+  accepts_nested_attributes_for :videos
 
   has_one_attached :banner
 
