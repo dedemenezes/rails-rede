@@ -28,14 +28,6 @@ class GalleriesController < ApplicationController
     authorize @gallery
   end
 
-  def documentos
-    @galleries = policy_scope(Album)
-                 .published_with_documents
-                 .map(&:gallery)
-                 .uniq
-    add_breadcrumb 'Acervo', "#", current: true
-  end
-
   def imagens
     @galleries = policy_scope(Album)
                  .published_with_photos
