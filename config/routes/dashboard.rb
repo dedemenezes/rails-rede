@@ -14,7 +14,6 @@ namespace :dashboard do
   resources :albums do
     collection do
       get :imagens
-      get :videos
     end
     member do
       patch 'update_banner'
