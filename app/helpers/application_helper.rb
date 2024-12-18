@@ -2,7 +2,8 @@ module ApplicationHelper
   # SET DASHBOARD HEADER TITLE
   def dashboard_header_title_tag(klass)
     klass_name = klass.model_name.human
-    klass_name = "Imagem" if params[:action] == 'imagens'
+    klass_name = "Imagens" if params[:action] == 'imagens'
+    klass_name = "Materiais" if params[:controller].match?(/materials/)
     "<h1>#{klass_name}</h1>".html_safe
   end
 
