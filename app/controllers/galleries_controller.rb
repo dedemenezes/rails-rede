@@ -33,7 +33,6 @@ class GalleriesController < ApplicationController
                  .published_with_photos
                  .map(&:gallery)
                  .uniq
-    add_breadcrumb 'Acervo', '#', current: true
   end
 
   def videos
@@ -41,6 +40,5 @@ class GalleriesController < ApplicationController
                  .published_with_videos
                  .map(&:gallery)
                  .uniq
-    add_breadcrumb 'Acervo', '#', current: true
   end
 end
