@@ -61,6 +61,7 @@ module Dashboard
     end
 
     def edit
+      @album.videos.build if @album.category == 'video' && @album.videos.empty?
     end
 
     def update
