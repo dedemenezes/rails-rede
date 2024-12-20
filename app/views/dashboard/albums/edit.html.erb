@@ -3,7 +3,7 @@
     <% flash[:alert] = "Selecione uma foto de banner" %>
   <% end %>
   <div class="cards__index mt-3 mb-4">
-    <% if @album.category == 'video' %>
+    <% if @album.category == 'video' && @album.videos.all?(&:persisted?) %>
       <% @album.videos.each do |video| %>
         <div class="album__card">
           <%= image_tag video.thumbnail, width: '100%' %>
