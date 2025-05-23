@@ -7,16 +7,16 @@
 
   <%= render 'teaser', project: @project %>
 
+  <%# ARTICLES %>
+  <%= render 'articles', featured: @featured, articles: @articles %>
+
+  <%= render 'events', events: @events %>
+
   <div class="row mb-5" data-controller="scroll-reveal">
     <div class="col-12">
       <%= render 'observatories/map', tilesets: @tilesets, hide_filter: true, header: true, tag: :h3, css_classes: { class: 'mb-0 fs-3 fs-md-2' } %>
     </div>
   </div>
-
-  <%= render 'events', events: @events %>
-
-  <%# ARTICLES %>
-  <%= render 'articles', featured: @featured, articles: @articles %>
 
 </div>
 
