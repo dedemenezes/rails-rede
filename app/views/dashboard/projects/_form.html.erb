@@ -18,6 +18,15 @@
                   hint_html: { class: 'w-100' },
                   label_html: { class: 'input-group-text mb-0' } %>
     </div>
+    <div class="my-3">
+      <%= f.input :yt_url, label: 'Youtube username' %>
+    </div>
+    <div class="my-3">
+      <%= f.input :fb_url, label: 'Facebook username' %>
+    </div>
+    <div class="my-3">
+      <%= f.input :ig_url, label: 'Instagram username' %>
+    </div>
     <%= render 'dashboard/shared/form/banner_input', element: project, form: f %>
     <%# SLIDE ONE %>
     <div class="row align-items-center my-3 border-bottom border-top py-3">

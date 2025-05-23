@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_12_04_142553) do
+ActiveRecord::Schema[7.0].define(version: 2025_04_17_011704) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -191,6 +191,9 @@ ActiveRecord::Schema[7.0].define(version: 2024_12_04_142553) do
     t.string "slide_two_subtitle"
     t.string "slide_three_subtitle"
     t.string "video_id"
+    t.string "yt_url"
+    t.string "fb_url"
+    t.string "ig_url"
   end
 
   create_table "taggings", force: :cascade do |t|
