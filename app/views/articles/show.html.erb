@@ -19,15 +19,17 @@
           <small class='text-muted'><%= @article.created_at.strftime('%d/%m/%y %Hh%M') %> - <%= time_ago_in_words(@article.updated_at) %></small>
         </div>
 
-        <div class="banner--article mb-4">
-          <div class="image-filter--black"></div>
-          <%= display_banner_image(@article.banner, width: '100%') %>
-          <p class=" text-muted">
-            <small>
-              <%= @article.banner_subtitle %>
-            </small>
-          </p>
-        </div>
+        <% if @article.banner.attached? %>
+          <div class="banner--article mb-4">
+            <div class="image-filter--black"></div>
+            <%= display_banner_image(@article.banner, width: '100%') %>
+            <p class=" text-muted">
+              <small>
+                <%= @article.banner_subtitle %>
+              </small>
+            </p>
+          </div>
+        <% end %>
 
         <%= @article.rich_body %>
       </div>
