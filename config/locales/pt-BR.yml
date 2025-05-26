@@ -131,6 +131,7 @@ pt-BR:
         updated_at_readable: 'atualizado em'
       article:
         header: "Título"
+        banner_subtitle: "Legenda do banner"
         sub_header: "Sub título"
         published: 'publicado'
         featured: 'destaque'
