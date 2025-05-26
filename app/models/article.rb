@@ -84,6 +84,6 @@ class Article < ApplicationRecord
   end
 
   def to_param
-    header
+    "#{id}-#{header.parameterize}"
   end
 end

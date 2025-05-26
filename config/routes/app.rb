@@ -11,7 +11,7 @@ namespace :acervos do
   resources :videos, only: :index, path: 'producoes_audiovisuais'
 end
 
-resources :articles, only: %i[show index], path: 'noticias', param: :header
+resources :articles, only: %i[show index], path: 'noticias', param: :slug
 
 resources :galleries, only: %i[show], path: 'acervos', param: :name do
   collection do

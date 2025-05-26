@@ -25,7 +25,7 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @article = Article.find_by(header: params[:header])
+    @article = Article.find(params[:slug])
     observatory = @article.observatory
     methodology = @article.methodology
     project = @article.project
