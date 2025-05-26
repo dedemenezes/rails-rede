@@ -8,4 +8,11 @@ RSpec.describe 'Visiting articles index', type: :feature do
       expect(page).to have_content('Notícias')
     end
   end
+  describe 'GET #show' do
+    it 'sees content' do
+      article = create(:article)
+      visit article_url(article)
+      expect(page).to have_content(article.header)
+    end
+  end
 end

@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :article do
-    header { "This is a very nice header for this article" }
+    header { "This is a very nice header for this árticle" }
     sub_header { "This is what we meant with a sub header" }
     featured { false }
     published { true }
