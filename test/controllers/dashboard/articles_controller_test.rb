@@ -38,23 +38,31 @@ class Dashboard::ArticlesControllerTest < ActionDispatch::IntegrationTest
     assert 'Rede Observacao', project.name
     assert "Rede ObservacaoRede ObservacaoRede ObservacaoRede Observacao", project.banner_text
     assert_changes -> { Project.find(id).values_at(:name, :banner_text) } do
-      patch dashboard_project_url(project), params: { project: { name: 'UPDATED Rede', banner_text: 'Hello Rails!Hello Rails!Hello Rails!Hello Rails!Hello Rails!Hello Rails!Hello Rails!Hello Rails!' } }
+      patch dashboard_project_url(project), params: { project: {
+        name: 'UPDATED Rede',
+        banner_text: 'Hello Rails!Hello Rails!Hello Rails!Hello Rails!Hello Rails!Hello Rails!Hello Rails!Hello Rails!',
+        } }
+      end
+      assert 'Hello Rails!Hello Rails!Hello Rails!Hello Rails!Hello Rails!Hello Rails!Hello Rails!Hello Rails!', Project.find(id).name
+
+
+      assert_redirected_to dashboard_projects_path
     end
-    assert 'Hello Rails!Hello Rails!Hello Rails!Hello Rails!Hello Rails!Hello Rails!Hello Rails!Hello Rails!', Project.find(id).name
 
-
-    assert_redirected_to dashboard_projects_path
-  end
-
-  test "should update article" do
-    tag_one = create(:tag)
-    new_tag = create(:second_tag)
-    article = create(:observatory_article_featured, tags: [tag_one])
-    id = article.id
-    assert 'FEATURED This is a very nice header for this article', article.header
-    # p Article.find(id).tags
-    assert_changes -> { Article.find(id).values_at(:published, :header, :tag_ids) } do
-      patch dashboard_article_url(article), params: { article: { published: false, header: 'Hello Rails!', tag_ids: [tag_one.id, new_tag.id] } }
+    test "should update article" do
+      tag_one = create(:tag)
+      new_tag = create(:second_tag)
+      article = create(:observatory_article_featured, tags: [tag_one])
+      id = article.id
+      assert 'FEATURED This is a very nice header for this article', article.header
+      # p Article.find(id).tags
+      assert_changes -> { Article.find(id).values_at(:published, :header, :tag_ids, :banner_subtitle) } do
+        patch dashboard_article_url(article), params: { article: {
+          published: false,
+          header: 'Hello Rails!',
+          tag_ids: [tag_one.id, new_tag.id],
+          banner_subtitle: 'aqui está a legenda do banner'
+      } }
     end
     assert Article.find(id).tags.include?(new_tag)
     assert 'Hello Rails!', Article.find(id).header
