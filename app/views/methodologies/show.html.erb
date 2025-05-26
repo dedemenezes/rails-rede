@@ -1,5 +1,5 @@
 <% content_for :meta_title, "#{@methodology.name} - #{DEFAULT_META["meta_product_name"]}" %>
-<% content_for :meta_description, @methodology.description.truncate(100) %>
+<% content_for :meta_description, @methodology.description.truncate(100) if @methodology.description %>
 <% content_for :meta_image, display_banner_as_background(@methodology) %>
 
 <div class="container">

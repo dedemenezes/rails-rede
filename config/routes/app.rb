@@ -20,7 +20,7 @@ resources :galleries, only: %i[show], path: 'acervos', param: :name do
     get :videos
   end
 end
-resources :methodologies, only: %i[index show], path: 'metodologias', param: :name
+resources :methodologies, only: %i[show], path: 'metodologias', param: :slug
 resources :tags, only: :show
 resources :albums, only: %i[index show], param: :name
 
