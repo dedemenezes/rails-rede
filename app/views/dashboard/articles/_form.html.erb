@@ -114,7 +114,9 @@
     </div>
   </div>
 
-  <%= render 'dashboard/shared/form/banner_input', element: article, form: f %>
+  <%= render 'dashboard/shared/form/banner_input', element: article, form: f do %>
+    <%= f.input :banner_subtitle %>
+  <% end %>
   <div data-controller="character-counter" data-character-counter-countdown-value="true">
     <%= f.input :header,
                 wrapper_html: { class: 'input-group mb-3' },
