@@ -5,6 +5,69 @@ class Dashboard::ArticlesControllerTest < ActionDispatch::IntegrationTest
     sign_in users(:coppola)
   end
 
+  test "creates first article and sets it as featured automatically" do
+    Article.destroy_all
+    project = projects(:one)
+
+    valid_params = {
+      header: 'FEATURED Test Article',
+      sub_header: 'TEST article subheader',
+      published: true,
+      rich_body: "<div>Hello, world!</div>",
+      project_id: project.id
+    }
+    assert_difference('Article.count', 1) do
+      post dashboard_articles_url, params: { article: valid_params }
+    end
+    assert_response :redirect
+    follow_redirect!
+    assert_response :success
+    assert_predicate Article.last, :featured
+  end
+
+  test 'ensures only one article is featured at a time after update' do
+    project = projects(:one)
+
+    valid_params = {
+      header: 'FEATURED Test Article',
+      sub_header: 'TEST article subheader',
+      published: true,
+      rich_body: "<div>Hello, world!</div>",
+      project_id: project.id
+    }
+    previously_featured = articles(:one_featured)
+    not_featured = articles(:one_not_featured)
+
+    assert_changes -> { Article.find(not_featured.id).featured } do
+      patch dashboard_article_url(not_featured), params: { article: { featured: true } }
+    end
+
+    not_featured.reload
+    previously_featured.reload
+
+    assert_predicate not_featured, :featured
+    refute_predicate previously_featured, :featured
+  end
+
+  test 'deleting featured article promotes lastest updated to featured' do
+    featured = articles(:one_featured)
+    not_featured = articles(:one_not_featured)
+
+    refute_predicate not_featured, :featured
+    assert_predicate featured, :featured
+
+    assert_changes -> { Article.find(not_featured.id).featured } do
+      delete dashboard_article_url(featured)
+    end
+
+    assert_response :redirect
+    follow_redirect!
+    assert_response :success
+
+    not_featured.reload
+    assert_predicate not_featured, :featured
+  end
+
   test "update writer to methodology" do
     methodology = create(:flamenguismo)
     article = create(:observatory_article_featured)

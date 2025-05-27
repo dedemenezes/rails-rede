@@ -1,5 +1,5 @@
 one_featured:
-  header: Projeto Alicerce dobra número de participantes e fortalece educação comunitária em Búzios
+  header: FEATURED Projeto Alicerce dobra número de participantes e fortalece educação comunitária em Búzios
   sub_header: Com aulas online assistidas no Observatório do Rede Observação, iniciativa de reforço escolar atende moradores com acompanhamento individualizado e cresce após pedido da própria comunidade.
   featured: true
   published: true
@@ -11,5 +11,5 @@ one_not_featured:
   sub_header: Com aulas online assistidas no Observatório do Rede Observação, iniciativa de reforço escolar atende moradores com acompanhamento individualizado e cresce após pedido da própria comunidade.
   featured: false
   published: true
-  project: one
+  methodology: flamenguismo
   banner_subtitle: "Foto tirada em ação realizada"

@@ -15,7 +15,10 @@ class Article < ApplicationRecord
   has_rich_text :rich_body
 
   before_validation :clean_header
-  before_validation :ensure_one_featured_article, if: :will_save_change_to_featured?
+
+  before_save :ensure_one_featured_article
+  after_create :set_featured_if_none
+  after_destroy :promote_latest_updated_if_featured
 
   scope :only_published, -> { where(published: true).order(featured: 'DESC') }
   scope :all_but_featured, -> { only_published.where.not(featured: true).order(updated_at: :desc) }
@@ -76,14 +79,27 @@ class Article < ApplicationRecord
   end
 
   def ensure_one_featured_article
-    return if Article.featured == self
-
-    return unless featured
-
-    Article.where.not(id:).update_all featured: false
+    if self.featured
+      Article.where.not(id: id).update_all featured: false
+    end
   end
 
   def to_param
     "#{id}-#{header.parameterize}"
+  end
+
+  private
+
+  def set_featured_if_none
+    unless Article.exists?(featured: true)
+      update(featured: true)
+    end
+  end
+
+  def promote_latest_updated_if_featured
+    if self.featured
+      article = Article.order(updated_at: :desc).first
+      article.update(featured: true)
+    end
   end
 end

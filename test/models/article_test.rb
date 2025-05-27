@@ -9,6 +9,21 @@ class ArticleTest < ActiveSupport::TestCase
     article.destroy
   end
 
+  test 'cannot remove featured flag if it would result in no featured articles' do
+    article = articles(:one_featured)
+
+    article.featured = false
+
+    refute article.valid?
+    assert_includes article.errors, :featured
+  end
+
+  test 'does not add error when there is another featured article' do
+    project = projects(:one)
+    article = Article.new(header: 'New TEST article header', sub_header: 'HEre is the new TEST sub header', featured: false, project:)
+    assert article.valid?
+  end
+
   test '::dashboard_headers' do
     assert_equal %w[id banner header featured? published], Article.dashboard_headers
   end
@@ -27,10 +42,8 @@ class ArticleTest < ActiveSupport::TestCase
 
 
   test '::find_by_writer' do
-    featured = create(:article_featured)
-    article = create(:article)
-    actual = Article.find_by_writer('Rede Observacao')
-    assert actual
-    assert_equal [featured, article], actual
+    project_article = articles(:one_featured)
+    actual = Article.find_by_writer('Test Project')
+    assert_equal [project_article], actual
   end
 end
