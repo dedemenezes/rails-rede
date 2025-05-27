@@ -5,3 +5,8 @@ one:
 bp_photos:
   name: 'Test BP'
   methodology: flamenguismo
+
+video_gallery:
+  name: "[Gallery] - Video Published"
+  methodology: flamenguismo
+  published: true

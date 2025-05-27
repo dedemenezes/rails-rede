@@ -28,7 +28,7 @@ module Dashboard
     end
 
     def update
-      ArticleWriter.set_article_writer(params, @article)
+      # ArticleWriter.set_article_writer(params, @article)
       SetTags.tagging(@article, params)
       if @article.update(article_params)
         redirect_to dashboard_articles_path
@@ -45,7 +45,7 @@ module Dashboard
     private
 
     def set_article
-      @article = Article.find_by(header: params[:header]) || @article = Article.find(params[:header])
+      @article = Article.find_by(header: params[:header]) || @article = Article.find(params[:id])
     end
 
     def article_params

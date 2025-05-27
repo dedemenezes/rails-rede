@@ -46,4 +46,42 @@ class ArticleTest < ActiveSupport::TestCase
     actual = Article.find_by_writer('Test Project')
     assert_equal [project_article], actual
   end
+
+  test "is invalid without a header" do
+    article = Article.new
+    assert_not article.valid?
+    assert_includes article.errors[:header], "não pode ficar em branco"
+  end
+
+  test "is invalid with a non-unique header" do
+    existing_article = articles(:one_featured)
+    article = Article.new(header: existing_article.header)
+
+    assert_not article.valid?
+    assert_equal article.errors[:header], ["já está em uso"]
+  end
+
+  test "has one attached banner" do
+    article = Article.new
+    assert_respond_to article, :banner
+  end
+
+  test "#featured? returns the correct emoji" do
+    article = Article.new(featured: false)
+    assert_equal "❌", article.featured?
+
+    article.featured = true
+    assert_equal "✅", article.featured?
+  end
+
+  test "#observatory_name returns the name when observatory exists" do
+    article = articles(:not_featured_obs)
+    assert_equal "Ninho do Urubu", article.observatory_name
+  end
+
+  test "#observatory_name returns nil when observatory is nil" do
+    article = articles(:not_featured_obs)
+    article.observatory = nil
+    assert_nil article.observatory_name
+  end
 end

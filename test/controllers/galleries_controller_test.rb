@@ -11,4 +11,9 @@ class GalleriesControllerTest < ActionDispatch::IntegrationTest
 
     assert_select "meta[property='og:title'][content='#{@gallery.name} - Rede Observação']"
   end
+
+  test 'should get acervos/imagens' do
+    get imagens_galleries_path
+    assert_response :success
+  end
 end

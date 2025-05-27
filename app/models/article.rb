@@ -98,6 +98,7 @@ class Article < ApplicationRecord
 
   def promote_latest_updated_if_featured
     if self.featured
+      # binding.b
       article = Article.order(updated_at: :desc).first
       article.update(featured: true)
     end

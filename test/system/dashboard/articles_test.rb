@@ -10,15 +10,15 @@ class Dashboard::ArticlesTest < ApplicationSystemTestCase
   end
 
   test "creates a new article" do
-    create :tag
-    create :project
+    tags(:one)
+    projects(:one)
 
     assert_difference("Article.count", 1) do
       sign_in users(:coppola)
       visit '/dashboard/articles/new'
 
       check 'article[featured]', allow_label_click: true
-      select 'test_tag', from: 'article[tag_ids][]'
+      select 'TEST tag', from: 'article[tag_ids][]'
       click_button 'project', wait: true
       select 'Project', from: 'article[project_id]'
       attach_file 'article[banner]', Rails.root.join('test', 'fixtures', 'files', 'e.png'), make_visible: true

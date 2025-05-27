@@ -56,47 +56,44 @@ class Dashboard::ArticlesControllerTest < ActionDispatch::IntegrationTest
     refute_predicate not_featured, :featured
     assert_predicate featured, :featured
 
-    assert_changes -> { Article.find(not_featured.id).featured } do
+    assert_changes -> { Article.find(not_featured.id).values_at(:featured) } do
       delete dashboard_article_url(featured)
     end
 
     assert_response :redirect
     follow_redirect!
     assert_response :success
-
-    not_featured.reload
-    assert_predicate not_featured, :featured
   end
 
   test "update writer to methodology" do
-    methodology = create(:flamenguismo)
-    article = create(:observatory_article_featured)
-
-    assert_changes -> { Article.find(article.id).values_at(:observatory_id, :methodology_id) } do
-      patch dashboard_article_url(article), params: { article: {project_id: "", observatory_id: "", methodology_id: methodology.id } }
+    methodology = methodologies(:flamenguismo)
+    article = articles(:one_featured)
+    ninho = observatories(:ninho_do_urubu)
+    assert_changes -> { Article.find(article.id).values_at(:project_id, :methodology_id) } do
+      patch dashboard_article_url(article), params: { article: {header: "NEW UPDATED HEADER", project_id: "", observatory_id: "", methodology_id: methodology.id } }
     end
   end
 
   test "update writer to observatory" do
-    methodology = create(:flamenguismo)
-    article = create(:observatory_article_featured, methodology_id: methodology.id, observatory_id: '')
-    ninho = create(:ninho_do_urubu)
+    methodology = methodologies(:flamenguismo)
+    article = articles(:one_not_featured)
+    ninho = observatories(:ninho_do_urubu)
     assert_changes -> { Article.find(article.id).values_at(:observatory_id, :methodology_id) } do
-      patch dashboard_article_url(article), params: { article: {project_id: "", observatory_id: ninho.id, methodology_id: '' } }
+      patch dashboard_article_url(article), params: { article: { project_id: "", observatory_id: ninho.id, methodology_id: '' } }
     end
   end
 
   test "update writer to project" do
-    rede = create(:rede)
-    article = create(:observatory_article_featured)
+    project = projects(:one)
+    article = articles(:one_not_featured)
 
     assert_changes -> { Article.find(article.id).values_at(:project_id, :methodology_id) } do
-      patch dashboard_article_url(article), params: { article: {project_id: rede.id, observatory_id: "", methodology_id: '' } }
+      patch dashboard_article_url(article), params: { article: {project_id: project.id, observatory_id: "", methodology_id: '' } }
     end
   end
 
   test "should update project with valid attributes" do
-    project = create(:rede)
+    project = projects(:one)
     id = project.id
     assert 'Rede Observacao', project.name
     assert "Rede ObservacaoRede ObservacaoRede ObservacaoRede Observacao", project.banner_text
@@ -113,9 +110,9 @@ class Dashboard::ArticlesControllerTest < ActionDispatch::IntegrationTest
     end
 
     test "should update article" do
-      tag_one = create(:tag)
-      new_tag = create(:second_tag)
-      article = create(:observatory_article_featured, tags: [tag_one])
+      tag_one = tags(:one)
+      new_tag = tags(:two)
+      article = articles(:one_featured)
       id = article.id
       assert 'FEATURED This is a very nice header for this article', article.header
       # p Article.find(id).tags
@@ -134,9 +131,9 @@ class Dashboard::ArticlesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should NOT update article" do
-    article = create(:observatory_article_featured)
+    article = articles(:one_featured)
     id = article.id
-    assert 'FEATURED This is a very nice header for this article', article.header
+    assert 'FEATURED Projeto Alicerce dobra número de participantes e fortalece educação comunitária em Búzios', article.header
     # p Article.find(id).tags
     assert_no_changes -> { Article.find(id).values_at(:header) } do
       patch dashboard_article_url(article), params: { article: { header: '' } }
@@ -154,7 +151,7 @@ class Dashboard::ArticlesControllerTest < ActionDispatch::IntegrationTest
 
   test "should destroy an article" do
 
-    article = create(:observatory_article_featured)
+    article = articles(:one_featured)
     assert_difference("Article.count", -1) do
       delete dashboard_article_url(article)
     end

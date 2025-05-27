@@ -6,7 +6,7 @@ class Dashboard::AlbumsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create an album with videos" do
-    gallery = create(:video_gallery)
+    gallery = galleries(:video_gallery)
     valid_params = {
       "album" => {
         "name" => "TEST Video Album",
