@@ -6,7 +6,7 @@ class GalleriesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "show includes OG metadata for public access" do
-    get gallery_path(@gallery, t: 'documentos')
+    get gallery_path(@gallery, t: 'imagens')
     assert_response :success
 
     assert_select "meta[property='og:title'][content='#{@gallery.name} - Rede Observação']"

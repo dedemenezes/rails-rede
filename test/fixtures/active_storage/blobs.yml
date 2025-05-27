@@ -5,3 +5,4 @@ pdf_two_blob: <%= ActiveStorage::FixtureSet.blob filename: "sample-pdf-file.pdf"
 img_one_blob: <%= ActiveStorage::FixtureSet.blob filename: "arraial.png", service_name: "test_fixtures" %>
 img_two_blob: <%= ActiveStorage::FixtureSet.blob filename: "arraial.png", service_name: "test_fixtures" %>
 img_three_blob: <%= ActiveStorage::FixtureSet.blob filename: "arraial.png", service_name: "test_fixtures" %>
+banner_img_blob: <%= ActiveStorage::FixtureSet.blob filename: "banner_img.jpg", service_name: "test_fixtures" %>
