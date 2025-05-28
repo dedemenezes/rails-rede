@@ -57,6 +57,53 @@ class ArticleTest < ActiveSupport::TestCase
     assert_equal %w[id banner header featured? published], Article.dashboard_headers
   end
 
+  test '::excluding_featured_and_recents returns all the other articles' do
+    project = projects(:one)
+    articles = 10.times.map do |i|
+      Article.create!(header: "Article #{i+1}", project:, featured: false, published: true, created_at: Time.current + i.minutes)
+    end
+    first_three = articles.first(3)
+    first_three.each { _1.update(featured: true) }
+    featured_ids = first_three.map(&:id)
+    recent_ids = articles[3..6].map(&:id)
+    exclude_ids = featured_ids + recent_ids
+    remaining_articles = Article.excluding_featured_and_recents(exclude_ids)
+
+    fixtures_articles_count = 3
+    assert_equal 3 + fixtures_articles_count, remaining_articles.size
+    assert_includes remaining_articles, articles.last
+  end
+
+  test '::most_recents scope returns up to 4 articles ordered by updated_at desc' do
+    project = projects(:one)
+    one_featured = articles(:one_featured)
+    not_featured_obs = articles(:not_featured_obs)
+    one_not_featured = articles(:one_not_featured)
+    assert_equal 2, Article.most_recents.size, "Should return exactly 2 articles"
+
+    created_times = [5,4,3,2,1].map { |n| n.minutes.ago }
+
+    recent_articles = created_times.each_with_index.map do |created_time, i|
+      # 5 mais antigo que o 1
+      Article.create!(
+        header: "featured_test_header_#{i+1}",
+        project:,
+        featured: false,
+        published: true,
+        created_at: created_time,
+        updated_at: created_time
+      )
+    end
+    actual = Article.most_recents
+
+    assert_equal 4, actual.size, "Should return exactly 4 articles"
+
+    assert_equal recent_articles.reverse[0], actual[0], 'ordering is not right'
+    assert_equal recent_articles.reverse[1], actual[1], 'ordering is not right'
+    assert_equal recent_articles.reverse[2], actual[2], 'ordering is not right'
+    assert_equal recent_articles.reverse[3], actual[3], 'ordering is not right'
+  end
+
   test 'all_featured scope returns up to 3 articles ordered by featured_at desc' do
     project = projects(:one)
     one_featured = articles(:one_featured)

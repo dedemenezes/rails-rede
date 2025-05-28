@@ -24,6 +24,8 @@ class Article < ApplicationRecord
   scope :only_published, -> { where(published: true).order(featured: 'DESC') }
   scope :all_featured, -> { where(featured: true).order(featured_at: :desc) }
   scope :all_but_featured, -> { only_published.where.not(featured: true).order(updated_at: :desc) }
+  scope :most_recents, -> { where.not(featured: true).order(updated_at: :desc).limit(4) }
+  scope :excluding_featured_and_recents, ->(excluding_ids) { where.not(id: excluding_ids)}
 
   delegate :visible_tags, to: :taggings
   # acts_as_taggable_on :tags
