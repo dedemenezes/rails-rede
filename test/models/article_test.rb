@@ -57,6 +57,30 @@ class ArticleTest < ActiveSupport::TestCase
     assert_equal %w[id banner header featured? published], Article.dashboard_headers
   end
 
+  test 'all_featured scope returns up to 3 articles ordered by featured_at desc' do
+    project = projects(:one)
+    one_featured = articles(:one_featured)
+    not_featured_obs = articles(:not_featured_obs)
+    one_not_featured = articles(:one_not_featured)
+
+    5.times do |i|
+      Article.create!(header: "featured_test_header_#{i+1}", project:, featured: false, published: true)
+    end
+
+    assert_equal 1, Article.all_featured.size
+
+    one_not_featured.update(featured: true, featured_at: 2.minutes.ago)
+    assert_equal 2, Article.all_featured.size
+
+    not_featured_obs.update(featured: true, featured_at: 1.minute.ago)
+    assert_equal 3, Article.all_featured.size
+
+    all_featured = Article.all_featured
+    assert_equal not_featured_obs, all_featured.first, 'last featured should be first item'
+    assert_equal one_not_featured, all_featured.second, 'last featured should be second item'
+    assert_equal one_featured, all_featured.third, 'last featured should be third item'
+  end
+
   test '::featured' do
     featured = articles(:one_featured)
     not_featured = articles(:one_not_featured)

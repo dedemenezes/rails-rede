@@ -22,6 +22,7 @@ class Article < ApplicationRecord
   after_destroy :promote_latest_updated_if_featured_none
 
   scope :only_published, -> { where(published: true).order(featured: 'DESC') }
+  scope :all_featured, -> { where(featured: true).order(featured_at: :desc) }
   scope :all_but_featured, -> { only_published.where.not(featured: true).order(updated_at: :desc) }
 
   delegate :visible_tags, to: :taggings

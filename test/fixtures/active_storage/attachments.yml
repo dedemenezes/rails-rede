@@ -37,3 +37,8 @@ article_banner:
   name: banner
   record: one_featured (Article)
   blob: banner_img_blob
+
+article_banner_two:
+  name: banner
+  record: two_featured (Article)
+  blob: banner_img_blob
