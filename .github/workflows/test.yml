@@ -47,6 +47,10 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
       - name: Yarn install
         run: yarn install --frozen-lockfile
+      - name: Build JS assets
+        run: yarn build
+      - name: Precompile Rails assets
+        run: bundle exec rails assets:precompile
       - name: Prepare DB
         run: |
           cp config/database.github.yml config/database.yml
