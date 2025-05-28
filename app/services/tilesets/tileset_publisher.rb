@@ -1,14 +1,11 @@
 module Tilesets
   class TilesetPublisher
-    ACCESS_TOKEN = ENV.fetch("MAPBOX_SUPER_KEY")
-    USERNAME = ENV.fetch("MAPBOX_USERNAME")
-
     def initialize(output_ldgeojson_path)
       @output_ldgeojson_path = output_ldgeojson_path
     end
 
     def create_and_publish_tileset!(id)
-      tileset_id = "#{USERNAME}.#{id}"
+      tileset_id = "#{username}.#{id}"
 
       # 3. Create a tileset source
       response = create_tileset_source(id, @output_ldgeojson_path)
@@ -30,12 +27,20 @@ module Tilesets
 
     private
 
+    def username
+      ENV.fetch("MAPBOX_USERNAME")
+    end
+
+    def access_token
+      ENV.fetch("MAPBOX_SUPER_KEY")
+    end
+
     def publish_tileset(tileset_id)
       conn = Faraday.new(url: "https://api.mapbox.com") do |faraday|
         faraday.adapter Faraday.default_adapter
       end
 
-      conn.post { |req| req.url "/tilesets/v1/#{tileset_id}/publish?access_token=#{ACCESS_TOKEN}" }
+      conn.post { |req| req.url "/tilesets/v1/#{tileset_id}/publish?access_token=#{access_token}" }
     end
 
     def create_tileset_with_recipe(tilset_source, id, tileset_id)
@@ -58,7 +63,7 @@ module Tilesets
       conn.post do |req|
         req.url "/tilesets/v1/#{tileset_id}"
         req.headers['Content-Type'] = 'application/json'
-        req.params['access_token'] = ACCESS_TOKEN
+        req.params['access_token'] = access_token
         req.body = updated_tileset_info_recipe_content
       end
     end
@@ -74,9 +79,9 @@ module Tilesets
 
       # Make the request
       conn.post do |req|
-        req.url "/tilesets/v1/sources/#{USERNAME}/#{id}"
+        req.url "/tilesets/v1/sources/#{username}/#{id}"
         req.headers['Content-Type'] = 'multipart/form-data'
-        req.params['access_token'] = ACCESS_TOKEN
+        req.params['access_token'] = access_token
         req.body = { file: Faraday::UploadIO.new(file_path, 'application/octet-stream') }
       end
     end

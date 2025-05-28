@@ -3,8 +3,6 @@ require "aws-sdk-s3"
 class MapboxUploader
   attr_reader :body, :tileset_name
 
-  USERNAME = 'dedemenezes'
-
   def initialize(tileset_name:, file_path:)
     @file_path    = file_path
     @tileset_name = ensure_valid_name(tileset_name)
@@ -25,6 +23,10 @@ class MapboxUploader
   end
 
   private
+
+  def username
+    'dedemenezes'
+  end
 
   def credentials_url
     "https://api.mapbox.com/uploads/v1/dedemenezes/credentials?access_token=#{ENV.fetch('MAPBOX_SUPER_KEY')}"
@@ -66,7 +68,7 @@ class MapboxUploader
     tile_set_body = JSON.generate(
       {
         "url" => body['url'],
-        "tileset" => "#{USERNAME}.#{@tileset_name}",
+        "tileset" => "#{username}.#{@tileset_name}",
         "name" => @tileset_name
       }
     )
