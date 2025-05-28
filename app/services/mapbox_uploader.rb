@@ -4,7 +4,6 @@ class MapboxUploader
   attr_reader :body, :tileset_name
 
   USERNAME = 'dedemenezes'
-  CREDENTIALS_URL = "https://api.mapbox.com/uploads/v1/dedemenezes/credentials?access_token=#{ENV.fetch('MAPBOX_SUPER_KEY')}"
 
   def initialize(tileset_name:, file_path:)
     @file_path    = file_path
@@ -20,12 +19,16 @@ class MapboxUploader
 
   def tileset_from_kml
     update_kml_file
-    @body = S3.retrieve_credentials(CREDENTIALS_URL)
+    @body = S3.retrieve_credentials(credentials_url)
     stage_file
     upload_tileset
   end
 
   private
+
+  def credentials_url
+    "https://api.mapbox.com/uploads/v1/dedemenezes/credentials?access_token=#{ENV.fetch('MAPBOX_SUPER_KEY')}"
+  end
 
   def update_kml_file
     document = Nokogiri::XML(File.open(@file_path))
