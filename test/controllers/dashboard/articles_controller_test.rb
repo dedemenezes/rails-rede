@@ -25,30 +25,6 @@ class Dashboard::ArticlesControllerTest < ActionDispatch::IntegrationTest
     assert_predicate Article.last, :featured
   end
 
-  test 'ensures only one article is featured at a time after update' do
-    project = projects(:one)
-
-    valid_params = {
-      header: 'FEATURED Test Article',
-      sub_header: 'TEST article subheader',
-      published: true,
-      rich_body: "<div>Hello, world!</div>",
-      project_id: project.id
-    }
-    previously_featured = articles(:one_featured)
-    not_featured = articles(:one_not_featured)
-
-    assert_changes -> { Article.find(not_featured.id).featured } do
-      patch dashboard_article_url(not_featured), params: { article: { featured: true } }
-    end
-
-    not_featured.reload
-    previously_featured.reload
-
-    assert_predicate not_featured, :featured
-    refute_predicate previously_featured, :featured
-  end
-
   test 'deleting featured article promotes lastest updated to featured' do
     featured = articles(:one_featured)
     not_featured = articles(:one_not_featured)

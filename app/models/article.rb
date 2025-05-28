@@ -16,9 +16,10 @@ class Article < ApplicationRecord
 
   before_validation :clean_header
 
-  before_save :ensure_one_featured_article
+  before_save :ensure_no_more_than_three_featured_article, if: :saved_change_to_featured?
+  after_save :update_featured_at, if: :saved_change_to_featured?
   after_create :set_featured_if_none
-  after_destroy :promote_latest_updated_if_featured
+  after_destroy :promote_latest_updated_if_featured_none
 
   scope :only_published, -> { where(published: true).order(featured: 'DESC') }
   scope :all_but_featured, -> { only_published.where.not(featured: true).order(updated_at: :desc) }
@@ -78,9 +79,10 @@ class Article < ApplicationRecord
     featured ? '✅' : '❌'
   end
 
-  def ensure_one_featured_article
-    if self.featured
-      Article.where.not(id: id).update_all featured: false
+  def ensure_no_more_than_three_featured_article
+    if featured && Article.where(featured: true).size > 3
+      oldest_featured = Article.where(featured: true).order(featured_at: :asc).first
+      oldest_featured.update(featured: false)
     end
   end
 
@@ -96,11 +98,17 @@ class Article < ApplicationRecord
     end
   end
 
-  def promote_latest_updated_if_featured
-    if self.featured
-      # binding.b
+  def promote_latest_updated_if_featured_none
+    if self.featured && Article.where(featured: true).empty?
       article = Article.order(updated_at: :desc).first
       article.update(featured: true)
     end
+  end
+
+  def update_featured_at
+    return unless featured
+
+    self.featured_at = self.updated_at
+    self.save
   end
 end

@@ -45,7 +45,7 @@ module Dashboard
     private
 
     def set_article
-      @article = Article.find_by(header: params[:header]) || @article = Article.find(params[:id])
+      @article = Article.find(params[:slug])
     end
 
     def article_params

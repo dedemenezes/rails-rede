@@ -7,9 +7,10 @@ one_featured:
   banner_subtitle: "Foto tirada em ação realizada"
   created_at: <%= Time.zone.parse("2024-01-01 10:00:00") %>
   updated_at: <%= Time.zone.parse("2024-01-01 11:00:00") %>
+  featured_at: <%= Time.zone.parse("2024-01-01 11:00:00") %>
 
 not_featured_obs:
-  header: FEATURED Projeto Alicerce dobra número de participantes e fortalece educação comunitária em Búzios
+  header: OBS NOT FEATURED Projeto número de participantes e fortalece educação comunitária em Búzios
   sub_header: Com aulas online assistidas no Observatório do Rede Observação, iniciativa de reforço escolar atende moradores com acompanhamento individualizado e cresce após pedido da própria comunidade.
   featured: false
   published: true
@@ -19,7 +20,7 @@ not_featured_obs:
   updated_at: <%= Time.zone.parse("2024-01-01 13:00:00") %>
 
 one_not_featured:
-  header: Projeto Alicerce dobra número de participantes e fortalece educação comunitária em Búzios
+  header: METHODOLOGY NOT FEATURED número de participantes e fortalece educação comunitária em Búzios
   sub_header: Com aulas online assistidas no Observatório do Rede Observação, iniciativa de reforço escolar atende moradores com acompanhamento individualizado e cresce após pedido da própria comunidade.
   featured: false
   published: true

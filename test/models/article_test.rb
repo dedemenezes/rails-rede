@@ -9,6 +9,15 @@ class ArticleTest < ActiveSupport::TestCase
     article.destroy
   end
 
+  test 'when set as featured stored featured_at' do
+    # get article
+    article = articles(:not_featured_obs)
+    # set as featured
+    article.update(featured: true)
+    # ensure featured_at same as updated_at
+    assert article.reload.featured_at
+  end
+
   test 'cannot remove featured flag if it would result in no featured articles' do
     article = articles(:one_featured)
 
@@ -22,6 +31,26 @@ class ArticleTest < ActiveSupport::TestCase
     project = projects(:one)
     article = Article.new(header: 'New TEST article header', sub_header: 'HEre is the new TEST sub header', featured: false, project:)
     assert article.valid?
+  end
+
+  test 'cannot have more than 3 featured articles' do
+    project = projects(:one)
+
+    one_featured = articles(:one_featured)
+    not_featured_obs = articles(:not_featured_obs)
+    one_not_featured = articles(:one_not_featured)
+    assert_equal 1, Article.where(featured: true).count
+    not_featured_obs.update(featured: true)
+    assert_equal 2, Article.where(featured: true).count
+    one_not_featured.update(featured: true)
+    assert_equal 3, Article.where(featured: true).count
+
+    new_article = Article.create(header: 'Test article', featured: false, published: true, project:)
+    new_article.update(featured: true)
+    assert_equal 3, Article.where(featured: true).count
+    refute Article.find(one_featured.id).featured
+
+    assert new_article.reload.featured
   end
 
   test '::dashboard_headers' do
