@@ -56,6 +56,8 @@ jobs:
           cp config/database.github.yml config/database.yml
           bundle exec rails db:create db:migrate
       - name: Run model tests
+        env:
+          MAPBOX_USERNAME: ${{secrets.MAPBOX_USERNAME}}
         run: bundle exec rails test
       - name: Run system tests
         run: bundle exec rails test:system
