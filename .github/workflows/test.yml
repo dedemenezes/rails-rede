@@ -58,6 +58,7 @@ jobs:
       - name: Run model tests
         env:
           MAPBOX_USERNAME: ${{secrets.MAPBOX_USERNAME}}
+          MAPBOX_SUPER_KEY: ${{secrets.MAPBOX_SUPER_KEY}}
         run: bundle exec rails test
       - name: Run system tests
         run: bundle exec rails test:system
