@@ -19,13 +19,13 @@
                   label_html: { class: 'input-group-text mb-0' } %>
     </div>
     <div class="my-3">
-      <%= f.input :yt_url, label: 'Youtube username' %>
+      <%= f.input :yt_url, hint: "Exemplo: @pearedeobservacao", hint_html: { class: 'w-100' } %>
     </div>
     <div class="my-3">
-      <%= f.input :fb_url, label: 'Facebook username' %>
+      <%= f.input :fb_url, hint: "Exemplo: pearedeobservacao", hint_html: { class: 'w-100' } %>
     </div>
     <div class="my-3">
-      <%= f.input :ig_url, label: 'Instagram username' %>
+      <%= f.input :ig_url, hint: "Exemplo: pearedeobservacao", hint_html: { class: 'w-100' } %>
     </div>
     <%= render 'dashboard/shared/form/banner_input', element: project, form: f %>
     <%# SLIDE ONE %>

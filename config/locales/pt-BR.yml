@@ -85,9 +85,9 @@ pt-BR:
         slide_one_subtitle: "Legenda slide um"
         slide_two_subtitle: "Legenda slide dois"
         slide_three_subtitle: "Legenda slide três"
-        yt_url: "YouTube username"
-        fb_url: "Facebook username"
-        ig_url: "Instagram username"
+        yt_url: "Usuário YouTube"
+        fb_url: "Usuário Facebook"
+        ig_url: "Usuário Instagram"
       methodology:
         name: "Nome"
         card_description: 'Texto do card'
