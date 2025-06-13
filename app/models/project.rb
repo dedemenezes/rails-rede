@@ -19,6 +19,15 @@ class Project < ApplicationRecord
     # ['id', 'banner', 'name', 'updated at']
   end
 
+  def self.social_links
+    project = Project.first
+    {
+        instagram: project.ig_url.present? ? project.ig_url : 'pearedeobservacao',
+        facebook:  project.fb_url.present? ? project.fb_url : 'pearedeobservacao',
+        youtube:   project.yt_url.present? ? project.yt_url : '@pearedeobservacao'
+    }
+  end
+
   def to_s
     'projects'
   end

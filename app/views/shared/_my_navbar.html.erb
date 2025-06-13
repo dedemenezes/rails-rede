@@ -43,21 +43,13 @@
         <% else %>
           <span class="navbar-text" data-navbar-toggler-target="socialLinks">
             <ul class="navbar-nav navbar-social">
-              <li class="nav-item">
-                <%= link_to "https://www.instagram.com/pearedeobservacao/", class: 'nav-link fs-4 rede-link', target: '_blank' do %>
-                  <%= icon('fa-brands', 'instagram') %>
-                <% end %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "https://www.facebook.com/pearedeobservacao/", class: 'nav-link fs-4 rede-link', target: '_blank' do %>
-                  <%= icon('fa-brands', 'facebook') %>
-                <% end %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "https://www.youtube.com/@pearedeobservacao/featured", class: 'nav-link fs-4 rede-link', target: '_blank' do %>
-                  <%= icon('fa-brands', 'youtube') %>
-                <% end %>
-              </li>
+              <% @social_urls.each do |social, link| %>
+                <li class="nav-item">
+                  <%= link_to "https://www.#{social.to_s}.com/#{link}/", class: 'nav-link fs-4 rede-link', target: '_blank' do %>
+                    <%= icon('fa-brands', social.to_s) %>
+                  <% end %>
+                </li>
+              <% end %>
             </ul>
           </span>
         <% end %>
