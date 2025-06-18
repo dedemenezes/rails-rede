@@ -20,4 +20,15 @@
 
 </div>
 
-<%= render 'contacts/form' %>
+<%= image_tag 'contact-top-wave.png', width: '100%', class: 'lg-height', alt: 'contact top wave' %>
+<div style="background-image: url(<%= asset_path('contact-center-wave.png') %>);min-height: fit-content;">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-sm-8 col-lg-6">
+        <h3 class='text-center mb-5'>Entre em contato!</h3>
+          <%= render 'contacts/form' %>
+      </div>
+    </div>
+  </div>
+</div>
+<%= image_tag 'contact-bottom-wave.png', width: '100%', style: 'position: absolute;', class: "mt-n3 mt-sm-n2 mt-md-n1" , alt: 'contact bottom wave' %>
