@@ -20,15 +20,40 @@
 
 </div>
 
-<%= image_tag 'contact-top-wave.png', width: '100%', class: 'lg-height', alt: 'contact top wave' %>
-<div style="background-image: url(<%= asset_path('contact-center-wave.png') %>);min-height: fit-content;">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-12 col-sm-8 col-lg-6">
-        <h3 class='text-center mb-5'>Entre em contato!</h3>
-          <%= render 'contacts/form' %>
+<%= image_tag 'observatory_contact_wave_top.svg', width: '100%', alt: 'observatory contact wave top' %>
+<div class="observatory__contact">
+  <div class="row">
+    <div class="col-12">
+      <div class="observatory__contact__wrapper">
+        <div class="container pt-3">
+          <div class="row justify-content-between">
+            <div class="col-12 col-sm-5 d-flex flex-column gap-4 gap-sm-3">
+              <div class="order-1 order-sm-0">
+                <h3>Entre em contato</h3>
+                <p>Mande seu email para <a href="mailto:project@email.com" class="link-primary fst-italic text-decoration-underline">project@email.com</a> ou use o formulário <span class="d-none d-sm-inline-block">ao lado</span> e entramos em contato em breve.</p>
+              </div>
+              <div>
+                <h4>Siga nossas redes sociais</h4>
+                <div class="d-flex flex-column gap-2">
+                  <% @social_urls.each do |social, link| %>
+                    <div class="list-item">
+                      <%= link_to "https://www.#{social.to_s}.com/#{link}/", class: 'd-flex align-items-center gap-3  contact__text', target: '_blank' do %>
+                        <%= icon('fa-brands', social.to_s, style: "font-size: 1.2rem;") %> <%= link %>
+                      <% end %>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-sm-6">
+              <%= render 'contacts/form' %>
+            </div>
+          </div>
+        </div>
       </div>
+    </div>
+    <div class="col-12 col-lg-6">
     </div>
   </div>
 </div>
-<%= image_tag 'contact-bottom-wave.png', width: '100%', style: 'position: absolute;', class: "mt-n3 mt-sm-n2 mt-md-n1" , alt: 'contact bottom wave' %>
+<%= image_tag 'observatory_contact_wave_bottom.svg', class: "mt-n2", width: '100%', alt: 'observatory contact wave bottom' %>
