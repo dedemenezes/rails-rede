@@ -14,10 +14,10 @@ class ArticlesController < ApplicationController
       @top_four = @articles.limit(4)
       @articles = @articles.offset(5)
     else
-      @featured = @articles.featured
-      @articles = @articles.all_but_featured
-      @top_four = @articles.limit(4)
-      @articles = @articles.offset(4)
+      @featured = @articles.main_featured
+      # @articles = @articles.all_but_featured
+      @top_four = @articles.all_featured
+      @articles = Article.excluding_featured_and_recents(@top_four.pluck(:id).push(@featured.id))
     end
     # raise
     @top_four_is_full = @top_four.length > 3

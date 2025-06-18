@@ -50,7 +50,7 @@ module Dashboard
 
     def article_params
       params.require(:article).permit(:banner, :header, :sub_header, :rich_body, :featured, :published, :observatory_id,
-                                      :methodology_id, :project_id, :banner_subtitle)
+                                      :methodology_id, :project_id, :banner_subtitle, :main_featured)
     end
   end
 end

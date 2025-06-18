@@ -135,6 +135,7 @@ pt-BR:
         sub_header: "Sub título"
         published: 'publicado'
         featured: 'destaque'
+        main_featured: 'destaque principal'
         created_at: 'criado em'
         rich_body: 'Corpo'
         writer: 'Autor'

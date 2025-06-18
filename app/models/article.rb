@@ -1,5 +1,7 @@
 class Article < ApplicationRecord
   HEADER_MAX_SIZE = 113
+  include Featureable
+
   validates :header, presence: true, uniqueness: true, length: { maximum: HEADER_MAX_SIZE }
 
   validates_with OneFeaturedArticleValidator
@@ -26,13 +28,14 @@ class Article < ApplicationRecord
   scope :all_but_featured, -> { only_published.where.not(featured: true).order(updated_at: :desc) }
   scope :most_recents, -> { where.not(featured: true).order(updated_at: :desc).limit(4) }
   scope :excluding_featured_and_recents, ->(excluding_ids) { where.not(id: excluding_ids)}
+  scope :main_featured, -> { where(main_featured: true).first }
 
   delegate :visible_tags, to: :taggings
   # acts_as_taggable_on :tags
 
   def self.dashboard_headers
     to_permit = %w[id header]
-    attribute_names.select { |a| to_permit.include?(a) }.push(%w[featured? published]).flatten.insert(1, 'banner')
+    attribute_names.select { |a| to_permit.include?(a) }.push(%w[featured? published main_featured?]).flatten.insert(1, 'banner')
   end
 
   def self.featured
@@ -80,6 +83,10 @@ class Article < ApplicationRecord
 
   def featured?
     featured ? '✅' : '❌'
+  end
+
+  def main_featured?
+    main_featured ? '✅' : '❌'
   end
 
   def ensure_no_more_than_three_featured_article

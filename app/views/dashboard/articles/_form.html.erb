@@ -2,22 +2,21 @@
   <div class="row">
     <div class="col-12 col-sm-5">
       <div class="row">
-        <div class="col-12 col-sm-6">
+        <div class="col-12">
           <div class="row">
             <div class="col-12">
-              <%= f.input :featured,
-                          hint: "#{Article.featured ? 'Substituirá a notícia em destaque' : ''}",
+              <%= f.input :main_featured,
+                          hint: "#{Article.main_featured ? 'Substituirá a notícia em destaque' : ''}",
                           input_html: { class: "tag-selector tag-selector--large", data: { action: 'change->publish-checkbox#updateHint', publish_checkbox_target: 'input'  } },
-                          wrapper_html: { class: 'tag-item mt-3', data: { controller: 'publish-checkbox', publish_checkbox_text_value: 'Destaque' } },
+                          wrapper_html: { class: 'tag-item mt-3', data: { controller: 'publish-checkbox', publish_checkbox_text_value: 'Destaque principal' } },
                           label_html: { data: { publish_checkbox_target: 'label' } }
               %>
             </div>
             <div class="col-12">
-              <%= f.input :published,
+              <%= f.input :featured,
                           input_html: { class: "tag-selector tag-selector--large", data: { action: 'change->publish-checkbox#updateHint', publish_checkbox_target: 'input'  } },
-                          wrapper_html: { class: 'tag-item mt-3', data: { controller: 'publish-checkbox', publish_checkbox_text_value: 'Publicar' } },
+                          wrapper_html: { class: 'tag-item mt-3', data: { controller: 'publish-checkbox', publish_checkbox_text_value: 'Destaque' } },
                           label_html: { data: { publish_checkbox_target: 'label' } }
-
               %>
             </div>
           </div>
@@ -143,6 +142,15 @@
     <small>Aplique os estilos separadamente</small>
     <%= f.input :rich_body, as: :rich_text_area, wrapper_html: { class: 'd-block' }, label: false, input_html: { class: 'w-100', data: { trix_target: 'editor' } } %>
   </div>
+  <div class="row">
+    <div class="col-12">
+      <%= f.input :published,
+                            input_html: { class: "tag-selector tag-selector--large", data: { action: 'change->publish-checkbox#updateHint', publish_checkbox_target: 'input'  } },
+                            wrapper_html: { class: 'tag-item mt-3', data: { controller: 'publish-checkbox', publish_checkbox_text_value: 'Publicar' } },
+                            label_html: { data: { publish_checkbox_target: 'label' } }
 
+      %>
+    </div>
+  </div>
   <%= render 'dashboard/shared/form/submit_cancel', element: article, form: f %>
 <% end %>

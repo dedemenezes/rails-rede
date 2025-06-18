@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_05_28_024349) do
+ActiveRecord::Schema[7.0].define(version: 2025_06_18_122701) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
   enable_extension "plpgsql"
@@ -78,6 +78,7 @@ ActiveRecord::Schema[7.0].define(version: 2025_05_28_024349) do
     t.bigint "project_id"
     t.string "banner_subtitle"
     t.datetime "featured_at"
+    t.boolean "main_featured", default: false
     t.index ["methodology_id"], name: "index_articles_on_methodology_id"
     t.index ["observatory_id"], name: "index_articles_on_observatory_id"
     t.index ["project_id"], name: "index_articles_on_project_id"

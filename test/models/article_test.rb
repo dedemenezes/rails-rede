@@ -9,6 +9,44 @@ class ArticleTest < ActiveSupport::TestCase
     article.destroy
   end
 
+  test "main_featured article cannot be featured too" do
+    article = articles(:one_featured)
+    article.update(main_featured: true)
+    assert article.reload.main_featured
+    refute article.reload.featured, "cannot be featured"
+  end
+
+  # creating the first article must ensure it's main featured
+  # must only have one main featured article
+  test "must only have one main featured article" do
+    featured = articles(:one_featured)
+    not_featured = articles(:not_featured_obs)
+    one_not_featured = articles(:one_not_featured)
+    featured.update(main_featured: true)
+    assert_equal 1, Article.where(main_featured: true).count
+    assert_equal featured, Article.main_featured
+
+    one_not_featured.update(main_featured: true)
+    assert_equal 1, Article.where(main_featured: true).count, "must have one main featured only"
+    assert_equal one_not_featured, Article.main_featured
+
+  end
+
+  test "removing main featured grab most recent featured_at and assign as main featured" do
+    main_featured = articles(:one_featured)
+    main_featured.update(main_featured: true)
+    refute main_featured.reload.featured
+
+    featured = articles(:one_not_featured)
+    featured.update(featured: true)
+    latest_featured = articles(:not_featured_obs)
+    latest_featured.update(featured: true)
+
+    main_featured.update(main_featured: false)
+
+    assert latest_featured.reload.main_featured
+  end
+
   test 'when set as featured stored featured_at' do
     # get article
     article = articles(:not_featured_obs)
@@ -54,7 +92,7 @@ class ArticleTest < ActiveSupport::TestCase
   end
 
   test '::dashboard_headers' do
-    assert_equal %w[id banner header featured? published], Article.dashboard_headers
+    assert_equal %w[id banner header featured? published main_featured?], Article.dashboard_headers
   end
 
   test '::excluding_featured_and_recents returns all the other articles' do
