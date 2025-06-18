@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   before_action :authenticate_user!, if: :dashboard_controller?
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :set_breadcrumbs, :set_social_media_links
+  before_action :set_breadcrumbs, :set_project, :set_social_media_links
 
   after_action :verify_authorized, except: %i[index mapa documentos imagens videos with_modal], unless: :skip_pundit?
   after_action :verify_policy_scoped, only: %i[index documentos imagens videos with_modal], unless: :skip_pundit?
@@ -37,8 +37,13 @@ class ApplicationController < ActionController::Base
     @breadcrumbs = []
   end
 
+  def set_project
+    @project ||= Project.first
+  end
+
   def set_social_media_links
-    @social_urls = Project.social_links
+    @project ||= Project.first
+    @social_urls = @project.social_links
   end
 
   def add_default_dashboard_breadcrumb
