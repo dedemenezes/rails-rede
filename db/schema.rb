@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_05_28_024349) do
+ActiveRecord::Schema[7.0].define(version: 2025_06_18_173541) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
   enable_extension "plpgsql"
@@ -197,6 +197,7 @@ ActiveRecord::Schema[7.0].define(version: 2025_05_28_024349) do
     t.string "yt_url"
     t.string "fb_url"
     t.string "ig_url"
+    t.string "email"
   end
 
   create_table "taggings", force: :cascade do |t|

@@ -10,7 +10,7 @@
               <div class="col-12 col-sm-5 d-flex flex-column gap-3">
                 <div>
                   <h3>Entre em contato</h3>
-                  <p>Mande seu email para <a href="mailto:project@email.com" class="link-primary fst-italic text-decoration-underline">project@email.com</a> ou use o formulário ao lado e entramos em contato em breve.</p>
+                  <p>Mande seu email para <a href="mailto:<%= @project.email || 'project@email.com' %>" class="link-primary fst-italic text-decoration-underline"><%= @project.email || 'project@email.com' %></a> ou use o formulário ao lado e entramos em contato em breve.</p>
                 </div>
                 <div>
                   <h4>Siga nossas redes sociais</h4>
