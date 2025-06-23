@@ -21,4 +21,12 @@ namespace :article do
       p article.taggings.where(visible: true)
     end
   end
+
+  desc 'Update featured and main featured articles'
+  task update_featured: :environment do
+    puts 'Picking up most recent articles'
+    articles = Article.order(updated_at: :desc).limit(5)
+    articles[0].update!(main_featured: true)
+    articles[1..].each { |it| it.update(featured: true) }
+  end
 end
