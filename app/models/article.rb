@@ -90,7 +90,7 @@ class Article < ApplicationRecord
   end
 
   def ensure_no_more_than_three_featured_article
-    if featured && Article.where(featured: true).size > 3
+    if featured && Article.where(featured: true).size > 4
       oldest_featured = Article.where(featured: true).order(featured_at: :asc).first
       oldest_featured.update(featured: false)
     end
