@@ -22,11 +22,9 @@ class PagesController < ApplicationController
   private
 
   def load_articles
-    @featured = Article.featured
-    @articles = Article.includes([:tags], banner_attachment: :blob)
-                       .where(published: true, featured: false)
-                       .order(updated_at: :desc)
-                       .limit(4)
+    articles = Article.includes(banner_attachment: :blob)
+    @featured = articles.main_featured
+    @top_four = articles.all_featured
   end
 
   def load_events

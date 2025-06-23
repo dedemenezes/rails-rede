@@ -8,7 +8,22 @@
   <%= render 'teaser', project: @project %>
 
   <%# ARTICLES %>
-  <%= render 'articles', featured: @featured, articles: @articles %>
+  <div class="row mb-4" data-controller="scroll-reveal"
+                        data-scroll-reveal-class-value="in"
+                        data-scroll-reveal-threshold-value="0"
+                        data-scroll-reveal-root-margin-value="10px">
+    <div class="col-12 col-xl-6 mb-4 mb-xl-0">
+      <%= render ArticleCardComponent.new(article: @featured, min_height: 'full-height', highlight: true) %>
+    </div>
+    <div class="col-12 col-xl-6">
+      <div class="h-100 d-flex flex-column <%= @top_four_is_full ? 'justify-content-between' : 'gap-4' %>">
+        <% @top_four.each_with_index do |article, index| %>
+          <%#= render Card::Article::RecentComponent.new(article: article, index: index, top_four: @top_four) %>
+          <%= render 'articles/article_recent', article: article, index: index, top_four: @top_four %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 
   <%= render 'events', events: @events %>
 
