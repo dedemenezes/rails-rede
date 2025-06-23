@@ -6,6 +6,7 @@ class PagesController < ApplicationController
     load_tilesets
   end
 
+
   def about_us
     @methodologies = Methodology.with_attached_banner.all
     @project = Project.includes(
