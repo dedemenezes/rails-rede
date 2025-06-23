@@ -26,20 +26,28 @@ module ApplicationHelper
   end
 
   def display_banner_as_background(instance)
-    if instance&.banner&.attached?
-      "https://rede-observacao-prod.s3.us-east-2.amazonaws.com/#{instance.banner.key}"
-    else
-      image_path('default-banner.png')
-    end
+    # if Rails.env.development?
+    #   cl_image_path(instance.banner.key)
+    # else
+      if instance&.banner&.attached?
+        "https://rede-observacao-prod.s3.us-east-2.amazonaws.com/#{instance.banner.key}"
+      else
+        image_path('default-banner.png')
+      end
+    # end
   end
 
   def display_banner_image(photo, options = {})
-    if photo.attached?
-      url = "https://rede-observacao-prod.s3.us-east-2.amazonaws.com/#{photo.key}"
-    else
-      url = 'default-banner.png'
-    end
-    image_tag(url, options)
+    # if Rails.env.development?
+    #   cl_image_tag(photo.key, width: options[:width], style: options[:style])
+    # else
+      if photo.attached?
+        url = "https://rede-observacao-prod.s3.us-east-2.amazonaws.com/#{photo.key}"
+      else
+        url = 'default-banner.png'
+      end
+      image_tag(url, options)
+    # end
   end
 
   def display_banner_as_background_image(photo, options = {})
@@ -61,8 +69,7 @@ module ApplicationHelper
   end
 
   def route_for_edit_dashboard(element)
-    param = element.is_a?(Article) ? element.header : element.id
-    path = "#{element.model_name.plural}/#{param}/edit"
+    path = "#{element.model_name.plural}/#{element.to_param}/edit"
     return path unless element.is_a? Album
 
     path.gsub(%r{^albums/}, '')

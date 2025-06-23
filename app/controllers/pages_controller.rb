@@ -1,7 +1,5 @@
 class PagesController < ApplicationController
   def home
-    @project = Project.first
-
     load_info_cards
     load_events
     load_articles
@@ -22,16 +20,14 @@ class PagesController < ApplicationController
   private
 
   def load_articles
-    @featured = Article.featured
-    @articles = Article.includes([:tags], banner_attachment: :blob)
-                       .where(published: true, featured: false)
-                       .order(updated_at: :desc)
-                       .limit(4)
+    articles = Article.includes(banner_attachment: :blob)
+    @featured = articles.main_featured
+    @top_four = articles.all_featured
   end
 
   def load_events
     galleries = Gallery.only_published_events
-    albums = Album.only_published_events
+    albums = Album.includes([:tags, banner_attachment: :blob]).only_published_events
     @events = [galleries, albums].compact.flatten.sort_by(&:event_date).reverse
     @events = @events.select { |event| event.event_date.to_s <= params[:before_date] } if params[:before_date].present?
   end

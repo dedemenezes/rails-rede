@@ -6,7 +6,27 @@
 
 .banner--article {
   padding: 0;
+  img {
+    height: 370px;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  small {
+    font-size: .8rem;
+    font-weight: 500;
+  }
+
+  position: relative;
+}
+
+.image-filter--black {
   height: 370px;
+  width: 100%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1));
+  position: absolute;
+  top: 0;
+  left: 0
 }
 
 .flex-centered {
@@ -37,13 +57,6 @@
   color: white;
   opacity: .7;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
-}
-
-.banner--article p {
-  opacity: 1 !important;
-  font-size: 16px;
-  position: absolute;
-  bottom: 23%;
 }
 
 // HOME BANNER

@@ -5,9 +5,7 @@ class ObservatoriesControllerTest < ActionDispatch::IntegrationTest
   #   assert true
   # end
   test 'index lists published observatories' do
-    create(:observatory)
-    create(:ninho_do_urubu)
-
+    observatories(:ninho_do_urubu)
     get observatories_url
 
     assert_response :success

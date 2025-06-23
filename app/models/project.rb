@@ -9,7 +9,8 @@ class Project < ApplicationRecord
   has_one_attached :slide_three
   has_rich_text :content
   validates :banner_text, presence: true, length: { minimum: 53, maximum: 100 }
-  before_validation :strip_video_link
+  before_validation :strip_video_link, if: :will_save_change_to_video_id?
+  before_validation :normalize_social_media_urls
 
   def self.dashboard_headers
     attribute_names.reject do |a|
@@ -18,12 +19,22 @@ class Project < ApplicationRecord
     # ['id', 'banner', 'name', 'updated at']
   end
 
+  def social_links
+    {
+        instagram: self.ig_url.present? ? self.ig_url : 'pearedeobservacao',
+        facebook:  self.fb_url.present? ? self.fb_url : 'pearedeobservacao',
+        youtube:   self.yt_url.present? ? self.yt_url : '@pearedeobservacao'
+    }
+  end
+
   def to_s
     'projects'
   end
 
   def strip_video_link
-    self.video_id = strip_video_id
+    if video_id.match?(URI.regexp)
+      self.video_id = strip_video_id
+    end
   end
 
   def strip_video_id
@@ -31,5 +42,18 @@ class Project < ApplicationRecord
 
     match_data = video_id.match(%r{(?:(you.+)/)(?:(watch\?\w?=)?)(?<id>\w+)})
     match_data[:id]
+  end
+
+  def normalize_social_media_urls
+    urls = {yt_url: 'youtube', fb_url: 'facebook', ig_url: 'instagram' }
+    urls.keys.each do |sm_url|
+      sm_attribute_value = self.send(sm_url)
+      next if sm_attribute_value.blank?
+
+      match_data = sm_attribute_value.match(%r[(?:https?://)?(?:www\.)?#{urls[sm_url]}\.com/([a-zA-Z0-9_\-]+)])
+      if match_data
+        self.send("#{sm_url}=".to_sym, match_data[1])
+      end
+    end
   end
 end

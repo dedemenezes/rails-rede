@@ -3,3 +3,14 @@ published:
   description: "Video publicado aqui esta descrito"
   url: "https://www.youtube.com/watch?v=MvGeaYBqvPY"
   album: published_with_one_video
+
+still_two:
+  name: TEST-Video-One
+  description: "Video publicado aqui esta descrito"
+  url: "https://www.youtube.com/watch?v=MvGeaYBqvPY"
+  album: published_with_one_video
+
+still_one:
+  url: "https://www.youtube.com/watch?v=_CL6n0FJZpk"
+  name: 'Video Test'
+  album: published_with_one_video

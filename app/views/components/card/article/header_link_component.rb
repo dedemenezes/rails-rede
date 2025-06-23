@@ -13,8 +13,10 @@ module Card
 
       def view_template
         link_to article_path(article) do
-          if article.featured
+          if article.main_featured
             h5(class: "text-reset mb-lg-0") { article.header }
+          elsif article.featured
+            h5(class: "text-reset mb-lg-0 fs-6") { article.header }
           else
             h5(class: "text-reset mb-lg-0 fs-6 line-limit-3") { article.header.truncate(::Article::HEADER_MAX_SIZE) }
           end

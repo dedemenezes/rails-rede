@@ -85,6 +85,9 @@ pt-BR:
         slide_one_subtitle: "Legenda slide um"
         slide_two_subtitle: "Legenda slide dois"
         slide_three_subtitle: "Legenda slide três"
+        yt_url: "Usuário YouTube"
+        fb_url: "Usuário Facebook"
+        ig_url: "Usuário Instagram"
       methodology:
         name: "Nome"
         card_description: 'Texto do card'
@@ -128,9 +131,11 @@ pt-BR:
         updated_at_readable: 'atualizado em'
       article:
         header: "Título"
+        banner_subtitle: "Legenda do banner"
         sub_header: "Sub título"
         published: 'publicado'
         featured: 'destaque'
+        main_featured: 'destaque principal'
         created_at: 'criado em'
         rich_body: 'Corpo'
         writer: 'Autor'

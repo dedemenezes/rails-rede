@@ -32,3 +32,13 @@ img_three:
   name: photos
   record: unpublished_with_photos (Album)
   blob: img_three_blob
+
+article_banner:
+  name: banner
+  record: one_featured (Article)
+  blob: banner_img_blob
+
+article_banner_two:
+  name: banner
+  record: two_featured (Article)
+  blob: banner_img_blob

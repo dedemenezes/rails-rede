@@ -44,11 +44,7 @@ module Dashboard
     private
 
     def set_methodology
-      if params[:id].match?(/[a-zA-Z]+/)
-        @methodology = Methodology.find_by(name: params[:id])
-      else
-        @methodology = Methodology.find(params[:id])
-      end
+      @methodology = Methodology.find(params[:id])
     end
 
     def methodology_params

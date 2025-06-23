@@ -7,17 +7,68 @@
 
   <%= render 'teaser', project: @project %>
 
+  <%# ARTICLES %>
+  <div class="row mb-4" data-controller="scroll-reveal"
+                        data-scroll-reveal-class-value="in"
+                        data-scroll-reveal-threshold-value="0"
+                        data-scroll-reveal-root-margin-value="10px">
+    <div class="col-12 col-xl-6 mb-4 mb-xl-0">
+      <%= render ArticleCardComponent.new(article: @featured, min_height: 'full-height', highlight: true) %>
+    </div>
+    <div class="col-12 col-xl-6">
+      <div class="h-100 d-flex flex-column <%= @top_four_is_full ? 'justify-content-between' : 'gap-4' %>">
+        <% @top_four.each_with_index do |article, index| %>
+          <%#= render Card::Article::RecentComponent.new(article: article, index: index, top_four: @top_four) %>
+          <%= render 'articles/article_recent', article: article, index: index, top_four: @top_four %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <%= render 'events', events: @events %>
+
   <div class="row mb-5" data-controller="scroll-reveal">
     <div class="col-12">
       <%= render 'observatories/map', tilesets: @tilesets, hide_filter: true, header: true, tag: :h3, css_classes: { class: 'mb-0 fs-3 fs-md-2' } %>
     </div>
   </div>
 
-  <%= render 'events', events: @events %>
-
-  <%# ARTICLES %>
-  <%= render 'articles', featured: @featured, articles: @articles %>
-
 </div>
 
-<%= render 'contacts/form' %>
+<%= image_tag 'observatory_contact_wave_top.svg', width: '100%', alt: 'observatory contact wave top' %>
+<div class="observatory__contact">
+  <div class="row">
+    <div class="col-12">
+      <div class="observatory__contact__wrapper">
+        <div class="container pt-3">
+          <div class="row justify-content-between">
+            <div class="col-12 col-sm-5 d-flex flex-column gap-4 gap-sm-3">
+              <div class="order-1 order-sm-0">
+                <h3>Entre em contato</h3>
+                <p>Mande seu email para <a href="mailto:project@email.com" class="link-primary fst-italic text-decoration-underline">project@email.com</a> ou use o formulário <span class="d-none d-sm-inline-block">ao lado</span> e entramos em contato em breve.</p>
+              </div>
+              <div>
+                <h4>Siga nossas redes sociais</h4>
+                <div class="d-flex flex-column gap-2">
+                  <% @social_urls.each do |social, link| %>
+                    <div class="list-item">
+                      <%= link_to "https://www.#{social.to_s}.com/#{link}/", class: 'd-flex align-items-center gap-3  contact__text', target: '_blank' do %>
+                        <%= icon('fa-brands', social.to_s, style: "font-size: 1.2rem;") %> <%= link %>
+                      <% end %>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-sm-6">
+              <%= render 'contacts/form' %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-lg-6">
+    </div>
+  </div>
+</div>
+<%= image_tag 'observatory_contact_wave_bottom.svg', class: "mt-n2", width: '100%', alt: 'observatory contact wave bottom' %>

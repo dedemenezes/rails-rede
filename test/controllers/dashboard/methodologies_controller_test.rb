@@ -11,7 +11,7 @@ class Dashboard::MethodologiesControllerTest < ActionDispatch::IntegrationTest
 
   test 'should NOT create a methodology' do
     sign_in users(:coppola)
-    rede = create(:rede)
+    rede = projects(:one)
 
     assert_no_difference('Methodology.count') do
       post dashboard_methodologies_path, params: {
@@ -30,7 +30,7 @@ class Dashboard::MethodologiesControllerTest < ActionDispatch::IntegrationTest
 
   test "should get edit" do
     sign_in users(:coppola)
-    methodology = create(:methodology)
+    methodology = methodologies(:flamenguismo)
     get edit_dashboard_methodology_path(methodology)
 
     assert_response :success
@@ -38,7 +38,7 @@ class Dashboard::MethodologiesControllerTest < ActionDispatch::IntegrationTest
 
   test "should update methodology" do
     sign_in users(:coppola)
-    methodology = create(:methodology)
+    methodology = methodologies(:flamenguismo)
     id = methodology.id
     assert_changes -> { Methodology.find(id).values_at(:name,) } do
       patch dashboard_methodology_url(methodology), params: { methodology: { name: 'Hello Rails!' } }

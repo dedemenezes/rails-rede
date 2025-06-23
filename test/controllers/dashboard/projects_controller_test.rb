@@ -41,14 +41,14 @@ class Dashboard::ProjectsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should get edit' do
-    project = create(:rede)
+    project = projects(:one)
 
     get edit_dashboard_project_url(project)
     assert_response :success
   end
 
   test "should update project with valid attributes" do
-    project = create(:rede)
+    project = projects(:one)
     id = project.id
     assert 'Rede Observacao', project.name
     assert "Rede ObservacaoRede ObservacaoRede ObservacaoRede Observacao", project.banner_text
@@ -62,7 +62,7 @@ class Dashboard::ProjectsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should NOT update project with invalid attributes" do
-    project = create(:rede)
+    project = projects(:one)
     id = project.id
     assert 'Rede Observacao', project.name
     assert "Rede ObservacaoRede ObservacaoRede ObservacaoRede Observacao", project.banner_text
