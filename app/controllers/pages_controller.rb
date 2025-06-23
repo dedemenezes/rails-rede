@@ -23,6 +23,7 @@ class PagesController < ApplicationController
     articles = Article.includes(banner_attachment: :blob)
     @featured = articles.main_featured
     @top_four = articles.all_featured
+    @top_four_is_full = @top_four.length > 3
   end
 
   def load_events
