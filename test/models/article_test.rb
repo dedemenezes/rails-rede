@@ -85,10 +85,14 @@ class ArticleTest < ActiveSupport::TestCase
 
     new_article = Article.create(header: 'Test article', featured: false, published: true, project:)
     new_article.update(featured: true)
-    assert_equal 3, Article.where(featured: true).count
-    refute Article.find(one_featured.id).featured
-
+    assert_equal 4, Article.where(featured: true).count
     assert new_article.reload.featured
+
+    another_article = Article.create(header: 'Another Test article', featured: false, published: true, project:)
+    another_article.update(featured: true)
+    assert_equal 4, Article.where(featured: true).count
+
+    refute Article.find(one_featured.id).featured
   end
 
   test '::dashboard_headers' do

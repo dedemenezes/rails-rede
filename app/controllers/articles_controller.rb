@@ -17,7 +17,7 @@ class ArticlesController < ApplicationController
       @featured = @articles.main_featured
       # @articles = @articles.all_but_featured
       @top_four = @articles.all_featured
-      @articles = Article.excluding_featured_and_recents(@top_four.pluck(:id).push(@featured.id))
+      @articles = Article.excluding_featured_and_recents(@top_four.pluck(:id).push(@featured&.id))
     end
     # raise
     @top_four_is_full = @top_four.length > 3

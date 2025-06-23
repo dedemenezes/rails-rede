@@ -2,6 +2,8 @@ require "test_helper"
 
 class ArticlesControllerTest < ActionDispatch::IntegrationTest
   test "should get index and have content" do
+    not_featured_obs = articles(:not_featured_obs)
+    not_featured_obs.update(main_featured: true)
     get articles_url
     assert_response :success
     assert_select "h1", "Notícias"
