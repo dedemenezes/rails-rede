@@ -2,13 +2,13 @@ class ArticlesController < ApplicationController
   skip_before_action :authenticate_user!
 
   def index
-    @articles = policy_scope(Article).includes(banner_attachment: :blob)
+    @articles = policy_scope(Article).includes(:tags, banner_attachment: :blob)
     @tags = Tag.all.order(name: :asc)
     if params[:search].present?
       tag_ids = params[:search].values.map { _1.split('_').last }
       @articles = @articles.includes(:taggings)
                            .where(taggings: { tag_id: tag_ids })
-                           .order(updated_at: :desc)
+                           .order(created_at: :desc)
       @featured = @articles.limit(1).first
       @articles = @articles.offset(1)
       @top_four = @articles.limit(4)
@@ -17,7 +17,8 @@ class ArticlesController < ApplicationController
       @featured = @articles.main_featured
       # @articles = @articles.all_but_featured
       @top_four = @articles.all_featured
-      @articles = Article.excluding_featured_and_recents(@top_four.pluck(:id).push(@featured&.id))
+      @articles = Article.includes(:tags, banner_attachment: :blob).excluding_featured_and_recents(@top_four.pluck(:id).push(@featured&.id))
+                         .order(created_at: :desc)
     end
     # raise
     @top_four_is_full = @top_four.length > 3
