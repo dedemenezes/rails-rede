@@ -134,7 +134,7 @@
                   data-scroll-reveal-class-value="in"
                   data-scroll-reveal-threshold-value="0"
                   data-scroll-reveal-root-margin-value="10px">
-                <div class="d-flex flex-column justify-content-between h-100 mb-childs">
+                <div class="d-flex flex-column <%= @articles.size < 4 ? 'gap-3' : 'justify-content-between' %> h-100 mb-childs">
                   <% @articles.each do |article| %>
                     <% cache article do %>
                       <%#= link_to article_path(article) do %>
@@ -147,7 +147,7 @@
                             <div class="article__info px-3 py-2 py-lg-3 pe-lg-3">
                               <div class="info__header d-flex align-items-center gap-3 mb-2">
                                 <small><%= article.created_at.strftime('%d.%m.%Y') %></small>
-                                <% article.tags.each_with_index do |tag, index| %>
+                                <% article.tags[..1].each_with_index do |tag, index| %>
                                   <small class="tag"><%= tag.name %></small>
                                 <% end %>
                               </div>
