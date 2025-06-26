@@ -26,7 +26,11 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @article = Article.find(params[:slug])
+    if params[:slug].match?(/^\d+-./)
+      @article = Article.find(params[:slug])
+    else
+      @article = Article.find_by_header(params[:slug])
+    end
     observatory = @article.observatory
     methodology = @article.methodology
     project = @article.project

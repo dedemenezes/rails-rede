@@ -15,4 +15,11 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select "h1", article.header
   end
+
+  test "should show article when url contains only the header (old routing)" do
+    article = articles(:one_featured)
+    get  article_url(article.header)
+    assert_response :success
+    assert_select "h1", article.header
+  end
 end
