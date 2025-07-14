@@ -196,6 +196,7 @@
 .rede-link {
   transition: color .7s ease-out, scale .5s ease-out;
   &:hover {
+    background-color: transparent !important;
     scale: 1.2;
     color: $link-hover-color!important;
   }

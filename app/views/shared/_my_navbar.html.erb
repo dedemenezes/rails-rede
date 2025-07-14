@@ -1,5 +1,5 @@
 <nav class="navbar sticky-top bg-white navbar-visitor navbar-light navbar-expand-lg my-1 py-2 shadow-elevation-2">
-  <div class="container-fluid">
+  <div class="container">
     <%= link_to root_path, class: 'navabar-top-logo' do %>
       <%= image_tag 'Logo_PEA.png', width: '186px', alt: 'Logo do PEA Rede Observação' %>
     <% end %>
@@ -9,33 +9,47 @@
     <%# laptop nav seen after lg breakpoint %>
     <div class="d-none d-lg-flex flex-grow-1">
       <ul class="navbar-nav d-flex align-items-center justify-content-evenly flex-grow-1">
-        <li class="nav-item">
-          <%= link_to "Sobre", about_us_path, class: "nav-link #{tab_active?('pages' , action: 'about_us')}"%>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Mapa", mapa_observatories_path, class: "nav-link #{tab_active?('observatories' , action: 'mapa')}" %>
-        </li>
+        <%= render NavItemComponent.new do %>
+          <%= render NavLinkComponent.new("Sobre", about_us_path) %>
+        <% end %>
+
+        <%= render NavItemComponent.new do %>
+          <%= render NavLinkComponent.new("Mapa", mapa_observatories_path) %>
+        <% end %>
+
         <li class="dropdown position-inherit">
           <button class="nav-link" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown <i class="fa-solid fa-chevron-down" style="opacity: 0.7;"></i>
+            <span class="navbar-menu-item-arrow">Observatórios</span> <i class="fa-solid fa-chevron-down" style="opacity: 0.7;"></i>
           </button>
-          <ul class="dropdown-menu dropdown-menu-radius-bottom w-100 shadow-bottom overflow-hidden bg-body border-0 p-0 mt-n1" data-bs-popper="static">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
+          <div class="dropdown-menu dropdown-menu-radius-bottom w-100 shadow-bottom overflow-hidden bg-body border-0 p-0 mt-n1" data-bs-popper="static">
+            <div class="bg-white shadow-elevation-1">
+              <div class="container">
+                <div class="py-4">
+                  <div class="row">
+                  <% @observatories.each do |observatory| %>
+                    <div class="col-3">
+                        <%= render NavLinkComponent.new(observatory[0], observatory_path(observatory[0])) %>
+                    </div>
+                  <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </li>
-        <li class="nav-item">
-          <%= link_to "Notícias", articles_path, class: "nav-link #{tab_active?('articles')}" %>
-        </li>
+        <%= render NavItemComponent.new do %>
+          <%= render NavLinkComponent.new("Notícias", articles_path) %>
+        <% end %>
+
+        <%= render NavItemComponent.new do %>
+          <%= render NavLinkComponent.new("Contato", new_contact_path) %>
+        <% end %>
       </ul>
       <ul class="navbar-nav navbar-social">
         <% @social_urls.each do |social, link| %>
-          <li class="nav-item">
-            <%= link_to "https://www.#{social.to_s}.com/#{link}/", class: 'nav-link fs-4 rede-link', target: '_blank' do %>
-              <%= icon('fa-brands', social.to_s) %>
-            <% end %>
-          </li>
+          <%= render NavItemComponent.new do %>
+            <%= render NavLinkComponent.new(icon('fa-brands', social.to_s), "https://www.#{social.to_s}.com/#{link}/", css_class: 'fs-4 rede-link') %>
+          <% end %>
         <% end %>
       </ul>
     </div>
@@ -46,6 +60,9 @@
   </div>
 </nav>
 
+
+
+<%# if false %>
 <nav class="navbar navbar-expand-lg navbar-light text-primary">
   <div class="container">
       <%= link_to root_path, class: 'navbar-brand' do %>
@@ -114,3 +131,4 @@
       </div>
   </div>
 </nav>
+<%# end %>
