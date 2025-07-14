@@ -37,6 +37,27 @@
             </div>
           </div>
         </li>
+
+        <%# Acervo %>
+        <li class="dropdown position-inherit">
+          <button class="nav-link" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <span class="navbar-menu-item-arrow">Acervos</span> <i class="fa-solid fa-chevron-down" style="opacity: 0.7;"></i>
+          </button>
+          <div class="dropdown-menu dropdown-menu-radius-bottom w-100 shadow-bottom overflow-hidden bg-body border-0 p-0 mt-n1" data-bs-popper="static">
+            <div class="bg-white shadow-elevation-1">
+              <div class="container">
+                <div class="py-4">
+                  <div class="row">
+                    <div class="col-4"><%= render NavLinkComponent.new("Audiovisuais", acervos_videos_path) %></div>
+                    <div class="col-4"><%= render NavLinkComponent.new("Imagens", imagens_galleries_path) %></div>
+                    <div class="col-4"><%= render NavLinkComponent.new("Materiais", materials_path) %></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+
         <%= render NavItemComponent.new do %>
           <%= render NavLinkComponent.new("Notícias", articles_path) %>
         <% end %>
@@ -59,76 +80,3 @@
     </div>
   </div>
 </nav>
-
-
-
-<%# if false %>
-<nav class="navbar navbar-expand-lg navbar-light text-primary">
-  <div class="container">
-      <%= link_to root_path, class: 'navbar-brand' do %>
-        <%= image_tag 'Logo_PEA.png', width: '186px', alt: 'Logo do PEA Rede Observação' %>
-      <% end %>
-      <button class="navbar-toggler btn-nav" type="button" data-action="click->navbar-toggler#toggle"aria-label="Toggle navigation"  >
-        <i class="fas fa-bars"></i>
-      </button>
-      <div class="collapse navbar-collapse navbar-mobile" id="navbarText" data-navbar-toggler-target='menu'>
-        <ul class="navbar-nav mx-auto align-items-center" data-navbar-toggler-target="menuList">
-          <li class="dropdown w-100 position-inherit">
-            <button class="nav-link" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Dropdown <i class="fa-solid fa-chevron-down" style="opacity: 0.7;"></i>
-            </button>
-            <ul class="dropdown-menu w-100 shadow-bottom overflow-hidden bg-body border-0 p-0 mt-n1" data-bs-popper="static">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Sobre", about_us_path, class: "nav-link #{tab_active?('pages' , action: 'about_us')}"%>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Mapa", mapa_observatories_path, class: "nav-link #{tab_active?('observatories' , action: 'mapa')}" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Observatórios", observatories_path, class: "nav-link #{tab_active?('observatories', action: 'index')}" %>
-          </li>
-          <li class="nav-item drop__down <%= 'active' if params[:controller] == 'galleries' || params[:controller] == 'albums' || params[:controller] == 'materials' || params[:controller].match?(/videos/) %>" data-controller='reveal-on-click'>
-            <p class="nav-link cursor__link--hover pb-0"
-               data-action="click->reveal-on-click#toggle click@window->reveal-on-click#close"
-               data-reveal-on-click-target='button'>Acervos <i class="fa-solid fa-chevron-down" style="opacity: 0.7;"></i></a>
-            <ul class="drop__down__card drop__down__card--nav hidden__el"
-                data-reveal-on-click-target="dropdown">
-              <div class="drop__down__close" data-action='click->reveal-on-click#toggle'>
-                <%= image_tag 'close-icon.svg', width: '12px' %>
-              </div>
-              <%= link_to "Audiovisuais", acervos_videos_path, class: "nav-link #{params[:t] == 'videos' || params[:action] == 'videos' || params[:controller].match?(/videos/) ? 'active' : 'fw-normal'}" %>
-              <%= link_to "Imagens", imagens_galleries_path, class: "nav-link #{params[:t] == 'imagens' || params[:action] == 'imagens' ? 'active' : 'fw-normal'}" %>
-              <%= link_to "Materiais", materials_path, class: "nav-link #{tab_active?('materials', action: 'index')}" %>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Notícias", articles_path, class: "nav-link #{tab_active?('articles')}" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Contato", new_contact_path, class: "nav-link #{tab_active?('contacts', action: 'new')}" %>
-          </li>
-        </ul>
-        <% if user_signed_in? && current_user.admin && params[:controller] =~ /dashboard/ %>
-          <%= link_to 'Sair', destroy_user_session_path, data: { turbo_method: :delete } if user_signed_in? %>
-        <% else %>
-          <span class="navbar-text" data-navbar-toggler-target="socialLinks">
-            <ul class="navbar-nav navbar-social">
-              <% @social_urls.each do |social, link| %>
-                <li class="nav-item">
-                  <%= link_to "https://www.#{social.to_s}.com/#{link}/", class: 'nav-link fs-4 rede-link', target: '_blank' do %>
-                    <%= icon('fa-brands', social.to_s) %>
-                  <% end %>
-                </li>
-              <% end %>
-            </ul>
-          </span>
-        <% end %>
-      </div>
-  </div>
-</nav>
-<%# end %>
