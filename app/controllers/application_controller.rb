@@ -1,10 +1,15 @@
 class ApplicationController < ActionController::Base
+
+  def set_observatories
+    @observatories = Observatory.pluck(:name, :id)
+  end
+
   include Pundit::Authorization
   include SetTags
 
   before_action :authenticate_user!, if: :dashboard_controller?
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :set_breadcrumbs, :set_project, :set_social_media_links
+  before_action :set_breadcrumbs, :set_project, :set_social_media_links, :set_observatories
 
   after_action :verify_authorized, except: %i[index mapa documentos imagens videos with_modal], unless: :skip_pundit?
   after_action :verify_policy_scoped, only: %i[index documentos imagens videos with_modal], unless: :skip_pundit?

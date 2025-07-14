@@ -17,6 +17,10 @@ module ApplicationHelper
     controller_name_to_use.singularize.split('_').map(&:capitalize).join.constantize
   end
 
+  def current_class?(test_path)
+    request.path == test_path ? 'active' : ''
+  end
+
   def tab_active?(expected, options = {})
     condition = params[:controller] == expected
     if params[:controller] == 'pages' || params[:controller] == 'observatories' || params[:controller] == 'contacts' || params[:controller] == 'galleries'

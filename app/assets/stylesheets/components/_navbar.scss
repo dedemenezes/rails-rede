@@ -52,12 +52,19 @@ p.nav-link {
   font-size: 14px;
   letter-spacing: 1.25px;
   color: $r-blue-d;
-}
-.nav-link.active {
-  font-weight: bold;
-}
-.nav-item.active {
-  font-weight: bold;
+  border-radius: 4px;
+  font-weight: normal !important;
+
+  &.active {
+    font-variation-settings: "wght" 650 !important;
+    background-color:#bde4f3e7 !important;
+  }
+
+  &:hover, &:active, &.show {
+    background-color:#bde4f3e7 !important;
+    color: $r-blue-d !important;
+    font-variation-settings: "wght" 650 !important;
+  }
 }
 
 .navbar-social .nav-item {
