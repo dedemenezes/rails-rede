@@ -4,8 +4,15 @@ class PagesController < ApplicationController
     load_events
     load_articles
     load_tilesets
+
+    load_navbar_acervos
   end
 
+
+  def load_navbar_acervos
+    # get two videos
+    @nav_videos = policy_scope(Video).limit(2)
+  end
 
   def about_us
     @methodologies = Methodology.with_attached_banner.all
