@@ -30,4 +30,6 @@ namespace :articles do
   end
 end
 
+get 'nav_videos', to: 'nav_videos#index'
+
 # delete 'articles/index/tags', to: 'articles_index_tags#destroy', as: :remove_tag_from_filter
