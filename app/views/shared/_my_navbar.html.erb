@@ -21,9 +21,7 @@
         <% end %>
 
         <li class="dropdown position-inherit">
-          <button class="nav-link" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <span class="navbar-menu-item-arrow">Observatórios</span> <i class="fa-solid fa-chevron-down" style="opacity: 0.7;"></i>
-          </button>
+          <%= render Dropdown::TogglerComponent.new("Observatórios") %>
           <div class="dropdown-menu dropdown-menu-radius-bottom w-100 shadow-bottom overflow-hidden bg-body border-0 p-0 mt-n1" data-bs-popper="static">
             <div class="bg-white shadow-elevation-1">
               <div class="container">
@@ -43,9 +41,7 @@
 
         <%# Acervo %>
         <li class="dropdown position-inherit">
-          <button class="nav-link" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <span class="navbar-menu-item-arrow">Acervos</span> <i class="fa-solid fa-chevron-down" style="opacity: 0.7;"></i>
-          </button>
+          <%= render Dropdown::TogglerComponent.new("Acervos") %>
           <div class="dropdown-menu dropdown-menu-radius-bottom w-100 shadow-bottom overflow-hidden bg-body border-0 p-0 mt-n1" data-bs-popper="static">
             <div class="bg-white d-flex">
               <div class="container">
