@@ -1,36 +1,26 @@
 <%= turbo_frame_tag 'nav-videos' do %>
-    <div class="d-flex">
-      <div class="d-flex flex-columns justify-content-between dropdowm-menu-panel-width pe-0" style="padding-top: 2rem !important; padding-bottom: 2rem !important;">
-        <ul class="nav d-inline-flex flex-column align-items-start nav-pills w-100">
-        <li class="mb-lg-3 w-100"><%= render NavLinkComponent.new("Audiovisuais", acervos_videos_path, active_class: "active") %></li>
-        <li class="mb-lg-3 w-100"><%= render NavLinkComponent.new("Imagens", imagens_galleries_path) %></li>
-        <li class="mb-lg-3 w-100"><%= render NavLinkComponent.new("Materiais", materials_path) %></li>
-        </ul>
-      </div>
-      <div class="dropdown-pane position-relative border-start border-light ps-3" style="padding-top: 2rem !important; padding-bottom: 2rem !important;--bs-bg-opacity: 1;">
-        <div class=""
-              style="display: grid;
-                    grid-template-columns: 1fr 1fr 2fr;
-                    grid-gap: 16px;">
-          <% nav_videos.each do |video| %>
-              <div style="aspect-ratio: 1 / 1; height: 271">
-                <iframe frameborder="0"
-                            width="100%"
-                            height="100%"
-                            class='rounded'
-                            src='<%= Project::YOUTUBE_BASE_URL %><%= video.yt_id %>?rel=0&autoplay=<%= params[:autoplay] || 0 %>'
-                            allowfullscreen>
-                </iframe>
-              </div>
-          <% end %>
-          <div class="see-more-pane d-flex flex-column justify-content-end align-items-start">
-            <span class="fw-600 fs-16 text-black mt-3 mb-2">Acompanhe nossas produções audiovisuais</span>
-            <p class="fs-14 fw-15 text-black opacity-60">Conheça o trabalho das comunidades em vídeos feitos com cuidado e protagonismo local.</p>
-            <%= link_to "Veja o acervo completo", acervos_videos_path, class: 'btn btn-primary btn-sm rounded py-2 px-5', style: "font-weight: 700 !important", target: "_top" %>
-
+  <div class="dropdown-pane position-relative border-start border-light ps-3" style="padding-top: 2rem !important; padding-bottom: 2rem !important;--bs-bg-opacity: 1;">
+    <div class=""
+          style="display: grid;
+                grid-template-columns: 1fr 1fr 2fr;
+                grid-gap: 16px;">
+      <% nav_videos.each do |video| %>
+          <div style="aspect-ratio: 1 / 1; height: 271">
+            <iframe frameborder="0"
+                        width="100%"
+                        height="100%"
+                        class='rounded'
+                        src='<%= Project::YOUTUBE_BASE_URL %><%= video.yt_id %>?rel=0&autoplay=<%= params[:autoplay] || 0 %>'
+                        allowfullscreen>
+            </iframe>
           </div>
-        </div>
+      <% end %>
+      <div class="see-more-pane d-flex flex-column justify-content-end align-items-start">
+        <span class="fw-600 fs-16 text-black mt-3 mb-2">Acompanhe nossas produções audiovisuais</span>
+        <p class="fs-14 fw-15 text-black opacity-60">Conheça o trabalho das comunidades em vídeos feitos com cuidado e protagonismo local.</p>
+        <%= link_to "Veja o acervo completo", acervos_videos_path, class: 'btn btn-primary btn-sm rounded py-2 px-5', style: "font-weight: 700 !important", target: "_top" %>
+
       </div>
     </div>
-
+  </div>
 <% end %>
