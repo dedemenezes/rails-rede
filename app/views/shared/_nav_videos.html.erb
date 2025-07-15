@@ -1,19 +1,19 @@
 <%= turbo_frame_tag 'nav-videos' do %>
-    <div class="row flex-nowrap">
-      <div class="d-flex flex-columns justify-content-between dropdowm-menu-panel-width" style="padding-top: 2rem !important; padding-bottom: 2rem !important;">
+    <div class="d-flex">
+      <div class="d-flex flex-columns justify-content-between dropdowm-menu-panel-width pe-0" style="padding-top: 2rem !important; padding-bottom: 2rem !important;">
         <ul class="nav d-inline-flex flex-column align-items-start nav-pills w-100">
         <li class="mb-lg-3 w-100"><%= render NavLinkComponent.new("Audiovisuais", acervos_videos_path, active_class: "active") %></li>
         <li class="mb-lg-3 w-100"><%= render NavLinkComponent.new("Imagens", imagens_galleries_path) %></li>
         <li class="mb-lg-3 w-100"><%= render NavLinkComponent.new("Materiais", materials_path) %></li>
         </ul>
       </div>
-      <div class="dropdown-pane position-relative w-100 border-start border-light" style="padding-top: 2rem !important; padding-bottom: 2rem !important;--bs-bg-opacity: 1;">
+      <div class="dropdown-pane position-relative border-start border-light ps-3" style="padding-top: 2rem !important; padding-bottom: 2rem !important;--bs-bg-opacity: 1;">
         <div class=""
               style="display: grid;
                     grid-template-columns: 1fr 1fr 2fr;
                     grid-gap: 16px;">
           <% nav_videos.each do |video| %>
-              <div style="aspect-ratio: 1 / 1; height: 100%">
+              <div style="aspect-ratio: 1 / 1; height: 271">
                 <iframe frameborder="0"
                             width="100%"
                             height="100%"
