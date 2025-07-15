@@ -22,66 +22,58 @@
 
         <li class="dropdown position-inherit">
           <%= render Dropdown::TogglerComponent.new("Observatórios") %>
-          <div class="dropdown-menu dropdown-menu-radius-bottom w-100 shadow-bottom overflow-hidden bg-body border-0 p-0 mt-n1" data-bs-popper="static">
-            <div class="bg-white shadow-elevation-1">
-              <div class="container">
-                <div class="py-4">
-                  <div class="row">
-                  <% @observatories.each do |observatory| %>
-                    <div class="col-3">
-                        <%= render NavLinkComponent.new(observatory[0], observatory_path(observatory[0])) %>
-                    </div>
-                  <% end %>
-                  </div>
+          <%= render Dropdown::ContentComponent.new do %>
+            <div class="py-4">
+              <div class="row">
+              <% @observatories.each do |observatory| %>
+                <div class="col-3">
+                    <%= render NavLinkComponent.new(observatory[0], observatory_path(observatory[0])) %>
                 </div>
+              <% end %>
               </div>
             </div>
-          </div>
+          <% end %>
         </li>
 
         <%# Acervo %>
         <li class="dropdown position-inherit">
           <%= render Dropdown::TogglerComponent.new("Acervos") %>
-          <div class="dropdown-menu dropdown-menu-radius-bottom w-100 shadow-bottom overflow-hidden bg-body border-0 p-0 mt-n1" data-bs-popper="static">
-            <div class="bg-white shadow-elevation-1 d-flex">
-              <div class="container">
-                <div class="row flex-nowrap">
-                  <div class="d-flex flex-columns justify-content-between dropdowm-menu-panel-width" style="padding-top: 2rem !important; padding-bottom: 2rem !important;">
-                    <ul class="nav d-inline-flex flex-column align-items-start nav-pills w-100">
-                    <li class="mb-lg-3 w-100"><%= render NavLinkComponent.new("Audiovisuais", acervos_videos_path, active_class: "active") %></li>
-                    <li class="mb-lg-3 w-100"><%= render NavLinkComponent.new("Imagens", imagens_galleries_path) %></li>
-                    <li class="mb-lg-3 w-100"><%= render NavLinkComponent.new("Materiais", materials_path) %></li>
-                    </ul>
-                  </div>
-                  <div class="dropdown-pane position-relative w-100 border-start border-light" style="padding-top: 2rem !important; padding-bottom: 2rem !important;--bs-bg-opacity: 1;">
-                    <div class=""
-                         style="display: grid;
-                                grid-template-columns: 1fr 1fr 2fr;
-                                grid-gap: 16px;">
-                      <% @nav_videos.each do |video| %>
-                          <div style="aspect-ratio: 1 / 1; height: 100%">
-                            <iframe frameborder="0"
-                                        width="100%"
-                                        height="100%"
-                                        class='rounded'
-                                        src='<%= Project::YOUTUBE_BASE_URL %><%= video.yt_id %>?rel=0&autoplay=<%= params[:autoplay] || 0 %>'
-                                        allowfullscreen>
-                            </iframe>
-                          </div>
-                      <% end %>
-                      <div class="see-more-pane d-flex flex-column justify-content-end align-items-start">
-                        <span class="fw-600 fs-16 text-black mt-3 mb-2">Acompanhe nossas produções audiovisuais</span>
-                        <p class="fs-14 fw-15 text-black opacity-60">Conheça o trabalho das comunidades em vídeos feitos com cuidado e protagonismo local.</p>
-                        <%= link_to "Veja o acervo completo", acervos_videos_path, class: 'btn btn-primary btn-sm rounded py-2 px-5', style: "font-weight: 700 !important" %>
-
+          <%= render Dropdown::ContentComponent.new(extra_class: "d-flex") do %>
+            <div class="row flex-nowrap">
+              <div class="d-flex flex-columns justify-content-between dropdowm-menu-panel-width" style="padding-top: 2rem !important; padding-bottom: 2rem !important;">
+                <ul class="nav d-inline-flex flex-column align-items-start nav-pills w-100">
+                <li class="mb-lg-3 w-100"><%= render NavLinkComponent.new("Audiovisuais", acervos_videos_path, active_class: "active") %></li>
+                <li class="mb-lg-3 w-100"><%= render NavLinkComponent.new("Imagens", imagens_galleries_path) %></li>
+                <li class="mb-lg-3 w-100"><%= render NavLinkComponent.new("Materiais", materials_path) %></li>
+                </ul>
+              </div>
+              <div class="dropdown-pane position-relative w-100 border-start border-light" style="padding-top: 2rem !important; padding-bottom: 2rem !important;--bs-bg-opacity: 1;">
+                <div class=""
+                      style="display: grid;
+                            grid-template-columns: 1fr 1fr 2fr;
+                            grid-gap: 16px;">
+                  <% @nav_videos.each do |video| %>
+                      <div style="aspect-ratio: 1 / 1; height: 100%">
+                        <iframe frameborder="0"
+                                    width="100%"
+                                    height="100%"
+                                    class='rounded'
+                                    src='<%= Project::YOUTUBE_BASE_URL %><%= video.yt_id %>?rel=0&autoplay=<%= params[:autoplay] || 0 %>'
+                                    allowfullscreen>
+                        </iframe>
                       </div>
-                    </div>
+                  <% end %>
+                  <div class="see-more-pane d-flex flex-column justify-content-end align-items-start">
+                    <span class="fw-600 fs-16 text-black mt-3 mb-2">Acompanhe nossas produções audiovisuais</span>
+                    <p class="fs-14 fw-15 text-black opacity-60">Conheça o trabalho das comunidades em vídeos feitos com cuidado e protagonismo local.</p>
+                    <%= link_to "Veja o acervo completo", acervos_videos_path, class: 'btn btn-primary btn-sm rounded py-2 px-5', style: "font-weight: 700 !important" %>
 
-                  </div>
                   </div>
                 </div>
               </div>
             </div>
+          <% end %>
+
         </li>
 
         <%= render NavItemComponent.new do %>
