@@ -43,7 +43,7 @@
         <li class="dropdown position-inherit">
           <%= render Dropdown::TogglerComponent.new("Acervos") %>
           <div class="dropdown-menu dropdown-menu-radius-bottom w-100 shadow-bottom overflow-hidden bg-body border-0 p-0 mt-n1" data-bs-popper="static">
-            <div class="bg-white d-flex">
+            <div class="bg-white shadow-elevation-1 d-flex">
               <div class="container">
                 <div class="row flex-nowrap">
                   <div class="d-flex flex-columns justify-content-between dropdowm-menu-panel-width" style="padding-top: 2rem !important; padding-bottom: 2rem !important;">
@@ -70,9 +70,9 @@
                           </div>
                       <% end %>
                       <div class="see-more-pane d-flex flex-column justify-content-end align-items-start">
-                        <span class="fw-600 fs-16 text-black mt-3 mb-2">Get personalized advice</span>
-                        <p class="fs-14 fw-15 text-black opacity-60">We can help you navigate into tech careers, choose the right course and get financed.</p>
-                        <%= link_to "Contact us", new_contact_path, class: 'btn btn-primary btn-sm' %>
+                        <span class="fw-600 fs-16 text-black mt-3 mb-2">Acompanhe nossas produções audiovisuais</span>
+                        <p class="fs-14 fw-15 text-black opacity-60">Conheça o trabalho das comunidades em vídeos feitos com cuidado e protagonismo local.</p>
+                        <%= link_to "Veja o acervo completo", acervos_videos_path, class: 'btn btn-primary btn-sm rounded py-2 px-5', style: "font-weight: 700 !important" %>
 
                       </div>
                     </div>
