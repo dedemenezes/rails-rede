@@ -47,13 +47,26 @@
             <span class="navbar-menu-item-arrow">Acervos</span> <i class="fa-solid fa-chevron-down" style="opacity: 0.7;"></i>
           </button>
           <div class="dropdown-menu dropdown-menu-radius-bottom w-100 shadow-bottom overflow-hidden bg-body border-0 p-0 mt-n1" data-bs-popper="static">
-            <div class="bg-white shadow-elevation-1">
+            <div class="bg-white d-flex">
               <div class="container">
-                <div class="py-4">
-                  <div class="row">
-                    <div class="col-4"><%= render NavLinkComponent.new("Audiovisuais", acervos_videos_path) %></div>
-                    <div class="col-4"><%= render NavLinkComponent.new("Imagens", imagens_galleries_path) %></div>
-                    <div class="col-4"><%= render NavLinkComponent.new("Materiais", materials_path) %></div>
+                <div class="row flex-nowrap">
+                  <div class="d-flex flex-columns justify-content-between dropdowm-menu-panel-width" style="padding-top: 2rem !important; padding-bottom: 2rem !important;">
+                    <ul class="nav d-inline-flex flex-column align-items-start nav-pills w-100">
+                    <li class="mb-lg-3 w-100"><%= render NavLinkComponent.new("Audiovisuais", acervos_videos_path) %></li>
+                    <li class="mb-lg-3 w-100"><%= render NavLinkComponent.new("Imagens", imagens_galleries_path) %></li>
+                    <li class="mb-lg-3 w-100"><%= render NavLinkComponent.new("Materiais", materials_path) %></li>
+                    </ul>
+                  </div>
+                  <div class="dropdown-pane position-relative w-100 d-flex flex-column align-items-start border-start border-light" style=";padding-top: 2rem !important; padding-bottom: 2rem !important;--bs-bg-opacity: 1;">
+                    <div class="d-flex">
+                      <img width="56" height="56" alt="Gemma Falconi" srcset="https://www-img.lewagon.com/3MgOPu_MVv4ENFwx8UXAIBGSw00GWs3GAz-alRg17F8/rs:fill:112:112/plain/s3://wagon-www/88xkr2nlpwy5i37lfps6qx3ljbg1 2x, https://www-img.lewagon.com/J1HKVm3Mrs_gTItMfySNS6rAM8qhuQsyMgaOIa40-Hk/rs:fill:56:56/plain/s3://wagon-www/88xkr2nlpwy5i37lfps6qx3ljbg1 56w" loading="lazy" class="img-fluid rounded-circle mb-12 border border-2 border-white overlapping" src="https://www-img.lewagon.com/J1HKVm3Mrs_gTItMfySNS6rAM8qhuQsyMgaOIa40-Hk/rs:fill:56:56/plain/s3://wagon-www/88xkr2nlpwy5i37lfps6qx3ljbg1">
+                      <img width="56" height="56" alt="Lewis Hollis" srcset="https://www-img.lewagon.com/l-Xok5Z-sgWSCnLH3dQ-oULuIxINEf-xDV2Up03FUv4/rs:fill:112:112/plain/s3://wagon-www/uuqbevfl47n6fiip2jnaeuw24yk4 2x, https://www-img.lewagon.com/sEVbFY7fmlo4jFy4dXsT_23CiQSMkgBB8jyOIn97Cpo/rs:fill:56:56/plain/s3://wagon-www/uuqbevfl47n6fiip2jnaeuw24yk4 56w" loading="lazy" class="img-fluid rounded-circle mb-12 border border-2 border-white overlapping" src="https://www-img.lewagon.com/sEVbFY7fmlo4jFy4dXsT_23CiQSMkgBB8jyOIn97Cpo/rs:fill:56:56/plain/s3://wagon-www/uuqbevfl47n6fiip2jnaeuw24yk4">
+                      <img width="56" height="56" alt="Alex Smith" srcset="https://www-img.lewagon.com/hCMKGCna4ILT0mRnX4rs7eUCH9ayy7EyKLPJqT3Lv98/rs:fill:112:112/plain/s3://wagon-www/xj39sr6ht098g17opdrg7dpd8hor 2x, https://www-img.lewagon.com/qbCtxharc0MC6Xq2VM6HDmOkJ1MH09bZ1tyLvFplLLw/rs:fill:56:56/plain/s3://wagon-www/xj39sr6ht098g17opdrg7dpd8hor 56w" loading="lazy" class="img-fluid rounded-circle mb-12 border border-2 border-white overlapping" src="https://www-img.lewagon.com/qbCtxharc0MC6Xq2VM6HDmOkJ1MH09bZ1tyLvFplLLw/rs:fill:56:56/plain/s3://wagon-www/xj39sr6ht098g17opdrg7dpd8hor">
+                      <img width="56" height="56" alt="Tabitha Tangherlini" srcset="https://www-img.lewagon.com/2m2MLg-gOJdECO57_oJK7E-dHVzhJILiIsHQVCx_vSk/rs:fill:112:112/plain/s3://wagon-www/c0pqgq8xm84r40jy6r8nicdvgm5g 2x, https://www-img.lewagon.com/wwvBPZiFpHUIGNOxukBPgYk8-dG6Pwdbpy3g5NFzzKo/rs:fill:56:56/plain/s3://wagon-www/c0pqgq8xm84r40jy6r8nicdvgm5g 56w" loading="lazy" class="img-fluid rounded-circle mb-12 border border-2 border-white overlapping" src="https://www-img.lewagon.com/wwvBPZiFpHUIGNOxukBPgYk8-dG6Pwdbpy3g5NFzzKo/rs:fill:56:56/plain/s3://wagon-www/c0pqgq8xm84r40jy6r8nicdvgm5g">
+                    </div>
+                    <span class="fw-600 fs-16 text-black mt-3 mb-2">Get personalized advice</span>
+                    <p class="fs-14 fw-15 text-black opacity-60">We can help you navigate into tech careers, choose the right course and get financed.</p>
+                    <a default="default" class="btn btn-primary btn-sm p-12 stretched-link" data-gtm="navbar-why-le-wagon-contact-advisor" href="/contact">Contact an advisor</a>
                   </div>
                 </div>
               </div>
