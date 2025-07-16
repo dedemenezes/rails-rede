@@ -1,6 +1,6 @@
 <%= turbo_frame_tag "nav-gallery-show-#{gallery.id}" do %>
   <div class="row ms-auto">
-    <% gallery.published_albums[..1].each do |album| %>
+    <% albums.each do |album| %>
       <div class="col-6">
         <%= link_to url_for(album), target: "_top", class: 'd-block' do %>
           <div class="observatory__card--image" style="background-image: url('<%= display_banner_as_background(album) %>'); height: 124px; border-radius: 10px 10px 0 0; background-position: center;"></div>
