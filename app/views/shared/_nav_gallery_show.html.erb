@@ -1,6 +1,12 @@
 <%= turbo_frame_tag "nav-gallery-show-#{gallery.id}" do %>
-  <% gallery.published_albums.each do |album| %>
-    <p><%= album.name || "NO ALBUM YET" %></p>
-  <% end %>
-
+  <div class="row">
+    <% gallery.published_albums.each do |album| %>
+      <div class="col-6">
+        <%= link_to url_for(album) do %>
+          <%= display_banner_image(album.banner, class: 'rounded-top', style: 'width: 100%; object-fit: cover;') %>
+          <p><%= album.name %></p>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 <% end %>
