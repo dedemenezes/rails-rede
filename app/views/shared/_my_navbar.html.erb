@@ -40,9 +40,9 @@
           <%= render Dropdown::TogglerComponent.new("Acervos") %>
           <%= render Dropdown::ContentComponent.new(extra_class: "d-flex") do %>
             <div class="d-flex">
-              <div class="d-flex flex-columns justify-content-between dropdowm-menu-panel-width pe-0" style="padding-top: 2rem !important; padding-bottom: 2rem !important;">
+              <div class="d-flex flex-columns justify-content-between pe-0" style="padding-top: 2rem !important; padding-bottom: 2rem !important;">
                 <!-- Nav tabs -->
-                <ul class="nav d-inline-flex flex-column align-items-start nav-pills w-100 nav-tabs border-bottom-0" id="myTab" role="tablist">
+                <ul class="nav d-inline-flex flex-column align-items-start nav-pills nav-tabs border-bottom-0 dropdowm-menu-panel-width" id="myTab" role="tablist">
                   <li class="mb-lg-3 w-100">
                     <%= render Dropdown::TabButtonComponent.new("Audiovisuais", id: 'videos-tab', target: 'nav-videos', is_active: true) %>
                   </li>
@@ -56,7 +56,7 @@
               </div>
 
               <!-- Tab panes -->
-              <div class="tab-content">
+              <div class="tab-content flex-grow-1">
                 <turbo-frame class="tab-pane active" id="nav-videos" role="tabpanel" aria-labelledby="videos-tab" tabindex="0" src="<%= nav_videos_path %>" loading="lazy">
                   <div class="text-muted">Carregando vídeos...</div>
                 </turbo-frame>

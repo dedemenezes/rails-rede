@@ -1,9 +1,7 @@
 <%= turbo_frame_tag 'nav-images' do %>
-  <div class="dropdown-pane position-relative border-start border-light ps-3" style="padding-top: 2rem !important; padding-bottom: 2rem !important;--bs-bg-opacity: 1;">
-    <div class="d-flex">
       <!-- Nav tabs -->
-      <div class="d-flex flex-columns justify-content-between dropdowm-menu-panel-width pe-0" style="padding-top: 2rem !important; padding-bottom: 2rem !important;">
-        <ul class="nav d-inline-flex flex-column align-items-start nav-pills w-100 nav-tabs border-bottom-0" id="myTab" role="tablist">
+      <div class="d-flex flex-columns justify-content-between pe-0" style="padding-top: 2rem !important; padding-bottom: 2rem !important;">
+        <ul class="nav d-inline-flex flex-column align-items-start nav-pills nav-tabs border-bottom-0 dropdowm-menu-panel-width" id="myTab" role="tablist">
           <% nav_galleries.each do |gallery| %>
             <li class="mb-lg-3 w-100">
               <%# target do tab conect com id do tab content pane %>
@@ -13,7 +11,7 @@
         </ul>
 
         <!-- Tab panes -->
-        <div class="tab-content">
+        <div class="tab-content flex-grow-1">
         <% nav_galleries.each do |gallery| %>
         <%# id turbo frame conecta com id da partial %>
           <turbo-frame class="tab-pane" id="nav-gallery-show-<%= gallery.id %>" role="tabpanel" aria-labelledby="gallery-show-<%= gallery.id %>-tab" tabindex="0" src="<%= navbar_gallery_path(gallery.name)%>" loading="lazy">
@@ -22,6 +20,4 @@
         <% end %>
         </div>
       </div>
-    </div>
-  </div>
 <% end %>
