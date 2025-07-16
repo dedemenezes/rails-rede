@@ -1,0 +1,6 @@
+<%= turbo_frame_tag "nav-gallery-show" do %>
+  <% gallery.published_albums.each do |album| %>
+    <p><%= album.name || "NO ALBUM YET" %></p>
+  <% end %>
+
+<% end %>

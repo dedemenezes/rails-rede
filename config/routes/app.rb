@@ -34,6 +34,7 @@ get 'nav_videos', to: 'nav_videos#index', as: :nav_videos
 
 namespace :navbar do
   get 'images', to: 'images#index', as: :images
+  get 'gallery-show/:name', to: 'galleries#show', as: :gallery
 end
 
 # delete 'articles/index/tags', to: 'articles_index_tags#destroy', as: :remove_tag_from_filter

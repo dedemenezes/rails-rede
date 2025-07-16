@@ -6,7 +6,7 @@
         <ul class="nav d-inline-flex flex-column align-items-start nav-pills w-100 nav-tabs border-bottom-0" id="myTab" role="tablist">
           <% nav_albums.each do |gallerie| %>
             <li class="mb-lg-3 w-100">
-              <%= render Dropdown::TabButtonComponent.new(gallerie.name, id: "gallery-#{gallerie.id}-tab", target: "nav-gallery-#{gallerie.id}", is_active: false) %>
+              <%= render Dropdown::TabButtonComponent.new(gallerie.name, id: "gallery-show-tab", target: "nav-gallery-show", is_active: false) %>
             </li>
           <% end %>
         </ul>
@@ -14,7 +14,7 @@
         <!-- Tab panes -->
         <div class="tab-content">
         <% nav_albums.each do |gallerie| %>
-          <turbo-frame class="tab-pane" id="nav-gallery-<%= gallerie.id %>" role="tabpanel" aria-labelledby="gallery-<%= gallerie.id %>-tab" tabindex="0" src="<%#= gallery_path(gallerie.name)%>" loading="lazy">
+          <turbo-frame class="tab-pane" id="nav-gallery-show" role="tabpanel" aria-labelledby="gallery-show-tab" tabindex="0" src="<%= navbar_gallery_path(gallerie.name)%>" loading="lazy">
             <div class="text-muted">Carregando álbuns de <%= gallerie.name %>...</div>
           </turbo-frame>
         <% end %>
