@@ -4,18 +4,20 @@
       <!-- Nav tabs -->
       <div class="d-flex flex-columns justify-content-between dropdowm-menu-panel-width pe-0" style="padding-top: 2rem !important; padding-bottom: 2rem !important;">
         <ul class="nav d-inline-flex flex-column align-items-start nav-pills w-100 nav-tabs border-bottom-0" id="myTab" role="tablist">
-          <% nav_albums.each do |gallerie| %>
+          <% nav_galleries.each do |gallery| %>
             <li class="mb-lg-3 w-100">
-              <%= render Dropdown::TabButtonComponent.new(gallerie.name, id: "gallery-show-tab", target: "nav-gallery-show", is_active: false) %>
+              <%# target do tab conect com id do tab content pane %>
+              <%= render Dropdown::TabButtonComponent.new(gallery.name, id: "gallery-show-#{gallery.id}-tab", target: "nav-gallery-show-#{gallery.id}", is_active: false) %>
             </li>
           <% end %>
         </ul>
 
         <!-- Tab panes -->
         <div class="tab-content">
-        <% nav_albums.each do |gallerie| %>
-          <turbo-frame class="tab-pane" id="nav-gallery-show" role="tabpanel" aria-labelledby="gallery-show-tab" tabindex="0" src="<%= navbar_gallery_path(gallerie.name)%>" loading="lazy">
-            <div class="text-muted">Carregando álbuns de <%= gallerie.name %>...</div>
+        <% nav_galleries.each do |gallery| %>
+        <%# id turbo frame conecta com id da partial %>
+          <turbo-frame class="tab-pane" id="nav-gallery-show-<%= gallery.id %>" role="tabpanel" aria-labelledby="gallery-show-<%= gallery.id %>-tab" tabindex="0" src="<%= navbar_gallery_path(gallery.name)%>" loading="lazy">
+            <div class="text-muted">Carregando álbuns de <%= gallery.name %>...</div>
           </turbo-frame>
         <% end %>
         </div>
