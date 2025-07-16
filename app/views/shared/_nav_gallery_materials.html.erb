@@ -1,0 +1,18 @@
+<%= turbo_frame_tag "nav-gallery-materials-#{gallery.id}" do %>
+  <div class="row ms-auto">
+    <% albums.each do |album| %>
+      <div class="col-6">
+        <%= link_to url_for(album), target: "_top", class: 'd-block' do %>
+          <div class="observatory__card--image" style="background-image: url('<%= display_banner_as_background(album) %>'); height: 124px; border-radius: 10px 10px 0 0; background-position: center;"></div>
+          <p class="rounded-bottom shadow-elevation-2 text-center py-2"><%= album.name %></p>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <div class="row ms-auto">
+    <div class="col-6 flex-end">
+      <p class="fs-14 fw-15 text-black opacity-60">Conheça mais o trabalho realizado nas comunidades feitos com cuidado e protagonismo local.</p>
+      <%= link_to "Veja o acervo completo", gallery_path(gallery.name, t: 'materials'), class: 'btn btn-primary btn-sm rounded py-2 px-5', style: "font-weight: 700 !important", target: "_top" %>
+    </div>
+  </div>
+<% end %>

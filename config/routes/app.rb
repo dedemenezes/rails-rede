@@ -34,6 +34,7 @@ get 'nav_videos', to: 'nav_videos#index', as: :nav_videos
 
 namespace :navbar do
   get 'images', to: 'images#index', as: :images
+  get 'materials', to: 'materials#index', as: :materials
   get 'gallery-show/:name', to: 'galleries#show', as: :gallery
 end
 
