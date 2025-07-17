@@ -1,23 +1,27 @@
 <%= turbo_frame_tag 'nav-materials' do %>
-      <!-- Nav tabs -->
-      <div class="d-flex flex-columns justify-content-between pe-0" style="padding-top: 2rem !important; padding-bottom: 2rem !important;">
-        <ul class="nav flex-nowrap flex-column align-items-start nav-pills nav-tabs border-bottom-0" id="myTab" role="tablist" style="height: 298px; overflow-y: auto;min-width: 276px">
-          <% nav_galleries.each do |gallery| %>
-            <li class="mb-lg-3 w-100">
-              <%# target do tab conect com id do tab content pane %>
-              <%= render Dropdown::TabButtonComponent.new(gallery.name, id: "gallery-materials-#{gallery.id}-tab", target: "nav-gallery-materials-#{gallery.id}", is_active: false) %>
-            </li>
-          <% end %>
-        </ul>
+  <!-- Nav tabs -->
+  <div class="d-flex flex-columns justify-content-between pe-0" style="padding-top: 2rem !important; padding-bottom: 2rem !important;">
+    <ul class="nav flex-nowrap flex-column align-items-start nav-pills nav-tabs border-bottom-0" id="myTab" role="tablist" style="height: 298px; overflow-y: auto;min-width: 276px">
+      <% nav_galleries.each do |gallery| %>
+        <li class="mb-lg-3 w-100">
+          <%# target do tab conect com id do tab content pane %>
+          <%= render Dropdown::TabButtonComponent.new(gallery.name, id: "gallery-materials-#{gallery.id}-tab", target: "nav-gallery-materials-#{gallery.id}", is_active: false) %>
+        </li>
+      <% end %>
+    </ul>
 
-        <!-- Tab panes -->
-        <div class="tab-content flex-grow-1">
-        <% nav_galleries.each do |gallery| %>
-        <%# id turbo frame conecta com id da partial %>
-          <turbo-frame class="tab-pane" id="nav-gallery-materials-<%= gallery.id %>" role="tabpanel" aria-labelledby="gallery-materials-<%= gallery.id %>-tab" tabindex="0" src="<%= navbar_gallery_path(gallery.name, query: 'materials')%>" loading="lazy">
-            <div class="text-muted">Carregando álbuns de <%= gallery.name %>...</div>
-          </turbo-frame>
-        <% end %>
-        </div>
-      </div>
+    <!-- Tab panes -->
+    <div class="tab-content flex-grow-1">
+      <% nav_galleries.each_with_index do |gallery, index| %>
+      <%# id turbo frame conecta com id da partial %>
+        <%= render Dropdown::TabContentComponent.new(
+          "Carregando ábuns de #{gallery.name}",
+          navbar_gallery_path(gallery.name, query: 'materials'),
+          frame_id: "nav-gallery-materials-#{gallery.id}",
+          aria_labelledby: "gallery-materials-#{gallery.id}-tab",
+          index: index
+        ) %>
+      <% end %>
+    </div>
+  </div>
 <% end %>

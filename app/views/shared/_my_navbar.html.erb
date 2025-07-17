@@ -57,15 +57,28 @@
 
               <!-- Tab panes -->
               <div class="tab-content flex-grow-1">
-                <turbo-frame class="tab-pane active" id="nav-videos" role="tabpanel" aria-labelledby="videos-tab" tabindex="0" src="<%= navbar_videos_path %>" loading="lazy">
-                  <div class="text-muted">Carregando vídeos...</div>
-                </turbo-frame>
-                <turbo-frame class="tab-pane" id="nav-images" role="tabpanel" aria-labelledby="images-tab" tabindex="0" src="<%= navbar_images_path %>" loading="lazy">
-                  <div class="text-muted">Carregando álbuns...</div>
-                </turbo-frame>
-                <turbo-frame class="tab-pane" id="nav-materials" role="tabpanel" aria-labelledby="materials-tab" tabindex="0" src="<%= navbar_materials_path %>" loading="lazy">
-                  <div class="text-muted">Carregando materiais...</div>
-                </turbo-frame>
+                <%= render Dropdown::TabContentComponent.new(
+                  "Carregando videos...",
+                  navbar_videos_path,
+                  frame_id: "nav-videos",
+                  aria_labelledby: "videos-tab",
+                  index: 0,
+                  active: true
+                ) %>
+                <%= render Dropdown::TabContentComponent.new(
+                  "Carregando photos...",
+                  navbar_images_path,
+                  frame_id: "nav-images",
+                  aria_labelledby: "images-tab",
+                  index: 1
+                ) %>
+                <%= render Dropdown::TabContentComponent.new(
+                  "Carregando materiais...",
+                  navbar_materials_path,
+                  frame_id: "nav-materials",
+                  aria_labelledby: "materials-tab",
+                  index: 2
+                ) %>
               </div>
             </div>
           <% end %>
