@@ -21,7 +21,7 @@
         <% end %>
 
         <li class="dropdown position-inherit">
-          <%= render Dropdown::TogglerComponent.new("Observatórios") %>
+          <%= render Dropdown::TogglerComponent.new("Observatórios", toggler_id: 'observatory-dropdown-toggler') %>
           <%= render Dropdown::ContentComponent.new do %>
             <div class="py-4">
               <div class="row">
