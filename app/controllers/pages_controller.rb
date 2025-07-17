@@ -20,7 +20,7 @@ class PagesController < ApplicationController
   private
 
   def load_articles
-    articles = Article.includes(banner_attachment: :blob)
+    articles = Article.includes(:tags, banner_attachment: :blob)
     @featured = articles.main_featured
     @top_four = articles.all_featured
     @top_four_is_full = @top_four.length > 3
