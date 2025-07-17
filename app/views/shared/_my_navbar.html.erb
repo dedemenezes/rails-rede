@@ -25,7 +25,7 @@
           <%= render Dropdown::ContentComponent.new do %>
             <div class="py-4">
               <div class="row">
-              <% @observatories.each do |observatory| %>
+              <% @nav_observatories.each do |observatory| %>
                 <div class="col-3">
                     <%= render NavLinkComponent.new(observatory[0], observatory_path(observatory[0])) %>
                 </div>

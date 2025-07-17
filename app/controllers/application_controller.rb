@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
 
   def set_observatories
-    @observatories = Observatory.pluck(:name, :id)
+    @nav_observatories = Observatory.pluck(:name, :id)
   end
 
   include Pundit::Authorization
