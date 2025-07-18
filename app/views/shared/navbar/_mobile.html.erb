@@ -32,6 +32,35 @@
             </div>
           </div>
         </li>
+        <%# ACERVOS %>
+        <li>
+          <div class="accordion accordion-flush accordion-mobile" id="accordionAcervos">
+            <div class="accordion-item border-0">
+              <h2 class="accordion-header">
+                <button class="accordion-button shadow-none rounded p-3 ps-2 text-rede-primary fw-500 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-acervos" aria-expanded="false" aria-controls="flush-acervos">
+                  <span>Acervos</span>
+                </button>
+              </h2>
+              <div id="flush-acervos" class="accordion-collapse collapse" data-bs-parent="#accordionAcervos">
+                <div class="accordion-body">
+                  <div class="py-lg-4">
+                    <div class="row flex-columns">
+                      <div class="col-12">
+                        <button class="nav-link" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasVideos" aria-controls="offcanvasVideos">Audiovisuais</button>
+                      </div>
+                      <div class="col-12">
+                        <button class="nav-link" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasVideos" aria-controls="offcanvasVideos">Imagens</button>
+                      </div>
+                      <div class="col-12">
+                        <button class="nav-link" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasVideos" aria-controls="offcanvasVideos">Materiais</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
         <li>
           <%= link_to "Mapa", mapa_observatories_path, class: "bg-white text-rede-primary text-decoration-none d-flex justify-content-between align-items-center border-0 w-100 fs-16 p-3 ps-2 fw-500" %>
         </li>
@@ -42,6 +71,34 @@
           <%= link_to "Contato", new_contact_path, class: "bg-white text-rede-primary text-decoration-none d-flex justify-content-between align-items-center border-0 w-100 fs-16 p-3 ps-2 fw-500" %>
         </li>
       </ul>
+    </div>
+  </div>
+
+  <div class="offcanvas offcanvas-end border-0" tabindex="-1" id="offcanvasVideos" aria-labelledby="offcanvasVideosLabel">
+    <button class="btn " type="button" data-bs-toggle="offcanvas" data-bs-target="#menuMobile" aria-controls="menuMobile">Enable body scrolling</button>
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasVideosLabel">Offcanvas with body scrolling</h5>
+    </div>
+    <div class="offcanvas-body">
+      <p>Try scrolling the rest of the page to see this option in action.</p>
+    </div>
+  </div>
+  <div class="offcanvas offcanvas-end border-0" tabindex="-1" id="offcanvasPhotos" aria-labelledby="offcanvasPhotosLabel">
+    <button class="btn " type="button" data-bs-toggle="offcanvas" data-bs-target="#menuMobile" aria-controls="menuMobile">Enable body scrolling</button>
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasPhotosLabel">Offcanvas with body scrolling</h5>
+    </div>
+    <div class="offcanvas-body">
+      <p>Try scrolling the rest of the page to see this option in action.</p>
+    </div>
+  </div>
+  <div class="offcanvas offcanvas-end border-0" tabindex="-1" id="offcanvasMaterials" aria-labelledby="offcanvasMaterialsLabel">
+    <button class="btn " type="button" data-bs-toggle="offcanvas" data-bs-target="#menuMobile" aria-controls="menuMobile">Enable body scrolling</button>
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasMaterialsLabel">Offcanvas with body scrolling</h5>
+    </div>
+    <div class="offcanvas-body">
+      <p>Try scrolling the rest of the page to see this option in action.</p>
     </div>
   </div>
 </div>
