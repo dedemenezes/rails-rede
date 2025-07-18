@@ -12,5 +12,10 @@ class NavbarNavigationsTest < ApplicationSystemTestCase
 
     click_button("observatory-dropdown-toggler")
     assert_selector "div.dropdown-menu.show"
+    assert_link "Ninho do Urubu"
+
+    click_button("acervos-dropdown-toggler")
+    assert_selector "div.dropdown-menu.show"
+    assert_link "Ninho do Urubu"
   end
 end
