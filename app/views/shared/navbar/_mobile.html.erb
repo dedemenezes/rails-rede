@@ -1,19 +1,13 @@
 <div class="d-block d-lg-none">
   <div class="offcanvas offcanvas-end border-0 w-100" tabindex="-1" id="menuMobile" aria-labelledby="menuMobileLabel">
     <div class="offcanvas-header">
-      <%= link_to root_path, class: "navabar-top-logo offcanvas-title", id: "menuMobileLabel" do %>
-        <%= image_tag 'Logo_PEA.png', width: '186px', alt: 'Logo do PEA Rede Observação' %>
-      <% end %>
+      <%= render MobileLogoComponent.new %>
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
       <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-        <li>
-          <%= link_to "Sobre", about_us_path, class: "bg-white text-rede-primary text-decoration-none d-flex justify-content-between align-items-center border-0 w-100 fs-16 p-3 ps-2 fw-500" %>
-        </li>
-        <li>
-          <%= link_to "Mapa", mapa_observatories_path, class: "bg-white text-rede-primary text-decoration-none d-flex justify-content-between align-items-center border-0 w-100 fs-16 p-3 ps-2 fw-500" %>
-        </li>
+        <%= render MobileNavItemComponent.new("Sobre", about_us_path) %>
+        <%= render MobileNavItemComponent.new("Mapa", mapa_observatories_path) %>
         <li>
           <div class="accordion accordion-flush accordion-mobile" id="accordionFlushExample">
             <div class="accordion-item border-0">
@@ -63,15 +57,8 @@
             </div>
           </div>
         </li>
-        <li>
-          <%= link_to "Mapa", mapa_observatories_path, class: "bg-white text-rede-primary text-decoration-none d-flex justify-content-between align-items-center border-0 w-100 fs-16 p-3 ps-2 fw-500" %>
-        </li>
-        <li>
-          <%= link_to "Notícias", articles_path, class: "bg-white text-rede-primary text-decoration-none d-flex justify-content-between align-items-center border-0 w-100 fs-16 p-3 ps-2 fw-500" %>
-        </li>
-        <li>
-          <%= link_to "Contato", new_contact_path, class: "bg-white text-rede-primary text-decoration-none d-flex justify-content-between align-items-center border-0 w-100 fs-16 p-3 ps-2 fw-500" %>
-        </li>
+        <%= render MobileNavItemComponent.new("Notícias", articles_path) %>
+        <%= render MobileNavItemComponent.new("Contato", new_contact_path) %>
       </ul>
     </div>
   </div>
@@ -79,9 +66,7 @@
   <%# IMAGENS %>
   <div class="offcanvas offcanvas-end border-0" tabindex="-1" id="offcanvasImages" aria-labelledby="offcanvasImagesLabel">
     <div class="offcanvas-header">
-      <%= link_to root_path, class: "navabar-top-logo offcanvas-title", id: "menuMobileLabel" do %>
-        <%= image_tag 'Logo_PEA.png', width: '186px', alt: 'Logo do PEA Rede Observação' %>
-      <% end %>
+      <%= render MobileLogoComponent.new %>
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body p-0">
@@ -106,9 +91,7 @@
   <%# MATERIAIS %>
   <div class="offcanvas offcanvas-end border-0" tabindex="-1" id="offcanvasMaterials" aria-labelledby="offcanvasMaterialsLabel">
     <div class="offcanvas-header">
-      <%= link_to root_path, class: "navabar-top-logo offcanvas-title", id: "menuMobileLabel" do %>
-        <%= image_tag 'Logo_PEA.png', width: '186px', alt: 'Logo do PEA Rede Observação' %>
-      <% end %>
+      <%= render MobileLogoComponent.new %>
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body p-0">
