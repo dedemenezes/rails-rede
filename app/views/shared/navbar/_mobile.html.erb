@@ -46,13 +46,7 @@
                   <div class="py-lg-4">
                     <div class="row flex-columns">
                       <div class="col-12">
-                        <button class="nav-link" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasVideos" aria-controls="offcanvasVideos">Audiovisuais</button>
-                      </div>
-                      <div class="col-12">
-                        <button class="nav-link" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasVideos" aria-controls="offcanvasVideos">Imagens</button>
-                      </div>
-                      <div class="col-12">
-                        <button class="nav-link" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasVideos" aria-controls="offcanvasVideos">Materiais</button>
+                        <button class="nav-link" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasImages" aria-controls="offcanvasImages">Imagens</button>
                       </div>
                     </div>
                   </div>
@@ -74,7 +68,7 @@
     </div>
   </div>
 
-  <div class="offcanvas offcanvas-end border-0" tabindex="-1" id="offcanvasVideos" aria-labelledby="offcanvasVideosLabel">
+  <div class="offcanvas offcanvas-end border-0" tabindex="-1" id="offcanvasImages" aria-labelledby="offcanvasImagesLabel">
     <div class="offcanvas-header">
       <h5 class="offcanvas-title" id="menuMobileLabel">Offcanvas</h5>
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -91,28 +85,10 @@
           },
           aria_controls: "menuMobile",
           alt: 'arrow left' %>
-        <span class="fw-bold text-uppercase" style="letter-spacing: 0.04em;">Audiovisuais</span>
+        <span class="fw-bold text-uppercase" style="letter-spacing: 0.04em;">Imagens</span>
       </div>
-
-
-    </div>
-  </div>
-  <div class="offcanvas offcanvas-end border-0" tabindex="-1" id="offcanvasPhotos" aria-labelledby="offcanvasPhotosLabel">
-    <button class="btn " type="button" data-bs-toggle="offcanvas" data-bs-target="#menuMobile" aria-controls="menuMobile">Enable body scrolling</button>
-    <div class="offcanvas-header">
-      <h5 class="offcanvas-title" id="offcanvasPhotosLabel">Offcanvas with body scrolling</h5>
-    </div>
-    <div class="offcanvas-body">
-      <p>Try scrolling the rest of the page to see this option in action.</p>
-    </div>
-  </div>
-  <div class="offcanvas offcanvas-end border-0" tabindex="-1" id="offcanvasMaterials" aria-labelledby="offcanvasMaterialsLabel">
-    <button class="btn " type="button" data-bs-toggle="offcanvas" data-bs-target="#menuMobile" aria-controls="menuMobile">Enable body scrolling</button>
-    <div class="offcanvas-header">
-      <h5 class="offcanvas-title" id="offcanvasMaterialsLabel">Offcanvas with body scrolling</h5>
-    </div>
-    <div class="offcanvas-body">
-      <p>Try scrolling the rest of the page to see this option in action.</p>
+      <%= turbo_frame_tag :nav_photo_galleries, src: navbar_images_path(q: 'offcanvas'), loading: "lazy" %>
+      <%#= turbo_frame_tag "nav-images", src: navbar_images_path, loading: "lazy" %>
     </div>
   </div>
 </div>

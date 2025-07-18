@@ -4,6 +4,12 @@ class Navbar::ImagesController < ApplicationController
               .published_with_photos
               .map(&:gallery)
               .uniq
-    render partial: "shared/nav_images", locals: { nav_galleries: @galleries }
+    if params[:q].present?
+      if params[:q] == "offcanvas"
+        render partial: "shared/navbar/photo_galleries", locals: { nav_galleries: @galleries }
+      end
+    else
+      render partial: "shared/nav_images", locals: { nav_galleries: @galleries }
+    end
   end
 end
