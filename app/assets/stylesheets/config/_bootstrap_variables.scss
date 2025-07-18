@@ -59,8 +59,8 @@ $input-focus-box-shadow: $input-btn-focus-box-shadow;
 
 // Accordion
 $accordion-button-active-color: #083461 !important;
-$accordion-button-active-bg: #bde4f3e7 !important;
-$accordion-border-color: #bde4f3e7 !important;
+$accordion-button-active-bg: $r-blue-sky-light !important;
+$accordion-border-color: $r-blue-sky-light !important;
 $accordion-btn-icon: url("");
 
 $rede-colors: (
@@ -69,7 +69,9 @@ $rede-colors: (
   "rede-secondary": $r-orange,
   "rede-dark-red": $r-red-d,
   "rede-white": $r-light,
-  "rede-news": $r-yellow
+  "rede-news": $r-yellow,
+  "rede-light": $r-blue-sky-light,
+  "rede-lightzin": $r-sky-lightzin,
 );
 
 // Merge this new map into the theme-colors map (set by default in Bootstrap) in config/custom_maps.scss

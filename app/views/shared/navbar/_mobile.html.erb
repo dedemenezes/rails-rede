@@ -1,5 +1,5 @@
 <div class="d-block d-lg-none">
-  <div class="offcanvas offcanvas-end border-0" tabindex="-1" id="menuMobile" aria-labelledby="menuMobileLabel">
+  <div class="offcanvas offcanvas-end border-0 w-100" tabindex="-1" id="menuMobile" aria-labelledby="menuMobileLabel">
     <div class="offcanvas-header">
       <h5 class="offcanvas-title" id="menuMobileLabel">Offcanvas</h5>
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -75,12 +75,26 @@
   </div>
 
   <div class="offcanvas offcanvas-end border-0" tabindex="-1" id="offcanvasVideos" aria-labelledby="offcanvasVideosLabel">
-    <button class="btn " type="button" data-bs-toggle="offcanvas" data-bs-target="#menuMobile" aria-controls="menuMobile">Enable body scrolling</button>
     <div class="offcanvas-header">
-      <h5 class="offcanvas-title" id="offcanvasVideosLabel">Offcanvas with body scrolling</h5>
+      <h5 class="offcanvas-title" id="menuMobileLabel">Offcanvas</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
-    <div class="offcanvas-body">
-      <p>Try scrolling the rest of the page to see this option in action.</p>
+    <div class="offcanvas-body p-0">
+      <div class="d-flex flex-columns align-items-center justify-content-center p-3 bg-rede-lightzin position-relative" style="background-color: #bde4f369 !important;">
+        <%= image_tag 'arrow-down.svg',
+          class: 'position-absolute ms-3',
+          width: '16px',
+          style: 'transform: rotate(90deg); left: 0; cursor: pointer;',
+          data: {
+            bs_toggle: "offcanvas",
+            bs_target: "#menuMobile"
+          },
+          aria_controls: "menuMobile",
+          alt: 'arrow left' %>
+        <span class="fw-bold text-uppercase" style="letter-spacing: 0.04em;">Audiovisuais</span>
+      </div>
+
+
     </div>
   </div>
   <div class="offcanvas offcanvas-end border-0" tabindex="-1" id="offcanvasPhotos" aria-labelledby="offcanvasPhotosLabel">
