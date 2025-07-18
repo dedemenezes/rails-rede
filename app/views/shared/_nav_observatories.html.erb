@@ -1,0 +1,11 @@
+<%= turbo_frame_tag "nav-observatories" do %>
+  <div class="py-4">
+    <div class="row">
+    <% nav_observatories.each do |observatory| %>
+      <div class="col-3">
+          <%= render NavLinkComponent.new(observatory[0], observatory_path(observatory[0]), target: "_top") %>
+      </div>
+    <% end %>
+    </div>
+  </div>
+<% end %>

@@ -32,6 +32,7 @@ end
 
 
 namespace :navbar do
+  get "observatories", to: "observatories#index", as: :observatories
   get 'videos', to: 'videos#index', as: :videos
   get 'images', to: 'images#index', as: :images
   get 'materials', to: 'materials#index', as: :materials

@@ -23,15 +23,11 @@
         <li class="dropdown position-inherit">
           <%= render Dropdown::TogglerComponent.new("Observatórios", toggler_id: 'observatory-dropdown-toggler') %>
           <%= render Dropdown::ContentComponent.new do %>
-            <div class="py-4">
-              <div class="row">
-              <% @nav_observatories.each do |observatory| %>
-                <div class="col-3">
-                    <%= render NavLinkComponent.new(observatory[0], observatory_path(observatory[0])) %>
-                </div>
-              <% end %>
+            <%= turbo_frame_tag "nav-observatories", src: navbar_observatories_path, loading: "lazy" do %>
+              <div class="d-flex align-items-center justify-content-center py-4">
+                <div class="spinner-border text-primary" role="status"></div>
               </div>
-            </div>
+            <% end %>
           <% end %>
         </li>
 
