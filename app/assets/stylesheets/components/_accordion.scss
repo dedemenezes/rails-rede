@@ -21,7 +21,8 @@
 // $accordion-button-active-color
 // $accordion-button-active-bg
 .accordion-mobile .accordion-button:not(.collapsed) {
-    font-weight: 700 !important;
+  font-weight: 700 !important;
+  font-variation-settings: "wght" 700;
 }
 .accordion-mobile .accordion-body .row > div {
   border-bottom: 1px solid $r-light-gray;
