@@ -4,22 +4,23 @@ class NavLinkComponent < ApplicationComponent
   include Phlex::Rails::Helpers::LinkTo
   include Phlex::Rails::Helpers::Request
 
-  def initialize(text, link_path, active_class: nil, css_class: nil)
+  def initialize(text, link_path, active_class: nil, css_class: nil, target: nil)
     @text = text
     @link_path = link_path
     @css_class = css_class
     @active_class = active_class
+    @target = target
   end
 
   def view_template
-    link_to link_path, class: final_class do
+    link_to link_path, class: final_class, target: target do
       text
     end
   end
 
   private
 
-  attr_reader :text, :link_path, :css_class, :active_class
+  attr_reader :text, :link_path, :css_class, :active_class, :target
 
   def final_class
     [
