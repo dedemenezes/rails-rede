@@ -1,8 +1,9 @@
-<%= turbo_frame_tag :nav_photo_galleries do %>
+<%= turbo_frame_tag target_id do %>
   <div class="row flex-columns p-3">
     <% nav_galleries.each do |gallery| %>
       <div class="col-12 border-bottom">
-        <%= render NavLinkComponent.new(gallery.name, gallery_path(gallery, t: "imagens"), target: "_top") %>
+      <%# gallery_path(gallery, t: category) %>
+        <%= render NavLinkComponent.new(gallery.name, send(url, gallery, t: 'imagens'), target: "_top") %>
       </div>
     <% end %>
   </div>
