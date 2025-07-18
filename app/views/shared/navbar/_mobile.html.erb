@@ -1,0 +1,46 @@
+<div class="d-block d-lg-none">
+  <div class="offcanvas offcanvas-end border-0" tabindex="-1" id="menuMobile" aria-labelledby="menuMobileLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="menuMobileLabel">Offcanvas</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+        <li>
+          <%= link_to "Sobre", about_us_path, class: "bg-white text-rede-primary text-decoration-none d-flex justify-content-between align-items-center border-0 w-100 fs-16 p-3 ps-2 fw-normal" %>
+        </li>
+        <li>
+          <%= link_to "Mapa", mapa_observatories_path, class: "bg-white text-rede-primary text-decoration-none d-flex justify-content-between align-items-center border-0 w-100 fs-16 p-3 ps-2 fw-normal" %>
+        </li>
+        <li>
+          <div class="accordion accordion-flush accordion-mobile" id="accordionFlushExample">
+            <div class="accordion-item border-0">
+              <h2 class="accordion-header">
+                <button class="accordion-button shadow-none rounded p-3 ps-2 text-rede-primary fw-normal collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                  <span>Observatórios</span>
+                </button>
+              </h2>
+              <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                  <%= turbo_frame_tag "nav-observatories", src: navbar_observatories_path(mobile: true), loading: "lazy" do %>
+                    <div class="d-flex align-items-center justify-content-center py-4">
+                      <div class="spinner-border text-primary" role="status"></div>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+        </li>
+        <li>
+          <%= link_to "Mapa", mapa_observatories_path, class: "bg-white text-rede-primary text-decoration-none d-flex justify-content-between align-items-center border-0 w-100 fs-16 p-3 ps-2 fw-500" %>
+        </li>
+        <li>
+          <%= link_to "Notícias", articles_path, class: "bg-white text-rede-primary text-decoration-none d-flex justify-content-between align-items-center border-0 w-100 fs-16 p-3 ps-2 fw-500" %>
+        </li>
+        <li>
+          <%= link_to "Contato", new_contact_path, class: "bg-white text-rede-primary text-decoration-none d-flex justify-content-between align-items-center border-0 w-100 fs-16 p-3 ps-2 fw-500" %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

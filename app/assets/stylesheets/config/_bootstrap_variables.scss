@@ -57,6 +57,12 @@ $input-focus-color: $input-color;
 $input-focus-width: $input-btn-focus-width;
 $input-focus-box-shadow: $input-btn-focus-box-shadow;
 
+// Accordion
+$accordion-button-active-color: #083461 !important;
+$accordion-button-active-bg: #bde4f3e7 !important;
+$accordion-border-color: #bde4f3e7 !important;
+$accordion-btn-icon: url("");
+
 $rede-colors: (
   "rede-primary": $r-blue-d,
   "rede-primary-l": $r-blue-l,
