@@ -52,9 +52,8 @@
               </div>
 
               <!-- Tab panes -->
-              <div class="tab-content flex-grow-1">
+              <div class="tab-content flex-grow-1 position-relative">
                 <%= render Dropdown::TabContentComponent.new(
-                  "Carregando videos...",
                   navbar_videos_path,
                   frame_id: "nav-videos",
                   aria_labelledby: "videos-tab",
@@ -62,14 +61,12 @@
                   active: true
                 ) %>
                 <%= render Dropdown::TabContentComponent.new(
-                  "Carregando photos...",
                   navbar_images_path,
                   frame_id: "nav-images",
                   aria_labelledby: "images-tab",
                   index: 1
                 ) %>
                 <%= render Dropdown::TabContentComponent.new(
-                  "Carregando materiais...",
                   navbar_materials_path,
                   frame_id: "nav-materials",
                   aria_labelledby: "materials-tab",

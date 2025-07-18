@@ -15,7 +15,6 @@
       <% nav_galleries.each_with_index do |gallery, index| %>
       <%# id turbo frame conecta com id da partial %>
         <%= render Dropdown::TabContentComponent.new(
-          "Carregando ábuns de #{gallery.name}",
           navbar_gallery_path(gallery.name, query: 'materials'),
           frame_id: "nav-gallery-materials-#{gallery.id}",
           aria_labelledby: "gallery-materials-#{gallery.id}-tab",
