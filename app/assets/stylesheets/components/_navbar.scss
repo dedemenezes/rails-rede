@@ -134,6 +134,10 @@ p.nav-link {
 
 }
 
+.offcanvas {
+  width: 100% !important;
+}
+
 @media (max-width: 768px) {
   .nav__layout {
     display: flex;
