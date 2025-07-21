@@ -21,7 +21,7 @@
               <div class="widget--info__meta--card">
                 <span><%= article.writer %></span>
                 <span>•</span>
-                <span><%= distance_of_time_in_words(Time.now, article.updated_at) %></span>
+                <span><%= time_ago_in_words(article.updated_at) %></span>
               </div>
 
               <div class="widget--info__media-container ">
@@ -34,9 +34,9 @@
                 <%= link_to article_path(article.header) do %>
                   <div class="widget--info__title product-color">
                     <%= article.header %>
-                    <p class="widget--info__description"><%= article.rich_body.to_plain_text.truncate_words(50) %></p>
+                    <p class="widget--info__description mb-lg-0"><%= article.rich_body.to_plain_text.truncate_words(50) %></p>
                   </div>
-                  <div class="widget--info__meta"><%=  distance_of_time_in_words(Time.now, article.updated_at) %></div>
+                  <div class="widget--info__meta"><%=  time_ago_in_words(article.updated_at) %></div>
                 <% end %>
               </div>
             </li>
