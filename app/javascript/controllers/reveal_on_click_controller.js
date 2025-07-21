@@ -2,9 +2,14 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="reveal-on-click"
 export default class extends Controller {
-  static targets = ['button', 'icon', 'dropdown']
+  static targets = ['button', 'icon', 'dropdown', "hiddenAtStart", "visibleAtStart"]
 
   connect() {
+  }
+
+  display() {
+    this.visibleAtStartTarget.classList.add("d-none")
+    this.hiddenAtStartTarget.classList.remove("d-none")
   }
 
   toggle(e) {
