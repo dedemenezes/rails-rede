@@ -1,14 +1,14 @@
 #faq {
   width: 100%;
   position: relative;
-  padding: 40px 0; /* make the padding the same as the height of the pseudo elements*/
+  padding: 60px 0; /* make the padding the same as the height of the pseudo elements*/
 }
 
 #faq:before {
   content: '';
   background: url(asset_path('contact-top-wave.png'));
   width: 100%;
-  height: 40px; /*make the height the same as the height of the background image size*/
+  height: 60px; /*make the height the same as the height of the background image size*/
   background-size: 100% 100%;
   position: absolute;
   top: 0;
@@ -18,7 +18,7 @@
   content: '';
   background: url(asset_path('contact-bottom-wave.png'));
   width: 100%;
-  height: 40px; /*make the height the same as the height of the background image size*/
+  height: 60px; /*make the height the same as the height of the background image size*/
   background-size: 100% 100%;
   position: absolute;
   bottom: 0;

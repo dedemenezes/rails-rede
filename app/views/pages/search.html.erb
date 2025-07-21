@@ -10,15 +10,123 @@
 </div>
 <section id="faq">
   <div id="details-wrapper">
-    <h3 class="text-center">Resultados encontrados para: <span class="text-rede-primary-l"><%= params[:q].downcase %></span></h1>
     <div class="container">
-    <% if @articles.empty? %>
-      <p>Sem reultados</p>
-    <% else %>
-      <% @articles.each do |article| %>
-        <%= link_to article.header, article_path(article), class: 'link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover' %>
+      <h3 class="mb-4">Resultados encontrados para: <span class="text-rede-primary-l"><%= params[:q].downcase %></span></h3>
+      <% if @articles.empty? %>
+        <p>Sem reultados</p>
+      <% else %>
+        <ul class="mb-0 ps-0">
+          <% @articles.each do |article| %>
+            <li class="widget widget--card widget--info" data-position="1">
+              <div class="widget--info__meta--card">
+                <span><%= article.writer %></span>
+                <span>•</span>
+                <span><%= distance_of_time_in_words(Time.now, article.updated_at) %></span>
+              </div>
+
+              <div class="widget--info__media-container ">
+                <%= link_to article_path(article.header), class: 'widget--info__media' do %>
+                  <%= image_tag(article.banner) %>
+                <% end %>
+              </div>
+              <div class="widget--info__text-container">
+                <div class="widget--info__header"><%= article.writer %></div>
+                <%= link_to article_path(article.header) do %>
+                  <div class="widget--info__title product-color">
+                    <%= article.header %>
+                    <p class="widget--info__description"><%= article.rich_body.to_plain_text.truncate(100) %></p>
+                  </div>
+                  <div class="widget--info__meta"><%=  distance_of_time_in_words(Time.now, article.updated_at) %></div>
+                <% end %>
+              </div>
+            </li>
+          <% end %>
+        </ul>
       <% end %>
-    <% end %>
     </div>
   </div>
 </section>
+
+<style>
+.widget.widget--info {
+    display: flex;
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.widget.widget--info:last-child {
+  margin-bottom: 0;
+}
+
+.widget--info__meta--card {
+    display: none;
+}
+.widget--info__media-container {
+    flex: 0 0 25%;
+    min-width: 170px;
+    margin-right: 14px;
+}
+
+.widget--info__media {
+    display: block;
+    position: relative;
+    height: 0;
+    overflow: hidden;
+    border-radius: 4px;
+    padding-top: 56.25%;
+    width: 100%;
+    background: #ccc;
+    box-shadow: inset 0 0 10px 0 rgba(0, 0, 0, 0.1);
+}
+
+.widget--info__media img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.widget--info__text-container {
+    flex: 1 0 0;
+    position: relative;
+    padding-bottom: 20px;
+}
+
+.widget--info__header {
+    font-family: OpenSans, Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 14px;
+    line-height: 14px;
+    letter-spacing: 0;
+    color: #060606;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+}
+
+.cor-produto, .product-color, .filter-product-color {
+    color: #0669de;
+}
+
+.widget--info__title {
+    font-family: ProximaNova-Bold, Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 17px;
+    line-height: 24px;
+}
+.widget--info__description {
+    font-family: OpenSans, Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+    letter-spacing: 0;
+    color: #666666;
+}
+.widget--info__meta {
+    position: absolute;
+    bottom: 0;
+    font-family: OpenSans, Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 11px;
+    line-height: 15px;
+    letter-spacing: 0;
+    color: #939393;
+}
+</style>
