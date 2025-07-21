@@ -17,6 +17,10 @@ class PagesController < ApplicationController
     @text_colors = ['rede-primary', 'rede-dark-red', 'rede-primary-l']
   end
 
+  def search
+    @articles = policy_scope(Article).user_search(params[:q])
+  end
+
   private
 
   def load_articles

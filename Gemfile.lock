@@ -226,6 +226,9 @@ GEM
       racc (~> 1.4)
     orm_adapter (0.5.0)
     pg (1.4.6)
+    pg_search (2.3.7)
+      activerecord (>= 6.1)
+      activesupport (>= 6.1)
     phlex (1.10.3)
     phlex-rails (1.2.1)
       phlex (~> 1.10.0)
@@ -369,6 +372,7 @@ DEPENDENCIES
   letter_opener
   mini_magick
   pg (~> 1.1)
+  pg_search
   phlex-rails
   puma (~> 5.0)
   pundit

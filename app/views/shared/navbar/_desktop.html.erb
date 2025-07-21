@@ -79,8 +79,8 @@
   </div>
 
   <div class="navbar-nav d-flex align-items-center jusitfy-content-center flex-grow-1 ms-4 d-none"  data-reveal-on-click-target="hiddenAtStart">
-    <form class="d-flex flex-grow-1 nav-item" action="#" role="seach">
-      <input id="search" class="form-control me-2" type="search" placeholder="O que você procura?">
+    <form class="d-flex flex-grow-1 nav-item" action="<%= search_path %>" role="seach">
+      <input id="query" name="q" class="form-control me-2" type="search" value="<%= params[:q] %>" placeholder="O que você procura?">
       <button class="btn btn-outline-primary" type="submit">Pesquisar</button>
     </form>
   </div>

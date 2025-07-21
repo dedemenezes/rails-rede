@@ -3,6 +3,7 @@ post '/contacts', to: 'contacts#create', as: :contacts
 get '/sobre', to: 'pages#about_us', as: :about_us
 get '/events', to: 'events#index', as: :events
 get '/mapa-de-conflitos', to: 'observatories#mapa', as: :mapa_observatories
+get '/busca', to: "pages#search", as: :search
 # delete 'attachments/:id', to: 'attachments#destroy', as: :destroy_attachment
 resources :observatories, only: %i[index show], path: "observatorios", param: :name
 get 'acervos/videos_with_modal', to: 'acervos/videos#with_modal', as: :videos_modal

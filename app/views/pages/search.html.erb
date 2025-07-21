@@ -1,0 +1,14 @@
+<section id="faq">
+  <div id="details-wrapper">
+    <h3 class="text-center">Resultados encontrados para: <span class="text-rede-primary-l"><%= params[:q].downcase %></span></h1>
+    <div class="container">
+    <% if @articles.empty? %>
+      <p>Sem reultados</p>
+    <% else %>
+      <% @articles.each do |article| %>
+        <p class="mb-0"><%= article.header %></p>
+      <% end %>
+    <% end %>
+    </div>
+  </div>
+</section>
