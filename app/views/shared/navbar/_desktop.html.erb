@@ -1,5 +1,16 @@
 <div class="d-none d-lg-flex flex-grow-1">
   <ul class="navbar-nav d-flex align-items-center justify-content-evenly flex-grow-1">
+
+    <li class="dropdown position-inherit">
+      <%= render Dropdown::TogglerComponent.new("Sobre", toggler_id: 'about-dropdown-toggler') %>
+      <%= render Dropdown::ContentComponent.new do %>
+        <%= turbo_frame_tag "nav-about", src: "#", loading: "lazy" do %>
+          <div class="d-flex align-items-center justify-content-center py-4">
+            <div class="spinner-border text-primary" role="status"></div>
+          </div>
+        <% end %>
+      <% end %>
+    </li>
     <%= render NavItemComponent.new do %>
       <%= render NavLinkComponent.new("Sobre", about_us_path) %>
     <% end %>
