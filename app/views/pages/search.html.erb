@@ -34,7 +34,7 @@
                 <%= link_to article_path(article.header) do %>
                   <div class="widget--info__title product-color">
                     <%= article.header %>
-                    <p class="widget--info__description mb-lg-0"><%= article.rich_body.to_plain_text.truncate_words(50) %></p>
+                    <p class="widget--info__description mb-0"><%= article.rich_body.to_plain_text.truncate_words(50) %></p>
                   </div>
                   <div class="widget--info__meta"><%=  time_ago_in_words(article.updated_at) %></div>
                 <% end %>
@@ -50,6 +50,7 @@
 <style>
 .widget.widget--info {
     display: flex;
+    flex-direction: column;
     position: relative;
     margin-bottom: 1rem;
 }
@@ -65,7 +66,17 @@
     flex: 0 0 25%;
     min-width: 170px;
     margin-right: 14px;
+    margin-bottom: 1rem;
 }
+@media (min-width: 740px) {
+  .widget.widget--info {
+    flex-direction: row;
+  }
+  .widget--info__media-container {
+    margin-bottom: 0;
+  }
+}
+
 
 .widget--info__media {
     display: block;
