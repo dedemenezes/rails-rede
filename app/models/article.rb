@@ -1,7 +1,6 @@
 class Article < ApplicationRecord
   HEADER_MAX_SIZE = 113
   include Featureable
-  include PgSearch::Model
 
   validates :header, presence: true, uniqueness: true, length: { maximum: HEADER_MAX_SIZE }
 
@@ -32,16 +31,7 @@ class Article < ApplicationRecord
 
   delegate :visible_tags, to: :taggings
   # acts_as_taggable_on :tags
-
-  pg_search_scope :user_search,
-    against: [ :header, :sub_header ],
-    associated_against: {
-      rich_text_rich_body: :body
-    },
-    using: {
-      :tsearch => { :prefix => true }
-    }
-
+  #
   def self.main_featured
     where(main_featured: true).first
   end

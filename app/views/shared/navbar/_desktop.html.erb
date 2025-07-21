@@ -1,5 +1,5 @@
-<div class="d-none d-lg-flex flex-grow-1" data-controller="reveal-on-click">
-  <ul class="navbar-nav d-flex align-items-center justify-content-evenly flex-grow-1" data-reveal-on-click-target="visibleAtStart">
+<div class="d-none d-lg-flex flex-grow-1">
+  <ul class="navbar-nav d-flex align-items-center justify-content-evenly flex-grow-1">
     <%= render NavItemComponent.new do %>
       <%= render NavLinkComponent.new("Sobre", about_us_path) %>
     <% end %>
@@ -74,23 +74,12 @@
     <% end %>
   </ul>
 
-  <div class="navbar-nav d-flex align-items-center" data-reveal-on-click-target="visibleAtStart" data-action="click->reveal-on-click#display">
-    <%= icon('fa-solid', 'magnifying-glass', class: "nav-item", data: { reveal_on_click_target: 'icon' }) %>
-  </div>
-
-  <div class="navbar-nav d-flex align-items-center jusitfy-content-center flex-grow-1 ms-4 d-none"  data-reveal-on-click-target="hiddenAtStart">
-    <form class="d-flex flex-grow-1 nav-item" action="<%= search_path %>" role="seach">
-      <input id="query" name="q" class="form-control me-2" type="search" value="<%= params[:q] %>" placeholder="O que você procura?">
-      <button class="btn btn-outline-primary" type="submit">Pesquisar</button>
-    </form>
-  </div>
-
-  <div class="navbar-nav d-none align-items-center mx-lg-0 mx-xl-3" data-reveal-on-click-target="hiddenAtStart" data-action="click->reveal-on-click#hide">
+  <div class="navbar-nav d-none align-items-center mx-lg-0 mx-xl-3">
     <%= icon('fa-solid', 'xmark', class: "nav-item fs-4 ms-2", data: { action: "click->reveal-on-click#hide" }) %>
   </div>
 
 
-  <ul class="navbar-nav navbar-social" data-reveal-on-click-target="visibleAtStart">
+  <ul class="navbar-nav navbar-social">
     <% @social_urls.each do |social, link| %>
       <%= render NavItemComponent.new(extra_css: "pe-0 me-0 pe-xl-1") do %>
         <%= render NavLinkComponent.new(icon('fa-brands', social.to_s), "https://www.#{social.to_s}.com/#{link}/", css_class: 'fs-4 rede-link', target: "_blank") %>
