@@ -9,7 +9,16 @@ export default class extends Controller {
 
   display() {
     this.visibleAtStartTarget.classList.add("d-none")
+    this.displayIconTarget.classList.add('d-none')
     this.hiddenAtStartTarget.classList.remove("d-none")
+    this.hideIconTarget.classList.remove('d-none')
+  }
+
+  hide() {
+    this.visibleAtStartTarget.classList.remove("d-none")
+    this.displayIconTarget.classList.remove('d-none')
+    this.hiddenAtStartTarget.classList.add("d-none")
+    this.hideIconTarget.classList.add('d-none')
   }
 
   toggle(e) {

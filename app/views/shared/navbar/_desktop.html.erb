@@ -79,8 +79,11 @@
       <%= render NavLinkComponent.new("Contato", new_contact_path) %>
     <% end %>
   </ul>
-  <div class="navbar-nav d-none d-xl-flex align-items-center mx-4" data-action="click->reveal-on-click#display">
-    <%= icon('fa-solid', 'magnifying-glass') %>
+  <div class="navbar-nav d-none d-xl-flex align-items-center mx-4"  data-reveal-on-click-target="displayIcon" data-action="click->reveal-on-click#display">
+    <%= icon('fa-solid', 'magnifying-glass', data: { reveal_on_click_target: 'icon' }) %>
+  </div>
+  <div class="navbar-nav d-none d-xl-flex align-items-center mx-4" data-reveal-on-click-target="hideIcon" data-action="click->reveal-on-click#display">
+    <%= icon('fa-solid', 'xmark', data: { action: "click->reveal-on-click#hide" }) %>
   </div>
   <ul class="navbar-nav navbar-social">
     <% @social_urls.each do |social, link| %>
