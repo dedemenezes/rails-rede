@@ -1,18 +1,38 @@
 <div class="d-none d-lg-flex flex-grow-1">
-  <ul class="navbar-nav d-flex align-items-center justify-content-center flex-grow-1">
+  <ul class="navbar-nav d-flex align-items-center justify-content-center justify-content-lg-evenly flex-grow-1">
     <li class="dropdown position-inherit">
       <%= render Dropdown::TogglerComponent.new("Sobre", toggler_id: 'about-dropdown-toggler') %>
       <%= render Dropdown::ContentComponent.new do %>
-        <%= turbo_frame_tag "nav-about", src: "#", loading: "lazy" do %>
-          <div class="d-flex align-items-center justify-content-center py-4">
-            <div class="spinner-border text-primary" role="status"></div>
+        <div class="d-flex">
+          <div class="d-flex flex-columns justify-content-between pe-3" style="padding-top: 2rem !important; padding-bottom: 2rem !important;">
+            <!-- Nav tabs -->
+            <ul class="nav d-inline-flex flex-column align-items-start nav-pills nav-tabs border-bottom-0" style="min-width: 216px" id="myTab" role="tablist">
+              <li class="mb-lg-3 w-100">
+                <%= render NavLinkComponent.new("O projeto", about_us_path) %>
+              </li>
+              <li class="mb-lg-3 w-100">
+                <%= render Dropdown::TabButtonComponent.new("Eixos", id: 'materials-tab', target: 'nav-materials') %>
+              </li>
+            </ul>
           </div>
+          <div class="tab-content flex-grow-1">
+            <%= render Dropdown::TabContentComponent.new(
+              navbar_materials_path,
+              frame_id: "nav-materials",
+              aria_labelledby: "materials-tab",
+              index: 2
+            ) %>
+          </div>
+        </div>
+        <% if false %>
+          <%= turbo_frame_tag "nav-about", src: "#", loading: "lazy" do %>
+            <div class="d-flex align-items-center justify-content-center py-4">
+              <div class="spinner-border text-primary" role="status"></div>
+            </div>
+          <% end %>
         <% end %>
       <% end %>
     </li>
-    <%= render NavItemComponent.new do %>
-      <%= render NavLinkComponent.new("Sobre", about_us_path) %>
-    <% end %>
 
     <%= render NavItemComponent.new do %>
       <%= render NavLinkComponent.new("Mapa", mapa_observatories_path) %>
@@ -43,9 +63,6 @@
               <li class="mb-lg-3 w-100">
                 <%= render Dropdown::TabButtonComponent.new("Imagens", id: 'images-tab', target: 'nav-images') %>
               </li>
-              <li class="mb-lg-3 w-100">
-                <%= render Dropdown::TabButtonComponent.new("Materiais", id: 'materials-tab', target: 'nav-materials') %>
-              </li>
             </ul>
           </div>
 
@@ -63,12 +80,6 @@
               frame_id: "nav-images",
               aria_labelledby: "images-tab",
               index: 1
-            ) %>
-            <%= render Dropdown::TabContentComponent.new(
-              navbar_materials_path,
-              frame_id: "nav-materials",
-              aria_labelledby: "materials-tab",
-              index: 2
             ) %>
           </div>
         </div>
