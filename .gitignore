@@ -57,3 +57,6 @@ coverage
 
 # capybara images
 capybara*.png
+
+# brainstorm
+brainstorm.md
