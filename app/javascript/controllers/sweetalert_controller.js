@@ -10,8 +10,20 @@ export default class extends Controller {
     confirmButtonText: String,
     showCancelButton: Boolean,
     cancelButtonText: String
+    ,featured: Boolean,
   }
   connect() {
+  }
+
+  confirmFeatured(event) {
+    if (this.featuredValue) {
+      Swal.fire().then((action) => {
+        if (action.isConfirmed) {
+          this.dispatch("updateFeatured", { detail: { content: "UPDATE ITTT!" } })
+          // navigator.clipboard.writeText(this.sourceTarget.value)
+        }
+      })
+    }
   }
 
   initSweetalert(event) {

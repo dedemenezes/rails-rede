@@ -10,6 +10,7 @@
                         sweetalert_show_cancel_button_value: true,
                         sweetalert_cancel_button_text_value: "Cancelar",
                         action: "submit->sweetalert#initSweetalert",
+                        sweetalert_featured_value: @has_featured,
                         turbo: false
                       }
                     }) do |f| %>
@@ -63,12 +64,13 @@
                 hint: '',
                 input_html: {
                   class: "tag-selector tag-selector--large",
-                  data: { action: 'change->publish-checkbox#updateHint',
+                  data: { action: 'change->sweetalert#confirmFeatured',
                   publish_checkbox_target: 'input'  }
                 },
                 wrapper_html: {
                   class: 'tag-item mt-3',
                   data: { controller: 'publish-checkbox',
+                  action: "sweetalert:updateFeatured@window->publish-checkbox#updateHint",
                   publish_checkbox_text_value: 'Destaque',
                   publish_checkbox_featured_value: @has_featured }
                 },
