@@ -10,7 +10,7 @@ class Dropdown::TabButtonComponent < ApplicationComponent
   end
 
   def view_template
-    button(class:"nav-link w-100 d-flex justify-content-start #{is_active? ? 'active' : ''}",
+    button(class:"nav-link w-100 d-flex justify-content-start align-items-center #{is_active? ? 'active' : ''}",
             id: id,
             data: {
               bs_toggle:"tab",
@@ -21,6 +21,7 @@ class Dropdown::TabButtonComponent < ApplicationComponent
             aria_controls: target,
             aria_selected: selected) do
               plain text
+              i(class: "fa-solid fa-chevron-down ms-auto", style: "opacity: 0.7;transform: rotate(270deg);font-size: 12px;")
             end
 
   end
