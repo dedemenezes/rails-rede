@@ -54,11 +54,8 @@ export default class extends Controller {
           }
         })
       })
-      // console.log(iconUrls)
       iconUrls.forEach((iconUrl) => {
-        // console.log(iconUrl)
         const iconExists = this.map.hasImage(iconUrl);
-        // console.log(iconExists)
         if (!iconExists) {
           this.map.loadImage(iconUrl, (error, image) => {
             if (error) throw error;
@@ -79,7 +76,6 @@ export default class extends Controller {
       })
 
       this.tilesetsValue.forEach((tileset) => {
-        // console.log(tileset)
 
         // ADD SOURCE
         this.map.addSource(tileset.sourceValue, {
@@ -272,7 +268,6 @@ export default class extends Controller {
 
     this.map.on('click', (event) => {
       const features = this.map.queryRenderedFeatures(event.point)
-      // console.log(features.length > 0)
       const feature = features[0]
       if (!feature) {
         return;
@@ -289,7 +284,6 @@ export default class extends Controller {
 
     this.map.on('zoomend', () => {
       const zoom = this.map.getZoom();
-      console.log('Current zoom level is: ' + zoom);
     });
 
   }
@@ -327,7 +321,6 @@ export default class extends Controller {
 
     let popHTML = `<div class="popup__source">`
     const properties = feature.properties
-    // console.log(properties)
     popHTML += `<h6><strong>${properties.name}</strong></h6>`
     popHTML += `<p class="mb-0">${properties.description}</p>`
     popHTML += '</div>'
