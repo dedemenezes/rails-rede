@@ -3,8 +3,8 @@
     <li class="dropdown position-inherit">
       <%= render Dropdown::TogglerComponent.new("Sobre", toggler_id: 'about-dropdown-toggler') %>
       <%= render Dropdown::ContentComponent.new do %>
-        <div class="d-flex">
-          <div class="d-flex flex-columns justify-content-between pe-3" style="padding-top: 2rem !important; padding-bottom: 2rem !important;">
+        <div class="d-flex pt-2 pb-3">
+          <div class="d-flex flex-columns justify-content-between pe-3 border-end border-light" style="">
             <!-- Nav tabs -->
             <ul class="nav d-inline-flex flex-column align-items-start nav-pills nav-tabs border-bottom-0" style="min-width: 216px" id="myTab" role="tablist">
               <li class="mb-lg-3 w-100">
