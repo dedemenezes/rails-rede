@@ -5,7 +5,7 @@
     <%= form.input :category,
                  collection: Album::CATEGORIES,
                  label_html: { class: 'input-group-text mb-0'},
-                 wrapper_html: { class: 'input-group' },
+                 wrapper_html: { class: "input-group #{'d-none' unless element.new_record?}" },
                  label_method: :second,
                  value_method: :first,
                  input_html: {
