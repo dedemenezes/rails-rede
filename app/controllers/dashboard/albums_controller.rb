@@ -114,6 +114,7 @@ module Dashboard
         :published,
         :banner,
         :category,
+        :nav_featured,
         photos: [],
         documents: [],
         videos_attributes: [%i[id name description url]]

@@ -4,10 +4,10 @@ class Navbar::GalleriesController < ApplicationController
     if params[:query].present?
       case params[:query]
       when 'materials'
-        @albums = @gallery.albums.published_with_documents[..1]
+        @albums = @gallery.albums.published_with_documents.featured
         render partial: "shared/nav_gallery_materials", locals: { albums: @albums, gallery: @gallery }
       when 'photos'
-        @albums = @gallery.albums.published_with_photos[..1]
+        @albums = @gallery.albums.published_with_photos.featured
         render partial: "shared/nav_gallery_photos", locals: { albums: @albums, gallery: @gallery }
       end
     end
