@@ -1,9 +1,9 @@
 class Navbar::MaterialsController < ApplicationController
   def index
-    @galleries = policy_scope(Album)
-              .published_with_documents
-              .map(&:gallery)
-              .uniq
+    @galleries = policy_scope(Gallery).joins(albums: :documents_attachments)
+      .where.not(methodology_id: nil)
+      .where(albums: { published: true, category: 'document' })
+      .distinct
     if params[:q].present?
       render partial: "shared/navbar/photo_galleries", locals: { nav_galleries: @galleries, target_id: :nav_materials_galleries, url: :material_path }
     else
