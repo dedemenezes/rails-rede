@@ -26,6 +26,12 @@ class Album < ApplicationRecord
   delegate :name, to: :gallery, prefix: true, allow_nil: true
 
 
+  def demote_previous_main_featured
+    return unless saved_change_to_main_featured? && main_featured
+
+    self.class.where.not(id: id).where(gallery: gallery, category: category, main_featured: true).update_all(main_featured: false)
+  end
+
   def self.dashboard_headers
     HEADERS
   end
