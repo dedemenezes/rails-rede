@@ -3,9 +3,13 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="toggle-on-change"
 export default class extends Controller {
   static targets = ['category', 'photo', 'document', 'video']
+  static values = {
+    category: String,
+  }
+
   connect() {
-    if (this.categoryTarget.value !== '') {
-      this.dynamicTarget(this.categoryTarget.value).classList.remove('d-none')
+    if (this.categoryValue !== '') {
+      this.dynamicTarget(this.categoryValue).classList.remove('d-none')
     }
   }
 
