@@ -1,4 +1,5 @@
 class Album < ApplicationRecord
+  include Featureable
   include Documentable
   include Photoable
   include Taggable

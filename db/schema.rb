@@ -62,7 +62,7 @@ ActiveRecord::Schema[7.0].define(version: 2025_07_24_183124) do
     t.date "event_date"
     t.boolean "published", default: false
     t.string "category"
-    t.boolean "nav_featured", default: false
+    t.boolean "main_featured", default: false
     t.index ["gallery_id"], name: "index_albums_on_gallery_id"
   end
 

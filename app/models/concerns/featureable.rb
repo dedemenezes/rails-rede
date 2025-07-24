@@ -10,19 +10,31 @@ module Featureable
   private
 
   def ensure_featured_exclusivity
-    self.featured = false if main_featured
+    if respond_to?(:featured)
+      self.featured = false if main_featured
+    end
   end
 
   def demote_previous_main_featured
     return unless saved_change_to_main_featured? && main_featured
 
-    Article.where.not(id: id).where(main_featured: true).update_all(main_featured: false)
+    self.class.where.not(id: id).where(main_featured: true).update_all(main_featured: false)
   end
 
   def promote_latest_featured_if_main_featured_removed
     return unless saved_change_to_main_featured? && !main_featured
 
-    latest = Article.where(featured: true).order(featured_at: :desc).first
+    latest = latest_featured
     latest&.update!(main_featured: true)
+  end
+
+  private
+
+  def latest_featured
+    if respond_to? :featured
+      self.class.where(featured: true).order(featured_at: :desc).first
+    else
+      self.class.where(category: category, gallery: gallery).sample
+    end
   end
 end
