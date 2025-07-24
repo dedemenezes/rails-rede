@@ -62,6 +62,7 @@ module Dashboard
 
     def edit
       @album.videos.build if @album.category == 'video' && @album.videos.empty?
+      @has_featured = Album.where(category: @album.category, gallery: @album.gallery, main_featured: true).present?
     end
 
     def update

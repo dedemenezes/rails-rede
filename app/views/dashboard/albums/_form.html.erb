@@ -59,10 +59,19 @@
                 label_html: { data: { publish_checkbox_target: 'label' } }
     %>
 
-    <%= f.input :nav_featured,
+    <%= f.input :main_featured,
                 hint: '',
-                input_html: { class: "tag-selector tag-selector--large", data: { action: 'change->publish-checkbox#updateHint', publish_checkbox_target: 'input'  } },
-                wrapper_html: { class: 'tag-item mt-3', data: { controller: 'publish-checkbox', publish_checkbox_text_value: 'Destaque' } },
+                input_html: {
+                  class: "tag-selector tag-selector--large",
+                  data: { action: 'change->publish-checkbox#updateHint',
+                  publish_checkbox_target: 'input'  }
+                },
+                wrapper_html: {
+                  class: 'tag-item mt-3',
+                  data: { controller: 'publish-checkbox',
+                  publish_checkbox_text_value: 'Destaque',
+                  publish_checkbox_featured_value: @has_featured }
+                },
                 label_html: { data: { publish_checkbox_target: 'label' } }
     %>
   </div>
