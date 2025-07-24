@@ -221,3 +221,9 @@
   --bs-btn-active-border-color: #{shade-color(#fff, 20%)};
   border: 2px solid var(--bs-btn-border-color);
 }
+
+
+.btn--sweetalert {
+  padding: .625em 1.1em !important;
+  font-weight: 500 !important;
+}

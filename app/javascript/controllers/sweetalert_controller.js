@@ -22,51 +22,50 @@ export default class extends Controller {
     console.log(this.featuredValue)
     this.swalWithBootstrapButtons = Swal.mixin({
       customClass: {
-        confirmButton: "btn btn-primary me-4",
-        cancelButton: "btn btn-danger"
+        confirmButton: "btn btn-primary me-4 btn--sweetalert",
+        cancelButton: "btn btn-danger btn--sweetalert"
       },
       buttonsStyling: false
     });
+    this.swalOptions = {
+      title: "Confirmar?",
+      text: this.alertTextValue,
+      icon: "warning",
+      showCancelButton: this.showCancelButtonValue,
+      confirmButtonText: this.confirmButtonTextValue,
+      cancelButtonText: this.cancelButtonTextValue,
+    }
+    this.updateFeaturedEvent = "updateFeatured"
   }
 
   confirmFeatured(event) {
     console.log("eventCurrentTarget: " + event.currentTarget)
-    if (this.isFeaturedValue && !this.checkboxInputTarget.checked) {
-      this.swalWithBootstrapButtons.fire({
-        title: "Confirmar?",
-        text: this.alertTextValue,
-        icon: "warning",
-        showCancelButton: this.showCancelButtonValue,
-        confirmButtonText: this.confirmButtonTextValue,
-        cancelButtonText: this.cancelButtonTextValue,
-      }).then((result) => {
-        if (result.isConfirmed) {
-          this.dispatch("updateFeatured", { detail: { content: "UPDATE ITTT!" } })
-        } else if (result.dismiss === Swal.DismissReason.cancel) {
-          console.log("Inside Swal eventCurrentTarget: " + event.currentTarget)
-          console.log(`srcElement: ${event.srcElement}`)
-          this.checkboxInputTarget.checked = true
-        }
-      })
-    } else if (!this.isFeaturedValue && this.featuredValue && this.checkboxInputTarget.checked) {
-      this.swalWithBootstrapButtons.fire({
-        title: "Confirmar?",
-        text: this.alertTextValue,
-        icon: "warning",
-        showCancelButton: this.showCancelButtonValue,
-        confirmButtonText: this.confirmButtonTextValue,
-        cancelButtonText: this.cancelButtonTextValue,
-      }).then((result) => {
-        if (result.isConfirmed) {
-          this.dispatch("updateFeatured", { detail: { content: "UPDATE ITTT!" } })
-        } else if (result.dismiss === Swal.DismissReason.cancel) {
-          console.log("Inside Swal eventCurrentTarget: " + event.currentTarget)
-          console.log(`srcElement: ${event.srcElement}`)
-          this.checkboxInputTarget.checked = false
-        }
-      })
+    if (this.#isRemovingFeatured()) {
+      this.swalWithBootstrapButtons
+        .fire(this.swalOptions)
+        .then(result => this.#handleUserConfirmation(result))
+    } else if (this.#isOverwritingFeatured()) {
+      this.swalWithBootstrapButtons
+        .fire(this.swalOptions)
+        .then(result => this.#handleUserConfirmation(result))
     } else {
-      this.dispatch("updateFeatured", { detail: { content: "UPDATE ITTT!" } })
+      this.dispatch(this.updateFeaturedEvent)
+    }
+  }
+
+  #isRemovingFeatured() {
+    return this.isFeaturedValue && !this.checkboxInputTarget.checked
+  }
+
+  #isOverwritingFeatured() {
+    return !this.isFeaturedValue && this.featuredValue && this.checkboxInputTarget.checked
+  }
+
+  #handleUserConfirmation(result) {
+    if (result.isConfirmed) {
+      this.dispatch(this.updateFeaturedEvent)
+    } else if (result.dismiss === Swal.DismissReason.cancel) {
+      this.checkboxInputTarget.checked = !this.checkboxInputTarget.checked
     }
   }
 
