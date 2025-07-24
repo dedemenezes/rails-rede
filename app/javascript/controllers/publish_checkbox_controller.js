@@ -14,10 +14,6 @@ export default class extends Controller {
   }
 
   updateHint(event = null) {
-    if (event && this.featuredValue){
-      // Swal.fire()
-    }
-
     if (this.inputTarget.checked) {
       this.labelTarget.innerText = `${this.textValue} ✅`
     } else {
