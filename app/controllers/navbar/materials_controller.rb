@@ -4,6 +4,7 @@ class Navbar::MaterialsController < ApplicationController
       .where.not(methodology_id: nil)
       .where(albums: { published: true, category: 'document' })
       .distinct
+      .order(name: :asc)
     if params[:q].present?
       render partial: "shared/navbar/photo_galleries", locals: { nav_galleries: @galleries, target_id: :nav_materials_galleries, url: :material_path }
     else
