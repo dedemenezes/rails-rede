@@ -27,6 +27,18 @@
       <% end %>
     </li>
 
+    <%# Observatorios %>
+    <li class="dropdown position-inherit">
+      <%= render Dropdown::TogglerComponent.new("Observatórios", toggler_id: 'observatory-dropdown-toggler') %>
+      <%= render Dropdown::ContentComponent.new do %>
+        <%= turbo_frame_tag "nav-observatories", src: navbar_observatories_path, loading: "lazy" do %>
+          <div class="d-flex align-items-center justify-content-center py-4">
+            <div class="spinner-border text-primary" role="status"></div>
+          </div>
+        <% end %>
+      <% end %>
+    </li>
+
     <%# Acervo %>
     <li class="dropdown position-inherit">
       <%= render Dropdown::TogglerComponent.new("Produtos") %>
@@ -61,18 +73,6 @@
             ) %>
           </div>
         </div>
-      <% end %>
-    </li>
-
-    <%# Observatorios %>
-    <li class="dropdown position-inherit">
-      <%= render Dropdown::TogglerComponent.new("Observatórios", toggler_id: 'observatory-dropdown-toggler') %>
-      <%= render Dropdown::ContentComponent.new do %>
-        <%= turbo_frame_tag "nav-observatories", src: navbar_observatories_path, loading: "lazy" do %>
-          <div class="d-flex align-items-center justify-content-center py-4">
-            <div class="spinner-border text-primary" role="status"></div>
-          </div>
-        <% end %>
       <% end %>
     </li>
 
