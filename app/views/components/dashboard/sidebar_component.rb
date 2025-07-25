@@ -77,11 +77,48 @@ class Dashboard::SidebarComponent < ApplicationComponent
             end
           end
           render NavItemComponent.new(extra_css: "mb-2") do
-            render NavLinkComponent.new "Projeto",
+            render NavLinkComponent.new "",
                                         dashboard_mapbox_tilesets_path,
                                         css_class: "text-primary" do
               i(class: "fa-solid fa-map me-2")
               plain "Tilesets"
+            end
+          end
+          render NavItemComponent.new(extra_css: "mb-2") do
+            render NavLinkComponent.new "",
+              dashboard_galleries_path,
+              css_class: "text-primary" do
+                i(class: "fa-solid fa-folder me-2")
+                plain "Acervos"
+              end
+              ul(class: "list-group border-0 mb-0") do
+                render NavItemComponent.new(extra_css: "list-group-item border-0 pb-0 pe-0") do
+                  render NavLinkComponent.new("Materiais",
+                    dashboard_materials_path,
+                    css_class: "text-primary"
+                    ) do
+                    i(class: "fa-solid fa-file me-2")
+                    plain "Materiais"
+                end
+                render NavItemComponent.new(extra_css: "list-group-item border-0 pb-0 pe-0") do
+                  render NavLinkComponent.new("",
+                    imagens_dashboard_albums_path,
+                    css_class: "text-primary"
+                    ) do
+                      i(class: "fa-solid fa-image me-2")
+                      plain "Imagens"
+                  end
+                end
+                render NavItemComponent.new(extra_css: "list-group-item border-0 pb-0 pe-0") do
+                  render NavLinkComponent.new("",
+                    dashboard_videos_path,
+                    css_class: "text-primary"
+                    ) do
+                      i(class: "fa-solid fa-video me-2")
+                      plain "Vídeos"
+                  end
+                end
+              end
             end
           end
         end
