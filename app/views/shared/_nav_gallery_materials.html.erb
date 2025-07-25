@@ -1,7 +1,7 @@
 <%= turbo_frame_tag "nav-gallery-materials-#{gallery.id}" do %>
   <div class="row ms-auto">
     <% albums[...1].each do |album| %>
-      <div class="widget widget--card widget--info"
+      <div class="widget widget--card widget--info ps-3"
            style="display: flex; position: relative; margin-bottom: 1rem;">
 
         <div class="widget--info__meta--card" style="display: none;">
@@ -36,7 +36,7 @@
     <% end %>
   </div>
   <div class="row ms-auto">
-    <div class="col-12 flex-end">
+    <div class="col-12 flex-end ps-3">
       <p class="fs-14 fw-semibold text-rede-primary opacity-80">Conheça mais os trabalhos realizados nas comunidades feitos com cuidado e protagonismo local.</p>
       <%= link_to "Veja o acervo completo", material_path(gallery.name), class: 'btn btn-primary btn-sm rounded py-2 px-5', style: "font-weight: 700 !important", target: "_top" %>
     </div>

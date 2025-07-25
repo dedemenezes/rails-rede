@@ -35,8 +35,7 @@ class Observatory < ApplicationRecord
   after_create :set_gallery, :create_tag
 
   def self.dashboard_headers
-    to_permit = ['id', 'name', 'address', 'description', 'created at', 'updated_at']
-    attribute_names.select { |a| to_permit.include? a }.push('published').insert(1, 'banner')
+    ['id', 'banner', 'name', 'updated_at']
   end
 
   def events

@@ -13,7 +13,7 @@ class Tileset < ApplicationRecord
   has_one_attached :kml
 
   def self.dashboard_headers
-    %w[name mapbox_id mapbox_owner]
+    %w[name mapbox_owner]
   end
 
   def full_tileset_id

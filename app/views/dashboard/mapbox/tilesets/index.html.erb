@@ -1,14 +1,12 @@
-<% if true %>
-  <div class="dashboard__list px-3">
-    <table class='table'>
-      <thead>
-        <tr>
-          <%= render 'dashboard/shared/index/table_header' %>
-        </tr>
-      </thead>
-      <tbody>
-        <%= render 'dashboard/shared/index/table_body', collection: @tilesets %>
-      </tbody>
-    </table>
-  </div>
-<% end %>
+<div class="dashboard__list px-3">
+  <table class='table'>
+    <thead>
+      <tr>
+        <%= render 'dashboard/shared/index/table_header' %>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render 'dashboard/shared/index/table_body', collection: @tilesets %>
+    </tbody>
+  </table>
+</div>

@@ -12,9 +12,13 @@ class NavLinkComponent < ApplicationComponent
     @target = target
   end
 
-  def view_template
+  def view_template(&)
     link_to link_path, class: final_class, target: target do
-      text
+      if block_given?
+        yield
+      else
+        text
+      end
     end
   end
 

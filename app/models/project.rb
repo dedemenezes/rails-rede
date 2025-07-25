@@ -13,10 +13,10 @@ class Project < ApplicationRecord
   before_validation :normalize_social_media_urls
 
   def self.dashboard_headers
-    attribute_names.reject do |a|
-      ["slide_one_subtitle", "slide_two_subtitle", "slide_three_subtitle"].include?(a)
-    end.insert(1, 'banner')
-    # ['id', 'banner', 'name', 'updated at']
+    # attribute_names.reject do |a|
+    #   ["slide_one_subtitle", "slide_two_subtitle", "slide_three_subtitle"].include?(a)
+    # end.insert(1, 'banner')
+    ['id', 'banner', 'name', 'updated_at']
   end
 
   def social_links

@@ -11,35 +11,34 @@
   </head>
 
   <body>
-    <div class="page-container">
-      <%= render "shared/my_navbar", background_color: 'navbar-lewagon--blue' %>
-      <main class="main-content">
-        <div class="container-fluid ps-0 h-100">
-          <div class="row h-100">
-            <div class="col-12 col-md-3 col-xl-2 pe-0">
-              <%= render 'dashboard/shared/sidebar' %>
+    <%= render Dashboard::NavbarComponent.new(user: current_user) %>
+    <div class="container-fluid">
+      <div class="row">
+        <%= render Dashboard::SidebarComponent.new %>
+        <main class="col-md-9 ms-sm-auto col-lg-9 col-xl-10 px-md-4">
+          <% if controller_name != 'dashboard'  %>
+            <div class="mb-3">
+              <% if controller_name.match?(/materials/) %>
+                <%= render 'dashboard/shared/header', klass: Album, hide_button: hide_nested_links(controller_name) %>
+              <% else %>
+                <%= render 'dashboard/shared/header', klass: controller_name.singularize.split('_').map(&:capitalize).join.constantize, hide_button: hide_nested_links(controller_name) %>
+              <% end %>
             </div>
-            <div class="col-12 col-md-9 col-xl-10 ps-0">
-              <div class="container">
-                <% if controller_name != 'dashboard'  %>
-                  <% if controller_name.match?(/materials/) %>
-                    <%= render 'dashboard/shared/header', klass: Album, hide_button: hide_nested_links(controller_name) %>
-                  <% else %>
-                    <%= render 'dashboard/shared/header', klass: controller_name.singularize.split('_').map(&:capitalize).join.constantize, hide_button: hide_nested_links(controller_name) %>
-                  <% end %>
-                  <%= render 'shared/breadcrumbs' %>
-                  <%= render 'dashboard/shared/content_menu', hide_link_new: hide_nested_links(controller_name) unless rendering_documents_or_images_or_videos? %>
-                <% else %>
-                  <h1>Dashboard</h1>
-                <% end %>
-                <%= yield %>
+            <div class="mb-3">
+              <%= render 'dashboard/shared/content_menu', hide_link_new: hide_nested_links(controller_name) unless rendering_documents_or_images_or_videos? %>
+            </div>
+          <% else %>
+            <div class="dashboard__header mb-3">
+              <div class="d-flex justify-content-between align-items-center p-3 border-bottom">
+                <h1>Dashboard</h1>
               </div>
             </div>
-          </div>
-        </div>
-      </main>
-      <%= render 'shared/footer' %>
+          <% end %>
+            <div style="overflow-x: scroll;">
+              <%= yield %>
+            </div>
+        </main>
+      </div>
     </div>
-    <%= render "shared/flashes" %>
   </body>
 </html>

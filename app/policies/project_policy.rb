@@ -6,6 +6,10 @@ class ProjectPolicy < Dashboard::UserPolicy
     # end
   end
 
+  def new?
+    false
+  end
+
   def show?
     false
   end

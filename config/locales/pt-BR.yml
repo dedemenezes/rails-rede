@@ -52,6 +52,9 @@ pt-BR:
         one: "Album"
         other: "Albums"
     attributes:
+      tileset:
+        name: 'Nome'
+        mapbox_owner: 'Attribuido à'
       video:
         name: 'Nome'
         published: 'Publicado'
@@ -88,6 +91,7 @@ pt-BR:
         yt_url: "Usuário YouTube"
         fb_url: "Usuário Facebook"
         ig_url: "Usuário Instagram"
+        updated_at: "atualizado em"
       methodology:
         name: "Nome"
         card_description: 'Texto do card'
@@ -135,7 +139,9 @@ pt-BR:
         sub_header: "Sub título"
         published: 'publicado'
         featured: 'destaque'
+        featured?: 'destaque'
         main_featured: 'destaque principal'
+        main_featured?: 'principal'
         created_at: 'criado em'
         rich_body: 'Corpo'
         writer: 'Autor'
