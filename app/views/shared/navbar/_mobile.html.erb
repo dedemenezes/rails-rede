@@ -10,9 +10,7 @@
           <div class="accordion accordion-flush accordion-mobile" id="accordionAbout">
             <div class="accordion-item border-0">
               <h2 class="accordion-header">
-                <button class="accordion-button shadow-none rounded p-3 ps-2 text-rede-primary fw-500 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-about" aria-expanded="false" aria-controls="flush-about">
-                  <span>Sobre</span>
-                </button>
+                <%= render Mobile::Accordion::ButtonComponent.new(text: 'Sobre', target: :about) %>
               </h2>
               <div id="flush-about" class="accordion-collapse collapse" data-bs-parent="#accordionAbout">
                 <div class="accordion-body">
@@ -32,14 +30,12 @@
           </div>
         </li>
         <li>
-          <div class="accordion accordion-flush accordion-mobile" id="accordionFlushExample">
+          <div class="accordion accordion-flush accordion-mobile" id="accordionObservatories">
             <div class="accordion-item border-0">
               <h2 class="accordion-header">
-                <button class="accordion-button shadow-none rounded p-3 ps-2 text-rede-primary fw-500 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                  <span>Observatórios</span>
-                </button>
+                <%= render Mobile::Accordion::ButtonComponent.new(text: "Observatórios", target: :observatories) %>
               </h2>
-              <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+              <div id="flush-observatories" class="accordion-collapse collapse" data-bs-parent="#accordionObservatories">
                 <div class="accordion-body">
                   <%= turbo_frame_tag "nav-observatories", src: navbar_observatories_path(mobile: true), loading: "lazy" do %>
                     <div class="d-flex align-items-center justify-content-center py-4">
@@ -56,9 +52,7 @@
           <div class="accordion accordion-flush accordion-mobile" id="accordionAcervos">
             <div class="accordion-item border-0">
               <h2 class="accordion-header">
-                <button class="accordion-button shadow-none rounded p-3 ps-2 text-rede-primary fw-500 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-acervos" aria-expanded="false" aria-controls="flush-acervos">
-                  <span>Produtos</span>
-                </button>
+                <%= render Mobile::Accordion::ButtonComponent.new(text: "Produtos", target: :acervos) %>
               </h2>
               <div id="flush-acervos" class="accordion-collapse collapse" data-bs-parent="#accordionAcervos">
                 <div class="accordion-body">
