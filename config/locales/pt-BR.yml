@@ -3,6 +3,8 @@ pt-BR:
   actions: 'Ações'
   featured: 'Destaque'
   gallery_name: 'Galeria'
+  document: 'documento'
+  photo: 'imagem'
   index: 'Lista'
   new: 'Novo'
   edit: 'Editar'
