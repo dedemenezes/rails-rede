@@ -22,7 +22,8 @@
         <% if @article.banner.attached? %>
           <div class="banner--article mb-4">
             <div class="image-filter--black"></div>
-            <%= display_banner_image(@article.banner, width: '100%') %>
+            <%#= display_banner_image(@article.banner, width: '100%') %>
+            <%= image_tag @article.banner.variant(resize_to_limit: [1600, 800]), class: "w-100", loading: "lazy" %>
             <p class=" text-muted">
               <small>
                 <%= @article.banner_subtitle %>
