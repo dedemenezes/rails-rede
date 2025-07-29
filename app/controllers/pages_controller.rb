@@ -7,6 +7,7 @@ class PagesController < ApplicationController
   end
 
   def about_us
+    @collaborators = Collaborator.includes(avatar_attachment: :blob).all
     @methodologies = Methodology.with_attached_banner.all
     @project = Project.includes(
       slide_one_attachment: :blob,
@@ -15,6 +16,11 @@ class PagesController < ApplicationController
     ).first
     @photos = [@project.slide_one, @project.slide_two, @project.slide_three]
     @text_colors = ['rede-primary', 'rede-dark-red', 'rede-primary-l']
+  end
+
+
+  def testimonials
+    @collaborators = policy_scope(Collaborator).all
   end
 
   private

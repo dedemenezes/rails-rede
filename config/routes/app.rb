@@ -1,6 +1,7 @@
 get '/contato', to: 'contacts#new', as: :new_contact
 post '/contacts', to: 'contacts#create', as: :contacts
 get '/sobre', to: 'pages#about_us', as: :about_us
+get '/depoimentos', to: 'pages#testimonials', as: :testimonials
 get '/events', to: 'events#index', as: :events
 get '/mapa-de-conflitos', to: 'observatories#mapa', as: :mapa_observatories
 # delete 'attachments/:id', to: 'attachments#destroy', as: :destroy_attachment

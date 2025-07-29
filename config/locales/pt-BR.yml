@@ -11,6 +11,9 @@ pt-BR:
   dropdown_action: "Ação"
   activerecord:
     models:
+      collaborator:
+        one: "Colaborador"
+        other: "Colaboradores"
       video:
         one: 'Vídeo'
         other: 'Vídeos'
@@ -54,6 +57,12 @@ pt-BR:
         one: "Album"
         other: "Albums"
     attributes:
+      collaborator:
+        name: "Nome"
+        updated_at: "Atualizado em"
+        testimonial: "Depoimento"
+        occupation: "Ocupação"
+        location: "Localidade"
       tileset:
         name: 'Nome'
         mapbox_owner: 'Attribuido à'

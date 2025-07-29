@@ -17,7 +17,7 @@ class Dashboard::NavbarComponent < ApplicationComponent
       data_action: "scroll@window->css-classes#onScroll",
       data_css_classes_scrolling_class: "shadow-elevation-2"
     ) do
-      link_to home_path,
+      link_to root_path,
               class: "navbar-brand col-md-3 col-lg-3 col-xl-2 me-0 px-3 fs-6" do
         image_tag "Logo_PEA.png",
                   width: "186px",

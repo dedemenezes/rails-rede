@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_07_24_183124) do
+ActiveRecord::Schema[7.0].define(version: 2025_07_29_142031) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
   enable_extension "plpgsql"
@@ -83,6 +83,15 @@ ActiveRecord::Schema[7.0].define(version: 2025_07_24_183124) do
     t.index ["methodology_id"], name: "index_articles_on_methodology_id"
     t.index ["observatory_id"], name: "index_articles_on_observatory_id"
     t.index ["project_id"], name: "index_articles_on_project_id"
+  end
+
+  create_table "collaborators", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "location", null: false
+    t.string "occupation"
+    t.text "testimonial", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "conflict_types", force: :cascade do |t|

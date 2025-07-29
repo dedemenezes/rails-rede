@@ -1,0 +1,81 @@
+.wave {
+  position: absolute;
+  z-index: -10;
+}
+
+.collab__wave--top {
+  position: absolute;
+  top: -26%;
+  height: 26%;
+  z-index: -10;
+}
+
+.collab__wave--bottom {
+  position: absolute;
+  bottom: -6%;
+  height: 6%;
+  z-index: -10;
+}
+
+.testimonials__wave--bottom {
+  bottom: -2%;
+  height: 2%;
+}
+
+.wave__start--top {
+  top: -6%;
+  height: 6%;
+}
+.wave__start--bottom {
+  bottom: -6%;
+  height: 6%;
+}
+@media (min-width: 768px) {
+  .wave__start--top {
+    top: -14%;
+    height: 14%;
+  }
+  .wave__start--bottom {
+    bottom: -8%;
+    height: 8%;
+  }
+
+  .testimonials__wave--bottom {
+    bottom: -4%;
+    height: 4%;
+  }
+
+}
+@media (min-width: 992px) {
+  .collab__wave--bottom {
+    bottom: -20%;
+    height: 20%;
+  }
+  .collab__wave--top {
+    top: -36%;
+    height: 36%;
+  }
+  .wave__start--top {
+    top: -22%;
+    height: 22%;
+  }
+  .wave__start--bottom {
+    bottom: -10%;
+    height: 10%;
+  }
+  .testimonials__wave--bottom {
+    bottom: -6%;
+    height: 6%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .testimonials__wave--bottom {
+    bottom: -8%;
+    height: 8%;
+  }
+  .wave__start--top {
+    top: -24%;
+    height: 24%;
+  }
+}

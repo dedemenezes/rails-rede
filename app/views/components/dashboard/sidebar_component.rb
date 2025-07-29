@@ -29,6 +29,16 @@ class Dashboard::SidebarComponent < ApplicationComponent
             end
           end
           render NavItemComponent.new(extra_css: "mb-2") do
+            render NavLinkComponent.new(
+                     "",
+                     dashboard_collaborators_path,
+                     css_class: "text-primary"
+                   ) do
+              i(class: "fa-solid fa-people-group me-2")
+              plain "Colaboradores"
+            end
+          end
+          render NavItemComponent.new(extra_css: "mb-2") do
             render NavLinkComponent.new "",
                                         dashboard_methodologies_path,
                                         css_class: "text-primary" do

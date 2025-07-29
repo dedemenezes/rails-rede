@@ -25,4 +25,5 @@ namespace :dashboard do
   namespace :mapbox do
     resources :tilesets
   end
+  resources :collaborators
 end

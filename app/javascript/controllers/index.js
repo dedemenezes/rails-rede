@@ -43,9 +43,6 @@ application.register("flatpickr", FlatpickrController)
 import FullscreenElementController from "./fullscreen_element_controller"
 application.register("fullscreen-element", FullscreenElementController)
 
-import HelloController from "./hello_controller"
-application.register("hello", HelloController)
-
 import Map__Tileset__CreateController from "./map/tileset/create_controller"
 application.register("map--tileset--create", Map__Tileset__CreateController)
 
@@ -84,6 +81,9 @@ application.register("sweetalert", SweetalertController)
 
 import SwiperController from "./swiper_controller"
 application.register("swiper", SwiperController)
+
+import SwiperCollaborators from "./swiper_collaborators_controller"
+application.register("swiper-collaborators", SwiperCollaborators)
 
 import SwiperSlideshowController from "./swiper_slideshow_controller"
 application.register("swiper-slideshow", SwiperSlideshowController)

@@ -1,0 +1,56 @@
+<div class="mt-3">
+  <%= simple_form_for [:dashboard, collaborator] do |f| %>
+    <div class="row">
+      <div class="col-12 col-lg-4">
+        <%= f.input :name %>
+      </div>
+      <div class="col-12 col-lg-4">
+        <%= f.input :location %>
+      </div>
+      <div class="col-12 col-lg-4">
+        <%= f.input :occupation %>
+      </div>
+    </div>
+    <%= f.input :testimonial %>
+    <%#= f.input :avatar %>
+    <div data-controller="photo-preview">
+      <div class="row align-items-center">
+        <% if collaborator.avatar.attached? %>
+          <div class="col-3">
+            <%= image_tag collaborator.avatar, width: "100%", alt: "avatar do colaborador", data: {photo_preview_target: 'previewBox' } %>
+          </div>
+        <% else %>
+          <div class="col-3 d-none">
+            <img data-photo-preview-target="previewBox" width="100%" class="d-none" src="#" alt="avatar do colaborador">
+          </div>
+        <% end %>
+        <div class="col-9">
+          <%= f.input :avatar,
+                        as: :file,
+                        input_html: {
+                          class: 'd-none',
+                          data: {
+                            photo_preview_target: "photoInput",
+                            action: 'change->photo-preview#displayFilesCounter change->photo-preview#displayPreview'
+                          }
+                        },
+                        label_html: {
+                          class: 'upload-photo',
+                          data: {
+                            photo_preview_target: 'photoPreview'
+                          }
+                        },
+                        wrapper_html: {
+                          class: 'box--anim mb-out', data: {
+                            photo_preview_target: 'submit',
+                          }
+                        },
+                        label: '📷 Selecione a foto'
+          %>
+        </div>
+      </div>
+    </div>
+    <%= render 'dashboard/shared/form/submit_cancel', element: collaborator, form: f %>
+  <% end %>
+
+</div>

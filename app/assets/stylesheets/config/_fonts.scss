@@ -14,3 +14,15 @@ $headers-font: "Unbounded", "cursive";
 //        font-url('FontFile.ttf') format('truetype')
 // }
 // $my-font: "Font Name";
+
+.text--lw {
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: 0.25px
+}
+
+.text--md {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.1px
+}
