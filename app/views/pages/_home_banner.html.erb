@@ -1,3 +1,21 @@
+<div class="banner--home w-100 position-relative mb-4" style="height: 85vh">
+  <%= video_tag 'https://res.cloudinary.com/seguraocode/video/upload/v1753908495/pea-video-site_krtwad.webm', autoplay: true, loop: true, muted: true, class: 'absolute--cover' %>
+  <div class="filter-overlay absolute--cover"
+       style="background-image: linear-gradient(rgba(0, 0, 0, .1), rgba(0, 0, 0, .1));"></div>
+  <div class="container position-relative h-100 banner__content">
+    <div class="row align-items-center justify-content-center text-center h-100">
+      <div class="col-12 col-md-10">
+        <div class="d-flex flex-column align-items-center gap-4">
+          <h1 class='home__text'><%= project.banner_text %></h1>
+          <%= link_to 'Saiba mais', about_us_path, class: 'btn btn-rede-light' %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%= image_tag 'hero-wave.png', width: '100%', class: 'position-absolute', style:'bottom: -1px; left: 0;', alt: 'hero' %>
+</div>
+
+<% if false %>
 <div class="banner--home mb-5" style='background-image: url(<%= display_banner_as_background(project) %>);'>
   <div class="banner__wrapper">
     <div class="container">
@@ -13,3 +31,4 @@
     <%= image_tag 'hero-wave.png', width: '100%', class: 'banner__hero__image', alt: 'hero' %>
   </div>
 </div>
+<% end %>

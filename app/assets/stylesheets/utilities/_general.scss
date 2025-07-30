@@ -1,3 +1,12 @@
+.absolute--cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  object-fit: cover !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
 #faq {
   width: 100%;
   position: relative;

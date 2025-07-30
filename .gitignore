@@ -60,3 +60,6 @@ capybara*.png
 
 # brainstorm
 brainstorm.md
+
+# ignore videos saved inside the project
+app/assets/images/videos
