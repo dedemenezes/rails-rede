@@ -2,7 +2,6 @@ require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
   # Serve static assets from cloudfron CDN
-  config.action_controller.asset_host = ENV.fetch("CLOUDFRONT_URL")
   config.action_mailer.default_url_options = { host: "pea-rede-observacao.herokuapp.com" }
   # Settings specified here will take precedence over those in config/application.rb.
 
