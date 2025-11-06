@@ -113,7 +113,7 @@
             <!-- Slides -->
             <% @collaborators.each do |collaborator| %>
               <div class="swiper-slide d-flex align-items-center justify-content-center">
-                <%= render Card::CollaboratorComponent.new(name: collaborator.name, occupation: collaborator.display_occupation, image_url: collaborator.avatar, location: collaborator.location, color: collaborator.color_style) %>
+                <%= render Card::CollaboratorComponent.new(id: collaborator.id, name: collaborator.name, occupation: collaborator.display_occupation, image_url: collaborator.avatar, location: collaborator.location, color: collaborator.color_style) %>
               </div>
             <% end %>
           </div>
