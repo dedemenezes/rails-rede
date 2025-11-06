@@ -12,8 +12,8 @@ pt-BR:
   activerecord:
     models:
       collaborator:
-        one: "Colaborador"
-        other: "Colaboradores"
+        one: "Pariticipante"
+        other: "Participantes"
       video:
         one: 'Vídeo'
         other: 'Vídeos'

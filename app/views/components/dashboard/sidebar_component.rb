@@ -35,7 +35,7 @@ class Dashboard::SidebarComponent < ApplicationComponent
                      css_class: "text-primary"
                    ) do
               i(class: "fa-solid fa-people-group me-2")
-              plain "Colaboradores"
+              plain "Participantes"
             end
           end
           render NavItemComponent.new(extra_css: "mb-2") do
