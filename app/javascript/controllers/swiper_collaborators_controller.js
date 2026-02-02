@@ -14,8 +14,6 @@ export default class extends Controller {
   }
 
   connect() {
-    console.log("SwiperCollaboratorsController");
-
     new Swiper(this.element, {
       modules: [Navigation, Autoplay],
       slidesPerView: this.slidesPerViewValue,

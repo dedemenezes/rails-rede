@@ -19,7 +19,7 @@ export default class extends Controller {
     ,alertText: String
   }
   connect() {
-    console.log(this.featuredValue)
+    // console.log(this.featuredValue)
     this.swalWithBootstrapButtons = Swal.mixin({
       customClass: {
         confirmButton: "btn btn-primary me-4 btn--sweetalert",
@@ -39,7 +39,7 @@ export default class extends Controller {
   }
 
   confirmFeatured(event) {
-    console.log("eventCurrentTarget: " + event.currentTarget)
+    // console.log("eventCurrentTarget: " + event.currentTarget)
     if (this.#isRemovingFeatured()) {
       this.swalWithBootstrapButtons
         .fire(this.swalOptions)
