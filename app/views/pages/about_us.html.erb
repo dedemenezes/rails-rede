@@ -87,48 +87,48 @@
       </div>
     </div>
   </div>
-
-  <div class="position-relative mt-5">
-    <%= image_tag 'contact-top-wave.png', width: '100%', class: 'collab__wave--top' %>
-    <div style="background-color: #f3f5f7;">
-      <div class="container">
-        <div class="d-flex justify-content-between align-items-center border border-warning border-info border-5 border-end-0 border-top-0 border-bottom-0 ps-2 ps-md-3 ps-lg-4 mb-3">
-          <h1 class='mb-0 fs-3 fs-md-2'>Participantes</h1>
-        </div>
-      </div>
-      <div class="container">
-        <!-- Slider main container -->
-        <div class="swiper w-100" style='height: 330px;'
-             data-controller="swiper-collaborators"
-             data-swiper-collaborators-space-between-value="0"
-             data-swiper-collaborators-slides-per-view-value="1"
-             data-swiper-collaborators-slides-per-view-sm-value="2"
-             data-swiper-collaborators-slides-per-view-md-value="3"
-             data-swiper-collaborators-slides-per-view-lg-value="4"
-             data-swiper-collaborators-slides-per-view-xl-value="5"
-             data-swiper-collaborators-slides-per-view-xxl-value="6"
-        >
-          <!-- Additional required wrapper -->
-          <div class="swiper-wrapper">
-            <!-- Slides -->
-            <% @collaborators.each do |collaborator| %>
-              <div class="swiper-slide d-flex align-items-center justify-content-center">
-                <%= render Card::CollaboratorComponent.new(id: collaborator.id, name: collaborator.name, occupation: collaborator.display_occupation, image_url: collaborator.avatar, location: collaborator.location, color: collaborator.color_style) %>
-              </div>
-            <% end %>
+  <% if @collaborators.any? %>
+    <div class="position-relative mt-5">
+      <%= image_tag 'contact-top-wave.png', width: '100%', class: 'collab__wave--top' %>
+      <div style="background-color: #f3f5f7;">
+        <div class="container">
+          <div class="d-flex justify-content-between align-items-center border border-warning border-info border-5 border-end-0 border-top-0 border-bottom-0 ps-2 ps-md-3 ps-lg-4 mb-3">
+            <h1 class='mb-0 fs-3 fs-md-2'>Participantes</h1>
           </div>
-          <!-- If we need pagination -->
-          <div class="swiper-pagination"></div>
-
-          <!-- If we need navigation buttons -->
-          <div class="swiper-button-prev"></div>
-          <div class="swiper-button-next"></div>
         </div>
-        <div class="d-flex align-items-center justify-content-center pt-2 pb-3">
-          <%= link_to 'Ver depoimentos', testimonials_path, class: "text-primary btn btn__secondary continuous-3" %>
+        <div class="container">
+          <!-- Slider main container -->
+          <div class="swiper w-100" style='height: 330px;'
+              data-controller="swiper-collaborators"
+              data-swiper-collaborators-space-between-value="0"
+              data-swiper-collaborators-slides-per-view-value="1"
+              data-swiper-collaborators-slides-per-view-sm-value="2"
+              data-swiper-collaborators-slides-per-view-md-value="3"
+              data-swiper-collaborators-slides-per-view-lg-value="4"
+              data-swiper-collaborators-slides-per-view-xl-value="5"
+              data-swiper-collaborators-slides-per-view-xxl-value="6">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper">
+              <!-- Slides -->
+              <% @collaborators.each do |collaborator| %>
+                <div class="swiper-slide d-flex align-items-center justify-content-center">
+                  <%= render Card::CollaboratorComponent.new(id: collaborator.id, name: collaborator.name, occupation: collaborator.display_occupation, image_url: collaborator.avatar, location: collaborator.location, color: collaborator.color_style) %>
+                </div>
+              <% end %>
+            </div>
+            <!-- If we need pagination -->
+            <div class="swiper-pagination"></div>
+
+            <!-- If we need navigation buttons -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+          </div>
+          <div class="d-flex align-items-center justify-content-center pt-2 pb-3">
+            <%= link_to 'Ver depoimentos', testimonials_path, class: "text-primary btn btn__secondary continuous-3" %>
+          </div>
         </div>
       </div>
+      <%= image_tag 'contact-bottom-wave.png', width: '100%', class: "collab__wave--bottom" %>
     </div>
-    <%= image_tag 'contact-bottom-wave.png', width: '100%', class: "collab__wave--bottom" %>
-  </div>
+  <% end %>
 </div>
