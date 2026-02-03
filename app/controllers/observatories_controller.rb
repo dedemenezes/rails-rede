@@ -12,7 +12,6 @@ class ObservatoriesController < ApplicationController
   def show
     @observatory = Observatory.includes(
       :priority_subjects,
-      :conflict_types,
       :gallery,
       banner_attachment: :blob,
       albums: [

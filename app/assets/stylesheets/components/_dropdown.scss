@@ -72,3 +72,17 @@
   // box-shadow: 1px 1px 1px rgba(0, 0, 0, .1);
   cursor: pointer;
 }
+
+.dropdown-menu-radius-bottom {
+  border-radius: 0 0 4px 4px !important;
+}
+
+.dropdowm-menu-panel-width {
+  min-width: 216px;
+}
+
+.dropdown-menu .d-flex .nav-link {
+  // border-top-right-radius: 0 !important;
+  // border-bottom-right-radius: 0 !important;
+  // padding-right: 1 rem;
+}

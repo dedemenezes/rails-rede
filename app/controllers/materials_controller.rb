@@ -16,8 +16,8 @@ class MaterialsController < ApplicationController
   end
 
   def show
-    @gallery = Gallery.find_by_name(params[:name])
-    @albums = @gallery.albums.materials
+    @gallery = Gallery.includes(:banner_attachment).find_by_name(params[:name])
+    @albums = @gallery.albums.includes(banner_attachment: :blob).materials
     authorize @gallery
     add_breadcrumb 'Acervo (Materiais)', materials_path, current: false
     add_breadcrumb "#{@gallery.name} (Materiais)", materials_path(@gallery), current: true

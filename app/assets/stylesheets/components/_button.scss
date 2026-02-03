@@ -196,6 +196,7 @@
 .rede-link {
   transition: color .7s ease-out, scale .5s ease-out;
   &:hover {
+    background-color: transparent !important;
     scale: 1.2;
     color: $link-hover-color!important;
   }
@@ -219,4 +220,10 @@
   --bs-btn-active-bg: #{shade-color(#fff, 20%)};
   --bs-btn-active-border-color: #{shade-color(#fff, 20%)};
   border: 2px solid var(--bs-btn-border-color);
+}
+
+
+.btn--sweetalert {
+  padding: .625em 1.1em !important;
+  font-weight: 500 !important;
 }

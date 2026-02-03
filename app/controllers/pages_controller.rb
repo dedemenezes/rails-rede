@@ -6,8 +6,8 @@ class PagesController < ApplicationController
     load_tilesets
   end
 
-
   def about_us
+    @collaborators = Collaborator.includes(avatar_attachment: :blob).all
     @methodologies = Methodology.with_attached_banner.all
     @project = Project.includes(
       slide_one_attachment: :blob,
@@ -18,10 +18,15 @@ class PagesController < ApplicationController
     @text_colors = ['rede-primary', 'rede-dark-red', 'rede-primary-l']
   end
 
+
+  def testimonials
+    @collaborators = policy_scope(Collaborator).all
+  end
+
   private
 
   def load_articles
-    articles = Article.includes(banner_attachment: :blob)
+    articles = Article.includes(:tags, banner_attachment: :blob)
     @featured = articles.main_featured
     @top_four = articles.all_featured
     @top_four_is_full = @top_four.length > 3

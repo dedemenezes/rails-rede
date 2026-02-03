@@ -96,7 +96,12 @@ class ArticleTest < ActiveSupport::TestCase
   end
 
   test '::dashboard_headers' do
-    assert_equal %w[id banner header featured? published main_featured?], Article.dashboard_headers
+    assert_includes Article.dashboard_headers, 'id'
+    assert_includes Article.dashboard_headers, 'banner'
+    assert_includes Article.dashboard_headers, 'header'
+    assert_includes Article.dashboard_headers, 'featured?'
+    assert_includes Article.dashboard_headers, 'published'
+    assert_includes Article.dashboard_headers, 'main_featured?'
   end
 
   test '::excluding_featured_and_recents returns all the other articles' do

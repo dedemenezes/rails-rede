@@ -31,13 +31,13 @@ class Article < ApplicationRecord
 
   delegate :visible_tags, to: :taggings
   # acts_as_taggable_on :tags
-
+  #
   def self.main_featured
     where(main_featured: true).first
   end
   def self.dashboard_headers
     to_permit = %w[id header]
-    attribute_names.select { |a| to_permit.include?(a) }.push(%w[featured? published main_featured?]).flatten.insert(1, 'banner')
+    attribute_names.select { |a| to_permit.include?(a) }.push(%w[main_featured? featured? published]).flatten.insert(1, 'banner')
   end
 
   def self.featured

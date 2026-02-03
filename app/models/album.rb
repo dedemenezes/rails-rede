@@ -1,4 +1,5 @@
 class Album < ApplicationRecord
+  include Featureable
   include Documentable
   include Photoable
   include Taggable
@@ -20,9 +21,16 @@ class Album < ApplicationRecord
   scope :published_with_videos, -> { with_videos.where(published: true) }
 
   scope :materials, -> { published_with_videos + published_with_documents }
+  scope :featured, -> { where(main_featured: true) }
 
   delegate :name, to: :gallery, prefix: true, allow_nil: true
 
+
+  def demote_previous_main_featured
+    return unless saved_change_to_main_featured? && main_featured
+
+    self.class.where.not(id: id).where(gallery: gallery, category: category, main_featured: true).update_all(main_featured: false)
+  end
 
   def self.dashboard_headers
     HEADERS

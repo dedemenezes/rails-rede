@@ -3,12 +3,17 @@ pt-BR:
   actions: 'Ações'
   featured: 'Destaque'
   gallery_name: 'Galeria'
+  document: 'documento'
+  photo: 'imagem'
   index: 'Lista'
   new: 'Novo'
   edit: 'Editar'
   dropdown_action: "Ação"
   activerecord:
     models:
+      collaborator:
+        one: "Pariticipante"
+        other: "Participantes"
       video:
         one: 'Vídeo'
         other: 'Vídeos'
@@ -52,6 +57,15 @@ pt-BR:
         one: "Album"
         other: "Albums"
     attributes:
+      collaborator:
+        name: "Nome"
+        updated_at: "Atualizado em"
+        testimonial: "Depoimento"
+        occupation: "Ocupação"
+        location: "Localidade"
+      tileset:
+        name: 'Nome'
+        mapbox_owner: 'Attribuido à'
       video:
         name: 'Nome'
         published: 'Publicado'
@@ -88,6 +102,7 @@ pt-BR:
         yt_url: "Usuário YouTube"
         fb_url: "Usuário Facebook"
         ig_url: "Usuário Instagram"
+        updated_at: "atualizado em"
       methodology:
         name: "Nome"
         card_description: 'Texto do card'
@@ -135,7 +150,9 @@ pt-BR:
         sub_header: "Sub título"
         published: 'publicado'
         featured: 'destaque'
+        featured?: 'destaque'
         main_featured: 'destaque principal'
+        main_featured?: 'principal'
         created_at: 'criado em'
         rich_body: 'Corpo'
         writer: 'Autor'

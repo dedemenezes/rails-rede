@@ -1,6 +1,7 @@
 get '/contato', to: 'contacts#new', as: :new_contact
 post '/contacts', to: 'contacts#create', as: :contacts
 get '/sobre', to: 'pages#about_us', as: :about_us
+get '/depoimentos', to: 'pages#testimonials', as: :testimonials
 get '/events', to: 'events#index', as: :events
 get '/mapa-de-conflitos', to: 'observatories#mapa', as: :mapa_observatories
 # delete 'attachments/:id', to: 'attachments#destroy', as: :destroy_attachment
@@ -28,6 +29,15 @@ namespace :articles do
   namespace :index do
     delete '/tag/:name', to: 'tags#destroy', as: :tag
   end
+end
+
+
+namespace :navbar do
+  get "observatories", to: "observatories#index", as: :observatories
+  get 'videos', to: 'videos#index', as: :videos
+  get 'images', to: 'images#index', as: :images
+  get 'materials', to: 'materials#index', as: :materials
+  get 'gallery-show/:name', to: 'galleries#show', as: :gallery
 end
 
 # delete 'articles/index/tags', to: 'articles_index_tags#destroy', as: :remove_tag_from_filter

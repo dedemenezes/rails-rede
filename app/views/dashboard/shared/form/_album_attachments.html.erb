@@ -1,20 +1,22 @@
 
-<div data-controller="toggle-on-change">
+<div data-controller="toggle-on-change" data-toggle-on-change-category-value="<%= element.category %>">
 
-  <div class="">
-    <%= form.input :category,
-                 collection: Album::CATEGORIES,
-                 label_html: { class: 'input-group-text mb-0'},
-                 wrapper_html: { class: 'input-group' },
-                 label_method: :second,
-                 value_method: :first,
-                 input_html: {
-                  data: {
-                    action: 'change->toggle-on-change#update',
-                    toggle_on_change_target: 'category'
-                  }
-                } %>
-  </div>
+  <% if element.new_record? %>
+    <div class="">
+      <%= form.input :category,
+                  collection: Album::CATEGORIES,
+                  label_html: { class: 'input-group-text mb-0'},
+                  wrapper_html: { class: "input-group"},
+                  label_method: :second,
+                  value_method: :first,
+                  input_html: {
+                    data: {
+                      action: 'change->toggle-on-change#update',
+                      toggle_on_change_target: 'category'
+                    }
+                  } %>
+    </div>
+  <% end %>
 
   <div class="attachment-inputs" data-controller="toggle-element">
     <div class="d-flex justify-content-start align-items-center">

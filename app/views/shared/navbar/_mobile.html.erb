@@ -1,0 +1,130 @@
+<div class="d-block d-lg-none">
+  <div class="offcanvas offcanvas-end border-0 w-100" tabindex="-1" id="menuMobile" aria-labelledby="menuMobileLabel">
+    <div class="offcanvas-header">
+      <%= render MobileLogoComponent.new %>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+        <li>
+          <div class="accordion accordion-flush accordion-mobile" id="accordionAbout">
+            <div class="accordion-item border-0">
+              <h2 class="accordion-header">
+                <%= render Mobile::Accordion::ButtonComponent.new(text: 'Sobre', target: :about) %>
+              </h2>
+              <div id="flush-about" class="accordion-collapse collapse" data-bs-parent="#accordionAbout">
+                <div class="accordion-body">
+                  <div class="py-lg-4">
+                    <div class="row flex-columns">
+                      <div class="col-12">
+                        <%= link_to "O projeto", about_us_path, class: "nav-link" %>
+                      </div>
+                      <div class="col-12">
+                        <button class="nav-link" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMaterials" aria-controls="offcanvasMaterials">Eixos <i class="fa-solid fa-chevron-down ms-auto" style="opacity: 0.7;transform: rotate(270deg);font-size: 12px;"></i></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="accordion accordion-flush accordion-mobile" id="accordionObservatories">
+            <div class="accordion-item border-0">
+              <h2 class="accordion-header">
+                <%= render Mobile::Accordion::ButtonComponent.new(text: "Observatórios", target: :observatories) %>
+              </h2>
+              <div id="flush-observatories" class="accordion-collapse collapse" data-bs-parent="#accordionObservatories">
+                <div class="accordion-body">
+                  <%= turbo_frame_tag "nav-observatories", src: navbar_observatories_path(mobile: true), loading: "lazy" do %>
+                    <div class="d-flex align-items-center justify-content-center py-4">
+                      <div class="spinner-border text-primary" role="status"></div>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <%# ACERVOS %>
+        <li>
+          <div class="accordion accordion-flush accordion-mobile" id="accordionAcervos">
+            <div class="accordion-item border-0">
+              <h2 class="accordion-header">
+                <%= render Mobile::Accordion::ButtonComponent.new(text: "Produtos", target: :acervos) %>
+              </h2>
+              <div id="flush-acervos" class="accordion-collapse collapse" data-bs-parent="#accordionAcervos">
+                <div class="accordion-body">
+                  <div class="py-lg-4">
+                    <div class="row flex-columns">
+                      <div class="col-12">
+                        <%= link_to "Audiovisuais", acervos_videos_path, class: "nav-link" %>
+                      </div>
+                      <div class="col-12">
+                        <button class="nav-link" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasImages" aria-controls="offcanvasImages">Imagens <i class="fa-solid fa-chevron-down ms-auto" style="opacity: 0.7;transform: rotate(270deg);font-size: 12px;"></i></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <%= render MobileNavItemComponent.new("Mapa", mapa_observatories_path) %>
+        <%= render MobileNavItemComponent.new("Notícias", articles_path) %>
+        <%= render MobileNavItemComponent.new("Contato", new_contact_path) %>
+      </ul>
+    </div>
+  </div>
+
+  <%# IMAGENS %>
+  <div class="offcanvas offcanvas-end border-0" tabindex="-1" id="offcanvasImages" aria-labelledby="offcanvasImagesLabel">
+    <div class="offcanvas-header">
+      <%= render MobileLogoComponent.new %>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body p-0">
+      <div class="d-flex flex-columns align-items-center justify-content-center p-3 bg-rede-lightzin position-relative" style="background-color: #bde4f369 !important;">
+        <%= image_tag 'arrow-down.svg',
+          class: 'position-absolute ms-3',
+          width: '16px',
+          style: 'transform: rotate(90deg); left: 0; cursor: pointer;',
+          data: {
+            bs_toggle: "offcanvas",
+            bs_target: "#menuMobile"
+          },
+          aria_controls: "menuMobile",
+          alt: 'arrow left' %>
+        <span class="fw-bold text-uppercase" style="letter-spacing: 0.04em;">Imagens</span>
+      </div>
+      <%= turbo_frame_tag :nav_photo_galleries, src: navbar_images_path(q: 'offcanvas'), loading: "lazy" %>
+      <%#= turbo_frame_tag "nav-images", src: navbar_images_path, loading: "lazy" %>
+    </div>
+  </div>
+
+  <%# MATERIAIS %>
+  <div class="offcanvas offcanvas-end border-0" tabindex="-1" id="offcanvasMaterials" aria-labelledby="offcanvasMaterialsLabel">
+    <div class="offcanvas-header">
+      <%= render MobileLogoComponent.new %>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body p-0">
+      <div class="d-flex flex-columns align-items-center justify-content-center p-3 bg-rede-lightzin position-relative" style="background-color: #bde4f369 !important;">
+        <%= image_tag 'arrow-down.svg',
+          class: 'position-absolute ms-3',
+          width: '16px',
+          style: 'transform: rotate(90deg); left: 0; cursor: pointer;',
+          data: {
+            bs_toggle: "offcanvas",
+            bs_target: "#menuMobile"
+          },
+          aria_controls: "menuMobile",
+          alt: 'arrow left' %>
+        <span class="fw-bold text-uppercase" style="letter-spacing: 0.04em;">Eixos</span>
+      </div>
+      <%= turbo_frame_tag :nav_materials_galleries, src: navbar_materials_path(q: 'offcanvas'), loading: "lazy" %>
+      <%#= turbo_frame_tag "nav-images", src: navbar_images_path, loading: "lazy" %>
+    </div>
+  </div>
+</div>

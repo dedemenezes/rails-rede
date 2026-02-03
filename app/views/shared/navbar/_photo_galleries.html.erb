@@ -1,0 +1,19 @@
+<%= turbo_frame_tag target_id do %>
+  <div class="row flex-columns p-3">
+    <% nav_galleries.each do |gallery| %>
+      <div class="col-12 border-bottom">
+      <%# gallery_path(gallery, t: category) %>
+        <%= render NavLinkComponent.new(gallery.name, send(url, gallery, t: 'imagens'), target: "_top") %>
+      </div>
+    <% end %>
+  </div>
+  <%if false  %>
+    <ul class="nav flex-column align-items-start nav-pills nav-tabs border-bottom-0" id="myTab" role="tablist" style="height: 298px; overflow-y: auto;min-width: 276px">
+      <li class="mb-lg-3 w-100">
+        <%# target do tab conect com id do tab content pane %>
+        <%#= render Dropdown::TabButtonComponent.new(gallery.name, id: "gallery-photos-#{gallery.id}-tab", target: "nav-gallery-photos-#{gallery.id}", is_active: false) %>
+        <%= link_to gallery %>
+      </li>
+    </ul>
+  <% end %>
+<% end %>

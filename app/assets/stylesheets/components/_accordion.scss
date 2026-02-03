@@ -1,0 +1,49 @@
+
+// $accordion-color
+// $accordion-bg
+// $accordion-transition
+// $accordion-border-color
+// $accordion-border-width
+// $accordion-border-radius
+// $accordion-inner-border-radius
+// $accordion-button-padding-x
+// $accordion-button-padding-y
+// $accordion-button-color
+// $accordion-button-bg
+// escape-svg($accordion-button-icon)
+// $accordion-icon-width
+// $accordion-icon-transform
+// $accordion-icon-transition
+// escape-svg($accordion-button-active-icon)
+// $accordion-button-focus-box-shadow
+// $accordion-body-padding-x
+// $accordion-body-padding-y
+// $accordion-button-active-color
+// $accordion-button-active-bg
+.accordion-mobile .accordion-button:not(.collapsed) {
+  font-weight: 700 !important;
+  font-variation-settings: "wght" 700;
+}
+.accordion-mobile .accordion-body .row > div {
+  border-bottom: 1px solid $r-light-gray;
+}
+.accordion-button, #flush-acervos button {
+  font-family: $body-font;
+}
+
+.offcanvas .nav-link {
+  padding: 0 !important;
+  padding-top: .725rem !important;
+  padding-bottom: .725rem !important;
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-white-rgb), var(--bs-bg-opacity)) !important;
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-rede-primary-rgb), var(--bs-text-opacity)) !important;
+  text-decoration: none !important;
+  font-weight: 500 !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+  border: 0 !important;
+  display: flex !important;
+}

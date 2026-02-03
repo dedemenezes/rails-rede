@@ -1,7 +1,6 @@
 class GalleriesController < ApplicationController
   def show
-    @gallery = Gallery.includes(albums: [:documents_attachments,
-                                         { banner_attachment: :blob }]).find_by(name: params[:name]) || Gallery.find(params[:id])
+    @gallery = Gallery.includes(banner_attachment: :blob).find_by(name: params[:name]) || Gallery.find(params[:id])
     # @albums = @gallery.published_albums.sort_by(&:updated_at).reverse
     if params[:t].present?
       case params[:t]
@@ -11,7 +10,7 @@ class GalleriesController < ApplicationController
         add_breadcrumb 'Acervo (Documentos)', documentos_galleries_path
         add_breadcrumb "#{@gallery.name} (Documentos)", gallery_path(@gallery), current: true
       when 'imagens'
-        @albums = @gallery.albums.where(category: 'photo', published: true).order(updated_at: :desc)
+        @albums = @gallery.albums.includes(banner_attachment: :blob).where(category: 'photo', published: true).order(updated_at: :desc)
         # @albums = @albums.select { _1.documents.attached? }
         add_breadcrumb 'Acervo (Imagens)', imagens_galleries_path
         add_breadcrumb "#{@gallery.name} (Imagens)", gallery_path(@gallery), current: true
@@ -29,16 +28,18 @@ class GalleriesController < ApplicationController
   end
 
   def imagens
-    @galleries = policy_scope(Album)
-                 .published_with_photos
-                 .map(&:gallery)
-                 .uniq
+    @galleries = policy_scope(Gallery)
+                .includes(:albums, banner_attachment: :blob)
+                .joins(albums: :photos_attachments)
+                .merge(Album.published_with_photos)
+                .distinct
   end
 
   def videos
-    @galleries = policy_scope(Album)
-                 .published_with_videos
-                 .map(&:gallery)
-                 .uniq
+    @galleries = policy_scope(Gallery)
+                .includes(:albums, banner_attachment: :blob)
+                .joins(albums: :documents_attachments)
+                .merge(Album.published_with_documents)
+                .distinct
   end
 end

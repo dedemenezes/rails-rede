@@ -1,0 +1,47 @@
+<div class="about_us">
+  <div class="container">
+  <h1><span>Fala,</span> <br>Participante</h1>
+  </div>
+
+  <div class="position-relative mt-5">
+    <%= image_tag 'contact-top-wave.png', width: '100%', class: 'collab__wave--top wave__start--top' %>
+    <div style="background-color: #f3f5f7;">
+      <div class="container">
+        <div class="row justify-content-center">
+          <% @collaborators[0..1].each_with_index do |collaborator, index| %>
+            <div class="col-12 col-xl-8 mb-4">
+              <%= render Card::TestimonialComponent.new(collaborator:, index:) %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <%= image_tag 'contact-bottom-wave.png', width: '100%', class: "wave testimonials__wave--bottom" %>
+  </div>
+
+  <div class="container">
+    <div class="row justify-content-center">
+      <% @collaborators[2..3].each_with_index do |collaborator, index| %>
+        <div class="col-12 col-xl-8 mb-4">
+          <%= render Card::TestimonialComponent.new(collaborator:, index:) %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="position-relative">
+    <%= image_tag 'contact-top-wave.png', width: '100%', class: 'collab__wave--top wave__start--top' %>
+    <div style="background-color: #f3f5f7;">
+      <div class="container">
+        <div class="row justify-content-center">
+          <% @collaborators[4..].each_with_index do |collaborator, index| %>
+            <div class="col-12 col-xl-8 mb-4">
+              <%= render Card::TestimonialComponent.new(collaborator:, index:) %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <%= image_tag 'contact-bottom-wave.png', width: '100%', class: "wave testimonials__wave--bottom" %>
+  </div>
+
+</div>

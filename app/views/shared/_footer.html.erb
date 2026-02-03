@@ -8,9 +8,9 @@
             <%= image_tag 'ibama-logo.png', width: '82px', alt: 'ibama logo' %>
           <% end %>
         </div>
-        <div class="col-12 col-md-4 text-center my-4">
+        <div class="col-12 col-md-4 text-center my-4 ps-0">
           <%= link_to 'https://www.prio3.com.br/', target: '_blank' do %>
-            <%= image_tag 'prio-logo.png', width: '116px', alt: 'prio logo' %>
+            <%= image_tag 'logos/logo_prio_azul_e_preto.png', width: '150px', alt: 'prio logo' %>
           <% end %>
         </div>
         <div class="col-12 col-md-4 text-center my-4">
@@ -28,7 +28,7 @@
   </div>
 </div>
 <div class="">
-  <div class="card__image" style='transform: translateY(4px);background-image:url(<%= image_path('onda-footer.png') %>); background-size: cover; background-position: bottom;height: 130px;'>
+  <div class="card__image" style='transform: translateY(4px);background-image:url(<%= image_path('onda-footer.png') %>); background-size: cover; background-position: bottom;height: 140px;'>
     <div class="container social-links text-white h-100 align-items-end d-flex justify-content-end w-100">
       <ul class="navbar-nav navbar-social">
         <% @social_urls.each do |social, link| %>

@@ -1,9 +1,8 @@
-
 <div class="dashboard__header">
   <div class="d-flex justify-content-between align-items-center p-3 border-bottom">
     <%= dashboard_header_title_tag(klass) %>
     <ul class="list-inline mb-0">
-      <li class="list-inline-item">
+      <li class="list-inline-item d-none d-md-block">
         <% if policy(model_name_from_controller_name(controller_name)).new? %>
           <%= link_to url_for(controller: controller_name, action: :new), class: 'btn btn-rede-primary-l text-white' do %>
             <%= icon('fa-solid', 'plus') %> Novo(a) <%= klass.model_name.human %>

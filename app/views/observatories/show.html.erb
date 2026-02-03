@@ -8,11 +8,7 @@
      data-scroll-reveal-root-margin-value="10px">
   <div class="banner__observatory"
         style="background-image: radial-gradient(50% 50% at 50% 50%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.48) 100%), url(<%= display_banner_as_background @observatory %>);">
-    <div class="container d-flex flex-column justify-content-between pt-3">
-      <%= link_to request.referrer, class: 'btn btn-figma-light', width: '40px', data: { controller: 'display-button-on-hover--off' } do %>
-        <%= image_tag 'arrow-down.svg', class: 'image--left', width: '16px', style: 'transform: rotate(90deg); margin-right: 16px', alt: 'arrow' %>
-        Voltar
-      <% end %>
+    <div class="container d-flex flex-column justify-content-end pt-3">
       <div class="banner__content" data-slide-n-fade='out'>
         <h1 class="home__text mb-0"><%= @observatory.name %></h1>
         <h6 class='text-white'><%= @observatory.priority_subjects.first(2).map(&:name).join(', ') %></h6>

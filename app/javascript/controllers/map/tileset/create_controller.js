@@ -17,7 +17,6 @@ export default class extends Controller {
   }
 
   fileSelected() {
-    // console.log(this.fileFieldTarget.files)
     const file = this.fileFieldTarget.files[0]
     if (file) {
       this.fileFieldTarget.classList.remove('is-invalid')
@@ -41,7 +40,6 @@ export default class extends Controller {
       })
         .then(response => response.json())
         .then((data) => {
-          // console.log(data)
         })
     } else {
       Swal.fire(

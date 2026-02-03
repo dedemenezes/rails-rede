@@ -52,16 +52,28 @@ p.nav-link {
   font-size: 14px;
   letter-spacing: 1.25px;
   color: $r-blue-d;
+  border-radius: 4px;
+  font-weight: normal !important;
+
+  &.active {
+    font-variation-settings: "wght" 650 !important;
+    background-color:#bde4f3e7 !important;
+  }
+
+  &:hover, &:active, &.show {
+    background-color:#bde4f3e7 !important;
+    color: $r-blue-d !important;
+    font-variation-settings: "wght" 650 !important;
+  }
 }
-.nav-link.active {
-  font-weight: bold;
-}
-.nav-item.active {
-  font-weight: bold;
+
+.navbar-menu-item-arrow {
+  margin-right: 6px;
 }
 
 .navbar-social .nav-item {
-  margin-right: 8px;
+  // margin-right: 8px;
+  // padding-right: 0 !important;
 }
 
 
@@ -106,6 +118,11 @@ p.nav-link {
   }
 }
 
+.navbar .navbar-toggler {
+  top: .525rem;
+  right: 1rem;
+}
+
 .navbar-mobile-font {
   font-family: 'Unbounded' !important;
   font-weight: 400;
@@ -120,6 +137,10 @@ p.nav-link {
 
 .navbar-mobile show {
 
+}
+
+.offcanvas {
+  width: 100% !important;
 }
 
 @media (max-width: 768px) {

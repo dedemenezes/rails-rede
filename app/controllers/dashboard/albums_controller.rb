@@ -62,6 +62,9 @@ module Dashboard
 
     def edit
       @album.videos.build if @album.category == 'video' && @album.videos.empty?
+      main_featured_album = Album.where(category: @album.category, gallery: @album.gallery, main_featured: true).first
+      @has_featured = main_featured_album.present?
+      @is_featured = @album == main_featured_album
     end
 
     def update
@@ -114,6 +117,7 @@ module Dashboard
         :published,
         :banner,
         :category,
+        :main_featured,
         photos: [],
         documents: [],
         videos_attributes: [%i[id name description url]]
