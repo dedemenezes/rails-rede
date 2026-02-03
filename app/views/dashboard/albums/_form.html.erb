@@ -61,6 +61,7 @@
 
     <%= f.input :main_featured,
                 hint: '',
+                wrapper: :vertical_boolean,
                 input_html: {
                   class: "tag-selector tag-selector--large",
                   data: { action: 'change->sweetalert#confirmFeatured',
