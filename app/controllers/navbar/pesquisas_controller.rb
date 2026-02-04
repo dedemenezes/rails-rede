@@ -5,7 +5,10 @@ class Navbar::PesquisasController < ApplicationController
                                       .where(name: "Formação e Pesquisa", albums: { published: true, category: 'document' })
                                       .distinct
                                       .order(name: :asc)
-
-    render partial: "shared/nav_pesquisa", locals: { nav_galleries: @galleries }
+    if params[:q].present?
+      render partial: "shared/navbar/photo_galleries", locals: { nav_galleries: @galleries, target_id: :nav_pesquisa_galleries, url: :material_path }
+    else
+      render partial: "shared/nav_pesquisa", locals: { nav_galleries: @galleries }
+    end
   end
 end
