@@ -5,6 +5,7 @@ class CollaboratorPolicy < Dashboard::UserPolicy
       scope.all
     end
   end
+
   def show?
     false
   end

@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-
   include Pundit::Authorization
   include SetTags
 
@@ -39,7 +38,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_project
-    @project ||= Project.first
+    @set_project ||= Project.first
   end
 
   def set_social_media_links

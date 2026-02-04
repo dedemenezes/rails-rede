@@ -41,7 +41,7 @@ class Gallery < ApplicationRecord
   end
 
   def albums?
-    albums.count.positive?
+    albums.any?
   end
 
   def total_de_albuns

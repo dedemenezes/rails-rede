@@ -1,7 +1,7 @@
 namespace :collaborators do
   desc "Populate with default collaborators"
   task seed: :environment do
-    if Collaborator.count.positive?
+    if Collaborator.any?
       puts "Clean collaborators?"
       should_clean = gets.chomp
     end

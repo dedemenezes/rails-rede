@@ -21,9 +21,9 @@ class Project < ApplicationRecord
 
   def social_links
     {
-        instagram: self.ig_url.present? ? self.ig_url : 'pearedeobservacao',
-        facebook:  self.fb_url.present? ? self.fb_url : 'pearedeobservacao',
-        youtube:   self.yt_url.present? ? self.yt_url : '@pearedeobservacao'
+      instagram: ig_url.present? ? ig_url : 'pearedeobservacao',
+      facebook: fb_url.present? ? fb_url : 'pearedeobservacao',
+      youtube: yt_url.present? ? yt_url : '@pearedeobservacao'
     }
   end
 
@@ -32,9 +32,9 @@ class Project < ApplicationRecord
   end
 
   def strip_video_link
-    if video_id.match?(URI.regexp)
-      self.video_id = strip_video_id
-    end
+    return unless video_id.match?(URI::DEFAULT_PARSER.make_regexp)
+
+    self.video_id = strip_video_id
   end
 
   def strip_video_id
@@ -45,15 +45,13 @@ class Project < ApplicationRecord
   end
 
   def normalize_social_media_urls
-    urls = {yt_url: 'youtube', fb_url: 'facebook', ig_url: 'instagram' }
-    urls.keys.each do |sm_url|
-      sm_attribute_value = self.send(sm_url)
+    urls = { yt_url: 'youtube', fb_url: 'facebook', ig_url: 'instagram' }
+    urls.each_key do |sm_url|
+      sm_attribute_value = send(sm_url)
       next if sm_attribute_value.blank?
 
-      match_data = sm_attribute_value.match(%r[(?:https?://)?(?:www\.)?#{urls[sm_url]}\.com/([a-zA-Z0-9_\-]+)])
-      if match_data
-        self.send("#{sm_url}=".to_sym, match_data[1])
-      end
+      match_data = sm_attribute_value.match(%r{(?:https?://)?(?:www\.)?#{urls[sm_url]}\.com/([a-zA-Z0-9_-]+)})
+      send(:"#{sm_url}=", match_data[1]) if match_data
     end
   end
 end

@@ -6,7 +6,7 @@ class MobileLogoComponent < ApplicationComponent
 
   def view_template
     link_to root_path, class: "navabar-top-logo offcanvas-title", id: "menuMobileLabel" do
-        image_tag 'Logo_PEA.png', width: '186px', alt: 'Logo do PEA Rede Observação'
+      image_tag 'Logo_PEA.png', width: '186px', alt: 'Logo do PEA Rede Observação'
     end
   end
 end
