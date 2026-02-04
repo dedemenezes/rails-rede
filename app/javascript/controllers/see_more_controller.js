@@ -5,8 +5,6 @@ export default class extends Controller {
   static values = { limit: Number }
 
   connect() {
-    console.log(this.textTarget);
-
     this.fullText = this.textTarget.textContent.trim()
 
     if (this.fullText.length <= this.limitValue) {
