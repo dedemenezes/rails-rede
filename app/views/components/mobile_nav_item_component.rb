@@ -8,7 +8,8 @@ class MobileNavItemComponent < ApplicationComponent
 
   def view_template
     li do
-      link_to text, url, class: "bg-white text-rede-primary text-decoration-none d-flex justify-content-between align-items-center border-0 w-100 fs-16 p-3 ps-2 fw-500"
+      link_to text, url,
+              class: "bg-white text-rede-primary text-decoration-none d-flex justify-content-between align-items-center border-0 w-100 fs-16 p-3 ps-2 fw-500"
     end
   end
 

@@ -17,7 +17,8 @@ class ArticlesController < ApplicationController
       @featured = @articles.main_featured
       # @articles = @articles.all_but_featured
       @top_four = @articles.all_featured
-      @articles = Article.includes(:tags, banner_attachment: :blob).excluding_featured_and_recents(@top_four.pluck(:id).push(@featured&.id))
+      @articles = Article.includes(:tags, banner_attachment: :blob)
+                         .excluding_featured_and_recents(@top_four.pluck(:id).push(@featured&.id))
                          .order(created_at: :desc)
     end
     # raise

@@ -23,7 +23,7 @@ module ApplicationHelper
 
   def tab_active?(expected, options = {})
     condition = params[:controller] == expected
-    if params[:controller] == 'pages' || params[:controller] == 'observatories' || params[:controller] == 'contacts' || params[:controller] == 'galleries'
+    if ['pages', 'observatories', 'contacts', 'galleries'].include?(params[:controller])
       condition = params[:action] == options[:action] && params[:controller] == expected
     end
     condition ? 'active' : 'fw-normal'
@@ -33,11 +33,11 @@ module ApplicationHelper
     # if Rails.env.development?
     #   cl_image_path(instance.banner.key)
     # else
-      if instance&.banner&.attached?
-        "https://rede-observacao-prod.s3.us-east-2.amazonaws.com/#{instance.banner.key}"
-      else
-        image_path('default-banner.png')
-      end
+    if instance&.banner&.attached?
+      "https://rede-observacao-prod.s3.us-east-2.amazonaws.com/#{instance.banner.key}"
+    else
+      image_path('default-banner.png')
+    end
     # end
   end
 
@@ -45,12 +45,12 @@ module ApplicationHelper
     # if Rails.env.development?
     #   cl_image_tag(photo.key, width: options[:width], style: options[:style])
     # else
-      if photo.attached?
-        url = "https://rede-observacao-prod.s3.us-east-2.amazonaws.com/#{photo.key}"
-      else
-        url = 'default-banner.png'
-      end
-      image_tag(url, options)
+    if photo.attached?
+      url = "https://rede-observacao-prod.s3.us-east-2.amazonaws.com/#{photo.key}"
+    else
+      url = 'default-banner.png'
+    end
+    image_tag(url, options)
     # end
   end
 

@@ -25,9 +25,8 @@ module Seeds
             puts "⚠️ No image found for #{collaborator.name}"
           end
           collaborator.save!
-          puts "Created #{collaborator.name} #{collaborator.avatar.attached? ? "with" : "without"} avatar attached"
+          puts "Created #{collaborator.name} #{collaborator.avatar.attached? ? 'with' : 'without'} avatar attached"
           puts "done!"
-
         end
       end
 
@@ -44,7 +43,6 @@ module Seeds
         ActiveSupport::Inflector.transliterate(string.downcase.gsub(/[^a-z0-9]/, ''))
       end
     end
-
   end
 end
 

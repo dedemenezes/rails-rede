@@ -64,6 +64,9 @@
                       <div class="col-12">
                         <button class="nav-link" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasImages" aria-controls="offcanvasImages">Imagens <i class="fa-solid fa-chevron-down ms-auto" style="opacity: 0.7;transform: rotate(270deg);font-size: 12px;"></i></button>
                       </div>
+                      <div class="col-12">
+                        <button class="nav-link" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasPesquisa" aria-controls="offcanvasPesquisa">Pesquisas <i class="fa-solid fa-chevron-down ms-auto" style="opacity: 0.7;transform: rotate(270deg);font-size: 12px;"></i></button>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -124,6 +127,31 @@
         <span class="fw-bold text-uppercase" style="letter-spacing: 0.04em;">Eixos</span>
       </div>
       <%= turbo_frame_tag :nav_materials_galleries, src: navbar_materials_path(q: 'offcanvas'), loading: "lazy" %>
+      <%#= turbo_frame_tag "nav-images", src: navbar_images_path, loading: "lazy" %>
+    </div>
+  </div>
+
+  <%# PESQUISA %>
+  <div class="offcanvas offcanvas-end border-0" tabindex="-1" id="offcanvasPesquisa" aria-labelledby="offcanvasPesquisaLabel">
+    <div class="offcanvas-header">
+      <%= render MobileLogoComponent.new %>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body p-0">
+      <div class="d-flex flex-columns align-items-center justify-content-center p-3 bg-rede-lightzin position-relative" style="background-color: #bde4f369 !important;">
+        <%= image_tag 'arrow-down.svg',
+          class: 'position-absolute ms-3',
+          width: '16px',
+          style: 'transform: rotate(90deg); left: 0; cursor: pointer;',
+          data: {
+            bs_toggle: "offcanvas",
+            bs_target: "#menuMobile"
+          },
+          aria_controls: "menuMobile",
+          alt: 'arrow left' %>
+        <span class="fw-bold text-uppercase" style="letter-spacing: 0.04em;">Pesquisas</span>
+      </div>
+      <%= turbo_frame_tag :nav_pesquisa_galleries, src: navbar_pesquisas_path(q: 'offcanvas'), loading: "lazy" %>
       <%#= turbo_frame_tag "nav-images", src: navbar_images_path, loading: "lazy" %>
     </div>
   </div>

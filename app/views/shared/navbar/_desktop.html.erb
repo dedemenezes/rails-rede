@@ -53,6 +53,9 @@
               <li class="mb-lg-3 w-100">
                 <%= render Dropdown::TabButtonComponent.new("Imagens", id: 'images-tab', target: 'nav-images') %>
               </li>
+              <li class="mb-lg-3 w-100">
+                <%= render Dropdown::TabButtonComponent.new("Pesquisa", id: 'pesquisa-tab', target: 'nav-pesquisa') %>
+              </li>
             </ul>
           </div>
 
@@ -70,6 +73,12 @@
               frame_id: "nav-images",
               aria_labelledby: "images-tab",
               index: 1
+            ) %>
+            <%= render Dropdown::TabContentComponent.new(
+              navbar_pesquisas_path,
+              frame_id: "nav-pesquisa",
+              aria_labelledby: "pesquisa-tab",
+              index: 2
             ) %>
           </div>
         </div>

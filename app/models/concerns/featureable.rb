@@ -10,9 +10,9 @@ module Featureable
   private
 
   def ensure_featured_exclusivity
-    if respond_to?(:featured)
-      self.featured = false if main_featured
-    end
+    return unless respond_to?(:featured)
+
+    self.featured = false if main_featured
   end
 
   def demote_previous_main_featured
@@ -27,8 +27,6 @@ module Featureable
     latest = latest_featured
     latest&.update!(main_featured: true)
   end
-
-  private
 
   def latest_featured
     if respond_to? :featured

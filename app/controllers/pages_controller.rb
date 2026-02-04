@@ -18,7 +18,6 @@ class PagesController < ApplicationController
     @text_colors = ['rede-primary', 'rede-dark-red', 'rede-primary-l']
   end
 
-
   def testimonials
     @collaborators = policy_scope(Collaborator).all
   end
@@ -34,7 +33,7 @@ class PagesController < ApplicationController
 
   def load_events
     galleries = Gallery.only_published_events
-    albums = Album.includes([:tags, banner_attachment: :blob]).only_published_events
+    albums = Album.includes([:tags, { banner_attachment: :blob }]).only_published_events
     @events = [galleries, albums].compact.flatten.sort_by(&:event_date).reverse
     @events = @events.select { |event| event.event_date.to_s <= params[:before_date] } if params[:before_date].present?
   end
