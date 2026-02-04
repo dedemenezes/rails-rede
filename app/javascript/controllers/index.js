@@ -70,6 +70,9 @@ application.register("reveal-on-click", RevealOnClickController)
 import ScrollReveal from 'stimulus-scroll-reveal'
 application.register('scroll-reveal', ScrollReveal)
 
+import SeeMoreController from "./see_more_controller"
+application.register("see-more", SeeMoreController)
+
 import SlideNFadeLController from "./slide_n_fade_l_controller"
 application.register("slide-n-fade-l", SlideNFadeLController)
 
@@ -79,11 +82,11 @@ application.register("slide-n-fade-r", SlideNFadeRController)
 import SweetalertController from "./sweetalert_controller"
 application.register("sweetalert", SweetalertController)
 
+import SwiperCollaboratorsController from "./swiper_collaborators_controller"
+application.register("swiper-collaborators", SwiperCollaboratorsController)
+
 import SwiperController from "./swiper_controller"
 application.register("swiper", SwiperController)
-
-import SwiperCollaborators from "./swiper_collaborators_controller"
-application.register("swiper-collaborators", SwiperCollaborators)
 
 import SwiperSlideshowController from "./swiper_slideshow_controller"
 application.register("swiper-slideshow", SwiperSlideshowController)
