@@ -37,6 +37,7 @@ namespace :navbar do
   get 'videos', to: 'videos#index', as: :videos
   get 'images', to: 'images#index', as: :images
   get 'materials', to: 'materials#index', as: :materials
+  get 'pesquisas', to: 'pesquisas#index', as: :pesquisas
   get 'gallery-show/:name', to: 'galleries#show', as: :gallery
 end
 

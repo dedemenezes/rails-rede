@@ -6,6 +6,9 @@ class Navbar::GalleriesController < ApplicationController
       when 'materials'
         @albums = @gallery.albums.published_with_documents.featured
         render partial: "shared/nav_gallery_materials", locals: { albums: @albums, gallery: @gallery }
+      when 'pesquisa'
+        @albums = @gallery.albums.published_with_documents.featured
+        render partial: "shared/nav_gallery_pesquisa", locals: { albums: @albums, gallery: @gallery }
       when 'photos'
         @albums = @gallery.albums.published_with_photos.featured
         render partial: "shared/nav_gallery_photos", locals: { albums: @albums, gallery: @gallery }
