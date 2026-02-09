@@ -1,7 +1,8 @@
 require "test_helper"
 
 class Navbar::PesquisasControllerTest < ActionDispatch::IntegrationTest
-  # test "the truth" do
-  #   assert true
-  # end
+  test "GET index" do
+    get navbar_pesquisas_url
+    assert_response :success
+  end
 end

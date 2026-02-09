@@ -60,7 +60,10 @@
     %>
 
     <%= f.input :main_featured,
-                hint: '',
+                hint: 'Irá aparecer na navegação do topo',
+                hint_html: {
+                  class: "d-inline"
+                },
                 wrapper: :vertical_boolean,
                 input_html: {
                   class: "tag-selector tag-selector--large",
