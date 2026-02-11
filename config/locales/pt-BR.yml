@@ -27,8 +27,8 @@ pt-BR:
         one: "Categoria"
         other: "Categorias"
       conflict_type:
-        one: "Conflito"
-        other: "Conflitos"
+        one: "Tema Gerador"
+        other: "Temas Geradores"
       member:
         one: "Membro"
         other: "Membros"

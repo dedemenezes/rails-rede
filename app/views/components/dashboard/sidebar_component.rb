@@ -3,6 +3,7 @@
 module Dashboard
   class SidebarComponent < ApplicationComponent
     include Phlex::Rails::Helpers::Routes
+    include Phlex::Rails::Helpers::Translate
 
     def view_template
       nav(id: "sidebarMenu",
@@ -60,7 +61,7 @@ module Dashboard
                                           dashboard_conflict_types_path,
                                           css_class: "text-primary" do
                 i(class: "fa-solid fa-eye me-2")
-                plain "Conflitos"
+                plain t('activerecord.models.conflict_type.one')
               end
             end
             render NavItemComponent.new(extra_css: "mb-2") do
