@@ -11,6 +11,8 @@ class Methodology < ApplicationRecord
 
   after_create :set_gallery
 
+  scope :published, -> { where published: true }
+
   def self.dashboard_headers
     # to_reject = attribute_names
     to_permit = %w[id name updated_at]

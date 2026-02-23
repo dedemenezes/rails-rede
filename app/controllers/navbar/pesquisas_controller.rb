@@ -1,9 +1,9 @@
 module Navbar
   class PesquisasController < ApplicationController
     def index
-      @galleries = policy_scope(Gallery).where.not(methodology_id: nil)
-                                        .with_published_albums
-                                        .merge(Album.with_documents)
+      @galleries = policy_scope(Gallery).joins(albums: :documents_attachments)
+                                        .where.not(methodology_id: nil)
+                                        .where(albums: { published: true, category: 'document' })
                                         .distinct
                                         .order(name: :asc)
       if params[:q].present?

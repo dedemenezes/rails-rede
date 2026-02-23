@@ -5,7 +5,7 @@ class Album < ApplicationRecord
   include Taggable
 
   CATEGORIES = [['document', 'documento'], ['photo', 'foto'], ['video', 'video']]
-  HEADERS = %w[id banner name gallery\ name category published updated_at]
+  HEADERS = %w[id banner name gallery\ name published updated_at]
 
   validates :name, presence: true, uniqueness: { scope: :gallery_id }
   validates :category, inclusion: { in: CATEGORIES.map(&:first) }

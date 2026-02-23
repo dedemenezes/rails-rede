@@ -5,7 +5,7 @@ class AlbumTest < ActiveSupport::TestCase
   #   assert true
   # end
   test 'HEADERS' do
-    assert_equal %w[id banner name gallery\ name category published updated_at], Album::HEADERS
+    assert_equal %w[id banner name gallery\ name published updated_at], Album::HEADERS
   end
 
   test "::with_documents" do
@@ -34,7 +34,7 @@ class AlbumTest < ActiveSupport::TestCase
   end
 
   test '::dashboard_headers' do
-    assert_equal %w[id banner name gallery\ name category published updated_at], Album.dashboard_headers
+    assert_equal %w[id banner name gallery\ name published updated_at], Album.dashboard_headers
     refute_equal %w[banner id name gallery\ name category published updated_at], Album.dashboard_headers
   end
 

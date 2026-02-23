@@ -1,11 +1,12 @@
-<%= turbo_frame_tag 'nav-pesquisa' do %>
+<%= turbo_frame_tag 'nav-methodologies' do %>
   <div class="dropdown-pane position-relative ps-3 d-flex flex-columns justify-content-between pe-0" style="">
     <ul class="nav flex-nowrap flex-column align-items-start nav-pills nav-tabs border-bottom-0 pe-3 border-end border-light" id="myTab" role="tablist" style="overflow-y: auto;min-width: 276px">
-      <% nav_galleries.each do |gallery| %>
+      <% methodologies.each do |methodology| %>
         <li class="mb-lg-3 w-100">
-          <%= render NavLinkComponent.new(gallery.name, material_path(gallery.name), target: "_top") %>
+          <%= render NavLinkComponent.new(methodology.name, methodology_path(methodology), target: "_top") %>
         </li>
       <% end %>
     </ul>
+
   </div>
 <% end %>
