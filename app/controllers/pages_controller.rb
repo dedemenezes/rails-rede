@@ -4,6 +4,7 @@ class PagesController < ApplicationController
     load_events
     load_articles
     load_tilesets
+    load_collaborators
   end
 
   def about_us
@@ -23,6 +24,10 @@ class PagesController < ApplicationController
   end
 
   private
+
+  def load_collaborators
+    @collaborators = Collaborator.includes(avatar_attachment: :blob).all
+  end
 
   def load_articles
     articles = Article.includes(:tags, banner_attachment: :blob)

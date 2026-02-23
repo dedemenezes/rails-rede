@@ -11,7 +11,7 @@ module Card
 
       def view_template
         div(class: 'd-flex gap-3 align-items-center mb-2') do
-          small { article.updated_at.strftime('%d.%m.%Y') }
+          small { article.created_at.strftime('%d.%m.%Y') }
           div(class: 'flex-grow-1 d-flex gap-2 align-items-center') do
             article.tags[..1].each do |tag|
               render TagComponent.new(tag: tag)
